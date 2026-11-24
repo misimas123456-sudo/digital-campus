@@ -1,0 +1,204 @@
+{
+  "id": "sw08-labor3-rc-glied",
+  "bereich": "labor",
+  "woche": 8,
+  "titel": "Labor 3 · Funktionsgenerator & RC-Glied",
+  "untertitel": "Funktionsgenerator, AC/DC-Kopplung, Laden/Entladen, Phasenverschiebung am Kondensator",
+  "quelle": "Präsentation ET+L HS26 Labor 3 de v1; Aufgaben ETplusL Lab 3 v9a.",
+  "vorbereitung": [
+    "«Nachgelagerte Überlegungen» (Aufgabe 3, letzte Seite der Anleitung) vorlösen",
+    "In Block 4, S. 7 die Lösung «Lade- und Entladekurven von Kondensatoren» anschauen"
+  ],
+  "lektionen": [
+    {
+      "id": "funktionsgenerator",
+      "titel": "Funktionsgenerator und Kopplung",
+      "art": "aufgabe",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Der Funktionsgenerator (FG) gibt eine zeitlich veränderliche Spannung aus: Signalform, Frequenz, Amplitude und Offset sind einstellbar. Die Amplitude zeigt er nicht an – man kontrolliert sie am Oszilloskop."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**DC-Kopplung:** das ganze Signal inkl. Gleichanteil (Offset)",
+            "**AC-Kopplung:** nur der Wechselanteil – der Offset verschwindet aus der Anzeige"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Vorsicht BNC"
+        },
+        {
+          "typ": "text",
+          "text": "Die Schirme der BNC-Stecker sind im Gerät verbunden und meist geerdet. Die schwarzen Anschlüsse beider Oszi-Kanäle müssen deshalb **am gleichen Punkt** liegen, sonst entsteht ein Kurzschluss. Dann ist ein Signal invertiert – das korrigiert man im Oszi-Menü (Invertierung)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Was zeigt das Oszilloskop bei AC-Kopplung?",
+          "optionen": [
+            "Nur den Wechselanteil des Signals",
+            "Nur den Gleichanteil",
+            "Das Signal doppelt so gross",
+            "Gar nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "AC-Kopplung blendet den DC-Offset aus."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Die Schirme sind intern verbunden – an verschiedenen Punkten gäbe es einen Kurzschluss.",
+          "aussage": "Die schwarzen Anschlüsse der beiden Oszilloskop-Kanäle dürfen an verschiedenen Punkten der Schaltung hängen.",
+          "richtig": false
+        }
+      ]
+    },
+    {
+      "id": "rc-messung",
+      "titel": "RC-Glied laden und entladen",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Aufbau: Rechtecksignal vom FG über $R = 330\\,\\Omega$ auf $C = 22\\,\\mu\\text{F}$ (nicht 2u2 = 2.2 µF!). Der Widerstand dient gleichzeitig als Ladewiderstand und als Shunt für die Strommessung."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\tau = R\\cdot C \\qquad \\text{voll geladen nach } \\approx 5\\tau"
+        },
+        {
+          "typ": "text",
+          "text": "Ist die Frequenz zu hoch, reicht eine Halbperiode nicht mehr zum vollständigen Laden – die Spannung kommt nicht mehr ganz hoch."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Wie gross ist die Zeitkonstante des RC-Glieds mit 330 Ω und 22 µF (in ms)?",
+          "loesung": 7.26,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "Lab 3, Aufgabe 2",
+          "loesungsweg": [
+            "$\\tau = 330\\,\\Omega\\cdot22\\,\\mu\\text{F} = 7.26\\,\\text{ms}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Nach welcher Zeit ist der Kondensator praktisch voll geladen (in ms)?",
+          "loesung": 36.3,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "Lab 3, Aufgabe 2",
+          "loesungsweg": [
+            "$5\\tau = 5\\cdot7.26\\,\\text{ms} = 36.3\\,\\text{ms}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Ab welcher Rechteck-Frequenz reicht eine Halbperiode nicht mehr für $5\\tau$ (in Hz)?",
+          "loesung": 13.8,
+          "einheit": "Hz",
+          "toleranz": 0.03,
+          "quelle": "Lab 3, Aufgabe 2",
+          "loesungsweg": [
+            "Halbperiode $= 5\\tau$ → $T = 10\\tau = 72.6\\,\\text{ms}$",
+            "$f = \\dfrac{1}{72.6\\,\\text{ms}} = 13.8\\,\\text{Hz}$",
+            "Hergeleitet aus der Laborfrage – im Labor wird der Wert gemessen."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-c",
+      "titel": "Phasenverschiebung am Kondensator",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Mit Sinus (5 V, 50 Hz) sieht man: Der Strom am Kondensator eilt der Spannung um **90°** voraus – unabhängig von der Kapazität. Die Spannung am C wechselt die Polarität, der Strom die Richtung."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\varphi = \\frac{\\Delta t}{T}\\cdot360°"
+        },
+        {
+          "typ": "titel",
+          "text": "Aus Sicht der Quelle"
+        },
+        {
+          "typ": "text",
+          "text": "Die Quelle sieht R und C zusammen. Im Zeigerdiagramm liegt R horizontal und $X_C$ senkrecht nach unten; die Hypotenuse ist Z:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\varphi = -\\arctan\\frac{X_C}{R} \\qquad X_C = R \\;\\Rightarrow\\; f = \\frac{1}{2\\pi RC},\\; \\varphi = -45°"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Bei 50 Hz misst man zwischen Strom und Spannung am Kondensator $\\Delta t = 5\\,\\text{ms}$. Welcher Winkel ist das (in °)?",
+          "loesung": 90,
+          "einheit": "°",
+          "toleranz": 0.02,
+          "quelle": "Lab 3, Aufgabe 3",
+          "loesungsweg": [
+            "$T = 20\\,\\text{ms}$",
+            "$\\varphi = \\dfrac{5}{20}\\cdot360° = 90°$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $X_C$ des 22-µF-Kondensators bei 50 Hz?",
+          "loesung": 144.7,
+          "einheit": "Ω",
+          "toleranz": 0.02,
+          "quelle": "Lab 3, nachgelagerte Überlegungen",
+          "loesungsweg": [
+            "$X_C = \\dfrac{1}{2\\pi\\cdot50\\,\\text{Hz}\\cdot22\\,\\mu\\text{F}} = 144.7\\,\\Omega$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Welchen Betrag hat die Phasenverschiebung aus Sicht der Quelle (330 Ω, $X_C = 144.7\\,\\Omega$) in °?",
+          "loesung": 23.7,
+          "einheit": "°",
+          "toleranz": 0.02,
+          "quelle": "Lab 3, nachgelagerte Überlegungen",
+          "loesungsweg": [
+            "$\\varphi = -\\arctan\\dfrac{144.7}{330} = -23.7°$ (Strom eilt vor)"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Bei welcher Frequenz wäre $X_C = R = 330\\,\\Omega$ (in Hz)?",
+          "loesung": 21.9,
+          "einheit": "Hz",
+          "toleranz": 0.02,
+          "quelle": "Lab 3, nachgelagerte Überlegungen",
+          "loesungsweg": [
+            "$f = \\dfrac{1}{2\\pi\\cdot330\\,\\Omega\\cdot22\\,\\mu\\text{F}} = 21.9\\,\\text{Hz}$",
+            "Dann ist $\\varphi = -45°$"
+          ]
+        }
+      ]
+    }
+  ],
+  "labor": 3
+}

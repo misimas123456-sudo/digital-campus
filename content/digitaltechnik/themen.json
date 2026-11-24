@@ -1,0 +1,282 @@
+{
+  "stand": "2026-11-09",
+  "hinweis": "Reihenfolge nach den Kapiteln der Folien (K00–K15). Die Zuordnung zu Semesterwochen und Einheiten folgt.",
+  "themen": [
+    {
+      "id": "k00",
+      "nr": 0,
+      "titel": "Einführung: analog und digital",
+      "lernziele": [
+        "Begriffe analog, digital, diskret und binär erklären",
+        "Analoge und digitale Systeme vergleichen und beurteilen (Anzeigen, Sensoren, Verarbeitung, Übertragung)",
+        "Erklären, wie analoge Signale digital erfasst werden (Abtasten, Quantisieren)"
+      ],
+      "unterlagen": {
+        "folien": "K00.Einfuehrung.pdf",
+        "uebung": "K00-DigitalTechnik-Aufgaben-v4.pdf",
+        "loesung": "K01-DigitalTechnik-Loesungen-v20.pdf"
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k01",
+      "nr": 1,
+      "titel": "Zahlensysteme und Codes",
+      "lernziele": [
+        "Darstellung dezimaler und binärer Zahlen erklären",
+        "Dezimal in binär und binär in dezimal umrechnen",
+        "Erklären, was ein Code ist, mit Beispielen und Eigenschaften",
+        "Codes vergleichen und passende Einsatzbeispiele nennen",
+        "Codeworte zwischen Codes umwandeln (z. B. Binär zu Hex oder BCD)"
+      ],
+      "unterlagen": {
+        "folien": "K01.Zahlensysteme-und-Codes-v21-Print.pdf",
+        "uebung": "K01-DigitalTechnik-Aufgaben-v20.pdf",
+        "loesung": "K01-DigitalTechnik-Loesungen-v20.pdf"
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k02",
+      "nr": 2,
+      "titel": "Logische Grundfunktionen",
+      "lernziele": [
+        "Funktionsweise der logischen Grundfunktionen erklären, mit Beispielen",
+        "Aus einer Funktionsbeschreibung auf die passenden Grundfunktionen schliessen",
+        "Zwischen Beschreibungsformen wechseln (z. B. Wahrheitstabelle zu Impulsdiagramm)"
+      ],
+      "unterlagen": {
+        "folien": "K02.Logische-Grundfunktionen.pdf, Puzzle AND / OR / XOR",
+        "uebung": "K02-DigitalTechnik-Aufgaben-v4.pdf",
+        "loesung": "K02-DigitalTechnik-Loesungen-v7.pdf"
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k03",
+      "nr": 3,
+      "titel": "Boolesche Algebra",
+      "lernziele": [
+        "Gesetze und Begriffe der Schaltalgebra kennen und anwenden",
+        "Textaufgaben abbilden und lösen",
+        "Gleichungen vereinfachen und Funktionen umformen",
+        "Schaltungen als Funktionen und Funktionen als Schaltungen darstellen"
+      ],
+      "unterlagen": {
+        "folien": "K03.Boolsche-Algebra.pdf",
+        "uebung": "K03-DigitalTechnik-Aufgaben-v1.pdf",
+        "loesung": "K03-DigitalTechnik-Loesung-v2.pdf"
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k04",
+      "nr": 4,
+      "titel": "Vereinfachung logischer Funktionen",
+      "lernziele": [
+        "Logische Funktionen in verschiedenen Formen darstellen und umwandeln",
+        "Wahrheitstabellen als Gleichungen darstellen",
+        "Wahrheitstabellen als Karnaugh-Map darstellen",
+        "Gleichungen mit der Karnaugh-Map vereinfachen"
+      ],
+      "unterlagen": {
+        "folien": "K04.Vereinfachung-Logischer-Funktionen.pdf",
+        "uebung": "K04-DigitalTechnik-Aufgaben-v6.pdf",
+        "loesung": "K04-DigitalTechnik-Loesungen-v7.pdf"
+      },
+      "mep": true,
+      "einheiten": []
+    },
+    {
+      "id": "k05",
+      "nr": 5,
+      "titel": "Binäre Arithmetik",
+      "lernziele": [
+        "Einer- und Zweierkomplement bilden",
+        "Binär addieren und subtrahieren",
+        "Overflows erkennen",
+        "Binär multiplizieren"
+      ],
+      "unterlagen": {
+        "folien": "K05.Binäre-Arithmetik.pdf",
+        "uebung": "K05-DigitalTechnik-Aufgaben-v6.pdf",
+        "loesung": "K05-DigitalTechnik-Loesungen-241024.pdf"
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k06",
+      "nr": 6,
+      "titel": "Reale logische Gatter",
+      "lernziele": [
+        "Gründe und Auswirkungen von Verzögerungen kennen",
+        "Mögliche Störungen und Artefakte erkennen und beim Entwurf vermeiden",
+        "Open Collector und Tristate kennen und einsetzen"
+      ],
+      "unterlagen": {
+        "folien": "K06.Reale-Logische-Gatter.pdf",
+        "uebung": "K06-DigitalTechnik-Aufgaben-v1.pdf",
+        "loesung": "K06-DigitalTechnik-Loesungen2410.pdf"
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k07",
+      "nr": 7,
+      "titel": "Speicherbausteine: Latch und Flip-Flops",
+      "lernziele": [
+        "Grundlegende Speicherbausteine kennen und anwenden",
+        "Schaltungen analysieren und Impulsdiagramme herleiten",
+        "Einfache Schaltungen synthetisieren"
+      ],
+      "unterlagen": {
+        "folien": "K07.Speicherbausteine-Latch-&-FF-s-v9.pdf",
+        "uebung": "K07-DigitalTechnik-Aufgaben-v3.pdf",
+        "loesung": "K07-DigitalTechnik-Loesungen-v3.pdf"
+      },
+      "mep": false,
+      "einheiten": [
+        "sw07-speicherbausteine"
+      ]
+    },
+    {
+      "id": "k08",
+      "nr": 8,
+      "titel": "Endliche Automaten",
+      "lernziele": [
+        "Einfache sequentielle Schaltungen modellieren und entwerfen"
+      ],
+      "unterlagen": {
+        "folien": "K08.Endliche-Automaten.pdf",
+        "uebung": "K08-DigitalTechnik-Aufgaben-v10.pdf",
+        "loesung": ""
+      },
+      "mep": true,
+      "einheiten": [
+        "sw08-automaten"
+      ]
+    },
+    {
+      "id": "k09",
+      "nr": 9,
+      "titel": "Timing in sequentiellen Schaltungen",
+      "lernziele": [
+        "Zeitliche Eigenschaften sequentieller Schaltungen erklären",
+        "Sequentielle Schaltungen entwerfen, die die zeitlichen Anforderungen erfüllen und zuverlässig arbeiten"
+      ],
+      "unterlagen": {
+        "folien": "K09.Timing-in-sequentiellen-Schaltungen.pdf",
+        "uebung": "K09-DigitalTechnik-Aufgaben-v3.pdf",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": [
+        "sw09-timing"
+      ]
+    },
+    {
+      "id": "k10",
+      "nr": 10,
+      "titel": "Zähler",
+      "lernziele": [
+        "Funktionsweise von Zählerschaltungen erklären",
+        "Beliebige Zählerschaltungen entwerfen"
+      ],
+      "unterlagen": {
+        "folien": "K10.Zähler.pdf",
+        "uebung": "K10-DigitalTechnik-Aufgaben-v3.pdf",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": [
+        "sw10-zaehler"
+      ]
+    },
+    {
+      "id": "k11",
+      "nr": 11,
+      "titel": "Register und Schieberegister",
+      "lernziele": [
+        "Funktionsweise von Registern und Schieberegistern erklären",
+        "Schieberegister analysieren und entwerfen"
+      ],
+      "unterlagen": {
+        "folien": "K11.Register-und-Schieberegister-Complete.pdf",
+        "uebung": "K11-DigitalTechnik-Aufgaben-v2.pdf",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": [
+        "sw11-register"
+      ]
+    },
+    {
+      "id": "k12",
+      "nr": 12,
+      "titel": "Kombinatorische Funktionsblöcke",
+      "lernziele": [
+        "Funktionsweise kombinatorischer Funktionsblöcke erklären (z. B. Coder, Decoder)",
+        "Kombinatorische Funktionsblöcke analysieren und entwerfen"
+      ],
+      "unterlagen": {
+        "folien": "K12.Kombinatorische-Funktionsblöcke-Complete.pdf",
+        "uebung": "K12-DigitalTechnik-Aufgaben-v1.pdf",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k13",
+      "nr": 13,
+      "titel": "Timer und Oszillatoren",
+      "lernziele": [
+        "Funktionsweise von Timern und Oszillatoren erklären",
+        "Timer und Oszillatoren beim Entwurf digitaler Systeme einsetzen"
+      ],
+      "unterlagen": {
+        "folien": "K13.Timer-und-Oszillatoren-Doz.pdf",
+        "uebung": "K13-DigitalTechnik-Aufgaben-v1.pdf",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k14",
+      "nr": 14,
+      "titel": "Technologien und Architekturen",
+      "lernziele": [
+        "Die wichtigsten Vor- und Nachteile der verschiedenen Technologien und Architekturen erklären (z. B. Logikfamilien und ihre Kennwerte)"
+      ],
+      "unterlagen": {
+        "folien": "K14.Technologien-und-Architekturen-Complete.pdf",
+        "uebung": "K14-DigitalTechnik-Aufgaben-v1.pdf",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": []
+    },
+    {
+      "id": "k15",
+      "nr": 15,
+      "titel": "System-Design",
+      "lernziele": [
+        "Vorgehen beim Entwurf digitaler Systeme kennen und auf konkrete Aufgaben anwenden"
+      ],
+      "unterlagen": {
+        "folien": "K15.System-Design-v5.pdf",
+        "uebung": "",
+        "loesung": ""
+      },
+      "mep": false,
+      "einheiten": []
+    }
+  ]
+}

@@ -1,0 +1,1096 @@
+{
+  "id": "sw02-datentypen",
+  "titel": "Datentypen",
+  "beschreibung": "Variablen, print(), Datentypen, Typumwandlung, input(), Operatoren, Strings & Slicing, Debugging",
+  "woche": 2,
+  "lektionen": [
+    {
+      "id": "sw02-datentypen-l7",
+      "titel": "Variablen und Namen",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW02_PB_Datentypen_FlippedClassroom, S. 3–7",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Variablen"
+        },
+        {
+          "typ": "text",
+          "text": "Variablen sind wie in der Mathematik **Platzhalter für Werte mit einem Namen**. Mit `=` wird ein Wert\n        zugewiesen. Es gilt: **Die rechte Seite wird der linken Seite zugewiesen.**"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "x = 10      # Zuweisung\ny = x       # x lesen und in y schreiben\nx = 20      # x verändern\nprint(x, y)",
+          "ausfuehrbar": true,
+          "ausgabe": "20 10"
+        },
+        {
+          "typ": "titel",
+          "text": "Regeln für Variablennamen"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "beginnt mit einem **Buchstaben** oder **Unterstrich** `_`",
+            "darf Buchstaben, Zahlen und `_` enthalten – keine anderen Sonderzeichen",
+            "keine Python-Schlüsselwörter wie `and`, `for`, `if`, `def`, `return`, `None`, `True` …",
+            "nicht wie eine Funktion heissen (z. B. `print`) – das gibt Logikfehler"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Namenskonvention (PEP 8)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "klein schreiben, Wörter mit `_` trennen: `test_variable`",
+            "englisch, ohne Umlaute, selbsterklärend",
+            "Konstanten, die nie verändert werden, GROSS: `HOURS_PER_DAY = 24`"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "`x = 5` ist eine **Zuweisung** (rechts → links), kein Vergleich."
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l8",
+      "titel": "print() und Datentypen",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW02_PB_Datentypen_FlippedClassroom, S. 8–14",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Ausgabe mit print()"
+        },
+        {
+          "typ": "text",
+          "text": "`print()` ist eine eingebaute Funktion. Sie nimmt beliebig viele Werte (durch Komma getrennt) und gibt\n        sie mit je einem Leerzeichen dazwischen aus. Bei Variablen wird der **Wert** ausgegeben, nicht der Name."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(\"text 1\", \"text2\")\nprint(\"text und zahl\", 11.5)\nprint(\"von rechnung:\", 14 + 2)\nx = 10\nprint(x)",
+          "ausfuehrbar": true,
+          "ausgabe": "text 1 text2\ntext und zahl 11.5\nvon rechnung: 16\n10"
+        },
+        {
+          "typ": "titel",
+          "text": "Die Basis-Datentypen"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Datentyp",
+            "Name in Python",
+            "Beispiel"
+          ],
+          "zeilen": [
+            [
+              "Ganzzahl (Integer)",
+              "`int`",
+              "`420`"
+            ],
+            [
+              "Kommazahl (Floating Point)",
+              "`float`",
+              "`3.14159`"
+            ],
+            [
+              "Zeichenkette (String)",
+              "`str`",
+              "`\"zeichenkette\"`"
+            ],
+            [
+              "Wahrheitswert (Boolean)",
+              "`bool`",
+              "`True`, `False`"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Mit `type()` liest man den Datentyp einer Variable aus:"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "a = 10\nb = 11.5\nc = \"text\"\nd = False\nprint(\"a ist ein\", type(a))\nprint(\"b ist ein\", type(b))\nprint(\"c ist ein\", type(c))\nprint(\"d ist ein\", type(d))",
+          "ausfuehrbar": true,
+          "ausgabe": "a ist ein <class 'int'>\nb ist ein <class 'float'>\nc ist ein <class 'str'>\nd ist ein <class 'bool'>"
+        },
+        {
+          "typ": "titel",
+          "text": "Typen umwandeln"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`int(x)` → Ganzzahl (schneidet die Nachkommastellen ab: `int(15.6)` ist `15`)",
+            "`float(x)` → Kommazahl",
+            "`str(x)` → Zeichenkette",
+            "`bool(x)` → `False` nur bei `0`, `0.0` und leerem String, sonst `True`"
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(int(15.6))\nprint(float(10))\nprint(bool(-2), bool(\"test\"), bool(0), bool(0.0))",
+          "ausfuehrbar": true,
+          "ausgabe": "15\n10.0\nTrue True False False"
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l9",
+      "titel": "input() und Operatoren",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW02_PB_Datentypen_FlippedClassroom, S. 15–19",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Eingabe mit input()"
+        },
+        {
+          "typ": "text",
+          "text": "`input()` hält das Programm an und wartet auf eine Eingabe mit Enter. Der eingegebene Text wird\n        der linken Seite zugewiesen. **Wichtig: `input()` liefert immer einen String.**"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "age = input(\"Alter? \")\nprint(\"reales Alter\", age + 1)   # TypeError: str + int geht nicht",
+          "titel": "Falsch",
+          "ausfuehrbar": false
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "age = int(input(\"Alter? \"))\nprint(\"reales Alter\", age + 1)",
+          "titel": "Richtig: zuerst umwandeln",
+          "ausfuehrbar": false
+        },
+        {
+          "typ": "titel",
+          "text": "Rechenoperatoren"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Operator",
+            "Bedeutung",
+            "Beispiel",
+            "Ergebnis"
+          ],
+          "zeilen": [
+            [
+              "`+` `-` `*`",
+              "Addition, Subtraktion, Multiplikation",
+              "`2 * 2`",
+              "`4`"
+            ],
+            [
+              "`/`",
+              "Division (immer float)",
+              "`1 / 2`",
+              "`0.5`"
+            ],
+            [
+              "`**`",
+              "Exponent",
+              "`2 ** 3`",
+              "`8`"
+            ],
+            [
+              "`%`",
+              "Modulo (ganzzahliger Rest)",
+              "`16 % 5`",
+              "`1`"
+            ],
+            [
+              "`//`",
+              "Floor Division (abrundend)",
+              "`7 // 2`",
+              "`3`"
+            ]
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(2 ** 3)\nprint(1 / 2)\nprint(16 % 5)\nprint(7 // 2)\nprint(10 / 2)",
+          "ausfuehrbar": true,
+          "ausgabe": "8\n0.5\n1\n3\n5.0"
+        },
+        {
+          "typ": "merke",
+          "text": "Exponent ist `**`, **nicht** `^` – `^` ist in Python das bitweise XOR."
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l10",
+      "titel": "Strings",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW02_PB_Datentypen_FlippedClassroom, S. 20–30",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Strings erstellen und verknüpfen"
+        },
+        {
+          "typ": "text",
+          "text": "Strings schreibt man mit einfachen `'…'` oder doppelten `\"…\"` Anführungszeichen – beide funktionieren\n        gleich. `+` hängt Strings aneinander (Konkatenation), `*` mit einer Ganzzahl wiederholt sie."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(\"wort_1\" + \"wort_2\")\nprint(5 * \"test\")",
+          "ausfuehrbar": true,
+          "ausgabe": "wort_1wort_2\ntesttesttesttesttest"
+        },
+        {
+          "typ": "titel",
+          "text": "Sonderzeichen"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`\\n` neue Zeile, `\\t` Tabulator, `\\\\` Backslash, `\\\"` und `\\'` Anführungszeichen",
+            "Ein `r` vor dem String (Raw-String) nimmt den Text genau wie geschrieben: `r'C:\\some\\name'`",
+            "`\"\"\" … \"\"\"` (Zeichenliteral) übernimmt Zeilenumbrüche und Einrückungen"
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(\"test \\t test\")\nprint(\"Zeile 1\\nZeile 2\")\nprint(r'C:\\some\\name')",
+          "ausfuehrbar": true,
+          "ausgabe": "test \t test\nZeile 1\nZeile 2\nC:\\some\\name"
+        },
+        {
+          "typ": "titel",
+          "text": "Indexieren und Slicing"
+        },
+        {
+          "typ": "text",
+          "text": "Ein String ist eine Zeichen**kette**. Mit `[ ]` greift man auf einzelne Zeichen zu.\n        **Achtung: Es wird ab 0 gezählt.** Mit `[start:stop:step]` wählt man mehrere Zeichen; `stop` ist\n        **nicht** mehr dabei. Negative Indizes zählen von hinten."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "word = \"long word to index\"\nprint(word[0], word[3])\nprint(word[0:4])\nprint(word[5:])\nprint(word[:9])\nprint(word[0:10:2])\nprint(word[-5:])\nprint(word[::-1])",
+          "ausfuehrbar": true,
+          "ausgabe": "l g\nlong\nword to index\nlong word\nln od\nindex\nxedni ot drow gnol"
+        },
+        {
+          "typ": "merke",
+          "text": "`[start:stop:step]` – start ist dabei, stop nicht. Fehlt start → ab Anfang, fehlt stop → bis zum Ende, `[::-1]` → umgekehrt."
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l11",
+      "titel": "Fehlersuche (Debugging)",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 3,
+      "quelle": "SW02_PB_Datentypen_FlippedClassroom, S. 32–36",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Logische Fehler finden"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Syntaxfehler** verhindert, dass der Code überhaupt läuft. Ein **logischer Fehler** lässt den Code\n        laufen, aber das Resultat ist falsch – z. B. `r ^ 2` statt `r ** 2`."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Viele print()-Ausgaben**: einfach, aber viel Arbeit – man muss jede Variable ausgeben und die Zeilen wieder löschen.",
+            "**Debugger**: Mit **Breakpoints** legt man fest, wo das Programm anhält. Dann sieht man alle aktuellen Variablenwerte und geht Schritt für Schritt weiter."
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "r = 3\nflaeche = (r ^ 2) * 3.1415    # Logikfehler: ^ statt **\nprint(\"Zwischenwert:\", r ^ 2)\nprint(flaeche)",
+          "titel": "Zwischenwerte ausgeben",
+          "ausfuehrbar": true,
+          "ausgabe": "Zwischenwert: 1\n3.1415"
+        },
+        {
+          "typ": "merke",
+          "text": "Läuft der Code, aber das Resultat stimmt nicht: Zwischenwerte prüfen (print oder Debugger)."
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l1",
+      "titel": "Variablen & Datentypen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw02-datentypen-l1-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Bei `x = 10` wird der Wert der rechten Seite der linken Seite zugewiesen.",
+          "richtig": true,
+          "erklaerung": "Zuweisung mit =: rechte Seite wird der linken Seite zugewiesen.",
+          "quelle": "SW02_PB_Datentypen, S. 3"
+        },
+        {
+          "id": "sw02-datentypen-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Variablenname ist NICHT erlaubt?",
+          "optionen": [
+            "2var",
+            "_test",
+            "var_2",
+            "test"
+          ],
+          "richtig": 0,
+          "erklaerung": "Variablennamen müssen mit einem Buchstaben oder Unterstrich beginnen.",
+          "quelle": "SW02_PB_Datentypen, S. 5"
+        },
+        {
+          "id": "sw02-datentypen-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "Welcher Name ist als Variablenname verboten, weil er ein Python-Keyword ist?",
+          "optionen": [
+            "for",
+            "summe",
+            "my_for",
+            "For_x"
+          ],
+          "richtig": 0,
+          "erklaerung": "Keywords wie for, if, while, def, return … sind als Namen nicht zugelassen.",
+          "quelle": "SW02_PB_Datentypen, S. 6"
+        },
+        {
+          "id": "sw02-datentypen-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Welcher Name entspricht der Python-Namenskonvention (PEP 8)?",
+          "optionen": [
+            "test_variable",
+            "TestVariable",
+            "testvariable",
+            "TESTvariable"
+          ],
+          "richtig": 0,
+          "erklaerung": "Klein geschrieben, englisch, Wörter mit _ getrennt. GROSS nur für globale Konstanten wie HOUR_PER_DAY.",
+          "quelle": "SW02_PB_Datentypen, S. 7"
+        },
+        {
+          "id": "sw02-datentypen-l1-a5",
+          "typ": "zuordnen",
+          "frage": "Ordne den Datentyp zu:",
+          "paare": [
+            [
+              "420",
+              "int"
+            ],
+            [
+              "3.14",
+              "float"
+            ],
+            [
+              "\"text\"",
+              "str"
+            ],
+            [
+              "False",
+              "bool"
+            ]
+          ],
+          "erklaerung": "Basis-Datentypen: int, float, str, bool. Prüfen mit type().",
+          "quelle": "SW02_PB_Datentypen, S. 11"
+        },
+        {
+          "id": "sw02-datentypen-l1-a6",
+          "typ": "wahr_falsch",
+          "aussage": "`input()` liefert immer einen String zurück.",
+          "richtig": true,
+          "erklaerung": "Ja – wer rechnen will, muss umwandeln, z. B. int(input(...)).",
+          "quelle": "SW02_PB_Datentypen, S. 15"
+        },
+        {
+          "id": "sw02-datentypen-l1-a7",
+          "typ": "multiple_choice",
+          "frage": "Was ergibt `int(15.6)`?",
+          "optionen": [
+            "15",
+            "16",
+            "15.6",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "int() rundet nicht, sondern schneidet die Kommastellen ab.",
+          "quelle": "SW02_PB_Datentypen, S. 14"
+        },
+        {
+          "id": "sw02-datentypen-l1-a8",
+          "typ": "multiple_choice",
+          "frage": "Welcher Wert ergibt `False` bei `bool(...)`?",
+          "optionen": [
+            "0.0",
+            "-2",
+            "\"test\"",
+            "2.0"
+          ],
+          "richtig": 0,
+          "erklaerung": "bool ist True, wenn der Wert nicht 0 ist. 0 und 0.0 ergeben False.",
+          "quelle": "SW02_PB_Datentypen, S. 14"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw02-datentypen-l2",
+      "titel": "Operatoren & Strings",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw02-datentypen-l2-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne die Operatoren zu:",
+          "paare": [
+            [
+              "**",
+              "Exponent"
+            ],
+            [
+              "%",
+              "Modulo (Rest)"
+            ],
+            [
+              "//",
+              "Floor Division"
+            ],
+            [
+              "/",
+              "Division"
+            ]
+          ],
+          "erklaerung": "Achtung: Exponent ist ** und nicht ^ (^ ist bitweises XOR).",
+          "quelle": "SW02_PB_Datentypen, S. 18"
+        },
+        {
+          "id": "sw02-datentypen-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "Was ergibt `16 % 5`?",
+          "optionen": [
+            "1",
+            "3",
+            "3.2",
+            "0"
+          ],
+          "richtig": 0,
+          "erklaerung": "Modulo ist der Rest: 16 = 3·5 + 1.",
+          "quelle": "SW02_PB_Datentypen, S. 19"
+        },
+        {
+          "id": "sw02-datentypen-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "Was ergibt `7 // 2`?",
+          "optionen": [
+            "3",
+            "3.5",
+            "4",
+            "1"
+          ],
+          "richtig": 0,
+          "erklaerung": "Floor Division rundet ab: 7 / 2 = 3.5 → 3.",
+          "quelle": "SW02_PB_Datentypen, S. 19"
+        },
+        {
+          "id": "sw02-datentypen-l2-a4",
+          "typ": "wahr_falsch",
+          "aussage": "`2 ^ 3` berechnet in Python 2 hoch 3.",
+          "richtig": false,
+          "erklaerung": "Exponent ist **. ^ ist das bitweise XOR (2 ^ 3 = 1).",
+          "quelle": "SW02_PB_Datentypen, S. 18"
+        },
+        {
+          "id": "sw02-datentypen-l2-a5",
+          "typ": "wahr_falsch",
+          "aussage": "`'test'` und `\"test\"` sind in Python derselbe String.",
+          "richtig": true,
+          "erklaerung": "Einfache und doppelte Anführungszeichen funktionieren gleich.",
+          "quelle": "SW02_PB_Datentypen, S. 20"
+        },
+        {
+          "id": "sw02-datentypen-l2-a6",
+          "typ": "zuordnen",
+          "frage": "Ordne die Sonderzeichen zu:",
+          "paare": [
+            [
+              "\\t",
+              "Tabulator"
+            ],
+            [
+              "\\n",
+              "neue Zeile"
+            ],
+            [
+              "\\\\",
+              "Backslash"
+            ],
+            [
+              "\\\"",
+              "Anführungszeichen"
+            ]
+          ],
+          "erklaerung": "Ein \\ leitet ein Sonderzeichen ein.",
+          "quelle": "SW02_PB_Datentypen, S. 23"
+        },
+        {
+          "id": "sw02-datentypen-l2-a7",
+          "typ": "multiple_choice",
+          "frage": "Wofür steht das `r` in `r'C:\\some\\name'`?",
+          "optionen": [
+            "Raw-String: Backslashes werden nicht als Sonderzeichen gelesen",
+            "read – Datei lesen",
+            "Rückwärts ausgeben",
+            "rounded"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mit r-Präfix wird der String genau so interpretiert, wie er geschrieben ist.",
+          "quelle": "SW02_PB_Datentypen, S. 24"
+        },
+        {
+          "id": "sw02-datentypen-l2-a8",
+          "typ": "karteikarte",
+          "vorne": "Slicing-Regel bei Strings?",
+          "hinten": "[start:stop:step] – stop ist exklusiv, Zählung beginnt bei 0, negative Werte zählen von hinten.",
+          "quelle": "SW02_PB_Datentypen, S. 28"
+        },
+        {
+          "id": "sw02-datentypen-l2-a9",
+          "typ": "wahr_falsch",
+          "aussage": "Logische Fehler findet man mit Breakpoints im Debugger, ohne überall print() einfügen zu müssen.",
+          "richtig": true,
+          "erklaerung": "Der Debugger hält an Breakpoints an und zeigt die aktuellen Variablenwerte.",
+          "quelle": "SW02_PB_Datentypen, S. 33–36"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw02-datentypen-l3",
+      "titel": "Check your understanding",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw02-datentypen-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage über Datentypen trifft zu?",
+          "optionen": [
+            "`str(123)` liefert den String \"123\"",
+            "`input()` liefert standardmässig einen `int`",
+            "`bool(0)` ergibt `True`",
+            "`int(15.9)` ergibt `16`"
+          ],
+          "richtig": 0,
+          "erklaerung": "input() liefert immer str, bool(0) ist False, int(15.9) schneidet ab → 15.",
+          "quelle": "SW02_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw02-datentypen-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "word = \"Programming\"\nprint(word[3:8])\nprint(word[-3:])",
+          "optionen": [
+            "gramm\ning",
+            "gramm\nming",
+            "ogram\ning",
+            "gram\ning"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Stop-Index gehört beim Slicing nicht mehr dazu.",
+          "quelle": "SW02_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw02-datentypen-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Gegeben `x = \"10\"`. Welche Anweisung läuft OHNE Fehler?",
+          "optionen": [
+            "`print(int(x) + 5)`",
+            "`print(x + 5)`",
+            "`print(float(x) + \"5\")`",
+            "`print(bool(x) + \"5\")`"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der String muss zuerst mit int(x) in eine Zahl umgewandelt werden.",
+          "quelle": "SW02_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw02-datentypen-l3-a4",
+          "typ": "code_ausgabe",
+          "code": "text = \"Python\"\nprint(text[::-1])\nprint(text[::2])",
+          "optionen": [
+            "nohtyP\nPto",
+            "nohtyP\nyhn",
+            "Python\nPto",
+            "nhy\nPto"
+          ],
+          "richtig": 0,
+          "erklaerung": "[::-1] kehrt um, [::2] nimmt jedes zweite Zeichen.",
+          "quelle": "SW02_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw02-datentypen-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "Du willst `C:\\Users\\Martin\\Documents` ausgeben. Was ist besonders geeignet?",
+          "optionen": [
+            "`print(r\"C:\\Users\\Martin\\Documents\")`",
+            "`print(\"C:\\Users\\Martin\\Documents\")`",
+            "`print(bin(\"C:\\Users\\Martin\\Documents\"))`",
+            "`print(str(C:\\Users\\Martin\\Documents))`"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Präfix r erzeugt einen Raw String – Backslashes sind keine Escape-Sequenzen.",
+          "quelle": "SW02_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw02-datentypen-l4",
+      "titel": "Code lesen: Datentypen",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw02-datentypen-l4-a1",
+          "typ": "code_ausgabe",
+          "code": "x = 10\ny = x\nx = 20\nprint(x, y)",
+          "optionen": [
+            "20 10",
+            "20 20",
+            "10 10",
+            "10 20"
+          ],
+          "richtig": 0,
+          "erklaerung": "y bekommt den Wert 10. Danach wird nur x verändert.",
+          "quelle": "SW02_PB_Datentypen, S. 3"
+        },
+        {
+          "id": "sw02-datentypen-l4-a2",
+          "typ": "code_ausgabe",
+          "code": "print(\"von rechnung:\", 14+2)",
+          "optionen": [
+            "von rechnung: 16",
+            "von rechnung:16",
+            "von rechnung: 14+2",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "print trennt mehrere Werte mit einem Leerzeichen und rechnet 14+2 vorher aus.",
+          "quelle": "SW02_PB_Datentypen, S. 9"
+        },
+        {
+          "id": "sw02-datentypen-l4-a3",
+          "typ": "code_ausgabe",
+          "code": "b = 11.5\nprint(type(b))",
+          "optionen": [
+            "<class 'float'>",
+            "<class 'int'>",
+            "float",
+            "11.5"
+          ],
+          "richtig": 0,
+          "erklaerung": "type() gibt die Klasse zurück: <class 'float'>.",
+          "quelle": "SW02_PB_Datentypen, S. 12"
+        },
+        {
+          "id": "sw02-datentypen-l4-a4",
+          "typ": "code_ausgabe",
+          "code": "a = \"5\"\nb = \"3\"\nprint(a + b)",
+          "optionen": [
+            "53",
+            "8",
+            "5 3",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Strings werden mit + aneinander gehängt (Concatenation).",
+          "quelle": "SW02_PB_Datentypen, S. 21"
+        },
+        {
+          "id": "sw02-datentypen-l4-a5",
+          "typ": "code_ausgabe",
+          "code": "print(3 * \"ab\")",
+          "optionen": [
+            "ababab",
+            "ab3",
+            "Fehler",
+            "ab ab ab"
+          ],
+          "richtig": 0,
+          "erklaerung": "String × int wiederholt den String n-mal.",
+          "quelle": "SW02_PB_Datentypen, S. 21"
+        },
+        {
+          "id": "sw02-datentypen-l4-a6",
+          "typ": "code_ausgabe",
+          "code": "word = \"long word to index\"\nprint(word[5:9])",
+          "optionen": [
+            "word",
+            "word ",
+            " wor",
+            "long"
+          ],
+          "richtig": 0,
+          "erklaerung": "Index 5 bis 8 (9 exklusiv) → 'word'.",
+          "quelle": "SW02_PB_Datentypen, S. 27"
+        },
+        {
+          "id": "sw02-datentypen-l4-a7",
+          "typ": "code_ausgabe",
+          "code": "word = \"Python\"\nprint(word[::-1])",
+          "optionen": [
+            "nohtyP",
+            "Python",
+            "P",
+            "n"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein negativer step kehrt die Reihenfolge um.",
+          "quelle": "SW02_PB_Datentypen, S. 30"
+        },
+        {
+          "id": "sw02-datentypen-l4-a8",
+          "typ": "code_fehler",
+          "code": "age = input(\"Alter? \")\nprint(\"reales Alter\", age + 1)",
+          "fehlerzeile": 1,
+          "korrektur": "age = int(input(\"Alter? \"))",
+          "erklaerung": "input() liefert einen String – str + int ergibt einen TypeError. Mit int() umwandeln.",
+          "quelle": "SW02_PB_Datentypen, S. 16–17"
+        },
+        {
+          "id": "sw02-datentypen-l4-a9",
+          "typ": "code_luecke",
+          "frage": "Ergänze, sodass `ln od` ausgegeben wird.",
+          "code": "word = \"long word to index\"\nprint(word[0:10:___])",
+          "antworten": [
+            [
+              "2"
+            ]
+          ],
+          "erklaerung": "Mit step 2 wird jedes zweite Zeichen ausgewählt.",
+          "quelle": "SW02_PB_Datentypen, S. 28",
+          "erwartete_ausgabe": "ln od"
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l5",
+      "titel": "Eingabe, Rechnen, Strings",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw02-datentypen-l5-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Alter nächstes Jahr",
+          "aufgabe": "Lies mit `input()` ein Alter ein und gib aus: `Naechstes Jahr bist du X` (X = Alter + 1).",
+          "startcode": "alter = input(\"Alter? \")",
+          "tests": [
+            {
+              "eingabe": "32",
+              "ausgabe": "Naechstes Jahr bist du 33"
+            },
+            {
+              "eingabe": "0",
+              "ausgabe": "Naechstes Jahr bist du 1"
+            },
+            {
+              "eingabe": "99",
+              "ausgabe": "Naechstes Jahr bist du 100"
+            }
+          ],
+          "hinweise": [
+            "input() liefert einen String – wandle mit int() um.",
+            "print mit mehreren Werten setzt automatisch ein Leerzeichen."
+          ],
+          "musterloesung": "alter = int(input(\"Alter? \"))\nprint(\"Naechstes Jahr bist du\", alter + 1)",
+          "kriterien": [
+            "int()-Umwandlung",
+            "korrekte Ausgabe"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW02_PB_Datentypen, S. 17"
+        },
+        {
+          "id": "sw02-datentypen-l5-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Name rückwärts & jeder zweite Buchstabe",
+          "aufgabe": "Lies ein Wort ein. Gib in der ersten Zeile jeden zweiten Buchstaben (ab Index 0) aus und in der zweiten Zeile das Wort rückwärts.",
+          "startcode": "wort = input(\"Wort? \")",
+          "tests": [
+            {
+              "eingabe": "Alain",
+              "ausgabe": "Aan\nnialA"
+            },
+            {
+              "eingabe": "Python",
+              "ausgabe": "Pto\nnohtyP"
+            },
+            {
+              "eingabe": "x",
+              "ausgabe": "x\nx"
+            }
+          ],
+          "hinweise": [
+            "Slicing: wort[::2]",
+            "Rückwärts: wort[::-1]"
+          ],
+          "musterloesung": "wort = input(\"Wort? \")\nprint(wort[::2])\nprint(wort[::-1])",
+          "kriterien": [
+            "Slicing mit step",
+            "zwei Ausgaben"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW02_PB_Datentypen, S. 31"
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l6",
+      "titel": "InClass-Übungen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw02-datentypen-l6-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Namen zusammensetzen",
+          "aufgabe": "Lies Vorname und Nachname ein (je eine Zeile). Gib in der ersten Zeile `full_name` (mit Leerzeichen) und in der zweiten Zeile die Initialen aus. Aus `Ada` / `Lovelace` wird `Ada Lovelace` und `AL`.",
+          "startcode": "first_name = input()\nlast_name = input()",
+          "tests": [
+            {
+              "eingabe": "Ada\nLovelace",
+              "ausgabe": "Ada Lovelace\nAL"
+            },
+            {
+              "eingabe": "Guido\nvan",
+              "ausgabe": "Guido van\nGv"
+            },
+            {
+              "eingabe": "A\nB",
+              "ausgabe": "A B\nAB"
+            }
+          ],
+          "hinweise": [
+            "Strings mit + verketten.",
+            "Erster Buchstabe: text[0]"
+          ],
+          "musterloesung": "first_name = input()\nlast_name = input()\nfull_name = first_name + \" \" + last_name\ninitials = first_name[0] + last_name[0]\nprint(full_name)\nprint(initials)",
+          "kriterien": [
+            "Verkettung",
+            "Indexierung"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW02_InClass_standardized_clean.ipynb (JupyterHub), «Namen zusammensetzen»"
+        },
+        {
+          "id": "sw02-datentypen-l6-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Sekunden umrechnen",
+          "aufgabe": "Lies eine Anzahl Sekunden ein und gib die vollständigen Minuten und die verbleibenden Sekunden aus, z. B. für `125`: `2 5`.",
+          "startcode": "total_seconds = int(input())",
+          "tests": [
+            {
+              "eingabe": "125",
+              "ausgabe": "2 5"
+            },
+            {
+              "eingabe": "59",
+              "ausgabe": "0 59"
+            },
+            {
+              "eingabe": "3600",
+              "ausgabe": "60 0"
+            }
+          ],
+          "hinweise": [
+            "Floor Division // für die Minuten.",
+            "Modulo % für den Rest."
+          ],
+          "musterloesung": "total_seconds = int(input())\nminutes = total_seconds // 60\nseconds = total_seconds % 60\nprint(minutes, seconds)",
+          "kriterien": [
+            "// und %",
+            "Randfall < 60"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW02_InClass_standardized_clean.ipynb (JupyterHub), «Sekunden umrechnen»"
+        },
+        {
+          "id": "sw02-datentypen-l6-a3",
+          "typ": "programmieraufgabe",
+          "titel": "Minuten seit Mitternacht",
+          "aufgabe": "Lies den Wochentag (z. B. `Montag`) und die Stunde (z. B. `9`) ein. Gib die ersten zwei Buchstaben und die Minuten seit Mitternacht aus, z. B. `Mo 540 Min.`",
+          "startcode": "weekday = input()\nhour = input()",
+          "tests": [
+            {
+              "eingabe": "Montag\n9",
+              "ausgabe": "Mo 540 Min."
+            },
+            {
+              "eingabe": "Sonntag\n0",
+              "ausgabe": "So 0 Min."
+            },
+            {
+              "eingabe": "Freitag\n23",
+              "ausgabe": "Fr 1380 Min."
+            }
+          ],
+          "hinweise": [
+            "Slicing weekday[:2]",
+            "Die Stunde ist ein String → int()"
+          ],
+          "musterloesung": "weekday = input()\nhour = int(input())\nweekday_short = weekday[:2]\nminutes_after_midnight = hour * 60\nprint(weekday_short, minutes_after_midnight, \"Min.\")",
+          "kriterien": [
+            "Slicing",
+            "Casting"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW02_InClass_standardized_clean.ipynb (JupyterHub), «input() verwenden»"
+        }
+      ]
+    },
+    {
+      "id": "sw02-datentypen-l12",
+      "titel": "Monatssalär und Datentypen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 8,
+      "schwierigkeit": 1,
+      "quelle": "SW02_Aufrag_nbg (JupyterHub), Aufgabe 1",
+      "aufgabe": "1. Erstelle nach den Namenskonventionen: `address` (deine Adresse als `str`), die Konstante `HOURS_PER_DAY`\n   (Stunden pro Tag) und `salary_yearly` mit einem Jahressalär von `120_000` CHF.\n2. Gib mit `type(...)` die Typen der drei Werte aus.\n3. Berechne das Monatssalär in `salary_monthly` und gib dessen Datentyp aus.\n4. Begründe mit `print(...)`, **warum** dieser Datentyp entsteht.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – Variablen und Konstante"
+        },
+        {
+          "typ": "code",
+          "inhalt": "address = None\nHOURS_PER_DAY = None\nsalary_yearly = None"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – Typen ausgeben"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# print(type(...))"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 3 – Monatssalär und Begründung"
+        },
+        {
+          "typ": "code",
+          "inhalt": "salary_monthly = None"
+        }
+      ],
+      "tests": "assert isinstance(address, str) and address, \"address muss ein (nicht leerer) String sein.\"\nassert HOURS_PER_DAY == 24, \"HOURS_PER_DAY muss 24 sein.\"\nassert salary_yearly == 120_000, \"salary_yearly muss 120000 sein.\"\nassert isinstance(salary_monthly, float), f\"salary_monthly sollte ein float sein (Division mit /), ist aber {type(salary_monthly).__name__}.\"\nassert salary_monthly == 10_000.0, f\"salary_monthly sollte 10000.0 sein, ist aber {salary_monthly}.\"\nassert \"<class 'str'>\" in _ausgabe and \"<class 'int'>\" in _ausgabe, \"Die Typen von address und HOURS_PER_DAY werden nicht mit type() ausgegeben.\"\nassert \"<class 'float'>\" in _ausgabe, \"Der Typ von salary_monthly (float) wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Konstanten schreibt man GROSS, Variablen klein mit `_`.",
+        "Zahlen darf man mit `_` lesbarer schreiben: `120_000`.",
+        "Welchen Typ liefert `/`? Probiere `print(type(12 / 12))`."
+      ],
+      "loesung": "address = \"Technikumsstrasse 21a\"\nHOURS_PER_DAY = 24\nsalary_yearly = 120_000\n\nprint(type(address))\nprint(type(HOURS_PER_DAY))\nprint(type(salary_yearly))\n\nsalary_monthly = salary_yearly / 12\nprint(type(salary_monthly))\nprint(\"Der Operator / liefert immer einen float, auch wenn das Resultat ganzzahlig ist.\")"
+    },
+    {
+      "id": "sw02-datentypen-l13",
+      "titel": "Alphabet zerlegen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 8,
+      "schwierigkeit": 1,
+      "quelle": "SW02_Aufrag_nbg (JupyterHub), Aufgabe 2",
+      "aufgabe": "Speichere alle Grossbuchstaben `A`–`Z` in der Variable `abc`. Lege dann diese Variablen an und gib jede aus:\n\n- `fifth_letter`: der **5.** Buchstabe\n- `last_five`: die **letzten 5** Buchstaben\n- `reversed_abc`: das Alphabet **umgekehrt**\n- `every_second`: **jeder 2.** Buchstabe, beginnend mit `B`\n- `batman`: der **14. und 1.** Buchstabe zusammen, **20-mal** wiederholt",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "abc = \"\""
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "Ergänze die fünf Resultate:"
+        },
+        {
+          "typ": "code",
+          "inhalt": "fifth_letter = None\nlast_five = None\nreversed_abc = None\nevery_second = None\nbatman = None"
+        }
+      ],
+      "tests": "assert abc == \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\", \"abc muss das ganze Alphabet in Grossbuchstaben enthalten.\"\nassert fifth_letter == \"E\", f\"fifth_letter sollte 'E' sein, ist aber {fifth_letter!r}. Index beginnt bei 0!\"\nassert last_five == \"VWXYZ\", f\"last_five sollte 'VWXYZ' sein, ist aber {last_five!r}.\"\nassert reversed_abc == abc[::-1], \"reversed_abc ist nicht das umgekehrte Alphabet.\"\nassert every_second == \"BDFHJLNPRTVXZ\", f\"every_second sollte 'BDFHJLNPRTVXZ' sein, ist aber {every_second!r}.\"\nassert batman == \"NA\" * 20, f\"batman sollte 20-mal 'NA' sein, ist aber {batman!r}.\"\nassert \"NANANA\" in _ausgabe and \"VWXYZ\" in _ausgabe, \"Gib die Resultate mit print() aus.\"",
+      "hinweise": [
+        "Der 5. Buchstabe hat den Index 4.",
+        "Slicing: `text[start:stop:step]`, negative Indizes zählen von hinten.",
+        "Strings kannst du mit `+` verbinden und mit `*` wiederholen."
+      ],
+      "loesung": "abc = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfifth_letter = abc[4]\nlast_five = abc[-5:]\nreversed_abc = abc[::-1]\nevery_second = abc[1::2]\nbatman = 20 * (abc[13] + abc[0])\n\nprint(fifth_letter)\nprint(last_five)\nprint(reversed_abc)\nprint(every_second)\nprint(batman)"
+    },
+    {
+      "id": "sw02-datentypen-l14",
+      "titel": "Fehlersuche: Kreisringfläche",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW02_Aufrag_nbg (JupyterHub), Aufgabe 3",
+      "aufgabe": "Der Code unten berechnet die Fläche eines Kreisrings (Doughnut) – aber er enthält mehrere **logische Fehler**.\nInnenradius `r_1 = 3`, Aussenradius `r_2 = 4`. Die Fläche muss **positiv** sein und wird danach gleichmässig\nauf **4 Personen** aufgeteilt (`area_split`).\n\nFühre den Code aus, schau dir die Zwischenwerte an und korrigiere alle Fehler direkt in der Zelle.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "Gib bei Bedarf Zwischenwerte mit `print()` aus, um die Fehler zu finden."
+        },
+        {
+          "typ": "code",
+          "inhalt": "\"\"\"\nCalculate the Area of a Doughnut\n\"\"\"\nr_1 = 3\nr_2 = 4\nPI = 3.1415\n\nr_1_squared = r_1^2\nr_2_squared = r_2^2\n\narea_1 = r_1_squared * PI\narea_2 = r_2_squared * PI\narea_doughnut = area_1 - area_2\n\nprint(f\"Der Doughnut mit Aussenradius {r_1_squared}\"\n      f\" und Innenradius {r_2_squared} hat eine Fläche von {area_doughnut}\")\n\nnr_of_people = 4\narea_split = area_doughnut // nr_of_people\nprint(\"Doughnut/4 =\", area_split)"
+        }
+      ],
+      "tests": "assert r_1 == 3 and r_2 == 4, \"Die Radien r_1 = 3 und r_2 = 4 dürfen nicht verändert werden.\"\nassert r_1_squared == 9 and r_2_squared == 16, f\"Die Quadrate stimmen nicht ({r_1_squared}, {r_2_squared}). Potenz ist ** – nicht ^.\"\nassert abs(area_doughnut - 21.9905) < 1e-9, f\"area_doughnut sollte 21.9905 sein (aussen minus innen), ist aber {area_doughnut}.\"\nassert abs(area_split - 5.497625) < 1e-9, f\"area_split sollte 5.497625 sein, ist aber {area_split}. Welche Division rundet ab?\"\nassert \"Aussenradius 4\" in _ausgabe and \"Innenradius 3\" in _ausgabe, \"In der Ausgabe stehen noch die falschen Werte für Aussen- und Innenradius.\"",
+      "hinweise": [
+        "Es gibt 4 Fehler: zweimal derselbe Operator, eine vertauschte Subtraktion, eine falsche Division und eine falsche Ausgabe.",
+        "`^` ist kein Potenz-Operator.",
+        "`//` rundet ab – hier willst du das genaue Resultat."
+      ],
+      "loesung": "\"\"\"\nCalculate the Area of a Doughnut\n\"\"\"\nr_1 = 3\nr_2 = 4\nPI = 3.1415\n\nr_1_squared = r_1 ** 2\nr_2_squared = r_2 ** 2\n\narea_1 = r_1_squared * PI\narea_2 = r_2_squared * PI\narea_doughnut = area_2 - area_1\n\nprint(f\"Der Doughnut mit Aussenradius {r_2}\"\n      f\" und Innenradius {r_1} hat eine Fläche von {area_doughnut}\")\n\nnr_of_people = 4\narea_split = area_doughnut / nr_of_people\nprint(\"Doughnut/4 =\", area_split)"
+    },
+    {
+      "id": "sw02-datentypen-l15",
+      "titel": "Kugelvolumen mit input()",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 6,
+      "schwierigkeit": 1,
+      "quelle": "SW02_Aufrag_nbg (JupyterHub), Aufgabe 4",
+      "aufgabe": "Schreibe ein Programm, das mit `input(...)` den **Radius** einer Kugel einliest (auch Kommazahlen wie `2.5`)\nund das Volumen berechnet und ausgibt:\n\n$$V = \\frac{4}{3} \\cdot \\pi \\cdot r^3$$\n\nVerwende `PI = 3.14159265359` und runde das Resultat **nicht**. Speichere es in `sphere`.\n\nBeim Prüfen gibt `input()` den Wert `1.2` zurück.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "PI = 3.14159265359\nradius = input(\"Radius? \")\nsphere = None\nprint(\"Das Volumen der Kugel beträgt\", sphere)"
+        }
+      ],
+      "tests": "assert isinstance(radius, float), f\"radius sollte ein float sein – input() liefert einen String ({type(radius).__name__}). Wandle um!\"\nassert abs(sphere - 4 / 3 * PI * 1.2 ** 3) < 1e-9, f\"Für r = 1.2 sollte das Volumen {4 / 3 * PI * 1.2 ** 3} sein, ist aber {sphere}.\"\nassert \"7.238\" in _ausgabe, \"Das Volumen wird nicht ausgegeben.\"",
+      "hinweise": [
+        "`input()` liefert immer einen String – mit `float(...)` umwandeln.",
+        "Potenz: `radius ** 3`."
+      ],
+      "loesung": "PI = 3.14159265359\nradius = float(input(\"Radius? \"))\nsphere = 4 / 3 * PI * radius ** 3\nprint(\"Das Volumen der Kugel beträgt\", sphere)",
+      "eingaben": [
+        "1.2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+  "id": "sw08-funktionen-module",
+  "titel": "Funktionen 2 & Module",
+  "beschreibung": "Module importieren, Namensräume, import as, from … import, dir() und help(), random, math, time, datetime",
+  "woche": 8,
+  "lektionen": [
+    {
+      "id": "sw08-funktionen-module-l6",
+      "titel": "Was sind Module?",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW08_Funktionen_2_Module_FlippedClassroom, S. 3–8",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Modulares Design"
+        },
+        {
+          "typ": "text",
+          "text": "Ein komplexes System (PC, Haus, Auto) lässt sich in kleinere, selbständige **Module** zerlegen, die man\n        einzeln bauen, testen und mehrfach verwenden kann. In Python ist ein Modul (vereinfacht) eine Sammlung von\n        Funktionen und Datentypen, z. B. `pi` und `sin` im Modul `math`."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Art",
+            "Beispiel",
+            "Verwendung"
+          ],
+          "zeilen": [
+            [
+              "Basisfunktionen (builtins)",
+              "`print`, `len`",
+              "direkt"
+            ],
+            [
+              "Standardbibliothek",
+              "`math`, `random`, `time`, `datetime`",
+              "vorinstalliert, aber `import` nötig"
+            ],
+            [
+              "Drittanbieter",
+              "z. B. OpenCV",
+              "zuerst installieren (pip, conda)"
+            ]
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "import"
+        },
+        {
+          "typ": "text",
+          "text": "Nach `import modul` gibt es einen **Namensraum** mit dem Namen des Moduls. Die Funktionen nutzt man über\n        `modul.funktion`. Mehrere Module importiert man der Übersicht halber auf separaten Zeilen."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import math\nprint(math.pi)\nprint(round(math.sin(0.5), 4))\nprint(math.sqrt(16))",
+          "ausfuehrbar": true,
+          "ausgabe": "3.141592653589793\n0.4794\n4.0"
+        }
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l7",
+      "titel": "from, as, dir() und help()",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW08_Funktionen_2_Module_FlippedClassroom, S. 9–17",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Gezielt importieren und umbenennen"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Schreibweise",
+            "Wirkung"
+          ],
+          "zeilen": [
+            [
+              "`from math import sin, pi`",
+              "nur diese Namen, ohne `math.` verwendbar"
+            ],
+            [
+              "`import math as m`",
+              "Namensraum heisst jetzt `m`"
+            ],
+            [
+              "`from math import sqrt as wurzel`",
+              "Funktion unter neuem Namen"
+            ],
+            [
+              "`from math import *`",
+              "alles in den globalen Namensraum – **vermeiden**"
+            ]
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "from math import sqrt as wurzel\nimport math as m\nprint(wurzel(6))\nprint(m.pi)",
+          "ausfuehrbar": true,
+          "ausgabe": "2.449489742783178\n3.141592653589793"
+        },
+        {
+          "typ": "hinweis",
+          "text": "`from modul import *` belegt viele Namen (z. B. `pi`, `sin`, `pow` …) und kann bestehende Variablen überschreiben."
+        },
+        {
+          "typ": "titel",
+          "text": "Was ist in einem Modul?"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`dir(modul)` listet alle Namen eines Moduls auf.",
+            "`dir()` ohne Argument zeigt alle belegten Namen im aktuellen Namensraum.",
+            "`help(funktion)` zeigt die Dokumentation (Docstring) einer Funktion oder eines Moduls.",
+            "Weitere Hilfe: python.org/doc"
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import math\nnamen = dir(math)\nprint(\"sqrt\" in namen, \"floor\" in namen)\nprint(len(namen) > 40)",
+          "ausfuehrbar": true,
+          "ausgabe": "True True\nTrue"
+        }
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l8",
+      "titel": "random, math, time und datetime",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW08_Funktionen_2_Module_FlippedClassroom, S. 18–30",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "random – Zufallszahlen"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`randrange(start, stop)` – zufällige Ganzzahl, stop nicht dabei",
+            "`randint(a, b)` – zufällige Ganzzahl von a bis **und mit** b",
+            "`choice(seq)` – zufälliges Element",
+            "`sample(seq, k)` – k **verschiedene** Elemente"
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "from random import randrange\nfor i in range(5):\n    print(randrange(1, 21), end=\" \")",
+          "titel": "Jedes Mal anders",
+          "ausfuehrbar": true
+        },
+        {
+          "typ": "titel",
+          "text": "math – Kreisfläche"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import math\nr = 5\nflaeche = math.pi * r ** 2\nprint(f\"Kreisfläche: {flaeche:.2f}\")",
+          "ausfuehrbar": true,
+          "ausgabe": "Kreisfläche: 78.54"
+        },
+        {
+          "typ": "titel",
+          "text": "time – Laufzeit messen"
+        },
+        {
+          "typ": "text",
+          "text": "`time.time()` liefert die Sekunden seit dem 1.1.1970 als `float`. Die Differenz zweier Zeitpunkte ist die\n        Laufzeit eines Code-Blocks. Genauer: `time.time_ns()` in Nanosekunden."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import time\nstart_time = time.time()\nsumme = 0\nfor i in range(100000):\n    summe += i\ndauer = time.time() - start_time\nprint(summe, dauer < 5)",
+          "ausfuehrbar": true,
+          "ausgabe": "4999950000 True"
+        },
+        {
+          "typ": "titel",
+          "text": "datetime – Datum und Zeit"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import datetime\nd = datetime.date(2026, 11, 18)\nprint(d)\nprint(d + datetime.timedelta(days=7))",
+          "ausfuehrbar": true,
+          "ausgabe": "2026-11-18\n2026-11-25"
+        }
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l1",
+      "titel": "Module verstehen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw08-funktionen-module-l1-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne die Modul-Art zu:",
+          "paare": [
+            [
+              "print()",
+              "Builtin – direkt verwendbar"
+            ],
+            [
+              "math",
+              "Standard Library – vorinstalliert, muss importiert werden"
+            ],
+            [
+              "OpenCV",
+              "Drittanbieter – muss installiert werden"
+            ]
+          ],
+          "erklaerung": "Builtins, Standard-Bibliotheken und Bibliotheken von Drittanbietern.",
+          "quelle": "SW08_Funktionen_2_Module, S. 6"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Wie nutzt man nach `import math` die Sinus-Funktion?",
+          "optionen": [
+            "math.sin(0.5)",
+            "sin(0.5)",
+            "math->sin(0.5)",
+            "import sin"
+          ],
+          "richtig": 0,
+          "erklaerung": "Nach dem Import sind die Funktionen über den Namensraum math. erreichbar.",
+          "quelle": "SW08_Funktionen_2_Module, S. 8"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "`from math import *` ist praktisch und völlig ungefährlich.",
+          "richtig": false,
+          "erklaerung": "Gefahr: Alle Namen landen im globalen Namensraum und können mit eigenen Variablen kollidieren.",
+          "quelle": "SW08_Funktionen_2_Module, S. 11"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Was macht `import math as m`?",
+          "optionen": [
+            "Bindet math unter dem Namen m ein",
+            "Importiert nur m aus math",
+            "Erstellt ein neues Modul m",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Umbenennung des Namensraums, z. B. auch import numpy as np.",
+          "quelle": "SW08_Funktionen_2_Module, S. 12"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a5",
+          "typ": "zuordnen",
+          "frage": "Ordne die Funktion zu:",
+          "paare": [
+            [
+              "dir(modul)",
+              "listet die Namen eines Moduls auf"
+            ],
+            [
+              "help(funktion)",
+              "zeigt Hilfe/Dokumentation"
+            ],
+            [
+              "dir()",
+              "zeigt die belegten Namen im aktuellen Namespace"
+            ]
+          ],
+          "erklaerung": "dir() und help() sind eingebaute Hilfsmittel.",
+          "quelle": "SW08_Funktionen_2_Module, S. 14–16"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a6",
+          "typ": "multiple_choice",
+          "frage": "Was liefert `time.time()`?",
+          "optionen": [
+            "Sekunden seit 1.1.1970 als float",
+            "Die aktuelle Uhrzeit als String",
+            "Millisekunden seit Programmstart",
+            "Das Datum"
+          ],
+          "richtig": 0,
+          "erklaerung": "Praktisch für Laufzeitmessungen; time.time_ns() liefert Nanosekunden als int.",
+          "quelle": "SW08_Funktionen_2_Module, S. 27"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a7",
+          "typ": "wahr_falsch",
+          "aussage": "Bei `import math, random` werden beide Module eingebunden – empfohlen sind aber zwei separate import-Zeilen.",
+          "richtig": true,
+          "erklaerung": "Der Übersichtlichkeit halber wird die zweite Variante empfohlen.",
+          "quelle": "SW08_Funktionen_2_Module, S. 8"
+        },
+        {
+          "id": "sw08-funktionen-module-l1-a8",
+          "typ": "karteikarte",
+          "vorne": "Wie importiert man nur `meine_funktion` aus `mein_modul`?",
+          "hinten": "from mein_modul import meine_funktion",
+          "quelle": "SW08_Funktionen_2_Module, S. 17"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw08-funktionen-module-l2",
+      "titel": "Check your understanding",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw08-funktionen-module-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage zu Modulen ist richtig?",
+          "optionen": [
+            "Mit `import` macht man Funktionen und Konstanten aus einem Modul verfügbar",
+            "Module können nur einmal verwendet werden",
+            "Module ersetzen Variablen",
+            "Ein Modul muss man immer selbst programmieren"
+          ],
+          "richtig": 0,
+          "erklaerung": "Viele Module gehören zur Standardbibliothek, z. B. math, random, datetime.",
+          "quelle": "SW08_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw08-funktionen-module-l2-a2",
+          "typ": "code_ausgabe",
+          "code": "import math as m\nprint(round(m.pi, 2))",
+          "optionen": [
+            "3.14",
+            "3",
+            "m.pi",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "math wird als m importiert, round(..., 2) rundet.",
+          "quelle": "SW08_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw08-funktionen-module-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "`from math import sqrt` und dann `print(sqrt(81))` – was stimmt?",
+          "optionen": [
+            "`sqrt(81)` liefert 9.0",
+            "Der Aufruf muss `math.sqrt(81)` lauten",
+            "sqrt kann nur ganze Zahlen",
+            "Das Modul math wird gelöscht"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mit from … import wird sqrt direkt ohne math. aufgerufen.",
+          "quelle": "SW08_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw08-funktionen-module-l2-a4",
+          "typ": "multiple_choice",
+          "frage": "Welche Werte kann `random.randint(1, 6)` liefern?",
+          "optionen": [
+            "1 bis 6, inklusive beider Grenzen",
+            "0 bis 6",
+            "1 bis 5",
+            "Immer denselben Wert"
+          ],
+          "richtig": 0,
+          "erklaerung": "randint(a, b) kann a und b zurückgeben – anders als randrange!",
+          "quelle": "SW08_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw08-funktionen-module-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage zu `dir()` und `help()` ist richtig?",
+          "optionen": [
+            "`dir()` zeigt Namen und Funktionen eines Moduls an",
+            "`help()` löscht die Dokumentation",
+            "`dir()` führt alle Funktionen aus",
+            "`help()` geht nur für eigene Funktionen"
+          ],
+          "richtig": 0,
+          "erklaerung": "dir() listet Namen, help() zeigt Dokumentation.",
+          "quelle": "SW08_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw08-funktionen-module-l3",
+      "titel": "Module im Code",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw08-funktionen-module-l3-a1",
+          "typ": "code_ausgabe",
+          "code": "import math\nprint(math.sqrt(16))",
+          "optionen": [
+            "4.0",
+            "4",
+            "16",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "math.sqrt liefert einen float.",
+          "quelle": "SW08_Funktionen_2_Module, S. 7"
+        },
+        {
+          "id": "sw08-funktionen-module-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "from math import sqrt as wurzel\nprint(wurzel(9))",
+          "optionen": [
+            "3.0",
+            "3",
+            "81",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "sqrt wurde beim Import in wurzel umbenannt.",
+          "quelle": "SW08_Funktionen_2_Module, S. 13"
+        },
+        {
+          "id": "sw08-funktionen-module-l3-a3",
+          "typ": "code_ausgabe",
+          "code": "import math as m\nprint(round(m.pi, 2))",
+          "optionen": [
+            "3.14",
+            "3.1416",
+            "m.pi",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "m ist der neue Name für math.",
+          "quelle": "SW08_Funktionen_2_Module, S. 12"
+        },
+        {
+          "id": "sw08-funktionen-module-l3-a4",
+          "typ": "code_fehler",
+          "code": "import math\nflaeche = pi * 5 ** 2\nprint(flaeche)",
+          "fehlerzeile": 2,
+          "korrektur": "flaeche = math.pi * 5 ** 2",
+          "erklaerung": "pi existiert nur im Namensraum math → NameError. Richtig: math.pi.",
+          "quelle": "SW08_Funktionen_2_Module, S. 9"
+        },
+        {
+          "id": "sw08-funktionen-module-l3-a5",
+          "typ": "code_luecke",
+          "frage": "Ergänze den Import, sodass randrange direkt verwendet werden kann.",
+          "code": "___ random ___ randrange\nzahl = randrange(1, 21)\nprint(1 <= zahl <= 20)",
+          "antworten": [
+            [
+              "from"
+            ],
+            [
+              "import"
+            ]
+          ],
+          "erklaerung": "from modul import funktion",
+          "quelle": "SW08_Funktionen_2_Module, S. 10 und 24",
+          "erwartete_ausgabe": "True"
+        },
+        {
+          "id": "sw08-funktionen-module-l3-a6",
+          "typ": "code_luecke",
+          "frage": "Ergänze, sodass die Zufallszahl im Bereich 1 bis und mit 20 liegt.",
+          "code": "from random import randrange\nzahl = randrange(1, ___)\nprint(zahl <= 20)",
+          "antworten": [
+            [
+              "21"
+            ]
+          ],
+          "erklaerung": "Wie bei range ist der Stopwert exklusiv.",
+          "quelle": "SW08_Funktionen_2_Module, S. 24",
+          "erwartete_ausgabe": "True"
+        },
+        {
+          "id": "sw08-funktionen-module-l3-a7",
+          "typ": "code_reihenfolge",
+          "frage": "Miss die Laufzeit einer Schleife.",
+          "zeilen": [
+            "import time",
+            "start_time = time.time()",
+            "for i in range(1000):",
+            "    x = i * 2",
+            "dauer = time.time() - start_time",
+            "print(dauer >= 0)"
+          ],
+          "erklaerung": "Startzeit vor dem Code, Differenz nachher.",
+          "quelle": "SW08_Funktionen_2_Module, S. 27",
+          "erwartete_ausgabe": "True"
+        }
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l4",
+      "titel": "Mit Modulen programmieren",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw08-funktionen-module-l4-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Kreisfläche mit math",
+          "aufgabe": "Schreibe `kreisflaeche(r)`, die mit dem math-Modul die Kreisfläche (π·r²) **auf 2 Stellen gerundet** zurückgibt.",
+          "startcode": "import math\n\ndef kreisflaeche(r):\n    # dein Code\n    pass",
+          "tests": [
+            {
+              "aufruf": "kreisflaeche(5)",
+              "erwartet": "78.54"
+            },
+            {
+              "aufruf": "kreisflaeche(0)",
+              "erwartet": "0.0"
+            },
+            {
+              "aufruf": "kreisflaeche(1)",
+              "erwartet": "3.14"
+            }
+          ],
+          "hinweise": [
+            "math.pi",
+            "round(wert, 2)"
+          ],
+          "musterloesung": "import math\n\ndef kreisflaeche(r):\n    return round(math.pi * r ** 2, 2)",
+          "kriterien": [
+            "math importiert",
+            "Rundung auf 2 Stellen"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW08_Funktionen_2_Module, S. 18"
+        },
+        {
+          "id": "sw08-funktionen-module-l4-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Versuche bis zur 10",
+          "aufgabe": "Schreibe `versuche_bis(ziel, zahlen)`: Gehe die Liste `zahlen` (simulierte Zufallszahlen) durch und gib zurück, beim wievielten Versuch `ziel` zum ersten Mal kommt. Kommt es nie, gib -1 zurück.",
+          "startcode": "def versuche_bis(ziel, zahlen):\n    # dein Code\n    pass",
+          "tests": [
+            {
+              "aufruf": "versuche_bis(10, [3, 10, 5])",
+              "erwartet": "2"
+            },
+            {
+              "aufruf": "versuche_bis(10, [10])",
+              "erwartet": "1"
+            },
+            {
+              "aufruf": "versuche_bis(10, [1, 2, 3])",
+              "erwartet": "-1"
+            },
+            {
+              "aufruf": "versuche_bis(10, [])",
+              "erwartet": "-1"
+            }
+          ],
+          "hinweise": [
+            "Zähler mitlaufen lassen oder enumerate verwenden.",
+            "return beendet die Funktion sofort."
+          ],
+          "musterloesung": "def versuche_bis(ziel, zahlen):\n    for i, z in enumerate(zahlen):\n        if z == ziel:\n            return i + 1\n    return -1",
+          "kriterien": [
+            "Zählung ab 1",
+            "-1 wenn nicht gefunden"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW08_Funktionen_2_Module, S. 24"
+        }
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l5",
+      "titel": "InClass-Übungen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw08-funktionen-module-l5-a1",
+          "typ": "programmieraufgabe",
+          "titel": "cross_sum",
+          "aufgabe": "Schreibe `cross_sum(nbr: int) -> int`, die mit einer Schleife die Quersumme einer positiven Ganzzahl berechnet.",
+          "startcode": "def cross_sum(nbr: int) -> int:\n    pass",
+          "tests": [
+            {
+              "aufruf": "cross_sum(123)",
+              "erwartet": "6"
+            },
+            {
+              "aufruf": "cross_sum(678)",
+              "erwartet": "21"
+            },
+            {
+              "aufruf": "cross_sum(1005)",
+              "erwartet": "6"
+            },
+            {
+              "aufruf": "cross_sum(7)",
+              "erwartet": "7"
+            }
+          ],
+          "hinweise": [
+            "Variante 1: for ziffer in str(nbr): summe += int(ziffer)",
+            "Variante 2: nbr % 10 und nbr // 10 in einer while-Schleife"
+          ],
+          "musterloesung": "def cross_sum(nbr: int) -> int:\n    \"\"\"Returns the cross sum (sum of digits) of nbr.\"\"\"\n    summe = 0\n    for ziffer in str(nbr):\n        summe += int(ziffer)\n    return summe",
+          "kriterien": [
+            "Schleife",
+            "Nullen in der Zahl"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW08_InClass_standardized_clean.ipynb (JupyterHub), «Quersumme – cross_sum(...)»"
+        },
+        {
+          "id": "sw08-funktionen-module-l5-a2",
+          "typ": "programmieraufgabe",
+          "titel": "checkprime",
+          "aufgabe": "Schreibe `checkprime(number: int) -> bool`, die prüft, ob `number` eine Primzahl ist. Zahlen kleiner als 2 sind keine Primzahlen.",
+          "startcode": "def checkprime(number: int) -> bool:\n    pass",
+          "tests": [
+            {
+              "aufruf": "checkprime(2)",
+              "erwartet": "True"
+            },
+            {
+              "aufruf": "checkprime(9)",
+              "erwartet": "False"
+            },
+            {
+              "aufruf": "checkprime(17)",
+              "erwartet": "True"
+            },
+            {
+              "aufruf": "checkprime(1)",
+              "erwartet": "False"
+            },
+            {
+              "aufruf": "checkprime(0)",
+              "erwartet": "False"
+            }
+          ],
+          "hinweise": [
+            "Teste alle Teiler von 2 bis number - 1.",
+            "Sobald ein Teiler gefunden ist: return False."
+          ],
+          "musterloesung": "def checkprime(number: int) -> bool:\n    \"\"\"Returns True if number is a prime number.\"\"\"\n    if number < 2:\n        return False\n    for teiler in range(2, number):\n        if number % teiler == 0:\n            return False\n    return True",
+          "kriterien": [
+            "Randfälle 0, 1, 2",
+            "frühes return"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW08_InClass_standardized_clean.ipynb (JupyterHub), «Primzahl prüfen – checkprime(...)»"
+        },
+        {
+          "id": "sw08-funktionen-module-l5-a3",
+          "typ": "programmieraufgabe",
+          "titel": "vowel_stats",
+          "aufgabe": "Schreibe `vowel_stats(text: str) -> dict`, die zählt, wie oft a, e, i, o, u vorkommen (Gross-/Kleinschreibung egal). Das Dict hat immer alle fünf Keys.",
+          "startcode": "def vowel_stats(text: str) -> dict:\n    pass",
+          "tests": [
+            {
+              "aufruf": "vowel_stats('Hello Python')",
+              "erwartet": "{'a': 0, 'e': 1, 'i': 0, 'o': 2, 'u': 0}"
+            },
+            {
+              "aufruf": "vowel_stats('')",
+              "erwartet": "{'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}"
+            },
+            {
+              "aufruf": "vowel_stats('AEIOU aeiou')",
+              "erwartet": "{'a': 2, 'e': 2, 'i': 2, 'o': 2, 'u': 2}"
+            }
+          ],
+          "hinweise": [
+            "Starte mit {\"a\": 0, \"e\": 0, \"i\": 0, \"o\": 0, \"u\": 0}",
+            "text.lower()"
+          ],
+          "musterloesung": "def vowel_stats(text: str) -> dict:\n    \"\"\"Counts the vowels a, e, i, o, u in text (case-insensitive).\"\"\"\n    stats = {\"a\": 0, \"e\": 0, \"i\": 0, \"o\": 0, \"u\": 0}\n    for zeichen in text.lower():\n        if zeichen in stats:\n            stats[zeichen] += 1\n    return stats",
+          "kriterien": [
+            "Dict als Zähler",
+            "Grossbuchstaben",
+            "leerer Text"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW08_InClass_standardized_clean.ipynb (JupyterHub), «Vokale zählen – vowel_stats(...)»"
+        }
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l9",
+      "titel": "Produkt der Ziffern",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW08_Aufrag_nbg (JupyterHub), Aufgabe 1",
+      "aufgabe": "Schreibe `digit_product(nbr: int) -> int`, die das **Produkt aller Ziffern** einer Ganzzahl zurückgibt.\nBei negativen Zahlen wird das Vorzeichen ignoriert, für `0` wird `0` zurückgegeben. Mit Docstring.\n\nLies danach eine Zahl mit `input()` ein und gib aus:\n`the product of the digits of the number 1234 is: 24`\n\nBeim Prüfen gibt `input()` den Wert `1234` zurück.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "def digit_product(nbr: int) -> int:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "number = int(input(\"number? \"))"
+        }
+      ],
+      "tests": "assert digit_product(1234) == 24, f\"digit_product(1234) sollte 24 sein, ist aber {digit_product(1234)}.\"\nassert digit_product(-25) == 10, \"Bei negativen Zahlen wird das Vorzeichen ignoriert: digit_product(-25) = 10.\"\nassert digit_product(0) == 0, \"digit_product(0) muss 0 sein.\"\nassert digit_product(7) == 7 and digit_product(105) == 0, \"digit_product(7) = 7 und digit_product(105) = 0.\"\nassert digit_product.__doc__, \"Der Docstring fehlt.\"\nassert \"the product of the digits of the number 1234 is: 24\" in _ausgabe, \"Die verlangte Ausgabe fehlt.\"",
+      "hinweise": [
+        "`abs(nbr)` entfernt das Vorzeichen.",
+        "Als String kannst du durch die Ziffern iterieren: `for digit in str(...)`.",
+        "Jede Ziffer ist ein String – mit `int(digit)` umwandeln. Das Produkt startet bei 1."
+      ],
+      "loesung": "def digit_product(nbr: int) -> int:\n    \"\"\"Return the product of all digits of an integer.\n\n    Parameters:\n        nbr (int): Integer whose digits are multiplied.\n\n    Returns:\n        int: Product of the digits. The sign is ignored.\n    \"\"\"\n    if nbr == 0:\n        return 0\n    product = 1\n    for digit in str(abs(nbr)):\n        product *= int(digit)\n    return product\n\nnumber = int(input(\"number? \"))\nprint(f\"the product of the digits of the number {number} is: {digit_product(number)}\")",
+      "eingaben": [
+        "1234"
+      ]
+    },
+    {
+      "id": "sw08-funktionen-module-l10",
+      "titel": "Lottozahlen und Passwortgenerator",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 14,
+      "schwierigkeit": 3,
+      "quelle": "SW08_Aufrag_nbg (JupyterHub), Aufgaben 2–3",
+      "aufgabe": "**Teil 1:** Schreibe `gen_lottonumbers(low: int, high: int, numbers: int) -> list`. Sie gibt eine **aufsteigend\nsortierte** Liste mit `numbers` **verschiedenen** Zufallszahlen von `low` bis **und mit** `high` zurück.\nTipp: `sample(...)` aus dem Modul `random`.\n\n**Teil 2:** Schreibe `gen_password(word: str) -> str`. Sie ersetzt jeden Vokal (`a e i o u`, auch gross)\ndurch ein zufälliges Zeichen aus `special_chars` (mit `random.choice`). Alle anderen Zeichen bleiben.\n\nRufe beide Funktionen auf und gib die Resultate aus. Die Tests prüfen die Regeln, nicht bestimmte Zufallszahlen.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – Lottozahlen"
+        },
+        {
+          "typ": "code",
+          "inhalt": "def gen_lottonumbers(low: int, high: int, numbers: int) -> list:\n    pass"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – Passwortgenerator"
+        },
+        {
+          "typ": "code",
+          "inhalt": "special_chars = ['@', '#', '$', '%', '&', '*', '!', '?', '~']\n\ndef gen_password(word: str) -> str:\n    pass"
+        }
+      ],
+      "tests": "for _ in range(20):\n    z = gen_lottonumbers(1, 42, 6)\n    assert isinstance(z, list) and len(z) == 6, f\"gen_lottonumbers(1, 42, 6) muss eine Liste mit 6 Zahlen liefern, liefert {z}.\"\n    assert len(set(z)) == 6, f\"Die Lottozahlen dürfen sich nicht wiederholen: {z}.\"\n    assert z == sorted(z), f\"Die Liste muss aufsteigend sortiert sein: {z}.\"\n    assert all(1 <= n <= 42 for n in z), f\"Alle Zahlen müssen zwischen 1 und 42 liegen: {z}.\"\nassert gen_lottonumbers(1, 3, 3) == [1, 2, 3], \"high muss inklusive sein: gen_lottonumbers(1, 3, 3) ergibt [1, 2, 3].\"\nfor _ in range(10):\n    p = gen_password(\"ThomaS\")\n    assert isinstance(p, str) and len(p) == 6, f\"Das Passwort muss gleich lang bleiben wie das Wort: {p!r}.\"\n    assert p[0] == \"T\" and p[1] == \"h\" and p[3] == \"m\" and p[5] == \"S\", f\"Konsonanten müssen bleiben: {p!r}.\"\n    assert p[2] in special_chars and p[4] in special_chars, f\"Die Vokale in ThomaS müssen ersetzt werden: {p!r}.\"\nassert gen_password(\"xyz\") == \"xyz\", \"Ein Wort ohne Vokale bleibt unverändert.\"\nassert all(c in special_chars for c in gen_password(\"AEIOU\")), \"Auch grosse Vokale werden ersetzt.\"",
+      "hinweise": [
+        "`sample(range(low, high + 1), numbers)` zieht verschiedene Zahlen – `high + 1`, weil range den Endwert nicht enthält.",
+        "Sortieren mit `sorted(...)`.",
+        "Für das Passwort baust du Zeichen für Zeichen einen neuen String auf.",
+        "Vokal prüfen: `letter.upper() in \"AEIOU\"`."
+      ],
+      "loesung": "import random\nfrom random import sample\n\ndef gen_lottonumbers(low: int, high: int, numbers: int) -> list:\n    \"\"\"Generate sorted unique random integers in an inclusive range.\n\n    Parameters:\n        low (int): Smallest possible number.\n        high (int): Largest possible number.\n        numbers (int): Number of values to generate.\n\n    Returns:\n        list: Sorted list of unique random integers.\n    \"\"\"\n    return sorted(sample(range(low, high + 1), numbers))\n\n\nspecial_chars = ['@', '#', '$', '%', '&', '*', '!', '?', '~']\n\ndef gen_password(word: str) -> str:\n    \"\"\"Replace every vowel in a word with a random special character.\n\n    Parameters:\n        word (str): Input word.\n\n    Returns:\n        str: Word with vowels replaced by special characters.\n    \"\"\"\n    new_word = \"\"\n    for letter in word:\n        if letter.upper() in \"AEIOU\":\n            new_word += random.choice(special_chars)\n        else:\n            new_word += letter\n    return new_word\n\nprint(gen_lottonumbers(1, 42, 6))\nprint(\"ThomaS ->\", gen_password(\"ThomaS\"))"
+    },
+    {
+      "id": "sw08-funktionen-module-l11",
+      "titel": "Wetterbericht aus JSON-Daten",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW08_Aufrag_nbg (JupyterHub), Aufgabe 5",
+      "aufgabe": "Ein Wetterdienst (z. B. `wttr.in`) liefert seine Antwort als JSON, also als verschachteltes Dictionary.\nDamit du ohne Internet arbeiten kannst, ist eine solche Antwort in `weather_data` vorgegeben.\n\nSchreibe `weather_report(data: dict, city: str) -> str`. Sie liest aus `data[\"current_condition\"][0]` die\nWerte `temp_C`, `cloudcover` und `uvIndex` und gibt diesen Text zurück:\n```\nIn Stans the temperature is 24°, the sky is covered with 0% of clouds and UV-Index: 6\n```\nMit Type Hints und Docstring. Gib den Bericht für `\"Stans\"` aus.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "weather_data = {\n    \"current_condition\": [\n        {\"temp_C\": \"24\", \"cloudcover\": \"0\", \"uvIndex\": \"6\", \"humidity\": \"40\"}\n    ],\n    \"nearest_area\": [{\"areaName\": [{\"value\": \"Stans\"}]}]\n}",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def weather_report(data: dict, city: str) -> str:\n    pass"
+        }
+      ],
+      "tests": "erwartet = \"In Stans the temperature is 24°, the sky is covered with 0% of clouds and UV-Index: 6\"\nassert weather_report(weather_data, \"Stans\") == erwartet, f\"weather_report liefert {weather_report(weather_data, 'Stans')!r} statt {erwartet!r}.\"\ntest = {\"current_condition\": [{\"temp_C\": \"-3\", \"cloudcover\": \"75\", \"uvIndex\": \"1\"}]}\nassert weather_report(test, \"Luzern\") == \"In Luzern the temperature is -3°, the sky is covered with 75% of clouds and UV-Index: 1\", \"Die Funktion muss die Werte aus data lesen, nicht fest einsetzen.\"\nassert weather_report.__doc__, \"Der Docstring fehlt.\"\nassert weather_report.__annotations__.get(\"return\") is str, \"Type Hint -> str fehlt.\"\nassert erwartet in _ausgabe, \"Der Bericht für Stans wird nicht ausgegeben.\"",
+      "hinweise": [
+        "`data[\"current_condition\"]` ist eine Liste – das erste Element holst du mit `[0]`.",
+        "Danach mit dem Key zugreifen: `current[\"temp_C\"]`.",
+        "Den Text baust du mit einem f-String."
+      ],
+      "loesung": "weather_data = {\n    \"current_condition\": [\n        {\"temp_C\": \"24\", \"cloudcover\": \"0\", \"uvIndex\": \"6\", \"humidity\": \"40\"}\n    ],\n    \"nearest_area\": [{\"areaName\": [{\"value\": \"Stans\"}]}]\n}\n\n\ndef weather_report(data: dict, city: str) -> str:\n    \"\"\"Create a weather summary from a wttr.in JSON response.\n\n    Parameters:\n        data (dict): Parsed JSON response from the weather service.\n        city (str): Name of the requested city.\n\n    Returns:\n        str: Formatted weather summary.\n    \"\"\"\n    current = data[\"current_condition\"][0]\n    temp_c = current[\"temp_C\"]\n    cloud_cover = current[\"cloudcover\"]\n    uv_index = current[\"uvIndex\"]\n    return (f\"In {city} the temperature is {temp_c}°, \"\n            f\"the sky is covered with {cloud_cover}% of clouds and UV-Index: {uv_index}\")\n\nprint(weather_report(weather_data, \"Stans\"))"
+    }
+  ]
+}

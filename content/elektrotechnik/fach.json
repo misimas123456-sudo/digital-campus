@@ -1,0 +1,127 @@
+{
+  "format": 2,
+  "id": "elektrotechnik",
+  "name": "Elektrotechnik mit Labor",
+  "kurz": "ET+L",
+  "farbe": "#ddb183",
+  "schrift": "Barlow",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/grp/7268289",
+  "material": "material/elektrotechnik/",
+  "eigene_unterlagen": "Documents/HSLU/Elektrotechnik mit Labor",
+  "arten": [
+    "verstaendnis",
+    "rechnen",
+    "aufgabe"
+  ],
+  "einheiten": [
+    {
+      "id": "sw01-grundgroessen",
+      "woche": 1,
+      "bereich": "theorie",
+      "block": 1,
+      "titel": "Grundgrössen & Gleichstromkreis",
+      "status": "bereit"
+    },
+    {
+      "id": "sw02-quellen-leistung",
+      "woche": 2,
+      "bereich": "theorie",
+      "block": 2,
+      "titel": "Quellen, Superposition, Leistung",
+      "status": "bereit"
+    },
+    {
+      "id": "sw03-kondensator",
+      "woche": 3,
+      "bereich": "theorie",
+      "block": 3,
+      "titel": "Elektrisches Feld & Kondensator",
+      "status": "bereit"
+    },
+    {
+      "id": "sw04-labor1-messtechnik",
+      "woche": 4,
+      "bereich": "labor",
+      "labor": 1,
+      "titel": "Messen mit Multimeter & Netzgerät",
+      "status": "bereit"
+    },
+    {
+      "id": "sw05-spule-magnetfeld",
+      "woche": 5,
+      "bereich": "theorie",
+      "block": 4,
+      "titel": "Magnetfeld & Spule",
+      "status": "bereit"
+    },
+    {
+      "id": "sw06-labor2-oszilloskop",
+      "woche": 6,
+      "bereich": "labor",
+      "labor": 2,
+      "titel": "Oszilloskop, Prellen, RMS",
+      "status": "bereit"
+    },
+    {
+      "id": "sw07-wechselstrom",
+      "woche": 7,
+      "bereich": "theorie",
+      "block": 5,
+      "titel": "Wechselstrom",
+      "status": "bereit"
+    },
+    {
+      "id": "sw08-labor3-rc-glied",
+      "woche": 8,
+      "bereich": "labor",
+      "labor": 3,
+      "titel": "Funktionsgenerator & RC-Glied",
+      "status": "bereit"
+    },
+    {
+      "id": "sw09-zeiger-impedanz",
+      "woche": 9,
+      "bereich": "theorie",
+      "block": 6,
+      "titel": "Zeiger & Impedanz",
+      "status": "bereit"
+    },
+    {
+      "id": "sw10-labor4",
+      "woche": 10,
+      "bereich": "labor",
+      "labor": 4,
+      "titel": "Labor 4",
+      "status": "geplant"
+    },
+    {
+      "id": "sw11-block7",
+      "woche": 11,
+      "bereich": "theorie",
+      "block": 7,
+      "titel": "Block 7",
+      "status": "geplant"
+    },
+    {
+      "id": "sw12-labor5",
+      "woche": 12,
+      "bereich": "labor",
+      "labor": 5,
+      "titel": "Labor 5",
+      "status": "geplant"
+    },
+    {
+      "id": "sw13-block8",
+      "woche": 13,
+      "bereich": "theorie",
+      "block": 8,
+      "titel": "Block 8",
+      "status": "geplant"
+    }
+  ],
+  "zusaetze": {
+    "termine": "termine.json"
+  },
+  "hinweis": "Die swXX-Nummern folgen dem Zeitplan von Gruppe A (Mittwoch). Bei Gruppe B sind Labor und Block in den Wochen 4–13 vertauscht."
+}

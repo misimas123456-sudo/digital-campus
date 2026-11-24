@@ -1,0 +1,57 @@
+{
+  "format": 2,
+  "id": "digitaltechnik",
+  "name": "Digitaltechnik",
+  "kurz": "DT",
+  "farbe": "#9dc7a5",
+  "schrift": "Chakra Petch",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215006",
+  "material": "material/digitaltechnik/",
+  "eigene_unterlagen": "Documents/HSLU/Digitaltechnik",
+  "arten": [
+    "verstaendnis",
+    "rechnen"
+  ],
+  "einheiten": [
+    {
+      "id": "sw07-speicherbausteine",
+      "titel": "Speicherbausteine: Latch und Flip-Flop",
+      "woche": 7,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw08-automaten",
+      "titel": "Endliche Automaten",
+      "woche": 8,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw09-timing",
+      "titel": "Timing in sequentiellen Schaltungen",
+      "woche": 9,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw10-zaehler",
+      "titel": "Zähler",
+      "woche": 10,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw11-register",
+      "titel": "Register und Schieberegister",
+      "woche": 11,
+      "bereich": "theorie",
+      "status": "bereit"
+    }
+  ],
+  "zusaetze": {
+    "termine": "termine.json",
+    "themen": "themen.json"
+  }
+}

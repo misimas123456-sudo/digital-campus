@@ -1,0 +1,90 @@
+{
+  "format": 2,
+  "id": "python-basics",
+  "name": "Python Basics",
+  "kurz": "PYTHON",
+  "farbe": "#c9bb83",
+  "schrift": "Space Grotesk",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215198",
+  "material": "material/python-basics/",
+  "eigene_unterlagen": "Documents/HSLU/Python Basics",
+  "sprache": "python",
+  "arten": [
+    "verstaendnis",
+    "code",
+    "programmieren"
+  ],
+  "abschnitte": [
+    "theorie",
+    "schnellfragen",
+    "programmieren"
+  ],
+  "einheiten": [
+    {
+      "id": "sw01-einfuehrung-algorithmus",
+      "titel": "Einführung & Algorithmus",
+      "woche": 1,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw02-datentypen",
+      "titel": "Datentypen",
+      "woche": 2,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw03-schleifen",
+      "titel": "Schleifen & Bedingungen",
+      "woche": 3,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw04-listen-schleifen",
+      "titel": "Listen & Schleifen",
+      "woche": 4,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json",
+      "titel": "Tuples, Sets, Dicts & JSON",
+      "woche": 5,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw06-algorithmus-zu-code",
+      "titel": "Vom Algorithmus zum Code",
+      "woche": 6,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw07-funktionen",
+      "titel": "Funktionen",
+      "woche": 7,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "sw08-funktionen-module",
+      "titel": "Funktionen 2 & Module",
+      "woche": 8,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "pruefungsvorbereitung",
+      "titel": "Prüfungsvorbereitung",
+      "bereich": "testvorbereitung",
+      "status": "bereit"
+    }
+  ],
+  "zusaetze": {
+    "termine": "termine.json"
+  }
+}

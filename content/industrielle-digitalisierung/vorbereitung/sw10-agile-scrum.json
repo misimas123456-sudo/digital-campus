@@ -1,0 +1,98 @@
+{
+  "format": 2,
+  "fach": "industrielle-digitalisierung",
+  "einheit": "sw10-agile-scrum",
+  "titel": "Vorbereitung SW11 – DevOps",
+  "woche": 11,
+  "termin": "Do 26.11.2026 · F200 Horw · Grundlagen und Praktiken von DevOps",
+  "quelle": "GRUNDING_HS2026_SW10.pdf: Übersicht F. 2, PSM I F. 3, Lernziele F. 4, DevOps F. 35–44, Testing F. 45–46, Branching/GitFlow F. 48–49",
+  "aufgaben": [
+    {
+      "id": "v1",
+      "text": "Folien 35–49 im SW10-PDF durchblättern (DevOps, CI/CD, Testing, GitFlow) – die sind schon im Deck."
+    },
+    {
+      "id": "v2",
+      "text": "Die 4 Werte des Agilen Manifests und die 3 Scrum-Rollen auswendig können (Basis für SW11/12)."
+    },
+    {
+      "id": "v3",
+      "text": "Git-Branches aus SW03/04 auffrischen: branch, checkout/switch, merge – GitFlow baut darauf auf."
+    },
+    {
+      "id": "v4",
+      "text": "Optional für PSM I: Scrum Guide lesen und einen kostenlosen Online-Test machen."
+    }
+  ],
+  "inhalt": [
+    {
+      "typ": "titel",
+      "text": "Was kommt"
+    },
+    {
+      "typ": "liste",
+      "punkte": [
+        "**SW11 (26.11.):** Grundlagen und Praktiken von DevOps – DevOps-Tools und Technologien",
+        "**SW12 (3.12.):** Integration von Agile und DevOps – Kultur und Zusammenarbeit",
+        "**SW13 (10.12.):** Gastvortrag – agile Zusammenarbeit in der Medizintechnik",
+        "**SW14 (17.12.):** Vorbereitung PSM I und **Prüfung (analog)**"
+      ]
+    },
+    {
+      "typ": "titel",
+      "text": "Vorschau: DevOps in 1 Minute"
+    },
+    {
+      "typ": "bild",
+      "src": "bilder/sw10-f37-dev-ops-mauer.jpg",
+      "alt": "Comic: Development- und Operations-Team getrennt durch eine Mauer, danach per Handschlag verbunden",
+      "beschriftung": "Früher trennte eine Mauer Development und Operations – DevOps bringt beide zusammen (F. 37)"
+    },
+    {
+      "typ": "liste",
+      "punkte": [
+        "**DevOps = Development + Operations.** Früher trennte eine «Mauer» Entwicklung und Betrieb – DevOps lässt beide **kontinuierlich zusammenarbeiten**.",
+        "**Phasen (Endlosschleife):** Plan → Code → Build → Test → Release → Deploy → Operate → Monitor.",
+        "**Typische Tools:** git (Code), Maven/Gradle (Build), Selenium (Test), Jenkins (Integrate), Ansible/Docker/Kubernetes (Deploy/Operate), Nagios (Monitor).",
+        "**Prinzipien:** autonome cross-funktionale Teams, (fast) alles automatisieren, End-to-End-Ownership, Zusammenarbeit, kundenzentriert, kontinuierlich lernen und verbessern."
+      ]
+    },
+    {
+      "typ": "bild",
+      "src": "bilder/sw10-f39-devops-phasen.jpg",
+      "alt": "DevOps-Endlosschleife mit Plan, Code, Build, Test, Integrate, Deploy, Operate, Monitor und Tool-Logos",
+      "beschriftung": "DevOps-Phasen und typische Tools (F. 39, Quelle: Simplilearn)"
+    },
+    {
+      "typ": "titel",
+      "text": "Begriffe, die du kennen solltest"
+    },
+    {
+      "typ": "liste",
+      "punkte": [
+        "**Continuous Integration (CI):** Code oft in ein gemeinsames Repository mergen, danach **automatisch testen**.",
+        "**Continuous Deployment (CD):** Änderungen nach bestandenen Tests **automatisch in Produktion** ausliefern.",
+        "**Testpyramide (unten → oben):** Unit → Smoke → Integration → System → Regression → Performance & Load → UAT.",
+        "**GitFlow-Branches:** main (stabil, produktiv) · develop (Integration) · feature/… (aus develop) · release/x.y.z (Endtests, merge in main **und** develop) · hotfix/… (aus main, merge in main **und** develop)."
+      ]
+    },
+    {
+      "typ": "grafik",
+      "svg": "<svg viewBox=\"0 0 640 265\" role=\"img\" aria-label=\"Testpyramide\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"240.0\" y=\"8\" width=\"160\" height=\"30\" rx=\"6\" class=\"g-box\"/><text x=\"320\" y=\"28\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">UAT</text><rect x=\"207.5\" y=\"44\" width=\"225\" height=\"30\" rx=\"6\" class=\"g-box\"/><text x=\"320\" y=\"64\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Performance &amp; Load</text><rect x=\"175.0\" y=\"80\" width=\"290\" height=\"30\" rx=\"6\" class=\"g-box\"/><text x=\"320\" y=\"100\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Regression</text><rect x=\"142.5\" y=\"116\" width=\"355\" height=\"30\" rx=\"6\" class=\"g-box\"/><text x=\"320\" y=\"136\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">System</text><rect x=\"110.0\" y=\"152\" width=\"420\" height=\"30\" rx=\"6\" class=\"g-box\"/><text x=\"320\" y=\"172\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Integration</text><rect x=\"77.5\" y=\"188\" width=\"485\" height=\"30\" rx=\"6\" class=\"g-box\"/><text x=\"320\" y=\"208\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Smoke</text><rect x=\"45.0\" y=\"224\" width=\"550\" height=\"30\" rx=\"6\" class=\"g-box g-accb\"/><text x=\"320\" y=\"244\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Unit</text></svg>",
+      "beschriftung": "Testpyramide – unten zuerst und automatisiert (F. 45–46)"
+    },
+    {
+      "typ": "grafik",
+      "svg": "<svg viewBox=\"0 0 640 225\" role=\"img\" aria-label=\"GitFlow-Branches\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"pf\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0 0L10 5L0 10z\" class=\"g-pf\"/></marker></defs><text x=\"70\" y=\"45\" class=\"g-acct\" font-size=\"13\" text-anchor=\"end\">main</text><line x1=\"85\" y1=\"40\" x2=\"620\" y2=\"40\" class=\"g-lane g-lane-a\"/><text x=\"70\" y=\"85\" class=\"g-m\" font-size=\"13\" text-anchor=\"end\">hotfix</text><line x1=\"85\" y1=\"80\" x2=\"620\" y2=\"80\" class=\"g-lane\"/><text x=\"70\" y=\"125\" class=\"g-m\" font-size=\"13\" text-anchor=\"end\">release</text><line x1=\"85\" y1=\"120\" x2=\"620\" y2=\"120\" class=\"g-lane\"/><text x=\"70\" y=\"165\" class=\"g-acct\" font-size=\"13\" text-anchor=\"end\">develop</text><line x1=\"85\" y1=\"160\" x2=\"620\" y2=\"160\" class=\"g-lane g-lane-a\"/><text x=\"70\" y=\"205\" class=\"g-m\" font-size=\"13\" text-anchor=\"end\">feature</text><line x1=\"85\" y1=\"200\" x2=\"620\" y2=\"200\" class=\"g-lane\"/><circle cx=\"110\" cy=\"40\" r=\"6\" class=\"g-dot\"/><circle cx=\"110\" cy=\"160\" r=\"6\" class=\"g-dot\"/><line x1=\"150\" y1=\"160\" x2=\"190\" y2=\"200\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"190\" cy=\"200\" r=\"6\" class=\"g-dot\"/><circle cx=\"260\" cy=\"200\" r=\"6\" class=\"g-dot\"/><line x1=\"260\" y1=\"200\" x2=\"300\" y2=\"160\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"300\" cy=\"160\" r=\"6\" class=\"g-dot\"/><line x1=\"320\" y1=\"160\" x2=\"360\" y2=\"120\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"360\" cy=\"120\" r=\"6\" class=\"g-dot\"/><circle cx=\"420\" cy=\"120\" r=\"6\" class=\"g-dot\"/><line x1=\"420\" y1=\"120\" x2=\"460\" y2=\"40\" class=\"g-l\" marker-end=\"url(#pf)\"/><line x1=\"420\" y1=\"120\" x2=\"470\" y2=\"160\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"460\" cy=\"40\" r=\"6\" class=\"g-dot\"/><circle cx=\"470\" cy=\"160\" r=\"6\" class=\"g-dot\"/><text x=\"460\" y=\"28\" class=\"g-m\" font-size=\"11\" text-anchor=\"middle\">v1.0.0</text><line x1=\"480\" y1=\"40\" x2=\"520\" y2=\"80\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"520\" cy=\"80\" r=\"6\" class=\"g-dot\"/><line x1=\"520\" y1=\"80\" x2=\"570\" y2=\"40\" class=\"g-l\" marker-end=\"url(#pf)\"/><line x1=\"520\" y1=\"80\" x2=\"580\" y2=\"160\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"570\" cy=\"40\" r=\"6\" class=\"g-dot\"/><circle cx=\"580\" cy=\"160\" r=\"6\" class=\"g-dot\"/></svg>",
+      "beschriftung": "GitFlow: feature → develop → release → main, hotfix aus main (F. 49)"
+    },
+    {
+      "typ": "titel",
+      "text": "PSM I – lohnt sich"
+    },
+    {
+      "typ": "text",
+      "text": "Der Studiengang übernimmt die Prüfungsgebühr (**200 USD**) für das weltweit anerkannte Zertifikat **Professional Scrum Master I** (Scrum.org, lebenslang gültig). Prüfung: **60 Minuten online** von zu Hause. Vorbereitung im Selbststudium mit dem Scrum Guide und kostenlosen Online-Tests."
+    }
+  ]
+}

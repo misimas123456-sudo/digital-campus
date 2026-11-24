@@ -1,0 +1,235 @@
+{
+  "id": "sw09-zeiger-impedanz",
+  "bereich": "theorie",
+  "woche": 9,
+  "titel": "Block 6 · Zeiger & Impedanz",
+  "untertitel": "Rechnen mit Zeigern, Impedanz, Admittanz, AC-Netzwerke",
+  "quelle": "ET+L – H26 – Block 6 (02.11.2026), Folien S. 4–34, Aufgaben S. 37–41; «Rechnen mit Zeigern» (Zeigerarithmetik, Taschenrechner-Anleitungen). Buch Ose S. 236–248.",
+  "lektionen": [
+    {
+      "id": "zeigerrechnung",
+      "titel": "Rechnen mit Zeigern",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Eine komplexe Zahl lässt sich kartesisch oder polar schreiben: $z = x + yi = r\\angle\\varphi$."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Addieren / Subtrahieren:** wie Vektoren aneinanderhängen (kartesisch rechnen)",
+            "**Multiplizieren:** Beträge multiplizieren, Winkel addieren",
+            "**Dividieren:** Beträge dividieren, Winkel subtrahieren"
+          ]
+        },
+        {
+          "typ": "formel",
+          "tex": "\\frac{r_a\\angle\\varphi_a}{r_b\\angle\\varphi_b} = \\frac{r_a}{r_b}\\angle(\\varphi_a - \\varphi_b)"
+        },
+        {
+          "typ": "text",
+          "text": "Taschenrechner auf **Grad (Degree)** stellen – nicht auf Gon/Gradian (Vollkreis 400). Empfohlen sind Rechner mit komplexen Zahlen, z. B. Casio FX-991 DE X oder TI-30X Plus."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "$4\\angle30° \\cdot 12\\angle-70° = ?$",
+          "optionen": [
+            "$48\\angle-40°$",
+            "$48\\angle-100°$",
+            "$16\\angle-40°$",
+            "$0.33\\angle100°$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beträge multiplizieren (48), Winkel addieren (30° − 70° = −40°)."
+        },
+        {
+          "id": "q2",
+          "typ": "multiple_choice",
+          "frage": "$\\dfrac{4\\angle30°}{12\\angle-70°} = ?$",
+          "optionen": [
+            "$0.333\\angle100°$",
+            "$0.333\\angle-40°$",
+            "$3\\angle100°$",
+            "$48\\angle-40°$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beträge dividieren (4/12), Winkel subtrahieren (30° − (−70°) = 100°)."
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "$4\\angle30° + 12\\angle-70° = ?$",
+          "optionen": [
+            "$11.97\\angle-50.8°$",
+            "$16\\angle-40°$",
+            "$13.29\\angle92.8°$",
+            "$8\\angle-100°$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Addition geht nur kartesisch – die Beträge dürfen nicht einfach addiert werden. $13.29\\angle92.8°$ wäre die Differenz."
+        },
+        {
+          "id": "q4",
+          "typ": "wahr_falsch",
+          "erklaerung": "Gon/Gradian ist Neugrad mit 400 gon pro Vollkreis. Für ET+L «Degree» bzw. «Gradmass» wählen.",
+          "aussage": "Die Taschenrechner-Einstellung «Gon» bzw. «Gradian» entspricht Grad mit 360° Vollkreis.",
+          "richtig": false
+        }
+      ]
+    },
+    {
+      "id": "impedanz",
+      "titel": "Impedanz und Admittanz",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die **Impedanz** ist das Verhältnis von Spannungs- zu Stromzeiger – der Wechselstromwiderstand mit Phasenverschiebung. Ihr Winkel ist die Phasenverschiebung zwischen U und I."
+        },
+        {
+          "typ": "formel",
+          "tex": "Z = \\frac{U\\angle\\varphi_u}{I\\angle\\varphi_i} = Z\\angle(\\varphi_u - \\varphi_i) \\qquad Y = \\frac{1}{Z},\\; \\varphi_Y = -\\varphi_Z"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "$Z_R = R\\angle0°$",
+            "$Z_C = \\dfrac{1}{\\omega C}\\angle-90°$",
+            "$Z_L = \\omega L\\angle+90°$"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Typ der Schaltung"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "$\\varphi_Z > 0°$: **ohmsch-induktiv**, die Spannung eilt dem Strom voraus",
+            "$\\varphi_Z = 0°$: rein ohmsch",
+            "$\\varphi_Z < 0°$: **ohmsch-kapazitiv**, die Spannung eilt dem Strom nach"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Eine Impedanz hat den Winkel $+35°$. Wie verhält sich die Schaltung?",
+          "optionen": [
+            "Ohmsch-induktiv",
+            "Ohmsch-kapazitiv",
+            "Rein ohmsch",
+            "Rein kapazitiv"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\varphi_Z > 0$ → induktiv, die Spannung eilt dem Strom voraus."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "$Y = 1/Z$ → Betrag als Kehrwert, Winkel mal −1.",
+          "aussage": "Der Winkel der Admittanz ist das Negative des Impedanzwinkels.",
+          "richtig": true
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Welche Impedanz hat ein idealer Kondensator?",
+          "optionen": [
+            "$\\dfrac{1}{\\omega C}\\angle-90°$",
+            "$\\omega C\\angle+90°$",
+            "$\\omega L\\angle+90°$",
+            "$R\\angle0°$"
+          ],
+          "richtig": 0,
+          "erklaerung": "$Z_C = X_C\\angle-90°$ mit $X_C = 1/(\\omega C)$."
+        }
+      ]
+    },
+    {
+      "id": "ac-netzwerke",
+      "titel": "AC-Netzwerke berechnen",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Gerechnet wird wie bei Gleichstrom – nur mit Zeigern. Kirchhoff gilt auch hier: $\\sum I_k = 0$, $\\sum U_k = 0$, und $U = Z\\cdot I$."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Reihenschaltung:** Spannungen addieren → **Impedanzen** addieren: $Z = Z_1 + Z_2 + \\dots$",
+            "**Parallelschaltung:** Ströme addieren → **Admittanzen** addieren: $Y = Y_1 + Y_2 + \\dots$",
+            "Gemischt: Teile getrennt rechnen, beim Wechsel Z ↔ Y Kehrwert des Betrags und Winkel mal −1"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "$U = 16\\,\\text{V}\\angle0°$ liegt an $R = 3\\,\\Omega$ parallel zu $X_C = 4\\,\\Omega$. Wie gross ist der Betrag des Gesamtstroms?",
+          "loesung": 6.67,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "Block 6, S. 29–30",
+          "loesungsweg": [
+            "$I_R = \\dfrac{16\\,\\text{V}\\angle0°}{3\\,\\Omega\\angle0°} = 5.333\\,\\text{A}\\angle0°$",
+            "$I_C = \\dfrac{16\\,\\text{V}\\angle0°}{4\\,\\Omega\\angle-90°} = 4\\,\\text{A}\\angle+90°$",
+            "$I = I_R + I_C = 6.67\\,\\text{A}\\angle36.9°$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "$U = 10\\,\\text{V}\\angle0°$, 200 Hz: $L = 60\\,\\text{mH}$ in Serie zu ($R = 50\\,\\Omega \\parallel C = 20\\,\\mu\\text{F}$). Betrag des Stroms in mA?",
+          "loesung": 183.2,
+          "einheit": "mA",
+          "toleranz": 0.02,
+          "quelle": "Block 6, S. 31–33",
+          "loesungsweg": [
+            "$X_L = 2\\pi\\cdot200\\cdot0.06 = 75.4\\,\\Omega\\angle90°$, $\\;X_C = 39.78\\,\\Omega\\angle-90°$",
+            "$R\\parallel X_C = 31.13\\,\\Omega\\angle-51.5°$",
+            "$Z = 75.4\\angle90° + 31.13\\angle-51.5° = 54.59\\,\\Omega\\angle69.2°$",
+            "$I = \\dfrac{10\\,\\text{V}}{54.59\\,\\Omega} = 183.2\\,\\text{mA}\\angle-69.2°$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Ist die Schaltung aus Aufgabe 2 induktiv oder kapazitiv?",
+          "optionen": [
+            "Induktiv ($\\varphi_Z = 69.2°$)",
+            "Kapazitiv",
+            "Rein ohmsch",
+            "Kann man nicht sagen"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\varphi_Z > 0$ → induktiv."
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Hausaufgabe B6-E1: 500 Ω in Serie mit 2.5 µF an 50 Hz. Wie gross ist der Blindwiderstand des Kondensators?",
+          "loesung": 1273,
+          "einheit": "Ω",
+          "toleranz": 0.02,
+          "quelle": "B6-E1",
+          "loesungsweg": [
+            "$X_C = \\dfrac{1}{2\\pi\\cdot50\\,\\text{Hz}\\cdot2.5\\,\\mu\\text{F}} = 1273\\,\\Omega$",
+            "Phasenverschiebung: $\\varphi = -\\arctan\\dfrac{1273}{500} = -68.6°$ (kapazitiv)",
+            "Hinweis: Lösung nicht in den Folien – hergeleitet. Wird in Block 7 besprochen."
+          ]
+        }
+      ]
+    }
+  ]
+}

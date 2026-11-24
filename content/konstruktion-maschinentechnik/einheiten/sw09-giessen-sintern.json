@@ -1,0 +1,947 @@
+{
+  "id": "sw09-giessen-sintern",
+  "titel": "Giessen und Sintern",
+  "untertitel": "Kap. 4.1–4.2 – Gestalten von Guss- und Sinterteilen",
+  "beschreibung": "Fertigungsverfahren, Giessverfahren, Schwindung und Lunker, gussgerechte Gestaltung mit der Heuversschen Kontrollkreismethode, Sinterverfahren.",
+  "woche": 9,
+  "bereich": "theorie",
+  "quelle": [
+    {
+      "text": "Folien Kap_4.1_4.2_Fertigungsgerechtes_Gestalten_Giessen_Sintern_V2.0_SW09.pdf",
+      "stellen": "Folien 2–34 (Vorlesung 10.11.2026, Kap. 4.1 Giessen Einführung)"
+    },
+    {
+      "text": "Modulprogramm KONST_M HS26 V3.0",
+      "stellen": "SW09, 10.11.2026"
+    },
+    {
+      "text": "Buch «Konstruieren, Gestalten, Entwerfen», Kap. 4.2 Das Gestalten von Sinterteilen",
+      "stellen": "S. 109–115 (Selbststudium); Folien SW09, Folien 55–59 (Sintern, Selbststudium ab 13.11.2026)"
+    }
+  ],
+  "lektionen": [
+    {
+      "id": "sw09-giessen-sintern-l1",
+      "titel": "Fertigungsverfahren und Giessverfahren",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Folien SW09, Folien 2–16",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Welches **Fertigungsverfahren** passt, hängt von der **Bauteilbelastung** und von der **Stückzahl** bzw. Losgrösse ab."
+        },
+        {
+          "typ": "titel",
+          "text": "Sechs Hauptgruppen"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Hauptgruppe",
+            "Zusammenhalt"
+          ],
+          "zeilen": [
+            [
+              "Urformen (z. B. Giessen, Sintern)",
+              "erzeugen"
+            ],
+            [
+              "Umformen",
+              "erhalten"
+            ],
+            [
+              "Trennen",
+              "vermindern"
+            ],
+            [
+              "Fügen",
+              "vergrössern"
+            ],
+            [
+              "Beschichten",
+              "ergänzen bzw. erhalten"
+            ],
+            [
+              "Stoffeigenschaften ändern",
+              "Eigenschaften ändern"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Ein Giessverfahren wählt man nach **Gusswerkstoff**, **geforderter Genauigkeit** und **Stückzahl der Abgüsse**. Man unterscheidet, ob Form und Modell verloren gehen oder dauerhaft sind."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Verfahren",
+            "Form",
+            "Modell",
+            "Typisch"
+          ],
+          "zeilen": [
+            [
+              "Sandguss (Hand-/Maschineneinformung)",
+              "verloren",
+              "dauerhaft",
+              "weit verbreitet; Maschine für grössere Serien"
+            ],
+            [
+              "Vakuumformguss",
+              "verloren",
+              "dauerhaft",
+              "exakter Sandguss, sehr gute Oberfläche, geringe Formkosten"
+            ],
+            [
+              "Feinguss",
+              "verloren",
+              "verloren (Wachs)",
+              "hochwertig, Hinterschnitte möglich, Stahl/Edelstahl"
+            ],
+            [
+              "Vollformguss",
+              "verloren",
+              "verloren (Kunststoff)",
+              "grosse Teile, Einzel- und Kleinserien"
+            ],
+            [
+              "Druckguss",
+              "dauerhaft",
+              "ohne",
+              "Schmelze wird in Metallform geschossen; Al, Mg, Zn, Sn"
+            ],
+            [
+              "Kokillenguss",
+              "dauerhaft",
+              "ohne",
+              "Schmelze füllt die Metallform aufsteigend"
+            ],
+            [
+              "Schleuderguss",
+              "dauerhaft",
+              "ohne",
+              "rotationssymmetrisch, Rohre, Verbundguss"
+            ],
+            [
+              "Strangguss",
+              "dauerhaft",
+              "ohne",
+              "kontinuierlich, Halbzeug"
+            ]
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "**Verlorene Form** = die Form wird nach jedem Abguss zerstört (Sand, Keramik). **Dauerhafte Form** = metallische Form für viele Abgüsse, braucht kein Modell."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Zu welcher Hauptgruppe gehört das Giessen?",
+          "optionen": [
+            "Urformen",
+            "Umformen",
+            "Trennen",
+            "Fügen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Giessen entsteht aus flüssigem Werkstoff ein fester Körper: Der Zusammenhalt wird **erzeugt** – das ist Urformen.",
+          "quelle": "Folien SW09, Folie 4"
+        },
+        {
+          "id": "sw09-giessen-sintern-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Was passiert beim Trennen mit dem Zusammenhalt?",
+          "optionen": [
+            "Er wird vermindert",
+            "Er wird erzeugt",
+            "Er wird erhalten",
+            "Er wird vergrössert"
+          ],
+          "richtig": 0,
+          "erklaerung": "Trennen (z. B. Spanen) vermindert den Zusammenhalt. Erhalten = Umformen, vergrössern = Fügen.",
+          "quelle": "Folien SW09, Folie 4"
+        },
+        {
+          "id": "sw09-giessen-sintern-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "Bei welchem Verfahren gehen Form **und** Modell verloren?",
+          "optionen": [
+            "Feinguss",
+            "Sandguss mit Handeinformung",
+            "Druckguss",
+            "Kokillenguss"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Feinguss wird um ein Wachsmodell eine Keramikschale gebaut. Das Wachs geht verloren, die Schale wird nach dem Abguss zerstört.",
+          "quelle": "Folien SW09, Folie 11"
+        },
+        {
+          "id": "sw09-giessen-sintern-l1-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Druckguss eignet sich besonders für Metalle mit niedrigem Schmelzpunkt wie Aluminium, Magnesium und Zink.",
+          "richtig": true,
+          "erklaerung": "Die Schmelze wird in eine metallische Dauerform geschossen – darum Al, Mg, Zn, Sn.",
+          "quelle": "Folien SW09, Folie 13"
+        },
+        {
+          "id": "sw09-giessen-sintern-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "Du brauchst hochwertige Rohre. Welches Verfahren passt?",
+          "optionen": [
+            "Schleuderguss",
+            "Vollformguss",
+            "Sandguss mit Handeinformung",
+            "Strangguss"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Schleuderguss läuft die Schmelze in eine rotierende, runde Form – ideal für rotationssymmetrische Teile wie Rohre.",
+          "quelle": "Folien SW09, Folie 15"
+        },
+        {
+          "id": "sw09-giessen-sintern-l1-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Vollformguss ist für grosse Stückzahlen kleiner Teile gedacht.",
+          "richtig": false,
+          "erklaerung": "Vollformguss ist für **grosse Teile** in **Einzel- und Kleinserien**: Das Kunststoffmodell geht bei jedem Abguss verloren.",
+          "quelle": "Folien SW09, Folie 12"
+        }
+      ]
+    },
+    {
+      "id": "sw09-giessen-sintern-l2",
+      "titel": "Schwindung, Lunker und Gussfehler",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW09, Folien 17, 21–22, 26",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Beim Abkühlen zieht sich der Werkstoff zusammen. Darum muss das **Modell um das Schwindmass grösser** sein als das fertige Gussteil."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Gusswerkstoff",
+            "Schwindmass"
+          ],
+          "zeilen": [
+            [
+              "Gusseisen GJL oder GJS",
+              "1.0 %"
+            ],
+            [
+              "Stahlguss",
+              "2.0 %"
+            ],
+            [
+              "weisser Temperguss GTW",
+              "1.6 %"
+            ],
+            [
+              "schwarzer Temperguss GTS",
+              "0.5 %"
+            ],
+            [
+              "Al- und Mg-Legierungen",
+              "1.2 %"
+            ]
+          ]
+        },
+        {
+          "typ": "liste",
+          "titel": "Zwei Arten von Schwindung",
+          "punkte": [
+            "**Flüssige Schwindung** → **Lunker**, wenn Material nicht nachfliessen kann.",
+            "**Feste Schwindung** → **Schrumpfspannungen**, bei ungleichmässiger Abkühlung auch **Risse**."
+          ]
+        },
+        {
+          "typ": "liste",
+          "titel": "Häufige Gussfehler",
+          "punkte": [
+            "**Lunker:** Hohlraum durch Schwindung beim Erstarren",
+            "**Versatz:** Ober- und Unterkasten passen nicht genau aufeinander",
+            "**Schülpe:** Sand bricht beim Giessen aus der Form aus",
+            "**Mangelhafte Konstruktion**, z. B. scharfe Ecken mit Rissbildung"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Gut gerundete Übergänge und gleichmässige Wanddicken verhindern Risse und Lunker."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Welcher Gusswerkstoff hat das grösste Schwindmass?",
+          "optionen": [
+            "Stahlguss",
+            "Gusseisen GJL",
+            "Al-Legierung",
+            "schwarzer Temperguss GTS"
+          ],
+          "richtig": 0,
+          "erklaerung": "Stahlguss schwindet mit 2.0 % am stärksten, GTS mit 0.5 % am wenigsten.",
+          "quelle": "Folien SW09, Folie 17"
+        },
+        {
+          "id": "sw09-giessen-sintern-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "Was verursacht die **flüssige** Schwindung, wenn kein Material nachfliessen kann?",
+          "optionen": [
+            "Lunker",
+            "Versatz",
+            "Schülpe",
+            "Verzug durch Bearbeitung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Flüssige Schwindung führt zu Lunkern. Feste Schwindung führt zu Spannungen und Rissen.",
+          "quelle": "Folien SW09, Folie 21"
+        },
+        {
+          "id": "sw09-giessen-sintern-l2-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Feste Schwindung kann bei ungleichmässiger Abkühlung zu Rissen führen.",
+          "richtig": true,
+          "erklaerung": "Feste Schwindung erzeugt Schrumpfspannungen; kühlen Bereiche ungleich ab, entstehen Kalt- oder Warmrisse.",
+          "quelle": "Folien SW09, Folien 21–22"
+        },
+        {
+          "id": "sw09-giessen-sintern-l2-a4",
+          "typ": "multiple_choice",
+          "frage": "Was ist eine **Schülpe**?",
+          "optionen": [
+            "Sandausbruch beim Giessprozess",
+            "Hohlraum durch Schwindung",
+            "Versatz zwischen Ober- und Unterkasten",
+            "Grat an der Teilfuge"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei einer Schülpe bricht Formsand aus, das Gussteil bekommt dort eine Fehlstelle.",
+          "quelle": "Folien SW09, Folie 26"
+        },
+        {
+          "id": "sw09-giessen-sintern-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Ober- und Unterkasten passen nicht genau aufeinander. Wie heisst der Fehler?",
+          "optionen": [
+            "Versatz",
+            "Lunker",
+            "Schülpe",
+            "Kernversatz durch Auftrieb"
+          ],
+          "richtig": 0,
+          "erklaerung": "Versatz entsteht durch eine ungenaue Passung von Ober- und Unterkasten.",
+          "quelle": "Folien SW09, Folie 26"
+        }
+      ]
+    },
+    {
+      "id": "sw09-giessen-sintern-l3",
+      "titel": "Gussgerecht gestalten: gelenkte Erstarrung",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Folien SW09, Folien 23–29, 32",
+      "inhalt": [
+        {
+          "typ": "liste",
+          "titel": "Werkstoffbedingte Gestaltungsregeln",
+          "punkte": [
+            "Stark unterschiedliche **Wanddicken vermeiden**",
+            "**Stetige Querschnittsverjüngung** für eine gelenkte Erstarrung – prüfen mit der Heuversschen Kontrollkreismethode",
+            "**Materialanhäufungen vermeiden**"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Wo mehrere Wände zusammentreffen, entsteht eine **Masseanhäufung** und dort ein Lunker. Abhilfe: **Rippendicke reduzieren** oder einen **Wandeinzug** vorsehen."
+        },
+        {
+          "typ": "text",
+          "text": "**Gelenkte Erstarrung:** Das Gussteil soll vom dünnen Ende zum **Speiser** hin erstarren. So kann Schmelze nachfliessen und der Lunker landet im Speiser, der später entfernt wird."
+        },
+        {
+          "typ": "titel",
+          "text": "Heuverssche Kontrollkreismethode"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Kreise in die Querschnitte des Gussteils einzeichnen",
+            "Der Durchmesser muss zum **Speiser hin stetig zunehmen**",
+            "Benachbarte Kreise dürfen sich höchstens um den **Faktor 1.6** unterscheiden"
+          ]
+        },
+        {
+          "typ": "formel",
+          "tex": "\\frac{D_{gross}}{D_{klein}} \\le 1.6"
+        },
+        {
+          "typ": "hinweis",
+          "text": "**Verzug:** Ungleichmässige Abkühlung (z. B. unsymmetrische Profile oder einseitige Bearbeitung) erzeugt Spannungen. Abhilfe: spannungsarme, möglichst symmetrische Konstruktion."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Wohin soll der Lunker bei gelenkter Erstarrung wandern?",
+          "optionen": [
+            "In den Speiser",
+            "In die dünnste Wand",
+            "An die Teilfuge",
+            "In die Mitte des Gussteils"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Erstarrung läuft zum Speiser hin. Er erstarrt zuletzt, nimmt den Lunker auf und wird danach entfernt.",
+          "quelle": "Folien SW09, Folie 27"
+        },
+        {
+          "id": "sw09-giessen-sintern-l3-a2",
+          "typ": "multiple_choice",
+          "frage": "Wie müssen sich die Kontrollkreise entwickeln?",
+          "optionen": [
+            "Zum Speiser hin stetig grösser werden",
+            "Überall gleich gross sein",
+            "Zum Speiser hin kleiner werden",
+            "In der Mitte am grössten sein"
+          ],
+          "richtig": 0,
+          "erklaerung": "Nur wenn die Querschnitte zum Speiser hin zunehmen, kann Schmelze bis zum Schluss nachfliessen.",
+          "quelle": "Folien SW09, Folie 29"
+        },
+        {
+          "id": "sw09-giessen-sintern-l3-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Benachbarte Kontrollkreise dürfen sich im Durchmesser höchstens um den Faktor 1.6 unterscheiden.",
+          "richtig": true,
+          "erklaerung": "Das ist die Regel der Methode: $D_{gross} / D_{klein} \\le 1.6$.",
+          "quelle": "Folien SW09, Folien 28–29"
+        },
+        {
+          "id": "sw09-giessen-sintern-l3-a4",
+          "typ": "multiple_choice",
+          "frage": "Mehrere Rippen treffen in einem Knoten zusammen. Was hilft gegen den Lunker?",
+          "optionen": [
+            "Rippendicke reduzieren oder Wandeinzug",
+            "Rippen dicker machen",
+            "Scharfe Innenecken vorsehen",
+            "Den Knoten weit vom Speiser legen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Im Knoten sammelt sich Masse. Dünnere Rippen oder ein Wandeinzug verkleinern die Anhäufung.",
+          "quelle": "Folien SW09, Folie 24"
+        },
+        {
+          "id": "sw09-giessen-sintern-l3-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Eine asymmetrische Konstruktion kann helfen, die Erstarrung zu lenken.",
+          "richtig": true,
+          "erklaerung": "Laut Folie verschiebt eine asymmetrische Konstruktion den Lunker in den Speiser. Gegen **Verzug** hilft dagegen eine spannungsarme Konstruktion.",
+          "quelle": "Folien SW09, Folie 27"
+        }
+      ]
+    },
+    {
+      "id": "sw09-giessen-sintern-l4",
+      "titel": "Bearbeitungszugaben und Nachbearbeitung",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW09, Folien 18–19, 33–34",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Auf Gussteilzeichnungen sind **Allgemeintoleranzen** die Regel (DIN 1683 bis 1687 je nach Gusswerkstoff). Das **Gewicht des Rohlings** ist der Hauptfaktor für die Kosten."
+        },
+        {
+          "typ": "liste",
+          "titel": "Bearbeitungszugabe",
+          "punkte": [
+            "Gussteile brauchen praktisch immer eine mechanische Nacharbeit",
+            "**Eine** Bearbeitungszugabe für das ganze Gussteil, bestimmt durch das **grösste Aussenmass**",
+            "Abweichende Zugaben **separat angeben** (z. B. «BZ 2,5 mm»), die Formteilung mit --X-- eintragen"
+          ]
+        },
+        {
+          "typ": "liste",
+          "titel": "Gestaltungsregeln für die Nachbearbeitung",
+          "punkte": [
+            "Kerne leicht entfernbar machen",
+            "Grate, Speiser und Eingüsse leicht entfernbar machen",
+            "Bearbeitungszugabe an Werkstoff, Grösse, Formverhalten und Genauigkeit anpassen",
+            "Einspannmöglichkeiten vorsehen",
+            "Bearbeitungsflächen klar abgrenzen und sinnvoll zusammenfassen",
+            "Stützelemente gegen elastische Durchbiegung beim Spanen",
+            "Ecken für Werkzeuge zugänglich machen",
+            "Bearbeitungsflächen parallel oder rechtwinklig zur Bezugsebene"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Was ist der Hauptfaktor für die Kosten eines Gussteils?",
+          "optionen": [
+            "Das Gewicht des Gussrohlings",
+            "Die Anzahl Bohrungen",
+            "Die Farbe der Beschichtung",
+            "Die Länge der Zeichnung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Laut Folie bestimmt das Rohlingsgewicht die Kosten. Ungenaues Einformen führt zu dickeren Wänden und damit zu höheren Preisen.",
+          "quelle": "Folien SW09, Folie 18"
+        },
+        {
+          "id": "sw09-giessen-sintern-l4-a2",
+          "typ": "multiple_choice",
+          "frage": "Wonach richtet sich die (eine) Bearbeitungszugabe für das ganze Gussteil?",
+          "optionen": [
+            "Nach dem grössten Aussenmass",
+            "Nach der kleinsten Bohrung",
+            "Nach der Stückzahl",
+            "Nach dem Schwindmass"
+          ],
+          "richtig": 0,
+          "erklaerung": "Es gibt nur eine Bearbeitungszugabe für das gesamte Teil, bestimmt durch das grösste Aussenmass. Abweichungen gibt man separat an.",
+          "quelle": "Folien SW09, Folie 19"
+        },
+        {
+          "id": "sw09-giessen-sintern-l4-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Bearbeitungsflächen sollen möglichst schräg zur Bezugsebene liegen.",
+          "richtig": false,
+          "erklaerung": "Bearbeitungsflächen sollen **parallel oder rechtwinklig** zur Bezugsebene liegen – das vereinfacht Spannen und Bearbeiten.",
+          "quelle": "Folien SW09, Folie 34"
+        },
+        {
+          "id": "sw09-giessen-sintern-l4-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Gussteile brauchen praktisch immer eine mechanische Nacharbeit.",
+          "richtig": true,
+          "erklaerung": "Darum plant man Bearbeitungszugaben, Spannflächen und Werkzeugzugänglichkeit schon beim Gestalten ein.",
+          "quelle": "Folien SW09, Folie 19"
+        }
+      ]
+    },
+    {
+      "id": "sw09-giessen-sintern-l5",
+      "titel": "Rechnen: Modellmass und Kontrollkreise",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Folien SW09, Folien 17, 28–29",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Modellmass:** Das Modell wird um das Schwindmass $s$ grösser gemacht als das Fertigmass $l$."
+        },
+        {
+          "typ": "formel",
+          "tex": "l_{Modell} = l \\cdot (1 + s)"
+        },
+        {
+          "typ": "text",
+          "text": "**Kontrollkreise:** Für zwei benachbarte Kreise gilt $D_{gross} \\le 1.6 \\cdot D_{klein}$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l5-a1",
+          "typ": "multiple_choice",
+          "frage": "Ein Gussteil aus einer Al-Legierung soll 250 mm lang werden. Wie lang muss das Modell sein?",
+          "optionen": [
+            "253 mm",
+            "252.5 mm",
+            "255 mm",
+            "250.3 mm"
+          ],
+          "richtig": 0,
+          "erklaerung": "Al: $s = 1.2\\,\\%$ → $250 \\cdot 1.012 = 253\\,\\text{mm}$.",
+          "quelle": "Folien SW09, Folie 17"
+        },
+        {
+          "id": "sw09-giessen-sintern-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Ein Stahlgussteil soll 400 mm lang werden. Modellmass?",
+          "optionen": [
+            "408 mm",
+            "404 mm",
+            "406.4 mm",
+            "402 mm"
+          ],
+          "richtig": 0,
+          "erklaerung": "Stahlguss: $s = 2.0\\,\\%$ → $400 \\cdot 1.02 = 408\\,\\text{mm}$.",
+          "quelle": "Folien SW09, Folie 17"
+        },
+        {
+          "id": "sw09-giessen-sintern-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Ein Modell ist 303 mm lang, das Teil aus Gusseisen GJL. Wie lang wird das fertige Gussteil etwa?",
+          "optionen": [
+            "300 mm",
+            "297 mm",
+            "303 mm",
+            "306 mm"
+          ],
+          "richtig": 0,
+          "erklaerung": "GJL: $s = 1.0\\,\\%$ → $l = 303 / 1.01 = 300\\,\\text{mm}$.",
+          "quelle": "Folien SW09, Folie 17"
+        },
+        {
+          "id": "sw09-giessen-sintern-l5-a4",
+          "typ": "multiple_choice",
+          "frage": "Der kleinere Kontrollkreis hat $D = 15\\,\\text{mm}$. Wie gross darf der benachbarte Kreis höchstens sein?",
+          "optionen": [
+            "24 mm",
+            "30 mm",
+            "16.5 mm",
+            "21 mm"
+          ],
+          "richtig": 0,
+          "erklaerung": "$D_{gross} \\le 1.6 \\cdot 15\\,\\text{mm} = 24\\,\\text{mm}$.",
+          "quelle": "Folien SW09, Folie 29"
+        },
+        {
+          "id": "sw09-giessen-sintern-l5-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Zwei benachbarte Kontrollkreise mit 20 mm und 34 mm erfüllen die Heuverssche Regel.",
+          "richtig": false,
+          "erklaerung": "$34 / 20 = 1.7 > 1.6$ – der Sprung ist zu gross. Der Querschnitt muss sanfter zunehmen.",
+          "quelle": "Folien SW09, Folie 29"
+        },
+        {
+          "id": "sw09-giessen-sintern-l5-a6",
+          "typ": "multiple_choice",
+          "frage": "Kreise vom dünnen Ende zum Speiser: 10 → 15 → 24 → 36 mm. Welcher Übergang verletzt die Regel?",
+          "optionen": [
+            "Keiner, alle sind ≤ 1.6",
+            "10 → 15",
+            "15 → 24",
+            "24 → 36"
+          ],
+          "richtig": 0,
+          "erklaerung": "$15/10 = 1.5$, $24/15 = 1.6$, $36/24 = 1.5$ – alle höchstens 1.6, und die Kreise werden zum Speiser hin grösser.",
+          "quelle": "Folien SW09, Folie 29"
+        }
+      ]
+    },
+    {
+      "id": "sw09-giessen-sintern-l6",
+      "titel": "Das Sinterverfahren: vom Pulver zum Bauteil",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW09, Folien 55–57; Buch Kap. 4.2 (Selbststudium)",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Sintern** gehört zur **Pulvermetallurgie** und wie das Giessen zum **Urformen**: Aus Pulver entsteht ein fester Körper."
+        },
+        {
+          "typ": "titel",
+          "text": "Ablauf"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Mischen:** Basispulver, Legierungen und Schmierstoffe werden gemischt.",
+            "**Pressen:** Unter hohem Druck wird das Pulver bei **Raumtemperatur** zum Rohling (**Grünling**) gepresst. **Adhäsionskräfte** halten den Sinterrohling zusammen.",
+            "**Sintern:** Im Sinterofen werden die Rohlinge **unter Schutzgas** und **unterhalb der Schmelztemperatur** erwärmt. Dabei verbinden sich die Korngrenzen lokal.",
+            "**Nachbehandeln** (nur wenn nötig): Viele Sinterteile sind schon einbaufertig, wenn sie den Ofen verlassen."
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Das Pulver wird nicht aufgeschmolzen. Sinterbauteile behalten eine **Restporosität**."
+        },
+        {
+          "typ": "text",
+          "text": "Die Sintertemperatur liegt zwischen etwa **600 °C** bei Bronzen und bis zu **1'300 °C** bei Eisenlegierungen. Pulvermetallurgisch hergestellte Bauteile sind frei von Seigerungen und zeilig angeordneten Verunreinigungen."
+        },
+        {
+          "typ": "titel",
+          "text": "Nachbehandlung"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Verfahren",
+            "Wirkung"
+          ],
+          "zeilen": [
+            [
+              "Kalibrieren",
+              "Nachpressen in einem weiteren Werkzeug: höhere Form- und Massgenauigkeit"
+            ],
+            [
+              "Sinterschmieden",
+              "Rohling wird auf 800–1'100 °C erwärmt und im Formgesenk auf fast volle Dichte (ca. 97 %) gebracht: hohe Festigkeit und Kerbschlagzähigkeit"
+            ],
+            [
+              "Infiltrieren",
+              "Tauchen in eine Buntmetallschmelze: Teil wird wasser-, öl- und luftdicht"
+            ],
+            [
+              "Öltränkung",
+              "Poren nehmen 15–25 Vol.-% Öl auf: Selbstschmierung bei Gleitlagern"
+            ],
+            [
+              "Spanende Bearbeitung",
+              "nötig für Durchbrüche quer zur Pressrichtung, Hinterschneidungen und Gewinde"
+            ],
+            [
+              "Wärmebehandlung, Wasserdampfbehandlung",
+              "Härten bzw. mehr Härte, Verschleiss- und Korrosionsfestigkeit"
+            ]
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l6-a1",
+          "typ": "multiple_choice",
+          "frage": "Wie heisst der gepresste, noch nicht gesinterte Rohling?",
+          "optionen": [
+            "Grünling",
+            "Gussling",
+            "Pressbolzen",
+            "Schmiederohling"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das gepresste Pulver heisst **Rohling** bzw. **Grünling**. Er wird erst im Sinterofen fest verbunden.",
+          "quelle": "Folien SW09, Folie 55"
+        },
+        {
+          "id": "sw09-giessen-sintern-l6-a2",
+          "typ": "multiple_choice",
+          "frage": "Was hält den Rohling nach dem Pressen zusammen, bevor er im Ofen war?",
+          "optionen": [
+            "Adhäsionskräfte",
+            "Schweissnähte",
+            "Eine flüssige Schmelze",
+            "Magnetkräfte"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Pressen entstehen grosse Berührflächen zwischen den Pulverteilchen. **Adhäsionskräfte** halten den Rohling zusammen.",
+          "quelle": "Folien SW09, Folie 55"
+        },
+        {
+          "id": "sw09-giessen-sintern-l6-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Beim Sintern wird das Pulver vollständig aufgeschmolzen.",
+          "richtig": false,
+          "erklaerung": "Gesintert wird **unterhalb der Schmelztemperatur**. Nur die Korngrenzen verbinden sich lokal.",
+          "quelle": "Folien SW09, Folie 55"
+        },
+        {
+          "id": "sw09-giessen-sintern-l6-a4",
+          "typ": "lueckentext",
+          "text": "Die Rohlinge werden im Sinterofen unter ___ erwärmt, und zwar ___ der Schmelztemperatur.",
+          "antworten": [
+            [
+              "Schutzgas"
+            ],
+            [
+              "unterhalb"
+            ]
+          ],
+          "erklaerung": "Schutzgas verhindert Oxidation, und das Pulver schmilzt nicht auf.",
+          "quelle": "Folien SW09, Folie 55"
+        },
+        {
+          "id": "sw09-giessen-sintern-l6-a5",
+          "typ": "multiple_choice",
+          "frage": "Welche Sintertemperatur gilt etwa für Bronzen?",
+          "optionen": [
+            "ca. 600 °C",
+            "ca. 1'300 °C",
+            "ca. 200 °C",
+            "ca. 2'000 °C"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bronzen: etwa 600 °C. Eisenlegierungen: bis zu 1'300 °C.",
+          "quelle": "Folien SW09, Folie 57"
+        },
+        {
+          "id": "sw09-giessen-sintern-l6-a6",
+          "typ": "multiple_choice",
+          "frage": "Welche Nachbehandlung macht Sintergleitlager selbstschmierend?",
+          "optionen": [
+            "Öltränkung",
+            "Kalibrieren",
+            "Infiltrieren mit Buntmetall",
+            "Galvanisieren"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Poren nehmen beim Tauchen 15–25 Vol.-% Öl auf. Das Öl schmiert im Betrieb.",
+          "quelle": "Buch Kap. 4.2.4"
+        }
+      ]
+    },
+    {
+      "id": "sw09-giessen-sintern-l7",
+      "titel": "Sinterteile: Stärken, Grenzen, Gestaltung",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW09, Folien 57–59; Buch Kap. 4.2 (Selbststudium)",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Vorteile"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Unter den Formgebungsverfahren: **beste Werkstoffausnutzung** und **geringster Energiebedarf**",
+            "Verschiedenste Metalle lassen sich mischen (Mehrstoffsysteme)",
+            "Keine Seigerungen und keine zeilig angeordneten Verunreinigungen"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Nachteile"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Hohe Kosten** für die Presswerkzeuge",
+            "**Begrenzte Gestaltungsmöglichkeit:** Hinterschneidungen, Gewinde und Bohrungen quer zur Pressrichtung müssen spanend hergestellt werden",
+            "**Geringere Festigkeit und Zähigkeit** als bei Gussteilen"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Die wirtschaftliche Grenze liegt bei Festigkeiten von über etwa **600 N/mm²**. Dann ist **Feinguss** die bessere Alternative."
+        },
+        {
+          "typ": "text",
+          "text": "Typisch sind **sehr hohe Stückzahlen** von Kleinteilen mit bis zu mittleren mechanischen Eigenschaften, meist unter 300 g Stückmasse (Automobilindustrie, Feinwerktechnik, Elektro- und Pneumatikwerkzeuge, Büromaschinen)."
+        },
+        {
+          "typ": "titel",
+          "text": "Raumerfüllung und Porosität"
+        },
+        {
+          "typ": "text",
+          "text": "Mit zunehmender Dichte steigen Zugfestigkeit und Dehnung. Die Werkstoffe werden nach der **Raumerfüllung** $R_x$ eingeteilt:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\text{Porosität} = 100\\,\\% - R_x"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Klasse",
+            "Raumerfüllung",
+            "Anwendung"
+          ],
+          "zeilen": [
+            [
+              "Sint-AF",
+              "< 73 %",
+              "Filter"
+            ],
+            [
+              "Sint-A",
+              "75 ± 2.5 %",
+              "Gleitlager"
+            ],
+            [
+              "Sint-D",
+              "90 ± 2.5 %",
+              "Formteile"
+            ],
+            [
+              "Sint-F",
+              "> 95.5 %",
+              "warmgepresste Formteile"
+            ]
+          ]
+        },
+        {
+          "typ": "hinweis",
+          "text": "Gestaltung: Scharfkantige Ecken, spitz zulaufende Durchbrüche und tangentiale Übergänge ergeben scharfkantige Konturen an Matrize und Stempel. Die Folge sind Kerbwirkung und Bruchgefahr."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw09-giessen-sintern-l7-a1",
+          "typ": "multiple_choice",
+          "frage": "Ab welcher geforderten Festigkeit ist die Sinterteilfertigung bei komplizierten Teilen nicht mehr wirtschaftlich?",
+          "optionen": [
+            "über ca. 600 N/mm²",
+            "über ca. 100 N/mm²",
+            "über ca. 1'200 N/mm²",
+            "über ca. 2'000 N/mm²"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die wirtschaftliche Grenze liegt bei etwa 600 N/mm².",
+          "quelle": "Folien SW09, Folie 59"
+        },
+        {
+          "id": "sw09-giessen-sintern-l7-a2",
+          "typ": "multiple_choice",
+          "frage": "Welches Verfahren ist die Alternative, wenn Sinterteile zu wenig fest sind?",
+          "optionen": [
+            "Feinguss",
+            "Strangguss",
+            "Freiformschmieden",
+            "Schleuderguss"
+          ],
+          "richtig": 0,
+          "erklaerung": "Folie 59 nennt das Feingussverfahren als gute Alternative.",
+          "quelle": "Folien SW09, Folie 59"
+        },
+        {
+          "id": "sw09-giessen-sintern-l7-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Bohrungen quer zur Pressrichtung können beim Sintern direkt mitgepresst werden.",
+          "richtig": false,
+          "erklaerung": "Querbohrungen, Hinterschneidungen und Gewinde müssen **spanend** hergestellt werden.",
+          "quelle": "Folien SW09, Folie 59; Buch Kap. 4.2.1"
+        },
+        {
+          "id": "sw09-giessen-sintern-l7-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Unter den Formgebungsverfahren hat die Pulvermetallurgie die beste Werkstoffausnutzung.",
+          "richtig": true,
+          "erklaerung": "Beste Werkstoffausnutzung und geringster Energiebedarf sind die Stärken des Sinterns.",
+          "quelle": "Folien SW09, Folie 58"
+        },
+        {
+          "id": "sw09-giessen-sintern-l7-a5",
+          "typ": "rechnung",
+          "frage": "Ein Sinterteil hat eine Raumerfüllung von 85 %. Wie gross ist die Porosität?",
+          "loesung": 15,
+          "toleranz": 0.01,
+          "einheit": "%",
+          "loesungsweg": [
+            "$\\text{Porosität} = 100\\,\\% - R_x$",
+            "$100\\,\\% - 85\\,\\% = 15\\,\\%$"
+          ],
+          "erklaerung": "Raumerfüllung und Porosität ergeben zusammen 100 %.",
+          "quelle": "Buch Kap. 4.2.3, Bild 4-19"
+        },
+        {
+          "id": "sw09-giessen-sintern-l7-a6",
+          "typ": "multiple_choice",
+          "frage": "Warum vermeidet man bei Sinterteilen scharfkantige Ecken?",
+          "optionen": [
+            "Sie führen zu Kerbwirkung und erhöhter Bruchgefahr",
+            "Sie verhindern das Befüllen der Matrize mit Pulver",
+            "Sie verteuern den Sinterofen",
+            "Sie senken die Sintertemperatur"
+          ],
+          "richtig": 0,
+          "erklaerung": "Scharfkantige Konturen an Matrize und Stempel erzeugen Kerbwirkung am Bauteil.",
+          "quelle": "Buch Kap. 4.2.5"
+        }
+      ]
+    }
+  ]
+}

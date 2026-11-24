@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="campus">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termine &amp; Prüfungen – Digital Campus</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%231f1e24%22%20stroke%3D%22%23312f37%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225.5%22%20fill%3D%22%23af9ee4%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Digital Campus Design System: Theme campus */
+:root{
+  --dc-bg:#100f13;
+  --dc-surface:#17161b;
+  --dc-surface-raised:#1f1e24;
+  --dc-line:#312f37;
+  --dc-accent:#af9ee4;
+  --dc-accent-hover:#c8baf6;
+  --dc-accent-soft:#231f2f;
+  --dc-accent-line:#5a5176;
+  --dc-on-accent:#14121c;
+  --dc-text:#ebeaef;
+  --dc-text-muted:#aaaab2;
+  --dc-text-faint:#807f87;
+  --dc-campus:#af9ee4;
+  --dc-campus-soft:#231f2f;
+  --dc-success:#8ec7a1;
+  --dc-warning:#dcc188;
+  --dc-danger:#dc8b88;
+  --dc-font-fach:"Outfit", system-ui, sans-serif;
+  --dc-font-campus:"Outfit", system-ui, sans-serif;
+  --dc-bg-rgb:16,15,19;
+  --dc-font-mono:"JetBrains Mono", ui-monospace, monospace;
+}
+:root{
+  --blau:#af9ee4;--blau-d:#5a5176;--gelb:#FFD43B;--gelb-d:#e0b400;
+  --gruen:#58CC02;--gruen-d:#46a302;--rot:#FF4B4B;--rot-d:#d63a3a;
+  --bg:#100f13;--karte:#17161b;--text:#ebeaef;--mute:#aaaab2;--linie:#312f37;
+  color-scheme:dark
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--dc-font-campus);font-size:17px}
+button{font-family:inherit;font-size:inherit;cursor:pointer;color:var(--text)}
+.app{max-width:640px;margin:0 auto;min-height:100vh;padding-bottom:60px}
+.top{display:flex;align-items:center;gap:10px;padding:14px 16px;position:sticky;top:0;background:rgba(16,15,19,.82);backdrop-filter:blur(10px);z-index:5;border-bottom:2px solid var(--linie)}
+.logo{font-weight:900;font-size:1.15rem;flex:1;display:flex;align-items:center;gap:8px}
+.logo span{font-size:1.45rem}
+.stand{font-size:.78rem;color:var(--mute);font-weight:700;text-align:right}
+main{padding:16px}
+.held{background:linear-gradient(135deg,#7c3aed,#a855f7 60%,#e879f9);color:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 12px 40px rgba(124,58,237,.35);margin-bottom:18px}
+.held small{opacity:.85;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem}
+.held h2{margin:4px 0 2px;font-size:1.25rem}
+.held .count{font-size:2.2rem;font-weight:900;line-height:1.1;margin-top:6px}
+.held .count em{font-style:normal;font-size:1rem;font-weight:800;opacity:.9}
+.kacheln{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.kachel{background:var(--karte);border:2px solid var(--linie);border-bottom-width:4px;border-radius:14px;padding:10px;text-align:center;font-weight:900;font-size:1.3rem}
+.kachel small{display:block;font-size:.7rem;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+.filter{display:flex;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.chip{border:2px solid var(--linie);border-bottom-width:4px;background:var(--karte);color:var(--text);border-radius:12px;padding:7px 13px;font-weight:800;font-size:.9rem}
+.chip.an{border-color:var(--blau);background:rgba(175,158,228,.18);color:#ebeaef}
+.gruppe{margin:22px 0 8px;font-weight:900;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;display:flex;align-items:center;gap:8px}
+.gruppe::after{content:"";flex:1;height:2px;background:var(--linie)}
+.t{background:var(--karte);border:2px solid var(--linie);border-bottom-width:4px;border-left:7px solid var(--fc,#999);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
+.t.fertig{opacity:.55}
+.t.fertig .titel{text-decoration:line-through}
+.datum{flex:none;width:58px;text-align:center;border-radius:12px;background:#1f1e24;padding:6px 0;line-height:1.1}
+.datum b{display:block;font-size:1.35rem;font-weight:900}
+.datum span{font-size:.72rem;font-weight:800;color:var(--mute);text-transform:uppercase}
+.inhalt{flex:1;min-width:0}
+.zeile1{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px}
+.fach{font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--fc,#666)}
+.badge{font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;border-radius:7px;padding:2px 7px;color:#fff}
+.badge.bewertet{background:rgba(220,139,136,.15);color:#dc8b88;border:1px solid rgba(220,139,136,.45)}
+.badge.pflicht{background:rgba(170,170,178,.1);color:#aaaab2;border:1px solid rgba(170,170,178,.4)}
+.badge.frist{background:rgba(220,193,136,.12);color:#dcc188;border:1px solid rgba(220,193,136,.45)}
+.badge.info{background:rgba(170,170,178,.1);color:#aaaab2;border:1px solid rgba(170,170,178,.4)}
+.titel{font-weight:900;font-size:1.05rem;line-height:1.3}
+.meta{color:var(--mute);font-size:.86rem;font-weight:700;margin-top:3px}
+.hinweis{font-size:.9rem;margin-top:6px;line-height:1.4}
+.bald{display:inline-block;margin-top:7px;font-size:.78rem;font-weight:900;border-radius:8px;padding:3px 8px;background:rgba(175,158,228,.15);color:#af9ee4}
+.bald.dringend{background:rgba(220,139,136,.15);color:#dc8b88}
+.bald.laeuft{background:rgba(142,199,161,.12);color:#8ec7a1}
+.check{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--linie);background:transparent;font-size:1rem;display:flex;align-items:center;justify-content:center;font-weight:900;color:transparent}
+.check.an{background:#af9ee4;border-color:#a855f7;color:#fff}
+details{margin-top:24px}
+summary{cursor:pointer;font-weight:900;color:var(--mute);font-size:.9rem}
+.leer{color:var(--mute);text-align:center;padding:24px;font-weight:700}
+.fuss{color:var(--mute);font-size:.78rem;text-align:center;margin-top:30px;line-height:1.5}
+
+/* ===== Digital Campus Design: clean, dunkel, feine Akzente ===== */
+
+html,body{background:var(--bg)!important}
+.top{background:rgba(var(--dc-bg-rgb),.94)!important;border-bottom:1px solid var(--linie)!important}
+.logo{font-weight:600!important;font-size:1.05rem!important}
+.logo svg{width:28px;height:28px;flex:none}
+.logo small{display:block;font-weight:500;font-size:.72rem;color:var(--mute);margin-top:-2px}
+.held{background:var(--karte)!important;color:var(--text)!important;border:1px solid var(--linie);box-shadow:none!important}
+.held small{color:var(--mute)}
+.held .count{color:var(--text)}
+.kachel,.chip,.t{border-width:1px!important;border-bottom-width:1px!important}
+.kachel,.titel{font-weight:600!important}
+.t{border-left:1px solid var(--linie)!important}
+.fach{display:inline-flex;align-items:center;gap:6px;font-weight:600!important}
+.fach::before{content:"";width:6px;height:6px;border-radius:999px;background:var(--fc,#888)}
+.datum{background:var(--dc-surface-raised)!important}
+.datum b{font-weight:600!important}
+.chip.an{border-color:var(--dc-accent-line)!important;background:var(--dc-accent-soft)!important;color:var(--text)!important}
+.check.an{background:var(--dc-accent)!important;border-color:var(--dc-accent)!important;color:var(--dc-on-accent)!important}
+.badge{font-weight:600!important}
+.gruppe{font-weight:600!important}
+.gruppe::after{height:1px!important}
+.bald{font-weight:600!important}
+.top a{color:var(--dc-accent)!important;font-weight:600!important}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="logo"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" style="fill:var(--dc-surface-raised);stroke:var(--dc-line)"/><circle cx="16" cy="16" r="5.5" style="fill:var(--dc-accent)"/></svg><div>Termine &amp; Prüfungen<small>Digital Campus</small></div></div>
+    <a href="https://claude.ai/artifact/3nucn1BNbLGW39vSE3pUGQ" style="font-weight:600;text-decoration:none;font-size:.85rem;margin-right:10px">← Dashboard</a><div class="stand" id="stand"></div>
+  </header>
+  <main>
+    <div id="held"></div>
+    <div class="kacheln" id="kacheln"></div>
+    <div class="filter" id="filter"></div>
+    <div id="liste"></div>
+    <details id="vorbei"><summary></summary><div id="vorbeiListe"></div></details>
+    <p class="fuss">Quelle: ILIAS-Kurse in deinen Favoriten, Agenden und Modulprogramme HS26 (Stand 8.11.2026).<br>
+    Modulendprüfungen: Prüfungsplan HS26 (Stand 3.11.2026).<br>
+    Semesterdaten, Feiertage, Einschreibefristen und Prüfungsergebnisse: Zeitplan Bachelor 2026/27 HSLU T&amp;A und MyCampus (Stand 9.11.2026).<br>
+    Wochentage aus deinem Stundenplan abgeleitet. Beim GRUNDING-Agenda-PDF steht noch «HS24» im Titel – im Zweifel kurz bei den Dozierenden nachfragen.<br>
+    Das Abhaken wird nur in diesem Browser gespeichert.</p>
+  </main>
+</div>
+<script>
+"use strict";
+/* ---------- Daten ---------- */
+const STAND = "2026-11-08";
+const FAECHER = {
+  "Python Basics": "#c9bb83",
+  "Industrielle Digitalisierung": "#92c6c2",
+  "Konstruktion Maschinentechnik": "#9ac2d4",
+  "Kontextmodul": "#d4adc6",
+  "Mathematik": "#a4bbe5",
+  "Studium": "#af9ee4"
+};
+const TERMINE = [
+  { id:"py-pc2", von:"2026-11-11", bis:"2026-11-11", fach:"Python Basics", titel:"Progress Check 2", art:"pflicht", zeit:"Mi 08:30 · E209",
+    hinweis:"60 Min. auf der Prüfungsplattform. Zählt nicht, ist aber obligatorisch." },
+  { id:"grund-p1", von:"2026-11-12", bis:"2026-11-12", fach:"Industrielle Digitalisierung", titel:"Prüfung VR / AR / Trainingsplattformen", art:"bewertet", zeit:"Do 12:30 · Rotkreuz S12.001",
+    hinweis:"Analoge Prüfung, Teil Markus Zank." },
+  { id:"py-test", von:"2026-11-18", bis:"2026-11-18", fach:"Python Basics", titel:"Semester-Test", art:"bewertet", zeit:"Mi 08:30–10:55 · E209",
+    hinweis:"60 Min. Zählt als Semesterleistung. Kein Alternativdatum!" },
+  { id:"kontt-zb5", von:"2026-11-20", bis:"2026-11-20", fach:"Kontextmodul", titel:"Zwischenbesprechung 5", art:"pflicht",
+    hinweis:"Mitbringen: Einladung, Mock-up + Mock-up-Beschrieb, Testpläne Validierung & Verifizierung, Aktennotiz zur Zwischenbesprechung 4." },
+  { id:"kontt-beschr", von:"2026-11-25", bis:"2026-11-25", fach:"Kontextmodul", titel:"Abgabe Beschreibung Mock-up", art:"pflicht",
+    hinweis:"1 A4-Seite." },
+  { id:"kontt-mockup", von:"2026-11-27", bis:"2026-11-27", fach:"Kontextmodul", titel:"Abgabe Mock-up", art:"pflicht",
+    hinweis:"Danach Ausstellung (30.11.–11.12.) und Online-Voting (4.–9.12.)." },
+  { id:"konst-sl", von:"2026-12-01", bis:"2026-12-01", fach:"Konstruktion Maschinentechnik", titel:"Semesterleistung & Probe-MEP", art:"bewertet", zeit:"Di 15:20–17:45 · F202",
+    hinweis:"Laut Modulprogramm V3.0 vom 6.11." },
+  { id:"kontt-abschl", von:"2026-12-11", bis:"2026-12-11", fach:"Kontextmodul", titel:"Abschlussbesprechung & Probepräsentation", art:"pflicht",
+    hinweis:"Gleicher Tag: Vernissage mit Apéro und Preisverleihung." },
+  { id:"kontt-bericht", von:"2026-12-16", bis:"2026-12-16", fach:"Kontextmodul", titel:"Abgabe Abschlussarbeit / Abschlussbericht", art:"bewertet" },
+  { id:"grund-p2", von:"2026-12-17", bis:"2026-12-17", fach:"Industrielle Digitalisierung", titel:"Prüfung Agile / Scrum / DevOps", art:"bewertet", zeit:"Do 12:30 · Horw F200",
+    hinweis:"Analoge Prüfung, Teil Sawsan Studer." },
+
+  /* ---- Modulendprüfungen HS26 (Prüfungsplan Stand 03.11.2026) ---- */
+  { id:"mep-py", von:"2027-01-18", bis:"2027-01-18", fach:"Python Basics", titel:"Modulendprüfung Python Basics", art:"bewertet", zeit:"Mo 08:30–10:30 · E404/F301/F202/F203/F211",
+    hinweis:"Elektronische Prüfung. Raumzuteilung in MyCampus prüfen." },
+  { id:"mep-math1b", von:"2027-01-21", bis:"2027-01-21", fach:"Mathematik", titel:"Modulendprüfung Mathematik 1B", art:"bewertet", zeit:"Do 13:30–17:30 · F301",
+    hinweis:"Schriftlich, 4 Stunden." },
+  { id:"mep-kontt1", von:"2027-01-22", bis:"2027-01-22", fach:"Kontextmodul", titel:"Modulendprüfung Kontextmodul-T 1", art:"bewertet", zeit:"Fr 08:30–16:00 · mehrere Räume",
+    hinweis:"Mündlich. Das Zeitfenster gilt für alle – dein genauer Slot und Raum kommen über MyCampus/das Modul." },
+  { id:"mep-konst", von:"2027-01-26", bis:"2027-01-26", fach:"Konstruktion Maschinentechnik", titel:"Modulendprüfung Konstruktion", art:"bewertet", zeit:"Di 13:30–15:30 · F301",
+    hinweis:"Schriftlich. Kürzel im Plan: TA.BA_KONST_M." },
+  { id:"mep-grunding", von:"2027-01-30", bis:"2027-01-30", fach:"Industrielle Digitalisierung", titel:"Modulendprüfung Grundlagen Digital Engineering", art:"bewertet", zeit:"Sa 09:30–11:30 · E211",
+    hinweis:"Schriftlich. Achtung: an einem Samstag." },
+
+  /* ---- Studium allgemein (Zeitplan T&A + MyCampus) ---- */
+  { id:"ein-bw-hs26-p1", von:"2026-11-03", bis:"2026-11-12", fach:"Studium", titel:"Einschreibung Blockwochen HS26 (Phase 1)", art:"frist", zeit:"bis Do 12.11., 23:59 · MyCampus",
+    hinweis:"Zeitpunkt egal für die Platzvergabe. Vorher Eingangskompetenzen im Modulbeschrieb prüfen, sonst wirst du gelöscht." },
+  { id:"ein-bw-hs26-p3", von:"2026-11-19", bis:"2026-11-26", fach:"Studium", titel:"Anpassung Blockwochen-Einschreibung (Phase 3)", art:"frist", zeit:"19.11. 09:00 – 26.11. 23:59",
+    hinweis:"Personalisierter Link kommt per Mail. Freie Plätze online buchbar, Abmeldung direkt möglich." },
+  { id:"ft-maria", von:"2026-12-08", bis:"2026-12-08", fach:"Studium", titel:"Maria Empfängnis – unterrichtsfrei", art:"info" },
+  { id:"ende-hs26", von:"2026-12-19", bis:"2026-12-19", fach:"Studium", titel:"Letzter Unterrichtstag HS26", art:"info", hinweis:"Ende Kontaktstudium." },
+  { id:"ferien-weihn", von:"2026-12-20", bis:"2027-01-03", fach:"Studium", titel:"Weihnachtsferien", art:"info" },
+  { id:"ein-fs27-p1", von:"2027-01-05", bis:"2027-01-15", fach:"Studium", titel:"Moduleinschreibung FS27 (Phase 1)", art:"frist", zeit:"05.01. 09:00 – 15.01. 23:59 · MyCampus",
+    hinweis:"Ab dem 2. Semester wirst du NICHT automatisch in die Pflichtmodule eingeschrieben – Kern- und Projektmodule selbst wählen! Inkl. Reise-Blockwochen." },
+  { id:"pruef-vorb-hs26", von:"2027-01-11", bis:"2027-01-17", fach:"Studium", titel:"Prüfungsvorbereitung (unterrichtsfrei)", art:"info", hinweis:"Vorbereitungsphase dauert bis 06.02., Prüfungen ab 18.01." },
+  { id:"mep-hs26", von:"2027-01-18", bis:"2027-02-06", fach:"Studium", titel:"Modulendprüfungen HS26", art:"bewertet",
+    hinweis:"Deine 5 Prüfungen stehen einzeln in der Liste. Räume können sich noch ändern – kurz vorher in MyCampus prüfen." },
+  { id:"ein-fs27-p3", von:"2027-01-22", bis:"2027-02-21", fach:"Studium", titel:"Anpassung Moduleinschreibung FS27 (Phase 3)", art:"frist", zeit:"22.01. 16:00 – 21.02. 23:59",
+    hinweis:"Personalisierter Link per Mail." },
+  { id:"bw-hs26", von:"2027-02-08", bis:"2027-02-20", fach:"Studium", titel:"Blockwochen / Exkursionen HS26", art:"info" },
+  { id:"result-hs26", von:"2027-02-15", bis:"2027-02-15", fach:"Studium", titel:"Prüfungsergebnisse HS26 auf MyCampus", art:"info", zeit:"ab ca. 17 Uhr" },
+  { id:"start-fs27", von:"2027-02-22", bis:"2027-02-22", fach:"Studium", titel:"Start Frühlingssemester 2027", art:"info" },
+  { id:"ostern", von:"2027-03-26", bis:"2027-03-30", fach:"Studium", titel:"Osterunterbruch", art:"info" },
+  { id:"ft-auffahrt", von:"2027-05-06", bis:"2027-05-06", fach:"Studium", titel:"Auffahrt – unterrichtsfrei", art:"info" },
+  { id:"ft-pfingsten", von:"2027-05-17", bis:"2027-05-17", fach:"Studium", titel:"Pfingstmontag – unterrichtsfrei", art:"info" },
+  { id:"ft-fronleichnam", von:"2027-05-27", bis:"2027-05-27", fach:"Studium", titel:"Fronleichnam – unterrichtsfrei", art:"info" },
+  { id:"ende-fs27", von:"2027-06-05", bis:"2027-06-05", fach:"Studium", titel:"Letzter Unterrichtstag FS27", art:"info", hinweis:"Danach Prüfungsvorbereitung ab 07.06." },
+  { id:"mep-fs27", von:"2027-06-21", bis:"2027-07-10", fach:"Studium", titel:"Modulendprüfungen FS27", art:"bewertet" },
+  { id:"sommerferien", von:"2027-07-19", bis:"2027-09-05", fach:"Studium", titel:"Sommerferien", art:"info", hinweis:"Blockwochen danach 06.–18.09.2027." }
+];
+
+/* ---------- Hilfen ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tag = iso => { const [y,m,d] = iso.split("-").map(Number); return new Date(y, m-1, d); };
+const heute = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+const tageBis = iso => Math.round((tag(iso) - heute()) / 864e5);
+const WT = ["So","Mo","Di","Mi","Do","Fr","Sa"], MON = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+const kurz = d => `${d.getDate()}.${d.getMonth()+1}.`;
+function datumText(t){
+  const a = tag(t.von), b = tag(t.bis);
+  if (t.von === t.bis) return `${WT[a.getDay()]}, ${a.getDate()}. ${MON[a.getMonth()]}`;
+  return `${kurz(a)}–${kurz(b)}`;
+}
+function montag(d){ const x = new Date(d); x.setDate(x.getDate() - ((x.getDay()+6)%7)); return x; }
+
+/* Abgehakt (nur dieser Browser) */
+const KEY = "digital-campus-termine-erledigt";
+let erledigt = {};
+try { erledigt = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) {}
+const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(erledigt)); } catch(e) {} };
+
+let filter = "alle";
+try { filter = localStorage.getItem(KEY + "-filter") || "alle"; } catch(e) {}
+
+/* ---------- Anzeige ---------- */
+function status(t){
+  const bisVon = tageBis(t.von), bisEnde = tageBis(t.bis);
+  if (bisEnde < 0) return { vorbei:true };
+  if (bisVon <= 0) return { txt: (t.laufend || t.von!==t.bis) ? `läuft bis ${kurz(tag(t.bis))}` : "heute", klasse: (t.laufend || t.art==="info") ? "laeuft" : "dringend" };
+  if (bisVon === 1) return { txt:"morgen", klasse:"dringend" };
+  return { txt:`in ${bisVon} Tagen`, klasse: bisVon <= 7 ? "dringend" : "" };
+}
+function karte(t){
+  const st = status(t), d = tag(t.von), fc = FAECHER[t.fach] || "#807f87", done = !!erledigt[t.id];
+  const el = document.createElement("div");
+  el.className = "t" + (done ? " fertig" : "");
+  el.style.setProperty("--fc", fc);
+  el.innerHTML = `
+    <div class="datum">${t.laufend ? `<b>∞</b><span>laufend</span>` : `<b>${d.getDate()}</b><span>${MON[d.getMonth()]}</span>`}</div>
+    <div class="inhalt">
+      <div class="zeile1"><span class="fach">${esc(t.fach)}</span><span class="badge ${t.art}">${({bewertet:"Bewertet",pflicht:"Pflicht",frist:"Frist",info:"Frei / Info"})[t.art] || t.art}</span></div>
+      <div class="titel">${esc(t.titel)}</div>
+      <div class="meta">${t.laufend ? "ganzes Semester" : esc(datumText(t))}${t.zeit ? " · " + esc(t.zeit) : ""}</div>
+      ${t.hinweis ? `<div class="hinweis">${esc(t.hinweis)}</div>` : ""}
+      ${!st.vorbei && !done ? `<span class="bald ${st.klasse}">${st.txt}</span>` : ""}
+    </div>
+    <button class="check ${done ? "an" : ""}" aria-label="${done ? "Als offen markieren" : "Als erledigt markieren"}" title="Erledigt">✓</button>`;
+  el.querySelector(".check").onclick = () => { if (erledigt[t.id]) delete erledigt[t.id]; else erledigt[t.id] = true; speichern(); zeichnen(); };
+  return el;
+}
+function gruppeVon(t){
+  if (t.laufend) return "Laufend";
+  const w0 = montag(heute()), w = montag(tag(t.von));
+  const diff = Math.round((w - w0) / (7*864e5));
+  if (diff <= 0) return "Diese Woche";
+  if (diff === 1) return "Nächste Woche";
+  return MON[tag(t.von).getMonth()] === MON[heute().getMonth()] ? "Später im " + ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"][heute().getMonth()]
+       : ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"][tag(t.von).getMonth()];
+}
+function zeichnen(){
+  $("#stand").innerHTML = `Heute<br>${kurz(heute())}${heute().getFullYear()}`;
+  const offen = TERMINE.filter(t => !status(t).vorbei);
+  const vorbei = TERMINE.filter(t => status(t).vorbei);
+
+  // Held: nächster bewerteter, nicht erledigter Termin
+  const naechster = offen.filter(t => t.art === "bewertet" && !t.laufend && !erledigt[t.id]).sort((a,b) => a.von.localeCompare(b.von))[0];
+  if (naechster){
+    const n = tageBis(naechster.von);
+    $("#held").innerHTML = `<div class="held"><small>Nächste bewertete Leistung</small>
+      <h2>${esc(naechster.titel)}</h2><div>${esc(naechster.fach)} · ${esc(datumText(naechster))}${naechster.zeit ? " · " + esc(naechster.zeit) : ""}</div>
+      <div class="count">${n <= 0 ? "Jetzt" : n === 1 ? "Morgen" : n} ${n > 1 ? "<em>Tage</em>" : ""}</div></div>`;
+  } else $("#held").innerHTML = `<div class="held"><small>Geschafft</small><h2>Keine offenen bewerteten Termine 🎉</h2></div>`;
+
+  const ende = tag("2026-12-19");
+  const restTage = Math.max(0, Math.round((ende - heute()) / 864e5));
+  $("#kacheln").innerHTML = `
+    <div class="kachel"><small>Bewertet offen</small>${offen.filter(t => t.art==="bewertet" && !erledigt[t.id]).length}</div>
+    <div class="kachel"><small>Pflicht offen</small>${offen.filter(t => t.art==="pflicht" && !erledigt[t.id]).length}</div>
+    <div class="kachel"><small>Bis Semesterende</small>${restTage}<span style="font-size:.8rem"> T</span></div>`;
+
+  const F = [["alle","Alle"],["bewertet","Bewertet"],["pflicht","Pflicht"],["frist","Fristen"],["info","Frei & Info"],...Object.keys(FAECHER).map(f => ["f:"+f, f])];
+  $("#filter").innerHTML = "";
+  F.forEach(([k, txt]) => {
+    const b = document.createElement("button");
+    b.className = "chip" + (filter === k ? " an" : ""); b.textContent = txt;
+    b.onclick = () => { filter = k; try { localStorage.setItem(KEY + "-filter", k); } catch(e) {} zeichnen(); };
+    $("#filter").appendChild(b);
+  });
+  const passt = t => filter === "alle" || filter === t.art || filter === "f:" + t.fach;
+
+  const liste = $("#liste"); liste.innerHTML = "";
+  const sichtbar = offen.filter(passt).sort((a,b) => (b.laufend?1:0)-(a.laufend?1:0) || a.von.localeCompare(b.von));
+  if (!sichtbar.length) liste.innerHTML = `<div class="leer">Keine offenen Termine für diesen Filter.</div>`;
+  let letzte = null;
+  sichtbar.forEach(t => {
+    const g = gruppeVon(t);
+    if (g !== letzte){ const h = document.createElement("div"); h.className = "gruppe"; h.textContent = g; liste.appendChild(h); letzte = g; }
+    liste.appendChild(karte(t));
+  });
+
+  const vb = vorbei.filter(passt);
+  $("#vorbei").style.display = vb.length ? "" : "none";
+  $("#vorbei summary").textContent = `Vorbei (${vb.length})`;
+  const vl = $("#vorbeiListe"); vl.innerHTML = "";
+  vb.sort((a,b) => b.von.localeCompare(a.von)).forEach(t => vl.appendChild(karte(t)));
+}
+zeichnen();
+// um Mitternacht / nach langem Offenlassen aktualisieren
+setInterval(zeichnen, 60 * 60 * 1000);
+</script>
+</body>
+</html>

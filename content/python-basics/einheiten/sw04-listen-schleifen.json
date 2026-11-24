@@ -1,0 +1,964 @@
+{
+  "id": "sw04-listen-schleifen",
+  "titel": "Listen & Schleifen",
+  "beschreibung": "f-Strings, Sequenzen (mutable/non-mutable), String-Funktionen, Listen und Listen-Funktionen, Copy by Reference",
+  "woche": 4,
+  "lektionen": [
+    {
+      "id": "sw04-listen-schleifen-l7",
+      "titel": "f-Strings",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 3,
+      "quelle": "SW04_PB_Listen_Schleifen_FlippedClassroom, S. 3–4",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Variablen einfach einfügen"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **f-String** beginnt mit `f` vor dem Anführungszeichen. Variablen (und Ausdrücke) schreibt man direkt\n        in geschweifte Klammern `{ }` – ohne mühsames Verketten mit `+` und `str()`."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "name = \"Anna\"\nage = 21\nprint(\"Hello, \" + name + \". You are \" + str(age) + \".\")\nprint(f\"Hello, {name}. You are {age}.\")",
+          "ausfuehrbar": true,
+          "ausgabe": "Hello, Anna. You are 21.\nHello, Anna. You are 21."
+        },
+        {
+          "typ": "titel",
+          "text": "Format Specifier"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Schreibweise",
+            "Bedeutung",
+            "Ergebnis"
+          ],
+          "zeilen": [
+            [
+              "`f\"{pi:.4f}\"`",
+              "auf 4 Nachkommastellen runden",
+              "`3.1416`"
+            ],
+            [
+              "`f\"{12:05}\"`",
+              "mit Nullen auf 5 Stellen auffüllen",
+              "`00012`"
+            ],
+            [
+              "`f\"{3:b}\"`",
+              "binär",
+              "`11`"
+            ],
+            [
+              "`f\"{11:x}\"`",
+              "hexadezimal",
+              "`b`"
+            ],
+            [
+              "`f\"{11:o}\"`",
+              "oktal",
+              "`13`"
+            ]
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "pi = 3.141592653589793\nprint(f\"{pi:.4f}\")\nprint(f\"{12:05}\")\nprint(f\"{3:b} {11:x} {11:o}\")",
+          "ausfuehrbar": true,
+          "ausgabe": "3.1416\n00012\n11 b 13"
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l8",
+      "titel": "Sequenzen und String-Funktionen",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW04_PB_Listen_Schleifen_FlippedClassroom, S. 5–11",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Was ist eine Sequenz?"
+        },
+        {
+          "typ": "text",
+          "text": "Eine **Sequenz** ist eine geordnete Abfolge von Elementen. Für jede Sequenz gilt:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Anzahl Elemente bestimmen: `len(...)`",
+            "indexierbar: `s[0]` ist das erste Element",
+            "iterierbar: `for x in s:`",
+            "Enthalten prüfen: `\"o\" in s`",
+            "Slicing: `s[start:stop:step]`"
+          ]
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "unveränderbar (non-mutable)",
+            "veränderbar (mutable)"
+          ],
+          "zeilen": [
+            [
+              "String, Tuple",
+              "Liste"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Ein String kann darum **nicht** verändert werden: `my_string[2] = \"a\"` gibt einen `TypeError`."
+        },
+        {
+          "typ": "titel",
+          "text": "String-Funktionen"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "name = \"Wolfgang\"\nprint(name.upper())\nprint(name.lower())\nprint(len(\"Test_String\"))\nprint(\"Juan\" in \"Juan Carlos\")",
+          "ausfuehrbar": true,
+          "ausgabe": "WOLFGANG\nwolfgang\n11\nTrue"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "string_path = \"//path//to//a//file\"\nprint(string_path.split(\"//\"))\nprint(string_path.split(\"//\")[-1])\nprint(string_path.count(\"//\"))",
+          "titel": "split und count",
+          "ausfuehrbar": true,
+          "ausgabe": "['', 'path', 'to', 'a', 'file']\nfile\n4"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "word = \"Hallo\"\nutf8_word = word.encode()\nprint(utf8_word)\nprint(list(utf8_word))",
+          "titel": "UTF-8",
+          "ausfuehrbar": true,
+          "ausgabe": "b'Hallo'\n[72, 97, 108, 108, 111]"
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l9",
+      "titel": "Listen",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW04_PB_Listen_Schleifen_FlippedClassroom, S. 12–20",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Listen erstellen"
+        },
+        {
+          "typ": "text",
+          "text": "Eine **Liste** ist eine veränderbare, geordnete Sequenz. Sie wird mit `[ ]` erstellt und kann Elemente\n        verschiedener Datentypen enthalten."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_list = [1, 2, \"String\", 2.0]\nprint(len(my_list), my_list[0], 1 in my_list)\nmy_list[0] = \"a\"\nmy_list[1:3] = [30, 34]\nprint(my_list)",
+          "ausfuehrbar": true,
+          "ausgabe": "4 1 True\n['a', 30, 34, 2.0]"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(list(range(5)))\nprint(list(\"Hello\"))\nprint(\"this is great!\".split())",
+          "titel": "Listen aus anderen Werten",
+          "ausfuehrbar": true,
+          "ausgabe": "[0, 1, 2, 3, 4]\n['H', 'e', 'l', 'l', 'o']\n['this', 'is', 'great!']"
+        },
+        {
+          "typ": "titel",
+          "text": "Listen-Funktionen"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Methode",
+            "Wirkung"
+          ],
+          "zeilen": [
+            [
+              "`append(x)`",
+              "x am Ende anfügen"
+            ],
+            [
+              "`insert(i, x)`",
+              "x an Index i einfügen"
+            ],
+            [
+              "`extend(liste)`",
+              "alle Elemente einer Liste anfügen"
+            ],
+            [
+              "`pop(i)`",
+              "Element an Index i entfernen **und zurückgeben**"
+            ],
+            [
+              "`remove(x)`",
+              "erstes Vorkommen von x entfernen (ValueError, falls nicht vorhanden)"
+            ],
+            [
+              "`clear()`",
+              "alle Elemente löschen"
+            ],
+            [
+              "`sort()`",
+              "aufsteigend sortieren"
+            ],
+            [
+              "`reverse()`",
+              "Reihenfolge umkehren"
+            ]
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_list = [1, 2, 3]\nmy_list.append([1, 2, 3])\nprint(my_list)\nmy_list = [1, 2, 3]\nmy_list.extend([1, 2, 3])\nprint(my_list)",
+          "titel": "append oder extend?",
+          "ausfuehrbar": true,
+          "ausgabe": "[1, 2, 3, [1, 2, 3]]\n[1, 2, 3, 1, 2, 3]"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "zahlen = [5, 3.0, 2, 1, 10, 30]\nerstes = zahlen.pop(0)\nzahlen.sort()\nprint(erstes, zahlen)\nzahlen.reverse()\nprint(zahlen)",
+          "ausfuehrbar": true,
+          "ausgabe": "5 [1, 2, 3.0, 10, 30]\n[30, 10, 3.0, 2, 1]"
+        },
+        {
+          "typ": "merke",
+          "text": "`sort()`, `reverse()`, `append()`, `pop()`, `remove()`, `clear()` verändern die **Originalliste**."
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l10",
+      "titel": "Kopie oder Referenz?",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW04_PB_Listen_Schleifen_FlippedClassroom, S. 21–28",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Der typische Fehler mit Listen"
+        },
+        {
+          "typ": "text",
+          "text": "Bei unveränderbaren Werten (int, float, str) erzeugt `b = a` eine unabhängige Kopie. Bei **Mutables** wie\n        Listen wird nur der **Zeiger** auf denselben Speicherort kopiert. Beide Namen zeigen dann auf **dieselbe** Liste."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_list = [1, 2, 3]\nmy_list_2 = my_list\nmy_list_2[2] = 4\nprint(my_list)",
+          "titel": "Copy by Reference",
+          "ausfuehrbar": true,
+          "ausgabe": "[1, 2, 4]"
+        },
+        {
+          "typ": "text",
+          "text": "Mit `.copy()` entsteht ein neues Objekt im Speicher:"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_list = [1, 2, 4]\nmy_list_2 = my_list.copy()\nmy_list_2[2] = 5\nprint(my_list)\nprint(my_list_2)",
+          "ausfuehrbar": true,
+          "ausgabe": "[1, 2, 4]\n[1, 2, 5]"
+        },
+        {
+          "typ": "merke",
+          "text": "Eine Liste kopieren: `neu = alt.copy()` – nicht `neu = alt`."
+        },
+        {
+          "typ": "titel",
+          "text": "Listen und Schleifen"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_list = [1, 2, 3, 4]\nmy_sqr_list = []\nfor nbr in my_list:\n    my_sqr_list.append(nbr ** 2)\nprint(my_sqr_list)",
+          "titel": "Neue Liste aus einer Liste",
+          "ausfuehrbar": true,
+          "ausgabe": "[1, 4, 9, 16]"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_list = []\nfor i in range(10):\n    my_list.append(i)\nprint(my_list)\nprint(list(range(10)))   # einfacher",
+          "ausfuehrbar": true,
+          "ausgabe": "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l1",
+      "titel": "f-Strings & Sequenzen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw04-listen-schleifen-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Was gibt `f\"{3.141592:.2f}\"` aus?",
+          "optionen": [
+            "3.14",
+            "3.141592",
+            "3.1",
+            "3.15"
+          ],
+          "richtig": 0,
+          "erklaerung": "Format Specifier .2f rundet auf 2 Nachkommastellen.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 4"
+        },
+        {
+          "id": "sw04-listen-schleifen-l1-a2",
+          "typ": "zuordnen",
+          "frage": "Ordne den Format Specifier zu:",
+          "paare": [
+            [
+              ":.4f",
+              "auf 4 Nachkommastellen runden"
+            ],
+            [
+              ":05",
+              "0-Padding auf 5 Stellen"
+            ],
+            [
+              ":b",
+              "binär"
+            ],
+            [
+              ":x",
+              "hexadezimal"
+            ]
+          ],
+          "erklaerung": "f-Strings erlauben das Spezifizieren des Formats.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 4"
+        },
+        {
+          "id": "sw04-listen-schleifen-l1-a3",
+          "typ": "zuordnen",
+          "frage": "Veränderbar (mutable) oder nicht?",
+          "paare": [
+            [
+              "Liste",
+              "mutable"
+            ],
+            [
+              "String",
+              "non-mutable"
+            ],
+            [
+              "Tuple",
+              "non-mutable"
+            ]
+          ],
+          "erklaerung": "Strings und Tuples sind unveränderbar, Listen veränderbar.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 6"
+        },
+        {
+          "id": "sw04-listen-schleifen-l1-a4",
+          "typ": "wahr_falsch",
+          "aussage": "`my_string[2] = \"a\"` ändert den dritten Buchstaben eines Strings.",
+          "richtig": false,
+          "erklaerung": "Strings sind non-mutable – das gibt einen TypeError.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 8"
+        },
+        {
+          "id": "sw04-listen-schleifen-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "Was gilt NICHT für jede Sequenz?",
+          "optionen": [
+            "Man kann Elemente hinzufügen",
+            "len() bestimmt die Länge",
+            "Sie ist indexierbar",
+            "Man kann mit in prüfen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Hinzufügen geht nur bei mutablen Sequenzen wie Listen.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 5–6"
+        },
+        {
+          "id": "sw04-listen-schleifen-l1-a6",
+          "typ": "karteikarte",
+          "vorne": "Was bedeutet Copy by Reference?",
+          "hinten": "Bei Mutables (z. B. Listen) kopiert b = a nur den Zeiger. Beide Variablen zeigen auf dasselbe Objekt. Lösung: b = a.copy().",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 21–25"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw04-listen-schleifen-l2",
+      "titel": "Listen-Funktionen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw04-listen-schleifen-l2-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne die Listen-Funktion zu:",
+          "paare": [
+            [
+              "append(x)",
+              "x am Ende anfügen"
+            ],
+            [
+              "insert(i, x)",
+              "x an Index i einfügen"
+            ],
+            [
+              "pop(i)",
+              "Element an Index i entfernen und zurückgeben"
+            ],
+            [
+              "remove(x)",
+              "erste Instanz von x entfernen"
+            ],
+            [
+              "extend(liste)",
+              "Elemente einzeln anhängen"
+            ]
+          ],
+          "erklaerung": "Diese Funktionen verändern die Originalliste.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 16–19"
+        },
+        {
+          "id": "sw04-listen-schleifen-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "`[1,2,3].append([4,5])` – wie sieht die Liste danach aus?",
+          "optionen": [
+            "[1, 2, 3, [4, 5]]",
+            "[1, 2, 3, 4, 5]",
+            "[4, 5]",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "append fügt das ganze Objekt als EIN Element an, extend würde die Elemente einzeln anhängen.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 18"
+        },
+        {
+          "id": "sw04-listen-schleifen-l2-a3",
+          "typ": "wahr_falsch",
+          "aussage": "`my_list.remove(7)` gibt einen ValueError, wenn 7 nicht in der Liste ist.",
+          "richtig": true,
+          "erklaerung": "remove braucht einen vorhandenen Wert.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 19"
+        },
+        {
+          "id": "sw04-listen-schleifen-l2-a4",
+          "typ": "multiple_choice",
+          "frage": "Was erzeugt `'this is great!'.split()`?",
+          "optionen": [
+            "['this', 'is', 'great!']",
+            "'this is great!'",
+            "['t','h','i','s']",
+            "3"
+          ],
+          "richtig": 0,
+          "erklaerung": "split() ohne Argument trennt bei Leerzeichen und liefert eine Liste.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 15"
+        },
+        {
+          "id": "sw04-listen-schleifen-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Wie kopiert man eine Liste korrekt (unabhängig)?",
+          "optionen": [
+            "b = a.copy()",
+            "b = a",
+            "b == a",
+            "b = [a]"
+          ],
+          "richtig": 0,
+          "erklaerung": ".copy() erzeugt ein neues Objekt im Speicher.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 25"
+        },
+        {
+          "id": "sw04-listen-schleifen-l2-a6",
+          "typ": "wahr_falsch",
+          "aussage": "`.sort()` gibt eine neue Liste zurück und lässt die Originalliste unverändert.",
+          "richtig": false,
+          "erklaerung": ".sort() und .reverse() verändern die Originalliste.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 20"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw04-listen-schleifen-l3",
+      "titel": "Check your understanding",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw04-listen-schleifen-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage zu Listen ist richtig?",
+          "optionen": [
+            "`extend()` kann mehrere Elemente an eine Liste anhängen",
+            "Listen sind unveränderbar",
+            "`append()` fügt jedes Element einer anderen Liste einzeln hinzu",
+            "`remove()` löscht immer alle Vorkommen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Listen sind mutable, append fügt EIN Element an, remove löscht nur das erste Vorkommen.",
+          "quelle": "SW04_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw04-listen-schleifen-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "word = \"Programming\"\nprint(word[0:6:2])\nprint(word[::-1])",
+          "optionen": [
+            "Por\ngnimmargorP",
+            "Pro\ngnimmargorP",
+            "Porm\ngnimmargorP",
+            "Por\nProgramming"
+          ],
+          "richtig": 0,
+          "erklaerung": "[0:6:2] nimmt die Indizes 0, 2, 4 → P, o, r = «Por». [::-1] kehrt um. Achtung: Die Notebook-Lösung schreibt «Pro» – Python gibt aber «Por» aus.",
+          "quelle": "SW04_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw04-listen-schleifen-l3-a3",
+          "typ": "code_ausgabe",
+          "code": "numbers = [1, 2, 3]\nother = numbers\nother[0] = 99\nprint(numbers)",
+          "optionen": [
+            "[99, 2, 3]",
+            "[1, 2, 3]",
+            "[1, 2, 3, 99]",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "other = numbers erstellt keine Kopie (Copy by Reference).",
+          "quelle": "SW04_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw04-listen-schleifen-l3-a4",
+          "typ": "code_ausgabe",
+          "code": "values = [1, 2, 3]\nresult = []\nfor value in values:\n    result.append(value * value)\nprint(result)",
+          "optionen": [
+            "[1, 4, 9]",
+            "[1, 2, 3]",
+            "[2, 4, 6]",
+            "1 4 9"
+          ],
+          "richtig": 0,
+          "erklaerung": "Für jeden Wert wird das Quadrat angehängt.",
+          "quelle": "SW04_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw04-listen-schleifen-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "`my_list = [1, 2, 3]` – welche Zuordnung stimmt?",
+          "optionen": [
+            "append([4, 5]) → [1, 2, 3, [4, 5]], extend([4, 5]) → [1, 2, 3, 4, 5]",
+            "append([4, 5]) → [1, 2, 3, 4, 5], extend([4, 5]) → [1, 2, 3, [4, 5]]",
+            "Beide ergeben immer dasselbe",
+            "Beide funktionieren nur mit Strings"
+          ],
+          "richtig": 0,
+          "erklaerung": "append hängt das Objekt als ein Element an, extend die einzelnen Elemente.",
+          "quelle": "SW04_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw04-listen-schleifen-l4",
+      "titel": "Code lesen: Listen & Strings",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw04-listen-schleifen-l4-a1",
+          "typ": "code_ausgabe",
+          "code": "name = \"Wolfgang\"\nprint(name.upper())",
+          "optionen": [
+            "WOLFGANG",
+            "wolfgang",
+            "Wolfgang",
+            "W"
+          ],
+          "richtig": 0,
+          "erklaerung": ".upper() schreibt alles gross.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 9"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a2",
+          "typ": "code_ausgabe",
+          "code": "pfad = \"a//b//c\"\nprint(pfad.split(\"//\")[-1])",
+          "optionen": [
+            "c",
+            "a",
+            "['a', 'b', 'c']",
+            "//c"
+          ],
+          "richtig": 0,
+          "erklaerung": "split liefert ['a', 'b', 'c'], [-1] ist das letzte Element.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 9"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a3",
+          "typ": "code_ausgabe",
+          "code": "my_list = [1, 2, 3]\nmy_list_2 = my_list\nmy_list_2[2] = 4\nprint(my_list)",
+          "optionen": [
+            "[1, 2, 4]",
+            "[1, 2, 3]",
+            "[4, 2, 3]",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Copy by Reference: beide Namen zeigen auf dieselbe Liste.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 22"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a4",
+          "typ": "code_ausgabe",
+          "code": "my_list = [1, 2, 3]\nmy_list_2 = my_list.copy()\nmy_list_2[2] = 5\nprint(my_list, my_list_2)",
+          "optionen": [
+            "[1, 2, 3] [1, 2, 5]",
+            "[1, 2, 5] [1, 2, 5]",
+            "[1, 2, 3] [1, 2, 3]",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": ".copy() erzeugt eine unabhängige Liste.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 25"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a5",
+          "typ": "code_ausgabe",
+          "code": "my_list = [5, 3.0, 2, 1, 10]\nmy_list.sort()\nprint(my_list)",
+          "optionen": [
+            "[1, 2, 3.0, 5, 10]",
+            "[10, 5, 3.0, 2, 1]",
+            "[1, 2, 3, 5, 10]",
+            "None"
+          ],
+          "richtig": 0,
+          "erklaerung": "sort() sortiert aufsteigend, 3.0 bleibt ein float.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 20"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a6",
+          "typ": "code_ausgabe",
+          "code": "zahlen = [1, 2, 3, 4]\nquadrate = []\nfor n in zahlen:\n    quadrate.append(n ** 2)\nprint(quadrate)",
+          "optionen": [
+            "[1, 4, 9, 16]",
+            "[2, 4, 6, 8]",
+            "[1, 2, 3, 4]",
+            "16"
+          ],
+          "richtig": 0,
+          "erklaerung": "Jedes Element wird quadriert und angehängt.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 27"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a7",
+          "typ": "code_ausgabe",
+          "code": "x = 7\nprint(f\"Wert: {x:03}\")",
+          "optionen": [
+            "Wert: 007",
+            "Wert: 7",
+            "Wert: 7.000",
+            "Wert: {x:03}"
+          ],
+          "richtig": 0,
+          "erklaerung": "0-Padding auf 3 Stellen.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 4"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a8",
+          "typ": "code_fehler",
+          "code": "my_list = [1, 2, 3]\nmy_list.remove(4)\nprint(my_list)",
+          "fehlerzeile": 2,
+          "korrektur": "my_list.remove(3)  (nur vorhandene Werte entfernen)",
+          "erklaerung": "4 ist nicht in der Liste → ValueError.",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 19"
+        },
+        {
+          "id": "sw04-listen-schleifen-l4-a9",
+          "typ": "code_reihenfolge",
+          "frage": "Baue eine Liste mit den Zahlen 0 bis 4 per Schleife auf und gib sie aus.",
+          "zeilen": [
+            "my_list = []",
+            "for i in range(5):",
+            "    my_list.append(i)",
+            "print(my_list)"
+          ],
+          "erklaerung": "Leere Liste, Schleife, append, am Schluss ausgeben (nicht eingerückt).",
+          "quelle": "SW04_PB_Listen_Schleifen, S. 28",
+          "erwartete_ausgabe": "[0, 1, 2, 3, 4]"
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l5",
+      "titel": "Listen programmieren",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw04-listen-schleifen-l5-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Wörter zählen und gross schreiben",
+          "aufgabe": "Lies einen Satz ein. Gib in der ersten Zeile die Anzahl Wörter aus und in der zweiten Zeile das letzte Wort in Grossbuchstaben.",
+          "startcode": "satz = input()",
+          "tests": [
+            {
+              "eingabe": "this is great",
+              "ausgabe": "3\nGREAT"
+            },
+            {
+              "eingabe": "hallo",
+              "ausgabe": "1\nHALLO"
+            },
+            {
+              "eingabe": "Python macht Spass ja",
+              "ausgabe": "4\nJA"
+            }
+          ],
+          "hinweise": [
+            "satz.split() liefert eine Liste der Wörter.",
+            "len() und Index [-1]"
+          ],
+          "musterloesung": "satz = input()\nwoerter = satz.split()\nprint(len(woerter))\nprint(woerter[-1].upper())",
+          "kriterien": [
+            "split",
+            "len",
+            "upper"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW04_PB_Listen_Schleifen, S. 9 und 15"
+        },
+        {
+          "id": "sw04-listen-schleifen-l5-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Quadrate als Liste",
+          "aufgabe": "Lies eine ganze Zahl n ein und gib die Liste der Quadrate von 1 bis und mit n aus, z. B. für 3: `[1, 4, 9]`.",
+          "startcode": "n = int(input())",
+          "tests": [
+            {
+              "eingabe": "3",
+              "ausgabe": "[1, 4, 9]"
+            },
+            {
+              "eingabe": "1",
+              "ausgabe": "[1]"
+            },
+            {
+              "eingabe": "0",
+              "ausgabe": "[]"
+            }
+          ],
+          "hinweise": [
+            "Starte mit einer leeren Liste.",
+            "range(1, n + 1)"
+          ],
+          "musterloesung": "n = int(input())\nquadrate = []\nfor i in range(1, n + 1):\n    quadrate.append(i ** 2)\nprint(quadrate)",
+          "kriterien": [
+            "Schleife mit append",
+            "Randfall n = 0 → []"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW04_PB_Listen_Schleifen, S. 27"
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l6",
+      "titel": "InClass-Übungen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw04-listen-schleifen-l6-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Laufende Summe",
+          "aufgabe": "Lies Zahlen (durch Leerzeichen getrennt) ein und gib die Liste `running_totals` aus, die nach jedem Element die bisherige Summe enthält. Aus `3 1 4 1 5` wird `[3, 4, 8, 9, 14]`.",
+          "startcode": "numbers = []\nfor teil in input().split():\n    numbers.append(int(teil))",
+          "tests": [
+            {
+              "eingabe": "3 1 4 1 5",
+              "ausgabe": "[3, 4, 8, 9, 14]"
+            },
+            {
+              "eingabe": "7",
+              "ausgabe": "[7]"
+            },
+            {
+              "eingabe": "5 -5 2",
+              "ausgabe": "[5, 0, 2]"
+            }
+          ],
+          "hinweise": [
+            "Eine Variable total mitführen.",
+            "Nach jedem += die Summe anhängen."
+          ],
+          "musterloesung": "numbers = []\nfor teil in input().split():\n    numbers.append(int(teil))\nrunning_totals = []\ntotal = 0\nfor n in numbers:\n    total += n\n    running_totals.append(total)\nprint(running_totals)",
+          "kriterien": [
+            "Laufvariable total",
+            "append"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW04_InClass_standardized_clean.ipynb (JupyterHub), «Laufende Summe»"
+        },
+        {
+          "id": "sw04-listen-schleifen-l6-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Differenzen zwischen Nachbarn",
+          "aufgabe": "Lies Messwerte (durch Leerzeichen getrennt) ein und gib die Liste `diff_list` mit den Differenzen benachbarter Werte aus. Aus `5 9 4 10 13` wird `[4, -5, 6, 3]`.",
+          "startcode": "measurements = []\nfor teil in input().split():\n    measurements.append(int(teil))",
+          "tests": [
+            {
+              "eingabe": "5 9 4 10 13",
+              "ausgabe": "[4, -5, 6, 3]"
+            },
+            {
+              "eingabe": "1 1",
+              "ausgabe": "[0]"
+            },
+            {
+              "eingabe": "8",
+              "ausgabe": "[]"
+            }
+          ],
+          "hinweise": [
+            "Schleife über die Indizes: range(len(measurements) - 1)",
+            "Differenz: m[i + 1] - m[i]"
+          ],
+          "musterloesung": "measurements = []\nfor teil in input().split():\n    measurements.append(int(teil))\ndiff_list = []\nfor i in range(len(measurements) - 1):\n    diff_list.append(measurements[i + 1] - measurements[i])\nprint(diff_list)",
+          "kriterien": [
+            "Off-by-one vermeiden",
+            "ein Wert → leere Liste"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW04_InClass_standardized_clean.ipynb (JupyterHub), «Differenzen zwischen Nachbarn»"
+        },
+        {
+          "id": "sw04-listen-schleifen-l6-a3",
+          "typ": "programmieraufgabe",
+          "titel": "Liste manuell umdrehen",
+          "aufgabe": "Lies Werte (durch Leerzeichen getrennt) ein und gib eine neue Liste `reversed_values` in umgekehrter Reihenfolge aus – mit einer Schleife, **ohne** `reverse()` oder `[::-1]`.",
+          "startcode": "values = input().split()",
+          "tests": [
+            {
+              "eingabe": "10 20 30 40",
+              "ausgabe": "['40', '30', '20', '10']"
+            },
+            {
+              "eingabe": "a",
+              "ausgabe": "['a']"
+            },
+            {
+              "eingabe": "x y",
+              "ausgabe": "['y', 'x']"
+            }
+          ],
+          "hinweise": [
+            "Jedes Element mit insert(0, ...) vorne einfügen."
+          ],
+          "musterloesung": "values = input().split()\nreversed_values = []\nfor v in values:\n    reversed_values.insert(0, v)\nprint(reversed_values)",
+          "kriterien": [
+            "Schleife",
+            "kein reverse()"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW04_InClass_standardized_clean.ipynb (JupyterHub), «Liste manuell umdrehen»"
+        }
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l11",
+      "titel": "FizzBuzz in einer Liste",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW04_Aufrag_nbg (JupyterHub), Aufgabe 1",
+      "aufgabe": "Durchlaufe die Zahlen von **100 bis 88** (einschliesslich) **absteigend** und speichere für jede Zahl einen\nString in der Liste `fb_list`:\n\n- `\"FizzBuzz\"`, wenn die Zahl durch 3 **und** 5 teilbar ist\n- `\"Fizz\"`, wenn sie nur durch 3 teilbar ist\n- `\"Buzz\"`, wenn sie nur durch 5 teilbar ist\n- sonst die Zahl als **String**\n\nGib danach die ganze Liste und anschliessend jedes Element einzeln aus.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "fb_list = []\n# dein Code"
+        }
+      ],
+      "tests": "erwartet = [\"Buzz\", \"Fizz\", \"98\", \"97\", \"Fizz\", \"Buzz\", \"94\", \"Fizz\", \"92\", \"91\", \"FizzBuzz\", \"89\", \"88\"]\nassert isinstance(fb_list, list), \"fb_list muss eine Liste sein.\"\nassert len(fb_list) == 13, f\"fb_list sollte 13 Elemente haben (100 bis 88), hat aber {len(fb_list)}.\"\nassert all(isinstance(e, str) for e in fb_list), \"Alle Elemente von fb_list müssen Strings sein – auch die Zahlen.\"\nassert fb_list == erwartet, f\"fb_list stimmt nicht. Erwartet {erwartet}, erhalten {fb_list}.\"\nassert str(erwartet) in _ausgabe, \"Die ganze Liste wird nicht ausgegeben.\"\nassert \"\\nFizzBuzz\\n\" in _ausgabe, \"Die Elemente werden nicht einzeln ausgegeben.\"",
+      "hinweise": [
+        "Absteigend: `range(100, 87, -1)` – der stop-Wert ist nicht dabei.",
+        "Die Reihenfolge der Bedingungen ist wichtig: zuerst «durch 3 und 5».",
+        "Zahl als String: `str(number)`."
+      ],
+      "loesung": "fb_list = []\nfor number in range(100, 87, -1):\n    if number % 3 == 0 and number % 5 == 0:\n        fb_list.append(\"FizzBuzz\")\n    elif number % 3 == 0:\n        fb_list.append(\"Fizz\")\n    elif number % 5 == 0:\n        fb_list.append(\"Buzz\")\n    else:\n        fb_list.append(str(number))\n\nprint(fb_list)\nfor item in fb_list:\n    print(item)"
+    },
+    {
+      "id": "sw04-listen-schleifen-l12",
+      "titel": "Tag des Jahres",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 12,
+      "schwierigkeit": 3,
+      "quelle": "SW04_Aufrag_nbg (JupyterHub), Aufgabe 2",
+      "aufgabe": "Lies ein Datum im Format **DDMMYYYY** ein (z. B. `30032002` = 30. März 2002) und berechne, der wievielte Tag\ndes Jahres es ist (der eingegebene Tag zählt mit). Speichere das Resultat in `result` und gib es aus.\n\nBerücksichtige **Schaltjahre**: Ein Jahr ist ein Schaltjahr, wenn es durch 4, aber nicht durch 100 teilbar ist –\noder wenn es durch 400 teilbar ist.\n\nBeim Prüfen gibt `input()` den Wert `12122024` zurück.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – Datum zerlegen"
+        },
+        {
+          "typ": "code",
+          "inhalt": "date = input(\"Datum (DDMMYYYY): \")\nday = None\nmonth = None\nyear = None"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – Tage zählen"
+        },
+        {
+          "typ": "code",
+          "inhalt": "days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\nresult = 0\nprint(result)"
+        }
+      ],
+      "tests": "assert (day, month, year) == (12, 12, 2024), f\"Datum falsch zerlegt: day={day}, month={month}, year={year} (erwartet 12, 12, 2024 als int).\"\nassert result == 347, f\"Der 12.12.2024 ist Tag 347 (Schaltjahr!), dein result ist {result}.\"\nassert \"347\" in _ausgabe, \"Das Resultat wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Mit Slicing zerlegst du den String: `date[:2]`, `date[2:4]`, `date[4:]` – danach `int(...)`.",
+        "Im Schaltjahr hat der Februar (Index 1) 29 Tage.",
+        "Summiere die Tage aller Monate **vor** dem eingegebenen Monat und addiere den Tag."
+      ],
+      "loesung": "date = input(\"Datum (DDMMYYYY): \")\nday = int(date[:2])\nmonth = int(date[2:4])\nyear = int(date[4:])\n\ndays_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\nif (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:\n    days_per_month[1] = 29\n\nresult = day\nfor i in range(month - 1):\n    result += days_per_month[i]\nprint(result)",
+      "eingaben": [
+        "12122024"
+      ]
+    },
+    {
+      "id": "sw04-listen-schleifen-l13",
+      "titel": "Multiplikationstabelle",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW04_Aufrag_nbg (JupyterHub), Aufgabe 4",
+      "aufgabe": "Gib eine **10 × 10**-Multiplikationstabelle aus (Zeilen n und Spalten m je von 1 bis 10). Speichere sie\nzusätzlich in `multiplication_table` als **Liste von Zeilen** (jede Zeile ist eine Liste mit 10 Zahlen).\n\n```\n1   2   3   4   5   6   7   8   9   10\n2   4   6   8   10  12  14  16  18  20\n...\n```\nTipp: zwei verschachtelte Schleifen, `print(f\"{value:<3d} \", end=\"\")` und am Zeilenende `print()`.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "multiplication_table = []\nfor n in range(1, 11):\n    row = []\n    # innere Schleife\n    multiplication_table.append(row)"
+        }
+      ],
+      "tests": "assert len(multiplication_table) == 10, f\"multiplication_table sollte 10 Zeilen haben, hat aber {len(multiplication_table)}.\"\nassert all(isinstance(r, list) and len(r) == 10 for r in multiplication_table), \"Jede Zeile muss eine Liste mit 10 Zahlen sein.\"\nassert multiplication_table[2][3] == 12, f\"Zeile 3, Spalte 4 sollte 12 sein, ist aber {multiplication_table[2][3]}.\"\nassert multiplication_table == [[n * m for m in range(1, 11)] for n in range(1, 11)], \"Die Werte der Tabelle stimmen nicht.\"\nzeilen = [z.split() for z in _ausgabe.strip().splitlines() if z.strip()]\nassert len(zeilen) == 10 and zeilen[9] == [str(10 * m) for m in range(1, 11)], \"Die Ausgabe sollte 10 Zeilen haben, die letzte: 10 20 … 100.\"",
+      "hinweise": [
+        "Die innere Schleife läuft über die Spalten `m`, die äussere über die Zeilen `n`.",
+        "`end=\"\"` verhindert den Zeilenumbruch nach `print`.",
+        "Nach der inneren Schleife ein leeres `print()` für die neue Zeile."
+      ],
+      "loesung": "multiplication_table = []\nfor n in range(1, 11):\n    row = []\n    for m in range(1, 11):\n        value = n * m\n        row.append(value)\n        print(f\"{value:<3d} \", end=\"\")\n    multiplication_table.append(row)\n    print()"
+    }
+  ]
+}

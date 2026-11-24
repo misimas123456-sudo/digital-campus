@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="python-basics">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Basics – Digital Campus</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%23201f1b%22%20stroke%3D%22%2332302a%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225.5%22%20fill%3D%22%23c9bb83%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.CodeMirror{font-family:monospace;height:300px;color:black;direction:ltr;}.CodeMirror-lines{padding:4px 0;}.CodeMirror pre.CodeMirror-line,.CodeMirror pre.CodeMirror-line-like{padding:0 4px;}.CodeMirror-scrollbar-filler,.CodeMirror-gutter-filler{background-color:white;}.CodeMirror-gutters{border-right:1px solid #ddd;background-color:#f7f7f7;white-space:nowrap;}.CodeMirror-linenumbers{}.CodeMirror-linenumber{padding:0 3px 0 5px;min-width:20px;text-align:right;color:#999;white-space:nowrap;}.CodeMirror-guttermarker{color:black;}.CodeMirror-guttermarker-subtle{color:#999;}.CodeMirror-cursor{border-left:1px solid black;border-right:none;width:0;}.CodeMirror div.CodeMirror-secondarycursor{border-left:1px solid silver;}.cm-fat-cursor .CodeMirror-cursor{width:auto;border:0 !important;background:#7e7;}.cm-fat-cursor div.CodeMirror-cursors{z-index:1;}.cm-fat-cursor .CodeMirror-line::selection,.cm-fat-cursor .CodeMirror-line > span::selection,.cm-fat-cursor .CodeMirror-line > span > span::selection{background:transparent;}.cm-fat-cursor .CodeMirror-line::-moz-selection,.cm-fat-cursor .CodeMirror-line > span::-moz-selection,.cm-fat-cursor .CodeMirror-line > span > span::-moz-selection{background:transparent;}.cm-fat-cursor{caret-color:transparent;}@-moz-keyframes blink{0%{}50%{background-color:transparent;}100%{}}@-webkit-keyframes blink{0%{}50%{background-color:transparent;}100%{}}@keyframes blink{0%{}50%{background-color:transparent;}100%{}}.CodeMirror-overwrite .CodeMirror-cursor{}.cm-tab{display:inline-block;text-decoration:inherit;}.CodeMirror-rulers{position:absolute;left:0;right:0;top:-50px;bottom:0;overflow:hidden;}.CodeMirror-ruler{border-left:1px solid #ccc;top:0;bottom:0;position:absolute;}.cm-s-default .cm-header{color:blue;}.cm-s-default .cm-quote{color:#090;}.cm-negative{color:#d44;}.cm-positive{color:#292;}.cm-header,.cm-strong{font-weight:bold;}.cm-em{font-style:italic;}.cm-link{text-decoration:underline;}.cm-strikethrough{text-decoration:line-through;}.cm-s-default .cm-keyword{color:#708;}.cm-s-default .cm-atom{color:#219;}.cm-s-default .cm-number{color:#164;}.cm-s-default .cm-def{color:#00f;}.cm-s-default .cm-variable,.cm-s-default .cm-punctuation,.cm-s-default .cm-property,.cm-s-default .cm-operator{}.cm-s-default .cm-variable-2{color:#05a;}.cm-s-default .cm-variable-3,.cm-s-default .cm-type{color:#085;}.cm-s-default .cm-comment{color:#a50;}.cm-s-default .cm-string{color:#a11;}.cm-s-default .cm-string-2{color:#f50;}.cm-s-default .cm-meta{color:#555;}.cm-s-default .cm-qualifier{color:#555;}.cm-s-default .cm-builtin{color:#30a;}.cm-s-default .cm-bracket{color:#997;}.cm-s-default .cm-tag{color:#170;}.cm-s-default .cm-attribute{color:#00c;}.cm-s-default .cm-hr{color:#999;}.cm-s-default .cm-link{color:#00c;}.cm-s-default .cm-error{color:#f00;}.cm-invalidchar{color:#f00;}.CodeMirror-composing{border-bottom:2px solid;}div.CodeMirror span.CodeMirror-matchingbracket{color:#0b0;}div.CodeMirror span.CodeMirror-nonmatchingbracket{color:#a22;}.CodeMirror-matchingtag{background:rgba(255,150,0,.3);}.CodeMirror-activeline-background{background:#e8f2ff;}.CodeMirror{position:relative;overflow:hidden;background:white;}.CodeMirror-scroll{overflow:scroll !important;margin-bottom:-50px;margin-right:-50px;padding-bottom:50px;height:100%;outline:none;position:relative;z-index:0;}.CodeMirror-sizer{position:relative;border-right:50px solid transparent;}.CodeMirror-vscrollbar,.CodeMirror-hscrollbar,.CodeMirror-scrollbar-filler,.CodeMirror-gutter-filler{position:absolute;z-index:6;display:none;outline:none;}.CodeMirror-vscrollbar{right:0;top:0;overflow-x:hidden;overflow-y:scroll;}.CodeMirror-hscrollbar{bottom:0;left:0;overflow-y:hidden;overflow-x:scroll;}.CodeMirror-scrollbar-filler{right:0;bottom:0;}.CodeMirror-gutter-filler{left:0;bottom:0;}.CodeMirror-gutters{position:absolute;left:0;top:0;min-height:100%;z-index:3;}.CodeMirror-gutter{white-space:normal;height:100%;display:inline-block;vertical-align:top;margin-bottom:-50px;}.CodeMirror-gutter-wrapper{position:absolute;z-index:4;background:none !important;border:none !important;}.CodeMirror-gutter-background{position:absolute;top:0;bottom:0;z-index:4;}.CodeMirror-gutter-elt{position:absolute;cursor:default;z-index:4;}.CodeMirror-gutter-wrapper::selection{background-color:transparent}.CodeMirror-gutter-wrapper::-moz-selection{background-color:transparent}.CodeMirror-lines{cursor:text;min-height:1px;}.CodeMirror pre.CodeMirror-line,.CodeMirror pre.CodeMirror-line-like{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;border-width:0;background:transparent;font-family:inherit;font-size:inherit;margin:0;white-space:pre;word-wrap:normal;line-height:inherit;color:inherit;z-index:2;position:relative;overflow:visible;-webkit-tap-highlight-color:transparent;-webkit-font-variant-ligatures:contextual;font-variant-ligatures:contextual;}.CodeMirror-wrap pre.CodeMirror-line,.CodeMirror-wrap pre.CodeMirror-line-like{word-wrap:break-word;white-space:pre-wrap;word-break:normal;}.CodeMirror-linebackground{position:absolute;left:0;right:0;top:0;bottom:0;z-index:0;}.CodeMirror-linewidget{position:relative;z-index:2;padding:0.1px;}.CodeMirror-widget{}.CodeMirror-rtl pre{direction:rtl;}.CodeMirror-code{outline:none;}.CodeMirror-scroll,.CodeMirror-sizer,.CodeMirror-gutter,.CodeMirror-gutters,.CodeMirror-linenumber{-moz-box-sizing:content-box;box-sizing:content-box;}.CodeMirror-measure{position:absolute;width:100%;height:0;overflow:hidden;visibility:hidden;}.CodeMirror-cursor{position:absolute;pointer-events:none;}.CodeMirror-measure pre{position:static;}div.CodeMirror-cursors{visibility:hidden;position:relative;z-index:3;}div.CodeMirror-dragcursors{visibility:visible;}.CodeMirror-focused div.CodeMirror-cursors{visibility:visible;}.CodeMirror-selected{background:#d9d9d9;}.CodeMirror-focused .CodeMirror-selected{background:#d7d4f0;}.CodeMirror-crosshair{cursor:crosshair;}.CodeMirror-line::selection,.CodeMirror-line > span::selection,.CodeMirror-line > span > span::selection{background:#d7d4f0;}.CodeMirror-line::-moz-selection,.CodeMirror-line > span::-moz-selection,.CodeMirror-line > span > span::-moz-selection{background:#d7d4f0;}.cm-searching{background-color:#ffa;background-color:rgba(255,255,0,.4);}.cm-force-border{padding-right:.1px;}@media print{.CodeMirror div.CodeMirror-cursors{visibility:hidden;}}.cm-tab-wrap-hack:after{content:'';}span.CodeMirror-selectedtext{background:none;}
+:root{
+  --dc-bg:#100f0c;--dc-surface:#181713;--dc-surface-raised:#201f1b;--dc-line:#32302a;
+  --dc-accent:#c9bb83;--dc-accent-hover:#dbce9f;--dc-accent-soft:#252215;--dc-accent-line:#60583b;--dc-on-accent:#16140c;
+  --dc-text:#ebeaef;--dc-text-muted:#aaaab2;--dc-text-faint:#807f87;
+  --dc-campus:#af9ee4;--dc-campus-soft:#231f2f;
+  --dc-success:#8ec7a1;--dc-warning:#dcc188;--dc-danger:#dc8b88;
+  --dc-font-fach:"Space Grotesk",system-ui,sans-serif;--dc-font-campus:"Outfit",system-ui,sans-serif;
+  --dc-font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --code-bg:#0c0b09;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--dc-bg);color:var(--dc-text);font:400 16px/1.55 var(--dc-font-fach);-webkit-text-size-adjust:100%}
+button,input,textarea,select{font:inherit;color:inherit}
+a{color:var(--dc-accent)}
+code,.mono{font-family:var(--dc-font-mono);font-size:.9em}
+:not(pre)>code{background:var(--dc-surface-raised);border:1px solid var(--dc-line);border-radius:6px;padding:1px 5px}
+h1,h2,h3{font-weight:600;line-height:1.25;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+
+/* Kopfzeile */
+.kopf{position:sticky;top:0;z-index:20;background:rgba(16,15,12,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--dc-line)}
+.kopf .wrap{display:flex;align-items:center;gap:12px;min-height:56px}
+.logo{font-weight:600;font-size:1.05rem;line-height:1.1}
+.logo small{display:block;font:500 .72rem/1.2 var(--dc-font-campus);color:var(--dc-text-muted)}
+.kopf .platz{flex:1}
+.zurueck{display:inline-flex;align-items:center;gap:4px;min-height:36px;padding:0 12px 0 8px;border:1px solid var(--dc-line);border-radius:999px;background:transparent;color:var(--dc-text-muted);cursor:pointer;font-size:.9rem;white-space:nowrap}
+.zurueck:hover{color:var(--dc-text);border-color:var(--dc-accent-line)}
+.dc-home{display:inline-flex;align-items:center;gap:6px;flex:none;min-height:36px;padding:0 12px;border:1px solid var(--dc-line);border-radius:999px;background:transparent;color:var(--dc-campus);font:500 13px/1 var(--dc-font-campus);text-decoration:none;white-space:nowrap}
+.dc-home:hover,.dc-home:focus-visible{border-color:var(--dc-campus)}
+.dc-home svg{width:16px;height:16px;flex:none}
+@media (max-width:520px){.dc-home{padding:0 10px}.dc-home span{display:none}.logo small{display:none}}
+
+main{padding:24px 0 48px}
+.lade{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50vh;color:var(--dc-text-muted)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--dc-line);border-top-color:var(--dc-accent);border-radius:50%;animation:dreh 1s linear infinite;flex:none}
+@keyframes dreh{to{transform:rotate(360deg)}}
+.leise{color:var(--dc-text-muted)}
+.klein{font-size:.85rem}
+.quelle{color:var(--dc-text-faint);font-size:.8rem;margin-top:24px}
+
+/* Übersicht */
+.titel-gross{font-size:1.7rem;margin-bottom:4px}
+.termin{display:flex;gap:12px;align-items:center;margin:20px 0 8px;padding:12px 14px;border:1px solid var(--dc-line);border-left:2px solid var(--dc-warning);border-radius:10px;background:var(--dc-surface)}
+.termin b{font-weight:600}
+.wochen{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.woche{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;width:100%;text-align:left;padding:14px 16px;background:var(--dc-surface);border:1px solid var(--dc-line);border-radius:10px;cursor:pointer}
+.woche:hover{border-color:var(--dc-accent-line);background:var(--dc-surface-raised)}
+.sw{font:500 .85rem/1 var(--dc-font-mono);color:var(--dc-accent);border:1px solid var(--dc-accent-line);background:var(--dc-accent-soft);border-radius:6px;padding:6px 0;text-align:center}
+.woche h3{font-size:1.05rem}
+.woche .zahlen{font-size:.82rem;color:var(--dc-text-muted);margin-top:2px}
+.ring{width:44px;height:44px}
+.ring circle{fill:none;stroke-width:4}
+.ring .bg{stroke:var(--dc-line)}.ring .fg{stroke:var(--dc-accent);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%}
+.ring text{fill:var(--dc-text-muted);font:500 11px var(--dc-font-campus);text-anchor:middle;dominant-baseline:central}
+
+/* Einheit */
+.einheit-kopf{display:flex;gap:14px;align-items:flex-start;margin-bottom:6px}
+.einheit-kopf .sw{padding:8px 10px;margin-top:4px}
+.tabs{display:flex;gap:4px;margin:22px 0 16px;border-bottom:1px solid var(--dc-line);overflow-x:auto}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;color:var(--dc-text-muted);cursor:pointer;white-space:nowrap;font-weight:500}
+.tab .n{font:500 .75rem var(--dc-font-campus);color:var(--dc-text-faint);margin-left:4px}
+.tab.aktiv{color:var(--dc-text);border-bottom-color:var(--dc-accent)}
+.tab:hover{color:var(--dc-text)}
+.lektionen{display:flex;flex-direction:column;gap:8px}
+.lektion{display:flex;gap:14px;align-items:center;width:100%;text-align:left;padding:14px 16px;background:var(--dc-surface);border:1px solid var(--dc-line);border-radius:10px;cursor:pointer}
+.lektion:hover{border-color:var(--dc-accent-line);background:var(--dc-surface-raised)}
+.lektion .nr{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;border:1px solid var(--dc-line);font:500 .8rem var(--dc-font-campus);color:var(--dc-text-muted)}
+.lektion.fertig .nr{border-color:var(--dc-accent);color:var(--dc-accent)}
+.lektion .txt{flex:1;min-width:0}
+.lektion .meta{font-size:.8rem;color:var(--dc-text-faint)}
+.lektion .status{font:500 .78rem var(--dc-font-campus);color:var(--dc-text-faint);white-space:nowrap}
+.lektion.fertig .status{color:var(--dc-success)}
+.stufe{letter-spacing:1px;color:var(--dc-accent)}
+.leer{padding:24px;text-align:center;color:var(--dc-text-muted);border:1px dashed var(--dc-line);border-radius:10px}
+[hidden]{display:none!important}
+.lektion .themen{display:block;font-size:.78rem;color:var(--dc-text-faint);margin-top:2px}
+.tabs.start{margin-top:18px}
+.fehlerleiste{position:fixed;left:0;right:0;bottom:0;z-index:80;display:flex;gap:10px;align-items:flex-start;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#2a1a19;border-top:1px solid var(--dc-danger);color:var(--dc-text);font-size:.85rem}
+.fehlerleiste span{flex:1;overflow-wrap:anywhere}
+
+/* Theorie */
+.lesen h1{font-size:1.5rem;margin-bottom:6px}
+.lesen h3{font-size:1.15rem;margin:28px 0 8px}
+.lesen p{margin:10px 0}
+.lesen ul,.lesen ol{margin:8px 0;padding-left:22px}
+.lesen li{margin:4px 0}
+.lesen .listen-titel{font-weight:600;margin:16px 0 4px}
+.merke,.hinweis{margin:16px 0;padding:12px 14px;border:1px solid var(--dc-line);border-radius:10px;background:var(--dc-surface)}
+.merke{border-left:2px solid var(--dc-accent)}
+.merke::before{content:"Merke";display:block;font:600 .72rem var(--dc-font-campus);letter-spacing:.06em;text-transform:uppercase;color:var(--dc-accent);margin-bottom:2px}
+.hinweis{border-left:2px solid var(--dc-campus)}
+.hinweis::before{content:"Hinweis";display:block;font:600 .72rem var(--dc-font-campus);letter-spacing:.06em;text-transform:uppercase;color:var(--dc-campus);margin-bottom:2px}
+.formel{margin:14px 0;overflow-x:auto;text-align:center;font-size:1.1rem}
+table.tab-inhalt{border-collapse:collapse;margin:14px 0;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+table.tab-inhalt th,table.tab-inhalt td{border:1px solid var(--dc-line);padding:7px 10px;text-align:left;vertical-align:top}
+table.tab-inhalt th{background:var(--dc-surface-raised);font-weight:600}
+.lesen img{max-width:100%;border-radius:10px}
+.beispiel{margin:14px 0;border:1px solid var(--dc-line);border-radius:10px;overflow:hidden;background:var(--code-bg)}
+.beispiel-kopf{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;border-bottom:1px solid var(--dc-line);background:var(--dc-surface);font:500 .78rem var(--dc-font-campus);color:var(--dc-text-muted)}
+.beispiel-kopf .platz{flex:1}
+.beispiel .ausgabe{border-top:1px dashed var(--dc-line)}
+.ausgabe-label{font:500 .7rem var(--dc-font-campus);color:var(--dc-text-faint);padding:6px 12px 0;text-transform:uppercase;letter-spacing:.05em}
+
+/* Code */
+pre.code{margin:0;padding:12px 0;overflow-x:auto;font:400 .86rem/1.55 var(--dc-font-mono);background:var(--code-bg);tab-size:4}
+pre.code .ln{display:flex;padding:0 12px;min-height:1.55em}
+pre.code .ln .zn{width:2.2em;flex:none;color:var(--dc-text-faint);user-select:none;text-align:right;padding-right:12px}
+pre.code .ln span.t{white-space:pre}
+pre.code .ln.klick{cursor:pointer}
+pre.code .ln.klick:hover{background:var(--dc-surface-raised)}
+pre.code .ln.sel{background:var(--dc-accent-soft)}
+pre.code .ln.ok{background:rgba(142,199,161,.14)}
+pre.code .ln.falsch{background:rgba(220,139,136,.14)}
+.k{color:#d7a2c5}.s{color:#a9c98d}.n{color:#e2b07a}.c{color:var(--dc-text-faint);font-style:italic}.f{color:#8fb8dd}
+pre.out{margin:0;padding:8px 12px 10px;font:400 .84rem/1.5 var(--dc-font-mono);white-space:pre-wrap;word-break:break-word;color:var(--dc-text)}
+pre.out.fehler{color:var(--dc-danger)}
+pre.out .wert{color:var(--dc-text-muted)}
+pre.md-code{margin:10px 0;padding:10px 12px;border:1px solid var(--dc-line);border-radius:8px;background:var(--code-bg);overflow-x:auto;font:400 .86rem/1.5 var(--dc-font-mono)}
+
+/* Knöpfe */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 16px;border-radius:10px;border:1px solid var(--dc-line);background:var(--dc-surface-raised);color:var(--dc-text);cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--dc-accent-line)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.primaer{background:var(--dc-accent);border-color:var(--dc-accent);color:var(--dc-on-accent);font-weight:600}
+.btn.primaer:hover{background:var(--dc-accent-hover)}
+.btn.klein{min-height:30px;padding:0 10px;font-size:.82rem;border-radius:8px}
+.btn.geist{background:transparent}
+.knopfzeile{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:20px}
+
+/* Schnellfragen */
+.fortschritt{height:4px;border-radius:4px;background:var(--dc-accent-line);overflow:hidden;margin:4px 0 22px}
+.fortschritt>i{display:block;height:100%;background:var(--dc-accent);transition:width .3s}
+.frage{font-size:1.12rem;font-weight:500;margin:14px 0 14px}
+.optionen{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;padding:12px 14px;border:1px solid var(--dc-line);border-radius:10px;background:var(--dc-surface);cursor:pointer;font-family:inherit}
+.opt.mono{font-family:var(--dc-font-mono);white-space:pre-wrap;font-size:.9rem}
+.opt:hover{border-color:var(--dc-accent-line)}
+.opt.sel{border-color:var(--dc-accent);background:var(--dc-accent-soft)}
+.opt.ok{border-color:var(--dc-success);background:rgba(142,199,161,.12)}
+.opt.falsch{border-color:var(--dc-danger);background:rgba(220,139,136,.12)}
+.zeile2{display:flex;gap:8px}.zeile2 .opt{flex:1;text-align:center;padding:18px}
+.feld{width:100%;padding:10px 12px;border:1px solid var(--dc-line);border-radius:10px;background:var(--code-bg);outline:none}
+.feld:focus{border-color:var(--dc-accent-line)}
+textarea.feld{min-height:90px;resize:vertical;font-family:var(--dc-font-mono);font-size:.88rem}
+input.luecke{width:7em;padding:1px 6px;border:0;border-bottom:1px solid var(--dc-accent);background:var(--dc-accent-soft);font-family:var(--dc-font-mono);font-size:.86rem;outline:none;border-radius:4px 4px 0 0}
+input.luecke.ok{border-color:var(--dc-success)}input.luecke.falsch{border-color:var(--dc-danger)}
+.paar{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;margin-bottom:8px}
+.paar .links{padding:10px 12px;border:1px solid var(--dc-line);border-radius:10px;background:var(--dc-surface)}
+.paar select{width:100%;padding:10px;border:1px solid var(--dc-line);border-radius:10px;background:var(--dc-surface-raised)}
+.paar select.ok{border-color:var(--dc-success)}.paar select.falsch{border-color:var(--dc-danger)}
+.ordnen{display:flex;flex-direction:column;gap:6px;min-height:46px;padding:8px;border:1px dashed var(--dc-line);border-radius:10px;margin-bottom:10px}
+.ordnen .opt{padding:8px 12px}
+.karte{min-height:150px;display:grid;place-items:center;text-align:center;padding:24px;border:1px solid var(--dc-line);border-radius:16px;background:var(--dc-surface);font-size:1.1rem}
+.feedback{margin-top:16px;padding:12px 14px;border-radius:10px;border:1px solid var(--dc-line);background:var(--dc-surface)}
+.feedback.ok{border-left:2px solid var(--dc-success)}.feedback.falsch{border-left:2px solid var(--dc-danger)}
+.feedback b{display:block;margin-bottom:2px}
+.feedback.ok b{color:var(--dc-success)}.feedback.falsch b{color:var(--dc-danger)}
+.ai{margin-top:10px;color:var(--dc-text-muted);font-size:.92rem}
+.ergebnis{text-align:center;padding:30px 10px}
+.ergebnis .gross{font:600 3rem/1 var(--dc-font-fach);color:var(--dc-accent)}
+
+/* Notebook */
+.aufgabe-box{padding:4px 2px 8px}
+.aufgabe-box h3{font-size:1.05rem;margin:18px 0 6px}
+.unteraufgaben{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.unteraufgaben .tab{border:1px solid var(--dc-line);border-radius:999px;padding:6px 12px;font-size:.85rem}
+.unteraufgaben .tab.aktiv{border-color:var(--dc-accent);color:var(--dc-text)}
+.unteraufgaben .tab.ok::after{content:" ✓";color:var(--dc-success)}
+.nb-leiste{position:sticky;top:56px;z-index:10;display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 0;margin:10px 0 6px;background:rgba(16,15,12,.94);border-bottom:1px solid var(--dc-line)}
+.nb-leiste .platz{flex:1}
+.kernel{display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--dc-font-campus);color:var(--dc-text-faint)}
+.kernel i{width:8px;height:8px;border-radius:50%;background:var(--dc-text-faint)}
+.kernel.bereit i{background:var(--dc-success)}.kernel.laeuft i{background:var(--dc-warning)}.kernel.lädt i{background:var(--dc-warning);animation:puls 1s infinite}
+@keyframes puls{50%{opacity:.3}}
+.zellen{display:flex;flex-direction:column;gap:2px;margin-top:6px}
+.zelle{display:grid;grid-template-columns:52px 1fr;gap:6px;padding:6px 4px;border-radius:8px;border-left:2px solid transparent}
+.zelle.aktiv{border-left-color:var(--dc-accent);background:rgba(255,255,255,.015)}
+.prompt{font:400 .78rem/1 var(--dc-font-mono);color:var(--dc-text-faint);text-align:right;padding-top:12px;white-space:nowrap}
+.zelle.aktiv .prompt{color:var(--dc-accent)}
+.zelle-inhalt{min-width:0}
+.editor{border:1px solid var(--dc-line);border-radius:8px;background:var(--code-bg);overflow:hidden}
+.zelle.aktiv .editor{border-color:var(--dc-accent-line)}
+.zelle.gesperrt .editor{opacity:.85}
+.zelle-inhalt{position:relative}
+.zelle-werkzeug{position:absolute;top:5px;right:5px;z-index:3;display:flex;gap:2px}
+.zelle-werkzeug button{background:var(--dc-surface-raised);border:1px solid var(--dc-line);color:var(--dc-text-muted);border-radius:6px;font-size:.72rem;min-width:26px;height:22px;cursor:pointer;opacity:0;transition:opacity .15s}
+.zelle:hover .zelle-werkzeug button,.zelle.aktiv .zelle-werkzeug button{opacity:.9}
+.zelle-werkzeug button:hover{color:var(--dc-text);border-color:var(--dc-accent-line);opacity:1}
+@media (hover:none){.zelle-werkzeug button{opacity:.8}}
+@media (max-width:600px){.zelle{grid-template-columns:1fr}.prompt{text-align:left;padding:0 0 2px}}
+.zelle .ausg{margin-top:2px}
+.zelle .ausg:empty{display:none}
+.md-zelle{padding:4px 10px;border-radius:8px;cursor:text;min-height:32px}
+.md-zelle:hover{background:var(--dc-surface)}
+.md-zelle h1,.md-zelle h2,.md-zelle h3{font-size:1.08rem;margin:8px 0 4px}
+.md-zelle p{margin:6px 0}
+.eingabe-frage{display:flex;gap:8px;align-items:center;padding:8px 12px;border-top:1px dashed var(--dc-line)}
+.eingabe-frage label{font:400 .84rem var(--dc-font-mono);color:var(--dc-text-muted);white-space:pre}
+.eingabe-frage input{flex:1;padding:4px 8px;border:1px solid var(--dc-accent-line);border-radius:6px;background:var(--code-bg);font-family:var(--dc-font-mono);font-size:.86rem;outline:none}
+.stdin{margin:10px 0 0;border:1px solid var(--dc-line);border-radius:10px;background:var(--dc-surface)}
+.stdin summary{cursor:pointer;padding:8px 12px;font-size:.86rem;color:var(--dc-text-muted)}
+.stdin textarea{display:block;width:calc(100% - 24px);margin:0 12px 12px;min-height:70px}
+.pruef{margin-top:18px;padding:12px 14px;border-radius:10px;border:1px solid var(--dc-line);background:var(--dc-surface)}
+.pruef.ok{border-left:2px solid var(--dc-success)}.pruef.falsch{border-left:2px solid var(--dc-danger)}
+.pruef b{display:block}.pruef.ok b{color:var(--dc-success)}.pruef.falsch b{color:var(--dc-danger)}
+.pruef pre{margin:6px 0 0;white-space:pre-wrap;font:400 .84rem/1.5 var(--dc-font-mono);color:var(--dc-text)}
+.tipps{margin-top:14px}
+.tipps .tipp{margin-top:8px;padding:10px 12px;border:1px solid var(--dc-line);border-left:2px solid var(--dc-campus);border-radius:10px;background:var(--dc-surface)}
+.loesung{margin-top:14px;border:1px solid var(--dc-line);border-radius:10px;overflow:hidden}
+.tasten{margin-top:26px;font-size:.8rem;color:var(--dc-text-faint)}
+kbd{font:500 .75rem var(--dc-font-mono);padding:1px 5px;border:1px solid var(--dc-line);border-bottom-width:2px;border-radius:4px;color:var(--dc-text-muted)}
+
+/* CodeMirror-Farben */
+.CodeMirror{height:auto;background:var(--code-bg);color:var(--dc-text);font:400 .86rem/1.55 var(--dc-font-mono);padding:6px 0}
+.CodeMirror-scroll{min-height:1.5em}
+.CodeMirror-cursor{border-left:2px solid var(--dc-accent)}
+.CodeMirror-selected{background:#3a3626!important}
+.CodeMirror-focused .CodeMirror-selected{background:#4a4430!important}
+.CodeMirror-gutters{background:var(--code-bg);border-right:1px solid var(--dc-line)}
+.CodeMirror-linenumber{color:var(--dc-text-faint);font-size:.75rem}
+.CodeMirror-matchingbracket{color:var(--dc-accent)!important;text-decoration:underline}
+.cm-s-dc .cm-keyword{color:#d7a2c5}.cm-s-dc .cm-string{color:#a9c98d}.cm-s-dc .cm-number{color:#e2b07a}
+.cm-s-dc .cm-comment{color:var(--dc-text-faint);font-style:italic}.cm-s-dc .cm-builtin{color:#8fb8dd}
+.cm-s-dc .cm-def{color:#e8d9a0}.cm-s-dc .cm-operator{color:#c8c4b4}.cm-s-dc .cm-variable-2{color:#c9c2e8}
+.cm-s-dc .cm-property{color:#b8d4c4}.cm-s-dc .cm-meta{color:#d7a2c5}
+textarea.ersatz{display:block;width:100%;min-height:60px;border:0;background:var(--code-bg);padding:8px 12px;font:400 .86rem/1.55 var(--dc-font-mono);outline:none;resize:vertical;tab-size:4}
+
+.dc-quelle{max-width:880px;margin:32px auto 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));border-top:1px solid var(--dc-line);color:var(--dc-text-faint);font:400 12px/18px var(--dc-font-campus)}
+.dc-quelle a{color:var(--dc-campus)}
+
+</style>
+</head>
+<body>
+<!-- Python Basics – Digital Campus. Alle Inhalte kommen aus content/python-basics/*.json (Inhaltsformat v2.2). -->
+<div id="app"><div class="lade"><span class="spin"></span>Lade Inhalte …</div></div>
+<footer class="dc-quelle">Kursmaterial: <a href="https://elearning.hslu.ch/ilias/goto.php/crs/7215198" target="_blank" rel="noopener">ILIAS-Kurs</a> · lokal in <code>digital-campus\material\python-basics\</code> (vom ILIAS-Agent aktualisiert). Inhalte dieser App stammen nur aus diesem Material.</footer>
+<script type="text/x-python" id="py-runner">
+import ast, builtins, io, json, linecache, sys, traceback
+
+_NS = {}
+_MAX = 30000
+
+
+class _NeedInput(BaseException):
+    def __init__(self, prompt):
+        self.prompt = prompt
+
+
+class _Stdin:
+    vals = []
+    pos = 0
+    ask = True  # True: fehlende Eingabe erfragen (interaktiv), False: EOFError (Prüfen)
+    echo = True  # Prompt und Wert in die Ausgabe schreiben (wie in Jupyter)
+
+
+def _input(prompt=""):
+    prompt = str(prompt)
+    if _Stdin.pos < len(_Stdin.vals):
+        v = str(_Stdin.vals[_Stdin.pos])
+        _Stdin.pos += 1
+        if _Stdin.echo:
+            print(prompt + v)
+        return v
+    if _Stdin.ask:
+        raise _NeedInput(prompt)
+    raise EOFError("input() wurde öfter aufgerufen, als Eingaben vorgesehen sind")
+
+
+builtins.input = _input
+
+
+def _ns(name, neu=False):
+    if neu or name not in _NS:
+        _NS[name] = {"__name__": "__main__"}
+    return _NS[name]
+
+
+def _fmt(e, prefix="<Zelle"):
+    if isinstance(e, SyntaxError):
+        return "".join(traceback.format_exception_only(type(e), e)).rstrip()
+    te = traceback.TracebackException.from_exception(e)
+    te.stack = traceback.StackSummary.from_list([f for f in te.stack if f.filename.startswith(("<Zelle", "<Tests"))])
+    return "".join(te.format()).rstrip()
+
+
+def _exec(code, g, name):
+    """Führt Code aus wie Jupyter: Wert des letzten Ausdrucks wird zurückgegeben."""
+    linecache.cache[name] = (len(code), None, code.splitlines(True), name)
+    buf = io.StringIO()
+    alt_out, alt_err = sys.stdout, sys.stderr
+    sys.stdout = sys.stderr = buf
+    wert = fehler = need = None
+    try:
+        tree = ast.parse(code, name)
+        last = None
+        if tree.body and isinstance(tree.body[-1], ast.Expr):
+            last = ast.Expression(tree.body.pop().value)
+        exec(compile(tree, name, "exec"), g)
+        if last is not None:
+            r = eval(compile(last, name, "eval"), g)
+            if r is not None:
+                wert = repr(r)
+    except _NeedInput as e:
+        need = e.prompt
+    except SystemExit:
+        pass
+    except BaseException as e:
+        fehler = _fmt(e)
+    finally:
+        sys.stdout, sys.stderr = alt_out, alt_err
+    out = buf.getvalue()
+    if len(out) > _MAX:
+        out = out[:_MAX] + "\n… (Ausgabe gekürzt)"
+    return {"out": out, "wert": wert, "fehler": fehler, "need": need}
+
+
+def _dc_ping(a):
+    return json.dumps({"ok": True, "version": sys.version.split()[0]})
+
+
+def _dc_reset(a):
+    a = json.loads(a)
+    _ns(a["ns"], neu=True)
+    return json.dumps({"ok": True})
+
+
+def _dc_run(a):
+    a = json.loads(a)
+    g = _ns(a["ns"], neu=a.get("frisch", False))
+    _Stdin.vals, _Stdin.pos, _Stdin.ask, _Stdin.echo = a.get("stdin", []), a.get("pos", 0), True, True
+    r = _exec(a["code"], g, a.get("name", "<Zelle>"))
+    r["pos"] = _Stdin.pos
+    return json.dumps(r)
+
+
+def _dc_check(a):
+    """Prüfen: Namensraum neu, alle Code-Zellen, _ausgabe, dann tests."""
+    a = json.loads(a)
+    g = _ns(a["ns"], neu=True)
+    _Stdin.vals, _Stdin.pos, _Stdin.ask, _Stdin.echo = a.get("eingaben", []), 0, False, True
+    zellen, gesamt = [], ""
+    for i, code in enumerate(a["cells"]):
+        r = _exec(code, g, f"<Zelle [{i + 1}]>")
+        zellen.append(r)
+        gesamt += r["out"]
+        if r["fehler"]:
+            return json.dumps({"zellen": zellen, "ok": False, "art": "zelle", "zelle": i,
+                               "meldung": r["fehler"]})
+    g["_ausgabe"] = gesamt
+    tests = a.get("tests") or ""
+    if not tests.strip():
+        return json.dumps({"zellen": zellen, "ok": True, "art": "ohne", "meldung": ""})
+    linecache.cache["<Tests>"] = (len(tests), None, tests.splitlines(True), "<Tests>")
+    buf = io.StringIO()
+    alt_out = sys.stdout
+    sys.stdout = buf
+    try:
+        exec(compile(tests, "<Tests>", "exec"), g)
+        return json.dumps({"zellen": zellen, "ok": True, "art": "tests", "meldung": ""})
+    except AssertionError as e:
+        return json.dumps({"zellen": zellen, "ok": False, "art": "assert",
+                           "meldung": str(e) or "Ein Test ist fehlgeschlagen."})
+    except BaseException as e:
+        return json.dumps({"zellen": zellen, "ok": False, "art": "fehler", "meldung": _fmt(e)})
+    finally:
+        sys.stdout = alt_out
+
+
+def _norm(s):
+    s = str(s or "").replace("\r", "")
+    return "\n".join(z.rstrip() for z in s.split("\n")).rstrip("\n")
+
+
+def _dc_check_alt(a):
+    """Ältere programmieraufgabe: jeder Test in frischem Namensraum, Ausgabe ohne Eingabe-Echo."""
+    a = json.loads(a)
+    erg = []
+    for t in a["tests"]:
+        g = {"__name__": "__main__"}
+        ein = t.get("eingabe") or ""
+        _Stdin.vals, _Stdin.pos, _Stdin.ask, _Stdin.echo = (ein.split("\n") if ein != "" else []), 0, False, False
+        buf = io.StringIO()
+        alt = sys.stdout
+        sys.stdout = buf
+        fehler = wert = None
+        try:
+            exec(compile(a["code"], "<Zelle [1]>", "exec"), g)
+            if t.get("aufruf"):
+                wert = repr(eval(t["aufruf"], g))
+        except BaseException as e:
+            fehler = _fmt(e)
+        finally:
+            sys.stdout = alt
+        if t.get("aufruf"):
+            erg.append({"ok": fehler is None and wert == t.get("erwartet"), "aufruf": t["aufruf"],
+                        "erwartet": t.get("erwartet"), "erhalten": wert, "fehler": fehler})
+        else:
+            erwartet, erhalten = _norm(t.get("ausgabe")), _norm(buf.getvalue())
+            erg.append({"ok": fehler is None and erhalten == erwartet, "eingabe": ein,
+                        "erwartet": erwartet, "erhalten": erhalten, "fehler": fehler})
+    _Stdin.echo = True
+    return json.dumps({"tests": erg, "ok": all(e["ok"] for e in erg)})
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script>
+"use strict";
+/* ============================================================
+   Python Basics – Digital Campus
+   Liest content/python-basics/… (Inhaltsformat v2.2) direkt.
+   Aufbau: Übersicht (Wochen) → Einheit (Theorie · Schnellfragen · Programmieren) → Lektion
+   ============================================================ */
+const FACH_ID = "python-basics";
+const BASIS_PFADE = ["content/" + FACH_ID + "/", "../../content/" + FACH_ID + "/"];
+// Pyodide liegt als eigene Dateien im Artifact (die Seite darf keine Daten vom CDN abrufen)
+const PYODIDE_QUELLEN = [
+  { url: new URL("pyodide/", location.href).href, stdlib: "python_stdlib.zip.wasm" },
+  { url: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/", stdlib: "python_stdlib.zip" }
+];
+const DASHBOARD = "https://claude.ai/artifact/3nucn1BNbLGW39vSE3pUGQ";
+const ABSCHNITT_NAME = { theorie: "Theorie", schnellfragen: "Schnellfragen", programmieren: "Programmieren", ueben: "Üben" };
+const ART_ABSCHNITT = { verstaendnis: "theorie", code: "schnellfragen", programmieren: "programmieren", rechnen: "ueben", aufgabe: "ueben", rechnung: "ueben", anwendung: "ueben" };
+
+/* ---------- kleine Helfer ---------- */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const h = html => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstElementChild; };
+const heute = () => new Date().toLocaleDateString("sv-SE");
+const mischen = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const normAusgabe = s => String(s ?? "").replace(/\r/g, "").split("\n").map(z => z.replace(/\s+$/, "")).join("\n").replace(/\n+$/, "");
+const abschnittVon = l => l.abschnitt || ART_ABSCHNITT[l.art] || "theorie";
+const istPruefung = e => !!e && (e.id === "pruefungsvorbereitung" || e.bereich === "testvorbereitung");
+const swLabel = e => e.woche ? "SW" + String(e.woche).padStart(2, "0") : "Prüfung";
+/* Sichtbare Fehlermeldung statt stiller Knöpfe */
+function zeigeFehler(msg) {
+  try {
+    msg = String(msg || "unbekannter Fehler").slice(0, 400);
+    let bar = document.getElementById("fehlerleiste");
+    if (!bar) { bar = document.createElement("div"); bar.id = "fehlerleiste"; bar.className = "fehlerleiste"; bar.innerHTML = '<span></span><button class="btn klein geist" type="button">✕</button>'; bar.querySelector("button").onclick = () => bar.remove(); document.body.appendChild(bar); }
+    bar.querySelector("span").textContent = "Fehler in der App: " + msg;
+  } catch (e) {}
+}
+window.addEventListener("error", ev => zeigeFehler(ev.message));
+window.addEventListener("unhandledrejection", ev => zeigeFehler(ev.reason && ev.reason.message || ev.reason));
+
+function formel(tex, block) {
+  try { if (window.katex) return katex.renderToString(tex, { displayMode: !!block, output: "mathml", throwOnError: false }); } catch (e) {}
+  return `<code>${esc(tex)}</code>`;
+}
+
+/* Inline-Markdown: `code`, **fett**, *kursiv*, [Link](url), $Formel$ */
+function inl(s) {
+  const schutz = [];
+  const merk = html => "\u0000" + (schutz.push(html) - 1) + "\u0000";
+  s = String(s ?? "");
+  s = s.replace(/`([^`]+)`/g, (_, c) => merk(`<code>${esc(c)}</code>`));
+  s = s.replace(/\$\$([^$]+)\$\$/g, (_, t) => merk(formel(t, true)));
+  s = s.replace(/\$([^$\n]+)\$/g, (_, t) => merk(formel(t, false)));
+  s = esc(s);
+  s = s.replace(/\*\*\*([^*]+)\*\*\*/g, "<b><i>$1</i></b>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/(^|[^*\w])\*([^*\n]+)\*/g, "$1<i>$2</i>");
+  s = s.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => schutz[+i]);
+}
+
+/* Block-Markdown für Aufgaben und Markdown-Zellen */
+function md(text) {
+  const zeilen = String(text ?? "").replace(/\r/g, "").split("\n");
+  let html = "", i = 0;
+  while (i < zeilen.length) {
+    const z = zeilen[i];
+    if (/^```/.test(z)) {
+      const sprache = z.slice(3).trim(); const code = []; i++;
+      while (i < zeilen.length && !/^```/.test(zeilen[i])) code.push(zeilen[i++]);
+      i++;
+      html += `<pre class="md-code">${code.map(c => sprache.toLowerCase().startsWith("py") ? hl(c) : esc(c)).join("\n")}</pre>`;
+      continue;
+    }
+    if (/^\$\$/.test(z.trim())) {
+      let tex = z.trim().replace(/^\$\$/, "");
+      if (tex.endsWith("$$")) { tex = tex.slice(0, -2); i++; }
+      else { i++; while (i < zeilen.length && !zeilen[i].includes("$$")) tex += "\n" + zeilen[i++]; if (i < zeilen.length) { tex += "\n" + zeilen[i].replace("$$", ""); i++; } }
+      html += `<div class="formel">${formel(tex, true)}</div>`; continue;
+    }
+    const kopf = z.match(/^(#{1,4})\s+(.*)/);
+    if (kopf) { html += `<h3>${inl(kopf[2])}</h3>`; i++; continue; }
+    if (/^\s*[-*]\s+/.test(z)) {
+      html += "<ul>";
+      while (i < zeilen.length && /^\s*[-*]\s+/.test(zeilen[i])) html += `<li>${inl(zeilen[i++].replace(/^\s*[-*]\s+/, ""))}</li>`;
+      html += "</ul>"; continue;
+    }
+    if (/^\s*\d+\.\s+/.test(z)) {
+      html += "<ol>";
+      while (i < zeilen.length && /^\s*\d+\.\s+/.test(zeilen[i])) {
+        let li = zeilen[i++].replace(/^\s*\d+\.\s+/, "");
+        while (i < zeilen.length && /^\s{2,}\S/.test(zeilen[i]) && !/^\s*\d+\.\s+/.test(zeilen[i])) li += " " + zeilen[i++].trim();
+        html += `<li>${inl(li)}</li>`;
+      }
+      html += "</ol>"; continue;
+    }
+    if (!z.trim()) { i++; continue; }
+    const absatz = [];
+    while (i < zeilen.length && zeilen[i].trim() && !/^(```|#{1,4}\s|\s*[-*]\s+|\s*\d+\.\s+|\$\$)/.test(zeilen[i])) absatz.push(zeilen[i++]);
+    html += `<p>${inl(absatz.join(" "))}</p>`;
+  }
+  return html;
+}
+
+/* Syntax-Hervorhebung für statischen Code */
+const KW = new Set("False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield".split(" "));
+const BI = new Set("print input len range int float str bool list dict set tuple type enumerate sum min max round sorted abs open help dir bin repr isinstance zip".split(" "));
+function hl(zeile) {
+  let out = "", m;
+  const re = /(#.*$)|("""|''')|([rRfFbB]?"(?:\\.|[^"\\])*"|[rRfFbB]?'(?:\\.|[^'\\])*')|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)|(\s+)|(.)/g;
+  while ((m = re.exec(zeile))) {
+    if (m[1]) out += `<span class="c">${esc(m[1])}</span>`;
+    else if (m[2] || m[3]) out += `<span class="s">${esc(m[0])}</span>`;
+    else if (m[4]) out += `<span class="n">${m[4]}</span>`;
+    else if (m[5]) out += KW.has(m[5]) ? `<span class="k">${m[5]}</span>` : BI.has(m[5]) ? `<span class="f">${m[5]}</span>` : m[5];
+    else out += esc(m[0]);
+  }
+  return out;
+}
+function codeBlock(code, opts = {}) {
+  const istPy = !opts.sprache || opts.sprache === "python";
+  let lueckeNr = 0;
+  const html = String(code).split("\n").map((z, i) => {
+    let inhalt;
+    if (opts.luecken) inhalt = z.split("___").map(t => hl(t)).reduce((acc, t, k) => k === 0 ? t : acc + `<input class="luecke" data-i="${lueckeNr++}" autocomplete="off" autocapitalize="off" spellcheck="false">` + t, "");
+    else inhalt = istPy ? hl(z) : esc(z);
+    return `<div class="ln${opts.klick ? " klick" : ""}" data-z="${i + 1}"><span class="zn">${i + 1}</span><span class="t">${inhalt || " "}</span></div>`;
+  }).join("");
+  return `<pre class="code">${html}</pre>`;
+}
+
+/* ============================================================
+   STORAGE – Fortschritt (Artifact-DB, sonst localStorage)
+   ============================================================ */
+const storage = (() => {
+  const KEY = "digital-campus-" + FACH_ID;
+  let dbRef = null, schreibt = Promise.resolve(), timer = null;
+  const leer = () => ({ v: 2, xp: 0, streak: 0, letzterTag: null, tage: {}, lektionen: {}, fehler: {}, nb: {}, tab: {} });
+  async function verbinden() {
+    try {
+      if (!window.claude?.use) return null;
+      const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+      if (!db || !user) return null;
+      const id = await user.id();
+      if (!id) return null;
+      dbRef = db.doc("data/users/" + id + "/" + FACH_ID);
+      return dbRef;
+    } catch (e) { return null; }
+  }
+  function jetzt(stand) {
+    try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch (e) {}
+    if (dbRef) { const kopie = JSON.parse(JSON.stringify(stand)); schreibt = schreibt.then(() => dbRef.set(kopie)).catch(() => {}); }
+  }
+  return {
+    async laden() {
+      let lokal = null;
+      try { lokal = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      const ref = await Promise.race([verbinden(), new Promise(r => setTimeout(() => r(null), 10000))]);
+      if (ref) { try { const snap = await ref.get(); if (snap.exists) return Object.assign(leer(), JSON.parse(JSON.stringify(snap.data()))); } catch (e) {} }
+      return Object.assign(leer(), lokal || {});
+    },
+    speichern(stand) { clearTimeout(timer); jetzt(stand); },
+    spaeter(stand) { clearTimeout(timer); timer = setTimeout(() => jetzt(stand), 1500); },
+    online: () => !!dbRef
+  };
+})();
+
+/* ============================================================
+   PYTHON-KERNEL (Pyodide in einem Web Worker)
+   ============================================================ */
+const kernel = (() => {
+  const WORKER = `
+    let py = null, bereit = null;
+    self.onmessage = async (ev) => {
+      const m = ev.data;
+      try {
+        if (!bereit) bereit = (async () => {
+          // 1. eigene Dateien (im Artifact nötig), 2. CDN als Rückfall (z. B. lokale Kopie ohne pyodide-Ordner)
+          let fehler = null;
+          for (const q of m.quellen) {
+            try {
+              const r = await fetch(q.url + "pyodide-lock.json", { method: "HEAD" });
+              if (!r.ok) throw new Error("HTTP " + r.status + " bei " + q.url);
+              if (!self.loadPyodide) importScripts(q.url + "pyodide.js");
+              py = await loadPyodide({ indexURL: q.url, stdLibURL: q.url + q.stdlib });
+              py.runPython(m.runner); return;
+            } catch (e) { fehler = e; }
+          }
+          throw fehler;
+        })();
+        try { await bereit; } catch (e) { bereit = null; throw new Error("LADEN: " + (e && e.message || e)); }
+        const f = py.globals.get("_dc_" + m.cmd);
+        const r = f(JSON.stringify(m.args)); f.destroy();
+        self.postMessage({ id: m.id, ok: true, r: JSON.parse(r) });
+      } catch (e) {
+        const t = String(e && e.message || e);
+        self.postMessage({ id: m.id, ok: false, laden: t.startsWith("LADEN: "), fehler: t.replace(/^LADEN: /, "") });
+      }
+    };`;
+  const LADE_LIMIT = 60000;
+  let worker = null, nr = 0, geladen = false, ladeTimer = null;
+  const offen = new Map();          // id -> { res, timer } – alle wartenden Aufrufe
+  const hoerer = new Set();
+  let zustand = "aus";
+  const setze = z => { zustand = z; hoerer.forEach(f => f(z)); };
+  const ladeFehler = t => "Python konnte nicht geladen werden (" + t + "). Prüfe die Internetverbindung und versuche es nochmals.";
+  const status = () => setze(offen.size ? (geladen ? "laeuft" : "lädt") : (geladen ? "bereit" : "aus"));
+
+  // Worker beenden und ALLE offenen Aufrufe beantworten (keine verwaisten Timer mehr)
+  function beenden(antwort) {
+    const w = worker; worker = null; geladen = false;
+    clearTimeout(ladeTimer); ladeTimer = null;
+    if (w) { w.onmessage = null; w.onerror = null; try { w.terminate(); } catch (x) {} }
+    const alle = [...offen.values()]; offen.clear();
+    alle.forEach(o => { clearTimeout(o.timer); o.res({ ok: false, ...antwort }); });
+    setze("aus");
+  }
+  function starten() {
+    const w = new Worker(URL.createObjectURL(new Blob([WORKER], { type: "text/javascript" })));
+    worker = w; geladen = false;
+    w.onmessage = ev => {
+      if (w !== worker) return;
+      const d = ev.data, o = offen.get(d.id);
+      if (d.ok && !geladen) geladen = true;
+      if (d.ok || d.laden) { clearTimeout(ladeTimer); ladeTimer = null; }
+      if (o) {
+        offen.delete(d.id); clearTimeout(o.timer);
+        o.res(d.ok ? { ok: true, ...d.r } : { ok: false, fehler: d.laden ? ladeFehler(d.fehler) : d.fehler });
+      }
+      status();
+    };
+    w.onerror = ev => { if (w === worker) beenden({ fehler: ladeFehler(ev && ev.message || "Worker-Fehler") }); };
+  }
+  function senden(cmd, args = {}, zeitlimit) {
+    if (!worker) {
+      try { starten(); }
+      catch (e) { setze("aus"); return Promise.resolve({ ok: false, fehler: ladeFehler(e && e.message || e) }); }
+    }
+    const w = worker, id = ++nr;
+    if (!geladen && !ladeTimer) ladeTimer = setTimeout(() => {
+      ladeTimer = null;
+      if (w === worker && !geladen) beenden({ zeitlimit: true, fehler: ladeFehler("Zeitüberschreitung beim Laden") });
+    }, LADE_LIMIT);
+    const limit = (zeitlimit ?? 15000) + (geladen ? 0 : LADE_LIMIT);
+    return new Promise(res => {
+      const o = { res, timer: null };
+      o.timer = setTimeout(() => {
+        if (w === worker) beenden({ zeitlimit: true, fehler: "Zeitlimit überschritten – vielleicht eine Endlosschleife? Der Kernel wurde neu gestartet, alle Variablen sind weg." });
+        else if (offen.get(id) === o) { offen.delete(id); res({ ok: false, fehler: "Der Kernel wurde neu gestartet." }); }
+      }, limit);
+      offen.set(id, o);
+      status();
+      w.postMessage({ id, cmd, args, quellen: PYODIDE_QUELLEN, runner: RUNNER_PY });
+    });
+  }
+  return {
+    vorwaermen() { if (!worker) senden("ping"); },
+    run: (args) => senden("run", args),
+    reset: (ns) => senden("reset", { ns }),
+    check: (args) => senden("check", args, 30000),
+    checkAlt: (args) => senden("check_alt", args, 30000),
+    stopp() { if (worker && offen.size) beenden({ gestoppt: true, fehler: "Ausführung gestoppt. Der Kernel wurde neu gestartet, alle Variablen sind weg." }); },
+    zustand: () => zustand,
+    beobachte(f) { hoerer.add(f); f(zustand); return () => hoerer.delete(f); }
+  };
+})();
+const RUNNER_PY = document.getElementById("py-runner").textContent;
+
+/* ============================================================
+   CODE-EDITOR (CodeMirror 5, sonst Textarea)
+   ============================================================ */
+function editor(el, wert, opt = {}) {
+  if (window.CodeMirror) {
+    const cm = CodeMirror(el, {
+      value: wert, mode: opt.sprache === "markdown" ? "text/plain" : "python", theme: "dc", indentUnit: 4, tabSize: 4,
+      lineNumbers: !!opt.zeilen, matchBrackets: true, autoCloseBrackets: true, viewportMargin: Infinity,
+      readOnly: opt.gesperrt ? "nocursor" : false, lineWrapping: opt.sprache === "markdown",
+      extraKeys: {
+        Tab: c => c.somethingSelected() ? c.indentSelection("add") : c.replaceSelection("    ", "end"),
+        "Shift-Tab": c => c.indentSelection("subtract"),
+        "Shift-Enter": () => opt.tasten?.("shift"), "Ctrl-Enter": () => opt.tasten?.("ctrl"), "Cmd-Enter": () => opt.tasten?.("ctrl"),
+        "Alt-Enter": () => opt.tasten?.("alt"),
+        "Ctrl-/": c => kommentieren(c), "Cmd-/": c => kommentieren(c)
+      }
+    });
+    if (opt.aenderung) cm.on("change", () => opt.aenderung(cm.getValue()));
+    if (opt.fokus) cm.on("focus", opt.fokus);
+    return { get: () => cm.getValue(), set: v => cm.setValue(v), focus: () => { cm.focus(); cm.setCursor(cm.lineCount(), 0); }, refresh: () => cm.refresh() };
+  }
+  const ta = h(`<textarea class="ersatz" spellcheck="false" autocapitalize="off"></textarea>`);
+  ta.value = wert; ta.readOnly = !!opt.gesperrt;
+  const passen = () => { ta.style.height = "auto"; ta.style.height = (ta.scrollHeight + 2) + "px"; };
+  ta.addEventListener("input", () => { passen(); opt.aenderung?.(ta.value); });
+  ta.addEventListener("focus", () => opt.fokus?.());
+  ta.addEventListener("keydown", e => {
+    if (e.key === "Enter" && (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey)) { e.preventDefault(); opt.tasten?.(e.shiftKey ? "shift" : e.altKey ? "alt" : "ctrl"); }
+    else if (e.key === "Tab") { e.preventDefault(); const s = ta.selectionStart; ta.setRangeText("    ", s, ta.selectionEnd, "end"); opt.aenderung?.(ta.value); }
+  });
+  el.appendChild(ta); setTimeout(passen);
+  return { get: () => ta.value, set: v => { ta.value = v; passen(); }, focus: () => ta.focus(), refresh: passen };
+}
+function kommentieren(cm) {
+  const von = cm.getCursor("from").line, bis = cm.getCursor("to").line;
+  const zeilen = []; for (let i = von; i <= bis; i++) zeilen.push(cm.getLine(i));
+  const alle = zeilen.every(z => /^\s*#/.test(z) || !z.trim());
+  cm.operation(() => { for (let i = von; i <= bis; i++) { const z = cm.getLine(i); if (!z.trim()) continue; const neu = alle ? z.replace(/^(\s*)# ?/, "$1") : z.replace(/^(\s*)/, "$1# "); cm.replaceRange(neu, { line: i, ch: 0 }, { line: i, ch: z.length }); } });
+}
+
+/* Ausgabe einer Ausführung als HTML */
+function ausgabeHtml(r) {
+  if (!r) return "";
+  if (!r.ok && r.fehler && r.out === undefined) return `<pre class="out fehler">${esc(r.fehler)}</pre>`;
+  let html = "";
+  if (r.out) html += `<pre class="out">${esc(r.out.replace(/\n$/, ""))}</pre>`;
+  if (r.wert != null) html += `<pre class="out"><span class="wert">${esc(r.wert)}</span></pre>`;
+  if (r.fehler) html += `<pre class="out fehler">${esc(r.fehler)}</pre>`;
+  return html;
+}
+
+/* ============================================================
+   INHALTE
+   ============================================================ */
+const inhalt = { fach: null, einheiten: [], termine: null, basis: null };
+async function inhalteLaden() {
+  for (const b of BASIS_PFADE) {
+    try { const r = await fetch(b + "fach.json", { cache: "no-cache" }); if (!r.ok) continue; inhalt.fach = await r.json(); inhalt.basis = b; break; } catch (e) {}
+  }
+  if (!inhalt.fach) throw new Error("fach.json nicht gefunden");
+  const eintraege = inhalt.fach.einheiten.filter(e => e.status !== "geplant");
+  const geladen = await Promise.all(eintraege.map(async e => {
+    try { const r = await fetch(inhalt.basis + (e.datei || "einheiten/" + e.id + ".json"), { cache: "no-cache" }); if (!r.ok) return null; const d = await r.json(); return { ...d, woche: d.woche ?? e.woche, titel: d.titel || e.titel, bereich: d.bereich ?? e.bereich }; } catch (x) { return null; }
+  }));
+  inhalt.einheiten = geladen.filter(Boolean).map((e, i) => ({ ...e, _i: i }))
+    .sort((a, b) => (a.woche ?? 99) - (b.woche ?? 99) || a._i - b._i);
+  try { const t = inhalt.fach.zusaetze?.termine; if (t) { const r = await fetch(inhalt.basis + t, { cache: "no-cache" }); if (r.ok) inhalt.termine = await r.json(); } } catch (e) {}
+}
+const abschnitte = () => inhalt.fach.abschnitte || ["theorie", "schnellfragen", "programmieren", "ueben"];
+const lektionenIn = (e, ab) => e.lektionen.filter(l => abschnittVon(l) === ab);
+function finde(id) {
+  for (const e of inhalt.einheiten) { if (e.id === id) return { e }; const l = e.lektionen.find(l => l.id === id); if (l) return { e, l }; }
+  return null;
+}
+
+/* ============================================================
+   FORTSCHRITT
+   ============================================================ */
+let stand = null;
+const altAufgaben = l => (l.aufgaben || []).filter(a => a.typ === "programmieraufgabe");
+function lektionStatus(l) {
+  const s = stand.lektionen[l.id] || {};
+  const ab = abschnittVon(l);
+  if (ab === "programmieren") {
+    const alt = altAufgaben(l);
+    if (alt.length) { const ok = alt.filter(a => stand.nb[a.id]?.ok).length; return { fertig: ok === alt.length, text: ok ? `${ok}/${alt.length} bestanden` : `${alt.length} Aufgabe${alt.length > 1 ? "n" : ""}` }; }
+    return { fertig: !!stand.nb[l.id]?.ok, text: stand.nb[l.id]?.ok ? "bestanden" : stand.nb[l.id] ? "angefangen" : "" };
+  }
+  if (ab === "theorie" && !(l.aufgaben?.length)) return { fertig: !!s.gelesen, text: s.gelesen ? "gelesen" : "" };
+  if (s.best != null) return { fertig: s.best >= 80, text: `${s.best} %` };
+  return { fertig: !!s.gelesen, text: s.gelesen ? "gelesen" : "" };
+}
+function einheitFortschritt(e) {
+  const ls = e.lektionen.filter(l => abschnitte().includes(abschnittVon(l)));
+  if (!ls.length) return 0;
+  return ls.filter(l => lektionStatus(l).fertig).length / ls.length;
+}
+function streak() {
+  const t = heute(); if (stand.letzterTag === t) return;
+  const gestern = new Date(Date.now() - 864e5).toLocaleDateString("sv-SE");
+  stand.streak = stand.letzterTag === gestern ? (stand.streak || 0) + 1 : 1; stand.letzterTag = t;
+}
+
+/* ============================================================
+   SEITENRAHMEN UND NAVIGATION
+   ============================================================ */
+const HOME = `<a class="dc-home" href="${DASHBOARD}" title="Zurück zum Dashboard – Digital Campus" aria-label="Zurück zum Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Dashboard</span></a>`;
+let aufraeumen = [];
+/* Frag Claude (Modul aus dem Dachprojekt): Kontext der aktuellen Ansicht */
+let claudeKontext = null;
+window.dcClaude = Object.assign(window.dcClaude || {}, { kontext: () => claudeKontext ? claudeKontext() : null });
+const fragKnopf = (text, label) => window.dcClaude?.knopf ? dcClaude.knopf(text, label) : "";
+function rahmen(zurueck) {
+  aufraeumen.forEach(f => { try { f(); } catch (e) {} }); aufraeumen = []; claudeKontext = null;
+  const app = $("#app");
+  app.innerHTML = `<header class="kopf"><div class="wrap">
+      ${zurueck ? `<button class="zurueck" id="zurueck">‹ ${esc(zurueck.text)}</button>` : ""}
+      <div class="logo">${esc(inhalt.fach.name)}<small>Digital Campus</small></div>
+      <div class="platz"></div>${HOME}</div></header><main><div class="wrap" id="seite"></div></main>`;
+  if (zurueck) $("#zurueck").onclick = zurueck.ziel;
+  window.scrollTo(0, 0);
+  return $("#seite");
+}
+function gehe(id) { if (location.hash.slice(1) === (id || "")) route(); else if (id) location.hash = id; else { try { history.pushState(null, "", location.pathname + location.search); } catch (e) { location.hash = ""; } route(); } }
+function route() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const f = id && finde(id);
+  if (!f) return uebersicht();
+  if (!f.l && istPruefung(f.e)) { stand.tab.__start = "pruefung"; return uebersicht(); }
+  if (!f.l) return einheitSeite(f.e);
+  lektionSeite(f.e, f.l);
+}
+window.addEventListener("hashchange", route);
+window.addEventListener("popstate", route);
+
+/* ============================================================
+   ÜBERSICHT
+   ============================================================ */
+function naechsterTermin() {
+  const t = inhalt.termine?.termine || []; const jetzt = heute();
+  return t.filter(x => (x.bis || x.von).slice(0, 10) >= jetzt && (x.pflicht || x.bewertet || x.art === "pruefung")).sort((a, b) => a.von.localeCompare(b.von))[0];
+}
+function ring(anteil) {
+  const r = 18, u = 2 * Math.PI * r, p = Math.round(anteil * 100);
+  return `<svg class="ring" viewBox="0 0 44 44" aria-label="${p} % erledigt"><circle class="bg" cx="22" cy="22" r="${r}"/><circle class="fg" cx="22" cy="22" r="${r}" stroke-dasharray="${u}" stroke-dashoffset="${u * (1 - anteil)}"/><text x="22" y="22">${p}%</text></svg>`;
+}
+function uebersicht() {
+  const s = rahmen(null);
+  const t = naechsterTermin();
+  const datum = d => new Date(d.slice(0, 10) + "T12:00").toLocaleDateString("de-CH", { weekday: "short", day: "numeric", month: "numeric" });
+  s.innerHTML = `<h1 class="titel-gross">Übersicht</h1>
+    <p class="leise">Pro Woche: Theorie lesen, Schnellfragen beantworten, dann im Notebook programmieren.</p>
+    ${t ? `<div class="termin"><div><b>${esc(t.titel)}</b> · ${esc(datum(t.von))}${t.zeit ? " · " + esc(t.zeit) : ""}${t.ort ? " · " + esc(t.ort) : ""}${t.hinweis ? `<div class="leise klein">${esc(t.hinweis)}</div>` : ""}</div></div>` : ""}
+    <div class="wochen" id="wochen"></div><div id="pruef-tab" hidden></div>
+    <p class="quelle">${storage.online() ? "Fortschritt wird in deinem Konto gespeichert." : "Fortschritt wird nur in diesem Browser gespeichert."}</p>`;
+  const wochenEinheiten = inhalt.einheiten.filter(x => !istPruefung(x));
+  for (const e of wochenEinheiten) {
+    const z = abschnitte().map(ab => [ab, lektionenIn(e, ab).length]).filter(x => x[1]).map(([ab, n]) => `${n} ${ABSCHNITT_NAME[ab]}`).join(" · ");
+    const b = h(`<button class="woche"><div class="sw">${e.woche ? "SW" + String(e.woche).padStart(2, "0") : "–"}</div>
+      <div><h3>${esc(e.titel)}</h3><div class="zahlen">${esc(z)}</div></div>${ring(einheitFortschritt(e))}</button>`);
+    b.onclick = () => gehe(e.id);
+    $("#wochen", s).appendChild(b);
+  }
+  if (!wochenEinheiten.length) $("#wochen", s).innerHTML = `<div class="leer">Noch keine Einheiten vorhanden.</div>`;
+  const pe = inhalt.einheiten.find(istPruefung);
+  if (pe) {
+    const nav = h(`<nav class="tabs start" role="tablist"><button class="tab" type="button" data-t="wochen">Wochen<span class="n">${wochenEinheiten.length}</span></button><button class="tab" type="button" data-t="pruefung">Prüfungsvorbereitung<span class="n">${pe.lektionen.length}</span></button></nav>`);
+    $("#wochen", s).before(nav);
+    const pbox = $("#pruef-tab", s);
+    pruefungsTab(pbox, pe, t);
+    const zeige = () => {
+      const tab = stand.tab.__start === "pruefung" ? "pruefung" : "wochen";
+      nav.querySelectorAll(".tab").forEach(b => b.classList.toggle("aktiv", b.dataset.t === tab));
+      $("#wochen", s).hidden = tab !== "wochen"; pbox.hidden = tab !== "pruefung";
+      if (tab === "pruefung") kernel.vorwaermen();
+    };
+    nav.querySelectorAll(".tab").forEach(b => b.onclick = () => { stand.tab.__start = b.dataset.t; storage.spaeter(stand); zeige(); });
+    zeige();
+  }
+}
+
+function pruefungsTab(box, e, termin) {
+  const ls = e.lektionen;
+  const offen = ls.filter(l => !lektionStatus(l).fertig);
+  box.innerHTML = `<p class="leise">Grössere Programme, die mehrere Themen aus SW02 bis SW08 verbinden. Du schreibst sie wie im JupyterHub in einem Notebook (<kbd>Shift</kbd>+<kbd>Enter</kbd> führt eine Zelle aus) und prüfst sie am Schluss.${termin ? ` Nächster Termin: <b>${esc(termin.titel)}</b>.` : ""}</p>
+    <div class="knopfzeile" style="margin-top:8px"><button class="btn primaer" type="button" id="zufall">${offen.length ? "Zufällige offene Aufgabe" : "Zufällige Aufgabe"}</button><span class="leise klein">${ls.length - offen.length} von ${ls.length} bestanden</span></div>
+    <div class="lektionen" id="pruef-liste" style="margin-top:16px"></div>`;
+  $("#zufall", box).onclick = () => { const pool = offen.length ? offen : ls; gehe(pool[Math.floor(Math.random() * pool.length)].id); };
+  ls.forEach((l, i) => {
+    const st = lektionStatus(l);
+    const themen = (String(l.aufgabe || "").match(/\*\*Themen:\*\*\s*(.*)/) || [])[1] || "";
+    const meta = [l.dauer_min ? `${l.dauer_min} min` : "", l.schwierigkeit ? `<span class="stufe">${"●".repeat(l.schwierigkeit)}${"○".repeat(3 - l.schwierigkeit)}</span>` : ""].filter(Boolean).join(" · ");
+    const b = h(`<button class="lektion${st.fertig ? " fertig" : ""}" type="button"><span class="nr">${st.fertig ? "✓" : i + 1}</span><span class="txt"><span>${esc(l.titel)}</span><br><span class="meta">${meta}</span>${themen ? `<span class="themen">${esc(themen)}</span>` : ""}</span><span class="status">${esc(st.text)}</span></button>`);
+    b.onclick = () => gehe(l.id);
+    $("#pruef-liste", box).appendChild(b);
+  });
+}
+
+/* ============================================================
+   EINHEIT
+   ============================================================ */
+function einheitSeite(e) {
+  const s = rahmen({ text: "Übersicht", ziel: () => gehe("") });
+  const abs = abschnitte().filter(ab => lektionenIn(e, ab).length);
+  let tab = stand.tab[e.id] && abs.includes(stand.tab[e.id]) ? stand.tab[e.id] : abs[0];
+  s.innerHTML = `<div class="einheit-kopf"><div class="sw">${e.woche ? "SW" + String(e.woche).padStart(2, "0") : "–"}</div>
+      <div><h1 class="titel-gross">${esc(e.titel)}</h1>${e.beschreibung ? `<p class="leise" style="margin:2px 0 0">${esc(e.beschreibung)}</p>` : ""}</div></div>
+    <nav class="tabs" role="tablist">${abs.map(ab => `<button class="tab" role="tab" data-ab="${ab}">${ABSCHNITT_NAME[ab]}<span class="n">${lektionenIn(e, ab).length}</span></button>`).join("")}</nav>
+    <div id="liste"></div>`;
+  const zeige = () => {
+    s.querySelectorAll(".tab").forEach(b => b.classList.toggle("aktiv", b.dataset.ab === tab));
+    const liste = $("#liste", s); liste.innerHTML = "";
+    const ls = lektionenIn(e, tab);
+    const box = h(`<div class="lektionen"></div>`);
+    ls.forEach((l, i) => {
+      const st = lektionStatus(l);
+      const n = l.aufgaben?.length;
+      const meta = [l.dauer_min ? `${l.dauer_min} min` : "", tab === "schnellfragen" && n ? `${n} Fragen` : "", l.schwierigkeit ? `<span class="stufe">${"●".repeat(l.schwierigkeit)}${"○".repeat(3 - l.schwierigkeit)}</span>` : ""].filter(Boolean).join(" · ");
+      const b = h(`<button class="lektion${st.fertig ? " fertig" : ""}"><span class="nr">${st.fertig ? "✓" : i + 1}</span>
+        <span class="txt"><span>${esc(l.titel)}</span><br><span class="meta">${meta}</span></span><span class="status">${esc(st.text)}</span></button>`);
+      b.onclick = () => gehe(l.id);
+      box.appendChild(b);
+    });
+    liste.appendChild(box);
+    if (tab === "programmieren") kernel.vorwaermen();
+  };
+  s.querySelectorAll(".tab").forEach(b => b.onclick = () => { tab = b.dataset.ab; stand.tab[e.id] = tab; storage.spaeter(stand); zeige(); });
+  zeige();
+}
+
+/* ============================================================
+   LEKTION
+   ============================================================ */
+function lektionSeite(e, l) {
+  const ab = abschnittVon(l);
+  stand.tab[e.id] = ab;
+  const s = rahmen({ text: istPruefung(e) ? "Prüfungsvorbereitung" : ABSCHNITT_NAME[ab], ziel: () => gehe(e.id) });
+  const naechste = () => { const ls = lektionenIn(e, ab); return ls[ls.indexOf(l) + 1]; };
+  if (ab === "programmieren") return programmierenSeite(s, e, l, naechste);
+  if (ab === "theorie") return theorieSeite(s, e, l, naechste);
+  return schnellfragenSeite(s, e, l, naechste);
+}
+function weiterKnopf(naechste, e, text = "Weiter") {
+  const n = naechste();
+  const b = h(`<button class="btn${n ? "" : " geist"}">${n ? `${esc(text)}: ${esc(n.titel)} ›` : (istPruefung(e) ? "Zurück zur Prüfungsvorbereitung" : "Zurück zur Einheit")}</button>`);
+  b.onclick = () => gehe(n ? n.id : e.id);
+  return b;
+}
+
+/* ---------- Theorie ---------- */
+function bausteinHtml(b) {
+  switch (b.typ) {
+    case "titel": return `<h3>${inl(b.text)}</h3>`;
+    case "text": return md(b.text);
+    case "liste": return `${b.titel ? `<div class="listen-titel">${inl(b.titel)}</div>` : ""}<ul>${(b.punkte || []).map(p => `<li>${inl(p)}</li>`).join("")}</ul>`;
+    case "formel": return `<div class="formel">${formel(b.tex || b.text || "", true)}</div>`;
+    case "merke": return `<div class="merke">${inl(b.text)}</div>`;
+    case "hinweis": return `<div class="hinweis">${inl(b.text)}</div>`;
+    case "tabelle": return `<table class="tab-inhalt">${b.kopf ? `<thead><tr>${b.kopf.map(k => `<th>${inl(k)}</th>`).join("")}</tr></thead>` : ""}<tbody>${(b.zeilen || []).map(z => `<tr>${z.map(c => `<td>${inl(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+    case "bild": return `<p><img src="${esc(b.src)}" alt="${esc(b.alt || "")}"></p>`;
+    case "code": return null;
+    default: return b.text ? md(b.text) : "";
+  }
+}
+function beispielBlock(b) {
+  const ausf = b.ausfuehrbar && (!b.sprache || b.sprache === "python");
+  const box = h(`<div class="beispiel"><div class="beispiel-kopf"><span>${esc(b.titel || (b.sprache && b.sprache !== "python" ? b.sprache : "Beispiel"))}</span><span class="platz"></span>${ausf ? `<button class="btn klein" data-a="edit">Ausprobieren</button>` : ""}</div>
+    <div class="code-hier">${codeBlock(b.code, { sprache: b.sprache })}</div>
+    ${b.ausgabe != null && b.ausgabe !== "" ? `<div class="ausgabe"><div class="ausgabe-label">Ausgabe</div><pre class="out">${esc(b.ausgabe)}</pre></div>` : `<div class="ausgabe" hidden></div>`}</div>`);
+  if (!ausf) return box;
+  let ed = null;
+  const kopf = $(".beispiel-kopf", box);
+  const ausfuehren = async () => {
+    const aus = $(".ausgabe", box); aus.hidden = false;
+    aus.innerHTML = `<div class="ausgabe-label">Ausgabe</div><pre class="out leise"><span class="spin"></span> ${kernel.zustand() === "bereit" ? "läuft …" : "Python wird geladen …"}</pre>`;
+    const r = await kernel.run({ ns: "theorie", frisch: true, code: ed ? ed.get() : b.code, name: "<Zelle>", stdin: [] });
+    aus.innerHTML = `<div class="ausgabe-label">Ausgabe</div>` + (r.need != null ? `<pre class="out fehler">input() braucht eine Eingabe – probiere das im Abschnitt Programmieren aus.</pre>` : ausgabeHtml(r) || `<pre class="out leise">(keine Ausgabe)</pre>`);
+  };
+  $("[data-a=edit]", box).onclick = () => {
+    const ziel = $(".code-hier", box); ziel.innerHTML = ""; ziel.classList.add("editor");
+    ed = editor(ziel, b.code, { tasten: () => ausfuehren() });
+    kopf.querySelector("[data-a=edit]").remove();
+    const run = h(`<button class="btn klein primaer" title="Shift+Enter">▶ Ausführen</button>`); run.onclick = ausfuehren;
+    const zur = h(`<button class="btn klein geist">Zurücksetzen</button>`); zur.onclick = () => ed.set(b.code);
+    kopf.append(zur, run);
+    setTimeout(() => { ed.refresh(); ed.focus(); });
+    kernel.vorwaermen();
+  };
+  return box;
+}
+function theorieSeite(s, e, l, naechste) {
+  claudeKontext = () => ({ stufe: `SW${String(e.woche || "").padStart(2, "0")} · Theorie · ${l.titel}` });
+  s.innerHTML = `<article class="lesen"><h1>${esc(l.titel)}</h1><p class="leise klein">${l.dauer_min ? l.dauer_min + " min · " : ""}SW${String(e.woche || "").padStart(2, "0")} · Theorie</p><div id="bausteine"></div></article>`;
+  const ziel = $("#bausteine", s);
+  for (const b of l.inhalt || []) {
+    const html = bausteinHtml(b);
+    if (html === null) ziel.appendChild(beispielBlock(b)); else ziel.insertAdjacentHTML("beforeend", html);
+  }
+  if (l.quelle) s.insertAdjacentHTML("beforeend", `<p class="quelle">Quelle: ${esc(quelleText(l.quelle))}</p>`);
+  const zeile = h(`<div class="knopfzeile"></div>`);
+  const fertig = h(`<button class="btn primaer">${l.aufgaben?.length ? "Kontrollfragen starten" : stand.lektionen[l.id]?.gelesen ? "Gelesen ✓ – weiter" : "Gelesen – weiter"}</button>`);
+  fertig.onclick = () => {
+    if (l.aufgaben?.length) { const neu = rahmen({ text: "Theorie", ziel: () => gehe(e.id) }); return quiz(neu, e, l, naechste); }
+    stand.lektionen[l.id] = { ...(stand.lektionen[l.id] || {}), gelesen: true, zuletzt: heute() }; streak(); storage.speichern(stand);
+    const n = naechste(); gehe(n ? n.id : e.id);
+  };
+  zeile.appendChild(fertig);
+  if (naechste()) zeile.appendChild(weiterKnopf(naechste, e, "Überspringen"));
+  s.appendChild(zeile);
+}
+const quelleText = q => Array.isArray(q) ? q.map(x => typeof x === "string" ? x : [x.text, x.stellen].filter(Boolean).join(", ")).join("; ") : String(q);
+
+/* ---------- Schnellfragen ---------- */
+function schnellfragenSeite(s, e, l, naechste) {
+  if (l.inhalt?.length) {
+    // Lektion mit Lesestoff vor den Fragen
+    s.innerHTML = `<article class="lesen"><h1>${esc(l.titel)}</h1><div id="bausteine"></div></article>`;
+    for (const b of l.inhalt) { const html = bausteinHtml(b); if (html === null) $("#bausteine", s).appendChild(beispielBlock(b)); else $("#bausteine", s).insertAdjacentHTML("beforeend", html); }
+    const start = h(`<div class="knopfzeile"><button class="btn primaer">Fragen starten</button></div>`);
+    start.firstChild.onclick = () => quiz(rahmen({ text: "Schnellfragen", ziel: () => gehe(e.id) }), e, l, naechste);
+    s.appendChild(start); return;
+  }
+  quiz(s, e, l, naechste);
+}
+function quiz(s, e, l, naechste) {
+  const aufgaben = (l.aufgaben || []).filter(a => a.typ !== "programmieraufgabe");
+  const sitz = { queue: aufgaben.slice(), total: aufgaben.length, erledigt: 0, richtigErst: 0, falsch: new Set() };
+  s.innerHTML = `<h1 style="font-size:1.25rem">${esc(l.titel)}</h1><div class="fortschritt"><i id="balken" style="width:0"></i></div><div id="aufgabe"></div>`;
+  const naechsteAufgabe = () => {
+    $("#balken", s).style.width = (sitz.erledigt / Math.max(1, sitz.total) * 100) + "%";
+    const a = sitz.queue[0];
+    if (!a) return ende();
+    const box = $("#aufgabe", s); box.innerHTML = "";
+    const r = RENDER[a.typ] || RENDER._unbekannt;
+    r(a, box, (ok, info) => antwort(a, box, ok, info));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const antwort = (a, box, ok, info = {}) => {
+    if (ok && !sitz.falsch.has(a.id)) { sitz.richtigErst++; delete stand.fehler[a.id]; }
+    if (!ok) { if (!sitz.falsch.has(a.id)) sitz.queue.push(a); sitz.falsch.add(a.id); stand.fehler[a.id] = true; }
+    const fb = h(`<div class="feedback ${ok ? "ok" : "falsch"}"><b>${ok ? "Richtig" : "Nicht ganz"}</b>${info.loesung != null && !ok ? `<div>Richtig wäre: ${info.loesungHtml || `<code>${esc(info.loesung)}</code>`}</div>` : ""}${a.erklaerung ? `<div>${inl(a.erklaerung)}</div>` : ""}${a.quelle ? `<div class="quelle" style="margin-top:6px">${esc(quelleText(a.quelle))}</div>` : ""}</div>`);
+    box.appendChild(fb);
+    const zeile = h(`<div class="knopfzeile"></div>`);
+    const w = h(`<button class="btn primaer">Weiter</button>`);
+    w.onclick = () => { sitz.queue.shift(); if (ok) sitz.erledigt++; naechsteAufgabe(); };
+    zeile.appendChild(w);
+    const frage = a.frage || a.aussage || a.vorne || "";
+    const knopf = fragKnopf(window.dcClaude?.frageText ? dcClaude.frageText(frage, (a.code ? "Code:\n" + a.code + "\n" : "") + "Meine Antwort war " + (ok ? "richtig." : "falsch.") + (info.antwort ? " Ich habe geantwortet: " + info.antwort : "")) : frage, ok ? "Claude fragen" : "Warum? Claude fragen");
+    if (knopf) zeile.appendChild(h(knopf));
+    box.appendChild(zeile);
+    setTimeout(() => w.focus());
+  };
+  const ende = () => {
+    const pct = Math.round(sitz.richtigErst / Math.max(1, sitz.total) * 100);
+    const alt = stand.lektionen[l.id] || {};
+    stand.lektionen[l.id] = { ...alt, best: Math.max(alt.best || 0, pct), anzahl: (alt.anzahl || 0) + 1, zuletzt: heute() };
+    stand.xp = (stand.xp || 0) + sitz.richtigErst * 2; streak(); storage.speichern(stand);
+    $("#balken", s).style.width = "100%";
+    const box = $("#aufgabe", s);
+    box.innerHTML = `<div class="ergebnis"><div class="gross">${pct}%</div><p>${sitz.richtigErst} von ${sitz.total} beim ersten Versuch richtig${pct >= 80 ? " – gut gemacht." : "."}</p></div>`;
+    const zeile = h(`<div class="knopfzeile" style="justify-content:center"></div>`);
+    const nochmal = h(`<button class="btn">Nochmal</button>`); nochmal.onclick = () => quiz(s, e, l, naechste);
+    zeile.append(nochmal, weiterKnopf(naechste, e));
+    box.appendChild(zeile);
+  };
+  naechsteAufgabe();
+}
+function kopf(a, text) {
+  return `${a.code && !a.typ.startsWith("code_") ? codeBlock(a.code, { sprache: a.sprache }) : ""}<div class="frage">${inl(text || "")}</div>`;
+}
+function pruefLeiste(box, text, bereit, onPruef) {
+  const z = h(`<div class="knopfzeile"><button class="btn primaer" ${bereit ? "" : "disabled"}>${esc(text)}</button></div>`);
+  const b = z.firstChild; let fertig = false;
+  b.onclick = () => { if (fertig) return; fertig = true; z.remove(); onPruef(); };
+  box.appendChild(z);
+  return { aktivieren: () => b.disabled = false, knopf: b };
+}
+const RENDER = {
+  multiple_choice(a, box, fertig) {
+    box.innerHTML = kopf(a, a.frage) + `<div class="optionen"></div>`;
+    let gew = null; const opts = (a.optionen || []).map((t, i) => ({ t, i }));
+    const leiste = pruefLeiste(box, "Prüfen", false, () => {
+      box.querySelectorAll(".opt").forEach(b => { b.disabled = true; const i = +b.dataset.i; if (i === a.richtig) b.classList.add("ok"); else if (i === gew) b.classList.add("falsch"); });
+      fertig(gew === a.richtig, { loesung: a.optionen[a.richtig], antwort: a.optionen[gew] });
+    });
+    for (const o of mischen(opts)) {
+      const b = h(`<button class="opt${a.typ === "code_ausgabe" ? " mono" : ""}" data-i="${o.i}">${a.typ === "code_ausgabe" ? esc(o.t) : inl(o.t)}</button>`);
+      b.onclick = () => { gew = o.i; box.querySelectorAll(".opt").forEach(x => x.classList.toggle("sel", x === b)); leiste.aktivieren(); };
+      $(".optionen", box).appendChild(b);
+    }
+  },
+  wahr_falsch(a, box, fertig) {
+    box.innerHTML = kopf(a, a.aussage || a.frage) + `<div class="zeile2"></div>`;
+    let gew = null;
+    const leiste = pruefLeiste(box, "Prüfen", false, () => {
+      box.querySelectorAll(".opt").forEach(b => { b.disabled = true; const v = b.dataset.v === "1"; if (v === a.richtig) b.classList.add("ok"); else if (v === gew) b.classList.add("falsch"); });
+      fertig(gew === a.richtig, { loesung: a.richtig ? "Wahr" : "Falsch", antwort: gew ? "Wahr" : "Falsch" });
+    });
+    [["Wahr", 1], ["Falsch", 0]].forEach(([t, v]) => {
+      const b = h(`<button class="opt" data-v="${v}">${t}</button>`);
+      b.onclick = () => { gew = !!v; box.querySelectorAll(".opt").forEach(x => x.classList.toggle("sel", x === b)); leiste.aktivieren(); };
+      $(".zeile2", box).appendChild(b);
+    });
+  },
+  code_ausgabe(a, box, fertig) {
+    if (Array.isArray(a.optionen) && a.optionen.length) {
+      RENDER.multiple_choice({ ...a, frage: a.frage || "Was gibt dieser Code aus?" }, box, fertig);
+      box.insertAdjacentHTML("afterbegin", codeBlock(a.code, { sprache: a.sprache })); return;
+    }
+    const erwartet = a.erwartete_ausgabe ?? a.richtig;
+    box.innerHTML = codeBlock(a.code, { sprache: a.sprache }) + `<div class="frage">${inl(a.frage || "Was gibt dieser Code aus? Tippe die Ausgabe ein.")}</div><textarea class="feld" placeholder="Ausgabe …" spellcheck="false" autocapitalize="off"></textarea>`;
+    const ta = $("textarea", box);
+    const leiste = pruefLeiste(box, "Prüfen", false, () => { ta.readOnly = true; const ok = normAusgabe(ta.value) === normAusgabe(erwartet); fertig(ok, { loesungHtml: `<pre class="md-code">${esc(erwartet)}</pre>`, loesung: erwartet, antwort: ta.value }); });
+    ta.oninput = () => ta.value.trim() ? leiste.aktivieren() : leiste.knopf.disabled = true;
+    setTimeout(() => ta.focus());
+  },
+  code_luecke(a, box, fertig) {
+    box.innerHTML = `<div class="frage">${inl(a.frage || "Fülle die Lücken.")}</div>` + codeBlock(a.code, { luecken: true, sprache: a.sprache });
+    const felder = [...box.querySelectorAll("input.luecke")];
+    const leiste = pruefLeiste(box, "Prüfen", false, () => {
+      let ok = true;
+      felder.forEach((f, i) => { const alt = [].concat(a.antworten?.[i] ?? []).map(x => String(x).replace(/\s+/g, "")); const r = alt.includes(f.value.replace(/\s+/g, "")); f.classList.add(r ? "ok" : "falsch"); f.readOnly = true; ok = ok && r; });
+      fertig(ok, { loesung: (a.antworten || []).map(x => [].concat(x)[0]).join(" · "), antwort: felder.map(f => f.value).join(" · ") });
+    });
+    felder.forEach(f => { f.oninput = () => { f.size = Math.max(4, f.value.length + 1); if (felder.every(x => x.value.trim())) leiste.aktivieren(); }; f.onkeydown = ev => { if (ev.key === "Enter" && !leiste.knopf.disabled) leiste.knopf.click(); }; });
+    setTimeout(() => felder[0]?.focus());
+  },
+  code_fehler(a, box, fertig) {
+    box.innerHTML = `<div class="frage">${inl(a.frage || "In welcher Zeile ist der Fehler? Tippe sie an.")}</div>` + codeBlock(a.code, { klick: true, sprache: a.sprache });
+    let gew = null;
+    const leiste = pruefLeiste(box, "Prüfen", false, () => {
+      box.querySelectorAll(".ln").forEach(z => { z.classList.remove("klick"); const n = +z.dataset.z; if (n === a.fehlerzeile) z.classList.add("ok"); else if (n === gew) z.classList.add("falsch"); });
+      fertig(gew === a.fehlerzeile, { loesung: a.korrektur ? `Zeile ${a.fehlerzeile}: ${a.korrektur}` : `Zeile ${a.fehlerzeile}`, antwort: `Zeile ${gew}` });
+      if (a.korrektur) box.querySelector(".feedback")?.insertAdjacentHTML("afterbegin", "");
+    });
+    box.querySelectorAll(".ln").forEach(z => z.onclick = () => { if (!z.classList.contains("klick")) return; gew = +z.dataset.z; box.querySelectorAll(".ln").forEach(x => x.classList.toggle("sel", x === z)); leiste.aktivieren(); });
+  },
+  code_reihenfolge(a, box, fertig) { ordnen(a, box, fertig, a.zeilen || [], true); },
+  reihenfolge(a, box, fertig) { ordnen(a, box, fertig, a.elemente || [], false); },
+  zuordnen(a, box, fertig) {
+    const paare = a.paare || [];
+    box.innerHTML = kopf(a, a.frage || "Ordne zu.") + `<div id="paare"></div>`;
+    const rechts = mischen(paare.map(p => p[1]));
+    const selects = paare.map(([links], i) => {
+      const z = h(`<div class="paar"><div class="links">${inl(links)}</div><select><option value="">wählen …</option>${rechts.map(r => `<option>${esc(r)}</option>`).join("")}</select></div>`);
+      $("#paare", box).appendChild(z); return $("select", z);
+    });
+    const leiste = pruefLeiste(box, "Prüfen", false, () => {
+      let ok = true;
+      selects.forEach((sel, i) => { const r = sel.value === paare[i][1]; sel.classList.add(r ? "ok" : "falsch"); sel.disabled = true; ok = ok && r; });
+      fertig(ok, { loesungHtml: `<ul>${paare.map(p => `<li>${inl(p[0])} → ${inl(p[1])}</li>`).join("")}</ul>`, loesung: "", antwort: selects.map(x => x.value).join(", ") });
+    });
+    selects.forEach(sel => sel.onchange = () => { if (selects.every(x => x.value)) leiste.aktivieren(); });
+  },
+  karteikarte(a, box, fertig) {
+    box.innerHTML = `<div class="karte" id="karte">${inl(a.vorne)}</div>`;
+    const z = h(`<div class="knopfzeile"><button class="btn primaer">Umdrehen</button></div>`); box.appendChild(z);
+    z.firstChild.onclick = () => {
+      $("#karte", box).innerHTML = inl(a.hinten); z.innerHTML = "";
+      const ja = h(`<button class="btn primaer">Gewusst</button>`), nein = h(`<button class="btn">Nochmal üben</button>`);
+      ja.onclick = () => { z.remove(); fertig(true, {}); }; nein.onclick = () => { z.remove(); fertig(false, {}); };
+      z.append(ja, nein);
+    };
+  },
+  lueckentext(a, box, fertig) {
+    let n = 0;
+    const html = esc(a.text || "").split("___").reduce((acc, t, k) => k === 0 ? inl(t) : acc + `<input class="luecke" data-i="${n++}" autocomplete="off">` + inl(t), "");
+    box.innerHTML = `<div class="frage">${a.frage ? inl(a.frage) + "<br>" : ""}${html}</div>`;
+    const felder = [...box.querySelectorAll("input.luecke")];
+    const leiste = pruefLeiste(box, "Prüfen", false, () => {
+      let ok = true;
+      felder.forEach((f, i) => { const alt = [].concat(a.antworten?.[i] ?? []).map(x => String(x).trim().toLowerCase()); const r = alt.includes(f.value.trim().toLowerCase()); f.classList.add(r ? "ok" : "falsch"); f.readOnly = true; ok = ok && r; });
+      fertig(ok, { loesung: (a.antworten || []).map(x => [].concat(x)[0]).join(" · "), antwort: felder.map(f => f.value).join(" · ") });
+    });
+    felder.forEach(f => f.oninput = () => { if (felder.every(x => x.value.trim())) leiste.aktivieren(); });
+  },
+  rechnung(a, box, fertig) {
+    box.innerHTML = kopf(a, a.frage) + `<input class="feld" inputmode="decimal" placeholder="Resultat${a.einheit ? " in " + esc(a.einheit) : ""}">`;
+    const f = $("input", box);
+    const leiste = pruefLeiste(box, "Prüfen", false, () => { const x = parseFloat(f.value.replace(",", ".")); const tol = a.toleranz ?? 0.01; const ok = Math.abs(x - a.loesung) <= Math.max(Math.abs(a.loesung) * tol, 1e-9); f.readOnly = true; fertig(ok, { loesung: `${a.loesung}${a.einheit ? " " + a.einheit : ""}`, antwort: f.value }); });
+    f.oninput = () => f.value.trim() ? leiste.aktivieren() : leiste.knopf.disabled = true;
+  },
+  freitext(a, box, fertig) {
+    box.innerHTML = kopf(a, a.frage) + `<textarea class="feld" style="font-family:inherit" placeholder="Deine Antwort …"></textarea>`;
+    const z = h(`<div class="knopfzeile"><button class="btn primaer">Musterantwort zeigen</button></div>`); box.appendChild(z);
+    z.firstChild.onclick = () => {
+      z.innerHTML = ""; box.insertAdjacentHTML("beforeend", `<div class="feedback"><b>Musterantwort</b>${md(a.musterantwort || "")}</div>`);
+      const ja = h(`<button class="btn primaer">Hatte ich</button>`), nein = h(`<button class="btn">Nicht ganz</button>`);
+      ja.onclick = () => { z.remove(); fertig(true, {}); }; nein.onclick = () => { z.remove(); fertig(false, {}); };
+      z.append(ja, nein); box.appendChild(z);
+    };
+  },
+  _unbekannt(a, box, fertig) { box.innerHTML = `<div class="leer">Aufgabentyp «${esc(a.typ)}» wird hier nicht angezeigt.</div>`; const z = h(`<div class="knopfzeile"><button class="btn">Überspringen</button></div>`); z.firstChild.onclick = () => fertig(true, {}); box.appendChild(z); }
+};
+function ordnen(a, box, fertig, richtig, alsCode) {
+  box.innerHTML = kopf(a, a.frage || "Bring in die richtige Reihenfolge.") + `<div class="leise klein">Tippe die Elemente in der richtigen Reihenfolge an.</div><div class="ordnen" id="ziel"></div><div class="ordnen" id="pool" style="border-style:solid"></div>`;
+  let pool = mischen(richtig.map((t, i) => ({ t, i }))); if (pool.length > 1 && pool.every((p, k) => p.i === k)) pool.reverse();
+  let gewaehlt = [];
+  const leiste = pruefLeiste(box, "Prüfen", false, () => {
+    const ok = gewaehlt.every((p, k) => p.t === richtig[k]);
+    box.querySelectorAll("#ziel .opt").forEach((b, k) => { b.disabled = true; b.classList.add(gewaehlt[k].t === richtig[k] ? "ok" : "falsch"); });
+    fertig(ok, { loesungHtml: alsCode ? `<pre class="md-code">${richtig.map(hl).join("\n")}</pre>` : `<ol>${richtig.map(r => `<li>${inl(r)}</li>`).join("")}</ol>`, loesung: "", antwort: gewaehlt.map(p => p.t).join(" | ") });
+  });
+  const zeichne = () => {
+    const z = $("#ziel", box), p = $("#pool", box); z.innerHTML = ""; p.innerHTML = "";
+    gewaehlt.forEach((it, k) => { const b = h(`<button class="opt${alsCode ? " mono" : ""}">${alsCode ? hl(it.t) : inl(it.t)}</button>`); b.onclick = () => { gewaehlt.splice(k, 1); pool.push(it); zeichne(); }; z.appendChild(b); });
+    pool.forEach((it, k) => { const b = h(`<button class="opt${alsCode ? " mono" : ""}">${alsCode ? hl(it.t) : inl(it.t)}</button>`); b.onclick = () => { pool.splice(k, 1); gewaehlt.push(it); zeichne(); }; p.appendChild(b); });
+    p.hidden = !pool.length;
+    if (!pool.length) leiste.aktivieren(); else leiste.knopf.disabled = true;
+  };
+  zeichne();
+}
+
+/* ============================================================
+   PROGRAMMIEREN – Notebook wie in Jupyter
+   ============================================================ */
+function programmierenSeite(s, e, l, naechste) {
+  const alt = altAufgaben(l);
+  s.innerHTML = `<h1 style="font-size:1.4rem">${esc(l.titel)}</h1>
+    <p class="leise klein">${l.dauer_min ? l.dauer_min + " min · " : ""}${l.schwierigkeit ? `Schwierigkeit <span class="stufe">${"●".repeat(l.schwierigkeit)}${"○".repeat(3 - l.schwierigkeit)}</span> · ` : ""}${swLabel(e)} · Programmieren</p>
+    <div id="unter"></div><div id="nb"></div>`;
+  if (!alt.length) return notebook($("#nb", s), {
+    key: l.id, aufgabe: l.aufgabe, zellen: l.zellen?.length ? l.zellen : [{ typ: "code", inhalt: "" }], eingaben: l.eingaben || [],
+    hinweise: l.hinweise || [], loesung: l.loesung, quelle: l.quelle,
+    pruefen: async (zellen) => {
+      const r = await kernel.check({ ns: "nb", cells: zellen, eingaben: l.eingaben || [], tests: l.tests || "" });
+      return r;
+    }
+  }, naechste, e);
+  // ältere Lektion mit programmieraufgabe-Aufgaben: eine Unteraufgabe pro Notebook
+  let aktiv = Math.max(0, alt.findIndex(a => !stand.nb[a.id]?.ok));
+  const unter = $("#unter", s);
+  const zeigeTabs = () => {
+    unter.innerHTML = alt.length > 1 ? `<div class="unteraufgaben">${alt.map((a, i) => `<button class="tab${i === aktiv ? " aktiv" : ""}${stand.nb[a.id]?.ok ? " ok" : ""}" data-i="${i}">${i + 1} · ${esc(a.titel || "Aufgabe")}</button>`).join("")}</div>` : "";
+    unter.querySelectorAll(".tab").forEach(b => b.onclick = () => { aktiv = +b.dataset.i; zeige(); });
+  };
+  const zeige = () => {
+    zeigeTabs();
+    const a = alt[aktiv];
+    notebook($("#nb", s), {
+      key: a.id, titel: alt.length > 1 ? a.titel : null, aufgabe: a.aufgabe, zellen: [{ typ: "code", inhalt: a.startcode || "" }], eingaben: [],
+      hinweise: a.hinweise || [], loesung: a.musterloesung, quelle: a.quelle, kriterien: a.kriterien,
+      pruefen: async (zellen) => {
+        const r = await kernel.checkAlt({ code: zellen.join("\n\n"), tests: a.tests || [] });
+        if (!r.ok && !r.tests) return r;
+        const falsch = (r.tests || []).filter(t => !t.ok);
+        let meldung = "";
+        if (falsch.length) {
+          const t = falsch[0];
+          meldung = t.aufruf ? `${t.aufruf} sollte ${t.erwartet} ergeben, ergibt aber ${t.fehler ? "einen Fehler:\n" + t.fehler : t.erhalten}.`
+            : `Mit der Eingabe ${t.eingabe ? JSON.stringify(t.eingabe.split("\n")) : "(keine)"} erwartet:\n${t.erwartet || "(keine Ausgabe)"}\n\nerhalten:\n${t.fehler || t.erhalten || "(keine Ausgabe)"}`;
+        }
+        return { ok: r.ok, art: falsch.length ? "assert" : "tests", meldung, anzahl: (r.tests || []).length, bestanden: (r.tests || []).filter(t => t.ok).length };
+      },
+      nachBestanden: () => { zeigeTabs(); if (aktiv < alt.length - 1) return { text: "Nächste Aufgabe", f: () => { aktiv++; zeige(); } }; }
+    }, naechste, e);
+  };
+  zeige();
+}
+
+function notebook(ziel, cfg, naechste, e) {
+  const gespeichert = stand.nb[cfg.key];
+  let zellen = (gespeichert?.zellen?.length ? gespeichert.zellen : cfg.zellen).map(z => ({ typ: z.typ, inhalt: z.inhalt ?? "", gesperrt: !!z.gesperrt }));
+  // gesperrte Zellen immer aus dem Original (falls Inhalt geändert wurde)
+  const original = cfg.zellen.filter(z => z.gesperrt);
+  zellen.forEach(z => { if (z.gesperrt) { const o = original.find(x => x.inhalt.split("\n")[0] === z.inhalt.split("\n")[0]); if (o) z.inhalt = o.inhalt; } });
+  let aktivIdx = zellen.findIndex(z => z.typ === "code" && !z.gesperrt); if (aktivIdx < 0) aktivIdx = 0;
+  let zaehler = 0, stdin = [], pos = 0, laeuft = false, tippsOffen = 0;
+  const ansichten = []; // pro Zelle: { el, ed, ausg, prompt }
+
+  ziel.innerHTML = `${cfg.titel ? `<h3 style="margin:4px 0 6px">${esc(cfg.titel)}</h3>` : ""}<div class="aufgabe-box lesen">${md(cfg.aufgabe || "")}</div>
+    ${cfg.kriterien?.length ? `<p class="leise klein">Kriterien: ${cfg.kriterien.map(esc).join(" · ")}</p>` : ""}
+    <div class="nb-leiste">
+      <button class="btn klein" data-a="run" title="Zelle ausführen (Shift+Enter)">▶ Ausführen</button>
+      <button class="btn klein geist" data-a="alle" title="Kernel neu starten und alle Zellen ausführen">⏩ Alle</button>
+      <button class="btn klein geist" data-a="stopp" title="Ausführung abbrechen">■</button>
+      <button class="btn klein geist" data-a="neu" title="Kernel neu starten (Variablen löschen)">⟳</button>
+      <button class="btn klein geist" data-a="code" title="Code-Zelle unterhalb einfügen">+ Code</button>
+      <button class="btn klein geist" data-a="text" title="Markdown-Zelle unterhalb einfügen">+ Text</button>
+      <span class="platz"></span><span class="kernel" id="kz"><i></i><span>Python</span></span>
+    </div>
+    ${`<details class="stdin"><summary>Eingaben für <code>input()</code>${cfg.eingaben.length ? `: ${cfg.eingaben.map(x => `<code>${esc(x)}</code>`).join(" ")}` : " – fehlt eine, fragt das Notebook nach"}</summary><textarea class="feld" spellcheck="false" placeholder="ein Wert pro Zeile">${esc(cfg.eingaben.join("\n"))}</textarea></details>`}
+    <div class="zellen" id="zellen"></div>
+    <div class="knopfzeile"><button class="btn primaer" data-a="pruefen">Prüfen</button>
+      ${cfg.hinweise?.length ? `<button class="btn" data-a="tipp">Hinweis <span class="leise klein">(${cfg.hinweise.length})</span></button>` : ""}
+      ${cfg.loesung ? `<button class="btn geist" data-a="loesung">Lösung zeigen</button>` : ""}
+      <button class="btn geist" data-a="reset" title="Alle Zellen auf den Anfang zurücksetzen">Zurücksetzen</button>
+      <span id="frag-nb"></span></div>
+    <div id="pruefung"></div><div class="tipps" id="tipps"></div><div id="loesung"></div>
+    <p class="tasten"><kbd>Shift</kbd>+<kbd>Enter</kbd> ausführen und weiter · <kbd>Ctrl</kbd>+<kbd>Enter</kbd> ausführen · <kbd>Alt</kbd>+<kbd>Enter</kbd> ausführen und neue Zelle · <kbd>Tab</kbd> einrücken · <kbd>Ctrl</kbd>+<kbd>/</kbd> kommentieren</p>
+    ${cfg.quelle ? `<p class="quelle">Quelle: ${esc(quelleText(cfg.quelle))}</p>` : ""}`;
+
+  const stdinFeld = $(".stdin textarea", ziel);
+  const leseStdin = () => stdinFeld ? stdinFeld.value.replace(/\r/g, "").split("\n").filter((x, i, arr) => !(i === arr.length - 1 && x === "")) : [];
+  stdin = leseStdin();
+  stdinFeld?.addEventListener("input", () => { stdin = leseStdin(); pos = Math.min(pos, stdin.length); });
+
+  const kz = $("#kz", ziel);
+  const abmelden = kernel.beobachte(z => { kz.className = "kernel " + z; kz.lastChild.textContent = { aus: "Python (startet bei Bedarf)", "lädt": "Python wird geladen …", laeuft: "läuft …", bereit: "Python bereit" }[z]; });
+  aufraeumen.push(abmelden);
+
+  const speichern = () => { stand.nb[cfg.key] = { ...(stand.nb[cfg.key] || {}), zellen: zellen.map(z => ({ typ: z.typ, inhalt: z.inhalt, ...(z.gesperrt ? { gesperrt: true } : {}) })), zuletzt: heute() }; storage.spaeter(stand); };
+
+  function setzeAktiv(i, fokus) {
+    aktivIdx = Math.max(0, Math.min(i, zellen.length - 1));
+    ansichten.forEach((v, k) => v.el.classList.toggle("aktiv", k === aktivIdx));
+    if (fokus) { const v = ansichten[aktivIdx]; if (v?.ed && !zellen[aktivIdx].gesperrt) v.ed.focus(); else if (v?.mdEdit) v.mdEdit(); v?.el.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+  }
+  function zeichneZellen() {
+    const box = $("#zellen", ziel); box.innerHTML = ""; ansichten.length = 0;
+    zellen.forEach((z, i) => box.appendChild(zelleEl(z, i)));
+    setzeAktiv(aktivIdx);
+    setTimeout(() => ansichten.forEach(v => v.ed?.refresh()));
+  }
+  function zelleEl(z, i) {
+    const el = h(`<div class="zelle${z.gesperrt ? " gesperrt" : ""}"><div class="prompt">${esc(promptText(z))}</div><div class="zelle-inhalt"><div class="zelle-werkzeug"></div><div class="hier"></div><div class="ausg">${z.typ === "code" ? z._ausg || "" : ""}</div></div></div>`);
+    const v = { el, ausg: $(".ausg", el), prompt: $(".prompt", el) };
+    ansichten[i] = v;
+    el.addEventListener("mousedown", () => setzeAktiv(ansichten.indexOf(v)));
+    const wz = $(".zelle-werkzeug", el);
+    const knopf = (t, title, f) => { const b = h(`<button title="${title}">${t}</button>`); b.onclick = ev => { ev.stopPropagation(); f(ansichten.indexOf(v)); }; wz.appendChild(b); };
+    if (z.typ === "code") knopf("▶", "Ausführen", k => ausfuehren(k, "ctrl"));
+    if (!z.gesperrt) {
+      knopf("↑", "Nach oben", k => { if (k > 0 && !zellen[k - 1].gesperrt) { [zellen[k - 1], zellen[k]] = [zellen[k], zellen[k - 1]]; aktivIdx = k - 1; speichern(); zeichneZellen(); } });
+      knopf("↓", "Nach unten", k => { if (k < zellen.length - 1 && !zellen[k + 1].gesperrt) { [zellen[k + 1], zellen[k]] = [zellen[k], zellen[k + 1]]; aktivIdx = k + 1; speichern(); zeichneZellen(); } });
+      knopf(z.typ === "code" ? "M" : "Py", z.typ === "code" ? "In Markdown-Zelle umwandeln" : "In Code-Zelle umwandeln", k => { zellen[k].typ = zellen[k].typ === "code" ? "markdown" : "code"; speichern(); zeichneZellen(); });
+      knopf("✕", "Zelle löschen", k => { if (zellen.length <= 1) return; zellen.splice(k, 1); aktivIdx = Math.min(k, zellen.length - 1); speichern(); zeichneZellen(); });
+    }
+    const hier = $(".hier", el);
+    if (z.typ === "code") {
+      hier.classList.add("editor");
+      v.ed = editor(hier, z.inhalt, {
+        gesperrt: z.gesperrt,
+        aenderung: wert => { z.inhalt = wert; speichern(); },
+        fokus: () => setzeAktiv(ansichten.indexOf(v)),
+        tasten: art => ausfuehren(ansichten.indexOf(v), art)
+      });
+    } else {
+      const zeigeMd = () => {
+        hier.innerHTML = ""; hier.classList.remove("editor");
+        const d = h(`<div class="md-zelle lesen" title="Doppelklick zum Bearbeiten">${z.inhalt.trim() ? md(z.inhalt) : `<span class="leise">Leere Textzelle – Doppelklick zum Bearbeiten</span>`}</div>`);
+        if (!z.gesperrt) d.ondblclick = () => bearbeiteMd();
+        hier.appendChild(d);
+      };
+      const bearbeiteMd = () => {
+        hier.innerHTML = ""; hier.classList.add("editor");
+        v.ed = editor(hier, z.inhalt, { sprache: "markdown", aenderung: w => { z.inhalt = w; speichern(); }, fokus: () => setzeAktiv(ansichten.indexOf(v)), tasten: art => ausfuehren(ansichten.indexOf(v), art) });
+        setTimeout(() => { v.ed.refresh(); v.ed.focus(); });
+        v.mdZeigen = () => { v.ed = null; zeigeMd(); };
+      };
+      v.mdEdit = z.gesperrt ? null : bearbeiteMd;
+      zeigeMd();
+    }
+    return el;
+  }
+  function promptText(z) { return z.typ === "code" ? (z.gesperrt ? "🔒 " : "") + `[${z._nr ?? " "}]:` : ""; }
+  function zeige(i, nr, html) {
+    const z = zellen[i], v = ansichten[i]; if (!z) return;
+    z._nr = nr; if (html !== undefined) z._ausg = html;
+    if (v) { v.prompt.textContent = promptText(z); if (html !== undefined) v.ausg.innerHTML = html; }
+  }
+  function neueZelle(nach, typ = "code") {
+    zellen.splice(nach + 1, 0, { typ, inhalt: "" }); aktivIdx = nach + 1; speichern(); zeichneZellen(); setzeAktiv(aktivIdx, true);
+  }
+  async function ausfuehren(i, art = "shift") {
+    const z = zellen[i], v = ansichten[i]; if (!z) return;
+    if (z.typ === "markdown") { v.mdZeigen?.(); }
+    else {
+      if (laeuft) return;
+      laeuft = true; zeige(i, "*", "");
+      const start = pos;
+      let r;
+      while (true) {
+        r = await kernel.run({ ns: "nb", code: z.inhalt, name: `<Zelle [${zaehler + 1}]>`, stdin, pos: start });
+        if (r.ok && r.need != null) {
+          // input() braucht einen Wert: im Notebook fragen, dann die Zelle neu ausführen
+          const wert = await frageEingabe(v, r.need, r.out);
+          if (wert == null) { r = { ok: true, out: r.out, fehler: "Eingabe abgebrochen." }; break; }
+          stdin = stdin.slice(0, start + (r.pos - start)); stdin.push(wert);
+          if (stdinFeld) stdinFeld.value = stdin.join("\n");
+          continue;
+        }
+        break;
+      }
+      if (r.ok) pos = r.pos ?? pos;
+      if (!r.ok) { zaehler = 0; pos = 0; }
+      zaehler++;
+      zeige(i, r.ok ? zaehler : " ", ausgabeHtml(r));
+      laeuft = false;
+    }
+    if (art === "shift") { if (i === zellen.length - 1) neueZelle(i); else setzeAktiv(i + 1, true); }
+    else if (art === "alt") neueZelle(i);
+  }
+  function frageEingabe(v, prompt, bisher) {
+    return new Promise(res => {
+      v.ausg.innerHTML = (bisher ? `<pre class="out">${esc(bisher.replace(/\n$/, ""))}</pre>` : "");
+      const f = h(`<div class="eingabe-frage"><label>${esc(prompt || "Eingabe:")}</label><input autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="Wert eingeben und Enter"><button class="btn klein geist">Abbrechen</button></div>`);
+      v.ausg.appendChild(f);
+      const inp = $("input", f); setTimeout(() => inp.focus());
+      inp.onkeydown = ev => { if (ev.key === "Enter") { ev.preventDefault(); f.remove(); res(inp.value); } };
+      $("button", f).onclick = () => { f.remove(); res(null); };
+    });
+  }
+  async function neustart(stumm) {
+    kernel.stopp(); zaehler = 0; pos = 0; stdin = leseStdin();
+    zellen.forEach((z, k) => { if (z.typ === "code") zeige(k, undefined, stumm ? undefined : ""); });
+    await kernel.reset("nb");
+  }
+  async function alleAusfuehren() {
+    await neustart();
+    for (let i = 0; i < zellen.length; i++) {
+      if (zellen[i].typ !== "code") continue;
+      await ausfuehren(i, "keine");
+      if ((zellen[i]._ausg || "").includes("fehler")) { setzeAktiv(i, true); return; }
+    }
+  }
+  async function pruefen() {
+    const box = $("#pruefung", ziel);
+    box.innerHTML = `<div class="pruef"><span class="spin"></span> ${kernel.zustand() === "bereit" ? "Kernel neu starten, alle Zellen ausführen, Tests laufen lassen …" : "Python wird geladen …"}</div>`;
+    const codeIdx = zellen.map((z, i) => z.typ === "code" ? i : -1).filter(i => i >= 0);
+    const r = await cfg.pruefen(codeIdx.map(i => zellen[i].inhalt));
+    zaehler = 0; pos = 0;
+    if (r.zellen) {
+      // Ausgaben der Prüfung unter die Zellen schreiben (wie «Restart & Run All»)
+      r.zellen.forEach((zr, k) => { zaehler++; zeige(codeIdx[k], zaehler, ausgabeHtml({ ok: true, ...zr })); });
+      for (let k = r.zellen.length; k < codeIdx.length; k++) zeige(codeIdx[k], undefined, "");
+    }
+    if (!r.ok && r.fehler && !r.art) { box.innerHTML = `<div class="pruef falsch"><b>Prüfen nicht möglich</b><pre>${esc(r.fehler)}</pre></div>`; return; }
+    if (r.ok) {
+      stand.nb[cfg.key] = { ...(stand.nb[cfg.key] || {}), ok: true, zuletzt: heute() };
+      speichern(); stand.nb[cfg.key].ok = true; stand.xp = (stand.xp || 0) + 10; streak(); storage.speichern(stand);
+      box.innerHTML = `<div class="pruef ok"><b>Bestanden ✓</b>${r.anzahl ? `<div>${r.bestanden} von ${r.anzahl} Tests erfüllt.</div>` : r.art === "ohne" ? "<div>Alle Zellen laufen ohne Fehler.</div>" : "<div>Alle Tests erfüllt.</div>"}</div>`;
+      const weiter = cfg.nachBestanden?.();
+      const z = h(`<div class="knopfzeile"></div>`);
+      if (weiter) { const b = h(`<button class="btn primaer">${esc(weiter.text)} ›</button>`); b.onclick = weiter.f; z.appendChild(b); }
+      else z.appendChild(weiterKnopf(naechste, e));
+      box.appendChild(z);
+    } else {
+      const titel = r.art === "zelle" ? `Fehler in Zelle [${r.zelle + 1}]` : r.art === "assert" ? "Noch nicht ganz" : "Fehler beim Testen";
+      box.innerHTML = `<div class="pruef falsch"><b>${titel}</b><pre>${esc(r.meldung)}</pre>${r.anzahl ? `<div class="leise klein" style="margin-top:6px">${r.bestanden} von ${r.anzahl} Tests erfüllt.</div>` : ""}</div>`;
+      if (r.art === "zelle") setzeAktiv(codeIdx[r.zelle], true);
+    }
+    box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
+  ziel.querySelector("[data-a=run]").onclick = () => ausfuehren(aktivIdx, "shift");
+  ziel.querySelector("[data-a=alle]").onclick = alleAusfuehren;
+  ziel.querySelector("[data-a=stopp]").onclick = () => kernel.stopp();
+  ziel.querySelector("[data-a=neu]").onclick = () => neustart();
+  ziel.querySelector("[data-a=code]").onclick = () => neueZelle(aktivIdx, "code");
+  ziel.querySelector("[data-a=text]").onclick = () => neueZelle(aktivIdx, "markdown");
+  ziel.querySelector("[data-a=pruefen]").onclick = pruefen;
+  ziel.querySelector("[data-a=reset]").onclick = function () {
+    if (this.dataset.sicher !== "1") { this.dataset.sicher = "1"; this.textContent = "Wirklich zurücksetzen?"; setTimeout(() => { this.dataset.sicher = ""; this.textContent = "Zurücksetzen"; }, 3000); return; }
+    zellen = cfg.zellen.map(z => ({ typ: z.typ, inhalt: z.inhalt ?? "", gesperrt: !!z.gesperrt })); aktivIdx = 0;
+    const ok = stand.nb[cfg.key]?.ok; stand.nb[cfg.key] = ok ? { ok } : undefined; if (!ok) delete stand.nb[cfg.key];
+    storage.speichern(stand); neustart(); zeichneZellen(); $("#pruefung", ziel).innerHTML = "";
+    this.dataset.sicher = ""; this.textContent = "Zurücksetzen";
+  };
+  const tipp = ziel.querySelector("[data-a=tipp]");
+  if (tipp) tipp.onclick = () => {
+    if (tippsOffen >= cfg.hinweise.length) return;
+    $("#tipps", ziel).insertAdjacentHTML("beforeend", `<div class="tipp"><span class="leise klein">Hinweis ${tippsOffen + 1}</span><div>${inl(cfg.hinweise[tippsOffen])}</div></div>`);
+    tippsOffen++; tipp.innerHTML = tippsOffen < cfg.hinweise.length ? `Nächster Hinweis <span class="leise klein">(${cfg.hinweise.length - tippsOffen})</span>` : "Alle Hinweise offen"; if (tippsOffen >= cfg.hinweise.length) tipp.disabled = true;
+  };
+  const loes = ziel.querySelector("[data-a=loesung]");
+  if (loes) loes.onclick = function () {
+    const box = $("#loesung", ziel);
+    if (box.innerHTML) { box.innerHTML = ""; this.textContent = "Lösung zeigen"; return; }
+    if (this.dataset.sicher !== "1") { this.dataset.sicher = "1"; this.textContent = "Sicher? Erst selbst versuchen!"; setTimeout(() => { if (!box.innerHTML) { this.dataset.sicher = ""; this.textContent = "Lösung zeigen"; } }, 3000); return; }
+    this.dataset.sicher = ""; this.textContent = "Lösung ausblenden";
+    box.innerHTML = `<div class="loesung"><div class="beispiel-kopf"><span>Musterlösung</span><span class="platz"></span><button class="btn klein" data-a="kopie">Als neue Zelle einfügen</button></div>${codeBlock(cfg.loesung)}</div>`;
+    $("[data-a=kopie]", box).onclick = () => { zellen.push({ typ: "code", inhalt: cfg.loesung }); aktivIdx = zellen.length - 1; speichern(); zeichneZellen(); setzeAktiv(aktivIdx, true); };
+  };
+  let letztePruefung = "";
+  claudeKontext = () => ({
+    stufe: `${e.woche ? "SW" + String(e.woche).padStart(2, "0") + " · " : ""}Programmieren · ${cfg.titel || $("h1")?.textContent || ""}`,
+    text: `Aufgabe:\n${cfg.aufgabe || ""}\n\nMein Notebook (Zellen):\n` + zellen.map((z, i) => `--- Zelle ${i + 1} (${z.typ}) ---\n${z.inhalt}${z._ausg ? "\n[Ausgabe] " + (h("<div>" + z._ausg + "</div>").textContent || "").slice(0, 800) : ""}`).join("\n") + (letztePruefung ? "\n\nLetzte Prüfung: " + letztePruefung : "")
+  });
+  const fk = fragKnopf("Ich komme bei dieser Programmieraufgabe nicht weiter. Gib mir bitte einen Hinweis zum nächsten Schritt, aber noch nicht die ganze Lösung.", "Claude fragen");
+  if (fk) $("#frag-nb", ziel).appendChild(h(fk));
+  const altPruefen = cfg.pruefen;
+  cfg.pruefen = async z => { const r = await altPruefen(z); letztePruefung = r.ok ? "bestanden" : (r.meldung || r.fehler || ""); return r; };
+  zeichneZellen();
+  kernel.reset("nb");
+}
+
+/* ============================================================
+   START
+   ============================================================ */
+(async () => {
+  try {
+    await inhalteLaden();
+    stand = JSON.parse(JSON.stringify(await storage.laden())); // veränderbare Kopie (DB liefert schreibgeschützte Objekte)
+    stand.nb = stand.nb || {}; stand.tab = stand.tab || {}; stand.lektionen = stand.lektionen || {}; stand.fehler = stand.fehler || {};
+    route();
+  } catch (err) {
+    $("#app").innerHTML = `<div class="wrap"><div class="leer" style="margin-top:40px"><h2>Inhalte konnten nicht geladen werden</h2><p>Die Dateien <code>content/${FACH_ID}/fach.json</code> und <code>einheiten/*.json</code> fehlen oder sind ungültig.</p><p class="quelle">${esc(err.message)}</p></div></div>`;
+  }
+})();
+
+</script>
+<!-- ===== Frag Claude – Digital Campus (Modul v1, siehe docs/frag-claude.md) ===== -->
+<style id="dc-claude-css">
+.dc-cfab{position:fixed;right:18px;bottom:calc(var(--dc-fab-bottom,20px) + env(safe-area-inset-bottom,0px));z-index:45;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--dc-accent-line,#4c4c55);background:var(--dc-surface-raised,var(--dc-surface-2,#1c1c21));color:var(--dc-accent,#af9ee4);font:600 .95rem var(--dc-font-campus,system-ui,sans-serif);cursor:pointer}
+.dc-cfab svg{width:19px;height:19px;flex:none}
+.dc-cfab:hover{border-color:var(--dc-accent,#af9ee4)}
+.dc-cfab:focus-visible,.dc-cpanel button:focus-visible,.dc-cpanel textarea:focus-visible{outline:2px solid var(--dc-accent,#af9ee4);outline-offset:2px}
+.dc-cfab[hidden],body.dc-chat-offen .dc-cfab,html:not(.dc-claude-ok) .dc-cfab{display:none}
+html:not(.dc-claude-ok) .dc-ask{display:none!important}
+.dc-ask{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid var(--dc-accent-line,#4c4c55);background:transparent;color:var(--dc-accent,#af9ee4);font:600 .9rem var(--dc-font-campus,system-ui,sans-serif);cursor:pointer;min-height:40px}
+.dc-ask:hover{border-color:var(--dc-accent,#af9ee4)}
+.dc-ask svg{width:16px;height:16px}
+.dc-cpanel{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);z-index:60;background:var(--dc-surface,#151518);border-left:1px solid var(--dc-line,#2a2a30);display:flex;flex-direction:column;color:var(--dc-text,#ebeaef);font-family:var(--dc-font-campus,system-ui,sans-serif)}
+.dc-cpanel[hidden]{display:none}
+.dc-chead{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--dc-line,#2a2a30)}
+.dc-chead .dc-ctit{flex:1;min-width:0}
+.dc-chead .dc-ctit b{display:block;font-size:1rem}
+.dc-cctx{font-size:.8rem;color:var(--dc-text-muted,var(--dc-muted,#aaaab2));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-cbtn{display:inline-flex;align-items:center;gap:4px;min-height:38px;padding:6px 11px;border-radius:999px;border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);font:inherit;font-size:.85rem;cursor:pointer}
+.dc-cbtn:hover{border-color:var(--dc-accent-line,#4c4c55)}
+.dc-cbtn svg{width:16px;height:16px}
+.dc-cbtn.prim{background:var(--dc-accent,#af9ee4);border-color:var(--dc-accent,#af9ee4);color:var(--dc-on-accent,#141317);font-weight:700;padding:8px 16px}
+.dc-cbody{flex:1;min-height:0;display:flex;position:relative}
+.dc-cmsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.dc-cmsg{max-width:92%;padding:10px 13px;border-radius:14px;line-height:1.55;overflow-wrap:anywhere;font-size:.95rem}
+.dc-cmsg p{margin:0 0 8px}.dc-cmsg p:last-child{margin:0}
+.dc-cmsg ul,.dc-cmsg ol{margin:4px 0 8px;padding-left:1.3em}
+.dc-cmsg pre{white-space:pre-wrap;background:var(--dc-bg,#0e0e10);padding:8px;border-radius:8px;font:.85rem var(--dc-font-mono,var(--dc-mono,monospace));margin:6px 0}
+.dc-cmsg code{font-family:var(--dc-font-mono,var(--dc-mono,monospace));font-size:.9em}
+.dc-cmsg.me{align-self:flex-end;background:var(--dc-surface-raised,var(--dc-surface-2,#1f1f25));border:1px solid var(--dc-accent-line,#4c4c55);border-bottom-right-radius:4px;white-space:pre-wrap}
+.dc-cmsg.ai{align-self:flex-start;border:1px solid var(--dc-line,#2a2a30);border-bottom-left-radius:4px}
+.dc-cmsg.warte{color:var(--dc-text-muted,var(--dc-muted,#aaaab2));font-style:italic}
+.dc-cleer{color:var(--dc-text-muted,var(--dc-muted,#aaaab2));font-size:.92rem}
+.dc-cchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.dc-cchips button{border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);border-radius:999px;padding:8px 12px;font:inherit;font-size:.85rem;text-align:left;cursor:pointer;min-height:38px}
+.dc-cchips button:hover{border-color:var(--dc-accent-line,#4c4c55)}
+.dc-cside{position:absolute;inset:0;background:var(--dc-surface,#151518);overflow-y:auto;padding:12px;z-index:2}
+.dc-cside[hidden]{display:none}
+.dc-citem{display:flex;gap:6px;align-items:stretch;margin-bottom:6px}
+.dc-citem .dc-copen{flex:1;text-align:left;border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);border-radius:10px;padding:8px 10px;font:inherit;cursor:pointer;min-width:0}
+.dc-citem.cur .dc-copen{border-color:var(--dc-accent-line,#4c4c55)}
+.dc-citem .dc-copen b{display:block;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-citem .dc-copen span{font-size:.78rem;color:var(--dc-text-faint,#807f87)}
+.dc-citem .dc-cdel{border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text-muted,#aaaab2);border-radius:10px;padding:0 10px;cursor:pointer;font:inherit;font-size:.8rem}
+.dc-citem .dc-cdel.scharf{color:var(--dc-danger,#dc8b88);border-color:var(--dc-danger,#dc8b88)}
+.dc-cstatus{min-height:1.2em;padding:0 14px;font-size:.8rem;color:var(--dc-text-muted,var(--dc-muted,#aaaab2))}
+.dc-cform{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--dc-line,#2a2a30);align-items:flex-end}
+.dc-cform textarea{flex:1;resize:none;min-height:42px;max-height:140px;padding:10px 12px;border-radius:12px;border:1px solid var(--dc-line,#2a2a30);background:var(--dc-bg,#0e0e10);color:var(--dc-text,#ebeaef);font:inherit;font-size:16px;line-height:1.4}
+@media (max-width:720px){.dc-cfab{right:12px;padding:12px}.dc-cfab span{display:none}.dc-cpanel{width:100%;border-left:0}}
+body:has(.sheet) .dc-cfab{display:none}
+</style>
+<script id="dc-claude">
+/* Frag Claude – Digital Campus, Modul v1. Beschreibung: docs/frag-claude.md
+   Öffentlich: dcClaude.oeffnen(text?), dcClaude.knopf(text, label?), dcClaude.kontext = () => ({stufe, text}) (optional, von der Seite gesetzt). */
+(function(){
+"use strict";
+const H=document.documentElement;
+const FACH=H.dataset.theme||"campus";
+const NAME=(document.title||"Digital Campus").replace(/\s*[–-]\s*Digital Campus\s*$/,"");
+const BASEN=["content/"+FACH+"/","../../content/"+FACH+"/"];
+const LKEY="dc-claude-"+FACH+"-v1",MAX_CHATS=20,MAX_BYTES=150000;
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 10h6M9 14h4"/></svg>';
+
+/* ---------- Fach-Inhalte (nur lesen) ---------- */
+let FACHJSON=null;const DATEIEN={};
+async function hole(p){for(const b of BASEN){try{const r=await fetch(b+p,{cache:"no-cache"});if(r.ok)return await r.json();}catch(e){}}throw new Error(p+" nicht gefunden");}
+async function fach(){if(!FACHJSON){try{FACHJSON=await hole("fach.json");}catch(e){FACHJSON={einheiten:[]};}}return FACHJSON;}
+function dateiVon(e){return e.datei||("einheiten/"+e.id+".json");}
+async function einheit(id){const f=await fach();const e=(f.einheiten||[]).find(x=>x.id===id)||{id};const p=dateiVon(e);if(!DATEIEN[p])DATEIEN[p]=await hole(p);return DATEIEN[p];}
+function textAus(o,out){if(o==null)return out;if(typeof o==="string"){out.push(o);return out;}if(Array.isArray(o)){o.forEach(x=>textAus(x,out));return out;}
+  if(typeof o==="object")for(const k in o){if(["id","farbe","schrift","typ","status","sprache"].includes(k))continue;textAus(o[k],out);}return out;}
+const TOOLS=[
+ {name:"inhaltsverzeichnis",description:"Listet alle Einheiten dieses Fachs (ID, Titel, Woche, Bereich). Nutze das zuerst, wenn du nicht weisst, wo etwas steht.",
+  async execute(){status("Schaue ins Inhaltsverzeichnis …");const f=await fach();const l=(f.einheiten||[]).map(e=>`${e.id} · ${e.titel||""}${e.woche?" · SW"+e.woche:""}${e.bereich?" · "+e.bereich:""}${e.status&&e.status!=="bereit"?" · "+e.status:""}`);
+   return l.length?l.join("\n"):"Für dieses Fach sind noch keine Einheiten erfasst.";}},
+ {name:"lies_einheit",description:"Liest den Inhalt einer Einheit (Lektionen, Theorie, Aufgaben mit Lösungen und Erklärungen, Quellenangaben) als JSON-Text, gekürzt auf 30000 Zeichen.",
+  inputSchema:{type:"object",properties:{id:{type:"string",description:"Einheiten-ID, z. B. sw03-schleifen"}},required:["id"]},
+  async execute(inp){status("Lese "+inp.id+" …");const d=await einheit(String(inp.id||""));return JSON.stringify(d).slice(0,30000);}},
+ {name:"suche",description:"Volltextsuche in allen Einheiten dieses Fachs. Liefert bis zu 8 Treffer mit Einheit und kurzem Auszug. Suche mit einzelnen Fachbegriffen.",
+  inputSchema:{type:"object",properties:{begriff:{type:"string",description:"Suchbegriff"}},required:["begriff"]},
+  async execute(inp){const q=norm(inp.begriff||"").trim();if(!q)throw new Error("Leerer Suchbegriff");status("Suche „"+inp.begriff+"“ …");
+   const f=await fach();const hits=[];
+   for(const e of f.einheiten||[]){let d;try{d=await einheit(e.id);}catch(x){continue;}
+     for(const t of textAus(d,[])){const p=norm(t).indexOf(q);if(p>=0){hits.push({einheit:e.id,auszug:t.slice(Math.max(0,p-150),p+250)});if(hits.length>=8)return hits;}}}
+   return hits.length?hits:"Keine Treffer für „"+inp.begriff+"“.";}}
+];
+
+/* ---------- Kontext der aktuellen Ansicht ---------- */
+function wurzel(){return document.getElementById("app")||document.querySelector("main")||document.body;}
+function kontext(){
+  let k=null;try{if(typeof api.kontext==="function")k=api.kontext();}catch(e){}
+  const w=wurzel();
+  if(!k||!k.stufe){const sicht=x=>x&&x.offsetParent!==null&&x.textContent.trim();const t=s=>s.textContent.trim().replace(/\s+/g," ").slice(0,60);
+    const tab=[...document.querySelectorAll('[aria-selected="true"],[aria-current="page"],[aria-current="true"],nav .active,nav .aktiv,nav .on,.tabs .active,.tabs .aktiv,.tabs .on')].find(x=>sicht(x)&&!x.closest(".dc-cpanel"));
+    const h=[...w.querySelectorAll("h1,h2,h3")].find(sicht);const teile=[tab&&t(tab),h&&t(h)].filter(Boolean).filter((x,i,a)=>a.indexOf(x)===i);
+    k=Object.assign({stufe:teile.join(" · ")||"Übersicht"},k||{});}
+  if(!k.text){const c=w.cloneNode(true);c.querySelectorAll("script,style,svg,.dc-cpanel,.dc-cfab,button,nav").forEach(x=>x.remove());k.text=(c.innerText||c.textContent||"").replace(/\n{3,}/g,"\n\n").trim().slice(0,6000);}
+  k.schluessel=k.schluessel||norm(k.stufe).replace(/[^a-z0-9]+/g,"-").slice(0,60)||"start";
+  return k;}
+function regeln(k,mitTools){const d=new Date();
+  return `Du bist der Lern-Tutor in der Lern-App «Digital Campus» von Alain (HSLU, Bachelor Digital Engineer) im Fach «${NAME}». Heute ist ${d.toLocaleDateString("de-CH",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}.
+${mitTools?"Über Werkzeuge kannst du die Inhalte dieses Fachs nachschlagen (inhaltsverzeichnis, lies_einheit, suche). Schlage nach, bevor du zu Stoff, Aufgaben oder Lösungen antwortest, und halte dich an Begriffe und Notation des Kursmaterials.":"Werkzeuge sind hier nicht verfügbar; stütze dich auf den Bildschirminhalt unten."}
+Antwortstil: Deutsch in Schweizer Rechtschreibung (ss statt ß), kurz und direkt, Erklärungen in kleinen Schritten. Formeln in LaTeX mit $…$ bzw. $$…$$, Code in \`\`\`-Blöcken. Nenne die Quelle knapp, wenn sie im Material steht. Bei Übungsaufgaben zuerst einen Hinweis oder den nächsten Schritt geben, die ganze Lösung nur auf ausdrücklichen Wunsch. Wenn etwas nicht aus dem Kursstoff hervorgeht, sag das.
+
+Aktuelle Stufe in der App: ${k.stufe}.
+Bildschirminhalt dieser Ansicht (gekürzt):
+"""
+${k.text}
+"""`;}
+
+/* ---------- Verlauf: pro Stufe, lokal im Browser ---------- */
+let STORE={};try{STORE=JSON.parse(localStorage.getItem(LKEY)||"{}");}catch(e){STORE={};}
+function speichernLokal(){try{localStorage.setItem(LKEY,JSON.stringify(STORE));}catch(e){}}
+const chatsVon=k=>(STORE[k]&&STORE[k].chats)||[];
+function kuerzen(l){l.sort((a,b)=>b.upd-a.upd);while(l.length>MAX_CHATS)l.pop();while(l.length>1&&JSON.stringify(STORE).length>MAX_BYTES)l.pop();return l;}
+let SC=null,chatId=null,turns=[],busy=false,ctl=null,sample=null;const aktivPro={};
+function sichern(){if(!SC||!turns.length)return;const k=SC.schluessel;STORE[k]=STORE[k]||{label:SC.stufe,chats:[]};const l=STORE[k].chats;
+  let ch=l.find(x=>x.id===chatId);if(!ch){chatId="c"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);ch={id:chatId};l.push(ch);}
+  const f=turns.find(t=>t.role==="user");ch.titel=(f?f.content:"Chat").replace(/\s+/g," ").slice(0,70);ch.turns=turns.slice(-30);ch.upd=Date.now();aktivPro[k]=chatId;kuerzen(l);speichernLokal();}
+function wann(t){const d=new Date(t);return d.toDateString()===new Date().toDateString()?"heute "+d.toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"}):d.toLocaleDateString("de-CH",{day:"2-digit",month:"2-digit",year:"2-digit"});}
+
+/* ---------- Darstellung ---------- */
+function mathe(el){try{if(typeof api.mathe==="function"){api.mathe(el);return;}
+  if(window.renderMathInElement){renderMathInElement(el,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});return;}
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([el]).catch(()=>{});}catch(e){}}
+function tex(s,disp){if(window.katex&&!window.renderMathInElement){try{return katex.renderToString(s,{displayMode:disp,throwOnError:false,output:"mathml"});}catch(e){}}return esc(disp?"$$"+s+"$$":"$"+s+"$");}
+function md(s){const blocks=[];let h=String(s||"").replace(/```[a-z]*\n?([\s\S]*?)```/g,(m,c)=>{blocks.push("<pre>"+esc(c.replace(/\n$/,""))+"</pre>");return "\u0000"+(blocks.length-1)+"\u0000";});
+  const math=[];h=h.replace(/\$\$([\s\S]+?)\$\$/g,(m,c)=>{math.push(tex(c,true));return "\u0001"+(math.length-1)+"\u0001";}).replace(/\$([^\$\n]+?)\$/g,(m,c)=>{math.push(tex(c,false));return "\u0001"+(math.length-1)+"\u0001";});
+  h=esc(h).replace(/`([^`\n]+)`/g,"<code>$1</code>").replace(/\*\*([^*\n]+)\*\*/g,"<b>$1</b>");
+  let out="",list=null;for(const l of h.split("\n")){const ul=/^\s*[-•*]\s+(.*)/.exec(l),ol=/^\s*\d+[.)]\s+(.*)/.exec(l),hd=/^#{1,4}\s+(.*)/.exec(l);
+    if(ul||ol){const t=ul?"ul":"ol";if(list!==t){if(list)out+="</"+list+">";out+="<"+t+">";list=t;}out+="<li>"+(ul||ol)[1]+"</li>";continue;}
+    if(list){out+="</"+list+">";list=null;}if(hd)out+="<p><b>"+hd[1]+"</b></p>";else if(l.trim())out+=/^\u0000\d+\u0000$/.test(l.trim())?l:"<p>"+l+"</p>";}
+  if(list)out+="</"+list+">";
+  return out.replace(/\u0000(\d+)\u0000/g,(m,i)=>blocks[i]).replace(/\u0001(\d+)\u0001/g,(m,i)=>math[i]);}
+let statusEl=null;function status(t){if(statusEl)statusEl.textContent=t||"";}
+
+function ui(){if(document.getElementById("dc-cfab"))return;
+  const fab=document.createElement("button");fab.id="dc-cfab";fab.className="dc-cfab";fab.type="button";fab.setAttribute("aria-label","Frag Claude");fab.innerHTML=ICON+"<span>Frag Claude</span>";document.body.appendChild(fab);
+  const p=document.createElement("section");p.id="dc-cpanel";p.className="dc-cpanel";p.hidden=true;p.setAttribute("role","dialog");p.setAttribute("aria-label","Frag Claude");
+  p.innerHTML=`<div class="dc-chead"><button class="dc-cbtn" type="button" id="dc-czu" aria-label="Chat schliessen">‹ Zurück</button><div class="dc-ctit"><b>Frag Claude</b><div class="dc-cctx" id="dc-cctx"></div></div><button class="dc-cbtn" type="button" id="dc-chist" aria-expanded="false">Verlauf</button><button class="dc-cbtn" type="button" id="dc-cneu">Neu</button></div>
+  <div class="dc-cbody"><div class="dc-cside" id="dc-cside" hidden></div><div class="dc-cmsgs" id="dc-cmsgs" aria-live="polite"></div></div>
+  <div class="dc-cstatus" id="dc-cstatus"></div>
+  <form class="dc-cform" id="dc-cform"><textarea id="dc-cin" rows="1" placeholder="Deine Frage …" aria-label="Deine Frage"></textarea><button class="dc-cbtn prim" id="dc-csend" type="submit">Senden</button></form>`;
+  document.body.appendChild(p);statusEl=p.querySelector("#dc-cstatus");
+  fab.onclick=()=>oeffnen();p.querySelector("#dc-czu").onclick=()=>schliessen();
+  p.querySelector("#dc-cneu").onclick=neu;p.querySelector("#dc-chist").onclick=()=>seite();
+  const ta=p.querySelector("#dc-cin");ta.addEventListener("input",()=>{ta.style.height="auto";ta.style.height=Math.min(140,ta.scrollHeight)+"px";});
+  ta.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!matchMedia("(max-width:720px)").matches){e.preventDefault();p.querySelector("#dc-cform").requestSubmit();}});
+  p.querySelector("#dc-cform").onsubmit=e=>{e.preventDefault();if(busy){if(ctl)ctl.abort();return;}const v=ta.value.trim();if(!v)return;ta.value="";ta.style.height="auto";senden(v);};
+  p.addEventListener("keydown",e=>{if(e.key==="Escape")schliessen();});
+  document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-dc-ask]");if(b){e.preventDefault();oeffnen(b.getAttribute("data-dc-ask"));}});}
+function seite(on){const s=document.getElementById("dc-cside");on=on===undefined?s.hidden:on;s.hidden=!on;document.getElementById("dc-chist").setAttribute("aria-expanded",on);if(!on)return;
+  const l=chatsVon(SC.schluessel);
+  s.innerHTML=`<p class="dc-cleer" style="margin:0 0 10px"><b>Vergangene Chats</b> · ${esc(SC.stufe)}</p>`+(l.length?l.map(c=>`<div class="dc-citem ${c.id===chatId?"cur":""}"><button class="dc-copen" type="button" data-id="${c.id}"><b>${esc(c.titel)}</b><span>${wann(c.upd)} · ${c.turns.length} Nachrichten</span></button><button class="dc-cdel" type="button" data-del="${c.id}" aria-label="Chat löschen">✕</button></div>`).join(""):'<p class="dc-cleer">Noch keine Chats auf dieser Stufe.</p>')+'<p class="dc-cleer" style="font-size:.78rem">Nur auf diesem Gerät gespeichert, höchstens 20 Chats pro Stufe.</p>';
+  s.querySelectorAll(".dc-copen").forEach(b=>b.onclick=()=>{const c=chatsVon(SC.schluessel).find(x=>x.id===b.dataset.id);if(!c)return;if(ctl)ctl.abort();chatId=c.id;aktivPro[SC.schluessel]=c.id;turns=c.turns.slice();seite(false);zeigen();});
+  s.querySelectorAll(".dc-cdel").forEach(b=>b.onclick=()=>{if(!b.dataset.scharf){b.dataset.scharf=1;b.textContent="Löschen?";b.classList.add("scharf");setTimeout(()=>{if(b.isConnected){delete b.dataset.scharf;b.textContent="✕";b.classList.remove("scharf");}},3000);return;}
+    const k=SC.schluessel;STORE[k].chats=chatsVon(k).filter(x=>x.id!==b.dataset.del);speichernLokal();if(chatId===b.dataset.del){chatId=null;turns=[];zeigen();}seite(true);});}
+function neu(){if(ctl)ctl.abort();chatId=null;turns=[];if(SC)aktivPro[SC.schluessel]=null;seite(false);zeigen();document.getElementById("dc-cin").focus();}
+function zeigen(){const box=document.getElementById("dc-cmsgs");
+  if(!turns.length){const v=(api.vorschlaege&&api.vorschlaege(SC))||["Erklär mir das hier nochmals einfacher","Gib mir eine Übungsfrage zu diesem Thema","Was muss ich dazu für den Test können?"];
+    box.innerHTML=`<div class="dc-cleer"><p style="margin:0">Ich sehe, was gerade auf dem Bildschirm ist, und kann in den Inhalten von «${esc(NAME)}» nachschlagen. Frag zum Beispiel:</p><div class="dc-cchips">${v.map(s=>`<button type="button">${esc(s)}</button>`).join("")}</div></div>`;
+    box.querySelectorAll(".dc-cchips button").forEach(b=>b.onclick=()=>senden(b.textContent));return;}
+  box.innerHTML=turns.map(t=>`<div class="dc-cmsg ${t.role==="user"?"me":"ai"}">${t.role==="user"?esc(t.content):md(t.content)}</div>`).join("");mathe(box);box.scrollTop=box.scrollHeight;}
+function fehlerText(c){return({rate_limited:"Gerade zu viele Anfragen oder dein Nutzungslimit ist erreicht. Versuch es später nochmals.",not_granted:"Du hast der App den Zugriff auf Claude nicht erlaubt.",sampling_disabled:"Claude ist für dieses Konto hier nicht verfügbar.",session_expired:"Bitte melde dich neu an.",prompt_too_large:"Der Verlauf ist zu lang. Starte mit «Neu» einen neuen Chat.",refused:"Diese Frage kann ich so nicht beantworten. Formuliere sie anders."})[c]||"Die Verbindung zu Claude ist abgebrochen. Versuch es nochmals.";}
+async function senden(text){if(busy||!sample)return;busy=true;const btn=document.getElementById("dc-csend");btn.textContent="Stopp";seite(false);
+  turns.push({role:"user",content:text});zeigen();
+  const box=document.getElementById("dc-cmsgs");const b=document.createElement("div");b.className="dc-cmsg ai warte";b.textContent="Denke nach …";box.appendChild(b);box.scrollTop=box.scrollHeight;
+  ctl=new AbortController();let tools=false;try{const lim=await sample.limits();tools=!!(lim&&lim.tools);}catch(e){}
+  const k=kontext();const hist=turns.slice(-12);
+  const input=[{role:"user",content:regeln(k,tools)},{role:"assistant",content:"Verstanden."},...(hist[0]&&hist[0].role==="assistant"?hist.slice(1):hist)];
+  const opts={signal:ctl.signal,cache:false,onText:({text})=>{b.classList.remove("warte");b.textContent=text;box.scrollTop=box.scrollHeight;}};if(tools)opts.tools=TOOLS;
+  try{const r=await sample(input,opts);turns.push({role:"assistant",content:r.text+(r.truncated?"\n\n*(Antwort gekürzt – frag nach dem Rest.)*":"")});}
+  catch(e){const c=e&&e.code;if(e&&e.text)turns.push({role:"assistant",content:e.text+(c==="cancelled"?"\n\n*(abgebrochen)*":"")});
+    if(c!=="cancelled")turns.push({role:"assistant",content:"⚠ "+fehlerText(c)});
+    if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(c))H.classList.remove("dc-claude-ok");}
+  busy=false;btn.textContent="Senden";status("");sichern();zeigen();}
+let zurueckSperre=false;
+function oeffnen(vorgabe){if(!sample)return;ui();const p=document.getElementById("dc-cpanel");const k=kontext();
+  if(!SC||SC.schluessel!==k.schluessel){if(ctl)ctl.abort();SC=k;const a=aktivPro[k.schluessel];const c=a&&chatsVon(k.schluessel).find(x=>x.id===a);chatId=c?c.id:null;turns=c?c.turns.slice():[];}
+  document.getElementById("dc-cctx").textContent="Stufe: "+SC.stufe;seite(false);zeigen();
+  if(p.hidden){p.hidden=false;document.body.classList.add("dc-chat-offen");try{history.pushState(Object.assign({},history.state,{dcChat:1}),"");}catch(e){}}
+  const ta=document.getElementById("dc-cin");if(vorgabe){ta.value=vorgabe;ta.dispatchEvent(new Event("input"));}setTimeout(()=>{ta.focus();if(vorgabe)ta.setSelectionRange(ta.value.length,ta.value.length);},50);}
+function schliessen(vonPop){const p=document.getElementById("dc-cpanel");if(!p||p.hidden)return;p.hidden=true;document.body.classList.remove("dc-chat-offen");
+  const f=document.getElementById("dc-cfab");if(f)f.focus({preventScroll:true});if(vonPop!==true){zurueckSperre=true;try{history.back();}catch(e){zurueckSperre=false;}}}
+window.addEventListener("popstate",e=>{if(zurueckSperre){zurueckSperre=false;e.stopImmediatePropagation();return;}
+  const p=document.getElementById("dc-cpanel");if(p&&!p.hidden){schliessen(true);e.stopImmediatePropagation();}},true);
+
+/* ---------- öffentliche Schnittstelle ---------- */
+const api=window.dcClaude=Object.assign(window.dcClaude||{},{
+  version:1,
+  oeffnen,
+  knopf(text,label){return `<button type="button" class="dc-ask" data-dc-ask="${esc(text)}">${ICON}<span>${esc(label||"Claude fragen")}</span></button>`;},
+  frageText(frage,extra){return "Ich verstehe diese Frage bzw. die Lösung noch nicht ganz. Kannst du es mir Schritt für Schritt erklären?\n\nFrage: "+String(frage||"").replace(/\s+/g," ").trim()+(extra?"\n"+extra:"");}
+});
+async function start(){ui();if(!window.claude||!window.claude.use)return;
+  try{sample=await claude.use("sample");}catch(e){sample=null;}
+  if(sample){H.classList.add("dc-claude-ok");window.__sampleOK=true;}}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+})();
+</script>
+<!-- ===== Ende Frag Claude ===== -->
+</body>
+</html>

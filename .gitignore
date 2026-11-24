@@ -1,0 +1,31 @@
+# --- Digital Campus: was NICHT ins öffentliche GitHub-Repo gehört ---
+
+# Kursmaterial von ILIAS/Perusall (urheberrechtlich geschützt, gross)
+material/
+
+# Volltext der Mathe-Skript- und Übungsblöcke + Probeprüfung (HSLU-Material)
+content/mathematik/quellen/
+
+# Bilder aus Vorlesungsfolien und Übungsserien (HSLU-Material)
+content/*/bilder/
+
+# Backups und Claude-Ausgaben (PDFs) – Git ist jetzt die Historie
+_backup/
+Claude outputs/
+
+# Technischer Kleinkram
+node_modules/
+dist/
+.env
+*.log
+*.bak
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# Windows / macOS
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*

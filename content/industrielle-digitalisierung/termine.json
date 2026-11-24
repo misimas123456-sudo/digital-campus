@@ -1,0 +1,28 @@
+{
+  "format": 2,
+  "fach": "industrielle-digitalisierung",
+  "stand": "2026-11-10",
+  "quelle": "ILIAS-Kurs Industrielle Digitalisierung (über Dashboard – Digital Campus, Stand 8.11.2026)",
+  "termine": [
+    {
+      "id": "grund-p1",
+      "titel": "Prüfung VR / AR / Trainingsplattformen",
+      "art": "pruefung",
+      "von": "2026-11-12",
+      "zeit": "Do 12:30",
+      "ort": "Rotkreuz S12.001",
+      "bewertet": true,
+      "hinweis": "Analoge Prüfung, Teil Markus Zank."
+    },
+    {
+      "id": "grund-p2",
+      "titel": "Prüfung Agile / Scrum / DevOps",
+      "art": "pruefung",
+      "von": "2026-12-17",
+      "zeit": "Do 12:30",
+      "ort": "Horw F200",
+      "bewertet": true,
+      "hinweis": "Analoge Prüfung, Teil Sawsan Studer."
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "format": 2,
+  "id": "industrielle-digitalisierung",
+  "name": "Industrielle Digitalisierung",
+  "kurz": "GRUNDING",
+  "farbe": "#92c6c2",
+  "schrift": "Sora",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215066",
+  "material": "material/industrielle-digitalisierung/",
+  "eigene_unterlagen": "Documents/HSLU/industrielle Digitalisierung",
+  "arten": [
+    "verstaendnis",
+    "code",
+    "aufgabe"
+  ],
+  "einheiten": [
+    {
+      "id": "sw01-linux",
+      "titel": "Linux-Grundlagen",
+      "woche": 1,
+      "bereich": "theorie",
+      "status": "geplant"
+    },
+    {
+      "id": "sw02-linux",
+      "titel": "Linux-Grundlagen",
+      "woche": 2,
+      "bereich": "theorie",
+      "status": "geplant"
+    },
+    {
+      "id": "sw03-git",
+      "titel": "Git",
+      "woche": 3,
+      "bereich": "theorie",
+      "status": "geplant"
+    },
+    {
+      "id": "sw04-git",
+      "titel": "Git",
+      "woche": 4,
+      "bereich": "theorie",
+      "status": "geplant"
+    },
+    {
+      "id": "sw05",
+      "titel": "Thema folgt",
+      "woche": 5,
+      "bereich": "theorie",
+      "status": "geplant"
+    },
+    {
+      "id": "sw06",
+      "titel": "Thema folgt",
+      "woche": 6,
+      "bereich": "theorie",
+      "status": "geplant"
+    },
+    {
+      "id": "sw10-agile-scrum",
+      "titel": "Agile & Scrum",
+      "woche": 10,
+      "bereich": "theorie",
+      "status": "bereit"
+    },
+    {
+      "id": "tv-ar-vr",
+      "titel": "AR & VR",
+      "bereich": "testvorbereitung",
+      "status": "entwurf",
+      "datei": "testvorbereitung/tv-ar-vr.json"
+    }
+  ],
+  "zusaetze": {
+    "termine": "termine.json",
+    "vorbereitung": "vorbereitung/"
+  }
+}

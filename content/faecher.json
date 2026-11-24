@@ -1,0 +1,113 @@
+{
+  "format": 2,
+  "stand": "2026-11-10",
+  "hinweis": "Liste aller Fächer. Fach-IDs nie ändern. Sichtbarer Name: «<name> – Digital Campus».",
+  "dashboard": "https://claude.ai/artifact/3nucn1BNbLGW39vSE3pUGQ",
+  "termine_uebersicht": "https://claude.ai/artifact/GXwh5vzPhKFvxRuxK99jqC",
+  "faecher": [
+    {
+      "id": "python-basics",
+      "name": "Python Basics",
+      "kurz": "PYTHON",
+      "status": "in-arbeit",
+      "farbe": "#c9bb83",
+      "schrift": "Space Grotesk",
+      "pfad": "content/python-basics/",
+      "app": "app/faecher/python-basics.html",
+      "artifact": "https://claude.ai/artifact/YH6QShjewRFY566vuCmyRj",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215198",
+      "material": "material/python-basics/"
+    },
+    {
+      "id": "mathematik",
+      "name": "Mathematik",
+      "kurz": "MATH1B",
+      "status": "in-arbeit",
+      "farbe": "#a4bbe5",
+      "schrift": "Fraunces",
+      "pfad": "content/mathematik/",
+      "app": "app/faecher/mathematik.html",
+      "artifact": "https://claude.ai/artifact/6ynTSpQAsNzVtHwRcuzWZ4",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215120",
+      "material": "material/mathematik/"
+    },
+    {
+      "id": "digitaltechnik",
+      "name": "Digitaltechnik",
+      "kurz": "DT",
+      "status": "in-arbeit",
+      "farbe": "#9dc7a5",
+      "schrift": "Chakra Petch",
+      "pfad": "content/digitaltechnik/",
+      "app": "app/faecher/digitaltechnik.html",
+      "artifact": "https://claude.ai/artifact/23iRprRSyWRcZ4sVEccDi3",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215006",
+      "material": "material/digitaltechnik/"
+    },
+    {
+      "id": "elektrotechnik",
+      "name": "Elektrotechnik mit Labor",
+      "kurz": "ET+L",
+      "status": "in-arbeit",
+      "farbe": "#ddb183",
+      "schrift": "Barlow",
+      "pfad": "content/elektrotechnik/",
+      "app": "app/faecher/elektrotechnik.html",
+      "artifact": "https://claude.ai/artifact/NPPZHMtvAWmSxiW6fP3VxV",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/grp/7268289",
+      "material": "material/elektrotechnik/"
+    },
+    {
+      "id": "konstruktion-maschinentechnik",
+      "name": "Konstruktion Maschinentechnik",
+      "kurz": "KONST_M",
+      "status": "in-arbeit",
+      "farbe": "#9ac2d4",
+      "schrift": "Archivo",
+      "pfad": "content/konstruktion-maschinentechnik/",
+      "app": "app/faecher/konstruktion-maschinentechnik.html",
+      "artifact": "https://claude.ai/artifact/FrsWB4rpR3648BhTXyNpEP",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215097",
+      "material": "material/konstruktion-maschinentechnik/"
+    },
+    {
+      "id": "kontextmodul",
+      "name": "Kontextmodul",
+      "kurz": "KONTT1",
+      "status": "in-arbeit",
+      "farbe": "#d4adc6",
+      "schrift": "Lora",
+      "pfad": "content/kontextmodul/",
+      "app": "app/faecher/kontextmodul.html",
+      "artifact": "https://claude.ai/artifact/L9X2AnXjGPtEYBGXb5Npfi",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215100",
+      "material": "material/kontextmodul/"
+    },
+    {
+      "id": "mechanik-werkstoffkunde",
+      "name": "Mechanik und Werkstoffkunde",
+      "kurz": "MECH_WSK1",
+      "status": "geplant",
+      "farbe": "#daa198",
+      "schrift": "Bricolage Grotesque",
+      "pfad": "content/mechanik-werkstoffkunde/",
+      "app": "app/faecher/mechanik-werkstoffkunde.html",
+      "artifact": "https://claude.ai/artifact/DFSZSQZxiaYfYuC7EN6Pjs",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215136",
+      "material": "material/mechanik-werkstoffkunde/"
+    },
+    {
+      "id": "industrielle-digitalisierung",
+      "name": "Industrielle Digitalisierung",
+      "kurz": "GRUNDING",
+      "status": "in-arbeit",
+      "farbe": "#92c6c2",
+      "schrift": "Sora",
+      "pfad": "content/industrielle-digitalisierung/",
+      "app": "app/faecher/industrielle-digitalisierung.html",
+      "artifact": "https://claude.ai/artifact/CL4UUDPsNYeTPYFGZKKXME",
+      "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215066",
+      "material": "material/industrielle-digitalisierung/"
+    }
+  ]
+}

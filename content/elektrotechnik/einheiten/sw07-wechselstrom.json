@@ -1,0 +1,281 @@
+{
+  "id": "sw07-wechselstrom",
+  "bereich": "theorie",
+  "woche": 7,
+  "titel": "Block 5 · Wechselstrom",
+  "untertitel": "Sinusgrössen, Effektivwert, Transformator, Blindwiderstände",
+  "quelle": "ET+L – H26 – Block 5 (18.10.2026), Folien S. 10–44, Aufgaben S. 48–52; Lösungen in Block 6, S. 43–47. Buch Ose S. 220–236.",
+  "lektionen": [
+    {
+      "id": "ac-erzeugung",
+      "titel": "Erzeugung und Transformation",
+      "art": "verstaendnis",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Dreht sich eine Leiterschleife gleichmässig im Magnetfeld, wird nach dem Induktionsgesetz eine **sinusförmige** Spannung induziert. Die Frequenz ist proportional zur Winkelgeschwindigkeit."
+        },
+        {
+          "typ": "titel",
+          "text": "Transformator"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\frac{U_1}{U_2} = \\frac{N_1}{N_2}"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Vorteile AC:** einfach transformierbar, effiziente Übertragung bei hoher Spannung, einfache Erzeugung und Motoren",
+            "**Nachteile AC:** schwer speicherbar (Pumpspeicher, Schwungrad statt Batterie), bei Berührung gefährlicher"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Ein Transformator hat primär doppelt so viele Windungen wie sekundär. Was gilt?",
+          "optionen": [
+            "$U_2$ ist halb so gross wie $U_1$",
+            "$U_2$ ist doppelt so gross wie $U_1$",
+            "$U_2 = U_1$",
+            "Das hängt nur von der Frequenz ab"
+          ],
+          "richtig": 0,
+          "erklaerung": "$U_1/U_2 = N_1/N_2 = 2$."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Umgekehrt: DC lässt sich in Batterien speichern, AC braucht aufwändigere Systeme.",
+          "aussage": "Wechselstrom lässt sich einfacher in Batterien speichern als Gleichstrom.",
+          "richtig": false
+        }
+      ]
+    },
+    {
+      "id": "sinus",
+      "titel": "Sinusgrössen beschreiben",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "formel",
+          "tex": "u(t) = \\hat U\\,\\sin(\\omega t + \\varphi_u)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "$\\hat U$: Scheitelwert (Amplitude), $u(t)$: Momentanwert",
+            "$T$: Periodendauer, $f = 1/T$ in Hz",
+            "$\\omega = 2\\pi f = 2\\pi/T$ in rad/s",
+            "Nullphasenwinkel: $\\varphi = \\dfrac{\\Delta t}{T}\\cdot2\\pi$; Phasenverschiebung $\\Delta\\varphi = \\varphi_u - \\varphi_i$"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Zeiger** (Phasor) rotiert mit $\\omega$; seine Projektion ist der Sinusverlauf."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Wie lang ist die Periode des Haushaltsnetzes mit 50 Hz (in ms)?",
+          "loesung": 20,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "B5-E1",
+          "loesungsweg": [
+            "$T = \\dfrac{1}{50\\,\\text{Hz}} = 20\\,\\text{ms}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Bahnstrom hat $16\\tfrac{2}{3}$ Hz. Periodendauer in ms?",
+          "loesung": 60,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "B5-E1",
+          "loesungsweg": [
+            "$T = \\dfrac{1}{16.67\\,\\text{Hz}} = 60\\,\\text{ms}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Scheitelwert 325 V. Welcher Momentanwert liegt bei 120° an?",
+          "loesung": 281.5,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "B5-E2",
+          "loesungsweg": [
+            "$u = 325\\,\\text{V}\\cdot\\sin120° = 281.5\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Welche Kreisfrequenz gehört zu 50 Hz (in rad/s)?",
+          "loesung": 314.2,
+          "einheit": "rad/s",
+          "toleranz": 0.02,
+          "quelle": "B5-E3",
+          "loesungsweg": [
+            "$\\omega = 2\\pi\\cdot50\\,\\text{Hz} = 314.2\\,\\tfrac{\\text{rad}}{\\text{s}}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "effektivwert",
+      "titel": "Effektivwert (RMS)",
+      "art": "rechnen",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Der **Effektivwert** ist der Wert, den eine Gleichspannung haben müsste, um die gleiche Wirkleistung zu erzeugen. Die Wirkleistung P ist der Mittelwert der Momentanleistung $p(t) = u(t)\\,i(t)$ über eine Periode."
+        },
+        {
+          "typ": "formel",
+          "tex": "U = U_\\text{eff} = \\frac{\\hat U}{\\sqrt 2} \\qquad I = \\frac{\\hat I}{\\sqrt2}"
+        },
+        {
+          "typ": "text",
+          "text": "Gilt so nur für Sinus. Messgeräte mit **TRMS** (true root mean square) messen auch nicht-sinusförmige Signale richtig."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Welchen Scheitelwert hat eine Wechselspannung mit 400 V Effektivwert?",
+          "loesung": 565.7,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "B5-E3",
+          "loesungsweg": [
+            "$\\hat U = \\sqrt2\\cdot400\\,\\text{V} = 565.7\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Welchen Effektivwert hat ein Wechselstrom mit 32 A Scheitelwert?",
+          "loesung": 22.63,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B5-E3",
+          "loesungsweg": [
+            "$I = \\dfrac{32\\,\\text{A}}{\\sqrt2} = 22.63\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Wie viel Prozent des Effektivwerts beträgt der Scheitelwert eines Sinus?",
+          "optionen": [
+            "141.4 %",
+            "70.7 %",
+            "100 %",
+            "63 %"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\hat U / U = \\sqrt2 = 1.414$."
+        }
+      ]
+    },
+    {
+      "id": "blindwiderstand",
+      "titel": "Blindwiderstände von L und C",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Kondensator"
+        },
+        {
+          "typ": "formel",
+          "tex": "X_C = \\frac{1}{\\omega C}\\;\\angle -90°"
+        },
+        {
+          "typ": "text",
+          "text": "Der Strom eilt der Spannung um 90° **voraus**. $X_C$ sinkt mit steigender Frequenz."
+        },
+        {
+          "typ": "titel",
+          "text": "Spule"
+        },
+        {
+          "typ": "formel",
+          "tex": "X_L = \\omega L\\;\\angle +90°"
+        },
+        {
+          "typ": "text",
+          "text": "Die Spannung eilt dem Strom um 90° voraus (der Strom eilt nach). $X_L$ steigt linear mit der Frequenz."
+        },
+        {
+          "typ": "text",
+          "text": "Beim ohmschen Widerstand gibt es keine Phasenverschiebung. Merkregel aus dem Labor: **CIU** (beim C kommt I vor U), **LUI** (beim L kommt U vor I)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Eine ideale Spule mit 100 mH hängt an 230 V, 50 Hz. Wie gross ist $X_L$?",
+          "loesung": 31.42,
+          "einheit": "Ω",
+          "toleranz": 0.02,
+          "quelle": "B5-E4",
+          "loesungsweg": [
+            "$X_L = 2\\pi\\cdot50\\,\\text{Hz}\\cdot0.1\\,\\text{H} = 31.42\\,\\Omega$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Welcher Strom fliesst durch diese Spule?",
+          "loesung": 7.32,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B5-E4",
+          "loesungsweg": [
+            "$I = \\dfrac{230\\,\\text{V}}{31.42\\,\\Omega} = 7.32\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Ein idealer Kondensator mit 0.22 µF hängt an 230 V, 50 Hz. Welcher Strom fliesst (in mA)?",
+          "loesung": 15.9,
+          "einheit": "mA",
+          "toleranz": 0.02,
+          "quelle": "B5-E5",
+          "loesungsweg": [
+            "$X_C = \\dfrac{1}{2\\pi\\cdot50\\cdot0.22\\cdot10^{-6}}\\,\\Omega = 14.47\\,\\text{k}\\Omega$",
+            "$I = \\dfrac{230\\,\\text{V}}{14.47\\,\\text{k}\\Omega} = 15.9\\,\\text{mA}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "multiple_choice",
+          "frage": "Was passiert mit $X_C$, wenn die Frequenz steigt?",
+          "optionen": [
+            "Er wird kleiner",
+            "Er wird grösser",
+            "Er bleibt gleich",
+            "Er wird negativ"
+          ],
+          "richtig": 0,
+          "erklaerung": "$X_C = 1/(\\omega C)$ – je höher die Frequenz, desto kleiner."
+        }
+      ]
+    }
+  ]
+}

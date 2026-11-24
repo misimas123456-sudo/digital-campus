@@ -1,0 +1,31 @@
+{
+  "format": 2,
+  "id": "mechanik-werkstoffkunde",
+  "name": "Mechanik und Werkstoffkunde",
+  "kurz": "MECH_WSK1",
+  "farbe": "#daa198",
+  "schrift": "Bricolage Grotesque",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215136",
+  "material": "material/mechanik-werkstoffkunde/",
+  "eigene_unterlagen": "Documents/HSLU/Mechanik und Werkstoffkunde",
+  "arten": [
+    "verstaendnis",
+    "rechnen",
+    "aufgabe"
+  ],
+  "wochen": 14,
+  "einheiten": [
+    { "id": "sw08-metallkunde", "titel": "Grundlagen und Metallkunde", "woche": 8, "bereich": "theorie", "status": "geplant" },
+    { "id": "sw09-werkstoffpruefung", "titel": "Werkstoffprüfung", "woche": 9, "bereich": "theorie", "status": "geplant" },
+    { "id": "sw10-stahl", "titel": "Stahl: Herstellung, Wärmebehandlung, Sorten", "woche": 10, "bereich": "theorie", "status": "bereit" },
+    { "id": "sw11-aluminium-ne-metalle", "titel": "Aluminium und andere Nichteisenmetalle", "woche": 11, "bereich": "theorie", "status": "geplant" },
+    { "id": "sw12-keramik-glas", "titel": "Keramik und Glas", "woche": 12, "bereich": "theorie", "status": "geplant" },
+    { "id": "sw13-kunststoffe", "titel": "Kunststoffe", "woche": 13, "bereich": "theorie", "status": "geplant" },
+    { "id": "sw14-repetitorium", "titel": "Repetitorium", "woche": 14, "bereich": "testvorbereitung", "status": "geplant" }
+  ],
+  "zusaetze": {
+    "termine": "termine.json",
+    "bilder": "bilder/"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "format": 2,
+  "fach": "konstruktion-maschinentechnik",
+  "stand": "2026-11-08",
+  "quelle": "Termine & Prüfungen – Digital Campus (ILIAS, Modulprogramm V3.0 vom 6.11.2026, Prüfungsplan HS26 Stand 3.11.2026, Zeitplan Bachelor T&A)",
+  "termine": [
+    {
+      "id": "konst-sl",
+      "titel": "Semesterleistung & Probe-MEP",
+      "art": "pruefung",
+      "von": "2026-12-01",
+      "zeit": "Di 15:20–17:45",
+      "ort": "F202",
+      "hinweis": "Laut Modulprogramm V3.0 vom 6.11.",
+      "bewertet": true
+    },
+    {
+      "id": "ft-maria",
+      "titel": "Maria Empfängnis – unterrichtsfrei",
+      "art": "info",
+      "von": "2026-12-08"
+    },
+    {
+      "id": "ende-hs26",
+      "titel": "Letzter Unterrichtstag HS26",
+      "art": "info",
+      "von": "2026-12-19"
+    },
+    {
+      "id": "pruef-vorb",
+      "titel": "Prüfungsvorbereitung (unterrichtsfrei)",
+      "art": "info",
+      "von": "2027-01-11",
+      "bis": "2027-01-17"
+    },
+    {
+      "id": "mep-konst",
+      "titel": "Modulendprüfung Konstruktion",
+      "art": "pruefung",
+      "von": "2027-01-26",
+      "zeit": "Di 13:30–15:30",
+      "ort": "F301",
+      "hinweis": "Schriftlich. Kürzel im Plan: TA.BA_KONST_M. Raum kurz vorher in MyCampus prüfen.",
+      "bewertet": true
+    },
+    {
+      "id": "result-hs26",
+      "titel": "Prüfungsergebnisse HS26 auf MyCampus",
+      "art": "info",
+      "von": "2027-02-15",
+      "zeit": "ab ca. 17 Uhr"
+    }
+  ]
+}

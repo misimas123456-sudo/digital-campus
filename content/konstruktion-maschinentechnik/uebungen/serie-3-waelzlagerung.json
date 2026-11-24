@@ -1,0 +1,166 @@
+{
+  "id": "serie-3-waelzlagerung",
+  "titel": "Wälzlagerung",
+  "untertitel": "Übungsserie 3 (ab SW08)",
+  "beschreibung": "Wellenlagerung analysieren, Kräfte an der Schrägverzahnung bestimmen, Lagerung eines Zahnrads und einer Supportlagerung gestalten.",
+  "bereich": "uebung",
+  "nr": 3,
+  "quelle": [
+    { "text": "KONST_M Übungen Ü-Serie_3 Wälzlagerung V1.2.pdf", "stellen": "Aufgaben 3.1–3.3" },
+    { "text": "KONST_M_Lösungen_Ü-Serie_3_Wälzlagerung V1.2.pdf", "stellen": "Mögliche Lösungen, Seiten 2–7" }
+  ],
+  "lektionen": [
+    {
+      "id": "s3-l1-wellenlagerung",
+      "titel": "3.1 Wellenlagerung",
+      "dauer_min": 15,
+      "quelle": "Ü-Serie 3, Aufgabe 3.1 (Seiten 2–3)",
+      "inhalt": [
+        { "typ": "text", "text": "Die Abbildung zeigt eine **einseitig gelagerte Getriebewelle**. Das linke Zahnrad ist angetrieben, das rechte leitet das Moment weiter. Die Zahnräder sind **auswechselbar**." },
+        { "typ": "bild", "src": "bilder/s3-31-wellenlagerung.png", "alt": "Getriebewelle mit zwei Zahnrädern, im Support mit zwei Wälzlagern gelagert" },
+        { "typ": "text", "text": "Teile: Zahnräder, Nut und Feder, Welle, Mutter (zwei), Deckel, Distanzhülse, zwei Wälzlager im Support. Oben links: Kräfte an der Verzahnung $F_t$, $F_r$, $F_n$." }
+      ],
+      "uebungen": [
+        {
+          "typ": "freitext",
+          "frage": "**3.1 a)** Welche Belastungen entstehen an der Lagerstelle der Welle im Support? Nenne Belastungsart und Ort.",
+          "bild": "bilder/s3-31-wellenlagerung.png",
+          "musterloesung": "- Biegemomente und Querkräfte durch Eigengewicht und $F_r$ der Verzahnung\n- Torsionsmomente durch $F_t$ der Verzahnung\n- Zug- und Druckkräfte beim Zahnradwechsel\n- mehrachsige Verspannung bei thermischer Ausdehnung",
+          "stichworte": ["biegung", "quer", "torsion", "zug", "druck", "therm"]
+        },
+        {
+          "typ": "markieren",
+          "frage": "**3.1 b)** Analysiere die Konstruktion. Klicke im Bild auf die Stellen, die du für Schwachstellen hältst (eine Markierung pro Schwachstelle). Ein zweiter Klick auf eine Markierung entfernt sie.",
+          "bild": "bilder/s3-31-wellenlagerung.png",
+          "mindestens": 3,
+          "ziele": [
+            { "name": "A – grosser Abstand zwischen Zahnrad und Lagerung", "rects": [[38, 42, 66, 66]] },
+            { "name": "B – geringer Lagerabstand", "rects": [[68, 38, 88, 72]] },
+            { "name": "C – kurze Schraubenklemmlänge (Deckel)", "rects": [[59, 33, 68, 44], [59, 70, 68, 82], [88, 36, 100, 50], [88, 63, 100, 77]] },
+            { "name": "Verspannte Lagerung ohne Ausgleich bei thermischer Ausdehnung (Mutter rechts, Lager beidseitig fest)", "rects": [[88, 50, 100, 63]] }
+          ],
+          "loesungsbild": "bilder/s3-31b-loesung.png",
+          "erklaerung": "Schwachstellen laut Lösung: grosser Abstand **A** zwischen Zahnrad und Lagerung, verspannte Lagerung ohne Ausgleich bei thermischer Ausdehnung, kurze Schraubenklemmlänge **C**, geringer Lagerabstand **B** und eine sehr schwierige Montage."
+        },
+        {
+          "typ": "freitext",
+          "frage": "**3.1 c)** Wie sieht deine verbesserte Lösung aus? Skizziere sie auf Papier und beschreibe hier in Worten, was du änderst und warum.",
+          "bild": "bilder/s3-31-wellenlagerung.png",
+          "musterloesung": "- Abstand **A** zwischen Zahnrad und Lagerung verkleinert\n- schwimmende Lagerung mit definiertem Axialspiel (definierter Anschlag)\n- Schraubenklemmlänge **C** verlängert\n- Lagerabstand **B** vergrössert\n- weniger Teile\n- vereinfachte Montage (Montageschräge, Anfräsung für Gabelschlüssel zum Kontern)",
+          "loesungsbild": "bilder/s3-31c-loesung.png",
+          "stichworte": ["abstand", "lagerabstand", "schwimmend", "axialspiel", "klemmlaenge", "montage"]
+        }
+      ]
+    },
+    {
+      "id": "s3-l2-zahnrad",
+      "titel": "3.2 Zahnrad mit Schrägverzahnung",
+      "dauer_min": 20,
+      "quelle": "Ü-Serie 3, Aufgabe 3.2 (Seiten 4–6)",
+      "inhalt": [
+        { "typ": "text", "text": "Gegeben ist ein **schrägverzahntes Zahnrad** mit Durchmesser $d = 120\\,\\text{mm}$ und Zahnwinkel $\\alpha = 15°$. Es überträgt das konstante Moment $M = 60\\,\\text{Nm}$." },
+        { "typ": "bild", "src": "bilder/s3-32-zahnrad.png", "alt": "Schrägverzahntes Zahnrad zwischen zwei Gehäusewänden, blaues Kräftedreieck an der Verzahnung" },
+        { "typ": "text", "text": "Zur Verfügung stehen ein **Axialkugellager** und **Radialnadellager**. Anpassungen sind nur im schraffierten Bereich erlaubt." },
+        { "typ": "merke", "text": "Hauptkraft (Index H) wirkt in Umfangsrichtung, Nebenkraft (Index N) entsteht durch die Schrägverzahnung in Achsrichtung. Aktions- und Reaktionskraft sind gleich gross und entgegengesetzt." }
+      ],
+      "uebungen": [
+        {
+          "typ": "markieren",
+          "frage": "**3.2 a)** Klicke im Bild auf den Pfeil der **Hauptreaktionskraft** $F_{Hr}$.",
+          "bild": "bilder/s3-32-zahnrad.png",
+          "maxKlicks": 1,
+          "ziele": [ { "name": "$F_{Hr}$ – senkrechter Pfeil (Umfangsrichtung, +y)", "rects": [[64, 50, 70, 65]] } ],
+          "loesungsbild": "bilder/s3-32-loesung.png",
+          "erklaerung": "$F_{Hr}$ ist der senkrechte Pfeil nach oben (+y). Der schräge Pfeil ist die Resultierende aus Haupt- und Nebenkraft."
+        },
+        {
+          "typ": "markieren",
+          "frage": "**3.2 a)** Klicke jetzt auf den Pfeil der **Nebenreaktionskraft** $F_{Nr}$.",
+          "bild": "bilder/s3-32-zahnrad.png",
+          "maxKlicks": 1,
+          "ziele": [ { "name": "$F_{Nr}$ – waagrechter Pfeil (Achsrichtung, −x)", "rects": [[69.5, 62, 78, 70]] } ],
+          "loesungsbild": "bilder/s3-32-loesung.png",
+          "erklaerung": "$F_{Nr}$ ist der waagrechte Pfeil in Achsrichtung (nach links, −x). Die Schrägverzahnung erzeugt diese Axialkraft."
+        },
+        {
+          "typ": "freitext",
+          "frage": "**3.2 a)** Und die Aktionskräfte: Wie gross sind $F_{Ha}$ und $F_{Na}$ im Vergleich zu $F_{Hr}$ und $F_{Nr}$, und in welche Richtung wirken sie?",
+          "musterloesung": "Actio = Reactio: $F_{Ha} = F_{Hr}$ und $F_{Na} = F_{Nr}$, jeweils gleich gross, aber **entgegengesetzt** gerichtet ($F_{Ha}$ nach unten, $F_{Na}$ nach rechts in +x).",
+          "stichworte": ["gleich", "entgegen"]
+        },
+        {
+          "typ": "markieren",
+          "frage": "**3.2 b)** Wo baust du die Lager ein? Klicke die Stelle für das **Axialkugellager** und die beiden Stellen für die **Radialnadellager** an (drei Markierungen, oben oder unten im Schnitt ist egal).",
+          "bild": "bilder/s3-32-zahnrad.png",
+          "maxKlicks": 4,
+          "ziele": [
+            { "name": "Radialnadellager in der linken Gehäusebohrung", "rects": [[29, 28, 45, 46], [29, 54, 45, 72]] },
+            { "name": "Axialkugellager zwischen linker Gehäusewand und Wellenbund", "rects": [[45, 14, 56, 42], [45, 58, 56, 86]] },
+            { "name": "Radialnadellager in der rechten Gehäusebohrung", "rects": [[77, 28, 96, 46], [77, 54, 96, 72]] }
+          ],
+          "loesungsbild": "bilder/s3-32-loesung.png",
+          "erklaerung": "Lösung: je ein **Radialnadellager** links und rechts in der Gehäusebohrung (symmetrisch, kleiner Lagerabstand), das **Axialkugellager** links zwischen Gehäusewand und Wellenbund nimmt die Axialkraft $F_{Nr}$ auf."
+        },
+        {
+          "typ": "freitext",
+          "frage": "**3.2 b)** Begründe deine Lagerung: Warum diese Lagerbauformen an diesen Stellen, und wie sicherst du die Lager?",
+          "musterloesung": "Die Schrägverzahnung führt zu **Axial- und Radialkräften**, die von der jeweiligen Lagerbauform **einzeln** aufgenommen werden müssen (Axialkugellager → Axialkraft, Radialnadellager → Radialkraft). Ein **symmetrischer Aufbau** der Lagerung und möglichst **kleine Abstände** zwischen den Lagern reduzieren die Durchbiegung. Die Radiallager sind **axial verschiebbar**, damit die Lagerkräfte eindeutig aufgeteilt werden.",
+          "loesungsbild": "bilder/s3-32-loesung.png",
+          "stichworte": ["axial", "radial", "symmetr", "abstand", "verschieb"]
+        },
+        {
+          "typ": "freitext",
+          "frage": "**3.2 c)** Welche Spannungsarten ergeben sich aufgrund der Belastung in der Welle, mit der das Zahnrad gelagert wird?",
+          "musterloesung": "Biegung in **zwei Ebenen**, **Torsion**, **Schub** und **Druckspannungen**.",
+          "stichworte": ["biegung", "torsion", "schub", "druck"]
+        },
+        {
+          "typ": "zahl",
+          "frage": "**3.2 d)** Berechne die Kräfte aus $d = 120\\,\\text{mm}$, $\\alpha = 15°$ und $M = 60\\,\\text{Nm}$.",
+          "felder": [
+            { "label": "$F_{Hr}$", "einheit": "N", "wert": 1000, "toleranz": 0.02 },
+            { "label": "$F_{Nr}$", "einheit": "N", "wert": 267.9, "toleranz": 0.02 },
+            { "label": "$F_{Ha}$", "einheit": "N", "wert": 1000, "toleranz": 0.02 },
+            { "label": "$F_{Na}$", "einheit": "N", "wert": 267.9, "toleranz": 0.02 }
+          ],
+          "loesungsweg": "$M = F_{Hr}\\cdot\\frac{d}{2} \\Rightarrow F_{Hr} = \\frac{2M}{d} = \\frac{2\\cdot 60\\,\\text{Nm}}{0{,}12\\,\\text{m}} = 1000\\,\\text{N}$\n\n$F_{Nr} = F_{Hr}\\cdot\\tan\\alpha = 1000\\,\\text{N}\\cdot\\tan 15° \\approx 268\\,\\text{N}$\n\n$F_{Ha} = F_{Hr}$, $F_{Na} = F_{Nr}$ (gleich gross, entgegengesetzt)."
+        }
+      ]
+    },
+    {
+      "id": "s3-l3-supportlagerung",
+      "titel": "3.3 Supportlagerung",
+      "dauer_min": 15,
+      "quelle": "Ü-Serie 3, Aufgabe 3.3 (Seite 5) und mögliche Lösung (Seite 7)",
+      "inhalt": [
+        { "typ": "text", "text": "**Geforderte Funktion:** Der Support ist wie gezeigt gelagert und soll gegenüber dem **Gehäuse** eine **Schwenkbewegung** ausführen können." },
+        { "typ": "bild", "src": "bilder/s3-33-uebersicht.png", "alt": "Übersicht: Support am Gehäuse, Detail X eingekreist" },
+        { "typ": "text", "text": "Die Detailzeichnung (Detail X, M ca. 1:1) enthält **konstruktive Mängel**. Teil **2** ist das Gehäuse, Teil **1** der Support, Teil **3** die Welle." },
+        { "typ": "bild", "src": "bilder/s3-33-detail.png", "alt": "Detail X: Welle 3 mit vier Kugellagern in Gehäuse 2 und Support 1, Sicherungsringe an den Wellenenden" }
+      ],
+      "uebungen": [
+        {
+          "typ": "markieren",
+          "frage": "**3.3** Finde die konstruktiven Mängel: Klicke auf die Stellen, die du ändern würdest (eine Markierung pro Mangel).",
+          "bild": "bilder/s3-33-detail.png",
+          "mindestens": 2,
+          "hinweis": "Das Lösungsblatt zeigt für 3.3 nur eine verbesserte Skizze, keine Mängelliste. Die Markierziele sind aus dem Vergleich der Original- mit der Lösungsskizze abgeleitet.",
+          "ziele": [
+            { "name": "Lager im Support: Welle ist in beiden Teilen gelagert (4 Lager statt 2) – im Support genügt ein fester Sitz", "rects": [[55, 20, 88, 38], [55, 62, 88, 80]] },
+            { "name": "Sicherungsringe an den Wellenenden tragen die ganze Axialkraft", "rects": [[6, 33, 19, 72], [80, 33, 93, 72]] },
+            { "name": "Lager im Gehäuse axial nicht eindeutig gesichert (Lösung: Sprengring S1 und Deckel)", "rects": [[19, 20, 55, 38], [19, 62, 55, 80]] }
+          ],
+          "loesungsbild": "bilder/s3-33-loesung.png",
+          "erklaerung": "In der möglichen Lösung sitzt die **Welle fest im Support** (Sprengring S2), gelagert wird nur noch **im Gehäuse**. Die Lager sind dort mit **Sprengring S1** und einem **Deckel** axial gesichert, Sprengring S3 sichert die Welle."
+        },
+        {
+          "typ": "freitext",
+          "frage": "**3.3** Beschreibe die Mängel und deine verbesserte Lösung in Worten (die Skizze machst du auf Papier).",
+          "musterloesung": "Mögliche Lösung laut Lösungsblatt (Skizze): Die Welle sitzt **fest im Support** und ist mit **Sprengring S2** gesichert. Gelagert wird nur noch **im Gehäuse**, die Lager sind dort mit **Sprengring S1** und einem **Deckel** axial gesichert, **Sprengring S3** sichert das Wellenende. So entfällt die doppelte Lagerung in Gehäuse und Support, und die Axialkräfte haben einen eindeutigen Weg.\n\n*Hinweis: Das Lösungsblatt beschreibt die Mängel nicht in Worten; diese Zusammenfassung ist aus der Skizze abgeleitet.*",
+          "loesungsbild": "bilder/s3-33-loesung.png",
+          "stichworte": ["support", "fest", "gehaeuse", "sprengring", "deckel", "axial"]
+        }
+      ]
+    }
+  ]
+}

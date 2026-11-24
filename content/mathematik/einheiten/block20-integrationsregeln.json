@@ -1,0 +1,753 @@
+{
+  "id": "block20-integrationsregeln",
+  "titel": "Integrationsregeln: Substitution und partielle Integration",
+  "untertitel": "Guess-and-Check, Substitutionsmethode, partielle Integration, bestimmte Integrale",
+  "bereich": "theorie",
+  "quelle": "Mathematik 1B, Skriptblock 20 (SkrpBlo20, Abschnitte 3.3.1 bis 3.3.2) und Übungsblock 20 (UebBlo20)",
+  "lektionen": [
+    {
+      "id": "block20-integrationsregeln-l1",
+      "titel": "Guess-and-Check: Stammfunktion raten",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Skript Block 20, 3.3.1 bis 3.3.4",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Eine Stammfunktion lässt sich oft **raten und durch Ableiten kontrollieren** (Kettenregel). Passt ein konstanter Faktor nicht, wird er korrigiert."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: Für $\\int\\cos(7t)\\,\\mathrm{d}t$ ist der Ansatz $\\sin(7t)$ mit der Ableitung $7\\cos(7t)$ um den Faktor $7$ zu gross. Also gilt $\\int\\cos(7t)\\,\\mathrm{d}t=\\tfrac17\\sin(7t)+C$."
+        },
+        {
+          "typ": "merke",
+          "text": "Ansatz ableiten, den Faktor-Unterschied bestimmen, Ansatz entsprechend korrigieren."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Die innere Ableitung nicht vergessen: $\\frac{\\mathrm{d}}{\\mathrm{d}t}\\sin(7t)=7\\cos(7t)$, nicht $\\cos(7t)$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Stammfunktion hat $\\sin(5t)$?",
+          "optionen": [
+            "$\\frac15\\cos(5t)+C$",
+            "$-\\cos(5t)+C$",
+            "$-5\\cos(5t)+C$",
+            "$-\\frac15\\cos(5t)+C$"
+          ],
+          "richtig": 3,
+          "erklaerung": "Ansatz $-\\cos(5t)$ hat die Ableitung $5\\sin(5t)$, ist also um den Faktor $5$ zu gross. Division durch $5$ gibt $-\\frac15\\cos(5t)$.",
+          "quelle": "Skript Block 20, 3.3.1"
+        },
+        {
+          "id": "block20-integrationsregeln-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Es gilt $\\frac{\\mathrm{d}}{\\mathrm{d}t}\\sin(7t)=\\cos(7t)$.",
+          "richtig": false,
+          "erklaerung": "Kettenregel: $\\frac{\\mathrm{d}}{\\mathrm{d}t}\\sin(7t)=7\\cos(7t)$.",
+          "quelle": "Skript Block 20, 3.3.1"
+        },
+        {
+          "id": "block20-integrationsregeln-l1-a3",
+          "typ": "rechnung",
+          "frage": "$\\int 2e^{3t+4}\\,\\mathrm{d}t=c\\cdot e^{3t+4}+C$. Bestimme $c$.",
+          "loesung": 0.6667,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Ansatz $2e^{3t+4}$ hat die Ableitung $6e^{3t+4}$, ist also um den Faktor $3$ zu gross.",
+            "$c=\\frac23\\approx0.667$"
+          ],
+          "erklaerung": "Die Korrektur erfolgt durch Division durch die innere Ableitung $3$.",
+          "quelle": "Skript Block 20, 3.3.2"
+        },
+        {
+          "id": "block20-integrationsregeln-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Welche Stammfunktion hat $3x^2\\cos(x^3)$?",
+          "optionen": [
+            "$3x^2\\sin(x^3)+C$",
+            "$-\\sin(x^3)+C$",
+            "$\\sin(x^3)+C$",
+            "$\\frac13\\sin(x^3)+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$3x^2$ ist genau die innere Ableitung von $x^3$. Probe: $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\sin(x^3)=3x^2\\cos(x^3)$.",
+          "quelle": "Skript Block 20, 3.3.3"
+        },
+        {
+          "id": "block20-integrationsregeln-l1-a5",
+          "typ": "rechnung",
+          "frage": "$\\int x^3\\sqrt{x^4+5}\\,\\mathrm{d}x=c\\,(x^4+5)^{3/2}+C$. Bestimme $c$.",
+          "loesung": 0.1667,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Ansatz $(x^4+5)^{3/2}$ hat die Ableitung $\\frac32\\cdot4x^3\\sqrt{x^4+5}=6x^3\\sqrt{x^4+5}$.",
+            "$c=\\frac16\\approx0.167$"
+          ],
+          "erklaerung": "Der Ansatz ist um den Faktor $6$ zu gross.",
+          "quelle": "Skript Block 20, 3.3.3"
+        },
+        {
+          "id": "block20-integrationsregeln-l1-a6",
+          "typ": "rechnung",
+          "frage": "$\\int 4x\\,(2x^2+1)^3\\,\\mathrm{d}x=c\\,(2x^2+1)^4+C$. Bestimme $c$.",
+          "loesung": 0.25,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Ansatz $(2x^2+1)^4$ hat die Ableitung $4(2x^2+1)^3\\cdot4x=16x(2x^2+1)^3$.",
+            "Gewünscht ist $4x(\\dots)$, also $c=\\frac4{16}=\\frac14$"
+          ],
+          "erklaerung": "Der Korrekturfaktor ist $\\frac{4}{16}$, nicht $\\frac{16}{4}$.",
+          "quelle": "Skript Block 20, 3.3.4"
+        }
+      ]
+    },
+    {
+      "id": "block20-integrationsregeln-l2",
+      "titel": "Substitutionsmethode",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Block 20, 3.3.5, 3.3.6, Übungsblock 20, Ü 20.1",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Man wählt eine innere Funktion $w$ und ersetzt $\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\,\\mathrm{d}x$ durch $\\mathrm{d}w$: $\\int u\\,\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\,\\mathrm{d}x=\\int u\\,\\mathrm{d}w$. Danach wird rücksubstituiert."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: $\\int 3x^2\\cos(x^3)\\,\\mathrm{d}x$ mit $w=x^3$, $\\mathrm{d}w=3x^2\\,\\mathrm{d}x$ ergibt $\\int\\cos w\\,\\mathrm{d}w=\\sin w+C=\\sin(x^3)+C$."
+        },
+        {
+          "typ": "merke",
+          "text": "Substitution kehrt die Kettenregel um. $\\mathrm{d}w=\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\,\\mathrm{d}x$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l2-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Bei der Substitution $w=x^4+5$ gilt $\\mathrm{d}w=4x^3\\,\\mathrm{d}x$.",
+          "richtig": true,
+          "erklaerung": "$\\mathrm{d}w=\\frac{\\mathrm{d}(x^4+5)}{\\mathrm{d}x}\\mathrm{d}x=4x^3\\,\\mathrm{d}x$.",
+          "quelle": "Skript Block 20, 3.3.5"
+        },
+        {
+          "id": "block20-integrationsregeln-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "$\\int x^3\\sqrt{x^4+5}\\,\\mathrm{d}x$ mit $w=x^4+5$: Welches Integral entsteht?",
+          "optionen": [
+            "$\\int\\sqrt w\\,\\mathrm{d}w$",
+            "$\\frac14\\int\\sqrt w\\,\\mathrm{d}x$",
+            "$\\frac14\\int\\sqrt w\\,\\mathrm{d}w$",
+            "$4\\int\\sqrt w\\,\\mathrm{d}w$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Aus $\\mathrm{d}w=4x^3\\mathrm{d}x$ folgt $x^3\\mathrm{d}x=\\frac14\\mathrm{d}w$.",
+          "quelle": "Skript Block 20, 3.3.5"
+        },
+        {
+          "id": "block20-integrationsregeln-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "$\\int e^{\\cos\\theta}\\sin\\theta\\,\\mathrm{d}\\theta$ mit $w=\\cos\\theta$: Was ist das Ergebnis?",
+          "optionen": [
+            "$-e^{\\cos\\theta}\\sin\\theta+C$",
+            "$e^{\\cos\\theta}\\sin\\theta+C$",
+            "$-e^{\\cos\\theta}+C$",
+            "$e^{\\cos\\theta}+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$\\mathrm{d}w=-\\sin\\theta\\,\\mathrm{d}\\theta$, also $\\int e^w(-\\mathrm{d}w)=-e^w+C$.",
+          "quelle": "Skript Block 20, 3.3.6"
+        },
+        {
+          "id": "block20-integrationsregeln-l2-a4",
+          "typ": "zuordnen",
+          "frage": "Ordne jedem Integral die passende Substitution zu.",
+          "paare": [
+            [
+              "$\\int x(x^2+4)^5\\,\\mathrm{d}x$",
+              "$w=x^2+4$"
+            ],
+            [
+              "$\\int\\sin(2x-1)\\,\\mathrm{d}x$",
+              "$w=2x-1$"
+            ],
+            [
+              "$\\int\\frac{\\mathrm{d}u}{\\sqrt{9-u}}$",
+              "$w=9-u$"
+            ],
+            [
+              "$\\int\\sin x\\cos^3x\\,\\mathrm{d}x$",
+              "$w=\\cos x$"
+            ]
+          ],
+          "erklaerung": "Gesucht ist die innere Funktion, deren Ableitung (bis auf eine Konstante) als Faktor im Integranden steht.",
+          "quelle": "Übungsblock 20, Ü 20.1"
+        },
+        {
+          "id": "block20-integrationsregeln-l2-a5",
+          "typ": "rechnung",
+          "frage": "$\\int x(x^2+4)^5\\,\\mathrm{d}x=c\\,(x^2+4)^6+C$. Bestimme $c$ (4 Nachkommastellen).",
+          "loesung": 0.0833,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$w=x^2+4$, $x\\,\\mathrm{d}x=\\frac12\\mathrm{d}w$",
+            "$\\frac12\\int w^5\\mathrm{d}w=\\frac{w^6}{12}$",
+            "$c=\\frac1{12}\\approx0.0833$"
+          ],
+          "erklaerung": "Probe durch Ableiten bestätigt das Ergebnis.",
+          "quelle": "Übungsblock 20, Ü 20.1"
+        },
+        {
+          "id": "block20-integrationsregeln-l2-a6",
+          "typ": "rechnung",
+          "frage": "$F$ ist die Stammfunktion von $\\frac{2x}{x^2+1}$ mit $F(0)=1$. Wie gross ist $F(1)$?",
+          "loesung": 1.6931,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$w=x^2+1$, $\\int\\frac{\\mathrm{d}w}{w}=\\ln(x^2+1)+C$",
+            "$F(0)=1\\Rightarrow C=1$",
+            "$F(1)=\\ln2+1\\approx1.693$"
+          ],
+          "erklaerung": "Die Konstante $C=1$ nicht vergessen.",
+          "quelle": "Übungsblock 20, Ü 20.1"
+        }
+      ]
+    },
+    {
+      "id": "block20-integrationsregeln-l3",
+      "titel": "Substitution geschickt wählen",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 20, 3.3.7, Übungsblock 20, Ü 20.4",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Nicht jede Substitution vereinfacht das Integral. Gut ist eine innere Funktion, deren Ableitung (bis auf eine Konstante) als Faktor im Integranden steht, oder eine lineare innere Funktion."
+        },
+        {
+          "typ": "text",
+          "text": "Gegenbeispiel: $\\int x^2\\sqrt{x^4+5}\\,\\mathrm{d}x$ mit $w=x^4+5$ wird komplizierter, denn $x^2$ ist nicht die Ableitung $4x^3$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Manchmal hilft auch $w=\\sqrt{\\dots}$, wie in Ü 20.4: Mit $w=\\sqrt{P-2}$ wird $P=w^2+2$ und $\\mathrm{d}P=2w\\,\\mathrm{d}w$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l3-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Eine Substitution ist nur sinnvoll, wenn das entstehende Integral einfacher ist als das ursprüngliche.",
+          "richtig": true,
+          "erklaerung": "Die Regel gilt immer, bringt aber nur dann etwas, wenn das neue Integral einfacher wird.",
+          "quelle": "Skript Block 20, 3.3.7"
+        },
+        {
+          "id": "block20-integrationsregeln-l3-a2",
+          "typ": "multiple_choice",
+          "frage": "Warum bringt $w=x^4+5$ bei $\\int x^2\\sqrt{x^4+5}\\,\\mathrm{d}x$ nichts?",
+          "optionen": [
+            "Weil die Wurzel nicht integrierbar ist.",
+            "Weil $\\mathrm{d}w=x\\,\\mathrm{d}x$ gilt.",
+            "Weil $w$ zu gross wird.",
+            "Weil $x^2$ nicht (bis auf eine Konstante) die Ableitung $4x^3$ von $w$ ist."
+          ],
+          "richtig": 3,
+          "erklaerung": "Ohne den Faktor $x^3$ bleibt nach der Substitution eine $x$-Abhängigkeit übrig.",
+          "quelle": "Skript Block 20, 3.3.7"
+        },
+        {
+          "id": "block20-integrationsregeln-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Welche Substitution vereinfacht $\\int\\frac{x^2}{1+x^3}\\,\\mathrm{d}x$?",
+          "optionen": [
+            "$w=x$",
+            "$w=1+x^3$",
+            "$w=x^2$",
+            "$w=1+x^2$"
+          ],
+          "richtig": 1,
+          "erklaerung": "$\\mathrm{d}w=3x^2\\mathrm{d}x$, also $\\frac13\\int\\frac{\\mathrm{d}w}{w}$.",
+          "quelle": "Übungsblock 20, Ü 20.1"
+        },
+        {
+          "id": "block20-integrationsregeln-l3-a4",
+          "typ": "rechnung",
+          "frage": "$\\int\\frac{x^2}{1+x^3}\\,\\mathrm{d}x=c\\ln|1+x^3|+C$. Bestimme $c$.",
+          "loesung": 0.3333,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$w=1+x^3$, $x^2\\mathrm{d}x=\\frac13\\mathrm{d}w$",
+            "$c=\\frac13$"
+          ],
+          "erklaerung": "Der Faktor $\\frac13$ aus $x^2\\mathrm{d}x=\\frac13\\mathrm{d}w$ darf nicht fehlen.",
+          "quelle": "Übungsblock 20, Ü 20.1"
+        },
+        {
+          "id": "block20-integrationsregeln-l3-a5",
+          "typ": "rechnung",
+          "frage": "Ü 20.4: $\\int P^2\\sqrt{P-2}\\,\\mathrm{d}P$ mit $w=\\sqrt{P-2}$ wird zu $\\int(2w^6+8w^4+8w^2)\\,\\mathrm{d}w$. Wie gross ist der Koeffizient von $(P-2)^{3/2}$ im Ergebnis?",
+          "loesung": 2.6667,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int8w^2\\mathrm{d}w=\\frac83w^3$",
+            "$w^3=(P-2)^{3/2}$, Koeffizient $\\frac83\\approx2.667$"
+          ],
+          "erklaerung": "Das Ergebnis lautet $\\frac27(P-2)^{7/2}+\\frac85(P-2)^{5/2}+\\frac83(P-2)^{3/2}+C$.",
+          "quelle": "Übungsblock 20, Ü 20.4"
+        },
+        {
+          "id": "block20-integrationsregeln-l3-a6",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{P=2}^{3}P^2\\sqrt{P-2}\\,\\mathrm{d}P$ (3 Nachkommastellen).",
+          "loesung": 4.5524,
+          "einheit": "",
+          "toleranz": 0.002,
+          "loesungsweg": [
+            "$w$-Grenzen: $P=2\\Rightarrow w=0$, $P=3\\Rightarrow w=1$",
+            "$\\frac27+\\frac85+\\frac83\\approx4.552$"
+          ],
+          "erklaerung": "Bei den $w$-Grenzen $0$ und $1$ ist die Stammfunktion in $w$ direkt auswertbar.",
+          "quelle": "Übungsblock 20, Ü 20.4"
+        }
+      ]
+    },
+    {
+      "id": "block20-integrationsregeln-l4",
+      "titel": "Substitution bei bestimmten Integralen",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 20, 3.3.8, 3.3.9",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Bei bestimmten Integralen werden die **Grenzen mitsubstituiert**: $\\int_{x=a}^{b}u\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\mathrm{d}x=\\int_{w(a)}^{w(b)}u\\,\\mathrm{d}w$. Rücksubstitution entfällt dann."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: $\\int_{0}^{2}xe^{x^2}\\mathrm{d}x$ mit $w=x^2$ hat die Grenzen $w=0$ und $w=4$, also $\\frac12\\int_0^4e^w\\mathrm{d}w=\\frac12(e^4-1)$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Entweder neue Grenzen **oder** Rücksubstitution, nie beides mischen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "$\\int_{x=1}^{3}\\frac{\\mathrm{d}x}{5-x}$ mit $w=5-x$: Welche Grenzen gelten für $w$?",
+          "optionen": [
+            "$w$ von $4$ bis $2$",
+            "$w$ von $-4$ bis $-2$",
+            "$w$ von $1$ bis $3$",
+            "$w$ von $2$ bis $4$"
+          ],
+          "richtig": 0,
+          "erklaerung": "$x=1\\Rightarrow w=4$, $x=3\\Rightarrow w=2$. Die Zuordnung bleibt erhalten.",
+          "quelle": "Skript Block 20, 3.3.9"
+        },
+        {
+          "id": "block20-integrationsregeln-l4-a2",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{2}xe^{x^2}\\,\\mathrm{d}x$.",
+          "loesung": 26.7991,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$w=x^2$, Grenzen $0$ bis $4$",
+            "$\\frac12(e^4-1)\\approx26.80$"
+          ],
+          "erklaerung": "Ohne den Faktor $\\frac12$ käme $53.60$ heraus.",
+          "quelle": "Skript Block 20, 3.3.8"
+        },
+        {
+          "id": "block20-integrationsregeln-l4-a3",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=1}^{3}\\frac{\\mathrm{d}x}{5-x}$.",
+          "loesung": 0.6931,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$-\\int_{w=4}^{2}\\frac{\\mathrm{d}w}{w}=-(\\ln2-\\ln4)$",
+            "$=\\ln2\\approx0.693$"
+          ],
+          "erklaerung": "Das Minus aus $\\mathrm{d}w=-\\mathrm{d}x$ nicht vergessen.",
+          "quelle": "Skript Block 20, 3.3.9"
+        },
+        {
+          "id": "block20-integrationsregeln-l4-a4",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{1}x(x^2+1)^3\\,\\mathrm{d}x$.",
+          "loesung": 1.875,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$w=x^2+1$, Grenzen $1$ bis $2$",
+            "$\\frac12\\int_1^2w^3\\mathrm{d}w=\\frac12\\cdot\\frac{15}{4}=\\frac{15}{8}$"
+          ],
+          "erklaerung": "Die Grenzen sind $1$ und $2$, nicht $0$ und $1$.",
+          "quelle": "Skript Block 20, 3.3.8"
+        },
+        {
+          "id": "block20-integrationsregeln-l4-a5",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{\\pi/6}\\cos(3x)\\,\\mathrm{d}x$.",
+          "loesung": 0.3333,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$w=3x$, Grenzen $0$ bis $\\frac\\pi2$",
+            "$\\frac13\\int_0^{\\pi/2}\\cos w\\,\\mathrm{d}w=\\frac13$"
+          ],
+          "erklaerung": "Ohne den Faktor $\\frac13$ käme $1$ heraus.",
+          "quelle": "Skript Block 20, 3.3.8"
+        },
+        {
+          "id": "block20-integrationsregeln-l4-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Wurden die Grenzen auf $w$ umgerechnet, muss man danach noch zurücksubstituieren.",
+          "richtig": false,
+          "erklaerung": "Mit den $w$-Grenzen wird direkt in $w$ ausgewertet.",
+          "quelle": "Skript Block 20, 3.3.8"
+        }
+      ]
+    },
+    {
+      "id": "block20-integrationsregeln-l5",
+      "titel": "Partielle Integration",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Block 20, 3.3.10 bis 3.3.12",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die partielle Integration kehrt die **Produktregel** um: $\\int u\\,\\mathrm{d}v=uv-\\int v\\,\\mathrm{d}u$, bzw. $\\int u\\frac{\\mathrm{d}v}{\\mathrm{d}x}\\mathrm{d}x=uv-\\int\\frac{\\mathrm{d}u}{\\mathrm{d}x}v\\,\\mathrm{d}x$."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: $\\int xe^x\\,\\mathrm{d}x$ mit $u=x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=e^x$ (also $\\frac{\\mathrm{d}u}{\\mathrm{d}x}=1$, $v=e^x$) ergibt $xe^x-\\int e^x\\mathrm{d}x=xe^x-e^x+C$."
+        },
+        {
+          "typ": "merke",
+          "text": "Substitution kehrt die Kettenregel um, partielle Integration die Produktregel."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l5-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Die partielle Integration ist die Umkehrung der Produktregel.",
+          "richtig": true,
+          "erklaerung": "Aus $\\mathrm{d}(uv)=v\\,\\mathrm{d}u+u\\,\\mathrm{d}v$ folgt $\\int u\\,\\mathrm{d}v=uv-\\int v\\,\\mathrm{d}u$.",
+          "quelle": "Skript Block 20, 3.3.10"
+        },
+        {
+          "id": "block20-integrationsregeln-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Welche Regel der partiellen Integration stimmt?",
+          "optionen": [
+            "$\\int u\\,\\mathrm{d}v=uv-\\int u\\,\\mathrm{d}v$",
+            "$\\int u\\,\\mathrm{d}v=uv-\\int v\\,\\mathrm{d}u$",
+            "$\\int u\\,\\mathrm{d}v=uv+\\int v\\,\\mathrm{d}u$",
+            "$\\int u\\,\\mathrm{d}v=u'v-\\int uv'$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Aus der Produktregel: $uv=\\int v\\,\\mathrm{d}u+\\int u\\,\\mathrm{d}v$.",
+          "quelle": "Skript Block 20, 3.3.10"
+        },
+        {
+          "id": "block20-integrationsregeln-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Welche Stammfunktion hat $\\theta\\cos\\theta$?",
+          "optionen": [
+            "$\\sin\\theta-\\theta\\cos\\theta+C$",
+            "$\\theta\\sin\\theta-\\cos\\theta+C$",
+            "$\\theta\\sin\\theta+\\cos\\theta+C$",
+            "$-\\theta\\sin\\theta+\\cos\\theta+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Probe: $\\frac{\\mathrm{d}}{\\mathrm{d}\\theta}(\\theta\\sin\\theta+\\cos\\theta)=\\sin\\theta+\\theta\\cos\\theta-\\sin\\theta=\\theta\\cos\\theta$.",
+          "quelle": "Skript Block 20, 3.3.11"
+        },
+        {
+          "id": "block20-integrationsregeln-l5-a4",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{1}xe^x\\,\\mathrm{d}x$.",
+          "loesung": 1.0,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\big[xe^x-e^x\\big]_0^1=(e-e)-(0-1)$",
+            "$=1$"
+          ],
+          "erklaerung": "Die untere Grenze liefert $-(0-1)=+1$.",
+          "quelle": "Skript Block 20, 3.3.11"
+        },
+        {
+          "id": "block20-integrationsregeln-l5-a5",
+          "typ": "rechnung",
+          "frage": "$\\int xe^{2x}\\,\\mathrm{d}x=\\frac12xe^{2x}+k\\,e^{2x}+C$. Bestimme $k$.",
+          "loesung": -0.25,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$u=x$, $v=\\frac12e^{2x}$",
+            "$-\\int\\frac12e^{2x}\\mathrm{d}x=-\\frac14e^{2x}$",
+            "$k=-0.25$"
+          ],
+          "erklaerung": "Beim Integrieren von $e^{2x}$ entsteht der Faktor $\\frac12$ zweimal.",
+          "quelle": "Skript Block 20, 3.3.12"
+        },
+        {
+          "id": "block20-integrationsregeln-l5-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Es gilt $\\int xe^x\\,\\mathrm{d}x=\\frac{x^2}{2}e^x+C$.",
+          "richtig": false,
+          "erklaerung": "Faktoren dürfen nicht einzeln aufgeleitet werden. Richtig ist $xe^x-e^x+C$.",
+          "quelle": "Skript Block 20, 3.3.12"
+        }
+      ]
+    },
+    {
+      "id": "block20-integrationsregeln-l6",
+      "titel": "Partielle Integration anwenden",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 20, 3.3.13, 3.3.14, Übungsblock 20, Ü 20.7, Ü 20.8",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die Wahl von $u$ und $\\frac{\\mathrm{d}v}{\\mathrm{d}x}$ muss zwei Bedingungen erfüllen: Zu $\\frac{\\mathrm{d}v}{\\mathrm{d}x}$ muss $v$ bekannt sein, und $\\int\\frac{\\mathrm{d}u}{\\mathrm{d}x}v\\,\\mathrm{d}x$ soll einfacher sein als das Ausgangsintegral."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: $\\int x^6\\ln x\\,\\mathrm{d}x$ mit $u=\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=x^6$ ergibt $\\frac{x^7}{7}\\ln x-\\int\\frac{x^6}{7}\\mathrm{d}x=\\frac17x^7\\ln x-\\frac1{49}x^7+C$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Für $\\int\\ln x\\,\\mathrm{d}x$ hilft der Trick $\\ln x=1\\cdot\\ln x$ mit $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=1$. Das Ergebnis ist $x\\ln x-x+C$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l6-a1",
+          "typ": "multiple_choice",
+          "frage": "Wie wählt man bei $\\int x^6\\ln x\\,\\mathrm{d}x$ am besten?",
+          "optionen": [
+            "$u=\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=x^6$",
+            "$u=x^6$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=\\ln x$",
+            "$u=\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=x^{-6}$",
+            "$u=x^6\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=1$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Stammfunktion von $\\ln x$ ist noch unbekannt, die von $x^6$ nicht.",
+          "quelle": "Skript Block 20, 3.3.13"
+        },
+        {
+          "id": "block20-integrationsregeln-l6-a2",
+          "typ": "rechnung",
+          "frage": "$\\int x^6\\ln x\\,\\mathrm{d}x=\\frac17x^7\\ln x-c\\,x^7+C$. Bestimme $c$ (4 Nachkommastellen).",
+          "loesung": 0.0204,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "Restintegral: $\\int\\frac1x\\cdot\\frac{x^7}{7}\\mathrm{d}x=\\frac17\\int x^6\\mathrm{d}x=\\frac{x^7}{49}$",
+            "$c=\\frac1{49}\\approx0.0204$"
+          ],
+          "erklaerung": "Der Faktor $\\frac17$ tritt zweimal auf.",
+          "quelle": "Skript Block 20, 3.3.13"
+        },
+        {
+          "id": "block20-integrationsregeln-l6-a3",
+          "typ": "zuordnen",
+          "frage": "Ordne jedem Integral die passende Wahl von $u$ zu.",
+          "paare": [
+            [
+              "$\\int x\\sin x\\,\\mathrm{d}x$",
+              "$u=x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=\\sin x$"
+            ],
+            [
+              "$\\int\\ln x\\,\\mathrm{d}x$",
+              "$u=\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=1$"
+            ],
+            [
+              "$\\int pe^{-0.1p}\\,\\mathrm{d}p$",
+              "$u=p$, $\\frac{\\mathrm{d}v}{\\mathrm{d}p}=e^{-0.1p}$"
+            ],
+            [
+              "$\\int x^{-2}\\ln x\\,\\mathrm{d}x$",
+              "$u=\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=x^{-2}$"
+            ]
+          ],
+          "erklaerung": "$u$ ist der Faktor, der beim Ableiten einfacher wird.",
+          "quelle": "Übungsblock 20, Ü 20.7"
+        },
+        {
+          "id": "block20-integrationsregeln-l6-a4",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=2}^{3}\\ln x\\,\\mathrm{d}x$ (4 Nachkommastellen).",
+          "loesung": 0.9095,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\big[x\\ln x-x\\big]_2^3=3\\ln3-3-(2\\ln2-2)$",
+            "$=3\\ln3-2\\ln2-1\\approx0.9095$"
+          ],
+          "erklaerung": "Die untere Grenze mit richtigem Vorzeichen subtrahieren.",
+          "quelle": "Skript Block 20, 3.3.13"
+        },
+        {
+          "id": "block20-integrationsregeln-l6-a5",
+          "typ": "rechnung",
+          "frage": "$\\int x^2\\sin(4x)\\,\\mathrm{d}x=-\\frac14x^2\\cos(4x)+\\frac18x\\sin(4x)+c\\cos(4x)+C$. Bestimme $c$ (4 Nachkommastellen).",
+          "loesung": 0.0312,
+          "einheit": "",
+          "toleranz": 0.0005,
+          "loesungsweg": [
+            "1. Durchgang: $-\\frac14x^2\\cos4x+\\frac12\\int x\\cos4x\\,\\mathrm{d}x$",
+            "2. Durchgang: $\\int x\\cos4x\\,\\mathrm{d}x=\\frac14x\\sin4x+\\frac1{16}\\cos4x$",
+            "$c=\\frac12\\cdot\\frac1{16}=\\frac1{32}\\approx0.0313$"
+          ],
+          "erklaerung": "Der Faktor $\\frac12$ aus dem ersten Schritt gilt auch für das zweite Resultat.",
+          "quelle": "Skript Block 20, 3.3.14"
+        },
+        {
+          "id": "block20-integrationsregeln-l6-a6",
+          "typ": "rechnung",
+          "frage": "Ü 20.8: Berechne $\\int_{z=0}^{10}ze^{-z}\\,\\mathrm{d}z$ (4 Nachkommastellen).",
+          "loesung": 0.9995,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\big[-ze^{-z}-e^{-z}\\big]_0^{10}$",
+            "$=-11e^{-10}+1\\approx0.9995$"
+          ],
+          "erklaerung": "$v=\\int e^{-z}\\mathrm{d}z=-e^{-z}$, das Minus nicht vergessen.",
+          "quelle": "Übungsblock 20, Ü 20.8"
+        }
+      ]
+    },
+    {
+      "id": "block20-integrationsregeln-l7",
+      "titel": "Repetition: Integrationsregeln",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "quelle": "Übungsblock 20, Ü 20.9, Ü 20.10",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Gemischte Aufgaben zu Substitution und partieller Integration."
+        },
+        {
+          "typ": "merke",
+          "text": "Steht die Ableitung der inneren Funktion als Faktor da, substituiert man. Wird bei einem Produkt ein Faktor beim Ableiten einfacher, integriert man partiell."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block20-integrationsregeln-l7-a1",
+          "typ": "zuordnen",
+          "frage": "Welche Methode ist bei welchem Integral besser geeignet?",
+          "paare": [
+            [
+              "$\\int x\\sin x\\,\\mathrm{d}x$",
+              "Partielle Integration mit $u=x$"
+            ],
+            [
+              "$\\int\\frac{x^2}{1+x^3}\\,\\mathrm{d}x$",
+              "Substitution mit $w=1+x^3$"
+            ],
+            [
+              "$\\int\\frac{\\mathrm{d}x}{\\sqrt{3x+1}}$",
+              "Substitution mit $w=3x+1$"
+            ],
+            [
+              "$\\int x^2\\sin x\\,\\mathrm{d}x$",
+              "Partielle Integration mit $u=x^2$"
+            ]
+          ],
+          "erklaerung": "Begründung: Faktor als Ableitung der inneren Funktion (Substitution) bzw. Faktor wird beim Ableiten einfacher (partiell).",
+          "quelle": "Übungsblock 20, Ü 20.9"
+        },
+        {
+          "id": "block20-integrationsregeln-l7-a2",
+          "typ": "multiple_choice",
+          "frage": "Welches Integral löst man am besten durch **partielle Integration**?",
+          "optionen": [
+            "$\\int x^2\\sin(x^3)\\,\\mathrm{d}x$",
+            "$\\int xe^{3x}\\,\\mathrm{d}x$",
+            "$\\int xe^{x^2}\\,\\mathrm{d}x$",
+            "$\\int\\frac{x}{1+x^2}\\,\\mathrm{d}x$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Die anderen drei haben die innere Ableitung als Faktor und werden substituiert.",
+          "quelle": "Übungsblock 20, Ü 20.9"
+        },
+        {
+          "id": "block20-integrationsregeln-l7-a3",
+          "typ": "rechnung",
+          "frage": "Ü 20.10: Die Kurve $y=x\\sin x$ und die $x$-Achse beschränken im ersten Quadranten ein Gebiet mit Ursprung als Randpunkt. Berechne seinen Flächeninhalt.",
+          "loesung": 3.1416,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "Das Gebiet liegt zwischen $x=0$ und $x=\\pi$ (erste Nullstelle $>0$)",
+            "$\\int_0^\\pi x\\sin x\\,\\mathrm{d}x=\\big[\\sin x-x\\cos x\\big]_0^\\pi=\\pi$"
+          ],
+          "erklaerung": "Der Flächeninhalt ist $\\pi\\approx3.1416$.",
+          "quelle": "Übungsblock 20, Ü 20.10"
+        },
+        {
+          "id": "block20-integrationsregeln-l7-a4",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{1}xe^{-x}\\,\\mathrm{d}x$.",
+          "loesung": 0.2642,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\big[-xe^{-x}-e^{-x}\\big]_0^1=-2e^{-1}+1$",
+            "$\\approx0.2642$"
+          ],
+          "erklaerung": "Untere Grenze: $-(0-1)=+1$.",
+          "quelle": "Übungsblock 20"
+        },
+        {
+          "id": "block20-integrationsregeln-l7-a5",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{1}\\frac{x^2}{1+x^3}\\,\\mathrm{d}x$.",
+          "loesung": 0.231,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$w=1+x^3$, Grenzen $1$ bis $2$",
+            "$\\frac13\\ln2\\approx0.2310$"
+          ],
+          "erklaerung": "Der Faktor $\\frac13$ steht vor dem Logarithmus.",
+          "quelle": "Übungsblock 20"
+        },
+        {
+          "id": "block20-integrationsregeln-l7-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Bei $\\int_{x=0}^{1}xe^{x^2}\\,\\mathrm{d}x$ mit $w=x^2$ lauten die neuen Grenzen $w=0$ und $w=1$.",
+          "richtig": true,
+          "erklaerung": "$0^2=0$ und $1^2=1$.",
+          "quelle": "Übungsblock 20"
+        }
+      ]
+    }
+  ]
+}

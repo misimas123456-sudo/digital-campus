@@ -1,0 +1,409 @@
+{
+  "id": "pruefungsvorbereitung",
+  "titel": "Prüfungsvorbereitung",
+  "bereich": "testvorbereitung",
+  "beschreibung": "Grössere Programme (ca. 15–30 Zeilen), die Themen aus SW02 bis SW08 kombinieren",
+  "lektionen": [
+    {
+      "id": "pruefungsvorbereitung-l1",
+      "titel": "Notenrechner",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02–SW04, SW07",
+      "aufgabe": "**Themen:** SW02 Operatoren & Runden · SW03 if/elif · SW04 Listen · SW07 Funktionen\n\nEine Prüfung hat `maximum` Punkte. Die Note ist `punkte / maximum * 5 + 1`, gerundet auf **eine** Dezimalstelle.\n\n1. `note(punkte: int, maximum: int) -> float` berechnet die Note.\n2. `urteil(note: float) -> str` gibt ab `5.5` `\"sehr gut\"`, ab `4.5` `\"gut\"`, ab `4.0` `\"genügend\"`, sonst `\"ungenügend\"` zurück.\n3. Gib für jede Prüfung in `punkte_liste` eine Zeile aus und danach den Durchschnitt der Noten (auf eine Dezimalstelle gerundet):\n\n```\nPrüfung 1: 5.6 (sehr gut)\n...\nDurchschnitt: 4.7\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "punkte_liste = [46, 31, 50, 22, 37]\nmaximum = 50",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def note(punkte: int, maximum: int) -> float:\n    pass\n\n\ndef urteil(note: float) -> str:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Ausgabe für alle Prüfungen und der Durchschnitt\n"
+        }
+      ],
+      "tests": "assert note(50, 50) == 6.0, \"note(50, 50) muss 6.0 sein.\"\nassert note(25, 50) == 3.5, \"note(25, 50) muss 3.5 sein.\"\nassert note(0, 50) == 1.0, \"note(0, 50) muss 1.0 sein.\"\nassert note(31, 50) == 4.1, f\"note(31, 50) sollte 4.1 sein, ist aber {note(31, 50)}.\"\nassert urteil(5.5) == \"sehr gut\" and urteil(6.0) == \"sehr gut\", \"Ab 5.5 ist das Urteil «sehr gut».\"\nassert urteil(4.5) == \"gut\" and urteil(4.9) == \"gut\", \"Von 4.5 bis 5.4 ist das Urteil «gut».\"\nassert urteil(4.0) == \"genügend\" and urteil(4.4) == \"genügend\", \"Von 4.0 bis 4.4 ist das Urteil «genügend».\"\nassert urteil(3.9) == \"ungenügend\", \"Unter 4.0 ist das Urteil «ungenügend».\"\nassert \"Prüfung 1: 5.6 (sehr gut)\" in _ausgabe, \"Die Zeile «Prüfung 1: 5.6 (sehr gut)» fehlt in der Ausgabe.\"\nassert \"Prüfung 4: 3.2 (ungenügend)\" in _ausgabe, \"Die Zeile «Prüfung 4: 3.2 (ungenügend)» fehlt in der Ausgabe.\"\nassert \"Durchschnitt: 4.7\" in _ausgabe, \"Die Zeile «Durchschnitt: 4.7» fehlt in der Ausgabe.\"",
+      "hinweise": [
+        "`round(zahl, 1)` rundet auf eine Dezimalstelle.",
+        "In `urteil` reicht eine `if / elif / else`-Kette von oben nach unten.",
+        "`enumerate(punkte_liste, start=1)` liefert Nummer und Wert zugleich.",
+        "Summiere die gerundeten Noten in einer Variablen und teile am Schluss durch `len(punkte_liste)`."
+      ],
+      "loesung": "punkte_liste = [46, 31, 50, 22, 37]\nmaximum = 50\n\n\ndef note(punkte: int, maximum: int) -> float:\n    \"\"\"Berechnet die Note, auf 0.1 gerundet.\"\"\"\n    return round(punkte / maximum * 5 + 1, 1)\n\n\ndef urteil(note: float) -> str:\n    \"\"\"Gibt das Urteil zur Note zurück.\"\"\"\n    if note >= 5.5:\n        return \"sehr gut\"\n    elif note >= 4.5:\n        return \"gut\"\n    elif note >= 4.0:\n        return \"genügend\"\n    return \"ungenügend\"\n\n\nsumme = 0\nfor nr, punkte in enumerate(punkte_liste, start=1):\n    n = note(punkte, maximum)\n    summe += n\n    print(f\"Prüfung {nr}: {n} ({urteil(n)})\")\nprint(f\"Durchschnitt: {round(summe / len(punkte_liste), 1)}\")"
+    },
+    {
+      "id": "pruefungsvorbereitung-l2",
+      "titel": "Caesar-Code",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02, SW03, SW04, SW07",
+      "aufgabe": "**Themen:** SW02 Strings & Modulo · SW03 for/if · SW04 String-Funktionen · SW07 Default-Parameter\n\nBeim Caesar-Code wird jeder Buchstabe um `schluessel` Stellen im Alphabet verschoben (nach `z` kommt wieder `a`). Gross-/Kleinschreibung bleibt erhalten, alle anderen Zeichen (Leerzeichen, Ziffern, Satzzeichen) bleiben unverändert.\n\n1. `verschluesseln(text: str, schluessel: int = 3) -> str`\n2. `entschluesseln(text: str, schluessel: int = 3) -> str`: macht die Verschiebung rückgängig. Tipp: Das ist eine Verschlüsselung mit dem **negativen** Schlüssel.\n3. Verschlüssele `\"Hallo Welt\"` mit dem Standardschlüssel, gib das Resultat aus und entschlüssele es danach wieder (auch ausgeben).\n\nDas Alphabet ist vorgegeben.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "ALPHABET = \"abcdefghijklmnopqrstuvwxyz\"",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def verschluesseln(text: str, schluessel: int = 3) -> str:\n    pass\n\n\ndef entschluesseln(text: str, schluessel: int = 3) -> str:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Verschlüsseln und wieder entschlüsseln\n"
+        }
+      ],
+      "tests": "assert verschluesseln(\"abc\", 1) == \"bcd\", f'verschluesseln(\"abc\", 1) sollte \"bcd\" sein, ist aber {verschluesseln(\"abc\", 1)!r}.'\nassert verschluesseln(\"xyz\", 3) == \"abc\", \"Nach z geht es bei a weiter: verschluesseln(\\\"xyz\\\", 3) = \\\"abc\\\".\"\nassert verschluesseln(\"Hallo Welt\") == \"Kdoor Zhow\", f\"Mit dem Standardschlüssel 3 wird aus «Hallo Welt» «Kdoor Zhow», nicht {verschluesseln('Hallo Welt')!r}.\"\nassert verschluesseln(\"Python 3.11!\", 5) == \"Udymts 3.11!\", \"Ziffern und Satzzeichen bleiben unverändert, Grossbuchstaben bleiben gross.\"\nassert verschluesseln(\"Abc\", 26) == \"Abc\", \"Mit Schlüssel 26 ändert sich nichts.\"\nassert entschluesseln(\"Kdoor Zhow\") == \"Hallo Welt\", \"entschluesseln(\\\"Kdoor Zhow\\\") muss «Hallo Welt» ergeben.\"\nassert entschluesseln(verschluesseln(\"Ein Test, oder?\", 7), 7) == \"Ein Test, oder?\", \"Entschlüsseln muss das Verschlüsseln umkehren.\"\nassert \"Kdoor Zhow\" in _ausgabe, \"Der verschlüsselte Text wird nicht ausgegeben.\"\nassert \"Hallo Welt\" in _ausgabe, \"Der entschlüsselte Text wird nicht ausgegeben.\"",
+      "hinweise": [
+        "`ALPHABET.index(buchstabe)` gibt die Position eines Buchstabens, `ALPHABET[position]` den Buchstaben zu einer Position.",
+        "Der Rest-Operator `% 26` springt nach `z` zurück zu `a` – auch bei negativen Schlüsseln.",
+        "Gross-/Kleinschreibung: `zeichen.lower()`, `zeichen.isupper()` und `neu.upper()`.",
+        "Baue das Resultat Zeichen für Zeichen in einem neuen String auf."
+      ],
+      "loesung": "ALPHABET = \"abcdefghijklmnopqrstuvwxyz\"\n\n\ndef verschluesseln(text: str, schluessel: int = 3) -> str:\n    \"\"\"Verschiebt jeden Buchstaben um schluessel Stellen.\"\"\"\n    resultat = \"\"\n    for zeichen in text:\n        if zeichen.lower() in ALPHABET:\n            position = ALPHABET.index(zeichen.lower())\n            neu = ALPHABET[(position + schluessel) % 26]\n            if zeichen.isupper():\n                neu = neu.upper()\n            resultat += neu\n        else:\n            resultat += zeichen\n    return resultat\n\n\ndef entschluesseln(text: str, schluessel: int = 3) -> str:\n    \"\"\"Macht verschluesseln() rückgängig.\"\"\"\n    return verschluesseln(text, -schluessel)\n\n\ngeheim = verschluesseln(\"Hallo Welt\")\nprint(geheim)\nprint(entschluesseln(geheim))"
+    },
+    {
+      "id": "pruefungsvorbereitung-l3",
+      "titel": "Temperatur-Statistik",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02–SW05, SW07",
+      "aufgabe": "**Themen:** SW03 for/if · SW04 Listen · SW05 Tuples entpacken · SW07 Funktionen · SW02 f-Strings\n\nEine Wetterstation hat die Tagestemperaturen einer Woche gemessen (`temperaturen`). Schreibe:\n\n1. `stats(werte: list) -> tuple`: gibt `(tiefster, höchster, mittelwert)` zurück, der Mittelwert auf eine Dezimalstelle gerundet. Löse es mit einer **Schleife**, ohne `min()` und `max()`.\n2. `frosttage(werte: list) -> int`: Anzahl der Tage unter `0` Grad.\n3. `warme_tage(werte: list) -> list`: Nummern der Tage (der erste Tag ist Tag 1), deren Temperatur **über** dem genauen Mittelwert liegt.\n\nEntpacke das Tuple von `stats` in drei Variablen und gib aus:\n\n```\nTiefstwert: -4.5 °C\nHöchstwert: 7.5 °C\nDurchschnitt: 1.8 °C\nFrosttage: 2\nWarme Tage: [1, 4, 6, 7]\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "temperaturen = [3.5, -1.0, 0.0, 7.5, -4.5, 2.0, 5.0]",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def stats(werte: list) -> tuple:\n    pass\n\n\ndef frosttage(werte: list) -> int:\n    pass\n\n\ndef warme_tage(werte: list) -> list:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Auswertung ausgeben\n"
+        }
+      ],
+      "tests": "assert stats([1.0, 2.0, 3.0]) == (1.0, 3.0, 2.0), f\"stats([1.0, 2.0, 3.0]) sollte (1.0, 3.0, 2.0) sein, ist aber {stats([1.0, 2.0, 3.0])}.\"\nassert stats([-2.0]) == (-2.0, -2.0, -2.0), \"Auch mit nur einem Wert muss stats funktionieren.\"\nassert isinstance(stats([1.0, 2.0]), tuple), \"stats muss ein Tuple zurückgeben.\"\nassert stats(temperaturen) == (-4.5, 7.5, 1.8), f\"stats(temperaturen) sollte (-4.5, 7.5, 1.8) sein, ist aber {stats(temperaturen)}.\"\nassert frosttage([1, -1, 0, -5]) == 2, \"0 Grad ist kein Frosttag: frosttage([1, -1, 0, -5]) = 2.\"\nassert frosttage([]) == 0, \"frosttage([]) muss 0 sein.\"\nassert warme_tage([1, 2, 3]) == [3], f\"warme_tage([1, 2, 3]) sollte [3] sein, ist aber {warme_tage([1, 2, 3])}.\"\nassert warme_tage([5, 5, 5]) == [], \"Bei lauter gleichen Werten ist kein Tag über dem Mittelwert.\"\nassert warme_tage(temperaturen) == [1, 4, 6, 7], f\"warme_tage(temperaturen) sollte [1, 4, 6, 7] sein, ist aber {warme_tage(temperaturen)}.\"\nassert \"Tiefstwert: -4.5 °C\" in _ausgabe, \"Die Zeile «Tiefstwert: -4.5 °C» fehlt.\"\nassert \"Höchstwert: 7.5 °C\" in _ausgabe, \"Die Zeile «Höchstwert: 7.5 °C» fehlt.\"\nassert \"Durchschnitt: 1.8 °C\" in _ausgabe, \"Die Zeile «Durchschnitt: 1.8 °C» fehlt.\"\nassert \"Frosttage: 2\" in _ausgabe, \"Die Zeile «Frosttage: 2» fehlt.\"\nassert \"Warme Tage: [1, 4, 6, 7]\" in _ausgabe, \"Die Zeile «Warme Tage: [1, 4, 6, 7]» fehlt.\"",
+      "hinweise": [
+        "Starte `tief` und `hoch` beide mit dem ersten Wert `werte[0]` und aktualisiere sie in der Schleife.",
+        "Mehrere Werte zurückgeben: `return tief, hoch, schnitt` ergibt ein Tuple.",
+        "Entpacken: `tief, hoch, schnitt = stats(temperaturen)`.",
+        "Für `warme_tage` brauchst du Index und Wert: `for tag, wert in enumerate(werte, start=1)`."
+      ],
+      "loesung": "temperaturen = [3.5, -1.0, 0.0, 7.5, -4.5, 2.0, 5.0]\n\n\ndef stats(werte: list) -> tuple:\n    \"\"\"Gibt (tiefster, höchster, Mittelwert) zurück.\"\"\"\n    tief = werte[0]\n    hoch = werte[0]\n    summe = 0\n    for wert in werte:\n        if wert < tief:\n            tief = wert\n        if wert > hoch:\n            hoch = wert\n        summe += wert\n    return tief, hoch, round(summe / len(werte), 1)\n\n\ndef frosttage(werte: list) -> int:\n    \"\"\"Zählt die Tage unter 0 Grad.\"\"\"\n    anzahl = 0\n    for wert in werte:\n        if wert < 0:\n            anzahl += 1\n    return anzahl\n\n\ndef warme_tage(werte: list) -> list:\n    \"\"\"Tage (ab 1) mit einer Temperatur über dem Mittelwert.\"\"\"\n    schnitt = sum(werte) / len(werte)\n    tage = []\n    for tag, wert in enumerate(werte, start=1):\n        if wert > schnitt:\n            tage.append(tag)\n    return tage\n\n\ntief, hoch, schnitt = stats(temperaturen)\nprint(f\"Tiefstwert: {tief} °C\")\nprint(f\"Höchstwert: {hoch} °C\")\nprint(f\"Durchschnitt: {schnitt} °C\")\nprint(f\"Frosttage: {frosttage(temperaturen)}\")\nprint(f\"Warme Tage: {warme_tage(temperaturen)}\")"
+    },
+    {
+      "id": "pruefungsvorbereitung-l4",
+      "titel": "Zahlenraten",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02, SW03, SW07",
+      "aufgabe": "**Themen:** SW02 input() & int() · SW03 while/if/elif · SW07 Funktionen & return\n\nBaue ein Zahlenratespiel. Die geheime Zahl ist vorgegeben.\n\n1. `vergleiche(geheim: int, tipp: int) -> str` gibt `\"zu klein\"`, `\"zu gross\"` oder `\"richtig\"` zurück.\n2. `spiele(geheim: int) -> int` fragt in einer `while`-Schleife mit `input(\"Tipp: \")` immer wieder einen Tipp ab (als `int`), gibt die Rückmeldung von `vergleiche` mit `print` aus und hört bei `\"richtig\"` auf. Rückgabe: die Anzahl Versuche.\n3. Rufe `spiele(geheim)` auf und gib danach aus: `Geschafft in 6 Versuchen`\n\nBeim Prüfen liefert `input()` nacheinander die Tipps `50, 25, 37, 43, 40, 42` – Eingaben stehen oben im Feld «Eingaben für input()».",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "geheim = 42",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def vergleiche(geheim: int, tipp: int) -> str:\n    pass\n\n\ndef spiele(geheim: int) -> int:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Spiel starten und Anzahl Versuche ausgeben\n"
+        }
+      ],
+      "tests": "assert vergleiche(42, 10) == \"zu klein\", \"vergleiche(42, 10) muss «zu klein» ergeben (der Tipp ist kleiner).\"\nassert vergleiche(42, 99) == \"zu gross\", \"vergleiche(42, 99) muss «zu gross» ergeben.\"\nassert vergleiche(42, 42) == \"richtig\", \"vergleiche(42, 42) muss «richtig» ergeben.\"\nassert _ausgabe.count(\"zu klein\") == 3, f\"«zu klein» sollte 3-mal ausgegeben werden, kommt aber {_ausgabe.count('zu klein')}-mal vor.\"\nassert _ausgabe.count(\"zu gross\") == 2, f\"«zu gross» sollte 2-mal ausgegeben werden, kommt aber {_ausgabe.count('zu gross')}-mal vor.\"\nassert \"Geschafft in 6 Versuchen\" in _ausgabe, \"Die Zeile «Geschafft in 6 Versuchen» fehlt in der Ausgabe.\"",
+      "hinweise": [
+        "Starte mit `versuche = 0` und `ergebnis = \"\"`; die Schleife läuft `while ergebnis != \"richtig\":`.",
+        "In der Schleife: `tipp = int(input(\"Tipp: \"))`, dann `versuche += 1`.",
+        "Die Rückmeldung holst du dir von `vergleiche(geheim, tipp)` – speichere sie in `ergebnis` und gib sie aus.",
+        "Nach der Schleife `return versuche`."
+      ],
+      "loesung": "geheim = 42\n\n\ndef vergleiche(geheim: int, tipp: int) -> str:\n    \"\"\"Vergleicht den Tipp mit der geheimen Zahl.\"\"\"\n    if tipp < geheim:\n        return \"zu klein\"\n    elif tipp > geheim:\n        return \"zu gross\"\n    return \"richtig\"\n\n\ndef spiele(geheim: int) -> int:\n    \"\"\"Fragt Tipps ab bis zum Treffer, gibt die Anzahl Versuche zurück.\"\"\"\n    versuche = 0\n    ergebnis = \"\"\n    while ergebnis != \"richtig\":\n        tipp = int(input(\"Tipp: \"))\n        versuche += 1\n        ergebnis = vergleiche(geheim, tipp)\n        print(ergebnis)\n    return versuche\n\n\nversuche = spiele(geheim)\nprint(f\"Geschafft in {versuche} Versuchen\")",
+      "eingaben": [
+        "50",
+        "25",
+        "37",
+        "43",
+        "40",
+        "42"
+      ]
+    },
+    {
+      "id": "pruefungsvorbereitung-l5",
+      "titel": "Wörter zählen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02, SW04, SW05, SW07",
+      "aufgabe": "**Themen:** SW02 Strings · SW04 String-Funktionen & for · SW05 Dict & Tuple · SW07 Funktionen\n\nZähle, wie oft jedes Wort in einem Text vorkommt.\n\n1. `woerter_zaehlen(text: str) -> dict`: Entferne die Satzzeichen `. , ! ?`, schreibe alles klein und zähle die Wörter. Rückgabe: Dict `{wort: anzahl}`.\n2. `haeufigstes(zaehler: dict) -> tuple`: gibt `(wort, anzahl)` des häufigsten Worts zurück. Bei Gleichstand gewinnt das Wort, das **alphabetisch zuerst** kommt.\n3. Werte den vorgegebenen `text` aus und gib aus:\n\n```\nVerschiedene Wörter: 7\nHäufigstes Wort: 'der' (3x)\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "text = \"Der Hund jagt den Ball. Der Ball rollt, der Hund bellt!\"",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def woerter_zaehlen(text: str) -> dict:\n    pass\n\n\ndef haeufigstes(zaehler: dict) -> tuple:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Text auswerten und ausgeben\n"
+        }
+      ],
+      "tests": "assert woerter_zaehlen(\"a b a\") == {\"a\": 2, \"b\": 1}, f'woerter_zaehlen(\"a b a\") sollte {{\"a\": 2, \"b\": 1}} sein, ist aber {woerter_zaehlen(\"a b a\")}.'\nassert woerter_zaehlen(\"Hallo, hallo!\") == {\"hallo\": 2}, \"Satzzeichen entfernen und alles klein schreiben: «Hallo, hallo!» → {'hallo': 2}.\"\nassert woerter_zaehlen(\"\") == {}, \"Ein leerer Text ergibt ein leeres Dict.\"\nassert woerter_zaehlen(text)[\"der\"] == 3 and len(woerter_zaehlen(text)) == 7, \"Im Beispieltext kommt «der» 3-mal vor und es gibt 7 verschiedene Wörter.\"\nassert haeufigstes({\"b\": 2, \"a\": 2, \"c\": 1}) == (\"a\", 2), \"Bei Gleichstand gewinnt das alphabetisch erste Wort: ('a', 2).\"\nassert isinstance(haeufigstes({\"x\": 1}), tuple), \"haeufigstes muss ein Tuple zurückgeben.\"\nassert \"Verschiedene Wörter: 7\" in _ausgabe, \"Die Zeile «Verschiedene Wörter: 7» fehlt.\"\nassert \"Häufigstes Wort: 'der' (3x)\" in _ausgabe, \"Die Zeile «Häufigstes Wort: 'der' (3x)» fehlt.\"",
+      "hinweise": [
+        "Satzzeichen entfernst du mit `text.replace(zeichen, \"\")` in einer Schleife über `\".,!?\"`.",
+        "`text.lower().split()` ergibt die Liste der Wörter.",
+        "Zähler im Dict: `zaehler[wort] = zaehler.get(wort, 0) + 1`.",
+        "Gehe in `haeufigstes` mit `for wort in sorted(zaehler):` durch und ersetze das beste Wort nur bei **grösserer** Anzahl."
+      ],
+      "loesung": "text = \"Der Hund jagt den Ball. Der Ball rollt, der Hund bellt!\"\n\n\ndef woerter_zaehlen(text: str) -> dict:\n    \"\"\"Zählt die Wörter eines Textes (klein geschrieben, ohne Satzzeichen).\"\"\"\n    for zeichen in \".,!?\":\n        text = text.replace(zeichen, \"\")\n    zaehler = {}\n    for wort in text.lower().split():\n        zaehler[wort] = zaehler.get(wort, 0) + 1\n    return zaehler\n\n\ndef haeufigstes(zaehler: dict) -> tuple:\n    \"\"\"Gibt (wort, anzahl) des häufigsten Worts zurück.\"\"\"\n    bestes = None\n    for wort in sorted(zaehler):\n        if bestes is None or zaehler[wort] > zaehler[bestes]:\n            bestes = wort\n    return bestes, zaehler[bestes]\n\n\nergebnis = woerter_zaehlen(text)\nwort, anzahl = haeufigstes(ergebnis)\nprint(f\"Verschiedene Wörter: {len(ergebnis)}\")\nprint(f\"Häufigstes Wort: '{wort}' ({anzahl}x)\")"
+    },
+    {
+      "id": "pruefungsvorbereitung-l6",
+      "titel": "Kursanmeldungen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW03–SW05, SW07",
+      "aufgabe": "**Themen:** SW04 Listen · SW05 Sets & Mengenoperationen · SW05 Dict · SW03 for · SW07 Funktionen\n\nZwei Kurslisten enthalten Namen, manche kommen doppelt vor (Mehrfachanmeldung). Schreibe\n\n`auswerten(a: list, b: list) -> dict`\n\nmit diesen Keys (in dieser Reihenfolge) und **alphabetisch sortierten Listen** als Werten:\n\n- `\"beide\"`: Personen in beiden Kursen\n- `\"nur_a\"`: nur in Kurs A\n- `\"nur_b\"`: nur in Kurs B\n- `\"alle\"`: alle Personen (jede einmal)\n- `\"anzahl\"`: Anzahl der Personen in `\"alle\"` (eine Zahl)\n\nGib das Resultat mit einer Schleife über `ergebnis.items()` zeilenweise aus, z. B. `beide: ['Ben', 'Dora']`.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "python_kurs = [\"Anna\", \"Ben\", \"Cem\", \"Anna\", \"Dora\", \"Eli\"]\nmathe_kurs = [\"Ben\", \"Dora\", \"Fabio\", \"Gina\", \"Ben\"]",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def auswerten(a: list, b: list) -> dict:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Auswertung ausgeben\n"
+        }
+      ],
+      "tests": "r = auswerten(python_kurs, mathe_kurs)\nassert r == {\"beide\": [\"Ben\", \"Dora\"], \"nur_a\": [\"Anna\", \"Cem\", \"Eli\"], \"nur_b\": [\"Fabio\", \"Gina\"], \"alle\": [\"Anna\", \"Ben\", \"Cem\", \"Dora\", \"Eli\", \"Fabio\", \"Gina\"], \"anzahl\": 7}, f\"auswerten(python_kurs, mathe_kurs) liefert {r}.\"\nassert auswerten([], []) == {\"beide\": [], \"nur_a\": [], \"nur_b\": [], \"alle\": [], \"anzahl\": 0}, \"Zwei leere Listen ergeben leere Listen und anzahl 0.\"\nassert auswerten([\"x\", \"x\"], [\"y\"])[\"nur_a\"] == [\"x\"], \"Doppelte Namen zählen nur einmal.\"\nassert list(r.keys()) == [\"beide\", \"nur_a\", \"nur_b\", \"alle\", \"anzahl\"], \"Die Keys müssen in der Reihenfolge beide, nur_a, nur_b, alle, anzahl stehen.\"\nassert \"beide: ['Ben', 'Dora']\" in _ausgabe, \"Die Zeile «beide: ['Ben', 'Dora']» fehlt in der Ausgabe.\"\nassert \"anzahl: 7\" in _ausgabe, \"Die Zeile «anzahl: 7» fehlt in der Ausgabe.\"",
+      "hinweise": [
+        "`set(liste)` entfernt Doppelte.",
+        "Mengenoperatoren: `&` Schnittmenge, `-` Differenz, `|` Vereinigung.",
+        "Ein Set hat keine feste Reihenfolge – mit `sorted(menge)` bekommst du eine sortierte Liste.",
+        "`for key, wert in ergebnis.items(): print(f\"{key}: {wert}\")`"
+      ],
+      "loesung": "python_kurs = [\"Anna\", \"Ben\", \"Cem\", \"Anna\", \"Dora\", \"Eli\"]\nmathe_kurs = [\"Ben\", \"Dora\", \"Fabio\", \"Gina\", \"Ben\"]\n\n\ndef auswerten(a: list, b: list) -> dict:\n    \"\"\"Vergleicht zwei Kurslisten mit Mengenoperationen.\"\"\"\n    menge_a = set(a)\n    menge_b = set(b)\n    alle = menge_a | menge_b\n    return {\n        \"beide\": sorted(menge_a & menge_b),\n        \"nur_a\": sorted(menge_a - menge_b),\n        \"nur_b\": sorted(menge_b - menge_a),\n        \"alle\": sorted(alle),\n        \"anzahl\": len(alle),\n    }\n\n\nergebnis = auswerten(python_kurs, mathe_kurs)\nfor key, wert in ergebnis.items():\n    print(f\"{key}: {wert}\")"
+    },
+    {
+      "id": "pruefungsvorbereitung-l7",
+      "titel": "Collatz-Folge",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 3,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW03–SW05, SW07",
+      "aufgabe": "**Themen:** SW03 while/if · SW04 Listen · SW05 Tuples · SW07 Funktionen\n\nDie **Collatz-Folge** startet bei einer Zahl `n`: Ist `n` gerade, ist die nächste Zahl `n // 2`, sonst `3 * n + 1`. Die Folge endet bei `1`.\nBeispiel für `6`: `[6, 3, 10, 5, 16, 8, 4, 2, 1]`\n\n1. `collatz(n: int) -> list`: gibt die ganze Folge zurück (Startzahl und `1` eingeschlossen).\n2. `laengste(bis: int) -> tuple`: sucht unter den Startzahlen `1` bis `bis` die mit der **längsten** Folge und gibt `(startzahl, laenge)` zurück. Bei Gleichstand gewinnt die kleinere Startzahl.\n3. Gib aus:\n\n```\ncollatz(6) = [6, 3, 10, 5, 16, 8, 4, 2, 1]\nLängste Folge bis 30: Start 27, Länge 112\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "def collatz(n: int) -> list:\n    pass\n\n\ndef laengste(bis: int) -> tuple:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Beispiel und längste Folge ausgeben\n"
+        }
+      ],
+      "tests": "assert collatz(1) == [1], \"collatz(1) muss [1] sein.\"\nassert collatz(6) == [6, 3, 10, 5, 16, 8, 4, 2, 1], f\"collatz(6) sollte [6, 3, 10, 5, 16, 8, 4, 2, 1] sein, ist aber {collatz(6)}.\"\nassert len(collatz(27)) == 112, f\"collatz(27) hat 112 Elemente, nicht {len(collatz(27))}.\"\nassert laengste(1) == (1, 1), \"laengste(1) muss (1, 1) sein.\"\nassert laengste(10) == (9, 20), f\"laengste(10) sollte (9, 20) sein, ist aber {laengste(10)}.\"\nassert laengste(30) == (27, 112), f\"laengste(30) sollte (27, 112) sein, ist aber {laengste(30)}.\"\nassert isinstance(laengste(5), tuple), \"laengste muss ein Tuple zurückgeben.\"\nassert \"collatz(6) = [6, 3, 10, 5, 16, 8, 4, 2, 1]\" in _ausgabe, \"Die Zeile «collatz(6) = …» fehlt in der Ausgabe.\"\nassert \"Längste Folge bis 30: Start 27, Länge 112\" in _ausgabe, \"Die Zeile «Längste Folge bis 30: Start 27, Länge 112» fehlt in der Ausgabe.\"",
+      "hinweise": [
+        "Beginne mit `folge = [n]` und wiederhole `while n != 1:` – hänge jede neue Zahl an.",
+        "Gerade Zahlen erkennst du mit `n % 2 == 0`.",
+        "In `laengste`: merke dir `beste_start` und `beste_laenge` und ersetze sie nur bei **echt längerer** Folge (`>`).",
+        "Die Länge einer Liste ist `len(folge)`."
+      ],
+      "loesung": "def collatz(n: int) -> list:\n    \"\"\"Gibt die Collatz-Folge von n bis 1 zurück.\"\"\"\n    folge = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n = n // 2\n        else:\n            n = 3 * n + 1\n        folge.append(n)\n    return folge\n\n\ndef laengste(bis: int) -> tuple:\n    \"\"\"Sucht die Startzahl bis `bis` mit der längsten Folge.\"\"\"\n    beste_start = 1\n    beste_laenge = 1\n    for start in range(1, bis + 1):\n        laenge = len(collatz(start))\n        if laenge > beste_laenge:\n            beste_start = start\n            beste_laenge = laenge\n    return beste_start, beste_laenge\n\n\nprint(\"collatz(6) =\", collatz(6))\nstart, laenge = laengste(30)\nprint(f\"Längste Folge bis 30: Start {start}, Länge {laenge}\")"
+    },
+    {
+      "id": "pruefungsvorbereitung-l8",
+      "titel": "Lagerverwaltung",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 3,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW03–SW05, SW07",
+      "aufgabe": "**Themen:** SW05 verschachtelte Dicts · SW03 for/if · SW04 sorted & Listen · SW07 Funktionen\n\nEin Lager ist ein **verschachteltes Dictionary**: Jeder Artikel hat einen Preis (in CHF) und eine Menge.\n\n1. `lagerwert(lager: dict) -> float`: Summe aus `preis * menge` aller Artikel, auf 2 Dezimalstellen gerundet.\n2. `nachbestellen(lager: dict, name: str, anzahl: int) -> bool`: erhöht die Menge des Artikels um `anzahl` und gibt `True` zurück. Gibt es den Artikel nicht, passiert nichts und es kommt `False` zurück.\n3. `knapp(lager: dict, grenze: int) -> list`: alphabetisch sortierte Liste der Artikel mit einer Menge **unter** `grenze`.\n\nGib aus (die Zange wird um 5 nachbestellt):\n\n```\nLagerwert: 59.5 CHF\nKnapp: ['Hammer', 'Zange']\nZange: 5\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "lager = {\n    \"Schraube\": {\"preis\": 0.05, \"menge\": 400},\n    \"Mutter\": {\"preis\": 0.04, \"menge\": 50},\n    \"Hammer\": {\"preis\": 12.5, \"menge\": 3},\n    \"Zange\": {\"preis\": 8.0, \"menge\": 0},\n}",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def lagerwert(lager: dict) -> float:\n    pass\n\n\ndef nachbestellen(lager: dict, name: str, anzahl: int) -> bool:\n    pass\n\n\ndef knapp(lager: dict, grenze: int) -> list:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Auswertung und Nachbestellung\n"
+        }
+      ],
+      "tests": "assert lagerwert({\"a\": {\"preis\": 2.5, \"menge\": 4}}) == 10.0, \"lagerwert für einen Artikel mit Preis 2.5 und Menge 4 muss 10.0 sein.\"\nassert lagerwert({}) == 0, \"Ein leeres Lager hat den Wert 0.\"\nbeispiel = {\"Schraube\": {\"preis\": 0.05, \"menge\": 400}, \"Mutter\": {\"preis\": 0.04, \"menge\": 50}, \"Hammer\": {\"preis\": 12.5, \"menge\": 3}, \"Zange\": {\"preis\": 8.0, \"menge\": 0}}\nassert lagerwert(beispiel) == 59.5, f\"Für das Lager aus der Aufgabe sollte lagerwert 59.5 ergeben, ist aber {lagerwert(beispiel)}.\"\nl = {\"x\": {\"preis\": 1.0, \"menge\": 2}}\nassert nachbestellen(l, \"x\", 3) is True and l[\"x\"][\"menge\"] == 5, \"nachbestellen muss die Menge im Dict erhöhen und True zurückgeben.\"\nassert nachbestellen(l, \"y\", 1) is False and \"y\" not in l, \"Unbekannte Artikel: False zurückgeben und nichts ändern.\"\nassert knapp({\"b\": {\"preis\": 1, \"menge\": 1}, \"a\": {\"preis\": 1, \"menge\": 2}, \"c\": {\"preis\": 1, \"menge\": 20}}, 10) == [\"a\", \"b\"], \"knapp muss alphabetisch sortierte Namen mit Menge unter der Grenze liefern.\"\nassert knapp({\"a\": {\"preis\": 1, \"menge\": 10}}, 10) == [], \"Menge gleich der Grenze ist nicht knapp.\"\nassert \"Lagerwert: 59.5 CHF\" in _ausgabe, \"Die Zeile «Lagerwert: 59.5 CHF» fehlt.\"\nassert \"Knapp: ['Hammer', 'Zange']\" in _ausgabe, \"Die Zeile «Knapp: ['Hammer', 'Zange']» fehlt.\"\nassert \"Zange: 5\" in _ausgabe, \"Die Zeile «Zange: 5» fehlt.\"",
+      "hinweise": [
+        "Zugriff auf verschachtelte Werte: `lager[\"Hammer\"][\"menge\"]`.",
+        "`for name in lager:` geht durch die Keys; mit `lager[name]` kommst du an den inneren Dict.",
+        "`if name in lager:` prüft, ob ein Key existiert.",
+        "Sammle die Namen in einer Liste und gib `sorted(liste)` zurück."
+      ],
+      "loesung": "lager = {\n    \"Schraube\": {\"preis\": 0.05, \"menge\": 400},\n    \"Mutter\": {\"preis\": 0.04, \"menge\": 50},\n    \"Hammer\": {\"preis\": 12.5, \"menge\": 3},\n    \"Zange\": {\"preis\": 8.0, \"menge\": 0},\n}\n\n\ndef lagerwert(lager: dict) -> float:\n    \"\"\"Gesamtwert des Lagers in CHF.\"\"\"\n    summe = 0\n    for artikel in lager.values():\n        summe += artikel[\"preis\"] * artikel[\"menge\"]\n    return round(summe, 2)\n\n\ndef nachbestellen(lager: dict, name: str, anzahl: int) -> bool:\n    \"\"\"Erhöht die Menge eines Artikels, falls er existiert.\"\"\"\n    if name in lager:\n        lager[name][\"menge\"] += anzahl\n        return True\n    return False\n\n\ndef knapp(lager: dict, grenze: int) -> list:\n    \"\"\"Artikel mit einer Menge unter der Grenze, alphabetisch.\"\"\"\n    namen = []\n    for name in lager:\n        if lager[name][\"menge\"] < grenze:\n            namen.append(name)\n    return sorted(namen)\n\n\nprint(f\"Lagerwert: {lagerwert(lager)} CHF\")\nprint(\"Knapp:\", knapp(lager, 10))\nnachbestellen(lager, \"Zange\", 5)\nprint(\"Zange:\", lager[\"Zange\"][\"menge\"])"
+    },
+    {
+      "id": "pruefungsvorbereitung-l9",
+      "titel": "Passwort prüfen und erzeugen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 3,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02, SW03, SW05, SW07, SW08",
+      "aufgabe": "**Themen:** SW02 Strings · SW03 Bedingungen & while · SW05 Sets · SW07 Type Hints & Docstring · SW08 random\n\nDie Zeichengruppen und `import random` sind vorgegeben.\n\n1. `pruefe_passwort(passwort: str) -> list`: gibt eine Liste der **Mängel** zurück, in genau dieser Reihenfolge: `\"zu kurz\"` (unter 8 Zeichen), `\"kein Grossbuchstabe\"`, `\"keine Ziffer\"`, `\"kein Sonderzeichen\"` (eines aus `sonderzeichen`). Ein gutes Passwort ergibt eine leere Liste.\n2. `erzeuge_passwort(laenge: int = 10) -> str`: erzeugt ein **zufälliges** Passwort der Länge `laenge` (mindestens 8) aus allen Zeichengruppen. Wiederhole das Erzeugen mit einer `while`-Schleife, bis `pruefe_passwort` keine Mängel mehr findet.\n\nBeide Funktionen brauchen **Type Hints und einen Docstring**. Gib `pruefe_passwort(\"hallo\")` und ein erzeugtes Passwort samt seiner Mängelliste aus.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "import random\n\nkleinbuchstaben = \"abcdefghijklmnopqrstuvwxyz\"\ngrossbuchstaben = kleinbuchstaben.upper()\nziffern = \"0123456789\"\nsonderzeichen = \"!?#$%&*@\"",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "def pruefe_passwort(passwort: str) -> list:\n    pass\n\n\ndef erzeuge_passwort(laenge: int = 10) -> str:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Beispiele ausgeben\n"
+        }
+      ],
+      "tests": "assert pruefe_passwort(\"Abcdef1!\") == [], f\"«Abcdef1!» ist ein gutes Passwort, ergibt aber {pruefe_passwort('Abcdef1!')}.\"\nassert pruefe_passwort(\"hallo\") == [\"zu kurz\", \"kein Grossbuchstabe\", \"keine Ziffer\", \"kein Sonderzeichen\"], f\"«hallo» hat alle vier Mängel, ergibt aber {pruefe_passwort('hallo')}.\"\nassert pruefe_passwort(\"Hallo1234\") == [\"kein Sonderzeichen\"], f\"«Hallo1234» hat nur den Mangel «kein Sonderzeichen», ergibt aber {pruefe_passwort('Hallo1234')}.\"\nassert pruefe_passwort(\"hallo!!!!\") == [\"kein Grossbuchstabe\", \"keine Ziffer\"], f\"«hallo!!!!» ergibt {pruefe_passwort('hallo!!!!')}.\"\nfor laenge in (8, 10, 12, 16):\n    for _ in range(10):\n        pw = erzeuge_passwort(laenge)\n        assert isinstance(pw, str) and len(pw) == laenge, f\"Das Passwort muss {laenge} Zeichen lang sein, ist aber {pw!r}.\"\n        assert pruefe_passwort(pw) == [], f\"Das erzeugte Passwort {pw!r} hat noch Mängel: {pruefe_passwort(pw)}.\"\nassert len(erzeuge_passwort()) == 10, \"Ohne Argument soll das Passwort 10 Zeichen lang sein.\"\nassert pruefe_passwort.__doc__ and erzeuge_passwort.__doc__, \"Beide Funktionen brauchen einen Docstring.\"\nassert pruefe_passwort.__annotations__.get(\"return\") is list and erzeuge_passwort.__annotations__.get(\"return\") is str, \"Die Type Hints für die Rückgabe fehlen (-> list bzw. -> str).\"\nassert \"zu kurz\" in _ausgabe, \"Gib auch pruefe_passwort(\\\"hallo\\\") aus.\"",
+      "hinweise": [
+        "Kein Grossbuchstabe: Der Text ist gleich wie `passwort.lower()`.",
+        "Ziffer vorhanden? `set(passwort) & set(ziffern)` ist leer, wenn keine Ziffer vorkommt – `if not …` nutzt das.",
+        "Zufälliges Zeichen: `random.choice(alle)` mit `alle = kleinbuchstaben + grossbuchstaben + ziffern + sonderzeichen`.",
+        "Setze `passwort = \"\"` und wiederhole: `while pruefe_passwort(passwort) != []:` neu zusammenbauen."
+      ],
+      "loesung": "import random\n\nkleinbuchstaben = \"abcdefghijklmnopqrstuvwxyz\"\ngrossbuchstaben = kleinbuchstaben.upper()\nziffern = \"0123456789\"\nsonderzeichen = \"!?#$%&*@\"\n\n\ndef pruefe_passwort(passwort: str) -> list:\n    \"\"\"Gibt die Mängel eines Passworts als Liste zurück (leer = ok).\"\"\"\n    maengel = []\n    if len(passwort) < 8:\n        maengel.append(\"zu kurz\")\n    if passwort == passwort.lower():\n        maengel.append(\"kein Grossbuchstabe\")\n    if not set(passwort) & set(ziffern):\n        maengel.append(\"keine Ziffer\")\n    if not set(passwort) & set(sonderzeichen):\n        maengel.append(\"kein Sonderzeichen\")\n    return maengel\n\n\ndef erzeuge_passwort(laenge: int = 10) -> str:\n    \"\"\"Erzeugt ein zufälliges Passwort ohne Mängel (laenge >= 8).\"\"\"\n    alle = kleinbuchstaben + grossbuchstaben + ziffern + sonderzeichen\n    passwort = \"\"\n    while pruefe_passwort(passwort) != []:\n        passwort = \"\"\n        for _ in range(laenge):\n            passwort += random.choice(alle)\n    return passwort\n\n\nprint(pruefe_passwort(\"hallo\"))\npw = erzeuge_passwort()\nprint(pw, pruefe_passwort(pw))"
+    },
+    {
+      "id": "pruefungsvorbereitung-l10",
+      "titel": "Kontakte als JSON",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 2,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW03–SW05, SW07",
+      "aufgabe": "**Themen:** SW05 JSON & Dicts · SW04 Listen · SW03 for/if · SW07 Funktionen\n\nEine Kontaktliste besteht aus Dictionaries. Importiere das Modul `json` und schreibe:\n\n1. `aus_ort(kontakte: list, ort: str) -> list`: die Namen aller Kontakte aus diesem Ort (Reihenfolge wie in der Liste).\n2. `durchschnittsalter(kontakte: list) -> float`: Durchschnitt der Alter, auf eine Dezimalstelle gerundet.\n3. `speichern(kontakte: list) -> str`: wandelt die Liste in einen **JSON-Text** um (`json.dumps`).\n4. `laden(text: str) -> list`: wandelt einen JSON-Text zurück in eine Liste (`json.loads`).\n\nGib aus:\n\n```\nLuzern: ['Anna', 'Cem']\nDurchschnittsalter: 21.0\nRoundtrip: True\n```\n\nDie letzte Zeile zeigt, ob `laden(speichern(kontakte)) == kontakte` gilt.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "kontakte = [\n    {\"name\": \"Anna\", \"ort\": \"Luzern\", \"alter\": 21},\n    {\"name\": \"Ben\", \"ort\": \"Zug\", \"alter\": 23},\n    {\"name\": \"Cem\", \"ort\": \"Luzern\", \"alter\": 19},\n]",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "import json\n\n\ndef aus_ort(kontakte: list, ort: str) -> list:\n    pass\n\n\ndef durchschnittsalter(kontakte: list) -> float:\n    pass\n\n\ndef speichern(kontakte: list) -> str:\n    pass\n\n\ndef laden(text: str) -> list:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Auswertung ausgeben\n"
+        }
+      ],
+      "tests": "import json as _json\nassert aus_ort(kontakte, \"Luzern\") == [\"Anna\", \"Cem\"], f'aus_ort(kontakte, \"Luzern\") sollte [\"Anna\", \"Cem\"] sein, ist aber {aus_ort(kontakte, \"Luzern\")}.'\nassert aus_ort(kontakte, \"Bern\") == [], \"Ein Ort ohne Kontakte ergibt eine leere Liste.\"\nassert durchschnittsalter(kontakte) == 21.0, f\"durchschnittsalter(kontakte) sollte 21.0 sein, ist aber {durchschnittsalter(kontakte)}.\"\nassert durchschnittsalter([{\"name\": \"A\", \"ort\": \"X\", \"alter\": 20}, {\"name\": \"B\", \"ort\": \"X\", \"alter\": 25}]) == 22.5, \"Der Durchschnitt von 20 und 25 ist 22.5.\"\ntext = speichern(kontakte)\nassert isinstance(text, str), \"speichern muss einen String (JSON-Text) zurückgeben.\"\nassert _json.loads(text) == kontakte, \"Der JSON-Text von speichern muss dieselben Daten enthalten.\"\nassert laden('[{\"name\": \"X\", \"ort\": \"Y\", \"alter\": 1}]') == [{\"name\": \"X\", \"ort\": \"Y\", \"alter\": 1}], \"laden muss aus dem JSON-Text wieder eine Liste von Dicts machen.\"\nassert \"Luzern: ['Anna', 'Cem']\" in _ausgabe, \"Die Zeile «Luzern: ['Anna', 'Cem']» fehlt.\"\nassert \"Durchschnittsalter: 21.0\" in _ausgabe, \"Die Zeile «Durchschnittsalter: 21.0» fehlt.\"\nassert \"Roundtrip: True\" in _ausgabe, \"Die Zeile «Roundtrip: True» fehlt.\"",
+      "hinweise": [
+        "`import json` steht schon in der Zelle – `json.dumps(daten)` gibt einen Text, `json.loads(text)` gibt Python-Daten zurück.",
+        "Ein Kontakt ist ein Dict: `kontakt[\"ort\"]` und `kontakt[\"name\"]`.",
+        "Summiere die Alter in einer Schleife und teile durch `len(kontakte)`.",
+        "Der Vergleich `laden(speichern(kontakte)) == kontakte` ergibt direkt `True` oder `False`."
+      ],
+      "loesung": "import json\n\nkontakte = [\n    {\"name\": \"Anna\", \"ort\": \"Luzern\", \"alter\": 21},\n    {\"name\": \"Ben\", \"ort\": \"Zug\", \"alter\": 23},\n    {\"name\": \"Cem\", \"ort\": \"Luzern\", \"alter\": 19},\n]\n\n\ndef aus_ort(kontakte: list, ort: str) -> list:\n    \"\"\"Namen aller Kontakte aus einem Ort.\"\"\"\n    namen = []\n    for kontakt in kontakte:\n        if kontakt[\"ort\"] == ort:\n            namen.append(kontakt[\"name\"])\n    return namen\n\n\ndef durchschnittsalter(kontakte: list) -> float:\n    \"\"\"Durchschnittsalter, auf 0.1 gerundet.\"\"\"\n    summe = 0\n    for kontakt in kontakte:\n        summe += kontakt[\"alter\"]\n    return round(summe / len(kontakte), 1)\n\n\ndef speichern(kontakte: list) -> str:\n    \"\"\"Wandelt die Kontakte in einen JSON-Text um.\"\"\"\n    return json.dumps(kontakte, indent=2)\n\n\ndef laden(text: str) -> list:\n    \"\"\"Wandelt einen JSON-Text in eine Liste um.\"\"\"\n    return json.loads(text)\n\n\nprint(\"Luzern:\", aus_ort(kontakte, \"Luzern\"))\nprint(\"Durchschnittsalter:\", durchschnittsalter(kontakte))\nprint(\"Roundtrip:\", laden(speichern(kontakte)) == kontakte)"
+    },
+    {
+      "id": "pruefungsvorbereitung-l11",
+      "titel": "Lernplan bis zum Test",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 3,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02, SW04, SW05, SW07, SW08",
+      "aufgabe": "**Themen:** SW08 datetime & math · SW05 Tuples & Dicts · SW04 Listen & Slicing · SW07 Funktionen\n\nVerteile Lernthemen gleichmässig auf die Tage bis zum Test. Daten sind Tuples `(jahr, monat, tag)`.\n\n1. `tage_bis(heute: tuple, test: tuple) -> int`: Anzahl Tage zwischen den beiden Daten (Modul `datetime`, Klasse `date`).\n2. `lernplan(themen: list, tage: int) -> dict`: Pro Tag werden `math.ceil(len(themen) / tage)` Themen gelernt. Rückgabe: Dict `{tagnummer: [themen]}` mit Tagnummern ab `1`. Tage ohne Themen kommen **nicht** ins Dict.\n3. Gib aus (Tage bis zum Test und danach den Plan):\n\n```\nNoch 8 Tage bis zum Test\nTag 1: Datentypen, Schleifen\n...\nTag 5: Module\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "themen = [\"Datentypen\", \"Schleifen\", \"Listen\", \"Tuples\", \"Sets\", \"Dicts\", \"JSON\", \"Funktionen\", \"Module\"]\nheute = (2026, 11, 10)\ntest = (2026, 11, 18)",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "import math\nfrom datetime import date\n\n\ndef tage_bis(heute: tuple, test: tuple) -> int:\n    pass\n\n\ndef lernplan(themen: list, tage: int) -> dict:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Tage zählen und Plan ausgeben\n"
+        }
+      ],
+      "tests": "assert tage_bis((2026, 11, 10), (2026, 11, 18)) == 8, f\"Vom 10.11. bis 18.11.2026 sind es 8 Tage, nicht {tage_bis((2026, 11, 10), (2026, 11, 18))}.\"\nassert tage_bis((2026, 2, 27), (2026, 3, 1)) == 2, \"Vom 27.2. bis 1.3.2026 sind es 2 Tage (2026 ist kein Schaltjahr).\"\nassert tage_bis((2026, 5, 1), (2026, 5, 1)) == 0, \"Am selben Tag sind es 0 Tage.\"\nassert lernplan([\"a\", \"b\", \"c\", \"d\", \"e\"], 2) == {1: [\"a\", \"b\", \"c\"], 2: [\"d\", \"e\"]}, f\"lernplan mit 5 Themen und 2 Tagen liefert {lernplan(['a', 'b', 'c', 'd', 'e'], 2)}.\"\nassert lernplan([\"a\", \"b\"], 5) == {1: [\"a\"], 2: [\"b\"]}, \"Tage ohne Themen kommen nicht ins Dict.\"\nassert lernplan([], 3) == {}, \"Ohne Themen ist der Plan leer.\"\np = lernplan(themen, 8)\nassert list(p.keys()) == [1, 2, 3, 4, 5] and p[5] == [\"Module\"], f\"Für die 9 Themen und 8 Tage erwarte ich Tag 1 bis 5, Tag 5 = ['Module']; ich erhalte {p}.\"\nassert \"Noch 8 Tage bis zum Test\" in _ausgabe, \"Die Zeile «Noch 8 Tage bis zum Test» fehlt.\"\nassert \"Tag 1: Datentypen, Schleifen\" in _ausgabe, \"Die Zeile «Tag 1: Datentypen, Schleifen» fehlt.\"\nassert \"Tag 5: Module\" in _ausgabe and \"Tag 6\" not in _ausgabe, \"Es sollen genau die Tage 1 bis 5 ausgegeben werden.\"",
+      "hinweise": [
+        "Tuple entpacken: `j, m, t = heute`, dann `date(j, m, t)`.",
+        "Die Differenz zweier `date`-Objekte hat das Attribut `.days`.",
+        "Themen pro Tag: `pro_tag = math.ceil(len(themen) / tage)`.",
+        "Slicing pro Tag: `themen[i * pro_tag:(i + 1) * pro_tag]` mit `for i in range(tage)`; leere Stücke überspringen.",
+        "Ausgabe: `\", \".join(liste)` macht aus einer Liste einen Text."
+      ],
+      "loesung": "import math\nfrom datetime import date\n\nthemen = [\"Datentypen\", \"Schleifen\", \"Listen\", \"Tuples\", \"Sets\", \"Dicts\", \"JSON\", \"Funktionen\", \"Module\"]\nheute = (2026, 11, 10)\ntest = (2026, 11, 18)\n\n\ndef tage_bis(heute: tuple, test: tuple) -> int:\n    \"\"\"Anzahl Tage zwischen zwei Daten (jahr, monat, tag).\"\"\"\n    j1, m1, t1 = heute\n    j2, m2, t2 = test\n    return (date(j2, m2, t2) - date(j1, m1, t1)).days\n\n\ndef lernplan(themen: list, tage: int) -> dict:\n    \"\"\"Verteilt die Themen gleichmässig auf die Tage.\"\"\"\n    pro_tag = math.ceil(len(themen) / tage)\n    plan = {}\n    for i in range(tage):\n        stueck = themen[i * pro_tag:(i + 1) * pro_tag]\n        if stueck:\n            plan[i + 1] = stueck\n    return plan\n\n\ntage = tage_bis(heute, test)\nprint(f\"Noch {tage} Tage bis zum Test\")\nfor tag, liste in lernplan(themen, tage).items():\n    print(f\"Tag {tag}: {', '.join(liste)}\")"
+    },
+    {
+      "id": "pruefungsvorbereitung-l12",
+      "titel": "Abschluss: Klassen-Rangliste",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 15,
+      "schwierigkeit": 3,
+      "quelle": "Eigene Prüfungsaufgabe, kombiniert aus SW02–SW08",
+      "aufgabe": "**Themen:** alles: SW02 f-Strings · SW03 for/enumerate · SW04 Listen & sort · SW05 Tuples, Dicts, Sets, JSON · SW07 Funktionen · SW08 Module\n\nZum Schluss ein Programm, das fast alles verbindet. Die Daten sind eine Liste von Tuples `(name, [noten])`.\n\n1. `durchschnitte(daten: list) -> dict`: Dict `{name: durchschnitt}`, Durchschnitt auf eine Dezimalstelle gerundet.\n2. `rangliste(schnitte: dict) -> list`: Liste von Tuples `(name, durchschnitt)`, **absteigend** nach Durchschnitt.\n3. `bestanden(schnitte: dict, grenze: float = 4.0) -> set`: Menge der Namen mit Durchschnitt **ab** `grenze`.\n4. Gib die Rangliste nummeriert aus, danach die bestandenen Namen sortiert und zuletzt die Durchschnitte als JSON-Text (Modul `json`):\n\n```\n1. Anna: 5.3\n...\nBestanden: ['Anna', 'Ben', 'Cem']\n{\"Anna\": 5.3, \"Ben\": 4.0, \"Cem\": 5.2, \"Dora\": 3.5}\n```",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "daten = [\n    (\"Anna\", [5.5, 4.5, 6.0]),\n    (\"Ben\", [4.0, 3.5, 4.5]),\n    (\"Cem\", [5.0, 5.5, 5.0]),\n    (\"Dora\", [3.5, 3.0, 4.0]),\n]",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "import json\n\n\ndef durchschnitte(daten: list) -> dict:\n    pass\n\n\ndef rangliste(schnitte: dict) -> list:\n    pass\n\n\ndef bestanden(schnitte: dict, grenze: float = 4.0) -> set:\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Rangliste, Bestandene und JSON ausgeben\n"
+        }
+      ],
+      "tests": "import json as _json\nassert durchschnitte(daten) == {\"Anna\": 5.3, \"Ben\": 4.0, \"Cem\": 5.2, \"Dora\": 3.5}, f\"durchschnitte(daten) liefert {durchschnitte(daten)}.\"\nassert durchschnitte([(\"X\", [4.0, 5.0])]) == {\"X\": 4.5}, \"Der Durchschnitt von 4.0 und 5.0 ist 4.5.\"\nassert rangliste({\"x\": 4.0, \"y\": 5.0}) == [(\"y\", 5.0), (\"x\", 4.0)], f\"rangliste({{'x': 4.0, 'y': 5.0}}) sollte [('y', 5.0), ('x', 4.0)] sein, ist aber {rangliste({'x': 4.0, 'y': 5.0})}.\"\nassert rangliste(durchschnitte(daten))[0] == (\"Anna\", 5.3), \"Platz 1 ist Anna mit 5.3.\"\nassert isinstance(bestanden({\"a\": 4.0}), set), \"bestanden muss ein Set zurückgeben.\"\nassert bestanden({\"a\": 4.0, \"b\": 3.9}) == {\"a\"}, \"Ab 4.0 bestanden: nur «a» besteht.\"\nassert bestanden({\"a\": 4.0, \"b\": 3.9}, 3.5) == {\"a\", \"b\"}, \"Mit der Grenze 3.5 bestehen beide.\"\nassert \"1. Anna: 5.3\" in _ausgabe and \"2. Cem: 5.2\" in _ausgabe and \"4. Dora: 3.5\" in _ausgabe, \"Die nummerierte Rangliste «1. Anna: 5.3», «2. Cem: 5.2», … fehlt oder stimmt nicht.\"\nassert \"Bestanden: ['Anna', 'Ben', 'Cem']\" in _ausgabe, \"Die Zeile «Bestanden: ['Anna', 'Ben', 'Cem']» fehlt.\"\nassert _json.loads(_ausgabe.strip().split(\"\\n\")[-1]) == {\"Anna\": 5.3, \"Ben\": 4.0, \"Cem\": 5.2, \"Dora\": 3.5}, \"Die letzte Ausgabezeile muss der JSON-Text der Durchschnitte sein.\"",
+      "hinweise": [
+        "Beim Durchlaufen von `daten` kannst du jedes Tuple entpacken: `for name, noten in daten:`.",
+        "Sortieren: Baue eine Liste aus `(durchschnitt, name)`-Tuples, `liste.sort(reverse=True)` und drehe die Paare am Schluss wieder um.",
+        "`enumerate(rangliste(...), start=1)` liefert Platz und Eintrag; der Eintrag ist ein Tuple `(name, schnitt)`.",
+        "Bestandene: Set aufbauen mit `menge.add(name)`; ausgeben mit `sorted(menge)`.",
+        "`json.dumps(schnitte)` macht aus dem Dict den JSON-Text."
+      ],
+      "loesung": "import json\n\ndaten = [\n    (\"Anna\", [5.5, 4.5, 6.0]),\n    (\"Ben\", [4.0, 3.5, 4.5]),\n    (\"Cem\", [5.0, 5.5, 5.0]),\n    (\"Dora\", [3.5, 3.0, 4.0]),\n]\n\n\ndef durchschnitte(daten: list) -> dict:\n    \"\"\"Durchschnittsnote pro Person, auf 0.1 gerundet.\"\"\"\n    schnitte = {}\n    for name, noten in daten:\n        schnitte[name] = round(sum(noten) / len(noten), 1)\n    return schnitte\n\n\ndef rangliste(schnitte: dict) -> list:\n    \"\"\"Liste von (name, durchschnitt), beste zuerst.\"\"\"\n    paare = []\n    for name in schnitte:\n        paare.append((schnitte[name], name))\n    paare.sort(reverse=True)\n    ergebnis = []\n    for schnitt, name in paare:\n        ergebnis.append((name, schnitt))\n    return ergebnis\n\n\ndef bestanden(schnitte: dict, grenze: float = 4.0) -> set:\n    \"\"\"Namen mit einem Durchschnitt ab der Grenze.\"\"\"\n    menge = set()\n    for name in schnitte:\n        if schnitte[name] >= grenze:\n            menge.add(name)\n    return menge\n\n\nschnitte = durchschnitte(daten)\nfor platz, eintrag in enumerate(rangliste(schnitte), start=1):\n    print(f\"{platz}. {eintrag[0]}: {eintrag[1]}\")\nprint(\"Bestanden:\", sorted(bestanden(schnitte)))\nprint(json.dumps(schnitte))"
+    }
+  ]
+}

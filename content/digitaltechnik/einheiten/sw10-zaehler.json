@@ -1,0 +1,1556 @@
+{
+  "id": "sw10-zaehler",
+  "titel": "Zähler",
+  "beschreibung": "Modulo-m-Zähler, asynchrone Zähler (Ripple Counter), synchrone Zähler, Entwurf eines Zählers 0 bis 23 und eines Zufallswürfels",
+  "woche": 10,
+  "bereich": "theorie",
+  "kapitel": 10,
+  "quelle": [
+    {
+      "text": "K10.Zähler.pdf",
+      "stellen": "Folien 2–7"
+    },
+    {
+      "text": "K10-DigitalTechnik-Aufgaben-v3.pdf",
+      "stellen": "Aufgaben 1–2"
+    },
+    {
+      "text": "Digitaltechnik-Buch",
+      "stellen": "Kapitel 10 (Ergänzung)"
+    }
+  ],
+  "lektionen": [
+    {
+      "id": "sw10-zaehler-l1",
+      "titel": "Was ist ein Zähler?",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "K10 Folien 3–4",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Zähler = Automat mit einem Zyklus",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Als **Zähler** bezeichnet man meist eine getaktete, sequentielle Schaltung, deren Zustandsdiagramm **einen einzigen Zyklus** hat."
+            },
+            {
+              "typ": "text",
+              "text": "Ein Zähler mit $m$ Zuständen heisst **Modulo-$m$-Zähler** oder auch **«Durch-$m$-Teiler»**."
+            },
+            {
+              "typ": "zustandsdiagramm",
+              "titel": "Modulo-8-Zähler: ein einziger Zyklus aus 8 Zuständen",
+              "start": "Z0",
+              "knoten": [
+                {
+                  "id": "Z0",
+                  "label": "Z_0",
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "id": "Z1",
+                  "label": "Z_1",
+                  "x": 3,
+                  "y": 0.6
+                },
+                {
+                  "id": "Z2",
+                  "label": "Z_2",
+                  "x": 3.6,
+                  "y": 1.6
+                },
+                {
+                  "id": "Z3",
+                  "label": "Z_3",
+                  "x": 3,
+                  "y": 2.6
+                },
+                {
+                  "id": "Z4",
+                  "label": "Z_4",
+                  "x": 2,
+                  "y": 3.2
+                },
+                {
+                  "id": "Z5",
+                  "label": "Z_5",
+                  "x": 1,
+                  "y": 2.6
+                },
+                {
+                  "id": "Z6",
+                  "label": "Z_6",
+                  "x": 0.4,
+                  "y": 1.6
+                },
+                {
+                  "id": "Z7",
+                  "label": "Z_7",
+                  "x": 1,
+                  "y": 0.6
+                }
+              ],
+              "kanten": [
+                {
+                  "von": "Z0",
+                  "nach": "Z1",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z1",
+                  "nach": "Z2",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z2",
+                  "nach": "Z3",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z3",
+                  "nach": "Z4",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z4",
+                  "nach": "Z5",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z5",
+                  "nach": "Z6",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z6",
+                  "nach": "Z7",
+                  "text": "CLK"
+                },
+                {
+                  "von": "Z7",
+                  "nach": "Z0",
+                  "text": "CLK"
+                }
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Nach $m$ Taktflanken ist ein Modulo-$m$-Zähler wieder im selben Zustand."
+            }
+          ],
+          "quelle": "K10 Folien 3–4"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Synchron oder asynchron",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "punkte": [
+                "**Synchrone Zähler** bestehen hauptsächlich aus flankengetriggerten Flip-Flops, die alle vom **selben Takt** gesteuert werden.",
+                "**Asynchrone Zähler** bestehen aus Speicherbausteinen, die **nicht alle** auf denselben Takt reagieren.",
+                "Bei **binären Zählern** hat der Ausgang jeder Stufe die **halbe Frequenz** der vorangehenden Stufe."
+              ]
+            }
+          ],
+          "quelle": "K10 Folien 3–4"
+        },
+        {
+          "id": "sw10-zaehler-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Wie viele Zustände hat ein Modulo-8-Zähler?",
+          "optionen": [
+            "8",
+            "3",
+            "16",
+            "7"
+          ],
+          "richtig": 0,
+          "erklaerung": "Modulo-$m$ bedeutet $m$ Zustände in einem Zyklus.",
+          "quelle": "K10 Folie 3"
+        },
+        {
+          "id": "sw10-zaehler-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Was kennzeichnet das Zustandsdiagramm eines Zählers?",
+          "optionen": [
+            "Ein einziger Zyklus",
+            "Mehrere voneinander getrennte Zyklen",
+            "Es gibt keine Rückkehr zum Startzustand",
+            "Es hat immer genau zwei Zustände"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Begriff Zähler wird meist für Schaltungen mit einem einzigen Zyklus verwendet.",
+          "quelle": "K10 Folie 3"
+        },
+        {
+          "id": "sw10-zaehler-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Bei einem synchronen Zähler reagieren alle Flip-Flops auf denselben Takt.",
+          "richtig": true,
+          "erklaerung": "Genau das macht ihn synchron.",
+          "quelle": "K10 Folie 3"
+        },
+        {
+          "id": "sw10-zaehler-l1-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Bei binären Zählern hat der Ausgang jeder Stufe die doppelte Frequenz der vorangehenden Stufe.",
+          "richtig": false,
+          "erklaerung": "Es ist die **halbe** Frequenz: jede Stufe teilt durch 2.",
+          "quelle": "K10 Folie 3"
+        },
+        {
+          "id": "sw10-zaehler-l1-a5",
+          "typ": "zuordnen",
+          "frage": "Ordne die Begriffe zu.",
+          "paare": [
+            [
+              "Modulo-$m$-Zähler",
+              "Zyklus mit $m$ Zuständen, «Durch-$m$-Teiler»"
+            ],
+            [
+              "Synchroner Zähler",
+              "alle Flip-Flops am selben Takt"
+            ],
+            [
+              "Asynchroner Zähler",
+              "nicht alle Flip-Flops am selben Takt"
+            ],
+            [
+              "Ripple Counter",
+              "anderer Name für den asynchronen Zähler"
+            ]
+          ],
+          "erklaerung": "Der Name Ripple Counter kommt vom «Durchrieseln» der Schaltvorgänge (Folie 5).",
+          "quelle": "K10 Folien 3, 5"
+        },
+        {
+          "id": "sw10-zaehler-l1-a6",
+          "typ": "rechnung",
+          "frage": "Ein binärer 4-Bit-Zähler wird mit 16 kHz getaktet. Wie hoch ist die Frequenz von $Q_3$ (letzte Stufe)?",
+          "loesung": 1,
+          "toleranz": 0,
+          "einheit": "kHz",
+          "loesungsweg": "Jede Stufe halbiert: $16 \\to 8 \\to 4 \\to 2 \\to 1$ kHz, also vier Teilungen.",
+          "erklaerung": "Vier Stufen, vier Mal halbieren: $16\\,\\text{kHz} / 2^4 = 1\\,\\text{kHz}$.",
+          "quelle": "K10 Folie 3"
+        }
+      ]
+    },
+    {
+      "id": "sw10-zaehler-l2",
+      "titel": "Asynchrone Zähler (Ripple Counter)",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": [
+        "K10 Folien 5–6",
+        "Digitaltechnik-Buch Kap. 10.1"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Aufbau",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Asynchrone Zähler heissen auch **Ripple Counter**: Die Flip-Flops schalten **nicht gleichzeitig**, sondern **nacheinander**."
+            },
+            {
+              "typ": "text",
+              "text": "Beispiel Modulo-16: vier T-FF mit $T = 1$, die auf die **negative Flanke** reagieren. Der Takt geht nur an das erste FF. Jedes weitere FF bekommt als Takt den Ausgang der Stufe davor."
+            },
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "text": "CLK"
+                },
+                {
+                  "text": "T-FF 0",
+                  "sub": "T = 1"
+                },
+                {
+                  "text": "T-FF 1",
+                  "sub": "T = 1"
+                },
+                {
+                  "text": "T-FF 2",
+                  "sub": "T = 1"
+                },
+                {
+                  "text": "T-FF 3",
+                  "sub": "T = 1"
+                }
+              ],
+              "pfeile": [
+                "",
+                "Q0",
+                "Q1",
+                "Q2"
+              ]
+            }
+          ],
+          "quelle": "K10 Folie 5; Buch 10.1"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Zeitdiagramm",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Jedes T-FF wechselt bei jeder negativen Flanke an seinem Takteingang. $Q_0$ wechselt also bei jeder fallenden Taktflanke, $Q_1$ bei jeder fallenden Flanke von $Q_0$ und so weiter."
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "Asynchroner Modulo-16-Zähler (ideal, ohne Verzögerung): Q wechselt bei fallender Flanke",
+              "einheit": "Zeit →",
+              "signale": [
+                {
+                  "name": "Clk",
+                  "wellen": "110011001100110011001100110011001100"
+                },
+                {
+                  "name": "Q_0",
+                  "wellen": "001111000011110000111100001111000011"
+                },
+                {
+                  "name": "Q_1",
+                  "wellen": "000000111111110000000011111111000000"
+                },
+                {
+                  "name": "Q_2",
+                  "wellen": "000000000000001111111111111111000000"
+                },
+                {
+                  "name": "Q_3",
+                  "wellen": "000000000000000000000000000000111111"
+                }
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Jede Stufe hat die halbe Frequenz der vorherigen. Die Ausgänge $Q_3 Q_2 Q_1 Q_0$ zählen binär von 0 bis 15 und beginnen dann wieder bei 0."
+            }
+          ],
+          "quelle": "K10 Folie 6"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Grenzen (aus dem Buch)",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "punkte": [
+                "Jede Stufe hat eine Verzögerung $t_{pd}$, die sich über die Kette **aufaddiert**. Bei hoher Taktfrequenz treten dadurch kurzzeitig **falsche Zählerstände** auf.",
+                "Obergrenze der Taktfrequenz bei $n$ Stufen: $f_{\\max} \\approx \\dfrac{1}{n\\,t_{pd}}$. Reale Zähler erreichen diesen Wert bei weitem nicht.",
+                "Ein **Rückwärtszähler** entsteht, wenn der Takt der nächsten Stufe vom invertierten Ausgang $\\overline{Q}$ kommt.",
+                "Ein Modulo-6-Zähler lässt sich mit einem Reset bei Zählerstand 6 bauen. Der Zählerstand 6 tritt dabei kurz als **Störimpuls** auf."
+              ]
+            }
+          ],
+          "quelle": "Digitaltechnik-Buch 10.1.2–10.1.4"
+        },
+        {
+          "id": "sw10-zaehler-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Woher bekommt das zweite Flip-Flop in einem Ripple Counter seinen Takt?",
+          "optionen": [
+            "Vom Ausgang $Q_0$ des ersten Flip-Flops",
+            "Direkt vom Systemtakt CLK",
+            "Von $Q_3$",
+            "Von einem externen Oszillator"
+          ],
+          "richtig": 0,
+          "erklaerung": "Nur das erste FF bekommt den Systemtakt. Jede weitere Stufe wird vom Ausgang der vorherigen getaktet.",
+          "quelle": "K10 Folie 5"
+        },
+        {
+          "id": "sw10-zaehler-l2-a2",
+          "typ": "wahr_falsch",
+          "aussage": "In einem Ripple Counter schalten alle Flip-Flops gleichzeitig.",
+          "richtig": false,
+          "erklaerung": "Sie schalten nacheinander, daher der Name Ripple («Durchrieseln»).",
+          "quelle": "K10 Folie 5"
+        },
+        {
+          "id": "sw10-zaehler-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "Wie hoch ist die Frequenz von $Q_3$ im Modulo-16-Zähler relativ zum Takt?",
+          "optionen": [
+            "$f_{CLK}/16$",
+            "$f_{CLK}/8$",
+            "$f_{CLK}/4$",
+            "$f_{CLK}/2$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Vier Stufen halbieren je einmal: $2^4 = 16$.",
+          "quelle": "K10 Folie 6"
+        },
+        {
+          "id": "sw10-zaehler-l2-a4",
+          "typ": "rechnung",
+          "frage": "Ein asynchroner Modulo-16-Zähler startet bei 0. Welchen Zählerstand (dezimal) zeigt er nach 19 negativen Taktflanken?",
+          "loesung": 3,
+          "toleranz": 0,
+          "einheit": "",
+          "loesungsweg": "$19 \\bmod 16 = 3$",
+          "erklaerung": "Nach 16 Flanken ist er wieder bei 0, dann kommen 3 weitere.",
+          "quelle": "K10 Folie 5"
+        },
+        {
+          "id": "sw10-zaehler-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Warum ist die maximale Taktfrequenz eines Ripple Counters begrenzt?",
+          "optionen": [
+            "Die Verzögerungen der Stufen addieren sich",
+            "Die T-FF können nicht schneller als 1 kHz schalten",
+            "Weil $T$ auf 1 gesetzt ist",
+            "Weil die Flanke positiv sein muss"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die letzte Stufe schaltet erst nach der Summe aller Stufenverzögerungen.",
+          "quelle": "Buch 10.1.4"
+        },
+        {
+          "id": "sw10-zaehler-l2-a6",
+          "typ": "reihenfolge",
+          "frage": "Bring den Ablauf in einem Ripple Counter in die richtige Reihenfolge.",
+          "elemente": [
+            "Negative Flanke am Takt",
+            "FF 0 wechselt, $Q_0$ ändert sich",
+            "Fällt $Q_0$ von 1 auf 0, wechselt FF 1",
+            "Fällt $Q_1$ von 1 auf 0, wechselt FF 2"
+          ],
+          "erklaerung": "Die Flanke wandert wie eine Welle von Stufe zu Stufe.",
+          "quelle": "K10 Folie 5"
+        }
+      ]
+    },
+    {
+      "id": "sw10-zaehler-l3",
+      "titel": "Synchrone Zähler",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": [
+        "K10 Folie 7",
+        "Digitaltechnik-Buch Kap. 10.2"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Prinzip",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Beim **synchronen Zähler** reagieren alle FF gleichzeitig auf **dieselbe Taktflanke**. Dadurch lassen sich praktisch **beliebig grosse Zähler** realisieren."
+            },
+            {
+              "typ": "text",
+              "text": "Der Aufbau ist ein Moore-Automat: Eine **Übergangslogik** berechnet aus den aktuellen Ausgängen $Q_i$ die Eingänge $D_i$ der D-FF. Alle FF hängen am selben CLK."
+            },
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "text": "Q_3 … Q_0",
+                  "sub": "alle D-FF"
+                },
+                {
+                  "text": "Übergangslogik"
+                },
+                {
+                  "text": "D_3 … D_0",
+                  "sub": "alle D-FF"
+                }
+              ],
+              "pfeile": [
+                "Q",
+                "D"
+              ],
+              "takt": "CLK"
+            },
+            {
+              "typ": "text",
+              "text": "Für beliebige Zählergrössen verwendet man die bekannten **Entwurfsmethoden für Moore-Automaten (Medwedew)** aus Kapitel 8."
+            }
+          ],
+          "quelle": "K10 Folie 7"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Beispiel Binärzähler (aus dem Buch)",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Beim 4-Bit-Dualzähler wechselt das Flip-Flop $i$ immer genau dann, wenn **alle vorhergehenden** Ausgänge 1 sind."
+            },
+            {
+              "typ": "formel",
+              "tex": "T_i = Q_{i-1}\\,\\cdots\\,Q_1\\,Q_0 \\qquad D_i = Q_i \\oplus (Q_{i-1}\\,\\cdots\\,Q_0)"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_0 = \\overline{Q_0} \\quad D_1 = Q_1 \\oplus Q_0 \\quad D_2 = Q_2 \\oplus Q_1 Q_0 \\quad D_3 = Q_3 \\oplus Q_2 Q_1 Q_0"
+            },
+            {
+              "typ": "merke",
+              "text": "Alle Stufen schalten mit dem gleichen Takt. Die Verzögerung der Stufen summiert sich darum nicht wie beim Ripple Counter."
+            }
+          ],
+          "quelle": "Digitaltechnik-Buch 10.2.1"
+        },
+        {
+          "id": "sw10-zaehler-l3-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Ein synchroner Zähler besteht hauptsächlich aus flankengetriggerten Flip-Flops mit gemeinsamem Takt.",
+          "richtig": true,
+          "erklaerung": "Alle FF hängen am selben CLK.",
+          "quelle": "K10 Folien 3, 7"
+        },
+        {
+          "id": "sw10-zaehler-l3-a2",
+          "typ": "multiple_choice",
+          "frage": "Mit welcher Methode entwirft man synchrone Zähler beliebiger Grösse?",
+          "optionen": [
+            "Entwurf von Moore-Automaten (Medwedew)",
+            "Aneinanderreihen von T-FF wie beim Ripple Counter",
+            "Nur mit Latches",
+            "Es gibt keine allgemeine Methode"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein Zähler ist ein Moore-Automat mit einem Zyklus.",
+          "quelle": "K10 Folie 7"
+        },
+        {
+          "id": "sw10-zaehler-l3-a3",
+          "typ": "rechnung",
+          "frage": "Ein synchroner Zähler soll 12 Zustände haben. Wie viele FF braucht er mindestens?",
+          "loesung": 4,
+          "toleranz": 0,
+          "einheit": "FF",
+          "loesungsweg": "$2^3 = 8 < 12 \\le 16 = 2^4$",
+          "erklaerung": "Mit $n$ FF lassen sich $2^n$ Zustände codieren.",
+          "quelle": "K08 Folie 11"
+        },
+        {
+          "id": "sw10-zaehler-l3-a4",
+          "typ": "multiple_choice",
+          "frage": "Wie lautet $D_1$ beim synchronen Binärzähler mit D-FF?",
+          "optionen": [
+            "$Q_1 \\oplus Q_0$",
+            "$Q_1 \\cdot Q_0$",
+            "$\\overline{Q_1}$",
+            "$Q_1 + Q_0$"
+          ],
+          "richtig": 0,
+          "erklaerung": "FF 1 wechselt genau dann, wenn $Q_0 = 1$: das ist XOR.",
+          "quelle": "Buch 10.2.1"
+        },
+        {
+          "id": "sw10-zaehler-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "Wann wechselt $Q_3$ beim synchronen Binärzähler?",
+          "optionen": [
+            "Wenn $Q_2 = Q_1 = Q_0 = 1$",
+            "Bei jedem Takt",
+            "Wenn $Q_0 = 1$",
+            "Nur beim Reset"
+          ],
+          "richtig": 0,
+          "erklaerung": "Alle niederwertigeren Stufen müssen 1 sein.",
+          "quelle": "Buch 10.2.1"
+        },
+        {
+          "id": "sw10-zaehler-l3-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Die Verzögerungen der FF addieren sich beim synchronen Zähler wie beim Ripple Counter.",
+          "richtig": false,
+          "erklaerung": "Alle FF schalten gleichzeitig mit dem Takt. Die Verschiebung der Schaltvorgänge entfällt.",
+          "quelle": "Buch 10.2"
+        }
+      ]
+    },
+    {
+      "id": "sw10-zaehler-l4",
+      "titel": "Entwurf: Zähler von 0 bis 23",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "K10 Übung, Aufgabe 1",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Vorgehen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Aufgabe: synchroner Zähler 0 bis 23, Moore-Automat mit D-FF. Das ist ein **Modulo-24-Zähler**."
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "24 Zustände: $2^4 = 16 < 24 \\le 32 = 2^5$, also **5 FF** ($Q_4 \\ldots Q_0$).",
+                "Zustände binär codieren (Zustand $n$ hat den Code von $n$).",
+                "Beim D-FF gilt $D = Q^+$: Man liest die Eingänge direkt aus dem Folgezustand ab.",
+                "8 Codes (24 bis 31) bleiben **unbenutzt**. Sie sollen nach 0 führen, damit es keinen parasitären Loop gibt."
+              ]
+            },
+            {
+              "typ": "tabelle",
+              "kopf": [
+                "Zustand",
+                "$Q_4Q_3Q_2Q_1Q_0$",
+                "Folgezustand"
+              ],
+              "zeilen": [
+                [
+                  "0",
+                  "00000",
+                  "00001 (1)"
+                ],
+                [
+                  "…",
+                  "…",
+                  "…"
+                ],
+                [
+                  "15",
+                  "01111",
+                  "10000 (16)"
+                ],
+                [
+                  "22",
+                  "10110",
+                  "10111 (23)"
+                ],
+                [
+                  "23",
+                  "10111",
+                  "00000 (0)"
+                ],
+                [
+                  "24–31",
+                  "11000–11111",
+                  "00000 (0), unbenutzt"
+                ]
+              ]
+            }
+          ],
+          "quelle": "K10 Übung, Aufgabe 1; K08 Folie 11"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Gleichungen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein Binärzähler zählt einfach $+1$. Nur bei 23 und bei den unbenutzten Codes muss auf 0 zurückgesetzt werden:"
+            },
+            {
+              "typ": "formel",
+              "tex": "R = Q_4\\,(Q_3 + Q_2 Q_1 Q_0)"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_0 = \\overline{R}\\,\\overline{Q_0} \\quad D_1 = \\overline{R}\\,(Q_1 \\oplus Q_0) \\quad D_2 = \\overline{R}\\,(Q_2 \\oplus Q_1 Q_0)"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_3 = \\overline{R}\\,(Q_3 \\oplus Q_2 Q_1 Q_0) \\quad D_4 = \\overline{R}\\,(Q_4 \\oplus Q_3 Q_2 Q_1 Q_0)"
+            },
+            {
+              "typ": "hinweis",
+              "text": "Das Schema zeichnest du selbst in TINA: 5 D-FF mit gemeinsamem CLK und diese Gatter als Übergangslogik. Die Gleichungen sind per Simulation für alle 32 Codes geprüft."
+            }
+          ],
+          "quelle": "Eigene Musterlösung zu K10 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw10-zaehler-l4-a1",
+          "typ": "rechnung",
+          "frage": "Wie viele FF braucht der Zähler von 0 bis 23 mindestens?",
+          "loesung": 5,
+          "toleranz": 0,
+          "einheit": "FF",
+          "loesungsweg": "$2^4 = 16 < 24 \\le 32 = 2^5$",
+          "erklaerung": "24 Zustände brauchen 5 Bit.",
+          "quelle": "K10 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw10-zaehler-l4-a2",
+          "typ": "rechnung",
+          "frage": "Wie viele der mit 5 FF möglichen Codes sind unbenutzt?",
+          "loesung": 8,
+          "toleranz": 0,
+          "einheit": "",
+          "loesungsweg": "$32 - 24 = 8$",
+          "erklaerung": "Es sind die Codes 24 bis 31.",
+          "quelle": "K10 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw10-zaehler-l4-a3",
+          "typ": "multiple_choice",
+          "frage": "Welcher Code gehört zum letzten Zustand 23?",
+          "optionen": [
+            "10111",
+            "11000",
+            "10101",
+            "01111"
+          ],
+          "richtig": 0,
+          "erklaerung": "$23 = 16 + 4 + 2 + 1 = 10111_2$.",
+          "quelle": "K10 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw10-zaehler-l4-a4",
+          "typ": "multiple_choice",
+          "frage": "Welchen Wert müssen $D_4 \\ldots D_0$ im Zustand 23 haben?",
+          "optionen": [
+            "Alle 0",
+            "Alle 1",
+            "10111",
+            "11000"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Folgezustand von 23 ist 0, und beim D-FF gilt $D = Q^+$.",
+          "quelle": "K10 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw10-zaehler-l4-a5",
+          "typ": "multiple_choice",
+          "frage": "Warum enthält die Rücksetzbedingung $R = Q_4(Q_3 + Q_2Q_1Q_0)$ den Teil $Q_4 Q_3$?",
+          "optionen": [
+            "Damit die unbenutzten Codes 24–31 sicher nach 0 führen",
+            "Damit der Zähler schneller zählt",
+            "Weil $Q_3$ den Takt liefert",
+            "Damit 23 übersprungen wird"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne diesen Teil könnte ein Code ab 24 (z. B. durch Störung beim Einschalten) in einem parasitären Loop landen.",
+          "quelle": "K08 Folie 11"
+        },
+        {
+          "id": "sw10-zaehler-l4-a6",
+          "typ": "rechnung",
+          "frage": "Welcher Zustand (dezimal) folgt auf 15 ($01111_2$)?",
+          "loesung": 16,
+          "toleranz": 0,
+          "einheit": "",
+          "loesungsweg": "$01111 + 1 = 10000_2 = 16$",
+          "erklaerung": "Alle Stufen wechseln, weil alle vorhergehenden Q = 1 sind.",
+          "quelle": "K10 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw10-zaehler-l4-a7",
+          "typ": "rechnung",
+          "frage": "Welcher Zustand (dezimal) folgt auf den unbenutzten Code 27 ($11011_2$)?",
+          "loesung": 0,
+          "toleranz": 0,
+          "einheit": "",
+          "loesungsweg": "$Q_4 = Q_3 = 1 \\Rightarrow R = 1 \\Rightarrow$ alle $D = 0$",
+          "erklaerung": "Unbenutzte Codes ab 24 führen im nächsten Takt nach 0.",
+          "quelle": "K10 Übung, Aufgabe 1"
+        }
+      ]
+    },
+    {
+      "id": "sw10-zaehler-l5",
+      "titel": "Entwurf: Zufallswürfel",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "K10 Übung, Aufgabe 2",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Aufgabe verstehen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Solange die Taste $T = 1$ gedrückt ist, zählt der Automat sehr schnell von 1 bis 6 (1 MHz). Bei $T = 0$ bleibt die aktuelle Zahl stehen. Vier Signale A, B, C, D steuern die Würfelaugen."
+            },
+            {
+              "typ": "tabelle",
+              "kopf": [
+                "Zahl",
+                "Zustand",
+                "$Q_2Q_1Q_0$",
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              "zeilen": [
+                [
+                  "1",
+                  "$Z_1$",
+                  "001",
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "2",
+                  "$Z_2$",
+                  "010",
+                  "0",
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "3",
+                  "$Z_3$",
+                  "011",
+                  "1",
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "4",
+                  "$Z_4$",
+                  "100",
+                  "0",
+                  "1",
+                  "1",
+                  "0"
+                ],
+                [
+                  "5",
+                  "$Z_5$",
+                  "101",
+                  "1",
+                  "1",
+                  "1",
+                  "0"
+                ],
+                [
+                  "6",
+                  "$Z_6$",
+                  "110",
+                  "0",
+                  "1",
+                  "1",
+                  "1"
+                ]
+              ],
+              "titel": "Zustände, Codierung und Ausgänge (Augenbilder aus dem Übungsblatt)"
+            },
+            {
+              "typ": "zustandsdiagramm",
+              "titel": "Würfel: T = 1 zählt weiter, T = 0 hält den Zustand",
+              "start": "Z1",
+              "knoten": [
+                {
+                  "id": "Z1",
+                  "label": "Z_1",
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "id": "Z2",
+                  "label": "Z_2",
+                  "x": 1,
+                  "y": 0
+                },
+                {
+                  "id": "Z3",
+                  "label": "Z_3",
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "id": "Z4",
+                  "label": "Z_4",
+                  "x": 2,
+                  "y": 1
+                },
+                {
+                  "id": "Z5",
+                  "label": "Z_5",
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "id": "Z6",
+                  "label": "Z_6",
+                  "x": 0,
+                  "y": 1
+                }
+              ],
+              "kanten": [
+                {
+                  "von": "Z1",
+                  "nach": "Z2",
+                  "bed": "T",
+                  "text": "T"
+                },
+                {
+                  "von": "Z2",
+                  "nach": "Z3",
+                  "bed": "T",
+                  "text": "T"
+                },
+                {
+                  "von": "Z3",
+                  "nach": "Z4",
+                  "bed": "T",
+                  "text": "T"
+                },
+                {
+                  "von": "Z4",
+                  "nach": "Z5",
+                  "bed": "T",
+                  "text": "T"
+                },
+                {
+                  "von": "Z5",
+                  "nach": "Z6",
+                  "bed": "T",
+                  "text": "T"
+                },
+                {
+                  "von": "Z6",
+                  "nach": "Z1",
+                  "bed": "T",
+                  "text": "T"
+                },
+                {
+                  "von": "Z1",
+                  "nach": "Z1",
+                  "bed": "!T",
+                  "text": "!T",
+                  "schleife": "oben"
+                },
+                {
+                  "von": "Z2",
+                  "nach": "Z2",
+                  "bed": "!T",
+                  "text": "!T",
+                  "schleife": "oben"
+                },
+                {
+                  "von": "Z3",
+                  "nach": "Z3",
+                  "bed": "!T",
+                  "text": "!T",
+                  "schleife": "oben"
+                },
+                {
+                  "von": "Z4",
+                  "nach": "Z4",
+                  "bed": "!T",
+                  "text": "!T",
+                  "schleife": "unten"
+                },
+                {
+                  "von": "Z5",
+                  "nach": "Z5",
+                  "bed": "!T",
+                  "text": "!T",
+                  "schleife": "unten"
+                },
+                {
+                  "von": "Z6",
+                  "nach": "Z6",
+                  "bed": "!T",
+                  "text": "!T",
+                  "schleife": "unten"
+                }
+              ]
+            },
+            {
+              "typ": "hinweis",
+              "text": "Die Zuordnung der Signale zu den Augen ist aus dem Bild des Übungsblatts abgelesen (A = Mitte, B = Diagonale links oben/rechts unten, C = andere Diagonale, D = mittlere Augen links/rechts)."
+            }
+          ],
+          "quelle": "K10 Übung, Aufgabe 2"
+        },
+        {
+          "typ": "theorie",
+          "titel": "a) Moore mit binär codierten Zuständen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "6 Zustände brauchen 3 FF ($Q_2 Q_1 Q_0$). Die Codes 000 und 111 sind unbenutzt und dienen als Don't-Care."
+            },
+            {
+              "typ": "formel",
+              "tex": "D_0 = Q_0 \\oplus T \\qquad D_1 = Q_1\\overline{T} + \\overline{Q_0}\\,\\overline{Q_2} + Q_0\\overline{Q_1}T"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_2 = Q_2\\overline{Q_1} + Q_2\\overline{T} + Q_0 Q_1 T"
+            },
+            {
+              "typ": "formel",
+              "tex": "A = Q_0 \\qquad B = Q_1 + Q_2 \\qquad C = Q_2 \\qquad D = Q_1 Q_2"
+            },
+            {
+              "typ": "merke",
+              "text": "Die Ausgänge hängen nur vom Zustand ab (Moore). Die unbenutzten Codes 000 und 111 führen nach wenigen Takten in den Zyklus zurück (per Simulation geprüft)."
+            }
+          ],
+          "quelle": "Eigene Musterlösung zu K10 Übung, Aufgabe 2a"
+        },
+        {
+          "typ": "theorie",
+          "titel": "b) Medwedew",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Beim Medwedew-Automaten **sind die Ausgänge direkt die Zustandsbits**: 4 FF mit den Ausgängen $A, B, C, D$, keine Ausgangslogik."
+            },
+            {
+              "typ": "tabelle",
+              "kopf": [
+                "Zahl",
+                "Zustand = $ABCD$"
+              ],
+              "zeilen": [
+                [
+                  "1",
+                  "1000"
+                ],
+                [
+                  "2",
+                  "0100"
+                ],
+                [
+                  "3",
+                  "1100"
+                ],
+                [
+                  "4",
+                  "0110"
+                ],
+                [
+                  "5",
+                  "1110"
+                ],
+                [
+                  "6",
+                  "0111"
+                ]
+              ],
+              "titel": "Medwedew: Der Zustand ist direkt der Ausgang"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_A = A \\oplus T \\qquad D_B = B\\overline{T} + \\overline{D}\\,T"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_C = C\\overline{D} + D\\overline{T} + A B T \\qquad D_D = D\\overline{T} + A C T"
+            },
+            {
+              "typ": "merke",
+              "text": "Dafür braucht der Medwedew-Entwurf ein FF mehr als der Moore-Entwurf, spart aber die Ausgangslogik."
+            }
+          ],
+          "quelle": "Eigene Musterlösung zu K10 Übung, Aufgabe 2b; K08 Folien 5–6"
+        },
+        {
+          "id": "sw10-zaehler-l5-a1",
+          "typ": "multiple_choice",
+          "frage": "Wie viele FF braucht die Moore-Variante mit binär codierten Zuständen?",
+          "optionen": [
+            "3",
+            "4",
+            "6",
+            "2"
+          ],
+          "richtig": 0,
+          "erklaerung": "6 Zustände: $2^2 = 4 < 6 \\le 8 = 2^3$.",
+          "quelle": "K10 Übung, Aufgabe 2a"
+        },
+        {
+          "id": "sw10-zaehler-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Wie viele FF braucht die Medwedew-Variante hier?",
+          "optionen": [
+            "4",
+            "3",
+            "6",
+            "1"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein FF pro Ausgangssignal A, B, C, D.",
+          "quelle": "K10 Übung, Aufgabe 2b"
+        },
+        {
+          "id": "sw10-zaehler-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Bei welchen Augenzahlen ist Signal A (mittleres Auge) aktiv?",
+          "optionen": [
+            "1, 3, 5",
+            "2, 4, 6",
+            "1, 2, 3",
+            "nur 6"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das mittlere Auge leuchtet bei den ungeraden Zahlen.",
+          "quelle": "K10 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw10-zaehler-l5-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Bei $T = 0$ bleibt der Automat im aktuellen Zustand.",
+          "richtig": true,
+          "erklaerung": "Die angezeigte Zahl soll beim Loslassen stehen bleiben.",
+          "quelle": "K10 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw10-zaehler-l5-a5",
+          "typ": "rechnung",
+          "frage": "Moore-Variante: Der Automat ist in $Z_3$ ($011$) und $T = 1$. Welcher Zustand (dezimal) folgt?",
+          "loesung": 4,
+          "toleranz": 0,
+          "einheit": "",
+          "loesungsweg": "$Z_3 \\to Z_4$, also $011 \\to 100$",
+          "erklaerung": "Mit $T = 1$ zählt der Automat um 1 weiter.",
+          "quelle": "K10 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw10-zaehler-l5-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Beim Medwedew-Automaten braucht man zusätzlich eine Ausgangslogik.",
+          "richtig": false,
+          "erklaerung": "Der Zustand ist direkt der Ausgang, also gibt es keine Ausgangslogik.",
+          "quelle": "K08 Folien 5–6"
+        }
+      ]
+    }
+  ],
+  "uebungen": {
+    "kurz": [
+      {
+        "typ": "multiple_choice",
+        "frage": "Wie nennt man einen Zähler mit $m$ Zuständen auch?",
+        "optionen": [
+          "Durch-$m$-Teiler",
+          "Mal-$m$-Zähler",
+          "$m$-Bit-Register",
+          "Mealy-Zähler"
+        ],
+        "richtig": 0,
+        "erklaerung": "Modulo-$m$-Zähler oder «Durch $m$ Teiler».",
+        "quelle": "K10 Folie 3",
+        "id": "sw10-zaehler-k1"
+      },
+      {
+        "typ": "wahr_falsch",
+        "aussage": "Ein Ripple Counter ist ein synchroner Zähler.",
+        "richtig": false,
+        "erklaerung": "Ripple Counter ist ein anderer Name für den asynchronen Zähler.",
+        "quelle": "K10 Folie 5",
+        "id": "sw10-zaehler-k2"
+      },
+      {
+        "typ": "rechnung",
+        "frage": "Ein binärer Zähler mit 3 Stufen wird mit 8 kHz getaktet. Welche Frequenz hat die letzte Stufe?",
+        "loesung": 1,
+        "toleranz": 0,
+        "einheit": "kHz",
+        "loesungsweg": "$8 / 2^3 = 1$ kHz",
+        "erklaerung": "Jede Stufe halbiert die Frequenz.",
+        "quelle": "K10 Folie 3",
+        "id": "sw10-zaehler-k3"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "Worauf reagieren die T-FF im Beispiel auf Folie 5?",
+        "optionen": [
+          "Auf die negative Flanke",
+          "Auf die positive Flanke",
+          "Auf den Pegel $T = 0$",
+          "Auf beide Flanken"
+        ],
+        "richtig": 0,
+        "erklaerung": "Der Kreis am Takteingang zeigt die negative Flanke.",
+        "quelle": "K10 Folie 5",
+        "id": "sw10-zaehler-k4"
+      },
+      {
+        "typ": "rechnung",
+        "frage": "Wie viele FF braucht ein Zähler mit 24 Zuständen mindestens?",
+        "loesung": 5,
+        "toleranz": 0,
+        "einheit": "FF",
+        "loesungsweg": "$2^4 = 16 < 24 \\le 32 = 2^5$",
+        "erklaerung": "Mit $n$ FF lassen sich $2^n$ Zustände codieren.",
+        "quelle": "K10 Übung, Aufgabe 1",
+        "id": "sw10-zaehler-k5"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "Welche Entwurfsmethode gilt für synchrone Zähler?",
+        "optionen": [
+          "Moore-Automaten (Medwedew)",
+          "Nur asynchroner Entwurf",
+          "Nur Mealy-Automaten",
+          "Zufällige Verdrahtung"
+        ],
+        "richtig": 0,
+        "erklaerung": "Folie 7: bekannte Entwurfsmethoden für Moore-Automaten.",
+        "quelle": "K10 Folie 7",
+        "id": "sw10-zaehler-k6"
+      }
+    ],
+    "lang": [
+      {
+        "id": "sw10-zaehler-u1",
+        "nr": "1",
+        "titel": "Synchroner Zähler 0 bis 23",
+        "empfohlen": true,
+        "grund": "Zähler-Entwurf mit D-FF, typische MEP-Aufgabe",
+        "aufgabe": "Entwerfen Sie einen synchronen Zähler, der von 0 bis 23 zählt. Zeichnen Sie das Schema der entworfenen Schaltung in TINA. Der Moore-Automat soll mit D-FF realisiert werden.",
+        "tipps": [
+          "Wie viele Zustände gibt es, und wie viele FF brauchst du dafür?",
+          "Beim D-FF gilt $D = Q^+$: Lies die Eingänge aus dem Folgezustand ab.",
+          "Ein Binärzähler zählt $+1$. Wo ist die Ausnahme?",
+          "Was passiert mit den unbenutzten Codes 24 bis 31?"
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "Zustand",
+              "$Q_4Q_3Q_2Q_1Q_0$",
+              "Folgezustand"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "00000",
+                "00001 (1)"
+              ],
+              [
+                "…",
+                "…",
+                "…"
+              ],
+              [
+                "15",
+                "01111",
+                "10000 (16)"
+              ],
+              [
+                "22",
+                "10110",
+                "10111 (23)"
+              ],
+              [
+                "23",
+                "10111",
+                "00000 (0)"
+              ],
+              [
+                "24–31",
+                "11000–11111",
+                "00000 (0), unbenutzt"
+              ]
+            ]
+          },
+          {
+            "typ": "formel",
+            "tex": "R = Q_4\\,(Q_3 + Q_2 Q_1 Q_0)"
+          },
+          {
+            "typ": "formel",
+            "tex": "D_0 = \\overline{R}\\,\\overline{Q_0} \\quad D_1 = \\overline{R}\\,(Q_1 \\oplus Q_0) \\quad D_2 = \\overline{R}\\,(Q_2 \\oplus Q_1 Q_0)"
+          },
+          {
+            "typ": "formel",
+            "tex": "D_3 = \\overline{R}\\,(Q_3 \\oplus Q_2 Q_1 Q_0) \\quad D_4 = \\overline{R}\\,(Q_4 \\oplus Q_3 Q_2 Q_1 Q_0)"
+          },
+          {
+            "typ": "merke",
+            "text": "Schema: 5 D-FF mit gemeinsamem CLK. R sperrt über UND mit $\\overline{R}$ alle Eingänge und setzt so bei 23 sowie bei den unbenutzten Codes 24–31 auf 0."
+          }
+        ],
+        "ergebnis": "5 FF, Rücksetzbedingung $R = Q_4(Q_3 + Q_2Q_1Q_0)$",
+        "loesung_herkunft": "Eigene Musterlösung (für alle 32 Codes per Simulation geprüft), im Material gibt es keine Lösung zu K10.",
+        "quelle": "K10-DigitalTechnik-Aufgaben-v3, Aufgabe 1"
+      },
+      {
+        "id": "sw10-zaehler-u2",
+        "nr": "2",
+        "titel": "Zufallswürfel (Moore und Medwedew)",
+        "empfohlen": true,
+        "grund": "Ganzer Automatenentwurf mit Eingang und Ausgangssignalen",
+        "aufgabe": "Entwerfen Sie einen Automaten, der wie ein Zufallswürfel eine Zahl von 1 bis 6 darstellt. Solange eine Taste T gedrückt wird (T = 1), zählt der Automat sehr schnell (1 MHz) von 1 bis 6. Sobald T = 0 wird, soll die aktuelle Zahl angezeigt werden. Der Automat steuert die Ausgangssignale A, B, C, D an (Bild im Übungsblatt).",
+        "teile": [
+          {
+            "label": "a)",
+            "text": "Entwerfen Sie die Schaltung als Moore-Automaten mit binär codierten Zuständen ($Z_1 = 1, \\ldots, Z_6 = 6$) und D-FF."
+          },
+          {
+            "label": "b)",
+            "text": "Entwerfen Sie dieselbe Schaltung mit einem Medwedew-Automaten."
+          }
+        ],
+        "tipps": [
+          "Lies zuerst aus dem Bild ab, welche Augen A, B, C und D ansteuern.",
+          "Schreibe die Tabelle Zahl, Code, A, B, C, D auf.",
+          "Mit $T = 0$ bleibt der Zustand, mit $T = 1$ geht es zum nächsten.",
+          "Medwedew: Der Zustand ist schon der Ausgang ABCD."
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "Zahl",
+              "Zustand",
+              "$Q_2Q_1Q_0$",
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "zeilen": [
+              [
+                "1",
+                "$Z_1$",
+                "001",
+                "1",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "2",
+                "$Z_2$",
+                "010",
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "3",
+                "$Z_3$",
+                "011",
+                "1",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "4",
+                "$Z_4$",
+                "100",
+                "0",
+                "1",
+                "1",
+                "0"
+              ],
+              [
+                "5",
+                "$Z_5$",
+                "101",
+                "1",
+                "1",
+                "1",
+                "0"
+              ],
+              [
+                "6",
+                "$Z_6$",
+                "110",
+                "0",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            "titel": "Zustände, Codierung und Ausgänge (Augenbilder aus dem Übungsblatt)"
+          },
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Würfel: T = 1 zählt weiter, T = 0 hält den Zustand",
+            "start": "Z1",
+            "knoten": [
+              {
+                "id": "Z1",
+                "label": "Z_1",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "Z2",
+                "label": "Z_2",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "Z3",
+                "label": "Z_3",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "Z4",
+                "label": "Z_4",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "Z5",
+                "label": "Z_5",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "Z6",
+                "label": "Z_6",
+                "x": 0,
+                "y": 1
+              }
+            ],
+            "kanten": [
+              {
+                "von": "Z1",
+                "nach": "Z2",
+                "bed": "T",
+                "text": "T"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z3",
+                "bed": "T",
+                "text": "T"
+              },
+              {
+                "von": "Z3",
+                "nach": "Z4",
+                "bed": "T",
+                "text": "T"
+              },
+              {
+                "von": "Z4",
+                "nach": "Z5",
+                "bed": "T",
+                "text": "T"
+              },
+              {
+                "von": "Z5",
+                "nach": "Z6",
+                "bed": "T",
+                "text": "T"
+              },
+              {
+                "von": "Z6",
+                "nach": "Z1",
+                "bed": "T",
+                "text": "T"
+              },
+              {
+                "von": "Z1",
+                "nach": "Z1",
+                "bed": "!T",
+                "text": "!T",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z2",
+                "bed": "!T",
+                "text": "!T",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z3",
+                "nach": "Z3",
+                "bed": "!T",
+                "text": "!T",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z4",
+                "nach": "Z4",
+                "bed": "!T",
+                "text": "!T",
+                "schleife": "unten"
+              },
+              {
+                "von": "Z5",
+                "nach": "Z5",
+                "bed": "!T",
+                "text": "!T",
+                "schleife": "unten"
+              },
+              {
+                "von": "Z6",
+                "nach": "Z6",
+                "bed": "!T",
+                "text": "!T",
+                "schleife": "unten"
+              }
+            ]
+          },
+          {
+            "typ": "text",
+            "text": "**a) Moore, 3 FF:**"
+          },
+          {
+            "typ": "formel",
+            "tex": "D_0 = Q_0 \\oplus T \\qquad D_1 = Q_1\\overline{T} + \\overline{Q_0}\\,\\overline{Q_2} + Q_0\\overline{Q_1}T \\qquad D_2 = Q_2\\overline{Q_1} + Q_2\\overline{T} + Q_0 Q_1 T"
+          },
+          {
+            "typ": "formel",
+            "tex": "A = Q_0 \\qquad B = Q_1 + Q_2 \\qquad C = Q_2 \\qquad D = Q_1 Q_2"
+          },
+          {
+            "typ": "text",
+            "text": "**b) Medwedew, 4 FF:**"
+          },
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "Zahl",
+              "Zustand = $ABCD$"
+            ],
+            "zeilen": [
+              [
+                "1",
+                "1000"
+              ],
+              [
+                "2",
+                "0100"
+              ],
+              [
+                "3",
+                "1100"
+              ],
+              [
+                "4",
+                "0110"
+              ],
+              [
+                "5",
+                "1110"
+              ],
+              [
+                "6",
+                "0111"
+              ]
+            ],
+            "titel": "Medwedew: Der Zustand ist direkt der Ausgang"
+          },
+          {
+            "typ": "formel",
+            "tex": "D_A = A \\oplus T \\qquad D_B = B\\overline{T} + \\overline{D}\\,T \\qquad D_C = C\\overline{D} + D\\overline{T} + A B T \\qquad D_D = D\\overline{T} + A C T"
+          }
+        ],
+        "ergebnis": "Moore: 3 FF mit Ausgangslogik, Medwedew: 4 FF ohne Ausgangslogik",
+        "loesung_herkunft": "Eigene Musterlösung (alle Übergänge und unbenutzten Codes per Simulation geprüft). Die Zuordnung der Signale zu den Augen ist aus dem Bild im Übungsblatt abgelesen. Im Material gibt es keine Lösung zu K10.",
+        "quelle": "K10-DigitalTechnik-Aufgaben-v3, Aufgabe 2"
+      }
+    ]
+  }
+}

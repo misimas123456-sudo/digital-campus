@@ -1,0 +1,28 @@
+{
+  "format": 2,
+  "fach": "python-basics",
+  "stand": "2026-11-10",
+  "quelle": "ILIAS-Kurs Python Basics (über Dashboard – Digital Campus, Stand 8.11.2026)",
+  "termine": [
+    {
+      "id": "py-pc2",
+      "titel": "Progress Check 2",
+      "art": "pruefung",
+      "von": "2026-11-11",
+      "zeit": "Mi 08:30",
+      "ort": "E209",
+      "pflicht": true,
+      "hinweis": "60 Min. auf der Prüfungsplattform. Zählt nicht, ist aber obligatorisch."
+    },
+    {
+      "id": "py-test",
+      "titel": "Semester-Test",
+      "art": "pruefung",
+      "von": "2026-11-18",
+      "zeit": "Mi 08:30–10:55",
+      "ort": "E209",
+      "bewertet": true,
+      "hinweis": "60 Min. Zählt als Semesterleistung. Kein Alternativdatum!"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# Roadmap
+
+- [x] Ordnerstruktur und Fächer anlegen
+- [x] Inhaltsformat v2 festgelegt (`docs/inhaltsformat.md`, `content/schema.json`, `tools/pruefen.py`) – 10.11.2026; v2.2 (Abschnitte, Notebooks) 10.11.2026; v2.3 (Grafik, Bild, Vorbereitung) übernommen 24.11.2026
+- [x] Alle 8 Fach-Artifacts angelegt und auf Format v2 umgestellt (Adapter in den Apps)
+- [x] Dashboard mit Pflicht-Terminen, Lernplan, Stundenplan, Fächern, Infos
+- [x] Navigation: Dashboard-Link und Zurück-Knöpfe in allen Fächern (`docs/navigation.md`)
+- [x] Design System «Digital Campus» (Farbe + Schrift pro Fach, `design/`)
+- [x] Pilotfach Python Basics (SW01–SW08, Verständnis / Code / Programmieren)
+- [x] Mathematik: Skript-/Übungsblöcke als Einheiten in `fach.json` eintragen – Block 18 und 19 (Mathe-App liest sie, 15.11.2026); übrige Blöcke folgen
+- [ ] Mathematik und Digitaltechnik: Formeln von MathJax auf KaTeX umstellen – Mathematik erledigt (15.11.2026), Digitaltechnik offen
+- [ ] Digitaltechnik: Einheiten SW01–SW06 nachliefern
+- [ ] Mechanik und Werkstoffkunde: erste Einheiten
+- [ ] Industrielle Digitalisierung: Einheiten SW01–SW06 (Linux, Git, …)
+- [ ] Termine: fehlende Termine pro Fach ergänzen (Mathe, Mechanik); Dashboard später aus den Fach-Terminen speisen
+- [ ] ILIAS-Agent: Skill «ilias-aktualisieren» lädt Kursmaterial nach `material/<fach-id>/` (nie nach `Documents/HSLU`), danach als geplante Aufgabe automatisch
+- [ ] Fach-Apps nach und nach direkt auf Format v2 umstellen (Adapter entfernen)
+- [ ] Code-Aufgaben: Syntax-Highlighting, Python im Browser (Pyodide)
+- [ ] Wiederholung nach Lernkurve (Spaced Repetition), Streaks, XP fächerübergreifend
+- [ ] Fortschritt pro Fach auf dem Dashboard
+- [ ] Phase 2: Export nach `app/`, PWA / Android-APK

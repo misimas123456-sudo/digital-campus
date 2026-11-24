@@ -1,0 +1,1062 @@
+{
+  "id": "sw10-stahl",
+  "titel": "Stahl: Herstellung, Wärmebehandlung, Sorten",
+  "untertitel": "Werkstoffkunde, Kapitel 03 Stahl",
+  "beschreibung": "Vom Erz zum Stahl, EKD und Gefüge, Martensit/Bainit und ZTU, Glühen, Härten, Vergüten, Oberflächenhärten und die wichtigsten Stahlsorten – kompakt in rund 50 Minuten.",
+  "woche": 10,
+  "bereich": "theorie",
+  "quelle": [
+    {
+      "text": "Skript Kapitel_03_Stahl.pdf (verkürzter Auszug aus Auerswald/Portmann 2023)",
+      "stellen": "S. 1–43, Aufgaben S. 40–42, Anhang A2"
+    },
+    {
+      "text": "Vorlesungsfolien 03_Stahlherstellung_Waermebehandlungen_Sorten_WSK.pdf",
+      "stellen": "Folien 1–66 (Vorlesung 20.11.2026)"
+    },
+    {
+      "text": "Semesterplan MECH-WSK1 Werkstoffe HS26",
+      "stellen": "SW10, 20.11.2026: 03 Stahl"
+    }
+  ],
+  "lektionen": [
+    {
+      "id": "sw10-stahl-l31",
+      "titel": "Vom Erz zum Stahl",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 1–4; Folien 03 Stahl, Folien 2, 6–14",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Stahl** = Eisen-Kohlenstoff-Legierung mit **≤ 2.1 % C**. Weil Eisen **polymorph** ist und es viele Wärmebehandlungen und Legierungselemente gibt, lassen sich seine Eigenschaften sehr breit einstellen."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Schritt",
+            "Was passiert"
+          ],
+          "zeilen": [
+            [
+              "**Hochofen**",
+              "Erz + Koks + Kalk + Heissluft → **Roheisen** mit 3–5 % C (spröde)"
+            ],
+            [
+              "**LD-Verfahren**",
+              "Sauerstoff aufblasen, C und Begleiter verbrennen («Frischen»), bis 25 % Schrott → **Rohstahl**"
+            ],
+            [
+              "**Elektrolichtbogenofen**",
+              "Rohstahl aus **100 % Schrott** möglich (oder aus Eisenschwamm)"
+            ],
+            [
+              "**Sekundärmetallurgie**",
+              "in der Pfanne: Argon spülen, **desoxidieren** (→ beruhigter Stahl ohne Blasen), S/P/N/H entfernen, **legieren**"
+            ],
+            [
+              "**Strangguss + Walzen**",
+              "Knüppel → Draht/Stangen, Blöcke → Profile/Schienen, Brammen → Bleche. Warmwalzen macht aus dem groben Gussgefüge ein **feines Knetgefüge**"
+            ]
+          ]
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Grüner Stahl**: Erz mit grünem Wasserstoff direkt zu Eisenschwamm reduzieren, dann ELO → ca. **95 % weniger CO₂**, aber zurzeit teurer.",
+            "**ESU** (Elektro-Schlacke-Umschmelzen): Umschmelzen durch Reaktivschlacke entfernt S und Einschlüsse; schnelle Erstarrung an der Cu-Kokille → feines Gefüge. Für Werkzeuge, Medizintechnik, Uhren.",
+            "**Pulvermetallurgie**: Pulver (~60 µm), heissisostatisch gepresst (~1150 °C, 1000 bar) → hochrein, feinste Carbide."
+          ],
+          "titel": "Varianten"
+        },
+        {
+          "typ": "hinweis",
+          "text": "Wichtige Legierungselemente: **Mn, Cr, Ni, Mo, V** erhöhen die Einhärtbarkeit · **Cr, Mo, V** bilden Sondercarbide (verschleiss-, warmfest) · **> 12 % Cr** macht rostfrei · **Ti, Nb, Ta** verbessern die Schweissbarkeit rostfreier Stähle · **Co** hemmt Kornwachstum."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l31-a1",
+          "typ": "reihenfolge",
+          "frage": "Bring die Stationen in die richtige Reihenfolge.",
+          "elemente": [
+            "Hochofen",
+            "Roheisen",
+            "LD-Konverter",
+            "Sekundärmetallurgie",
+            "Strangguss",
+            "Warmwalzen"
+          ],
+          "erklaerung": "Erz → Hochofen → Roheisen → LD → Pfanne → Strangguss → Walzen.",
+          "quelle": "Folien 03 Stahl, Folien 6, 13"
+        },
+        {
+          "id": "sw10-stahl-l31-a2",
+          "typ": "multiple_choice",
+          "frage": "Warum ist Roheisen spröde?",
+          "optionen": [
+            "Es enthält zu viel C (3–5 %) sowie P, S, Si",
+            "Es enthält zu wenig Kohlenstoff",
+            "Es ist austenitisch",
+            "Es wurde nicht gewalzt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der hohe C-Gehalt und die Begleiter machen Roheisen spröde.",
+          "quelle": "Skript Kap. 3 Stahl, S. 1"
+        },
+        {
+          "id": "sw10-stahl-l31-a3",
+          "typ": "multiple_choice",
+          "frage": "Was sind die Vorteile von ESU-Stahl?",
+          "optionen": [
+            "Hohe Reinheit und Zähigkeit, feines Gefüge",
+            "Er ist besonders billig",
+            "Er enthält mehr Schwefel für die Zerspanung",
+            "Er ist nicht härtbar"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-1: Die Reaktivschlacke reinigt, die gekühlte Cu-Kokille sorgt für feines Korn und feine Carbide. Typisch für Werkzeugstahl, Medizintechnik, Uhren.",
+          "quelle": "Skript Kap. 3 Stahl, S. 3, Aufgabe 3-1"
+        },
+        {
+          "id": "sw10-stahl-l31-a4",
+          "typ": "zuordnen",
+          "frage": "Ordne die Wirkung dem Legierungselement zu.",
+          "paare": [
+            [
+              "Chrom > 12 %",
+              "rostfrei"
+            ],
+            [
+              "Cobalt",
+              "hemmt Kornwachstum"
+            ],
+            [
+              "Titan",
+              "gegen interkristalline Korrosion"
+            ],
+            [
+              "Mo, V",
+              "Sondercarbide"
+            ]
+          ],
+          "erklaerung": "Siehe Hinweis zu den Legierungselementen.",
+          "quelle": "Skript Kap. 3 Stahl, S. 2"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l32",
+      "titel": "Eisen-Kohlenstoff-Diagramm und Gefüge",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 4–8; Folien 03 Stahl, Folien 17–22",
+      "inhalt": [
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Temperatur",
+            "Phase",
+            "Gitter",
+            "löst C bis"
+          ],
+          "zeilen": [
+            [
+              "1392–911 °C",
+              "**Austenit** (γ)",
+              "kfz",
+              "**2 %**"
+            ],
+            [
+              "unter 911 °C",
+              "**Ferrit** (α)",
+              "krz",
+              "**0.02 %**"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Das **metastabile EKD** gilt nur für **sehr langsame Abkühlung**. Es reicht bis **Zementit Fe₃C (6.67 % C)**, hart und spröde. Bei **723 °C** (eutektoide Linie) zerfällt der restliche Austenit zu **Perlit**: feine Lamellen aus Zementit in Ferrit. Der eutektoide Punkt liegt bei **0.8 % C**."
+        },
+        {
+          "typ": "bild",
+          "src": "bilder/sw10-ekd.webp",
+          "alt": "Metastabiles Eisen-Kohlenstoff-Diagramm mit eutektoider Linie bei 723 °C und eutektoidem Punkt bei 0.8 % C"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Stahl",
+            "Gefüge bei Raumtemperatur",
+            "Beispiel"
+          ],
+          "zeilen": [
+            [
+              "untereutektoid (< 0.8 % C)",
+              "Primär-Ferrit + Perlit",
+              "Baustahl"
+            ],
+            [
+              "eutektoid (0.8 % C)",
+              "nur Perlit",
+              "Seile"
+            ],
+            [
+              "übereutektoid (> 0.8 % C)",
+              "Korngrenzen-Zementit + Perlit",
+              "Werkzeuge, Wälzlager"
+            ]
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "**Perlit ist keine Phase**, sondern ein Gefügebestandteil aus den zwei Phasen Ferrit und Zementit."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l32-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne das Gefüge zu (langsame Abkühlung).",
+          "paare": [
+            [
+              "0.35 % C",
+              "Primär-Ferrit + Perlit"
+            ],
+            [
+              "0.8 % C",
+              "nur Perlit"
+            ],
+            [
+              "1.4 % C",
+              "Korngrenzen-Zementit + Perlit"
+            ]
+          ],
+          "erklaerung": "Unter-, eu- und übereutektoid.",
+          "quelle": "Skript Kap. 3 Stahl, S. 6–8"
+        },
+        {
+          "id": "sw10-stahl-l32-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Perlit ist eine eigene Phase.",
+          "richtig": false,
+          "erklaerung": "Skript-Aufgabe 3-6: Perlit besteht aus den Phasen Ferrit und Zementit.",
+          "quelle": "Skript Kap. 3 Stahl, Aufgabe 3-6"
+        },
+        {
+          "id": "sw10-stahl-l32-a3",
+          "typ": "multiple_choice",
+          "frage": "Warum löst Austenit viel mehr C als Ferrit?",
+          "optionen": [
+            "Sein kfz Gitter hat grössere Lücken",
+            "Er ist ferromagnetisch",
+            "Er enthält Zementit",
+            "Er ist krz"
+          ],
+          "richtig": 0,
+          "erklaerung": "Grössere Gitterlücken → C verspannt das Gitter weniger (2 % statt 0.02 %).",
+          "quelle": "Folien 03 Stahl, Folie 17"
+        },
+        {
+          "id": "sw10-stahl-l32-a4",
+          "typ": "lueckentext",
+          "text": "Die eutektoide Temperatur liegt bei ___ °C, der eutektoide Punkt bei ___ % C.",
+          "antworten": [
+            [
+              "723"
+            ],
+            [
+              "0.8",
+              "0,8"
+            ]
+          ],
+          "erklaerung": "723 °C, 0.8 % C.",
+          "quelle": "Skript Kap. 3 Stahl, S. 5"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l33",
+      "titel": "Schnell abkühlen: Martensit, Bainit, ZTU",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 9–12; Folien 03 Stahl, Folien 23–28",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Bei schneller Abkühlung gilt das **ZTU-Schaubild** statt des EKD. Dann entstehen Gefüge, die im EKD nicht vorkommen:"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "",
+            "Martensit",
+            "Bainit"
+          ],
+          "zeilen": [
+            [
+              "Entstehung",
+              "**sehr schnell** abschrecken (Wasser), C > 0.2 %",
+              "weniger schnell (Öl/Luft) oder isotherm im Bad"
+            ],
+            [
+              "Mechanismus",
+              "**diffusionsloses Umklappen**, tetragonal, C zwangsgelöst",
+              "Umklappen **+ Diffusion**"
+            ],
+            [
+              "Eigenschaften",
+              "**sehr hart, spröde**, > 550 HV; Volumen ↑ → Druckspannungen",
+              "**fest und zäh**, ca. 300–450 HV"
+            ]
+          ]
+        },
+        {
+          "typ": "bild",
+          "src": "bilder/sw10-ztu-kontinuierlich.webp",
+          "alt": "Kontinuierliche ZTU-Schaubilder für C35E und 34CrMo4"
+        },
+        {
+          "typ": "text",
+          "text": "**So liest du es:** Entlang der Abkühlkurve stehen die Prozentanteile, die in jedem Feld entstehen. Was übrig bleibt, wird zu **Martensit**. Am Kurvenende steht die Härte."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**C35E** (unlegiert): kontinuierlich höchstens **2 % Bainit**",
+            "**34CrMo4**: bis **70 % Bainit** – Cr und Mo schieben die Ferrit-Perlit-Umwandlung («Ferritnase») **nach rechts**",
+            "**isothermes ZTU**: im Blei- oder Salzbad (300–500 °C) umwandeln → auch C35E **100 % Bainit** (350 HV). Nachteil: giftige Bäder"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l33-a1",
+          "typ": "multiple_choice",
+          "frage": "Warum fehlt Martensit im EKD?",
+          "optionen": [
+            "Das EKD gilt nur für langsame Abkühlung; Martensit entsteht nur ohne Diffusion beim Abschrecken",
+            "Martensit enthält keinen Kohlenstoff",
+            "Martensit gibt es nur über 900 °C",
+            "Martensit ist eine Phase des Gusseisens"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-4.",
+          "quelle": "Skript Kap. 3 Stahl, S. 9, Aufgabe 3-4"
+        },
+        {
+          "id": "sw10-stahl-l33-a2",
+          "typ": "multiple_choice",
+          "frage": "Vorteil von Bainit gegenüber Martensit?",
+          "optionen": [
+            "Zäher, trotzdem sehr fest",
+            "Härter",
+            "Kein Austenitisieren nötig",
+            "Nicht magnetisch"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bainit ist weniger spröde als Martensit.",
+          "quelle": "Skript Kap. 3 Stahl, S. 11"
+        },
+        {
+          "id": "sw10-stahl-l33-a3",
+          "typ": "rechnung",
+          "frage": "34CrMo4, Kurve 4: 25 % Ferrit, 5 % Perlit, 65 % Bainit. Wie viel **Martensit** entsteht?",
+          "loesung": 5,
+          "toleranz": 0.01,
+          "einheit": "%",
+          "loesungsweg": [
+            "$100 - 25 - 5 - 65 = 5\\,\\%$"
+          ],
+          "erklaerung": "Skript-Aufgabe 3-5: 25 % F, 5 % P, 65 % B, 5 % M, 240 HV.",
+          "quelle": "Skript Kap. 3 Stahl, Abb. 3-11, Aufgabe 3-5"
+        },
+        {
+          "id": "sw10-stahl-l33-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Legierungselemente wie Cr und Mo verschieben die Ferrit-Perlit-Umwandlung zu längeren Zeiten.",
+          "richtig": true,
+          "erklaerung": "Deshalb bildet 34CrMo4 viel mehr Bainit als C35E.",
+          "quelle": "Skript Kap. 3 Stahl, S. 11"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l34",
+      "titel": "Glühen, Härten und Vergüten",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 13–17; Folien 03 Stahl, Folien 31–34",
+      "inhalt": [
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Glühverfahren",
+            "Temperatur",
+            "Zweck"
+          ],
+          "zeilen": [
+            [
+              "Homogenisierungsglühen",
+              "1050–1250 °C",
+              "**Seigerungen** ausgleichen"
+            ],
+            [
+              "Lösungsglühen (rostfrei)",
+              "1000–1150 °C, rasch abkühlen",
+              "keine **Chromcarbide** an Korngrenzen"
+            ],
+            [
+              "**Normalglühen**",
+              "austenitisieren, an Luft abkühlen",
+              "**feines Korn**: fest **und** zäh (Feinkornbaustähle)"
+            ],
+            [
+              "Spannungsarmglühen",
+              "500–650 °C",
+              "Eigenspannungen abbauen, **keine** Gefügeumwandlung"
+            ]
+          ]
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "",
+            "Härten",
+            "Anlassvergüten"
+          ],
+          "zeilen": [
+            [
+              "Ablauf",
+              "austenitisieren → abschrecken → **entspannen ~200 °C**",
+              "austenitisieren → abschrecken → **anlassen 400–700 °C**"
+            ],
+            [
+              "Ergebnis",
+              "**hart**, verschleissfest (50–65 HRC)",
+              "**fest und zäh** (Anlassgefüge)"
+            ]
+          ]
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Anlassdiagramm**: höhere Anlasstemperatur → $R_m$, $R_{p0.2}$ sinken, A, Z und KV steigen. Anlasstemperatur > spätere Einsatztemperatur.",
+            "**Restaustenit** (v. a. > 0.7 % C): tiefkühlen (−196 °C) oder mehrfach anlassen",
+            "**Legierungselemente** senken die kritische Abkühlgeschwindigkeit → tieferes **Durchhärten** (34CrNiMo6 > 34CrMo4 > C35E)",
+            "**Bainitisch vergüten**: im Bad direkt zu Bainit, ohne Umweg über Martensit. **Patentieren**: feinstreifiger Perlit für kaltgezogene Drähte (Seilbahnseile)"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l34-a1",
+          "typ": "reihenfolge",
+          "frage": "Ordne die Schritte des Anlassvergütens.",
+          "elemente": [
+            "Austenitisieren",
+            "Abschrecken zu Martensit",
+            "Anlassen bei 400–700 °C"
+          ],
+          "erklaerung": "Skript-Aufgabe 3-7. Beim isothermen Vergüten wandelt der Austenit dagegen im Bad direkt zu Bainit um.",
+          "quelle": "Skript Kap. 3 Stahl, S. 15, Aufgabe 3-7"
+        },
+        {
+          "id": "sw10-stahl-l34-a2",
+          "typ": "multiple_choice",
+          "frage": "Klassische Wärmebehandlung für feste und zähe Feinkornbaustähle?",
+          "optionen": [
+            "Normalglühen",
+            "Spannungsarmglühen",
+            "Härten",
+            "Homogenisierungsglühen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-8.",
+          "quelle": "Skript Kap. 3 Stahl, S. 14, Aufgabe 3-8"
+        },
+        {
+          "id": "sw10-stahl-l34-a3",
+          "typ": "multiple_choice",
+          "frage": "Was passiert mit steigender Anlasstemperatur?",
+          "optionen": [
+            "Festigkeit sinkt, Zähigkeit steigt",
+            "Festigkeit steigt, Zähigkeit sinkt",
+            "Beides steigt",
+            "Nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "Vergütungsschaubild: Rm, Rp0.2 ↓; A, Z, KV ↑.",
+          "quelle": "Skript Kap. 3 Stahl, S. 15–16"
+        },
+        {
+          "id": "sw10-stahl-l34-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Beim Spannungsarmglühen wandelt sich das Gefüge um.",
+          "richtig": false,
+          "erklaerung": "Bei 500–650 °C findet keine Gefügeumwandlung statt.",
+          "quelle": "Skript Kap. 3 Stahl, S. 14"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l35",
+      "titel": "Oberfläche härten",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 17–20; Folien 03 Stahl, Folien 36–42",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ziel: **harte, verschleissfeste Oberfläche** bei **zähem Kern**."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Verfahren",
+            "Stahl",
+            "Prinzip",
+            "Einhärtetiefe"
+          ],
+          "zeilen": [
+            [
+              "**Randschichthärten** (Flamme, Induktion, Laser)",
+              "**C > 0.3 %**",
+              "nur den Rand austenitisieren und abschrecken → Martensit",
+              "**SHD** bei **80 %** der Oberflächenhärte"
+            ],
+            [
+              "**Einsatzhärten**",
+              "**C < 0.25 %**",
+              "**aufkohlen** (850–1000 °C), abschrecken, anlassen 150–200 °C; Rand 650–800 HV",
+              "**CHD** bei **550 HV 1**"
+            ],
+            [
+              "**Nitrieren**",
+              "jeder Stahl, am besten Nitrierstähle (Al, Cr, Mo, V)",
+              "Stickstoff bei 490–580 °C → harte **Nitride**, **kein Martensit**",
+              "**NHD** bei **Kernhärte + 50 HV**"
+            ]
+          ]
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Einsatzhärten ist **das Verfahren für Zahnräder** (Beispiel: Rand 700 HV, Kern 430 HV, CHD 0.5 mm).",
+            "Nitrieren: Verbindungsschicht 3–30 µm, Diffusionsschicht bis 1 mm; **Druckspannungen** → höhere Dauerfestigkeit. Vergütete Teile: Anlasstemperatur ≥ Nitriertemperatur.",
+            "Induktionshärten: hohe Frequenz → geringe Einhärtetiefe."
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l35-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne die Grenzhärte zu.",
+          "paare": [
+            [
+              "SHD",
+              "80 % der Oberflächenhärte"
+            ],
+            [
+              "CHD",
+              "550 HV 1"
+            ],
+            [
+              "NHD",
+              "Kernhärte + 50 HV"
+            ]
+          ],
+          "erklaerung": "Skript-Aufgabe 3-9 – kommt oft an der Prüfung.",
+          "quelle": "Skript Kap. 3 Stahl, S. 20, Aufgabe 3-9; Folien 03 Stahl, Folie 42"
+        },
+        {
+          "id": "sw10-stahl-l35-a2",
+          "typ": "multiple_choice",
+          "frage": "Ein Bolzen aus Stahl mit 0.15 % C soll eine harte Oberfläche bekommen. Welches Verfahren?",
+          "optionen": [
+            "Einsatzhärten",
+            "Flammhärten",
+            "Induktionshärten",
+            "Normalglühen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Zu wenig C fürs Randschichthärten → erst aufkohlen.",
+          "quelle": "Skript Kap. 3 Stahl, S. 18"
+        },
+        {
+          "id": "sw10-stahl-l35-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Beim Nitrieren entsteht Martensit.",
+          "richtig": false,
+          "erklaerung": "Es bilden sich Nitride – deshalb «Nitriding Hardness Depth».",
+          "quelle": "Folien 03 Stahl, Folie 40"
+        },
+        {
+          "id": "sw10-stahl-l35-a4",
+          "typ": "rechnung",
+          "frage": "Induktionsgehärtete Welle, Oberflächenhärte 600 HV. Welche **Grenzhärte** gilt für die SHD?",
+          "loesung": 480,
+          "toleranz": 0.01,
+          "einheit": "HV",
+          "loesungsweg": [
+            "$0.8 \\cdot 600\\,\\text{HV} = 480\\,\\text{HV}$"
+          ],
+          "erklaerung": "SHD: 80 % der Oberflächenhärte.",
+          "quelle": "Skript Kap. 3 Stahl, S. 20"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l36",
+      "titel": "Baustähle, Bleche und Automatenstähle",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 21–27; Folien 03 Stahl, Folien 44–46",
+      "inhalt": [
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Sorte",
+            "Merkmale"
+          ],
+          "zeilen": [
+            [
+              "**Baustahl S** (S235JR, S355J2)",
+              "≤ 0.24 % C, **gut schweissbar**, günstig. Zahl = **Mindest-Streckgrenze in MPa**; **J2** = 27 J bei −20 °C"
+            ],
+            [
+              "**Maschinenbaustahl E** (E295–E360)",
+              "mehr C → fester, **nicht schmelzschweissbar**, keine Kerbschlag-Garantie"
+            ],
+            [
+              "**Tiefziehbleche D** (DC01–DC07)",
+              "DC = kaltgewalzt; weniger C → **mehr Bruchdehnung**"
+            ],
+            [
+              "**Leichtbau-Bleche**",
+              "IF, **BH** (härtet beim Lackeinbrennen), **DP** (Ferrit + Martensit), **TRIP** (Restaustenit → Martensit), **CP**, **22MnB5** (pressgehärtet) für B-Säule und Crashzonen"
+            ],
+            [
+              "**Automatenstahl** (11SMn30)",
+              "bis 0.3 % S → **Mangansulfide** → kurze Späne, schnelle Zerspanung; aber geringere Zähigkeit quer"
+            ]
+          ]
+        },
+        {
+          "typ": "hinweis",
+          "text": "Höhere Festigkeit → gleiche Last mit **kleinerem Querschnitt** → weniger Gewicht (Leichtbau)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l36-a1",
+          "typ": "multiple_choice",
+          "frage": "Was bedeuten «355» und «J2» in S355J2?",
+          "optionen": [
+            "Streckgrenze ≥ 355 MPa; 27 J bei −20 °C",
+            "Zugfestigkeit 355 MPa; 2 % C",
+            "355 J Kerbschlag; Güte 2",
+            "0.355 % C; Jahrgang 2"
+          ],
+          "richtig": 0,
+          "erklaerung": "Zahl = Mindest-Streckgrenze, J2 = 27 J bei −20 °C.",
+          "quelle": "Skript Kap. 3 Stahl, S. 21, Tab. A-2"
+        },
+        {
+          "id": "sw10-stahl-l36-a2",
+          "typ": "multiple_choice",
+          "frage": "Welche Stähle versteifen die Fahrgastzelle (B-Säule)?",
+          "optionen": [
+            "22MnB5, CP- und TRIP-Stähle",
+            "DC01 und DC04",
+            "11SMn30",
+            "S235JR"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-15.",
+          "quelle": "Skript Kap. 3 Stahl, S. 24–25, Aufgabe 3-15"
+        },
+        {
+          "id": "sw10-stahl-l36-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Mangansulfide im Automatenstahl sorgen für kurzbrechende Späne.",
+          "richtig": true,
+          "erklaerung": "Früher übernahm Blei diese Aufgabe.",
+          "quelle": "Skript Kap. 3 Stahl, S. 25–26"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l37",
+      "titel": "Vergütungs-, Feder- und Wälzlagerstähle",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 27–31; Folien 03 Stahl, Folien 47–52",
+      "inhalt": [
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Sorte",
+            "Merkmale",
+            "Beispiele"
+          ],
+          "zeilen": [
+            [
+              "**Vergütungsstahl unlegiert**",
+              "0.2–0.7 % C, günstig, aber nur **dünne Querschnitte (< ca. 5 mm)** durchvergütbar",
+              "C35E, C45E: Wellen, Hebel"
+            ],
+            [
+              "**Vergütungsstahl niedrig legiert**",
+              "Cr, Ni, Mo → **tiefer durchhärtbar**, Abschrecken in **Öl** statt Wasser (weniger Verzug); $R_{p0.2}$ 600 bis > 1000 MPa",
+              "34CrMo4, 34CrNiMo6: Kurbelwellen, Achsen"
+            ],
+            [
+              "**Federstahl**",
+              "hohe Dehngrenze **1000–1400 MPa** (weiter elastischer Bereich), dauerfest (kugelgestrahlt)",
+              "51CrV4, 54SiCr6"
+            ],
+            [
+              "**Wälzlagerstahl**",
+              "**~1 % C**, mit Cr **durchgehärtet** → hart, verschleissfest",
+              "100Cr6"
+            ]
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "C35E: billig. 34CrMo4: fester, tiefer durchhärtbar, für dicke Teile."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l37-a1",
+          "typ": "multiple_choice",
+          "frage": "Vorteil von 34CrMo4 gegenüber C35E?",
+          "optionen": [
+            "Höhere Festigkeit und Einhärtbarkeit, auch für dicke Teile",
+            "Billiger",
+            "Besser schmelzschweissbar",
+            "Rostfrei"
+          ],
+          "richtig": 0,
+          "erklaerung": "Folie 53, Aufgabe 8-1. Vorteil C35E: günstiger.",
+          "quelle": "Skript Kap. 3 Stahl, S. 28; Folien 03 Stahl, Folie 53"
+        },
+        {
+          "id": "sw10-stahl-l37-a2",
+          "typ": "multiple_choice",
+          "frage": "Besserer Federstahl: 0.2 % C oder 0.56 % C + 1.75 % Si + < 1 % Cr?",
+          "optionen": [
+            "0.56 % C mit Si und Cr",
+            "0.2 % C",
+            "beide gleich",
+            "keiner"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-14: genug C zum Vergüten → hohe Dehngrenze; Si, Cr wie bei 54SiCr6.",
+          "quelle": "Skript Kap. 3 Stahl, S. 30, Aufgabe 3-14"
+        },
+        {
+          "id": "sw10-stahl-l37-a3",
+          "typ": "rechnung",
+          "frage": "Wie viel **Chrom** enthält 100Cr6? (Faktor für Cr: 4)",
+          "loesung": 1.5,
+          "toleranz": 0.02,
+          "einheit": "%",
+          "loesungsweg": [
+            "$6 / 4 = 1.5\\,\\%$ Cr",
+            "C: $100/100 = 1\\,\\%$"
+          ],
+          "erklaerung": "Zahl im Namen ÷ Faktor (Cr, Mn, Ni, Si: 4; Mo, V: 10; C: 100).",
+          "quelle": "Skript Kap. 3 Stahl, Tab. 3-7, Tab. A-5"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l38",
+      "titel": "Rostfreie Stähle und Werkzeugstähle",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Kap. 3 Stahl, S. 31–39; Folien 03 Stahl, Folien 54–64",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Rostfrei** ab **> 12 % Cr** (Norm ≥ 10.5 %): eine dünne Chromoxidschicht schützt. Lochfrassbeständigkeit:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\mathrm{PREN} = \\%\\mathrm{Cr} + 3.3\\cdot\\%\\mathrm{Mo} + 16\\cdot\\%\\mathrm{N}"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Gruppe",
+            "Merkmale",
+            "Beispiel"
+          ],
+          "zeilen": [
+            [
+              "ferritisch",
+              "kein Ni → günstig, magnetisch",
+              "1.4510 X3CrTi17 (Waschmaschine)"
+            ],
+            [
+              "martensitisch",
+              "0.15–1.2 % C, härtbar",
+              "Messer (Victorinox 1.4110), Skalpelle"
+            ],
+            [
+              "austenitisch",
+              "> 8 % Ni, kfz → gut umformbar, **zäh bis −196 °C**",
+              "A2 = 1.4301 (ohne Mo), A4 = 1.4404 (mit Mo)"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "**Interkristalline Korrosion**: Beim Schweissen bilden sich Chromcarbide an den Korngrenzen. Abhilfe: wenig C oder **Ti, Nb, Ta**, die den Kohlenstoff binden."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Werkzeugstahl",
+            "Einsatz bis",
+            "Typisch"
+          ],
+          "zeilen": [
+            [
+              "**Kaltarbeit**",
+              "~200 °C",
+              "hart, verschleissfest: Feilen, Sägen, Schraubenschlüssel"
+            ],
+            [
+              "**Warmarbeit**",
+              "~600 °C",
+              "warmfest (Sondercarbide): Schmiedegesenke, Druckguss"
+            ],
+            [
+              "**Schnellarbeit (HSS)**",
+              "~600 °C",
+              "Fräser, Bohrer; W, Mo, V, Co (HS6-5-2)"
+            ]
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l38-a1",
+          "typ": "multiple_choice",
+          "frage": "Welcher Edelstahl für einen geschweissten Trommelmantel, und warum?",
+          "optionen": [
+            "1.4510 (X3CrTi17): Titan bindet C, keine Chromcarbide",
+            "1.4016: billigster Stahl",
+            "100Cr6: härter",
+            "S235JR: schweissbar"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-16.",
+          "quelle": "Skript Kap. 3 Stahl, S. 32–33, Aufgabe 3-16"
+        },
+        {
+          "id": "sw10-stahl-l38-a2",
+          "typ": "rechnung",
+          "frage": "PREN von X6CrNiMoTi17-12-2 (17 % Cr, 2 % Mo, kein N)?",
+          "loesung": 23.6,
+          "toleranz": 0.01,
+          "einheit": "",
+          "loesungsweg": [
+            "$17 + 3.3 \\cdot 2 = 23.6$"
+          ],
+          "erklaerung": "Molybdän macht A4-Stähle beständiger gegen Lochfrass.",
+          "quelle": "Skript Kap. 3 Stahl, S. 32"
+        },
+        {
+          "id": "sw10-stahl-l38-a3",
+          "typ": "multiple_choice",
+          "frage": "Warum nimmt man für −50 °C und kälter oft austenitische Stähle?",
+          "optionen": [
+            "kfz bleibt auch bei tiefen Temperaturen zäh (kein Steilabfall)",
+            "Sie sind besonders hart",
+            "Sie sind magnetisch",
+            "Sie enthalten viel Kohlenstoff"
+          ],
+          "richtig": 0,
+          "erklaerung": "Skript-Aufgabe 3-12; Kap. 2: kfz-Metalle sind bis ca. −200 °C zäh, krz Stähle werden spröde.",
+          "quelle": "Skript Kap. 3 Stahl, Aufgabe 3-12; Skript Kap. 2, S. 23"
+        },
+        {
+          "id": "sw10-stahl-l38-a4",
+          "typ": "zuordnen",
+          "frage": "Ordne zu.",
+          "paare": [
+            [
+              "Feile",
+              "Kaltarbeitsstahl"
+            ],
+            [
+              "Schmiedegesenk",
+              "Warmarbeitsstahl"
+            ],
+            [
+              "Spiralbohrer",
+              "Schnellarbeitsstahl"
+            ]
+          ],
+          "erklaerung": "Skript-Aufgabe 3-17: Kaltarbeit ist härter, aber nur bis ca. 200 °C.",
+          "quelle": "Skript Kap. 3 Stahl, Aufgabe 3-17; Folien 03 Stahl, Folie 60"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l39",
+      "titel": "Üben: Rechnen und Ablesen",
+      "art": "rechnen",
+      "dauer_min": 6,
+      "quelle": "Skript Kap. 3 Stahl, S. 11–12, 20, 32, Tab. A-5",
+      "inhalt": [
+        {
+          "typ": "hinweis",
+          "text": "Messwerte in Aufgabe 3 sind angenommen; die Definitionen stammen aus dem Skript."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l39-a1",
+          "typ": "rechnung",
+          "frage": "C35E, kontinuierlich, Kurve 2: 2 % Ferrit, 2 % Perlit, 1 % Bainit. Wie viel **Martensit**?",
+          "loesung": 95,
+          "toleranz": 0.01,
+          "einheit": "%",
+          "loesungsweg": [
+            "$100 - 2 - 2 - 1 = 95\\,\\%$ → 600 HV"
+          ],
+          "erklaerung": "Rest-Austenit wird zu Martensit.",
+          "quelle": "Skript Kap. 3 Stahl, S. 12"
+        },
+        {
+          "id": "sw10-stahl-l39-a2",
+          "typ": "rechnung",
+          "frage": "Nitrierter Kolben, Kernhärte 270 HV. Grenzhärte für die NHD?",
+          "loesung": 320,
+          "toleranz": 0.01,
+          "einheit": "HV",
+          "loesungsweg": [
+            "$270 + 50 = 320\\,\\text{HV}$"
+          ],
+          "erklaerung": "NHD: Kernhärte + 50 HV.",
+          "quelle": "Skript Kap. 3 Stahl, S. 20"
+        },
+        {
+          "id": "sw10-stahl-l39-a3",
+          "typ": "rechnung",
+          "frage": "Flammgehärtet: Oberfläche 620 HV; 0.8 mm → 520 HV, 1.2 mm → 460 HV. **SHD**?",
+          "loesung": 0.96,
+          "toleranz": 0.02,
+          "einheit": "mm",
+          "loesungsweg": [
+            "$H_G = 0.8 \\cdot 620 = 496\\,\\text{HV}$",
+            "$x = 0.8 + \\dfrac{520-496}{520-460}\\cdot 0.4 = 0.96\\,\\text{mm}$"
+          ],
+          "erklaerung": "Grenzhärte bestimmen, dann linear interpolieren.",
+          "quelle": "Übungsbeispiel; Definition aus Skript Kap. 3 Stahl, S. 20"
+        },
+        {
+          "id": "sw10-stahl-l39-a4",
+          "typ": "rechnung",
+          "frage": "Wie viel **Mangan** enthält 38MnB5?",
+          "loesung": 1.25,
+          "toleranz": 0.02,
+          "einheit": "%",
+          "loesungsweg": [
+            "Faktor Mn = 4",
+            "$5/4 = 1.25\\,\\%$"
+          ],
+          "erklaerung": "Dazu 0.38 % C und Bor.",
+          "quelle": "Skript Kap. 3 Stahl, Tab. A-5"
+        },
+        {
+          "id": "sw10-stahl-l39-a5",
+          "typ": "rechnung",
+          "frage": "Ein Stahl hat 22 % Cr, 3 % Mo, 0.17 % N. **PREN**?",
+          "loesung": 34.6,
+          "toleranz": 0.02,
+          "einheit": "",
+          "loesungsweg": [
+            "$22 + 3.3\\cdot 3 + 16\\cdot 0.17 = 34.6$"
+          ],
+          "erklaerung": "Über 32 wie die superaustenitischen Stähle.",
+          "quelle": "Übungsbeispiel; Formel aus Skript Kap. 3 Stahl, S. 32"
+        }
+      ]
+    },
+    {
+      "id": "sw10-stahl-l40",
+      "titel": "Karteikarten: Stahl repetieren",
+      "art": "verstaendnis",
+      "abschnitt": "schnellfragen",
+      "dauer_min": 4,
+      "quelle": "Skript Kap. 3 Stahl, S. 43; Folien 03 Stahl, Folie 65",
+      "aufgaben": [
+        {
+          "id": "sw10-stahl-l40-a1",
+          "typ": "karteikarte",
+          "vorne": "Hochofen → LD → ?",
+          "hinten": "Roheisen (3–5 % C) → **Rohstahl**, dann Sekundärmetallurgie (reinigen, legieren).",
+          "quelle": "Folien 03 Stahl, Folie 6"
+        },
+        {
+          "id": "sw10-stahl-l40-a2",
+          "typ": "karteikarte",
+          "vorne": "Eutektoider Punkt",
+          "hinten": "**0.8 % C, 723 °C** – Austenit → Perlit.",
+          "quelle": "Skript Kap. 3 Stahl, S. 5"
+        },
+        {
+          "id": "sw10-stahl-l40-a3",
+          "typ": "karteikarte",
+          "vorne": "Martensit vs. Bainit",
+          "hinten": "Martensit: diffusionslos, sehr hart, spröde. Bainit: Umklappen + Diffusion, fest **und** zäh.",
+          "quelle": "Skript Kap. 3 Stahl, S. 9–11"
+        },
+        {
+          "id": "sw10-stahl-l40-a4",
+          "typ": "karteikarte",
+          "vorne": "Härten vs. Vergüten",
+          "hinten": "Härten: anlassen ~200 °C (hart). Vergüten: 400–700 °C (fest und zäh).",
+          "quelle": "Folien 03 Stahl, Folie 32"
+        },
+        {
+          "id": "sw10-stahl-l40-a5",
+          "typ": "karteikarte",
+          "vorne": "SHD / CHD / NHD",
+          "hinten": "80 % Oberfläche · 550 HV 1 · Kern + 50 HV",
+          "quelle": "Folien 03 Stahl, Folie 42"
+        },
+        {
+          "id": "sw10-stahl-l40-a6",
+          "typ": "karteikarte",
+          "vorne": "Randschicht- vs. Einsatzhärten",
+          "hinten": "Randschicht: C > 0.3 %. Einsatz: C < 0.25 %, erst aufkohlen.",
+          "quelle": "Folien 03 Stahl, Folie 36"
+        },
+        {
+          "id": "sw10-stahl-l40-a7",
+          "typ": "karteikarte",
+          "vorne": "PREN",
+          "hinten": "%Cr + 3.3·%Mo + 16·%N",
+          "quelle": "Skript Kap. 3 Stahl, S. 32"
+        },
+        {
+          "id": "sw10-stahl-l40-a8",
+          "typ": "karteikarte",
+          "vorne": "34CrMo4",
+          "hinten": "0.34 % C, 1 % Cr, Mo – niedrig legierter Vergütungsstahl.",
+          "quelle": "Skript Kap. 3 Stahl, S. 48"
+        }
+      ]
+    }
+  ]
+}

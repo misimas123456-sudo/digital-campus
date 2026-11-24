@@ -1,0 +1,646 @@
+{
+  "format": 2,
+  "fach": "mathematik",
+  "stand": "2026-11-22",
+  "hinweis": "Neue Formeln pro Semesterwoche (Skriptblöcke), Notation nach Skript. Wird mit jedem neuen Block ergänzt.",
+  "wochen": [
+    {
+      "woche": 2,
+      "bloecke": [
+        {
+          "block": 2,
+          "thema": "Direkte Proportionalität – Proportionalitätskonstante – Lineare Funktion – Steigung/Änderungsrate einer linearen Funktion – Punkt-Steigungsform und Normalform einer linearen Funktion – Steigende/fallende Funktion – Exponentielle Funktion – Wachstumsfaktor pro Einheit – Punkt-Wachstumsfaktor-Form einer Exponentialfunktion – Basiswechsel – Eulersche Zahl – Normalform einer Exponentialfunktion – Relative Wachstumsrate – Links-/Rechtskrümmung (Konvex/Konkav)",
+          "quelle": "Skriptblock 2, Abschnitte 1.5.1 bis 1.5.3",
+          "formeln": [
+            {
+              "name": "Direkte Proportionalität",
+              "tex": "y=a\\cdot x",
+              "hinweis": "$a$ ist die Proportionalitätskonstante."
+            },
+            {
+              "name": "Umgekehrte Proportionalität",
+              "tex": "y=\\frac{a}{x}",
+              "hinweis": "Das Produkt $x\\cdot y$ ist konstant."
+            },
+            {
+              "name": "Steigung einer linearen Funktion",
+              "tex": "\\frac{\\Delta y}{\\Delta x}=\\frac{y_2-y_1}{x_2-x_1}"
+            },
+            {
+              "name": "Punkt-Steigungs-Form",
+              "tex": "y=y_1+\\frac{\\Delta y}{\\Delta x}\\cdot(x-x_1)",
+              "hinweis": "$y_1$ ist der Wert von $y$ an der Stelle $x=x_1$."
+            },
+            {
+              "name": "Normalform (linear)",
+              "tex": "y=y_1+\\frac{\\Delta y}{\\Delta x}\\cdot x",
+              "hinweis": "Hier ist $y_1$ der Wert bei $x=0$ (y-Achsenabschnitt)."
+            },
+            {
+              "name": "Exponentialfunktion (Definition)",
+              "tex": "y\\big|_{x=x_0+c}=a\\cdot y\\big|_{x=x_0}",
+              "hinweis": "$a>0$ ist der Wachstumsfaktor pro $c$."
+            },
+            {
+              "name": "Punkt-Wachstumsfaktor-Form",
+              "tex": "y=y_1\\cdot a^{\\frac{x-x_1}{c}}"
+            },
+            {
+              "name": "Basiswechsel",
+              "tex": "a^{\\frac{x}{c}}=b^{\\frac{x}{d}}\\quad\\text{mit}\\quad d=\\frac{c}{\\log_b a}"
+            },
+            {
+              "name": "Normalform (exponentiell)",
+              "tex": "y=y_0\\cdot e^{kx},\\qquad e\\approx2.71828",
+              "hinweis": "$k$ ist die relative Änderungsrate, $y_0$ der Wert bei $x=0$."
+            },
+            {
+              "name": "Exponentialabbildung",
+              "tex": "\\exp t=e^{t}"
+            }
+          ]
+        },
+        {
+          "block": 3,
+          "thema": "Funktionen von Funktionen – Äussere und Innere Funktion – Verkettung von Abbildungen – Gerade/Ungerade Funktionen – Umkehrbare Funktionen – Umkehrfunktion – Umkehrabbildung – Logarithmen – Natürlicher Logarithmus",
+          "quelle": "Skriptblock 3, Abschnitte 1.5.4 bis 1.5.6",
+          "formeln": [
+            {
+              "name": "Komposition",
+              "tex": "(f\\circ g)(x)=f\\big(g(x)\\big)",
+              "hinweis": "Gelesen «$f$ nach $g$». Nicht kommutativ: $f\\circ g\\ne g\\circ f$."
+            },
+            {
+              "name": "Gerade und ungerade Funktion",
+              "tex": "\\text{gerade: }y\\big|_{x=-a}=y\\big|_{x=a}\\qquad\\text{ungerade: }y\\big|_{x=-a}=-y\\big|_{x=a}"
+            },
+            {
+              "name": "Umkehrabbildung",
+              "tex": "f^{-1}(b)=a\\iff b=f(a),\\qquad f\\big(f^{-1}(y)\\big)=y,\\quad f^{-1}\\big(f(x)\\big)=x"
+            },
+            {
+              "name": "Logarithmus zur Basis 10",
+              "tex": "10^{\\log_{10}b}=b,\\qquad \\log_{10}(10^x)=x,\\qquad \\log_{10}1=0,\\ \\log_{10}10=1"
+            },
+            {
+              "name": "Natürlicher Logarithmus",
+              "tex": "e^{\\ln y}=y,\\qquad \\ln(e^c)=c,\\qquad \\ln1=0,\\ \\ln e=1"
+            },
+            {
+              "name": "Logarithmengesetze",
+              "tex": "\\ln(u\\cdot v)=\\ln u+\\ln v,\\qquad \\ln\\frac uv=\\ln u-\\ln v,\\qquad \\ln(u^r)=r\\ln u",
+              "hinweis": "Gilt genauso für $\\log_{10}$. Achtung: $\\ln(u+v)\\ne\\ln u+\\ln v$."
+            },
+            {
+              "name": "Basiswechsel beim Logarithmus",
+              "tex": "\\log_a b=\\frac{\\log_A b}{\\log_A a}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 3,
+      "bloecke": [
+        {
+          "block": 4,
+          "thema": "Winkel – Radiant – Trigonometrische Funktionen: Sinus, Kosinus, Tangens – Harmonische Schwingung – Arkussinus, Arkuskosinus, Arkustangens – Potenzfunktion – Polynom – Rationale Funktion – Asymptote – Elementare Funktion",
+          "quelle": "Skriptblock 4, Abschnitte 1.5.7 bis 1.5.8",
+          "formeln": [
+            {
+              "name": "Radiant",
+              "tex": "\\varphi=\\frac{b}{r},\\qquad 1^\\circ=\\frac{\\pi}{180}\\approx0.0175,\\qquad 1=\\frac{180^\\circ}{\\pi}\\approx57.2958^\\circ",
+              "hinweis": "$b$ Bogenlänge, $r$ Radius. Volle Umdrehung $=2\\pi$."
+            },
+            {
+              "name": "Tangens",
+              "tex": "\\tan\\varphi=\\frac{\\sin\\varphi}{\\cos\\varphi}\\qquad(\\cos\\varphi\\ne0)"
+            },
+            {
+              "name": "Pythagoras am Einheitskreis",
+              "tex": "\\cos^2\\varphi+\\sin^2\\varphi=1"
+            },
+            {
+              "name": "Additionstheoreme",
+              "tex": "\\sin(\\alpha+\\beta)=\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta\\\\\\cos(\\alpha+\\beta)=\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta"
+            },
+            {
+              "name": "Periodische Funktion",
+              "tex": "y\\big|_{x=a}=y\\big|_{x=a+T}",
+              "hinweis": "$T$ ist eine Periode. Amplitude = halbe Differenz zwischen höchstem und tiefstem Wert."
+            },
+            {
+              "name": "Harmonische Schwingung",
+              "tex": "y=M+A\\sin(\\omega t+\\varphi_0),\\qquad T=\\frac{2\\pi}{\\omega}",
+              "hinweis": "$M$ Mittelwert, $A$ Amplitude, $\\omega$ Kreisfrequenz, $\\varphi_0$ Nullphasenwinkel."
+            },
+            {
+              "name": "Arkusfunktionen",
+              "tex": "\\arcsin y=\\varphi\\iff y=\\sin\\varphi,\\ -\\tfrac\\pi2\\le\\varphi\\le\\tfrac\\pi2\\\\\\arccos x=\\varphi\\iff x=\\cos\\varphi,\\ 0\\le\\varphi\\le\\pi\\\\\\arctan y=\\varphi\\iff y=\\tan\\varphi,\\ -\\tfrac\\pi2<\\varphi<\\tfrac\\pi2"
+            },
+            {
+              "name": "Potenzfunktion",
+              "tex": "y=k\\cdot x^{p}"
+            },
+            {
+              "name": "Asymptoten",
+              "text": "Horizontal: $y=L$, wenn $y\\to L$ für $x\\to\\pm\\infty$. Vertikal: $x=K$, wenn $y\\to\\pm\\infty$ für $x\\to K$ (bei rationalen Funktionen dort, wo der Nenner $0$ wird)."
+            }
+          ]
+        },
+        {
+          "block": 5,
+          "thema": "Stetige Funktion – Sprungstelle – Grenzwert/Limes einer Funktion – linksseitiger/rechtsseitiger Grenzwert",
+          "quelle": "Skriptblock 5, Abschnitt 1.5.10",
+          "formeln": [
+            {
+              "name": "Grenzwert einer stetigen Funktion",
+              "tex": "\\lim_{x\\to a}y=y\\big|_{x=a}"
+            },
+            {
+              "name": "Links- und rechtsseitiger Grenzwert",
+              "tex": "\\lim_{x\\to a}y\\ \\text{existiert}\\iff\\lim_{x\\to a^-}y=\\lim_{x\\to a^+}y"
+            },
+            {
+              "name": "Zwischenwertsatz",
+              "text": "Ist $y$ stetig für $a\\le x\\le b$ und haben $y\\big|_{x=a}$ und $y\\big|_{x=b}$ verschiedene Vorzeichen, so ist $y=0$ an mindestens einer Stelle dazwischen."
+            },
+            {
+              "name": "Polstelle",
+              "text": "$x=c$ ist eine Polstelle von $y$, wenn $y\\to\\pm\\infty$ für $x\\to c$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 4,
+      "bloecke": [
+        {
+          "block": 6,
+          "thema": "Differenzen und Differenziale – Mittlere Geschwindigkeit – Momentane Geschwindigkeit – Schnelligkeit – Mittlere Änderungsrate – Momentane Änderungsrate/Differenzialkoeffizient",
+          "quelle": "Skriptblock 6, Abschnitte 2.1.1 bis 2.1.2",
+          "formeln": [
+            {
+              "name": "Mittlere Geschwindigkeit",
+              "tex": "\\frac{\\Delta H}{\\Delta t}\\Big|_{t=a\\,\\&\\,t=b}=\\frac{H\\big|_{t=b}-H\\big|_{t=a}}{b-a}"
+            },
+            {
+              "name": "Mittlere Änderungsrate",
+              "tex": "\\frac{\\Delta y}{\\Delta x}\\Big|_{x=a\\,\\&\\,x=b}=\\frac{y\\big|_{x=b}-y\\big|_{x=a}}{x\\big|_{x=b}-x\\big|_{x=a}}"
+            },
+            {
+              "name": "Momentane Änderungsrate",
+              "tex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\Big|_{x=a}=\\lim_{\\Delta x\\to0}\\left(\\frac{\\Delta y}{\\Delta x}\\Big|_{x=a\\,\\&\\,x=a+\\Delta x}\\right)",
+              "hinweis": "Steigung der Tangente am Graphen an der Stelle $x=a$."
+            },
+            {
+              "name": "Schnelligkeit",
+              "tex": "\\text{Schnelligkeit}=\\big|\\text{Geschwindigkeit}\\big|"
+            }
+          ]
+        },
+        {
+          "block": 7,
+          "thema": "Momentane Änderungsrate als Funktion – Ableitung – Stammfunktion – Zusammenhang zwischen Vorzeichen der Ableitung und Zu-/Abnahme der Stammfunktion – Graphisches Ableiten – Numerisches Ableiten – Ableiten von Konstanten, linearen Funktionen und Potenzen – Interpretation der momentanen Änderungsrate im Kontext von Anwendungen",
+          "quelle": "Skriptblock 7, Abschnitt 2.1.3",
+          "formeln": [
+            {
+              "name": "Abgeleitete Abbildung",
+              "tex": "f'(a)=\\frac{\\mathrm{d}\\big(f(x)\\big)}{\\mathrm{d}x}\\Big|_{x=a}"
+            },
+            {
+              "name": "Vorzeichen der Ableitung",
+              "tex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}>0\\Rightarrow y\\ \\text{steigt},\\qquad \\frac{\\mathrm{d}y}{\\mathrm{d}x}<0\\Rightarrow y\\ \\text{fällt}"
+            },
+            {
+              "name": "Numerisches Ableiten",
+              "tex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\Big|_{x=a}\\approx\\frac{y\\big|_{x=a+\\Delta x}-y\\big|_{x=a-\\Delta x}}{2\\,\\Delta x}",
+              "hinweis": "Durchschnitt aus der Änderungsrate vor und nach der Stelle; genauer als nur einseitig."
+            },
+            {
+              "name": "Konstante und lineare Funktion",
+              "tex": "\\frac{\\mathrm{d}c}{\\mathrm{d}x}=0,\\qquad \\frac{\\mathrm{d}(ax+b)}{\\mathrm{d}x}=a"
+            },
+            {
+              "name": "Potenzregel",
+              "tex": "\\frac{\\mathrm{d}(a\\cdot x^{c})}{\\mathrm{d}x}=c\\cdot a\\cdot x^{c-1}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 5,
+      "bloecke": [
+        {
+          "block": 8,
+          "thema": "Änderungsrate der Änderungsrate – Zweite Ableitung – Zusammenhang zwischen Vorzeichen der zweiten Ableitung und Krümmungsverhalten der Stammfunktion – Momentane Beschleunigung",
+          "quelle": "Skriptblock 8, Abschnitt 2.1.4",
+          "formeln": [
+            {
+              "name": "Zweite Ableitung",
+              "tex": "\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}=\\frac{\\mathrm{d}\\left(\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\right)}{\\mathrm{d}x},\\qquad f''(x)"
+            },
+            {
+              "name": "Krümmung",
+              "tex": "\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}>0\\Rightarrow\\text{linksgekrümmt (konvex)},\\qquad \\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}<0\\Rightarrow\\text{rechtsgekrümmt (konkav)}"
+            },
+            {
+              "name": "Beschleunigung",
+              "tex": "a=\\frac{\\mathrm{d}v}{\\mathrm{d}t}=\\frac{\\mathrm{d}^2s}{\\mathrm{d}t^2},\\qquad \\dot s=\\frac{\\mathrm{d}s}{\\mathrm{d}t},\\ \\ddot s=\\frac{\\mathrm{d}^2s}{\\mathrm{d}t^2}"
+            }
+          ]
+        },
+        {
+          "block": 9,
+          "thema": "Regel des konstanten Vielfachen – Summenregel – Potenzregel – Exponentialregel",
+          "quelle": "Skriptblock 9, Abschnitte 2.2.1 bis 2.2.3",
+          "formeln": [
+            {
+              "name": "Potenzregel (Differenzial)",
+              "tex": "\\mathrm{d}(x^k)=k\\,x^{k-1}\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Regel des konstanten Vielfachen",
+              "tex": "\\mathrm{d}(k\\cdot u)=k\\cdot\\mathrm{d}u,\\qquad \\frac{\\mathrm{d}(k\\cdot u)}{\\mathrm{d}x}=k\\cdot\\frac{\\mathrm{d}u}{\\mathrm{d}x}"
+            },
+            {
+              "name": "Summenregel",
+              "tex": "\\mathrm{d}(y\\pm z)=\\mathrm{d}y\\pm\\mathrm{d}z,\\qquad \\frac{\\mathrm{d}(y\\pm z)}{\\mathrm{d}x}=\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\pm\\frac{\\mathrm{d}z}{\\mathrm{d}x}"
+            },
+            {
+              "name": "Exponentialregel",
+              "tex": "\\frac{\\mathrm{d}e^{kx}}{\\mathrm{d}x}=k\\cdot e^{kx},\\qquad \\frac{\\mathrm{d}e^{x}}{\\mathrm{d}x}=e^{x}"
+            },
+            {
+              "name": "Ableitung zu beliebiger Basis",
+              "tex": "\\frac{\\mathrm{d}a^{\\frac xc}}{\\mathrm{d}x}=\\frac{\\ln a}{c}\\cdot a^{\\frac xc}",
+              "hinweis": "Relative Änderungsrate $k=\\frac{\\ln a}{c}$."
+            },
+            {
+              "name": "Relative Änderungsrate",
+              "tex": "\\frac{\\;\\mathrm{d}y/\\mathrm{d}x\\;}{y}",
+              "hinweis": "Bei Exponentialfunktionen konstant. Dimension: Kehrwert der Dimension von $x$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 6,
+      "bloecke": [
+        {
+          "block": 10,
+          "thema": "Produktregel – Quotientenregel – Kettenregel",
+          "quelle": "Skriptblock 10, Abschnitte 2.2.4 bis 2.2.5",
+          "formeln": [
+            {
+              "name": "Produktregel",
+              "tex": "\\mathrm{d}(u\\cdot v)=\\mathrm{d}u\\cdot v+u\\cdot\\mathrm{d}v,\\qquad \\frac{\\mathrm{d}(u\\cdot v)}{\\mathrm{d}x}=\\frac{\\mathrm{d}u}{\\mathrm{d}x}\\cdot v+u\\cdot\\frac{\\mathrm{d}v}{\\mathrm{d}x}"
+            },
+            {
+              "name": "Quotientenregel",
+              "tex": "\\frac{\\mathrm{d}\\left(\\frac uv\\right)}{\\mathrm{d}x}=\\frac{\\frac{\\mathrm{d}u}{\\mathrm{d}x}\\cdot v-u\\cdot\\frac{\\mathrm{d}v}{\\mathrm{d}x}}{v^2}"
+            },
+            {
+              "name": "Kettenregel",
+              "tex": "\\frac{\\mathrm{d}z}{\\mathrm{d}x}=\\frac{\\mathrm{d}z}{\\mathrm{d}y}\\cdot\\frac{\\mathrm{d}y}{\\mathrm{d}x}",
+              "hinweis": "Äussere nach innerer mal innere nach unabhängiger Variable."
+            },
+            {
+              "name": "Kettenregel in Strich-Notation",
+              "tex": "(f\\circ g)'(x)=f'\\big(g(x)\\big)\\cdot g'(x)"
+            }
+          ]
+        },
+        {
+          "block": 11,
+          "thema": "Ableitung trigonometrischer Funktionen – Ableitung Logarithmen – Ableitung Arkusfunktionen – Ableitung von Umkehrfunktionen",
+          "quelle": "Skriptblock 11, Abschnitte 2.2.6 bis 2.2.7",
+          "formeln": [
+            {
+              "name": "Sinus und Kosinus",
+              "tex": "\\frac{\\mathrm{d}(\\sin\\varphi)}{\\mathrm{d}\\varphi}=\\cos\\varphi,\\qquad \\frac{\\mathrm{d}(\\cos\\varphi)}{\\mathrm{d}\\varphi}=-\\sin\\varphi"
+            },
+            {
+              "name": "Tangens",
+              "tex": "\\frac{\\mathrm{d}(\\tan\\varphi)}{\\mathrm{d}\\varphi}=\\frac{1}{(\\cos\\varphi)^2}=1+(\\tan\\varphi)^2"
+            },
+            {
+              "name": "Natürlicher Logarithmus",
+              "tex": "\\frac{\\mathrm{d}(\\ln x)}{\\mathrm{d}x}=\\frac1x"
+            },
+            {
+              "name": "Arkusfunktionen",
+              "tex": "\\frac{\\mathrm{d}(\\arcsin y)}{\\mathrm{d}y}=\\frac{1}{\\sqrt{1-y^2}},\\quad \\frac{\\mathrm{d}(\\arccos y)}{\\mathrm{d}y}=-\\frac{1}{\\sqrt{1-y^2}},\\quad \\frac{\\mathrm{d}(\\arctan y)}{\\mathrm{d}y}=\\frac{1}{1+y^2}"
+            },
+            {
+              "name": "Ableitung der Umkehrfunktion",
+              "tex": "\\frac{\\mathrm{d}x}{\\mathrm{d}y}=\\frac{1}{\\;\\mathrm{d}y/\\mathrm{d}x\\;}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 7,
+      "bloecke": [
+        {
+          "block": 12,
+          "thema": "Stationäre Stelle – Lokales Maximum/Minimum – Umgebung einer Stelle – Kritische Stelle – Randstelle – Sattelstelle – Test mit der ersten Ableitung – Test mit der zweiten Ableitung – Wendestelle",
+          "quelle": "Skriptblock 12, Abschnitt 2.3.1",
+          "formeln": [
+            {
+              "name": "Stationäre Stelle",
+              "tex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\Big|_{x=a}=0"
+            },
+            {
+              "name": "Kritische Stelle",
+              "text": "$x=a$ ist kritisch, wenn $y$ dort stationär ist, $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ dort nicht definiert ist oder $x=a$ am Rand des Definitionsbereichs liegt."
+            },
+            {
+              "name": "Test mit der 1. Ableitung",
+              "text": "Wechselt $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ bei $x=a$ von $+$ nach $-$: lokales Maximum. Von $-$ nach $+$: lokales Minimum."
+            },
+            {
+              "name": "Test mit der 2. Ableitung",
+              "tex": "\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}\\Big|_{x=a}<0\\Rightarrow\\text{lok. Max.},\\qquad \\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}\\Big|_{x=a}>0\\Rightarrow\\text{lok. Min.}",
+              "hinweis": "Nur an stationären Stellen. Bei $=0$ gibt der Test keine Auskunft."
+            },
+            {
+              "name": "Wendestelle",
+              "text": "Kandidaten: $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}=0$ (oder nicht definiert). Wendestelle, wenn $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}$ dort das Vorzeichen wechselt."
+            }
+          ]
+        },
+        {
+          "block": 13,
+          "thema": "Globales Maximum/Minimum – Optimierung in Anwendungen",
+          "quelle": "Skriptblock 13, Abschnitt 2.3.2",
+          "formeln": [
+            {
+              "name": "Globales Maximum / Minimum",
+              "tex": "y\\big|_{x=a}\\ge y\\ \\text{(glob. Max.)},\\qquad y\\big|_{x=a}\\le y\\ \\text{(glob. Min.)}"
+            },
+            {
+              "name": "Vorgehen bei der Optimierung",
+              "text": "Zielgrösse als Funktion einer Variablen aufstellen, alle kritischen Stellen bestimmen (stationär, nicht differenzierbar, Rand) und die Funktionswerte dort vergleichen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 8,
+      "bloecke": [
+        {
+          "block": 14,
+          "thema": "Implizite Funktion – Ableiten impliziter Funktionen – Familien von Funktionen",
+          "quelle": "Skriptblock 14, Abschnitte 2.3.3 bis 2.3.4",
+          "formeln": [
+            {
+              "name": "Implizit ableiten",
+              "text": "Beide Seiten der Gleichung nach $x$ ableiten, $y$ dabei als Funktion von $x$ behandeln (Kettenregel), dann nach $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ auflösen."
+            },
+            {
+              "name": "Kettenregel für y",
+              "tex": "\\frac{\\mathrm{d}(y^n)}{\\mathrm{d}x}=n\\,y^{n-1}\\cdot\\frac{\\mathrm{d}y}{\\mathrm{d}x}"
+            },
+            {
+              "name": "Beispiel Kreis",
+              "tex": "x^2+y^2=1\\;\\Rightarrow\\;2x+2y\\frac{\\mathrm{d}y}{\\mathrm{d}x}=0\\;\\Rightarrow\\;\\frac{\\mathrm{d}y}{\\mathrm{d}x}=-\\frac xy"
+            },
+            {
+              "name": "Gausssche Glockenkurven",
+              "tex": "y=e^{-\\frac{(x-a)^2}{b}},\\qquad b>0"
+            }
+          ]
+        },
+        {
+          "block": 15,
+          "thema": "Bewegung eines Teilchens in der Ebene – Bahn – Parametrisierte Kurve – Ortsvektor – Geschwindigkeitsvektor – Beschleunigungsvektor",
+          "quelle": "Skriptblock 15, Abschnitt 2.3.6 (optional, nicht prüfungsrelevant)",
+          "pruefungsrelevant": false,
+          "formeln": [
+            {
+              "name": "Gleichförmige geradlinige Bewegung",
+              "tex": "x=x_0+at,\\qquad y=y_0+bt"
+            },
+            {
+              "name": "Ortsvektor",
+              "tex": "\\vec r=x\\,\\vec i+y\\,\\vec j,\\qquad |\\vec r|=\\sqrt{x^2+y^2}"
+            },
+            {
+              "name": "Geschwindigkeitsvektor",
+              "tex": "\\vec v=\\frac{\\mathrm{d}\\vec r}{\\mathrm{d}t}=\\frac{\\mathrm{d}x}{\\mathrm{d}t}\\,\\vec i+\\frac{\\mathrm{d}y}{\\mathrm{d}t}\\,\\vec j,\\qquad |\\vec v|=\\sqrt{v_x^2+v_y^2}",
+              "hinweis": "Die Schnelligkeit ist $|\\vec v|$."
+            },
+            {
+              "name": "Beschleunigungsvektor",
+              "tex": "\\vec a=\\frac{\\mathrm{d}\\vec v}{\\mathrm{d}t}=\\frac{\\mathrm{d}^2x}{\\mathrm{d}t^2}\\,\\vec i+\\frac{\\mathrm{d}^2y}{\\mathrm{d}t^2}\\,\\vec j"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 9,
+      "bloecke": [
+        {
+          "block": 16,
+          "thema": "Linearisierung einer Funktion um eine Stelle – Approximation durch Polynome höherer Ordnung/Taylorpolynome/Schmiegepolynome",
+          "quelle": "Skriptblock 16, Abschnitte 2.4.1 bis 2.4.2",
+          "formeln": [
+            {
+              "name": "Linearisierung bei x ≈ a",
+              "tex": "y\\approx y\\big|_{x=a}+\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\Big|_{x=a}\\cdot(x-a)"
+            },
+            {
+              "name": "Taylorpolynom",
+              "tex": "p=c_0+c_1(x-a)+c_2(x-a)^2+\\ldots+c_n(x-a)^n"
+            },
+            {
+              "name": "Taylor-Koeffizienten",
+              "tex": "c_k=\\frac{1}{k!}\\,\\frac{\\mathrm{d}^ky}{\\mathrm{d}x^k}\\Big|_{x=a},\\qquad k!=k\\cdot(k-1)\\cdots2\\cdot1,\\quad 0!=1"
+            },
+            {
+              "name": "Wichtige Näherungen um 0 bzw. 1",
+              "tex": "e^t\\approx1+t+\\tfrac{t^2}{2!},\\quad \\cos x\\approx1-\\tfrac{x^2}{2!}+\\tfrac{x^4}{4!},\\quad \\tfrac{1}{1-r}\\approx1+r+r^2,\\quad \\ln x\\approx(x-1)-\\tfrac{(x-1)^2}{2}"
+            },
+            {
+              "name": "Relative Änderung bei Potenzfunktionen",
+              "tex": "y=kx^p:\\qquad\\frac{\\Delta y}{y}\\approx p\\cdot\\frac{\\Delta x}{x}"
+            }
+          ]
+        },
+        {
+          "block": 17,
+          "thema": "Abschätzung der zurückgelegten Strecke aus der momentanen Geschwindigkeit – Linke/Rechte Riemann-Summe – Sigma-Notation für Summen – Bestimmtes Integral",
+          "quelle": "Skriptblock 17, Abschnitt 3.1",
+          "formeln": [
+            {
+              "name": "Unterteilung",
+              "tex": "\\Delta x=\\frac{b-a}{n},\\qquad x_i=a+i\\cdot\\Delta x"
+            },
+            {
+              "name": "Linke und rechte Riemann-Summe",
+              "tex": "\\text{links: }\\sum_{i=0}^{n-1}y\\big|_{x=x_i}\\Delta x,\\qquad\\text{rechts: }\\sum_{i=1}^{n}y\\big|_{x=x_i}\\Delta x",
+              "hinweis": "Steigt $y$, unterschätzt die linke und überschätzt die rechte Summe."
+            },
+            {
+              "name": "Bestimmtes Integral",
+              "tex": "\\int_{x=a}^{b}y\\,\\mathrm{d}x\\overset{\\text{def}}{=}\\lim_{\\Delta x\\to0}\\sum_{i=1}^{n}y\\big|_{x=x_i}\\Delta x"
+            },
+            {
+              "name": "Vorzeichen",
+              "text": "Fläche unter der $x$-Achse zählt negativ: Das Integral der Geschwindigkeit ist die Positionsänderung, nicht die zurückgelegte Strecke."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 10,
+      "bloecke": [
+        {
+          "block": 18,
+          "thema": "Physikalische Dimension des Integrals – Erster Hauptsatz der Differential- und Integralrechnung – Anwendungen des Hauptsatzes – Eigenschaften des bestimmten Integrals: Vertauschung der Grenzen, Zwischenstopp, Summenregel, Regel des konstanten Vielfachen – Flächen zwischen zwei Graphen – Mittelwert über einen kontinuierlichen Bereich",
+          "quelle": "Skriptblock 18, Abschnitte 3.1.4 bis 3.1.6",
+          "formeln": [
+            {
+              "name": "Dimension des Integrals",
+              "text": "$\\int y\\,\\mathrm{d}x$ hat die Dimension von $y$ mal die Dimension von $x$."
+            },
+            {
+              "name": "Erster Hauptsatz",
+              "tex": "\\int_{x=a}^{b}\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\,\\mathrm{d}x=y\\big|_{x=b}-y\\big|_{x=a},\\qquad \\int_{x=a}^{b}f'(x)\\,\\mathrm{d}x=f(b)-f(a)"
+            },
+            {
+              "name": "Endwert aus Änderungsrate",
+              "tex": "y\\big|_{x=b}=y\\big|_{x=a}+\\int_{x=a}^{b}\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Vertauschung der Grenzen, Zwischenstopp",
+              "tex": "\\int_{x=a}^{b}y\\,\\mathrm{d}x=-\\int_{x=b}^{a}y\\,\\mathrm{d}x,\\qquad \\int_{x=a}^{b}y\\,\\mathrm{d}x=\\int_{x=a}^{c}y\\,\\mathrm{d}x+\\int_{x=c}^{b}y\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Summenregel, konstantes Vielfaches",
+              "tex": "\\int_{x=a}^{b}(y+z)\\,\\mathrm{d}x=\\int_{x=a}^{b}y\\,\\mathrm{d}x+\\int_{x=a}^{b}z\\,\\mathrm{d}x,\\qquad \\int_{x=a}^{b}c\\,y\\,\\mathrm{d}x=c\\int_{x=a}^{b}y\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Fläche zwischen zwei Graphen",
+              "tex": "\\int_{x=a}^{b}\\big(f(x)-g(x)\\big)\\,\\mathrm{d}x\\qquad(f\\ge g)"
+            },
+            {
+              "name": "Gerade / ungerade Integranden",
+              "tex": "\\text{gerade: }\\int_{x=-a}^{a}y\\,\\mathrm{d}x=2\\int_{x=0}^{a}y\\,\\mathrm{d}x,\\qquad\\text{ungerade: }\\int_{x=-a}^{a}y\\,\\mathrm{d}x=0"
+            },
+            {
+              "name": "Mittelwert",
+              "tex": "\\bar y=\\frac{1}{b-a}\\int_{x=a}^{b}y\\,\\mathrm{d}x"
+            }
+          ]
+        },
+        {
+          "block": 19,
+          "thema": "Stammfunktion/Aufleitung – Einparametrige Familie aller Stammfunktionen – Graphisches Aufleiten – Unbestimmtes Integral – Stammfunktionen von Potenz-, Exponential- und trigonometrischen Funktionen – Summenregel und Regel des konstanten Vielfachen für unbestimmte Integrale – Anwendung des Hauptsatzes",
+          "quelle": "Skriptblock 19, Abschnitt 3.2",
+          "formeln": [
+            {
+              "name": "Stammfunktion",
+              "tex": "z\\ \\text{ist Stammfunktion von }y\\iff\\frac{\\mathrm{d}z}{\\mathrm{d}x}=y,\\qquad \\int y\\,\\mathrm{d}x=z+C"
+            },
+            {
+              "name": "Potenzen und 1/x",
+              "tex": "\\int x^n\\,\\mathrm{d}x=\\frac{x^{n+1}}{n+1}+C\\quad(n\\ne-1),\\qquad \\int\\frac1x\\,\\mathrm{d}x=\\ln|x|+C"
+            },
+            {
+              "name": "Exponential und trigonometrisch",
+              "tex": "\\int e^{kx}\\,\\mathrm{d}x=\\frac{e^{kx}}{k}+C,\\qquad \\int\\cos x\\,\\mathrm{d}x=\\sin x+C,\\qquad \\int\\sin x\\,\\mathrm{d}x=-\\cos x+C"
+            },
+            {
+              "name": "Summenregel, konstantes Vielfaches",
+              "tex": "\\int(u\\pm v)\\,\\mathrm{d}x=\\int u\\,\\mathrm{d}x\\pm\\int v\\,\\mathrm{d}x,\\qquad \\int c\\,u\\,\\mathrm{d}x=c\\int u\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Hauptsatz mit Stammfunktion",
+              "tex": "\\int_{x=a}^{b}y\\,\\mathrm{d}x=Y\\big|_{x=b}-Y\\big|_{x=a}=Y\\Big|_{a}^{b}",
+              "hinweis": "$Y$ ist eine beliebige Stammfunktion von $y$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "woche": 11,
+      "bloecke": [
+        {
+          "block": 20,
+          "thema": "Integration durch Substitution – Partielle Integration",
+          "quelle": "Skriptblock 20, Abschnitte 3.3.1 bis 3.3.2",
+          "formeln": [
+            {
+              "name": "Substitution",
+              "tex": "\\int u\\,\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\,\\mathrm{d}x=\\int u\\,\\mathrm{d}w,\\qquad \\mathrm{d}w=\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\,\\mathrm{d}x",
+              "hinweis": "Kehrt die Kettenregel um. Danach rücksubstituieren."
+            },
+            {
+              "name": "Substitution mit Grenzen",
+              "tex": "\\int_{x=a}^{b}u\\,\\frac{\\mathrm{d}w}{\\mathrm{d}x}\\,\\mathrm{d}x=\\int_{w=w(a)}^{w(b)}u\\,\\mathrm{d}w",
+              "hinweis": "Grenzen mitsubstituieren, dann ist keine Rücksubstitution nötig."
+            },
+            {
+              "name": "Partielle Integration",
+              "tex": "\\int u\\,\\mathrm{d}v=uv-\\int v\\,\\mathrm{d}u,\\qquad \\int u\\,\\frac{\\mathrm{d}v}{\\mathrm{d}x}\\,\\mathrm{d}x=uv-\\int\\frac{\\mathrm{d}u}{\\mathrm{d}x}\\,v\\,\\mathrm{d}x",
+              "hinweis": "Kehrt die Produktregel um."
+            },
+            {
+              "name": "Partielle Integration mit Grenzen",
+              "tex": "\\int_{x=a}^{b}u\\,\\frac{\\mathrm{d}v}{\\mathrm{d}x}\\,\\mathrm{d}x=uv\\Big|_{x=a}^{b}-\\int_{x=a}^{b}\\frac{\\mathrm{d}u}{\\mathrm{d}x}\\,v\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Stammfunktion von ln x",
+              "tex": "\\int\\ln x\\,\\mathrm{d}x=x\\ln x-x+C",
+              "hinweis": "Trick $\\ln x=1\\cdot\\ln x$ mit $u=\\ln x$, $\\frac{\\mathrm{d}v}{\\mathrm{d}x}=1$."
+            }
+          ]
+        },
+        {
+          "block": 21,
+          "thema": "Differentialgleichung – Anfangswertproblem – Trennung der Variablen – Konstruktionssatz (Zweiter Hauptsatz der Differential- und Integralrechnung)",
+          "quelle": "Skriptblock 21, Abschnitte 3.3.3 bis 3.3.4",
+          "formeln": [
+            {
+              "name": "DGL durch Integrieren lösen",
+              "tex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}=f(x)\\;\\Rightarrow\\;y=\\int f(x)\\,\\mathrm{d}x+C",
+              "hinweis": "Die Anfangsbedingung $y\\big|_{x=x_0}=y_0$ legt $C$ fest (partikuläre Lösung)."
+            },
+            {
+              "name": "Trennung der Variablen",
+              "tex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}=f(x)\\,g(y)\\;\\Rightarrow\\;\\int\\frac{\\mathrm{d}y}{g(y)}=\\int f(x)\\,\\mathrm{d}x"
+            },
+            {
+              "name": "Freier Fall / senkrechter Wurf",
+              "tex": "a=-g,\\qquad v=v_0-g\\,t,\\qquad s=s_0+v_0\\,t-\\frac g2\\,t^2",
+              "hinweis": "Nach oben positiv. Skripttext: $g=9.81\\,\\frac{\\mathrm{m}}{\\mathrm{s}^2}$, die Musterlösungen rechnen mit $9.8$."
+            },
+            {
+              "name": "Konstruktionssatz (Zweiter Hauptsatz)",
+              "tex": "\\frac{\\mathrm{d}}{\\mathrm{d}b}\\left(\\int_{x=a}^{b}y\\,\\mathrm{d}x\\right)=y\\big|_{x=b}",
+              "hinweis": "Das Integral mit variabler oberer Grenze ist eine Stammfunktion mit Wert $0$ bei $b=a$."
+            },
+            {
+              "name": "Variable untere Grenze",
+              "tex": "\\frac{\\mathrm{d}}{\\mathrm{d}a}\\left(\\int_{x=a}^{b}y\\,\\mathrm{d}x\\right)=-y\\big|_{x=a}"
+            },
+            {
+              "name": "Integralsinus",
+              "tex": "\\mathrm{Si}(x)\\overset{\\text{def}}{=}\\int_{t=0}^{x}\\frac{\\sin t}{t}\\,\\mathrm{d}t,\\qquad \\frac{\\mathrm{d}\\,\\mathrm{Si}(x)}{\\mathrm{d}x}=\\frac{\\sin x}{x}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

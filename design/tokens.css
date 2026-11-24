@@ -1,0 +1,146 @@
+/* Digital Campus – generated from design/tokens.json. Theme per Fach: <html data-theme="<fach-id>"> */
+@font-face{font-family:"Outfit";src:url("fonts/Outfit.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("fonts/JetBrainsMono.woff2") format("woff2");font-weight:100 800;font-style:normal;font-display:swap}
+@font-face{font-family:"Space Grotesk";src:url("fonts/SpaceGrotesk.woff2") format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Chakra Petch";src:url("fonts/ChakraPetch-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Chakra Petch";src:url("fonts/ChakraPetch-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Chakra Petch";src:url("fonts/ChakraPetch-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Barlow";src:url("fonts/Barlow-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Barlow";src:url("fonts/Barlow-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Barlow";src:url("fonts/Barlow-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Archivo";src:url("fonts/Archivo.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Lora";src:url("fonts/Lora.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url("fonts/BricolageGrotesque.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:"Sora";src:url("fonts/Sora.woff2") format("woff2");font-weight:100 800;font-style:normal;font-display:swap}
+:root,[data-theme="python-basics"]{
+  --bg:#100f0c;
+  --surface:#181713;
+  --surface-raised:#201f1b;
+  --line:#32302a;
+  --accent:#c9bb83;
+  --accent-hover:#dbce9f;
+  --accent-soft:#252215;
+  --accent-line:#60583b;
+  --on-accent:#16140c;
+  --text:#ebeaef;
+  --text-muted:#aaaab2;
+  --text-faint:#807f87;
+  --campus:#af9ee4;
+  --campus-soft:#231f2f;
+  --success:#8ec7a1;
+  --warning:#dcc188;
+  --danger:#dc8b88;
+  --font-fach:var(--font-python-basics);
+}
+[data-theme="mathematik"]{
+  --bg:#0e0f13;
+  --surface:#15171b;
+  --surface-raised:#1d1f24;
+  --line:#2d3036;
+  --accent:#a4bbe5;
+  --accent-hover:#bacff3;
+  --accent-soft:#1d222b;
+  --accent-line:#4c586e;
+  --on-accent:#10141b;
+  --font-fach:var(--font-mathematik);
+}
+[data-theme="digitaltechnik"]{
+  --bg:#0d100e;
+  --surface:#151815;
+  --surface-raised:#1c201d;
+  --line:#2d322d;
+  --accent:#9dc7a5;
+  --accent-hover:#b5d9bb;
+  --accent-soft:#1b241d;
+  --accent-line:#495e4d;
+  --on-accent:#0f1610;
+  --font-fach:var(--font-digitaltechnik);
+}
+[data-theme="elektrotechnik"]{
+  --bg:#110f0c;
+  --surface:#1a1713;
+  --surface-raised:#221f1b;
+  --line:#342f2a;
+  --accent:#ddb183;
+  --accent-hover:#ecc69e;
+  --accent-soft:#292015;
+  --accent-line:#6a533b;
+  --on-accent:#18130d;
+  --font-fach:var(--font-elektrotechnik);
+}
+[data-theme="konstruktion-maschinentechnik"]{
+  --bg:#0c1012;
+  --surface:#13181a;
+  --surface-raised:#1b2023;
+  --line:#2b3235;
+  --accent:#9ac2d4;
+  --accent-hover:#b2d4e4;
+  --accent-soft:#1a2327;
+  --accent-line:#475c65;
+  --on-accent:#0d1519;
+  --font-fach:var(--font-konstruktion-maschinentechnik);
+}
+[data-theme="kontextmodul"]{
+  --bg:#120e10;
+  --surface:#1a1618;
+  --surface-raised:#221e21;
+  --line:#342e32;
+  --accent:#d4adc6;
+  --accent-hover:#e4c2d7;
+  --accent-soft:#271f24;
+  --accent-line:#65515e;
+  --on-accent:#191116;
+  --font-fach:var(--font-kontextmodul);
+}
+[data-theme="mechanik-werkstoffkunde"]{
+  --bg:#120e0e;
+  --surface:#1b1615;
+  --surface-raised:#231e1d;
+  --line:#362e2d;
+  --accent:#daa198;
+  --accent-hover:#f2c0b8;
+  --accent-soft:#2b1e1c;
+  --accent-line:#6e4f4b;
+  --on-accent:#1a1110;
+  --font-fach:var(--font-mechanik-werkstoffkunde);
+}
+[data-theme="industrielle-digitalisierung"]{
+  --bg:#0c1010;
+  --surface:#131818;
+  --surface-raised:#1b2120;
+  --line:#2a3231;
+  --accent:#92c6c2;
+  --accent-hover:#acd8d4;
+  --accent-soft:#182423;
+  --accent-line:#435e5c;
+  --on-accent:#0c1615;
+  --font-fach:var(--font-industrielle-digitalisierung);
+}
+:root{
+  --font-campus:"Outfit", system-ui, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, monospace;
+  --font-python-basics:"Space Grotesk", system-ui, sans-serif;
+  --font-mathematik:"Fraunces", Georgia, serif;
+  --font-digitaltechnik:"Chakra Petch", system-ui, sans-serif;
+  --font-elektrotechnik:"Barlow", system-ui, sans-serif;
+  --font-konstruktion-maschinentechnik:"Archivo", system-ui, sans-serif;
+  --font-kontextmodul:"Lora", Georgia, serif;
+  --font-mechanik-werkstoffkunde:"Bricolage Grotesque", system-ui, sans-serif;
+  --font-industrielle-digitalisierung:"Sora", system-ui, sans-serif;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-6:24px;
+  --space-8:32px;
+  --space-12:48px;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --radius-pill:999px;
+  --stroke-hair:1px;
+  --stroke-focus:2px;
+  --shadow-none:none;
+  --shadow-pop:0 8px 24px rgba(0,0,0,0.45);
+}

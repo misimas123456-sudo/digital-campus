@@ -1,0 +1,261 @@
+{
+  "id": "sw06-labor2-oszilloskop",
+  "bereich": "labor",
+  "woche": 6,
+  "titel": "Labor 2 · Oszilloskop, Prellen, RMS",
+  "untertitel": "Oszilloskop, Debouncing, Batterien in Serie, Strommessung mit Shunt, Effektivwert",
+  "quelle": "Präsentation ET+L HS26 Labor 2 de v1; Aufgaben ETplusL Lab 2 v5.",
+  "vorbereitung": [
+    "Block 2 (Leistung) und Block 5 (Effektivwert) repetieren",
+    "Formelsammlung nachführen"
+  ],
+  "lektionen": [
+    {
+      "id": "oszi",
+      "titel": "Das Oszilloskop bedienen",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ein Oszilloskop stellt veränderliche Spannungen über der Zeit dar (Format YT)."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**VOLTS/DIV:** Spannung pro Rasterkästchen; Pfeil links = GND-Level des Kanals",
+            "**SEC/DIV:** Zeit pro Rasterkästchen",
+            "**Trigger:** Kanal, Flanke (steigend/fallend) und Triggerlevel bestimmen, wann eine Aufzeichnung startet",
+            "**Cursor:** horizontal für Spannungen, vertikal für Zeiten"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Triggermodus"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Single:** eine Aufzeichnung, dann eingefroren",
+            "**Normal:** nur bei erfülltem Trigger neu – sonst bleibt das Bild stehen",
+            "**Auto:** wie Normal, misst aber auch ohne Trigger weiter"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Verbindung über Koaxialkabel mit BNC-Stecker: Signal auf dem Innenleiter, der Schirm liegt i. A. an Erde."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\hat U = \\frac{U_{pp}}{2} \\qquad f = \\frac{1}{T}"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Welcher Triggermodus aktualisiert das Bild **nur**, wenn die Triggerbedingung erfüllt ist?",
+          "optionen": [
+            "Normal",
+            "Auto",
+            "Single",
+            "Roll"
+          ],
+          "richtig": 0,
+          "erklaerung": "Normal: Ohne Trigger bleibt das Bild eingefroren. Auto misst trotzdem weiter."
+        },
+        {
+          "id": "q2",
+          "typ": "multiple_choice",
+          "frage": "Was passiert, wenn der Triggerlevel ausserhalb des Signals liegt?",
+          "optionen": [
+            "Das Signal wird nicht mehr sauber stehend dargestellt",
+            "Die Amplitude wird verdoppelt",
+            "Das Oszilloskop schaltet ab",
+            "Nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne Triggerereignis kann keine stabile Darstellung entstehen."
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Mit welcher Cursor-Art misst man die Periodendauer?",
+          "optionen": [
+            "Vertikale Cursor (Time)",
+            "Horizontale Cursor (Voltage)",
+            "Trigger-Cursor",
+            "Gar nicht"
+          ],
+          "richtig": 0,
+          "erklaerung": "Zeiten liest man mit vertikalen Linien ab, Spannungen mit horizontalen."
+        }
+      ]
+    },
+    {
+      "id": "prellen",
+      "titel": "Prellen und Debouncing",
+      "art": "aufgabe",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ein mechanischer Schalter schaltet nicht sauber: beim Betätigen springt der Kontakt mehrmals – das **Prellen** (Bouncing). Mit dem Trigger im Modus *Normal* sieht man das auf dem Oszilloskop."
+        },
+        {
+          "typ": "text",
+          "text": "Zählt ein Gerät Impulse (z. B. 1 Impuls = 1 ml Medikament), werden durch das Prellen **zu viele** Impulse gezählt – das wäre nicht tolerierbar."
+        },
+        {
+          "typ": "text",
+          "text": "Abhilfe (Debouncing): ein Bauteil aus der Theorie, das schnelle Spannungsänderungen glättet – der **Kondensator** (Block 3: die Spannung am C kann nicht springen)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Welches Bauteil hilft gegen das Prellen?",
+          "optionen": [
+            "Kondensator",
+            "Widerstand allein",
+            "Sicherung",
+            "Transformator"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Kondensator glättet die Spannung, weil sie an ihm nicht springen kann."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Jeder Prellkontakt kann den Triggerlevel überschreiten und als Impuls zählen.",
+          "aussage": "Durch Prellen kann ein Zähler mehr Impulse zählen, als tatsächlich geschaltet wurde.",
+          "richtig": true
+        }
+      ]
+    },
+    {
+      "id": "akkus",
+      "titel": "Batterien, Akkus und Sicherheit",
+      "art": "aufgabe",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Kurzschluss:** Bei Akkus begrenzen nur der kleine Innen- und der sehr kleine Leitungswiderstand den Strom → Absicherung möglichst nahe am Akku, keine offenen Enden",
+            "**Überladen:** Li-Ionen-Zellen über 4.2 V → Brandgefahr. Richtiges Ladegerät, richtige Einstellung",
+            "**Serieschaltung:** Bei höheren Gleichspannungen erlischt ein Lichtbogen nicht von selbst. Keine Akkus in Serie über 50 V DC"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Bei Wechselspannung (50 Hz) ist der Strom alle 10 ms null – dieser Nulldurchgang löscht den Funken."
+        },
+        {
+          "typ": "text",
+          "text": "In Serie geschaltete Zellen addieren ihre Spannung. Wird eine Zelle verkehrt eingesetzt, zieht sie ihre Spannung ab (Superposition)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Bis zu welcher Zellspannung darf eine Li-Ionen-Zelle geladen werden?",
+          "optionen": [
+            "4.2 V",
+            "3.7 V",
+            "5 V",
+            "12 V"
+          ],
+          "richtig": 0,
+          "erklaerung": "Über 4.2 V besteht Brandgefahr (LiFePo hat eine andere Ladeschlussspannung)."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "AC hat alle 10 ms einen Nulldurchgang, der den Funken löscht. DC nicht.",
+          "aussage": "Ein Lichtbogen bei Gleichspannung erlischt genau so schnell wie bei 50-Hz-Wechselspannung.",
+          "richtig": false
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Drei Zellen à 1.5 V sind in Serie, eine davon ist verkehrt eingesetzt. Welche Spannung liegt am Ausgang?",
+          "loesung": 1.5,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "Lab 2, Aufgabe 4",
+          "loesungsweg": [
+            "Spannungen addieren mit Vorzeichen: $1.5 + 1.5 - 1.5 = 1.5\\,\\text{V}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shunt-rms",
+      "titel": "Strommessung mit Shunt und RMS",
+      "art": "aufgabe",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ein Oszilloskop misst Spannungen. Für den Strom setzt man einen kleinen **Shunt-Widerstand** in Serie: Er erzeugt einen Spannungsabfall proportional zum Strom."
+        },
+        {
+          "typ": "formel",
+          "tex": "I = \\frac{U_\\text{Shunt}}{R_\\text{Shunt}}"
+        },
+        {
+          "typ": "text",
+          "text": "Bei Wechselspannung liefert *Measure → Cyclic RMS* den Effektivwert. Für die Leistung rechnet man mit dem RMS-Wert, nicht mit $\\hat U$. Das Verhältnis $\\hat U / U_\\text{RMS}$ ist beim Sinus $\\sqrt2$."
+        },
+        {
+          "typ": "text",
+          "text": "Am Multimeter braucht es für Wechselstrom die AC-Funktion (Zweitfunktion, gelb/orange) – sonst zeigt es 0."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Über einem 1-Ω-Shunt misst das Oszilloskop 0.25 V. Welcher Strom fliesst?",
+          "loesung": 0.25,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "Lab 2, Aufgabe 5",
+          "loesungsweg": [
+            "$I = \\dfrac{0.25\\,\\text{V}}{1\\,\\Omega} = 0.25\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "multiple_choice",
+          "frage": "Welchen Wert nimmt man für die Leistungsberechnung bei Wechselspannung?",
+          "optionen": [
+            "Den RMS-Wert",
+            "Den Spitzenwert",
+            "Den Spitze-Spitze-Wert",
+            "Den Mittelwert über eine Halbwelle"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Effektivwert ist so definiert, dass er dieselbe Wirkleistung wie eine Gleichspannung ergibt."
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Welches Verhältnis $\\hat U / U_\\text{RMS}$ misst man beim sinusförmigen Trafosignal?",
+          "optionen": [
+            "$\\sqrt2 \\approx 1.414$",
+            "2",
+            "$1/\\sqrt2$",
+            "$\\pi$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das ist genau die Beziehung aus Block 5."
+        }
+      ]
+    }
+  ],
+  "labor": 2
+}

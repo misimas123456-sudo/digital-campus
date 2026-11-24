@@ -1,0 +1,1350 @@
+{
+  "id": "block18-hauptsatz",
+  "titel": "Hauptsatz und Eigenschaften des bestimmten Integrals",
+  "untertitel": "Dimension, erster Hauptsatz, Grenzen, Summenregel, Flächen zwischen Graphen, Mittelwert",
+  "bereich": "theorie",
+  "quelle": "Mathematik 1B, Skriptblock 18 (SkrpBlo18, Abschnitte 3.1.3 bis 3.1.4.3) und Übungsblock 18 (UebBlo18)",
+  "lektionen": [
+    {
+      "id": "block18-hauptsatz-l1",
+      "titel": "Integralschreibweise und Dimension",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Skript Block 18, 3.1.3.1; Übungsblock 18, Ü 18.1, 18.2",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die Schreibweise $\\int_{x=a}^{b} y\\,\\mathrm{d}x$ zeigt, worum es beim bestimmten Integral geht: Es ist die **Summe** von $y\\cdot\\mathrm{d}x$, wenn $x$ in unendlich kleinen Schritten $\\mathrm{d}x$ von $a$ bis $b$ läuft. Das Zeichen $\\int$ ist ein langgezogenes S (Summe), $x=a$ ist die untere und $b$ die obere Summationsgrenze."
+        },
+        {
+          "typ": "text",
+          "text": "Ist $y$ die momentane Geschwindigkeit eines Teilchens und $x$ die Zeit, dann ist $y\\cdot\\mathrm{d}x$ die unendlich kleine Verschiebung zwischen $x$ und $x+\\mathrm{d}x$. Das Integral summiert alle diese Verschiebungen zwischen $x=a$ und $x=b$."
+        },
+        {
+          "typ": "merke",
+          "text": "Da $y\\cdot\\mathrm{d}x$ aufsummiert wird, hat $\\int y\\,\\mathrm{d}x$ die Dimension von $y$ mal die Dimension von $x$."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "$y$ = Fläche, $x$ = Länge $\\Rightarrow$ $\\int y\\,\\mathrm{d}x$ hat die Dimension Fläche mal Länge, also Volumen.",
+            "$F$ = Kraft, $s$ = Strecke $\\Rightarrow$ $\\int F\\,\\mathrm{d}s$ hat die Dimension Kraft mal Länge, also Energie (in der Physik: die **Arbeit**)."
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Wofür steht das Zeichen $\\int$ im bestimmten Integral $\\int_{x=a}^{b} y\\,\\mathrm{d}x$?",
+          "optionen": [
+            "Für ein langgezogenes S, also für «Summe von»",
+            "Für die Ableitung nach $x$",
+            "Für das Produkt von $y$ und $x$",
+            "Für die Differenz von $b$ und $a$"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\int$ ist ein langgezogenes S: Das Integral summiert alle $y\\cdot\\mathrm{d}x$ von $x=a$ bis $x=b$.",
+          "quelle": "Skript Block 18, 3.1.3.1"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "$y$ ist die momentane Geschwindigkeit eines Teilchens als Funktion der Zeit $x$. Was beschreibt $y\\cdot\\mathrm{d}x$?",
+          "optionen": [
+            "Die gesamte zurückgelegte Strecke",
+            "Die unendlich kleine Verschiebung zwischen den Zeiten $x$ und $x+\\mathrm{d}x$",
+            "Die Beschleunigung zur Zeit $x$",
+            "Die Geschwindigkeit nach der Zeit $\\mathrm{d}x$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Geschwindigkeit mal kleine Zeitspanne = kleine Verschiebung. Das Integral summiert diese Verschiebungen zur Gesamtänderung der Position.",
+          "quelle": "Skript Block 18, 3.1.3.1"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "$y$ hat die Dimension Fläche und $x$ die Dimension Länge. Welche Dimension hat $\\int_{x=a}^{b} y\\,\\mathrm{d}x$?",
+          "optionen": [
+            "Fläche",
+            "Länge",
+            "Volumen",
+            "Fläche pro Länge"
+          ],
+          "richtig": 2,
+          "erklaerung": "Dimension von $y$ mal Dimension von $x$: Fläche mal Länge = Volumen. Fehlerquelle: durch die Länge teilen (das wäre eine Ableitung).",
+          "quelle": "Skript Block 18, 3.1.3.1"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Ein Teilchen bewegt sich in einem Kraftfeld. $F$ ist die Kraft in Bewegungsrichtung, $s$ die zurückgelegte Strecke. Welche Dimension hat $\\int_{s=a}^{b} F\\,\\mathrm{d}s$?",
+          "optionen": [
+            "Leistung",
+            "Geschwindigkeit",
+            "Kraft",
+            "Energie (Arbeit)"
+          ],
+          "richtig": 3,
+          "erklaerung": "Kraft mal Länge ist eine Energie. Diese Energie heisst in der Physik Arbeit.",
+          "quelle": "Skript Block 18, 3.1.3.1"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "$a$ ist die Beschleunigung eines Fahrzeugs als Funktion der Zeit $t$. Welche Dimension hat $\\int_{t=t_0}^{t_1} a\\,\\mathrm{d}t$?",
+          "optionen": [
+            "Geschwindigkeit (Länge pro Zeit)",
+            "Länge",
+            "Beschleunigung (Länge pro Zeit²)",
+            "Kraft"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beschleunigung $=$ Länge/Zeit², mal Zeit ergibt Länge/Zeit, also eine Geschwindigkeit.",
+          "quelle": "Übungsblock 18, Ü 18.1"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a6",
+          "typ": "multiple_choice",
+          "frage": "Was beschreibt $\\int_{t=t_0}^{t_1} a\\,\\mathrm{d}t$ im Kontext des Fahrzeugs?",
+          "optionen": [
+            "Die zurückgelegte Strecke zwischen $t_0$ und $t_1$",
+            "Die Gesamtänderung der Geschwindigkeit zwischen $t_0$ und $t_1$",
+            "Die mittlere Beschleunigung",
+            "Die Geschwindigkeit zur Zeit $t_1$"
+          ],
+          "richtig": 1,
+          "erklaerung": "$a$ ist die momentane Änderungsrate der Geschwindigkeit. Nach dem Hauptsatz ist das Integral die Gesamtänderung $v\\big|_{t=t_1}-v\\big|_{t=t_0}$.",
+          "quelle": "Übungsblock 18, Ü 18.1"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a7",
+          "typ": "multiple_choice",
+          "frage": "$w$ ist die Rate (in Milliarden Menschen pro Jahr), mit der die Weltbevölkerung wächst, $t$ die Zeit in Jahren ab Anfang 2010. Welche Einheit hat $\\int_{t=0}^{5} w\\,\\mathrm{d}t$?",
+          "optionen": [
+            "Milliarden Menschen pro Jahr",
+            "Jahre",
+            "Milliarden Menschen",
+            "Menschen pro Jahr²"
+          ],
+          "richtig": 2,
+          "erklaerung": "(Milliarden Menschen/Jahr) mal Jahr = Milliarden Menschen. Das Integral ist die Änderung der Weltbevölkerung zwischen Anfang 2010 und Anfang 2015.",
+          "quelle": "Übungsblock 18, Ü 18.2"
+        },
+        {
+          "id": "block18-hauptsatz-l1-a8",
+          "typ": "zuordnen",
+          "frage": "Ordne jedem Produkt die passende Dimension zu.",
+          "paare": [
+            [
+              "Geschwindigkeit · Zeit",
+              "Länge"
+            ],
+            [
+              "Beschleunigung · Zeit",
+              "Geschwindigkeit"
+            ],
+            [
+              "Kraft · Länge",
+              "Energie"
+            ],
+            [
+              "Fläche · Länge",
+              "Volumen"
+            ]
+          ],
+          "erklaerung": "Die Dimension eines Integrals ist immer das Produkt der Dimensionen von $y$ und $x$.",
+          "quelle": "Übungsblock 18, Ü 18.2"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l2",
+      "titel": "Der Hauptsatz",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Skript Block 18, 3.1.3.2, Aufgabe 3.1.17",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ist $p$ die Position eines Objekts, gilt $\\mathrm{d}p=v\\,\\mathrm{d}t$. Das Integral $\\int_{t=a}^{b} v\\,\\mathrm{d}t$ ist also $\\int_{t=a}^{b}\\mathrm{d}p$, die Summe aller kleinen Positionsänderungen. Das ist die Gesamtänderung der Position: Endposition minus Anfangsposition."
+        },
+        {
+          "typ": "text",
+          "text": "Dieser Sachverhalt gilt für jede veränderliche Grösse $y$, die von $x$ abhängt, und heisst **Hauptsatz der Differenzial- und Integralrechnung**."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int_{x=a}^{b}\\mathrm{d}y \\;=\\; y\\big|_{x=b}-y\\big|_{x=a}"
+        },
+        {
+          "typ": "merke",
+          "text": "In Worten: Die Summe aller unendlich kleinen Änderungen einer Grösse ist die Gesamtänderung dieser Grösse."
+        },
+        {
+          "typ": "text",
+          "text": "Wegen $\\mathrm{d}y=\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\mathrm{d}x$ schreibt man den Hauptsatz auch so, und für $y=f(x)$ so:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int_{x=a}^{b}\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\,\\mathrm{d}x = y\\big|_{x=b}-y\\big|_{x=a}\\qquad\\qquad \\int_{x=a}^{b}f'(x)\\,\\mathrm{d}x=f(b)-f(a)"
+        },
+        {
+          "typ": "text",
+          "text": "Umgestellt: $y\\big|_{x=b}=y\\big|_{x=a}+\\int_{x=a}^{b}\\mathrm{d}y$. Der Wert bei $x=b$ ist der Wert bei $x=a$ plus die Summe aller Änderungen von $y$, wenn $x$ von $a$ bis $b$ läuft."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Gleichung ist der Hauptsatz der Differenzial- und Integralrechnung?",
+          "optionen": [
+            "$\\int_{x=a}^{b}\\mathrm{d}y=y\\big|_{x=b}-y\\big|_{x=a}$",
+            "$\\int_{x=a}^{b}\\mathrm{d}y=y\\big|_{x=b}+y\\big|_{x=a}$",
+            "$\\int_{x=a}^{b}\\mathrm{d}y=y\\big|_{x=a}-y\\big|_{x=b}$",
+            "$\\int_{x=a}^{b}\\mathrm{d}y=\\frac{y\\big|_{x=b}}{y\\big|_{x=a}}$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Summe aller Änderungen = Endwert minus Anfangswert. Mit vertauschten Werten stimmt nur das Vorzeichen nicht mehr.",
+          "quelle": "Skript Block 18, 3.1.3.2"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Für eine differenzierbare Funktion $f$ gilt $\\int_{x=a}^{b}f'(x)\\,\\mathrm{d}x=f(b)-f(a)$.",
+          "richtig": true,
+          "erklaerung": "Das ist der Hauptsatz in der Schreibweise mit $f$.",
+          "quelle": "Skript Block 18, 3.1.3.2"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Es gilt $\\int_{x=a}^{b}f'(x)\\,\\mathrm{d}x=f(a)-f(b)$.",
+          "richtig": false,
+          "erklaerung": "Endwert minus Anfangswert: $f(b)-f(a)$. Die Reihenfolge ist entscheidend.",
+          "quelle": "Skript Block 18, 3.1.3.2"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a4",
+          "typ": "rechnung",
+          "frage": "Es sei $f(x)=x^2$. Berechne $\\int_{x=1}^{3}f'(x)\\,\\mathrm{d}x$ mit dem Hauptsatz.",
+          "loesung": 8,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=1}^{3}f'(x)\\,\\mathrm{d}x=f(3)-f(1)$",
+            "$=9-1=8$"
+          ],
+          "erklaerung": "Man muss $f'$ gar nicht ausrechnen: Es zählen nur Anfangs- und Endwert von $f$.",
+          "quelle": "Skript Block 18, 3.1.3.2"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a5",
+          "typ": "rechnung",
+          "frage": "Ein Objekt hat zur Zeit $t=2\\,\\mathrm{s}$ die Position $5\\,\\mathrm{m}$ und zur Zeit $t=6\\,\\mathrm{s}$ die Position $17\\,\\mathrm{m}$. Wie gross ist $\\int_{t=2\\,\\mathrm{s}}^{6\\,\\mathrm{s}} v\\,\\mathrm{d}t$?",
+          "loesung": 12,
+          "einheit": "m",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int v\\,\\mathrm{d}t=p\\big|_{t=6}-p\\big|_{t=2}$",
+            "$=17\\,\\text{m}-5\\,\\text{m}=12\\,\\text{m}$"
+          ],
+          "erklaerung": "Das Integral der Geschwindigkeit ist die Gesamtänderung der Position.",
+          "quelle": "Skript Block 18, 3.1.3.2"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a6",
+          "typ": "rechnung",
+          "frage": "Eine Grösse $y$ hat bei $x=a$ den Wert $7$. Die Summe aller Änderungen von $y$ zwischen $x=a$ und $x=b$ ist $\\int_{x=a}^{b}\\mathrm{d}y=-3$. Welchen Wert hat $y$ bei $x=b$?",
+          "loesung": 4,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\big|_{x=b}=y\\big|_{x=a}+\\int_{x=a}^{b}\\mathrm{d}y$",
+            "$=7+(-3)=4$"
+          ],
+          "erklaerung": "Anfangswert plus Gesamtänderung gleich Endwert.",
+          "quelle": "Skript Block 18, 3.1.3.2"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a7",
+          "typ": "multiple_choice",
+          "frage": "$\\frac{\\mathrm{d}V}{\\mathrm{d}t}$ ist die momentane Rate (Volumen pro Zeit), mit der Wasser aus einem Tank fliesst. Welche Dimension haben $\\int_{t=a}^{b}\\frac{\\mathrm{d}V}{\\mathrm{d}t}\\,\\mathrm{d}t$ und $V\\big|_{t=b}-V\\big|_{t=a}$?",
+          "optionen": [
+            "Beide haben die Dimension Volumen pro Zeit",
+            "Das Integral hat Volumen, die Differenz Volumen pro Zeit",
+            "Beide haben die Dimension Volumen",
+            "Beide haben die Dimension Zeit"
+          ],
+          "richtig": 2,
+          "erklaerung": "Volumen/Zeit mal Zeit ergibt Volumen. Nach dem Hauptsatz sind beide Ausdrücke gleich.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.17"
+        },
+        {
+          "id": "block18-hauptsatz-l2-a8",
+          "typ": "multiple_choice",
+          "frage": "Was beschreiben beide Ausdrücke aus der vorherigen Aufgabe im Kontext des Wassertanks?",
+          "optionen": [
+            "Die Durchflussrate zur Zeit $b$",
+            "Das Restvolumen im Tank zur Zeit $b$",
+            "Die mittlere Fliessgeschwindigkeit",
+            "Die zwischen $t=a$ und $t=b$ ausgeflossene Wassermenge"
+          ],
+          "richtig": 3,
+          "erklaerung": "$V$ kann als die ab einem gewissen Zeitpunkt ausgeflossene Menge verstanden werden. Die Differenz $V\\big|_{t=b}-V\\big|_{t=a}$ ist die in dieser Zeitspanne ausgeflossene Menge.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.17"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l3",
+      "titel": "Gesamtänderung aus der Rate",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 18, 3.1.3.3, Aufgaben 3.1.18–3.1.20; Übungsblock 18, Ü 18.3, 18.4",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Viele Anwendungen des Integrals nutzen den Hauptsatz: Kennt man die **Änderungsrate** einer Grösse, so ist die Gesamtänderung ein bestimmtes Integral. Den Endwert erhält man aus"
+        },
+        {
+          "typ": "formel",
+          "tex": "y\\big|_{x=b}=y\\big|_{x=a}+\\int_{x=a}^{b}\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\,\\mathrm{d}x"
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel (Bakterienkolonie).** Zur Zeit $t=0\\,\\mathrm{h}$ gibt es 5 Mio. Bakterien, die Wachstumsrate ist $\\frac{\\mathrm{d}B}{\\mathrm{d}t}=2^{t/\\mathrm{h}}\\,\\frac{\\text{Mio.}}{\\mathrm{h}}$. Eine linksseitige Riemann-Summe mit 200 Unterteilungen liefert $\\int_{t=0}^{1\\,\\mathrm{h}}2^{t/\\mathrm{h}}\\,\\mathrm{d}t\\approx1.4402$ Mio. Also $B\\big|_{t=1\\,\\mathrm{h}}\\approx5+1.4402=6.4402$ Mio."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Ist das Integral eine Fläche, kannst du sie oft auch aus dem Graphen ablesen (Kästchen zählen), ohne zu rechnen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l3-a1",
+          "typ": "rechnung",
+          "frage": "Die Kolonie hat bei $t=0$ fünf Mio. Bakterien und wächst mit der Rate $2^{t/\\mathrm{h}}$ Mio./h. Wie gross ist sie bei $t=1\\,\\mathrm{h}$? (Näherung mit linksseitiger Riemann-Summe, 200 Unterteilungen.)",
+          "loesung": 6.4402,
+          "einheit": "Mio.",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$B\\big|_{t=1}=5+\\int_{t=0}^{1}2^{t}\\,\\mathrm{d}t$",
+            "$\\int_{t=0}^{1}2^{t}\\,\\mathrm{d}t\\approx1.4402$ (Computer)",
+            "$B\\big|_{t=1}\\approx6.4402\\ \\text{Mio.}$"
+          ],
+          "erklaerung": "Das Integral wird hier nur numerisch genähert. Der exakte Wert wäre $5+1/\\ln2\\approx6.4427$, darum ist die Toleranz grosszügig.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.18"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a2",
+          "typ": "multiple_choice",
+          "frage": "Zwei Autos starten aus dem Stillstand an einer Ampel. Auto 1 ist während der ersten Minute immer schneller als Auto 2. Welches Auto ist nach einer Minute vorne?",
+          "optionen": [
+            "Auto 2",
+            "Auto 1",
+            "Beide gleich weit",
+            "Das lässt sich ohne Zahlenwerte nicht sagen"
+          ],
+          "richtig": 1,
+          "erklaerung": "Die zurückgelegte Strecke ist $\\int v\\,\\mathrm{d}t$, die Fläche unter dem $v$-$t$-Graphen. Wer immer schneller war, hat die grössere Fläche.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.19"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Nach zwei Minuten war Auto 1 zeitweise schneller, zeitweise langsamer als Auto 2. Woran erkennst du, welches Auto vorne ist?",
+          "optionen": [
+            "An der Geschwindigkeit bei $t=2\\,\\text{min}$",
+            "An der grösseren Höchstgeschwindigkeit",
+            "An den Flächen unter den $v$-$t$-Graphen von $t=0$ bis $t=2\\,\\text{min}$",
+            "An der Steigung der Graphen"
+          ],
+          "richtig": 2,
+          "erklaerung": "Nicht die momentane Geschwindigkeit zählt, sondern die Summe über die ganze Zeit, also die Fläche. Im Skript hat Auto 2 die klar grössere Fläche und ist vorne.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.19"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a4",
+          "typ": "rechnung",
+          "frage": "Die Änderungsrate des CO$_2$-Spiegels in einem Teich beträgt zu den Zeiten $t=12,14,16,18,20,22\\,\\mathrm{h}$ nach Morgendämmerung: $0.000,\\ 0.058,\\ 0.038,\\ 0.025,\\ 0.017,\\ 0.007$ mmol/ℓ pro h. Wie viel CO$_2$ wird nachts zwischen $t=12\\,\\mathrm{h}$ und $t=24\\,\\mathrm{h}$ ungefähr zugeführt? (Linksseitige Summe, $\\Delta t=2\\,\\mathrm{h}$.)",
+          "loesung": 0.29,
+          "einheit": "mmol/ℓ",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{t=12}^{24}\\frac{\\mathrm{d}C}{\\mathrm{d}t}\\,\\mathrm{d}t\\approx(0.000+0.058+0.038+0.025+0.017+0.007)\\cdot2$",
+            "$=0.145\\cdot2=0.29\\ \\text{mmol/l}$"
+          ],
+          "erklaerung": "Linke Riemann-Summe: Summe der Raten mal Schrittlänge. Das ist die Änderung $C\\big|_{t=24}-C\\big|_{t=12}$.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.20, Tabelle A.0.1"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a5",
+          "typ": "rechnung",
+          "frage": "Tagsüber (von $t=0$ bis $t=12\\,\\mathrm{h}$) betragen die Raten bei $t=0,2,\\dots,10\\,\\mathrm{h}$: $0.000,\\ -0.048,\\ -0.039,\\ -0.035,\\ -0.026,\\ -0.011$ mmol/ℓ pro h. Zur Morgendämmerung sind es $2.6$ mmol/ℓ. Wie hoch ist der CO$_2$-Spiegel bei der Abenddämmerung ($t=12\\,\\mathrm{h}$)?",
+          "loesung": 2.282,
+          "einheit": "mmol/ℓ",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{t=0}^{12}\\frac{\\mathrm{d}C}{\\mathrm{d}t}\\,\\mathrm{d}t\\approx(-0.159)\\cdot2=-0.318$",
+            "$C\\big|_{t=12}=2.6+(-0.318)=2.282\\ \\text{mmol/l}$"
+          ],
+          "erklaerung": "Anfangswert plus Gesamtänderung (negativ, weil die Pflanzen tagsüber CO$_2$ entnehmen).",
+          "quelle": "Skript Block 18, Aufgabe 3.1.20, Tabelle A.0.1"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a6",
+          "typ": "multiple_choice",
+          "frage": "Wann ist der CO$_2$-Gehalt im Teich am tiefsten?",
+          "optionen": [
+            "Bei der Morgendämmerung",
+            "Bei der Abenddämmerung ($t=12\\,\\mathrm{h}$)",
+            "Mitten in der Nacht ($t=18\\,\\mathrm{h}$)",
+            "Zu Mittag ($t=6\\,\\mathrm{h}$)"
+          ],
+          "richtig": 1,
+          "erklaerung": "Die Rate ist von 0 bis 12 h negativ (Spiegel fällt) und danach positiv (Spiegel steigt). Beim Wechsel, also bei $t=12\\,\\mathrm{h}$, liegt das Minimum.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.20, Tabelle A.0.1"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a7",
+          "typ": "multiple_choice",
+          "frage": "$r$ ist die Verbrauchsrate von Erdöl, $t$ die Zeit ab Anfang 2004. Wie drückst du den gesamten Verbrauch zwischen Anfang 2004 und Anfang 2009 aus?",
+          "optionen": [
+            "$r\\big|_{t=5\\,\\mathrm{a}}-r\\big|_{t=0}$",
+            "$5\\,\\mathrm{a}\\cdot r\\big|_{t=0}$",
+            "$\\int_{t=0}^{5\\,\\mathrm{a}} r\\,\\mathrm{d}t$",
+            "$\\int_{t=0}^{2009} r\\,\\mathrm{d}t$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Verbrauch = Summe aller $r\\cdot\\mathrm{d}t$ über fünf Jahre. 2009 ist ein Datum, kein Wert für $t$ (das läuft ab 2004).",
+          "quelle": "Übungsblock 18, Ü 18.3"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a8",
+          "typ": "rechnung",
+          "frage": "Es sei $r=32\\,e^{0.05\\,t/\\mathrm{a}}\\ \\frac{\\text{Mio. bbl}}{\\mathrm{a}}$. Nähere den Gesamtverbrauch zwischen $t=0$ und $t=5\\,\\mathrm{a}$ mit der linksseitigen Riemann-Summe mit zehn Unterteilungen ($\\Delta t=0.5\\,\\mathrm{a}$).",
+          "loesung": 179.514,
+          "einheit": "Mio. bbl",
+          "toleranz": 0.002,
+          "loesungsweg": [
+            "$\\sum_{k=0}^{9}32\\,e^{0.05\\cdot k\\cdot0.5}\\cdot0.5=32\\cdot0.5\\,(e^{0}+e^{0.025}+\\dots+e^{0.225})$",
+            "$\\approx179.514\\ \\text{Mio. bbl}$"
+          ],
+          "erklaerung": "Zehn Summanden, jeder ist eine Schätzung des halbjährlichen Verbrauchs.",
+          "quelle": "Übungsblock 18, Ü 18.3"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a9",
+          "typ": "multiple_choice",
+          "frage": "Ist die linksseitige Riemann-Summe bei dieser (wachsenden) Rate $r$ zu klein oder zu gross?",
+          "optionen": [
+            "Zu klein: Sie ist kleiner als der tatsächliche Wert des Integrals",
+            "Zu gross",
+            "Sie ist exakt",
+            "Das hängt von der Anzahl Unterteilungen ab, nicht von $r$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei wachsender Funktion liegt der linke Randwert jedes Teilintervalls unter den übrigen Werten, jede Unterteilung ist also eine untere Schätzung.",
+          "quelle": "Übungsblock 18, Ü 18.3"
+        },
+        {
+          "id": "block18-hauptsatz-l3-a10",
+          "typ": "rechnung",
+          "frage": "Bei einer zweitägigen Säuberungsaktion besteht die Fläche unter dem Graphen «Arbeiter pro Stunde über der Zeit» aus 14 Kästchen. Jedes Kästchen steht für 10 Arbeiter während 8 Stunden. Wie hoch sind die Personalkosten bei 10 CHF Stundenlohn?",
+          "loesung": 11200,
+          "einheit": "CHF",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Arbeitsstunden $=14\\cdot(10\\cdot8\\,\\text{h})=1120\\,\\text{h}$",
+            "Kosten $=1120\\cdot10\\,\\text{CHF}=11\\,200\\,\\text{CHF}$"
+          ],
+          "erklaerung": "Das Integral «Arbeiter mal Zeit» hat die Dimension Arbeitsstunden. Die Kosten ergeben sich aus Stunden mal Lohn.",
+          "quelle": "Übungsblock 18, Ü 18.4"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l4",
+      "titel": "Exakt statt Riemann",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 18, 3.1.3.3, Beispiel 3.1.1; Übungsblock 18, Ü 18.10",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Der Hauptsatz erlaubt, bestimmte Integrale **exakt** auszuwerten, ohne Riemann-Summen. Dazu braucht man eine Funktion $Y$, deren Ableitung der Integrand ist, eine **Stammfunktion**. Dann gilt"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int_{x=a}^{b}y\\,\\mathrm{d}x=Y\\big|_{x=b}-Y\\big|_{x=a}"
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel 3.1.1.** $\\int_{x=1.2}^{5}x^2\\,\\mathrm{d}x$: Eine Stammfunktion von $x^2$ ist $\\tfrac13x^3$, denn $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\tfrac13x^3=x^2$. Also"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int_{x=1.2}^{5}x^2\\,\\mathrm{d}x=\\tfrac13\\cdot5^3-\\tfrac13\\cdot1.2^3\\approx41.09067"
+        },
+        {
+          "typ": "text",
+          "text": "Eine linksseitige Riemann-Summe mit 100 Unterteilungen liefert dagegen nur $40.6439$. Der Hauptsatz ist hier genauer und einfacher."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Stammfunktionen suchen wir in Block 19 systematisch. Hier reicht: Probe durch Ableiten."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Funktion ist eine Stammfunktion von $x^2$ nach $x$?",
+          "optionen": [
+            "$\\tfrac13x^3$",
+            "$2x$",
+            "$x^3$",
+            "$\\tfrac12x^2$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Probe: $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\tfrac13x^3=\\tfrac13\\cdot3x^2=x^2$. $2x$ ist die Ableitung (nicht die Stammfunktion), $x^3$ hat die Ableitung $3x^2$.",
+          "quelle": "Skript Block 18, Beispiel 3.1.1"
+        },
+        {
+          "id": "block18-hauptsatz-l4-a2",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=1.2}^{5}x^2\\,\\mathrm{d}x$ mit dem Hauptsatz.",
+          "loesung": 41.0907,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\int_{x=1.2}^{5}x^2\\,\\mathrm{d}x=\\tfrac13x^3\\big|_{x=1.2}^{x=5}$",
+            "$=\\tfrac13\\cdot125-\\tfrac13\\cdot1.728\\approx41.0907$"
+          ],
+          "erklaerung": "Stammfunktion einsetzen: oben minus unten.",
+          "quelle": "Skript Block 18, Beispiel 3.1.1"
+        },
+        {
+          "id": "block18-hauptsatz-l4-a3",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{3}x^2\\,\\mathrm{d}x$ mit dem Hauptsatz.",
+          "loesung": 9,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\tfrac13x^3\\big|_{x=0}^{x=3}=\\tfrac13\\cdot27-0=9$"
+          ],
+          "erklaerung": "Die untere Grenze $0$ liefert hier null.",
+          "quelle": "Skript Block 18, Beispiel 3.1.1"
+        },
+        {
+          "id": "block18-hauptsatz-l4-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Die linksseitige Riemann-Summe mit 100 Unterteilungen liefert für $\\int_{x=1.2}^{5}x^2\\,\\mathrm{d}x$ den exakten Wert.",
+          "richtig": false,
+          "erklaerung": "Sie liefert nur eine Näherung ($40.6439$ statt $41.0907$). Exakt wird es erst mit Stammfunktion und Hauptsatz.",
+          "quelle": "Skript Block 18, Beispiel 3.1.1"
+        },
+        {
+          "id": "block18-hauptsatz-l4-a5",
+          "typ": "rechnung",
+          "frage": "Schreibe $\\int_{t=1}^{4}\\frac{\\mathrm{d}u}{\\mathrm{d}t}\\,\\mathrm{d}t$ für $u=t^3$ aus und werte es mit dem Hauptsatz aus.",
+          "loesung": 63,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\frac{\\mathrm{d}u}{\\mathrm{d}t}=3t^2$, also $\\int_{t=1}^{4}3t^2\\,\\mathrm{d}t=u\\big|_{t=4}-u\\big|_{t=1}$",
+            "$=4^3-1^3=63$"
+          ],
+          "erklaerung": "Hier ist $u$ selbst die Stammfunktion des Integranden, man muss nur Anfangs- und Endwert einsetzen.",
+          "quelle": "Übungsblock 18, Ü 18.10"
+        },
+        {
+          "id": "block18-hauptsatz-l4-a6",
+          "typ": "rechnung",
+          "frage": "Schreibe $\\int_{t=1}^{5}\\frac{\\mathrm{d}u}{\\mathrm{d}t}\\,\\mathrm{d}t$ für $u=\\ln t$ aus und werte es aus.",
+          "loesung": 1.6094,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\frac{\\mathrm{d}u}{\\mathrm{d}t}=\\frac1t$, also $\\int_{t=1}^{5}\\frac1t\\,\\mathrm{d}t=\\ln5-\\ln1$",
+            "$=\\ln5\\approx1.6094$"
+          ],
+          "erklaerung": "$\\ln1=0$, daher bleibt $\\ln5$.",
+          "quelle": "Übungsblock 18, Ü 18.10"
+        },
+        {
+          "id": "block18-hauptsatz-l4-a7",
+          "typ": "multiple_choice",
+          "frage": "Was ist bei $\\int_{x=a}^{b}y\\,\\mathrm{d}x=Y\\big|_{x=b}-Y\\big|_{x=a}$ die Voraussetzung?",
+          "optionen": [
+            "$y$ muss immer positiv sein",
+            "$a$ muss kleiner als $b$ sein",
+            "Man muss eine Stammfunktion $Y$ von $y$ finden, also $\\frac{\\mathrm{d}Y}{\\mathrm{d}x}=y$",
+            "$y$ muss eine lineare Funktion sein"
+          ],
+          "richtig": 2,
+          "erklaerung": "Der Hauptsatz funktioniert für jede Stammfunktion. Positivität und $a<b$ sind keine Bedingung (im Skript werden auch $a\\ge b$ zugelassen).",
+          "quelle": "Übungsblock 18, Ü 18.10"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l5",
+      "titel": "Grenzen vertauschen und Zwischenstopp",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "quelle": "Skript Block 18, 3.1.4, Aufgabe 3.1.21; Übungsblock 18, Ü 18.12",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Bisher war $a<b$. Die Definition des bestimmten Integrals bleibt aber auch für $a\\ge b$ gültig. Dann gelten zwei Regeln:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\text{i)}\\ \\int_{x=a}^{b}y\\,\\mathrm{d}x=-\\int_{x=b}^{a}y\\,\\mathrm{d}x\\qquad\\text{(Vertauschung der Grenzen)}"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\text{ii)}\\ \\int_{x=a}^{b}y\\,\\mathrm{d}x=\\int_{x=a}^{c}y\\,\\mathrm{d}x+\\int_{x=c}^{b}y\\,\\mathrm{d}x\\qquad\\text{(Zwischenstopp)}"
+        },
+        {
+          "typ": "text",
+          "text": "Bei i) läuft $x$ in die Gegenrichtung, darum hat $\\mathrm{d}x$ das umgekehrte Vorzeichen. Bei ii) gilt die Regel auch, wenn $c$ nicht zwischen $a$ und $b$ liegt."
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel.** Aus $\\int_{x=0}^{1.25}\\cos(x^2)\\,\\mathrm{d}x\\approx0.977$ und $\\int_{x=0}^{1}\\cos(x^2)\\,\\mathrm{d}x\\approx0.905$ folgt $\\int_{x=1}^{1.25}\\cos(x^2)\\,\\mathrm{d}x\\approx0.977-0.905=0.072$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l5-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Es gilt $\\int_{x=a}^{b}y\\,\\mathrm{d}x=-\\int_{x=b}^{a}y\\,\\mathrm{d}x$.",
+          "richtig": true,
+          "erklaerung": "Vertauschte Grenzen drehen das Vorzeichen um.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l5-a2",
+          "typ": "rechnung",
+          "frage": "Es gilt $\\int_{x=0}^{2}y\\,\\mathrm{d}x=5$. Welchen Wert hat $\\int_{x=2}^{0}y\\,\\mathrm{d}x$?",
+          "loesung": -5,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=2}^{0}y\\,\\mathrm{d}x=-\\int_{x=0}^{2}y\\,\\mathrm{d}x=-5$"
+          ],
+          "erklaerung": "Vertauschung der Grenzen: Vorzeichen wechselt.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l5-a3",
+          "typ": "rechnung",
+          "frage": "Es gilt $\\int_{x=0}^{3}y\\,\\mathrm{d}x=4$ und $\\int_{x=3}^{7}y\\,\\mathrm{d}x=6$. Wie gross ist $\\int_{x=0}^{7}y\\,\\mathrm{d}x$?",
+          "loesung": 10,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{7}=\\int_{x=0}^{3}+\\int_{x=3}^{7}=4+6=10$"
+          ],
+          "erklaerung": "Zwischenstopp bei $c=3$.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l5-a4",
+          "typ": "rechnung",
+          "frage": "Es gilt $\\int_{x=1}^{6}y\\,\\mathrm{d}x=9$ und $\\int_{x=1}^{4}y\\,\\mathrm{d}x=5$. Wie gross ist $\\int_{x=4}^{6}y\\,\\mathrm{d}x$?",
+          "loesung": 4,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=1}^{6}=\\int_{x=1}^{4}+\\int_{x=4}^{6}$",
+            "$\\int_{x=4}^{6}=9-5=4$"
+          ],
+          "erklaerung": "Zwischenstopp nach links umgestellt: Gesamtintegral minus Teilintegral.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l5-a5",
+          "typ": "rechnung",
+          "frage": "Es gilt $\\int_{x=0}^{3}y\\,\\mathrm{d}x=6$ und $\\int_{x=5}^{3}y\\,\\mathrm{d}x=-2$. Wie gross ist $\\int_{x=0}^{5}y\\,\\mathrm{d}x$?",
+          "loesung": 8,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=3}^{5}y\\,\\mathrm{d}x=-\\int_{x=5}^{3}y\\,\\mathrm{d}x=2$",
+            "$\\int_{x=0}^{5}=6+2=8$"
+          ],
+          "erklaerung": "Erst die Grenzen drehen, dann den Zwischenstopp bei $c=3$ anwenden.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l5-a6",
+          "typ": "rechnung",
+          "frage": "Gegeben: $\\int_{x=0}^{1.25}\\cos(x^2)\\,\\mathrm{d}x\\approx0.977$ und $\\int_{x=0}^{1}\\cos(x^2)\\,\\mathrm{d}x\\approx0.905$. Wie gross ist $\\int_{x=1}^{1.25}\\cos(x^2)\\,\\mathrm{d}x$ näherungsweise?",
+          "loesung": 0.072,
+          "einheit": "",
+          "toleranz": 0.03,
+          "loesungsweg": [
+            "$\\int_{x=1}^{1.25}=\\int_{x=0}^{1.25}-\\int_{x=0}^{1}$",
+            "$\\approx0.977-0.905=0.072$"
+          ],
+          "erklaerung": "Zwischenstopp bei $c=0$ plus Vertauschung der Grenzen.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.21"
+        },
+        {
+          "id": "block18-hauptsatz-l5-a7",
+          "typ": "rechnung",
+          "frage": "Zusätzlich sei $\\int_{x=-1}^{0}\\cos(x^2)\\,\\mathrm{d}x\\approx0.905$. Wie gross ist $\\int_{x=1.25}^{-1}\\cos(x^2)\\,\\mathrm{d}x$ näherungsweise?",
+          "loesung": -1.882,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=1.25}^{-1}=-\\int_{x=-1}^{1.25}=-\\Big(\\int_{x=-1}^{0}+\\int_{x=0}^{1.25}\\Big)$",
+            "$\\approx-(0.905+0.977)=-1.882$"
+          ],
+          "erklaerung": "Zuerst Grenzen vertauschen (Minuszeichen), dann bei $c=0$ aufteilen.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.21"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l6",
+      "titel": "Summenregel und konstantes Vielfaches",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "quelle": "Skript Block 18, 3.1.4, Aufgabe 3.1.22; Übungsblock 18, Ü 18.11",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Für bestimmte Integrale gelten zwei Rechenregeln ($y$, $z$ Funktionen von $x$, $c$ konstant):"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\text{a)}\\ \\int_{x=a}^{b}(y+z)\\,\\mathrm{d}x=\\int_{x=a}^{b}y\\,\\mathrm{d}x+\\int_{x=a}^{b}z\\,\\mathrm{d}x\\qquad\\text{b)}\\ \\int_{x=a}^{b}c\\,y\\,\\mathrm{d}x=c\\int_{x=a}^{b}y\\,\\mathrm{d}x"
+        },
+        {
+          "typ": "text",
+          "text": "Anschaulich: Die Balken unter $y+z$ ergeben sich durch Übereinanderstapeln der Balken unter $y$ und $z$. Bei $c\\cdot y$ wird jeder Balken um den Faktor $c$ gestreckt."
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel.** $\\int_{x=0}^{2}(1+3x)\\,\\mathrm{d}x=\\int_{x=0}^{2}1\\,\\mathrm{d}x+3\\int_{x=0}^{2}x\\,\\mathrm{d}x$. Das erste ist ein Rechteck ($2\\cdot1=2$), das zweite ein Dreieck ($\\tfrac{2\\cdot2}{2}=2$). Also $2+3\\cdot2=8$."
+        },
+        {
+          "typ": "merke",
+          "text": "Für Produkte und Quadrate gibt es keine solche Regel: $\\int u^2\\,\\mathrm{d}x\\ne\\big(\\int u\\,\\mathrm{d}x\\big)^2$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l6-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Das Integral einer Summe zweier Funktionen ist die Summe ihrer Integrale.",
+          "richtig": true,
+          "erklaerung": "Das ist die Summenregel für bestimmte Integrale.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Es gilt $\\int_{x=a}^{b}y\\cdot z\\,\\mathrm{d}x=\\int_{x=a}^{b}y\\,\\mathrm{d}x\\cdot\\int_{x=a}^{b}z\\,\\mathrm{d}x$.",
+          "richtig": false,
+          "erklaerung": "Die Regeln gelten nur für Summen und konstante Faktoren, nicht für Produkte von Funktionen.",
+          "quelle": "Skript Block 18, 3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a3",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $\\int_{x=0}^{2}(1+3x)\\,\\mathrm{d}x$? Lies die beiden Teilintegrale als Flächen ab (Rechteck bzw. Dreieck).",
+          "loesung": 8,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{2}1\\,\\mathrm{d}x=2\\cdot1=2$",
+            "$\\int_{x=0}^{2}x\\,\\mathrm{d}x=\\tfrac{2\\cdot2}{2}=2$",
+            "$2+3\\cdot2=8$"
+          ],
+          "erklaerung": "Summenregel, dann Regel des konstanten Vielfachen für den Faktor $3$.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.22"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a4",
+          "typ": "rechnung",
+          "frage": "$u$ und $v$ sind Funktionen auf $a\\le x\\le b$ mit $\\int u\\,\\mathrm{d}x=8$, $\\int v\\,\\mathrm{d}x=2$, $\\int u^2\\,\\mathrm{d}x=12$, $\\int v^2\\,\\mathrm{d}x=3$ (alle von $x=a$ bis $b$). Wie gross ist $\\int_{x=a}^{b}(u+v)\\,\\mathrm{d}x$?",
+          "loesung": 10,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int(u+v)\\,\\mathrm{d}x=8+2=10$"
+          ],
+          "erklaerung": "Summenregel.",
+          "quelle": "Übungsblock 18, Ü 18.11"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a5",
+          "typ": "rechnung",
+          "frage": "$u$ und $v$ sind Funktionen auf $a\\le x\\le b$ mit $\\int u\\,\\mathrm{d}x=8$, $\\int v\\,\\mathrm{d}x=2$, $\\int u^2\\,\\mathrm{d}x=12$, $\\int v^2\\,\\mathrm{d}x=3$ (alle von $x=a$ bis $b$). Wie gross ist $\\int_{x=a}^{b}3u\\,\\mathrm{d}x$?",
+          "loesung": 24,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int 3u\\,\\mathrm{d}x=3\\cdot8=24$"
+          ],
+          "erklaerung": "Regel des konstanten Vielfachen mit $c=3$.",
+          "quelle": "Übungsblock 18, Ü 18.11"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a6",
+          "typ": "rechnung",
+          "frage": "$u$ und $v$ sind Funktionen auf $a\\le x\\le b$ mit $\\int u\\,\\mathrm{d}x=8$, $\\int v\\,\\mathrm{d}x=2$, $\\int u^2\\,\\mathrm{d}x=12$, $\\int v^2\\,\\mathrm{d}x=3$ (alle von $x=a$ bis $b$). Wie gross ist $\\int_{x=a}^{b}(2u-v)\\,\\mathrm{d}x$?",
+          "loesung": 14,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int(2u-v)\\,\\mathrm{d}x=2\\cdot8-2=14$"
+          ],
+          "erklaerung": "Summenregel (mit Differenz) und konstantes Vielfaches zusammen.",
+          "quelle": "Übungsblock 18, Ü 18.11"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a7",
+          "typ": "rechnung",
+          "frage": "$u$ und $v$ sind Funktionen auf $a\\le x\\le b$ mit $\\int u\\,\\mathrm{d}x=8$, $\\int v\\,\\mathrm{d}x=2$, $\\int u^2\\,\\mathrm{d}x=12$, $\\int v^2\\,\\mathrm{d}x=3$ (alle von $x=a$ bis $b$). Wie gross ist $\\int_{x=a}^{b}(u^2-v^2)\\,\\mathrm{d}x$?",
+          "loesung": 9,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int(u^2-v^2)\\,\\mathrm{d}x=12-3=9$"
+          ],
+          "erklaerung": "Die Summenregel gilt auch für $u^2$ und $v^2$ als eigene Funktionen.",
+          "quelle": "Übungsblock 18, Ü 18.11"
+        },
+        {
+          "id": "block18-hauptsatz-l6-a8",
+          "typ": "rechnung",
+          "frage": "$u$ und $v$ sind Funktionen auf $a\\le x\\le b$ mit $\\int u\\,\\mathrm{d}x=8$, $\\int v\\,\\mathrm{d}x=2$, $\\int u^2\\,\\mathrm{d}x=12$, $\\int v^2\\,\\mathrm{d}x=3$ (alle von $x=a$ bis $b$). Wie gross ist $\\int_{x=a}^{b}u^2\\,\\mathrm{d}x-\\big(\\int_{x=a}^{b}u\\,\\mathrm{d}x\\big)^2$?",
+          "loesung": -52,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$12-8^2=12-64=-52$"
+          ],
+          "erklaerung": "Typischer Fehler: $\\int u^2\\,\\mathrm{d}x$ mit $\\big(\\int u\\,\\mathrm{d}x\\big)^2$ gleichsetzen und $0$ erhalten. Beides ist verschieden.",
+          "quelle": "Übungsblock 18, Ü 18.11"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l7",
+      "titel": "Fläche zwischen zwei Graphen",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 18, 3.1.4.1, Aufgabe 3.1.23; Übungsblock 18, Ü 18.9",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Mit der Summenregel lässt sich die Fläche zwischen zwei Kurven durch ein einziges Integral ausdrücken. Liegt die Kurve $y=f(x)$ im Bereich $a\\le x\\le b$ **oberhalb** von $y=g(x)$, dann ist die Fläche"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int_{x=a}^{b}\\big(f(x)-g(x)\\big)\\,\\mathrm{d}x"
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel 3.1.23.** Fläche zwischen $y=x^2-4x+5$ und $y=-x^2+4x-1$: Die Schnittstellen aus $x^2-4x+5=-x^2+4x-1$, also $2(x-1)(x-3)=0$, sind $x=1$ und $x=3$. Dort gilt $-x^2+4x-1\\ge x^2-4x+5$, und die Fläche ist $\\int_{x=1}^{3}(-2x^2+8x-6)\\,\\mathrm{d}x=\\tfrac83\\approx2.667$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Vorgehen: Schnittstellen bestimmen, obere und untere Kurve erkennen, $\\int(f-g)$ aufstellen, mit Stammfunktionen auswerten."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l7-a1",
+          "typ": "multiple_choice",
+          "frage": "Die Kurve $y=f(x)$ liegt für $a\\le x\\le b$ oberhalb von $y=g(x)$. Welches Integral gibt die eingeschlossene Fläche?",
+          "optionen": [
+            "$\\int_{x=a}^{b}\\big(f(x)-g(x)\\big)\\,\\mathrm{d}x$",
+            "$\\int_{x=a}^{b}\\big(g(x)-f(x)\\big)\\,\\mathrm{d}x$",
+            "$\\int_{x=a}^{b}f(x)\\cdot g(x)\\,\\mathrm{d}x$",
+            "$f(b)-g(a)$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Obere minus untere Kurve. Mit $g-f$ erhielte man den negativen Flächeninhalt.",
+          "quelle": "Skript Block 18, 3.1.4.1"
+        },
+        {
+          "id": "block18-hauptsatz-l7-a2",
+          "typ": "rechnung",
+          "frage": "Die Parabeln $y=x^2-4x+5$ und $y=-x^2+4x-1$ schneiden sich bei zwei Werten von $x$. Welcher ist der grössere?",
+          "loesung": 3,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$x^2-4x+5=-x^2+4x-1\\;\\Rightarrow\\;2x^2-8x+6=0\\;\\Rightarrow\\;2(x-1)(x-3)=0$",
+            "$x=1$ oder $x=3$"
+          ],
+          "erklaerung": "Schnittstellen = Gleichsetzen der beiden Funktionen.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.23"
+        },
+        {
+          "id": "block18-hauptsatz-l7-a3",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen diesen beiden Parabeln, also $\\int_{x=1}^{3}(-2x^2+8x-6)\\,\\mathrm{d}x$.",
+          "loesung": 2.6667,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$-2\\cdot\\tfrac13x^3\\big|_{1}^{3}+8\\cdot\\tfrac12x^2\\big|_{1}^{3}-6x\\big|_{1}^{3}$",
+            "$=-2\\cdot\\tfrac{26}{3}+8\\cdot4-6\\cdot2=\\tfrac83\\approx2.667$"
+          ],
+          "erklaerung": "Summenregel: jeden Term einzeln aufleiten, dann Grenzen einsetzen.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.23"
+        },
+        {
+          "id": "block18-hauptsatz-l7-a4",
+          "typ": "rechnung",
+          "frage": "Berechne den Flächeninhalt des Gebiets zwischen $y=x^2$ und $y=x^3$. (Die Kurven schneiden sich bei $x=0$ und $x=1$.)",
+          "loesung": 0.0833,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Für $0\\le x\\le1$ gilt $x^3\\le x^2$, also $\\int_{x=0}^{1}(x^2-x^3)\\,\\mathrm{d}x$",
+            "$=\\big(\\tfrac13x^3-\\tfrac14x^4\\big)\\Big|_{0}^{1}=\\tfrac13-\\tfrac14=\\tfrac1{12}\\approx0.0833$"
+          ],
+          "erklaerung": "Auf $[0,1]$ ist $x^3$ kleiner als $x^2$, also ist $x^2$ die obere Kurve.",
+          "quelle": "Übungsblock 18, Ü 18.9"
+        },
+        {
+          "id": "block18-hauptsatz-l7-a5",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=x$ und $y=x^2$ im Bereich $0\\le x\\le1$.",
+          "loesung": 0.1667,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{1}(x-x^2)\\,\\mathrm{d}x=\\big(\\tfrac12x^2-\\tfrac13x^3\\big)\\Big|_{0}^{1}=\\tfrac12-\\tfrac13=\\tfrac16\\approx0.1667$"
+          ],
+          "erklaerung": "Auf $[0,1]$ liegt $y=x$ über $y=x^2$.",
+          "quelle": "Übungsblock 18, Ü 18.9"
+        },
+        {
+          "id": "block18-hauptsatz-l7-a6",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen der Geraden $y=4$ (oben) und der Parabel $y=x^2$ (unten) im Bereich $-2\\le x\\le2$.",
+          "loesung": 10.6667,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\int_{x=-2}^{2}(4-x^2)\\,\\mathrm{d}x=\\big(4x-\\tfrac13x^3\\big)\\Big|_{-2}^{2}$",
+            "$=(8-\\tfrac83)-(-8+\\tfrac83)=16-\\tfrac{16}3=\\tfrac{32}3\\approx10.667$"
+          ],
+          "erklaerung": "Beide Grenzen einsetzen: das Minus der unteren Grenze nicht vergessen.",
+          "quelle": "Übungsblock 18, Ü 18.9"
+        },
+        {
+          "id": "block18-hauptsatz-l7-a7",
+          "typ": "reihenfolge",
+          "frage": "Bringe die Schritte zur Berechnung einer Fläche zwischen zwei Kurven in die richtige Reihenfolge.",
+          "elemente": [
+            "Schnittstellen der Kurven bestimmen (Integrationsgrenzen)",
+            "Entscheiden, welche Kurve oben liegt",
+            "Integral $\\int(f-g)\\,\\mathrm{d}x$ aufstellen",
+            "Stammfunktion bilden und mit dem Hauptsatz auswerten"
+          ],
+          "erklaerung": "Erst die Grenzen, dann oben/unten, dann das Integral, dann auswerten.",
+          "quelle": "Übungsblock 18, Ü 18.9"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l8",
+      "titel": "Gerade und ungerade Funktionen",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "quelle": "Skript Block 18, 3.1.4.2, Aufgabe 3.1.24 und 3.1.21 b)",
+      "inhalt": [
+        {
+          "typ": "hinweis",
+          "text": "Im Skript steht dieser Abschnitt als «darf bei der ersten Lektüre übersprungen werden (prüfungsrelevant)»."
+        },
+        {
+          "typ": "text",
+          "text": "Eine **gerade** Funktion ist symmetrisch zur $y$-Achse, eine **ungerade** Funktion symmetrisch zum Ursprung. Das spart beim Integrieren Arbeit:"
+        },
+        {
+          "typ": "formel",
+          "tex": "y\\ \\text{gerade}:\\ \\int_{x=-a}^{a}y\\,\\mathrm{d}x=2\\int_{x=0}^{a}y\\,\\mathrm{d}x\\qquad y\\ \\text{ungerade}:\\ \\int_{x=-a}^{a}y\\,\\mathrm{d}x=0"
+        },
+        {
+          "typ": "text",
+          "text": "Bei ungeraden Funktionen heben sich die Flächen links und rechts der $y$-Achse auf, weil sie unterschiedliche Vorzeichen haben. **Beispiel:** $\\int_{t=0}^{\\pi}\\sin t\\,\\mathrm{d}t=2$, also $\\int_{t=-\\pi}^{\\pi}\\sin t\\,\\mathrm{d}t=0$ und $\\int_{t=-\\pi}^{\\pi}|\\sin t|\\,\\mathrm{d}t=4$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l8-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche dieser Funktionen ist ungerade?",
+          "optionen": [
+            "$x^3$",
+            "$x^2$",
+            "$\\cos x$",
+            "$|x|$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ungerade heisst $f(-x)=-f(x)$. $x^3$ erfüllt das. $x^2$, $\\cos x$ und $|x|$ sind gerade.",
+          "quelle": "Skript Block 18, 3.1.4.2"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a2",
+          "typ": "wahr_falsch",
+          "aussage": "$|\\sin t|$ ist eine gerade Funktion von $t$.",
+          "richtig": true,
+          "erklaerung": "Der Graph von $|\\sin t|$ ist symmetrisch zur $y$-Achse: $|\\sin(-t)|=|-\\sin t|=|\\sin t|$.",
+          "quelle": "Skript Block 18, 3.1.4.2"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a3",
+          "typ": "rechnung",
+          "frage": "Gegeben ist $\\int_{t=0}^{\\pi}\\sin t\\,\\mathrm{d}t=2$. Wie gross ist $\\int_{t=-\\pi}^{\\pi}\\sin t\\,\\mathrm{d}t$?",
+          "loesung": 0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\sin t$ ist ungerade, also $\\int_{t=-\\pi}^{\\pi}\\sin t\\,\\mathrm{d}t=0$"
+          ],
+          "erklaerung": "Fläche oberhalb und unterhalb der $t$-Achse sind gleich gross und heben sich auf.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.24"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a4",
+          "typ": "rechnung",
+          "frage": "Gegeben ist $\\int_{t=0}^{\\pi}\\sin t\\,\\mathrm{d}t=2$. Wie gross ist $\\int_{t=-\\pi}^{\\pi}|\\sin t|\\,\\mathrm{d}t$?",
+          "loesung": 4,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$|\\sin t|$ ist gerade: $\\int_{t=-\\pi}^{\\pi}|\\sin t|\\,\\mathrm{d}t=2\\int_{t=0}^{\\pi}|\\sin t|\\,\\mathrm{d}t$",
+            "Auf $[0,\\pi]$ gilt $|\\sin t|=\\sin t$, also $2\\cdot2=4$"
+          ],
+          "erklaerung": "Mit dem Betrag wird jede Fläche positiv gezählt, und die Funktion wird gerade.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.24"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a5",
+          "typ": "rechnung",
+          "frage": "Gegeben ist $\\int_{x=0}^{1}\\cos(x^2)\\,\\mathrm{d}x\\approx0.905$. Wie gross ist $\\int_{x=-1}^{1}\\cos(x^2)\\,\\mathrm{d}x$?",
+          "loesung": 1.81,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\cos(x^2)$ ist gerade, also $\\int_{x=-1}^{1}=2\\int_{x=0}^{1}\\approx2\\cdot0.905=1.81$"
+          ],
+          "erklaerung": "Bei einer geraden Funktion verdoppelt sich das Integral über die rechte Hälfte.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.21 b)"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a6",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=-2}^{2}x^3\\,\\mathrm{d}x$.",
+          "loesung": 0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$x^3$ ist ungerade, also $\\int_{x=-2}^{2}x^3\\,\\mathrm{d}x=0$",
+            "Probe: $\\tfrac14x^4\\big|_{-2}^{2}=4-4=0$"
+          ],
+          "erklaerung": "Auch die Probe mit der Stammfunktion bestätigt das.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.21 b)"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a7",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=-3}^{3}x^2\\,\\mathrm{d}x$.",
+          "loesung": 18,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$x^2$ ist gerade: $2\\int_{x=0}^{3}x^2\\,\\mathrm{d}x=2\\cdot\\tfrac13\\cdot27=18$"
+          ],
+          "erklaerung": "Doppelt so viel wie das Integral von $0$ bis $3$.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.21 b)"
+        },
+        {
+          "id": "block18-hauptsatz-l8-a8",
+          "typ": "wahr_falsch",
+          "aussage": "Ist $y$ ungerade, dann ist die Fläche zwischen dem Graphen von $y$ und der $x$-Achse im Bereich $-a\\le x\\le a$ gleich null.",
+          "richtig": false,
+          "erklaerung": "Das **Integral** ist null (Nettofläche), die Fläche selbst nicht. Die Teilflächen sind positiv bzw. negativ gezählt und heben sich auf.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.21 b)"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l9",
+      "titel": "Mittelwert einer Funktion",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 18, 3.1.4.3, Aufgaben 3.1.25, 3.1.26; Übungsblock 18, Ü 18.5, 18.6",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Der Mittelwert von Zahlen ist ihre Summe geteilt durch die Anzahl. Bei einer Funktion gibt es unendlich viele Werte, wir können sie nicht einfach aufaddieren. Stattdessen misst man $n$ Werte in gleichen Abständen $\\Delta t$ und lässt $n\\to\\infty$ gehen. Das führt auf ein Integral."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\bar y\\;=\\;\\frac{1}{b-a}\\int_{x=a}^{b}y\\,\\mathrm{d}x"
+        },
+        {
+          "typ": "merke",
+          "text": "Der Mittelwert $\\bar y$ ist die Höhe des Rechtecks mit Breite $b-a$, das dieselbe Fläche hat wie die Fläche unter dem Graphen von $y$: $\\bar y\\cdot(b-a)=\\int_{x=a}^{b}y\\,\\mathrm{d}x$."
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel.** Das Integral der Temperatur $T$ über die Zeit von 8 bis 20 Uhr, geteilt durch 12 h, ist die mittlere Temperatur in diesem Zeitraum."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l9-a1",
+          "typ": "multiple_choice",
+          "frage": "$K$ sind die momentanen Heizkosten eines Haushalts in Franken pro Tag, $t$ die Zeit in Tagen ab Anfang Januar. Was beschreibt $\\int_{t=0}^{90}K\\,\\mathrm{d}t$?",
+          "optionen": [
+            "Die gesamten Heizkosten in den ersten 90 Tagen (in Franken)",
+            "Die durchschnittlichen Heizkosten pro Tag",
+            "Die Heizkosten am 90. Tag",
+            "Die Änderung der Heizkosten pro Tag"
+          ],
+          "richtig": 0,
+          "erklaerung": "(Franken/Tag) mal Tag = Franken: die Summe aller Tageskosten.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.25"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a2",
+          "typ": "multiple_choice",
+          "frage": "Was beschreibt $\\frac{1}{90-0}\\int_{t=0}^{90}K\\,\\mathrm{d}t$?",
+          "optionen": [
+            "Die gesamten Heizkosten in 90 Tagen",
+            "Die durchschnittlichen Heizkosten pro Tag während der ersten 90 Tage (in Franken pro Tag)",
+            "Die Heizkosten am 45. Tag",
+            "Die Kosten pro Stunde"
+          ],
+          "richtig": 1,
+          "erklaerung": "Das Gesamtintegral wird durch die Anzahl Tage geteilt, das ergibt den Mittelwert.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.25"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a3",
+          "typ": "rechnung",
+          "frage": "Der Graph von $y$ hat im Bereich $1\\le x\\le6$ unter sich eine Fläche von $\\int_{x=1}^{6}y\\,\\mathrm{d}x=8.5$ (Kästchen gezählt). Wie gross ist der Mittelwert von $y$ in diesem Bereich?",
+          "loesung": 1.7,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\bar y=\\frac{1}{6-1}\\int_{x=1}^{6}y\\,\\mathrm{d}x=\\frac{8.5}{5}=1.7$"
+          ],
+          "erklaerung": "Teile durch die Breite $b-a=5$, nicht durch $b=6$.",
+          "quelle": "Übungsblock 18, Ü 18.5"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a4",
+          "typ": "rechnung",
+          "frage": "Berechne den Mittelwert von $y=x^2$ im Bereich $0\\le x\\le3$.",
+          "loesung": 3,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{3}x^2\\,\\mathrm{d}x=9$",
+            "$\\bar y=\\frac{9}{3-0}=3$"
+          ],
+          "erklaerung": "Das Integral aus dem Hauptsatz, dann durch die Breite teilen.",
+          "quelle": "Übungsblock 18, Ü 18.5"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a5",
+          "typ": "rechnung",
+          "frage": "Die Bevölkerung von Nevada erfüllt $P=2.02\\cdot1.036^{t}$ (in Millionen, $t$ in Jahren nach 2000). Ein Computer liefert $\\int_{t=0}^{20}P\\,\\mathrm{d}t\\approx58.748$. Wie gross ist die durchschnittliche Bevölkerung zwischen 2000 und 2020?",
+          "loesung": 2.9374,
+          "einheit": "Mio.",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\bar P=\\frac{1}{20-0}\\int_{t=0}^{20}P\\,\\mathrm{d}t\\approx\\frac{58.748}{20}\\approx2.937$"
+          ],
+          "erklaerung": "Mittelwert = Integral durch Länge des Zeitraums.",
+          "quelle": "Skript Block 18, Aufgabe 3.1.26"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a6",
+          "typ": "rechnung",
+          "frage": "Für die Tageslichtstunden in Madrid ($H=12+2.4\\sin(0.0172\\,(t-80))$, $t$ in Tagen ab Jahresbeginn) liefert eine Riemann-Summe $\\int_{t=0}^{31}H\\,\\mathrm{d}t\\approx306.165$. Wie viele Stunden Tageslicht hat Madrid im Januar durchschnittlich?",
+          "loesung": 9.8763,
+          "einheit": "h",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\bar H=\\frac{1}{31}\\int_{t=0}^{31}H\\,\\mathrm{d}t\\approx\\frac{306.165}{31}\\approx9.876\\ \\text{h}$"
+          ],
+          "erklaerung": "Der Januar umfasst $t=0$ bis $t=31$.",
+          "quelle": "Übungsblock 18, Ü 18.6"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a7",
+          "typ": "multiple_choice",
+          "frage": "Madrid hat im Januar durchschnittlich 9.9 h, im Juni 14.4 h und übers ganze Jahr 12.0 h Tageslicht. Warum ist dies plausibel?",
+          "optionen": [
+            "Weil Madrid am Äquator liegt",
+            "Weil der Januar mehr Tage hat als der Juni",
+            "Madrid liegt auf der Nordhalbkugel: im Winter sind die Tage kürzer, im Sommer länger als im Jahresmittel",
+            "Weil die Riemann-Summe immer zu kleine Werte liefert"
+          ],
+          "richtig": 2,
+          "erklaerung": "Das Jahresmittel von etwa 12 h passt zur sinusförmigen Modellfunktion. Auf der Nordhalbkugel liegt der Winter-Wert darunter und der Sommer-Wert darüber.",
+          "quelle": "Übungsblock 18, Ü 18.6"
+        },
+        {
+          "id": "block18-hauptsatz-l9-a8",
+          "typ": "wahr_falsch",
+          "aussage": "Der Mittelwert $\\bar y$ ist die Höhe eines Rechtecks der Breite $b-a$, das dieselbe Fläche hat wie die Fläche unter dem Graphen von $y$.",
+          "richtig": true,
+          "erklaerung": "Genau das ist die geometrische Deutung von $\\bar y\\cdot(b-a)=\\int y\\,\\mathrm{d}x$.",
+          "quelle": "Skript Block 18, 3.1.4.3"
+        }
+      ]
+    },
+    {
+      "id": "block18-hauptsatz-l10",
+      "titel": "Repetition Block 18",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "quelle": "Skript Block 18, 3.1.3–3.1.4; Übungsblock 18",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Gemischte Aufgaben zu allem aus Block 18: Hauptsatz, Dimension, Grenzen, Summenregel, Flächen und Mittelwert."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block18-hauptsatz-l10-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage ist der Hauptsatz?",
+          "optionen": [
+            "Die Summe aller unendlich kleinen Änderungen einer Grösse ist die Gesamtänderung dieser Grösse",
+            "Die Ableitung eines Integrals ist immer null",
+            "Das Integral einer Konstanten ist die Konstante",
+            "Eine Summe von Flächen ist immer positiv"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\int_{x=a}^{b}\\mathrm{d}y=y\\big|_{x=b}-y\\big|_{x=a}$.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a2",
+          "typ": "multiple_choice",
+          "frage": "$P$ ist eine Leistung (Energie pro Zeit), $t$ die Zeit. Welche Dimension hat $\\int_{t=a}^{b}P\\,\\mathrm{d}t$?",
+          "optionen": [
+            "Leistung",
+            "Energie",
+            "Kraft",
+            "Zeit"
+          ],
+          "richtig": 1,
+          "erklaerung": "Energie/Zeit mal Zeit = Energie.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a3",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=-1}^{2}3x^2\\,\\mathrm{d}x$.",
+          "loesung": 9,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$x^3\\big|_{-1}^{2}=8-(-1)=9$"
+          ],
+          "erklaerung": "$x^3$ ist eine Stammfunktion von $3x^2$. Das Minus bei $(-1)^3$ beachten.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a4",
+          "typ": "rechnung",
+          "frage": "Es gilt $\\int_{x=0}^{4}y\\,\\mathrm{d}x=3$ und $\\int_{x=4}^{9}y\\,\\mathrm{d}x=5$. Wie gross ist $\\int_{x=9}^{0}y\\,\\mathrm{d}x$?",
+          "loesung": -8,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{9}=3+5=8$",
+            "$\\int_{x=9}^{0}=-8$"
+          ],
+          "erklaerung": "Zwischenstopp und Vertauschung der Grenzen kombiniert.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a5",
+          "typ": "rechnung",
+          "frage": "Berechne den Mittelwert von $y=x^3$ im Bereich $0\\le x\\le2$. (Stammfunktion von $x^3$ ist $\\tfrac14x^4$.)",
+          "loesung": 2,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{2}x^3\\,\\mathrm{d}x=\\tfrac14\\cdot16=4$",
+            "$\\bar y=\\frac{4}{2}=2$"
+          ],
+          "erklaerung": "Integral durch die Breite $b-a=2$ teilen.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a6",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=2$ (oben) und $y=x^2$ (unten) im Bereich $-1\\le x\\le1$.",
+          "loesung": 3.3333,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\int_{x=-1}^{1}(2-x^2)\\,\\mathrm{d}x=4-2\\cdot\\tfrac13=\\tfrac{10}3\\approx3.333$"
+          ],
+          "erklaerung": "$\\int_{x=-1}^{1}x^2\\,\\mathrm{d}x=\\tfrac23$ (gerade Funktion), $\\int_{x=-1}^{1}2\\,\\mathrm{d}x=4$.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a7",
+          "typ": "wahr_falsch",
+          "aussage": "Ist $y$ im ganzen Bereich $a\\le x\\le b$ negativ, dann ist $\\int_{x=a}^{b}y\\,\\mathrm{d}x$ negativ.",
+          "richtig": true,
+          "erklaerung": "Flächen unterhalb der $x$-Achse zählen negativ. Das Integral ist dann die negative Fläche.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        },
+        {
+          "id": "block18-hauptsatz-l10-a8",
+          "typ": "zuordnen",
+          "frage": "Ordne jedem Ausdruck seine Bedeutung zu ($v$ Geschwindigkeit, $a$ Beschleunigung, $f$, $g$ Funktionen mit $f\\ge g$).",
+          "paare": [
+            [
+              "$\\int_{t=a}^{b}v\\,\\mathrm{d}t$",
+              "Änderung der Position"
+            ],
+            [
+              "$\\frac{1}{b-a}\\int_{t=a}^{b}v\\,\\mathrm{d}t$",
+              "mittlere Geschwindigkeit"
+            ],
+            [
+              "$\\int_{t=a}^{b}a\\,\\mathrm{d}t$",
+              "Änderung der Geschwindigkeit"
+            ],
+            [
+              "$\\int_{x=a}^{b}(f-g)\\,\\mathrm{d}x$",
+              "Fläche zwischen den Graphen"
+            ]
+          ],
+          "erklaerung": "Alle vier Ausdrücke folgen aus dem Hauptsatz bzw. der Mittelwert-Definition.",
+          "quelle": "Skript Block 18, 3.1.3–3.1.4"
+        }
+      ]
+    }
+  ]
+}

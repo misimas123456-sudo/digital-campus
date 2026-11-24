@@ -1,0 +1,147 @@
+{
+  "format": 2,
+  "fach": "elektrotechnik",
+  "stand": "2026-11-10",
+  "quelle": "ET+L – H26 – Block 1, Folie 8 «Zeitplan Elektrotechnik mit Labor HS26» (11.09.2026); Semesterleistung Folie 11; Modulendprüfung Folien 12–14.",
+  "termine": [],
+  "zeitplan": {
+    "klassen": [
+      {
+        "id": "H2601",
+        "name": "TA.BA_ET+L_MM.H2601",
+        "tag": "Mittwoch",
+        "zeit": "12:30–14:55",
+        "dozent": "A. Taghipour",
+        "raum_theorie": "F202",
+        "raum_labor": "C336",
+        "daten": [
+          "2026-09-16",
+          "2026-09-23",
+          "2026-09-30",
+          "2026-10-07",
+          "2026-10-14",
+          "2026-10-21",
+          "2026-10-28",
+          "2026-11-04",
+          "2026-11-11",
+          "2026-11-18",
+          "2026-11-25",
+          "2026-12-02",
+          "2026-12-09",
+          "2026-12-16"
+        ]
+      },
+      {
+        "id": "H2602",
+        "name": "TA.BA_ET+L_MM.H2602",
+        "tag": "Donnerstag",
+        "zeit": "12:30–14:55",
+        "dozent": "G. Wichmann",
+        "raum_theorie": "C209",
+        "raum_labor": "C336",
+        "daten": [
+          "2026-09-17",
+          "2026-09-24",
+          "2026-10-01",
+          "2026-10-08",
+          "2026-10-15",
+          "2026-10-22",
+          "2026-10-29",
+          "2026-11-05",
+          "2026-11-12",
+          "2026-11-19",
+          "2026-11-26",
+          "2026-12-03",
+          "2026-12-10",
+          "2026-12-17"
+        ]
+      },
+      {
+        "id": "H2603",
+        "name": "TA.BA_ET+L_MM.H2603",
+        "tag": "Mittwoch",
+        "zeit": "15:20–17:45",
+        "dozent": "T. Hunziker",
+        "raum_theorie": "F200",
+        "raum_labor": "C336",
+        "daten": [
+          "2026-09-16",
+          "2026-09-23",
+          "2026-09-30",
+          "2026-10-07",
+          "2026-10-14",
+          "2026-10-21",
+          "2026-10-28",
+          "2026-11-04",
+          "2026-11-11",
+          "2026-11-18",
+          "2026-11-25",
+          "2026-12-02",
+          "2026-12-09",
+          "2026-12-16"
+        ]
+      }
+    ],
+    "assistenz": "M. Birrer et al.",
+    "plan": {
+      "A": [
+        "Block 1",
+        "Block 2",
+        "Block 3",
+        "Lab 1",
+        "Block 4",
+        "Lab 2",
+        "Block 5",
+        "Lab 3",
+        "Block 6",
+        "Lab 4",
+        "Block 7",
+        "Lab 5",
+        "Block 8",
+        "Probe-MEP"
+      ],
+      "B": [
+        "Block 1",
+        "Block 2",
+        "Block 3",
+        "Block 4",
+        "Lab 1",
+        "Block 5",
+        "Lab 2",
+        "Block 6",
+        "Lab 3",
+        "Block 7",
+        "Lab 4",
+        "Block 8",
+        "Lab 5",
+        "Probe-MEP"
+      ]
+    },
+    "hausaufgaben": {
+      "Block 1": "Ose Kap. 1, S. 12–20 lesen; Aufgaben B1-L1–L8 und B1-E1–E10",
+      "Block 2": "Ose S. bis 26 und 69–73 lesen; Aufgaben B2-E1–E12",
+      "Block 3": "Ose S. 110–113 und 147–163 lesen; Aufgaben B3-E1–E6",
+      "Block 4": "Ose S. 175–203 lesen; Aufgaben B4-E1–E4",
+      "Block 5": "Ose S. 220–236 lesen; Aufgaben B5-E1–E5; Taschenrechner mitnehmen",
+      "Block 6": "Ose S. 236–248 lesen; Aufgaben B6-E1–E5"
+    },
+    "labor_vorbereitung": {
+      "Lab 1": "B1-E2, B1-E9, B1-E10, B2-E2 lösen; Laborskript 5.2.1, 8, 10.1, 10.3 vorlösen",
+      "Lab 3": "Aufgabe 3 «Nachgelagerte Überlegungen» vorlösen; Block 4, S. 7 anschauen",
+      "*": "Formelsammlung nachführen – sie ist die Werkzeugkiste für die MEP"
+    },
+    "pruefung": {
+      "titel": "Modulendprüfung ET+L",
+      "datum": null,
+      "datum_hinweis": "Datum und Raum stehen nicht in den Kursunterlagen – im Prüfungsplan HS26 auf MyCampus nachsehen.",
+      "modus": "Schriftlich, offline, Closed-Book, 120 Min.",
+      "hilfsmittel": [
+        "Eigene, handgeschriebene Zusammenfassung, max. 4 Seiten (2 Blätter) – auch auf dem Tablet geschrieben, aber deine Handschrift",
+        "Taschenrechner ohne Kommunikationsfunktion"
+      ],
+      "nicht_erlaubt": "Bücher, Formelbücher, Folienkopien, Screenshots, Zusammenfassungen anderer, Laptop, Smartphone, Smartwatch, Kopfhörer",
+      "inhalt": "Der ganze Lerninhalt inkl. Labor. Alte MEPs anderer Dozierender sind nicht die Referenz.",
+      "semesterleistung": "10 % der Note: 5 Labore à 2 %. Aktive Mitarbeit während der ganzen Zeit; unentschuldigt = 0 Punkte."
+    }
+  }
+}

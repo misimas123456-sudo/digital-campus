@@ -1,0 +1,1084 @@
+{
+  "id": "sw07-speicherbausteine",
+  "titel": "Speicherbausteine: Latch und Flip-Flop",
+  "kapitel": 7,
+  "beschreibung": "SR-Latch, Enable, D-Latch, flankengetriggertes D-FF (Master-Slave), JK- und T-Flip-Flop",
+  "lektionen": [
+    {
+      "id": "sw07-speicherbausteine-l1",
+      "titel": "Speichern durch Rückkopplung",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Wozu Speicherbausteine?",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Speicherbausteine sollen das **Auftreten von kurzen Ereignissen speichern** können."
+            },
+            {
+              "typ": "text",
+              "text": "**Beispiel aus den Folien:** Ein kurzer Tastendruck weit vor der Tramhaltestelle soll gespeichert werden. Ausgewertet wird er erst, wenn das Tram hält und die Türsperren freigegeben sind."
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "Kurzer Tastendruck, Wert bleibt gespeichert",
+              "signale": [
+                {
+                  "name": "Taste",
+                  "wellen": "001100000000"
+                },
+                {
+                  "name": "Gespeichert",
+                  "wellen": "000111111111"
+                }
+              ],
+              "marken": [
+                {
+                  "t": 10,
+                  "text": "Tram hält"
+                }
+              ]
+            }
+          ],
+          "quelle": "K07 Folie 3"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Das Prinzip",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Das Eingangssignal wird durch eine **kombinatorische Schaltung** verarbeitet. Das Ausgangssignal wird **zum Eingang zurückgeführt**."
+            },
+            {
+              "typ": "text",
+              "text": "Damit «hält» sich das Ausgangssignal: Es besteht weiter, auch wenn das Eingangssignal abbricht."
+            },
+            {
+              "typ": "merke",
+              "text": "Speichern = kombinatorische Logik plus Rückkopplung vom Ausgang zum Eingang."
+            }
+          ],
+          "quelle": "K07 Folien 3–4"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "Bei einem Speicherbaustein bleibt der Ausgang bestehen, auch wenn das Eingangssignal wieder abbricht.",
+          "richtig": true,
+          "erklaerung": "Genau dafür sorgt die Rückkopplung des Ausgangs auf den Eingang.",
+          "quelle": "K07 Folie 3",
+          "id": "sw07-speicherbausteine-l1-a1"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Was macht aus einer kombinatorischen Schaltung einen Speicher?",
+          "optionen": [
+            "Die Rückführung des Ausgangs zum Eingang",
+            "Ein schnellerer Takt",
+            "Mehr Eingänge",
+            "Ein grösserer Widerstand"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne Rückkopplung hängt der Ausgang nur vom aktuellen Eingang ab.",
+          "quelle": "K07 Folie 3",
+          "id": "sw07-speicherbausteine-l1-a2"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Im Tram-Beispiel: Warum braucht es einen Speicher?",
+          "optionen": [
+            "Der Tastendruck ist kurz, ausgewertet wird er aber erst später",
+            "Die Taste prellt nie",
+            "Damit die Tür schneller aufgeht",
+            "Weil der Tastendruck sehr lange dauert"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das kurze Ereignis muss bis zur Auswertung an der Haltestelle festgehalten werden.",
+          "quelle": "K07 Folie 3",
+          "id": "sw07-speicherbausteine-l1-a3"
+        }
+      ]
+    },
+    {
+      "id": "sw07-speicherbausteine-l2",
+      "titel": "Das SR-Latch",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Setzen, Rücksetzen, Speichern",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Das **SR-Latch** (oft auch RS-Latch) besteht aus zwei rückgekoppelten NOR-Gattern. *Latch* heisst «Einrasten», z. B. einer Türe."
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "**S** steht für *Set* (Setzen), **R** für *Reset* (Rücksetzen), **Q** ist der Ausgang.",
+                "$Q_n$ ist der Ausgangswert im Zeitpunkt $t_n$, $Q_{n+1}$ der Wert danach."
+              ]
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Funktionstabelle SR-Latch",
+              "kopf": [
+                "S",
+                "R",
+                "$Q_{n+1}$",
+                "Bedeutung"
+              ],
+              "zeilen": [
+                [
+                  "0",
+                  "0",
+                  "$Q_n$",
+                  "speichern"
+                ],
+                [
+                  "0",
+                  "1",
+                  "0",
+                  "rücksetzen"
+                ],
+                [
+                  "1",
+                  "0",
+                  "1",
+                  "setzen"
+                ],
+                [
+                  "1",
+                  "1",
+                  "–",
+                  "verboten"
+                ]
+              ]
+            },
+            {
+              "typ": "hinweis",
+              "text": "Die Wahrheitstabelle von Latches und Flip-Flops heisst auch **Funktionstabelle** oder **Anregungstabelle** (Excitation Table)."
+            }
+          ],
+          "quelle": "K07 Folie 5"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Probier es aus",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Schalte S und R um. Achte darauf, was bei S = R = 0 passiert, und was beim verbotenen Fall S = R = 1."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "sr_latch"
+            }
+          ],
+          "quelle": "K07 Folien 5, 8"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Anwendung: Entprellen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein mechanischer Schalter **prellt**: Beim Umschalten springt der Kontakt mehrmals auf und zu, bevor er ruhig bleibt."
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "Prellender Schalter",
+              "signale": [
+                {
+                  "name": "Kontakt",
+                  "wellen": "000101011111"
+                }
+              ]
+            },
+            {
+              "typ": "text",
+              "text": "Bei einem **Umschalter** liegt ein Kontakt an S, der andere an R. Der erste Kontakt setzt (bzw. rücksetzt) das Latch. Weiteres Prellen am gleichen Kontakt setzt nur nochmals denselben Wert, dazwischen gilt S = R = 0 und das Latch speichert. Q wechselt so genau einmal."
+            }
+          ],
+          "quelle": "K07 Folie 6"
+        },
+        {
+          "typ": "lueckentext",
+          "text": "Beim SR-Latch steht S für ___ und R für ___.",
+          "antworten": [
+            [
+              "Set",
+              "Setzen"
+            ],
+            [
+              "Reset",
+              "Rücksetzen",
+              "Ruecksetzen"
+            ]
+          ],
+          "erklaerung": "S = Set (Setzen), R = Reset (Rücksetzen).",
+          "quelle": "K07 Folie 5",
+          "id": "sw07-speicherbausteine-l2-a1"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Was macht ein SR-Latch bei S = 0 und R = 0?",
+          "optionen": [
+            "Es speichert den bisherigen Wert",
+            "Q wird 0",
+            "Q wird 1",
+            "Q wechselt jedes Mal"
+          ],
+          "richtig": 0,
+          "erklaerung": "$Q_{n+1} = Q_n$: Die Rückkopplung hält den Wert.",
+          "quelle": "K07 Folie 5",
+          "id": "sw07-speicherbausteine-l2-a2"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "S = R = 1 ist beim SR-Latch eine ganz normale, erlaubte Eingangskombination.",
+          "richtig": false,
+          "erklaerung": "S = R = 1 ist der instabile, verbotene Zustand.",
+          "quelle": "K07 Folie 8",
+          "id": "sw07-speicherbausteine-l2-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Warum entprellt ein SR-Latch einen Umschalter?",
+          "optionen": [
+            "Wiederholtes Prellen am gleichen Kontakt setzt nur nochmals denselben Wert",
+            "Weil das Latch langsamer ist als das Prellen",
+            "Weil S und R gleichzeitig 1 werden",
+            "Weil das Latch das Prellen verstärkt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Zwischen den Prellern gilt S = R = 0, das Latch hält den Wert. Q wechselt nur einmal.",
+          "quelle": "K07 Folie 6",
+          "id": "sw07-speicherbausteine-l2-a4"
+        }
+      ]
+    },
+    {
+      "id": "sw07-speicherbausteine-l3",
+      "titel": "Enable, D-Latch und D-Flip-Flop",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Transparente Latches",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Das SR-Latch reagiert **unmittelbar**: Eine Änderung am Eingang wirkt sofort am Ausgang. Man nennt es darum **transparentes Latch** (durchsichtig, als wäre es nicht da)."
+            },
+            {
+              "typ": "text",
+              "text": "Das **SR-Latch mit Enable** ist immer noch transparent. Mit dem Enable-Eingang E kann man die Ansteuerung aber **verhindern** (E = 0) oder **erlauben** (E = 1)."
+            },
+            {
+              "typ": "text",
+              "text": "Das **D-Latch** hat nur noch einen Dateneingang D (intern S = D, R = $\\overline{D}$). So kann der verbotene Zustand S = R = 1 nicht mehr auftreten. Die Funktionstabelle ist ganz einfach:"
+            },
+            {
+              "typ": "formel",
+              "tex": "Q_{n+1} = D_n \\quad (\\text{solange } E = 1)"
+            }
+          ],
+          "quelle": "K07 Folien 7–8"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Flankengetriggertes D-Flip-Flop",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein **flankengetriggertes D-FF** reagiert nur in einem sehr kurzen Zeitpunkt: bei der steigenden (oder je nach Typ fallenden) Flanke des Clock. Der Wert von D wird nur dann übernommen und bis zur nächsten Flanke gehalten."
+            },
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "text": "D"
+                },
+                {
+                  "text": "D-Latch 1",
+                  "sub": "Master, E = Clk invertiert"
+                },
+                {
+                  "text": "D-Latch 2",
+                  "sub": "Slave, E = Clk"
+                },
+                {
+                  "text": "Q"
+                }
+              ],
+              "pfeile": [
+                "",
+                "Q_1 = D_2",
+                ""
+              ]
+            },
+            {
+              "typ": "text",
+              "text": "**Grund: die Master-Slave-Architektur.** Solange Clk = 0 ist, folgt der Master dem Eingang D. Bei der steigenden Flanke speichert der Master, und erst jetzt wird sein Ausgang vom Slave übernommen."
+            },
+            {
+              "typ": "merke",
+              "text": "Flip-Flops sind flankengetriggert, Latches nicht. Manche Bücher brauchen «Flip-Flop» aber auch als Sammelbegriff für beides."
+            }
+          ],
+          "quelle": "K07 Folie 9"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Latch und Flip-Flop im Vergleich",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Beide hängen am gleichen D und am gleichen Clk. Schalte D um, während Clk = 1 ist, und schau, wer reagiert."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "latch_vs_ff"
+            }
+          ],
+          "quelle": "K07 Folien 8–9"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Was bedeutet «transparent» bei einem Latch?",
+          "optionen": [
+            "Eine Änderung am Eingang wirkt sofort am Ausgang",
+            "Das Latch hat keinen Ausgang",
+            "Das Latch reagiert nur auf Flanken",
+            "Das Latch speichert nie"
+          ],
+          "richtig": 0,
+          "erklaerung": "Als wäre das Latch nicht da: Der Ausgang folgt dem Eingang direkt.",
+          "quelle": "K07 Folie 7",
+          "id": "sw07-speicherbausteine-l3-a1"
+        },
+        {
+          "typ": "lueckentext",
+          "text": "Für das D-Latch gilt (bei E = 1): $Q_{n+1}$ = ___",
+          "antworten": [
+            [
+              "Dn",
+              "D_n",
+              "D"
+            ]
+          ],
+          "erklaerung": "$Q_{n+1} = D_n$",
+          "quelle": "K07 Folie 8",
+          "id": "sw07-speicherbausteine-l3-a2"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "Ein D-Latch kann nicht in den verbotenen Zustand S = R = 1 kommen.",
+          "richtig": true,
+          "erklaerung": "Intern ist R immer das Gegenteil von S.",
+          "quelle": "K07 Folie 8",
+          "id": "sw07-speicherbausteine-l3-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Wann übernimmt ein flankengetriggertes D-FF (steigende Flanke) den Wert von D?",
+          "optionen": [
+            "Nur im Moment der steigenden Flanke",
+            "Solange Clk = 1 ist",
+            "Solange Clk = 0 ist",
+            "Bei jeder Änderung von D"
+          ],
+          "richtig": 0,
+          "erklaerung": "Danach hält es den Wert bis zur nächsten steigenden Flanke.",
+          "quelle": "K07 Folie 9",
+          "id": "sw07-speicherbausteine-l3-a4"
+        },
+        {
+          "typ": "zuordnen",
+          "frage": "Ordne zu: Wer ist bei welchem Clk-Pegel aktiv (Master-Slave, steigende Flanke)?",
+          "paare": [
+            [
+              "Master (D-Latch 1)",
+              "aktiv bei Clk = 0"
+            ],
+            [
+              "Slave (D-Latch 2)",
+              "aktiv bei Clk = 1"
+            ]
+          ],
+          "erklaerung": "Der Master folgt D bei Clk = 0. Bei der steigenden Flanke speichert er, und der Slave übernimmt seinen Wert.",
+          "quelle": "K07 Folie 9",
+          "id": "sw07-speicherbausteine-l3-a5"
+        }
+      ]
+    },
+    {
+      "id": "sw07-speicherbausteine-l4",
+      "titel": "JK- und T-Flip-Flop",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Das JK-Flip-Flop",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Das **JK-FF** ist eine Erweiterung des SR-FF: **J** entspricht S, **K** entspricht R."
+            },
+            {
+              "typ": "text",
+              "text": "Es gibt **keine verbotene Kombination** mehr: Bei J = K = 1 **wechselt** Q (von 0 auf 1 bzw. von 1 auf 0)."
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Funktionstabelle JK-FF (bei der aktiven Flanke)",
+              "kopf": [
+                "J",
+                "K",
+                "$Q_n$",
+                "$Q_{n+1}$"
+              ],
+              "zeilen": [
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1",
+                  "1"
+                ],
+                [
+                  "0",
+                  "1",
+                  "X",
+                  "0"
+                ],
+                [
+                  "1",
+                  "0",
+                  "X",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1",
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1",
+                  "1",
+                  "0"
+                ]
+              ]
+            }
+          ],
+          "quelle": "K07 Folie 10"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Das T-Flip-Flop",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Das **T-FF** heisst auch **Toggle-Flip-Flop**. Bei T = 1 wechselt der Ausgang bei der aktiven Flanke, bei T = 0 bleibt er."
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Funktionstabelle T-FF",
+              "kopf": [
+                "T",
+                "$Q_n$",
+                "$Q_{n+1}$"
+              ],
+              "zeilen": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "0",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1",
+                  "0"
+                ]
+              ]
+            }
+          ],
+          "quelle": "K07 Folie 11"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Flip-Flop-Spielplatz",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Wähle den FF-Typ, stell die Eingänge ein und gib Taktflanken. Die markierte Zeile der Funktionstabelle zeigt, was passiert."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "ff_spielplatz",
+              "params": {
+                "typ": "JK"
+              }
+            }
+          ],
+          "quelle": "K07 Folien 9–11"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Was passiert beim JK-FF bei J = 1 und K = 1 und einer aktiven Flanke?",
+          "optionen": [
+            "Q wechselt seinen Zustand",
+            "Q wird 0",
+            "Q wird 1",
+            "Verbotener Zustand"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das ist der Unterschied zum SR-FF: J = K = 1 ist erlaubt und lässt Q wechseln.",
+          "quelle": "K07 Folie 10",
+          "id": "sw07-speicherbausteine-l4-a1"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "Beim JK-Flip-Flop gibt es eine verbotene Eingangskombination.",
+          "richtig": false,
+          "erklaerung": "Im Gegensatz zum SR-FF gibt es sie nicht mehr.",
+          "quelle": "K07 Folie 10",
+          "id": "sw07-speicherbausteine-l4-a2"
+        },
+        {
+          "typ": "rechnung",
+          "frage": "Ein T-FF hat dauernd T = 1 und startet mit Q = 0. Welchen Wert hat Q nach 5 aktiven Flanken?",
+          "loesung": 1,
+          "einheit": "",
+          "loesungsweg": "Q wechselt bei jeder Flanke: 1, 0, 1, 0, 1",
+          "erklaerung": "Bei T = 1 wird Q bei jeder Flanke umgeschaltet.",
+          "quelle": "K07 Folie 11",
+          "id": "sw07-speicherbausteine-l4-a3"
+        },
+        {
+          "typ": "zuordnen",
+          "frage": "Ordne den FF-Typ der Wirkung bei «1» am Eingang zu.",
+          "paare": [
+            [
+              "D = 1",
+              "Q wird 1"
+            ],
+            [
+              "T = 1",
+              "Q wechselt"
+            ],
+            [
+              "J = 1, K = 0",
+              "Q wird 1 (setzen)"
+            ],
+            [
+              "J = 0, K = 1",
+              "Q wird 0 (rücksetzen)"
+            ]
+          ],
+          "erklaerung": "Aus den Funktionstabellen der Folien 9–11.",
+          "quelle": "K07 Folien 9–11",
+          "id": "sw07-speicherbausteine-l4-a4"
+        }
+      ]
+    }
+  ],
+  "uebungen": {
+    "kurz": [
+      {
+        "typ": "zuordnen",
+        "frage": "Ordne jedem Baustein die passende Beschreibung zu.",
+        "paare": [
+          [
+            "SR-Latch",
+            "S setzt, R rücksetzt, S = R = 1 verboten"
+          ],
+          [
+            "D-Latch",
+            "transparent: $Q_{n+1} = D_n$ solange E = 1"
+          ],
+          [
+            "D-Flip-Flop",
+            "übernimmt D nur bei der aktiven Flanke"
+          ],
+          [
+            "T-Flip-Flop",
+            "wechselt bei T = 1 mit jeder Flanke"
+          ]
+        ],
+        "erklaerung": "Zusammenfassung der Folien 5–11.",
+        "quelle": "K07 Folien 5–11",
+        "id": "sw07-speicherbausteine-k1"
+      },
+      {
+        "typ": "wahr_falsch",
+        "aussage": "Latches sind flankengetriggert.",
+        "richtig": false,
+        "erklaerung": "Flip-Flops sind flankengetriggert, Latches nicht.",
+        "quelle": "K07 Folie 9",
+        "id": "sw07-speicherbausteine-k2"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "JK-FF mit J = 1, K = 0. Was ist $Q_{n+1}$?",
+        "optionen": [
+          "1",
+          "0",
+          "$Q_n$",
+          "$\\overline{Q_n}$"
+        ],
+        "richtig": 0,
+        "erklaerung": "J = 1, K = 0 setzt das FF, unabhängig von $Q_n$.",
+        "quelle": "K07 Folie 10",
+        "id": "sw07-speicherbausteine-k3"
+      },
+      {
+        "typ": "rechnung",
+        "frage": "JK-FF mit J = K = 1, Start Q = 1. Welchen Wert hat Q nach 3 aktiven Flanken?",
+        "loesung": 0,
+        "einheit": "",
+        "loesungsweg": "1 → 0 → 1 → 0",
+        "erklaerung": "Bei J = K = 1 wechselt Q bei jeder Flanke.",
+        "quelle": "K07 Folie 10",
+        "id": "sw07-speicherbausteine-k4"
+      },
+      {
+        "typ": "lueckentext",
+        "frage": "Das Enable beim SR-Latch:",
+        "text": "Mit E = ___ wird die Ansteuerung verhindert, mit E = ___ erlaubt.",
+        "antworten": [
+          [
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "erklaerung": "E = 0 sperrt, E = 1 erlaubt.",
+        "quelle": "K07 Folie 7",
+        "id": "sw07-speicherbausteine-k5"
+      },
+      {
+        "typ": "reihenfolge",
+        "frage": "Bring die Abläufe im Master-Slave-D-FF (steigende Flanke) in die richtige Reihenfolge.",
+        "elemente": [
+          "Clk = 0: Der Master folgt D",
+          "Steigende Flanke: Der Master speichert",
+          "Clk = 1: Der Slave übernimmt den Wert des Masters und gibt ihn an Q",
+          "Q bleibt bis zur nächsten steigenden Flanke"
+        ],
+        "erklaerung": "Darum wirkt das FF so, als würde es D nur im Moment der Flanke übernehmen.",
+        "quelle": "K07 Folie 9",
+        "id": "sw07-speicherbausteine-k6"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "Wie realisiert man ein T-FF mit einem D-FF und einem Gatter?",
+        "optionen": [
+          "$D = T \\oplus Q_n$ (XOR)",
+          "$D = T \\cdot Q_n$ (AND)",
+          "$D = T + Q_n$ (OR)",
+          "$D = T$"
+        ],
+        "richtig": 0,
+        "erklaerung": "Bei T = 0 bleibt $Q_n$, bei T = 1 wird es invertiert: genau die XOR-Funktion.",
+        "quelle": "K07 Lösungen, Aufgabe 3",
+        "id": "sw07-speicherbausteine-k7"
+      },
+      {
+        "typ": "wahr_falsch",
+        "aussage": "Beim SR-Latch mit S = R = 0 hängt $Q_{n+1}$ vom bisherigen Wert $Q_n$ ab.",
+        "richtig": true,
+        "erklaerung": "S = R = 0 heisst speichern: $Q_{n+1} = Q_n$.",
+        "quelle": "K07 Folie 5",
+        "id": "sw07-speicherbausteine-k8"
+      }
+    ],
+    "lang": [
+      {
+        "id": "sw07-speicherbausteine-u1",
+        "nr": "1",
+        "titel": "Puls-Zeitdiagramm einer T-FF-Schaltung",
+        "empfohlen": true,
+        "grund": "Schaltung analysieren und Impulsdiagramm herleiten ist ein Lernziel des Kapitels",
+        "aufgabe": "Gegeben ist eine Schaltung mit drei T-FF (Ausgänge $Q_0$, $Q_1$, $Q_2$). Alle drei hängen am gleichen Takt und reagieren auf die **fallende Flanke** (Kreis am Takteingang). Verdrahtung laut Übungsblatt:\n\n$T_0 = \\overline{Q_1}$, $T_1 = \\overline{Q_2}$, $T_2 = \\overline{Q_0}$. Startwerte: $Q_0 = 0$, $Q_1 = 0$, $Q_2 = 1$.\n\nZeichnen Sie das Puls-Zeitdiagramm (Takt, $T_0$, $T_1$, $T_2$, $Q_0$, $Q_1$, $Q_2$) für fünf Takte.",
+        "tipps": [
+          "Bestimme vor jeder fallenden Flanke zuerst die T-Eingänge aus den aktuellen Q-Werten.",
+          "Beim Start: $T_0 = \\overline{0} = 1$, $T_1 = \\overline{1} = 0$, $T_2 = \\overline{0} = 1$. Welche FF wechseln also bei der ersten Flanke?",
+          "Ein T-FF wechselt bei T = 1 und bleibt bei T = 0. Die Q-Werte ändern sich nur an den fallenden Flanken.",
+          "Führe eine kleine Tabelle: Flanke, $T_0 T_1 T_2$ vorher, $Q_0 Q_1 Q_2$ nachher. Nach drei Flanken bist du wieder am Start."
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "titel": "Zustände an den fallenden Flanken",
+            "kopf": [
+              "nach Flanke",
+              "$Q_0$",
+              "$Q_1$",
+              "$Q_2$",
+              "$T_0 = \\overline{Q_1}$",
+              "$T_1 = \\overline{Q_2}$",
+              "$T_2 = \\overline{Q_0}$"
+            ],
+            "zeilen": [
+              [
+                "Start",
+                "0",
+                "0",
+                "1",
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1",
+                "0",
+                "0",
+                "1",
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0",
+                "1",
+                "0",
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "3",
+                "0",
+                "0",
+                "1",
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "4",
+                "1",
+                "0",
+                "0",
+                "1",
+                "1",
+                "0"
+              ],
+              [
+                "5",
+                "0",
+                "1",
+                "0",
+                "0",
+                "1",
+                "1"
+              ]
+            ]
+          },
+          {
+            "typ": "zeitdiagramm",
+            "titel": "Puls-Zeitdiagramm (fallende Flanken 1–5)",
+            "signale": [
+              {
+                "name": "Takt",
+                "wellen": "0110011001100110011001"
+              },
+              {
+                "name": "T_0",
+                "wellen": "1111111000011111111000"
+              },
+              {
+                "name": "T_1",
+                "wellen": "0001111111100001111111"
+              },
+              {
+                "name": "T_2",
+                "wellen": "1110000111111110000111"
+              },
+              {
+                "name": "Q_0",
+                "wellen": "0001111000000001111000"
+              },
+              {
+                "name": "Q_1",
+                "wellen": "0000000111100000000111"
+              },
+              {
+                "name": "Q_2",
+                "wellen": "1110000000011110000000"
+              }
+            ],
+            "marken": [
+              {
+                "t": 3,
+                "text": "1"
+              },
+              {
+                "t": 7,
+                "text": "2"
+              },
+              {
+                "t": 11,
+                "text": "3"
+              },
+              {
+                "t": 15,
+                "text": "4"
+              },
+              {
+                "t": 19,
+                "text": "5"
+              }
+            ]
+          },
+          {
+            "typ": "merke",
+            "text": "Die Schaltung durchläuft einen Zyklus von drei Zuständen: 001 → 100 → 010 → 001 (geschrieben als $Q_0 Q_1 Q_2$)."
+          }
+        ],
+        "ergebnis": "Zyklus 001 → 100 → 010",
+        "loesung_herkunft": "Offizielle Lösung (K07-DigitalTechnik-Loesungen-v3), als Diagramm nachgezeichnet und nachgerechnet.",
+        "quelle": "K07-DigitalTechnik-Aufgaben-v3, Aufgabe 1 (Schaltplan im Übungsblatt)"
+      },
+      {
+        "id": "sw07-speicherbausteine-u2",
+        "nr": "2",
+        "titel": "Puls-Zeitdiagramm mit SR- und JK-FF",
+        "empfohlen": true,
+        "grund": "Kombiniert zwei FF-Typen mit einem Gatter",
+        "aufgabe": "Gegeben ist eine Schaltung aus einem SR-FF (Ausgang $Q_1$) und einem JK-FF (Ausgang $Q_0$). Beide reagieren auf die **fallende Taktflanke**. Laut Schaltplan im Übungsblatt gilt:\n\n$S_1 = \\overline{Q_1}$, $R_1 = Q_1 \\cdot \\overline{Q_0}$ (UND-Gatter), $J_0 = \\overline{Q_1}$, $K_0 = 1$. Start: $Q_1 = Q_0 = 0$.\n\nZeichnen Sie das Puls-Zeitdiagramm ($J_0$, $K_0$, $Q_0$, $\\overline{Q_0}$, $S_1$, $R_1$, $Q_1$, $\\overline{Q_1}$).",
+        "tipps": [
+          "Bestimme vor jeder Flanke $S_1$, $R_1$, $J_0$ und $K_0$ aus den aktuellen Werten von $Q_1$ und $Q_0$.",
+          "Start: $S_1 = 1$, $R_1 = 0$ → das SR-FF wird gesetzt. $J_0 = K_0 = 1$ → das JK-FF wechselt.",
+          "Mit $K_0 = 1$ fest kann das JK-FF nur rücksetzen (J = 0) oder wechseln (J = 1).",
+          "Nach drei Flanken bist du wieder bei $Q_1 Q_0 = 00$."
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "titel": "Zustände an den fallenden Flanken",
+            "kopf": [
+              "nach Flanke",
+              "$Q_1$",
+              "$Q_0$",
+              "$S_1 = J_0$",
+              "$R_1$"
+            ],
+            "zeilen": [
+              [
+                "Start",
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1",
+                "1",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2",
+                "1",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "3",
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "4",
+                "1",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "5",
+                "1",
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "typ": "zeitdiagramm",
+            "titel": "Puls-Zeitdiagramm (fallende Flanken 1–5)",
+            "signale": [
+              {
+                "name": "Takt",
+                "wellen": "0110011001100110011001"
+              },
+              {
+                "name": "J_0",
+                "wellen": "1110000000011110000000"
+              },
+              {
+                "name": "K_0",
+                "wellen": "1111111111111111111111"
+              },
+              {
+                "name": "Q_0",
+                "wellen": "0001111000000001111000"
+              },
+              {
+                "name": "S_1",
+                "wellen": "1110000000011110000000"
+              },
+              {
+                "name": "R_1",
+                "wellen": "0000000111100000000111"
+              },
+              {
+                "name": "Q_1",
+                "wellen": "0001111111100001111111"
+              }
+            ],
+            "marken": [
+              {
+                "t": 3,
+                "text": "1"
+              },
+              {
+                "t": 7,
+                "text": "2"
+              },
+              {
+                "t": 11,
+                "text": "3"
+              },
+              {
+                "t": 15,
+                "text": "4"
+              },
+              {
+                "t": 19,
+                "text": "5"
+              }
+            ]
+          },
+          {
+            "typ": "merke",
+            "text": "Zyklus $Q_1 Q_0$: 00 → 11 → 10 → 00. $\\overline{Q_0}$ und $\\overline{Q_1}$ sind jeweils einfach invertiert."
+          }
+        ],
+        "ergebnis": "Zyklus 00 → 11 → 10",
+        "loesung_herkunft": "Offizielle Lösung (K07-DigitalTechnik-Loesungen-v3), als Diagramm nachgezeichnet und nachgerechnet.",
+        "quelle": "K07-DigitalTechnik-Aufgaben-v3, Aufgabe 2 (Schaltplan im Übungsblatt)"
+      },
+      {
+        "id": "sw07-speicherbausteine-u3",
+        "nr": "3",
+        "titel": "T-FF aus einem D-FF bauen",
+        "empfohlen": false,
+        "aufgabe": "Wie sieht ein T-FF aus, das mit einem D-FF und Gattern realisiert ist?",
+        "tipps": [
+          "Das D-FF übernimmt bei der Flanke einfach D. Du musst also D so bilden, dass $Q_{n+1}$ wie beim T-FF herauskommt.",
+          "Dafür brauchst du den vorherigen Zustand $Q_n$ und den aktuellen Eingang T.",
+          "Stell die Tabelle T, $Q_n$ → D auf. Welche Grundfunktion hat genau diese Tabelle?"
+        ],
+        "loesung": [
+          {
+            "typ": "text",
+            "text": "Wir brauchen den vorherigen Zustand $Q_n$ und den aktuellen Eingang T. D muss dem gewünschten $Q_{n+1}$ des T-FF entsprechen:"
+          },
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "T",
+              "$Q_n$",
+              "D"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "typ": "text",
+            "text": "Das ist die **XOR**-Funktion von T und $Q_n$:"
+          },
+          {
+            "typ": "formel",
+            "tex": "D = T \\oplus Q_n"
+          },
+          {
+            "typ": "kette",
+            "elemente": [
+              {
+                "text": "T und Q_n"
+              },
+              {
+                "text": "XOR (=1)"
+              },
+              {
+                "text": "D-FF"
+              },
+              {
+                "text": "Q"
+              }
+            ],
+            "pfeile": [
+              "",
+              "D",
+              ""
+            ],
+            "takt": "Clock"
+          }
+        ],
+        "ergebnis": "$D = T \\oplus Q_n$",
+        "loesung_herkunft": "Offizielle Lösung (K07-DigitalTechnik-Loesungen-v3).",
+        "quelle": "K07-DigitalTechnik-Aufgaben-v3, Aufgabe 3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,814 @@
+{
+  "id": "sw07-funktionen",
+  "titel": "Funktionen",
+  "beschreibung": "Funktionen definieren und aufrufen, Parameter und Argumente, return, Default Values, Type Hints, Docstrings, Scope",
+  "woche": 7,
+  "lektionen": [
+    {
+      "id": "sw07-funktionen-l6",
+      "titel": "Funktionen definieren und aufrufen",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW07_Funktionen_FlippedClassroom, S. 3–7",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Was ist eine Funktion?"
+        },
+        {
+          "typ": "text",
+          "text": "**Funktionen** sind Unterprogramme, die vom Hauptprogramm aus aufgerufen werden. Danach läuft das\n        Hauptprogramm nach dem Aufruf weiter. Wie in der Mathematik $y = f(x_1, x_2, \\dots)$ haben sie\n        **Parameter** (Platzhalter) und geben meistens mit `return` einen **Rückgabewert** zurück. Beim Aufruf\n        übergibt man **Argumente** – die konkreten Werte für die Parameter."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Probleme in kleine, überschaubare Teile zerlegen (lesbarer Code)",
+            "einfacher testen und Fehler suchen",
+            "eigenen und fremden Code wiederverwenden",
+            "im Team an verschiedenen Funktionen parallel arbeiten"
+          ],
+          "titel": "Wozu Funktionen?"
+        },
+        {
+          "typ": "titel",
+          "text": "Definieren mit def"
+        },
+        {
+          "typ": "text",
+          "text": "Funktionen werden **vor** dem Hauptprogramm definiert. Beim Ausführen wird die Definition zuerst nur\n        «gemerkt», nicht ausgeführt. Danach kann man die Funktion beliebig oft aufrufen."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def say_hello(name):          # Funktionsdefinition\n    return \"Hallo \" + name\n\nme = \"Sarah\"\ngreeting = say_hello(me)      # Funktionsaufruf\nprint(greeting)\nprint(say_hello(\"Thomas\"))",
+          "ausfuehrbar": true,
+          "ausgabe": "Hallo Sarah\nHallo Thomas"
+        },
+        {
+          "typ": "merke",
+          "text": "Soll der Rückgabewert weiterverwendet werden, muss man ihn einer Variable zuweisen – sonst geht er verloren."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Guter Stil: Funktionen enthalten selten `print()`. Sie geben Daten mit `return` zurück und bleiben so wiederverwendbar."
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l7",
+      "titel": "Parameter, Default-Werte und return",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW07_Funktionen_FlippedClassroom, S. 10–13",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Reihenfolge der Argumente"
+        },
+        {
+          "typ": "text",
+          "text": "Ohne Parameternamen werden die Argumente **der Reihe nach** den Parametern zugewiesen – eine falsche\n        Reihenfolge führt zu Logik- oder Typfehlern. Mit Parameternamen (Schlüsselwort-Argumente) spielt die\n        Reihenfolge keine Rolle."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def hewo_final(n, word):\n    return n * word\n\nprint(hewo_final(3, \"hola\"))\nprint(hewo_final(word=\"ciao\", n=2))",
+          "ausfuehrbar": true,
+          "ausgabe": "holaholahola\nciaociao"
+        },
+        {
+          "typ": "titel",
+          "text": "Default-Werte"
+        },
+        {
+          "typ": "text",
+          "text": "Ein Parameter mit Default-Wert (im Funktionskopf mit `=` zugewiesen) ist **optional**:"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def hewo_final(n, word=\"Hello-World\"):\n    return n * word\n\nprint(hewo_final(2))\nprint(hewo_final(2, \"Hi\"))",
+          "ausfuehrbar": true,
+          "ausgabe": "Hello-WorldHello-World\nHiHi"
+        },
+        {
+          "typ": "titel",
+          "text": "Rückgabewert"
+        },
+        {
+          "typ": "text",
+          "text": "`return` beendet die Funktion sofort und gibt den Wert zurück (Zahl, String, Liste, Tuple, Dict …).\n        Eine Funktion darf mehrere `return`-Anweisungen haben."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def maximum(a, b):\n    if a > b:\n        return a\n    return b\n\nm = maximum(3, 7)\nprint(m)",
+          "ausfuehrbar": true,
+          "ausgabe": "7"
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l8",
+      "titel": "Type Hints und Docstrings",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW07_Funktionen_FlippedClassroom, S. 14–19",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Type Hints"
+        },
+        {
+          "typ": "text",
+          "text": "Mit `parameter: datentyp` und `-> datentyp` beschreibt man, welche Typen erwartet und zurückgegeben\n        werden. Das verbessert Auto-Complete und Fehler-Checks in der IDE (Jupyter, VS Code)."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def add_binary(a: int, b: int) -> str:\n    binary_sum = bin(a + b)[2:]\n    return binary_sum\n\nprint(add_binary(3, 4))",
+          "ausfuehrbar": true,
+          "ausgabe": "111"
+        },
+        {
+          "typ": "titel",
+          "text": "Docstring"
+        },
+        {
+          "typ": "text",
+          "text": "Jede Funktion sollte direkt nach dem Kopf einen **Docstring** haben: was sie macht, die **Parameters**\n        (Typ und Bedeutung) und die **Returns**. Er erscheint bei `help(funktion)` oder mit Shift+Tab."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def calc_rect_area(length: float, width: float) -> float:\n    \"\"\"\n    Calculate the rectangle area.\n\n    Parameters:\n        length (float): Length of the rectangle\n        width (float): Width of the rectangle\n\n    Returns:\n        rect_area (float): rectangle area (length*width)\n    \"\"\"\n    rect_area = length * width\n    return rect_area\n\nprint(calc_rect_area(2.0, 3.5))\nprint(calc_rect_area.__doc__.strip().splitlines()[0])",
+          "ausfuehrbar": true,
+          "ausgabe": "7.0\nCalculate the rectangle area."
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l9",
+      "titel": "Gültigkeitsbereich (Scope)",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW07_Funktionen_FlippedClassroom, S. 21–25",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Global und lokal"
+        },
+        {
+          "typ": "text",
+          "text": "Variablen und Funktionen, die normal im Skript definiert sind, sind **global** sichtbar. Variablen, die\n        **innerhalb** einer Funktion definiert werden, sind nur dort **lokal** sichtbar."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "x = 10                 # globale Variable\n\ndef my_func_2(y):\n    x = y * 10         # lokales x, nicht das globale\n    return x\n\nprint(my_func_2(2))\nprint(x)",
+          "titel": "Lokales x verdeckt das globale",
+          "ausfuehrbar": true,
+          "ausgabe": "20\n10"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "x = 10\n\ndef my_func_3(y):\n    print(x)           # globales x lesen geht\n    return y * 10\n\nprint(my_func_3(3))",
+          "titel": "Globale Variable lesen",
+          "ausfuehrbar": true,
+          "ausgabe": "10\n30"
+        },
+        {
+          "typ": "merke",
+          "text": "Eine Variable soll in einer Funktion nicht zugleich global und lokal vorkommen. Werte besser als **Parameter** übergeben."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Mit `global x` in der Funktion könnte man die globale Variable verändern – das sollte man möglichst vermeiden."
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l1",
+      "titel": "Funktionen verstehen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw07-funktionen-l1-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne die Begriffe zu:",
+          "paare": [
+            [
+              "Parameter",
+              "Platzhalter in der Funktionsdefinition"
+            ],
+            [
+              "Argument",
+              "konkreter Wert beim Aufruf"
+            ],
+            [
+              "return",
+              "gibt den Rückgabewert zurück"
+            ],
+            [
+              "def",
+              "leitet die Definition ein"
+            ]
+          ],
+          "erklaerung": "Parameter = Platzhalter, Argumente = konkrete Werte.",
+          "quelle": "SW07_Funktionen, S. 3"
+        },
+        {
+          "id": "sw07-funktionen-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Eine Funktion wird bei der Definition sofort ausgeführt.",
+          "richtig": false,
+          "erklaerung": "Sie wird nur definiert und erst beim Aufruf ausgeführt.",
+          "quelle": "SW07_Funktionen, S. 7"
+        },
+        {
+          "id": "sw07-funktionen-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "In gutem Stil enthalten Funktionen selten direkt print(), sondern geben Daten mit return zurück.",
+          "richtig": true,
+          "erklaerung": "So bleiben Funktionen flexibel wiederverwendbar.",
+          "quelle": "SW07_Funktionen, S. 3"
+        },
+        {
+          "id": "sw07-funktionen-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Was passiert nach einem `return` in einer Funktion?",
+          "optionen": [
+            "Die Funktion wird beendet",
+            "Die Funktion läuft weiter",
+            "Das Programm stürzt ab",
+            "Die Funktion startet neu"
+          ],
+          "richtig": 0,
+          "erklaerung": "return beendet die Funktion und gibt den Wert zurück.",
+          "quelle": "SW07_Funktionen, S. 13"
+        },
+        {
+          "id": "sw07-funktionen-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "Was macht ein Default-Wert wie `def f(n=3):`?",
+          "optionen": [
+            "Der Parameter wird optional",
+            "n ist immer 3",
+            "n darf nicht 3 sein",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne Argument wird der Default-Wert verwendet.",
+          "quelle": "SW07_Funktionen, S. 12"
+        },
+        {
+          "id": "sw07-funktionen-l1-a6",
+          "typ": "multiple_choice",
+          "frage": "Was bedeutet `def add_binary(a: int, b: int) -> str:`?",
+          "optionen": [
+            "a und b sollen int sein, Rückgabe ist ein str",
+            "a und b werden in int umgewandelt",
+            "Die Funktion gibt int zurück",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Type Hints für Parameter und Rückgabewert helfen der IDE.",
+          "quelle": "SW07_Funktionen, S. 16"
+        },
+        {
+          "id": "sw07-funktionen-l1-a7",
+          "typ": "wahr_falsch",
+          "aussage": "Variablen, die innerhalb einer Funktion definiert sind, sind ausserhalb nicht sichtbar.",
+          "richtig": true,
+          "erklaerung": "Sie sind lokal (Scope).",
+          "quelle": "SW07_Funktionen, S. 21"
+        },
+        {
+          "id": "sw07-funktionen-l1-a8",
+          "typ": "multiple_choice",
+          "frage": "Wie zeigt man den Docstring einer Funktion an?",
+          "optionen": [
+            "help(my_func)",
+            "print(my_func)",
+            "doc(my_func)",
+            "dir()"
+          ],
+          "richtig": 0,
+          "erklaerung": "help() oder Shift-Tab in Jupyter.",
+          "quelle": "SW07_Funktionen, S. 19"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw07-funktionen-l2",
+      "titel": "Check your understanding",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw07-funktionen-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage zu Funktionen ist richtig?",
+          "optionen": [
+            "Eine Funktion kann mit `return` einen Rückgabewert zurückgeben",
+            "Eine Funktion wird mit `func` definiert",
+            "Eine Funktion kann nur einen Parameter besitzen",
+            "`print()` und `return` sind gleichwertig"
+          ],
+          "richtig": 0,
+          "erklaerung": "def definiert, mehrere Parameter sind möglich, print gibt aus, return liefert zurück.",
+          "quelle": "SW07_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw07-funktionen-l2-a2",
+          "typ": "code_ausgabe",
+          "code": "def maximum(a, b):\n    if a > b:\n        return a\n    else:\n        return b\n\nprint(maximum(7, 12))",
+          "optionen": [
+            "12",
+            "7",
+            "True",
+            "None"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der grössere Wert wird zurückgegeben.",
+          "quelle": "SW07_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw07-funktionen-l2-a3",
+          "typ": "code_ausgabe",
+          "code": "def hewo(n=3, word=\"Hi\"):\n    return word * n\n\nprint(hewo(word=\"Py\"))",
+          "optionen": [
+            "PyPyPy",
+            "Py",
+            "PyPy",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "n nimmt den Default-Wert 3.",
+          "quelle": "SW07_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw07-funktionen-l2-a4",
+          "typ": "code_ausgabe",
+          "code": "x = 5\n\ndef test():\n    x = 10\n    return x\n\nprint(test())\nprint(x)",
+          "optionen": [
+            "10\n5",
+            "10\n10",
+            "5\n10",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das x in der Funktion ist lokal.",
+          "quelle": "SW07_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw07-funktionen-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Welcher Funktionskopf verwendet Type Hints korrekt?",
+          "optionen": [
+            "`def add(a: int, b: int) -> int:`",
+            "`function add(int a, int b):`",
+            "`def add(a, b): -> int`",
+            "`def add(a -> int, b -> int):`"
+          ],
+          "richtig": 0,
+          "erklaerung": "Parameter: name: typ, Rückgabe: -> typ vor dem Doppelpunkt.",
+          "quelle": "SW07_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw07-funktionen-l3",
+      "titel": "Funktionen lesen",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw07-funktionen-l3-a1",
+          "typ": "code_ausgabe",
+          "code": "def say_hello(name):\n    return \"Hallo \" + name\n\ngreeting = say_hello(\"Sarah\")\nprint(greeting)",
+          "optionen": [
+            "Hallo Sarah",
+            "Hallo name",
+            "say_hello",
+            "None"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das Argument 'Sarah' wird dem Parameter name zugewiesen.",
+          "quelle": "SW07_Funktionen, S. 7"
+        },
+        {
+          "id": "sw07-funktionen-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "x = 10\n\ndef my_func_2(y):\n    x = y * 10\n    return x\n\nmy_func_2(1)\nprint(x)",
+          "optionen": [
+            "10",
+            "100",
+            "1",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das x in der Funktion ist lokal; das globale x bleibt 10.",
+          "quelle": "SW07_Funktionen, S. 22"
+        },
+        {
+          "id": "sw07-funktionen-l3-a3",
+          "typ": "code_ausgabe",
+          "code": "def hewo_final(n, word=\"Hi\"):\n    return n * word\n\nprint(hewo_final(3))",
+          "optionen": [
+            "HiHiHi",
+            "Hi Hi Hi",
+            "3",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "word nimmt den Default-Wert 'Hi'.",
+          "quelle": "SW07_Funktionen, S. 12"
+        },
+        {
+          "id": "sw07-funktionen-l3-a4",
+          "typ": "code_ausgabe",
+          "code": "def teile(a, b):\n    return a / b\n\nprint(teile(b=2, a=8))",
+          "optionen": [
+            "4.0",
+            "0.25",
+            "4",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mit Parameternamen spielt die Reihenfolge keine Rolle.",
+          "quelle": "SW07_Funktionen, S. 11"
+        },
+        {
+          "id": "sw07-funktionen-l3-a5",
+          "typ": "code_ausgabe",
+          "code": "def add_binary(a: int, b: int) -> str:\n    return bin(a + b)[2:]\n\nprint(add_binary(2, 3))",
+          "optionen": [
+            "101",
+            "5",
+            "0b101",
+            "23"
+          ],
+          "richtig": 0,
+          "erklaerung": "2+3 = 5, bin(5) = '0b101', [2:] schneidet '0b' ab.",
+          "quelle": "SW07_Funktionen, S. 16"
+        },
+        {
+          "id": "sw07-funktionen-l3-a6",
+          "typ": "code_ausgabe",
+          "code": "def ohne_return(x):\n    y = x * 2\n\nprint(ohne_return(4))",
+          "optionen": [
+            "None",
+            "8",
+            "4",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne return gibt eine Funktion None zurück.",
+          "quelle": "SW07_Funktionen, S. 3"
+        },
+        {
+          "id": "sw07-funktionen-l3-a7",
+          "typ": "code_fehler",
+          "code": "def quadrat(x):\nreturn x * x\n\nprint(quadrat(3))",
+          "fehlerzeile": 2,
+          "korrektur": "    return x * x",
+          "erklaerung": "Der Funktionskörper muss eingerückt sein (IndentationError).",
+          "quelle": "SW07_Funktionen, S. 7"
+        },
+        {
+          "id": "sw07-funktionen-l3-a8",
+          "typ": "code_reihenfolge",
+          "frage": "Baue die Funktion zur Rechteckfläche und gib die Fläche für 3 × 4 aus.",
+          "zeilen": [
+            "def calc_rect_area(length: float, width: float) -> float:",
+            "    rect_area = length * width",
+            "    return rect_area",
+            "print(calc_rect_area(3, 4))"
+          ],
+          "erklaerung": "Header, Körper eingerückt, return, dann der Aufruf.",
+          "quelle": "SW07_Funktionen, S. 17",
+          "erwartete_ausgabe": "12"
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l4",
+      "titel": "Funktionen schreiben",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw07-funktionen-l4-a1",
+          "typ": "programmieraufgabe",
+          "titel": "hewo_func",
+          "aufgabe": "Schreibe `hewo_func(n)`, die n-mal `Hello-World` (ohne Leerzeichen) als **einen String zurückgibt** – ohne print in der Funktion.",
+          "startcode": "def hewo_func(n):\n    # dein Code\n    pass",
+          "tests": [
+            {
+              "aufruf": "hewo_func(2)",
+              "erwartet": "'Hello-WorldHello-World'"
+            },
+            {
+              "aufruf": "hewo_func(1)",
+              "erwartet": "'Hello-World'"
+            },
+            {
+              "aufruf": "hewo_func(0)",
+              "erwartet": "''"
+            }
+          ],
+          "hinweise": [
+            "String × int wiederholt den String.",
+            "return statt print!"
+          ],
+          "musterloesung": "def hewo_func(n):\n    return n * \"Hello-World\"",
+          "kriterien": [
+            "return statt print",
+            "n = 0 → leerer String"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW07_Funktionen, S. 8"
+        },
+        {
+          "id": "sw07-funktionen-l4-a2",
+          "typ": "programmieraufgabe",
+          "titel": "hewo_final mit Default und Docstring",
+          "aufgabe": "Schreibe `hewo_final(n, word=\"Hello-World\")`, die das Wort n-mal zusammengesetzt zurückgibt. Ergänze einen Docstring mit Parameters und Returns.",
+          "startcode": "def hewo_final(n, word=\"Hello-World\"):\n    \"\"\"\n    ...\n    \"\"\"\n    pass",
+          "tests": [
+            {
+              "aufruf": "hewo_final(5, 'hola')",
+              "erwartet": "'holaholaholaholahola'"
+            },
+            {
+              "aufruf": "hewo_final(1)",
+              "erwartet": "'Hello-World'"
+            },
+            {
+              "aufruf": "hewo_final(word='ab', n=2)",
+              "erwartet": "'abab'"
+            },
+            {
+              "aufruf": "hewo_final(0, 'x')",
+              "erwartet": "''"
+            }
+          ],
+          "hinweise": [
+            "Default-Wert im Funktions-Header mit =",
+            "Docstring direkt nach dem Header in \"\"\" \"\"\""
+          ],
+          "musterloesung": "def hewo_final(n: int, word: str = \"Hello-World\") -> str:\n    \"\"\"\n    Repeats a word n times without spaces.\n\n    Parameters:\n        n (int): number of repetitions\n        word (str): word to repeat\n\n    Returns:\n        (str): the repeated word\n    \"\"\"\n    return n * word",
+          "kriterien": [
+            "Default-Wert",
+            "Docstring vorhanden",
+            "return"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW07_Funktionen, S. 9 und 17"
+        },
+        {
+          "id": "sw07-funktionen-l4-a3",
+          "typ": "programmieraufgabe",
+          "titel": "Anzahl gerader Zahlen",
+          "aufgabe": "Schreibe `count_even(numbers: list) -> int`, die zurückgibt, wie viele gerade Zahlen die Liste enthält.",
+          "startcode": "def count_even(numbers: list) -> int:\n    # dein Code\n    pass",
+          "tests": [
+            {
+              "aufruf": "count_even([12, 88, 33, 31, 92, 91])",
+              "erwartet": "3"
+            },
+            {
+              "aufruf": "count_even([0, -8, 33, 0, 92, 91])",
+              "erwartet": "4"
+            },
+            {
+              "aufruf": "count_even([])",
+              "erwartet": "0"
+            }
+          ],
+          "hinweise": [
+            "Zähler in der Funktion auf 0 setzen.",
+            "n % 2 == 0 prüft auf gerade."
+          ],
+          "musterloesung": "def count_even(numbers: list) -> int:\n    count = 0\n    for n in numbers:\n        if n % 2 == 0:\n            count += 1\n    return count",
+          "kriterien": [
+            "Type Hints",
+            "leere Liste → 0",
+            "negative Zahlen"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW06_PB_Algorithmus2Code, S. 9"
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l5",
+      "titel": "InClass-Übungen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw07-funktionen-l5-a1",
+          "typ": "programmieraufgabe",
+          "titel": "dog_years",
+          "aufgabe": "Schreibe `dog_years(age: float) -> float`, die Hundejahre in Menschenjahre umrechnet (1 Hundejahr = 7 Menschenjahre). Mit Docstring.",
+          "startcode": "def dog_years(age: float) -> float:\n    \"\"\"...\"\"\"\n    pass",
+          "tests": [
+            {
+              "aufruf": "dog_years(1.0)",
+              "erwartet": "7.0"
+            },
+            {
+              "aufruf": "dog_years(3.5)",
+              "erwartet": "24.5"
+            },
+            {
+              "aufruf": "dog_years(0.0)",
+              "erwartet": "0.0"
+            }
+          ],
+          "hinweise": [
+            "return age * 7"
+          ],
+          "musterloesung": "def dog_years(age: float) -> float:\n    \"\"\"\n    Converts dog years into human years.\n\n    Parameters:\n        age (float): age in dog years\n    Returns:\n        (float): age in human years\n    \"\"\"\n    return age * 7",
+          "kriterien": [
+            "return",
+            "Docstring"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW07_InClass_standardized_clean.ipynb (JupyterHub), «dog-years Funktion»"
+        },
+        {
+          "id": "sw07-funktionen-l5-a2",
+          "typ": "programmieraufgabe",
+          "titel": "maximum3",
+          "aufgabe": "Schreibe `maximum3(a: float, b: float, c: float) -> float`, die den grössten Wert zurückgibt – **ohne** `max()`.",
+          "startcode": "def maximum3(a: float, b: float, c: float) -> float:\n    pass",
+          "tests": [
+            {
+              "aufruf": "maximum3(1, 5, 3)",
+              "erwartet": "5"
+            },
+            {
+              "aufruf": "maximum3(9, 2, 9)",
+              "erwartet": "9"
+            },
+            {
+              "aufruf": "maximum3(-1, -5, -3)",
+              "erwartet": "-1"
+            },
+            {
+              "aufruf": "maximum3(2.5, 2.5, 7.0)",
+              "erwartet": "7.0"
+            }
+          ],
+          "hinweise": [
+            "Merke dir den bisher grössten Wert in einer Variable.",
+            "Gleich grosse Werte nicht vergessen (>=)."
+          ],
+          "musterloesung": "def maximum3(a: float, b: float, c: float) -> float:\n    \"\"\"Returns the largest of three numbers.\"\"\"\n    largest = a\n    if b > largest:\n        largest = b\n    if c > largest:\n        largest = c\n    return largest",
+          "kriterien": [
+            "kein max()",
+            "gleiche Werte",
+            "negative Zahlen"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW07_InClass_standardized_clean.ipynb (JupyterHub), «Maximum von drei Zahlen»"
+        },
+        {
+          "id": "sw07-funktionen-l5-a3",
+          "typ": "programmieraufgabe",
+          "titel": "count_uppercase",
+          "aufgabe": "Schreibe `count_uppercase(text: str) -> int`, die mit einer Schleife die Grossbuchstaben zählt. `count_uppercase(\"PyTHon\")` → `3`.",
+          "startcode": "def count_uppercase(text: str) -> int:\n    pass",
+          "tests": [
+            {
+              "aufruf": "count_uppercase('PyTHon')",
+              "erwartet": "3"
+            },
+            {
+              "aufruf": "count_uppercase('')",
+              "erwartet": "0"
+            },
+            {
+              "aufruf": "count_uppercase('HSLU 2026!')",
+              "erwartet": "4"
+            }
+          ],
+          "hinweise": [
+            "Ein Zeichen ist gross, wenn zeichen == zeichen.upper() und zeichen != zeichen.lower()."
+          ],
+          "musterloesung": "def count_uppercase(text: str) -> int:\n    \"\"\"Counts the uppercase letters in text.\"\"\"\n    count = 0\n    for zeichen in text:\n        if zeichen != zeichen.lower():\n            count += 1\n    return count",
+          "kriterien": [
+            "Schleife",
+            "Ziffern/Sonderzeichen zählen nicht",
+            "leerer String"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW07_InClass_standardized_clean.ipynb (JupyterHub), «Anzahl Grossbuchstaben»"
+        }
+      ]
+    },
+    {
+      "id": "sw07-funktionen-l10",
+      "titel": "Potentielle Energie",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW07_Aufrag_nbg (JupyterHub), Aufgabe 1",
+      "aufgabe": "Schreibe die Funktion `pot_energy(height, mass)`, die die potentielle Energie in Joule zurückgibt:\n$E_{pot} = m \\cdot g \\cdot h$ mit `g = 9.81` (innerhalb der Funktion).\n\n- Parameter `height` und `mass` vom Typ `float`, Rückgabe `float`, **ungerundet**\n- mit **Type Hints** und **Docstring**, ohne `print` in der Funktion\n\nTeste sie mit einem Auto von 1980 kg auf 2163 m und gib aus (Umrechnung in kJ und Runden erst bei der Ausgabe):\n```\nthe car with 1980 kg up 2163 m has a potential energy of 42014 kJ\n```",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – Funktion"
+        },
+        {
+          "typ": "code",
+          "inhalt": "def pot_energy(height, mass):\n    pass"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – Aufruf und Ausgabe"
+        },
+        {
+          "typ": "code",
+          "inhalt": "car_wgt = 1980.0\ncar_hgt = 2163.0"
+        }
+      ],
+      "tests": "assert callable(pot_energy), \"Die Funktion pot_energy fehlt.\"\nr = pot_energy(2163.0, 1980.0)\nassert isinstance(r, float), f\"pot_energy muss einen float zurückgeben, liefert aber {type(r).__name__}.\"\nassert abs(r - 42013679.4) < 1e-6, f\"pot_energy(2163.0, 1980.0) sollte 42013679.4 sein, ist aber {r}.\"\nassert pot_energy(0.0, 5.0) == 0.0, \"Bei Höhe 0 muss die Energie 0 sein.\"\nassert pot_energy.__doc__, \"Der Docstring fehlt.\"\nann = pot_energy.__annotations__\nassert ann.get(\"height\") is float and ann.get(\"mass\") is float and ann.get(\"return\") is float, \"Type Hints fehlen: height: float, mass: float, -> float.\"\nassert \"42014 kJ\" in _ausgabe, \"Die Ausgabe «… potential energy of 42014 kJ» fehlt.\"",
+      "hinweise": [
+        "Type Hints: `def pot_energy(height: float, mass: float) -> float:`.",
+        "Der Docstring steht in `\"\"\" … \"\"\"` direkt unter dem Funktionskopf.",
+        "kJ = J / 1000; ohne Nachkommastellen: `f\"{wert:.0f}\"`."
+      ],
+      "loesung": "def pot_energy(height: float, mass: float) -> float:\n    \"\"\"Calculate the gravitational potential energy of an object.\n\n    Parameters:\n        height (float): Height above the reference level in meters.\n        mass (float): Mass of the object in kilograms.\n\n    Returns:\n        float: Potential energy in joules (Ws).\n    \"\"\"\n    g = 9.81\n    return g * height * mass\n\ncar_wgt = 1980.0\ncar_hgt = 2163.0\ne_pot = pot_energy(car_hgt, car_wgt)\nprint(f\"the car with {car_wgt:.0f} kg up {car_hgt:.0f} m has a potential energy of {e_pot / 1000:.0f} kJ\")"
+    },
+    {
+      "id": "sw07-funktionen-l11",
+      "titel": "Fakultät",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW07_Aufrag_nbg (JupyterHub), Aufgabe 2",
+      "aufgabe": "Schreibe die Funktion `factorial(n)`, die $n! = 1 \\cdot 2 \\cdot \\ldots \\cdot n$ als `int` zurückgibt.\n\n- Default-Wert von `n` ist `1`\n- `0!` ist `1`, und für `n < 1` wird ebenfalls `1` zurückgegeben\n- mit Type Hints und Docstring\n\nRufe die Funktion danach in einer Schleife für 1 bis und mit 5 auf und gib die Resultate aus\n(`1`, `2`, `6`, `24`, `120` – je eine Zeile).",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "def factorial(n):\n    pass"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# Schleife 1 bis 5"
+        }
+      ],
+      "tests": "import inspect\nassert callable(factorial), \"Die Funktion factorial fehlt.\"\nassert factorial(5) == 120, f\"factorial(5) sollte 120 sein, ist aber {factorial(5)}.\"\nassert factorial(7) == 5040, f\"factorial(7) sollte 5040 sein, ist aber {factorial(7)}.\"\nassert factorial(0) == 1 and factorial(-3) == 1, \"Für n < 1 muss factorial 1 zurückgeben.\"\nassert inspect.signature(factorial).parameters[\"n\"].default == 1, \"Der Default-Wert von n muss 1 sein.\"\nassert factorial() == 1, \"factorial() ohne Argument muss 1 zurückgeben.\"\nassert factorial.__doc__, \"Der Docstring fehlt.\"\nzeilen = [z.strip() for z in _ausgabe.splitlines() if z.strip()]\nassert zeilen[-5:] == [\"1\", \"2\", \"6\", \"24\", \"120\"], f\"Die Ausgabe sollte 1, 2, 6, 24, 120 sein (je eine Zeile), ist aber {zeilen[-5:]}.\"",
+      "hinweise": [
+        "Starte mit `result = 1` und multipliziere in einer Schleife mit 2, 3, …, n.",
+        "Für `n < 2` läuft `range(2, n + 1)` gar nicht – das Resultat bleibt 1.",
+        "Default-Wert im Kopf: `def factorial(n: int = 1) -> int:`."
+      ],
+      "loesung": "def factorial(n: int = 1) -> int:\n    \"\"\"Calculate the factorial of an integer.\n\n    Parameters:\n        n (int): Integer for which the factorial is calculated.\n\n    Returns:\n        int: Factorial of n. For n < 1, returns 1.\n    \"\"\"\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nfor m in range(1, 6):\n    print(factorial(m))"
+    },
+    {
+      "id": "sw07-funktionen-l12",
+      "titel": "Wörter umkehren und Palindrome",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 12,
+      "schwierigkeit": 2,
+      "quelle": "SW07_Aufrag_nbg (JupyterHub), Aufgaben 3–4",
+      "aufgabe": "**Teil 1:** Schreibe `reverse_word(word: str) -> str`, die das Wort **umgekehrt und in Grossbuchstaben**\nzurückgibt, z. B. `reverse_word(\"Ananas\")` → `\"SANANA\"`.\n\n**Teil 2:** Schreibe `is_palindrome(word: str) -> bool`, die `True` zurückgibt, wenn das Wort vorwärts und\nrückwärts gleich ist – **ohne** auf Gross-/Kleinschreibung zu achten.\n\nPrüfe damit alle Wörter in `word_list`, speichere die Resultate in `check_list` und gib sie aus.\nBeide Funktionen brauchen einen Docstring und geben nichts mit `print` aus.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – reverse_word"
+        },
+        {
+          "typ": "code",
+          "inhalt": "def reverse_word(word: str) -> str:\n    pass"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – is_palindrome"
+        },
+        {
+          "typ": "code",
+          "inhalt": "def is_palindrome(word: str) -> bool:\n    pass\n\nword_list = [\"Ananas\", \"Anna\", \"Hannah\", \"Jojo\", \"Malayalam\", \"Pipi\", \"Tattarrattat\"]\ncheck_list = []"
+        }
+      ],
+      "tests": "assert reverse_word(\"Ananas\") == \"SANANA\", f\"reverse_word('Ananas') sollte 'SANANA' sein, ist aber {reverse_word('Ananas')!r}.\"\nassert reverse_word(\"cherry\") == \"YRREHC\", \"reverse_word('cherry') sollte 'YRREHC' sein.\"\nassert reverse_word.__doc__ and is_palindrome.__doc__, \"Beide Funktionen brauchen einen Docstring.\"\nassert is_palindrome(\"Anna\") is True, \"is_palindrome('Anna') sollte True sein – Gross-/Kleinschreibung ignorieren!\"\nassert is_palindrome(\"Ananas\") is False, \"is_palindrome('Ananas') sollte False sein.\"\nassert is_palindrome(\"a\") is True, \"Ein einzelner Buchstabe ist ein Palindrom.\"\nassert check_list == [False, True, True, False, True, False, True], f\"check_list stimmt nicht: {check_list}.\"\nassert \"[False, True, True, False, True, False, True]\" in _ausgabe, \"check_list wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Umkehren mit Slicing: `word[::-1]`.",
+        "Gross-/Kleinschreibung angleichen: `.lower()` oder `.upper()`.",
+        "Ein Vergleich wie `a == b` ist schon ein Boolean – direkt `return`."
+      ],
+      "loesung": "def reverse_word(word: str) -> str:\n    \"\"\"Reverse a word and convert it to uppercase.\n\n    Parameters:\n        word (str): Word to reverse.\n\n    Returns:\n        str: Reversed word in uppercase.\n    \"\"\"\n    return word[::-1].upper()\n\n\ndef is_palindrome(word: str) -> bool:\n    \"\"\"Check whether a word is a palindrome, ignoring letter case.\n\n    Parameters:\n        word (str): Word to check.\n\n    Returns:\n        bool: True if the word is a palindrome, otherwise False.\n    \"\"\"\n    word = word.lower()\n    return word == word[::-1]\n\nword_list = [\"Ananas\", \"Anna\", \"Hannah\", \"Jojo\", \"Malayalam\", \"Pipi\", \"Tattarrattat\"]\ncheck_list = []\nfor word in word_list:\n    check_list.append(is_palindrome(word))\nprint(check_list)"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "format": 2,
+  "fach": "digitaltechnik",
+  "stand": "2026-11-09",
+  "quelle": "Stundenplan HS26 und Zeitplan Bachelor 2026/27 (aus dem Digital-Campus-Dashboard), Prüfungsplan HS26 (Stand 3.11.2026, aus Digital Campus Mathe), MEP-Infos aus den Digitaltechnik-Unterlagen.",
+  "termine": [
+    {
+      "id": "dt-sw09",
+      "titel": "Unterricht SW09",
+      "art": "unterricht",
+      "von": "2026-11-09",
+      "zeit": "Mo 12:30–14:55",
+      "ort": "B332b"
+    },
+    {
+      "id": "dt-sw10",
+      "titel": "Unterricht SW10",
+      "art": "unterricht",
+      "von": "2026-11-16",
+      "zeit": "Mo 12:30–14:55",
+      "ort": "B332b"
+    },
+    {
+      "id": "dt-sw11",
+      "titel": "Unterricht SW11",
+      "art": "unterricht",
+      "von": "2026-11-23",
+      "zeit": "Mo 12:30–14:55",
+      "ort": "B332b"
+    },
+    {
+      "id": "dt-sw12",
+      "titel": "Unterricht SW12",
+      "art": "unterricht",
+      "von": "2026-11-30",
+      "zeit": "Mo 12:30–14:55",
+      "ort": "B332b"
+    },
+    {
+      "id": "dt-sw13",
+      "titel": "Unterricht SW13",
+      "art": "unterricht",
+      "von": "2026-12-07",
+      "zeit": "Mo 12:30–14:55",
+      "ort": "B332b"
+    },
+    {
+      "id": "dt-sw14",
+      "titel": "Unterricht SW14 (letzte Woche)",
+      "art": "unterricht",
+      "von": "2026-12-14",
+      "zeit": "Mo 12:30–14:55",
+      "ort": "B332b"
+    },
+    {
+      "id": "ende-hs26",
+      "titel": "Letzter Unterrichtstag HS26",
+      "art": "info",
+      "von": "2026-12-19"
+    },
+    {
+      "id": "ferien-weihn",
+      "titel": "Weihnachtsferien",
+      "art": "info",
+      "von": "2026-12-20",
+      "bis": "2027-01-03"
+    },
+    {
+      "id": "pruef-vorb-hs26",
+      "titel": "Prüfungsvorbereitung (unterrichtsfrei)",
+      "art": "info",
+      "von": "2027-01-11",
+      "bis": "2027-01-17"
+    },
+    {
+      "id": "mep-dt",
+      "titel": "Modulendprüfung Digitaltechnik",
+      "art": "pruefung",
+      "von": "2027-01-19",
+      "zeit": "Di 16:30",
+      "ort": "E404",
+      "hinweis": "2 h schriftlich, Einzelprüfung. Erlaubt: 4 A4-Blätter Zusammenfassung (beidseitig). Kein Taschenrechner, Handy, Smartwatch oder Computer. Sicher dabei: Entwurf von Zustandsautomaten, Zustandsdiagramme, Zustandstabellen, Karnaugh-Tabellen.",
+      "bewertet": true
+    }
+  ]
+}

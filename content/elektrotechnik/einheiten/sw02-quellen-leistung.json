@@ -1,0 +1,330 @@
+{
+  "id": "sw02-quellen-leistung",
+  "bereich": "theorie",
+  "woche": 2,
+  "titel": "Block 2 · Quellen, Superposition, Leistung",
+  "untertitel": "Lineare Spannungsquelle, Überlagerung, Leistung, Wirkungsgrad, Energiekosten",
+  "quelle": "ET+L – H26 – Block 2 (20.09.2026), Folien S. 13–39, Aufgaben S. 42–53; Lösungen in Block 3, S. 46–57. Buch Ose: Seiten bis 26 und 69–73.",
+  "lektionen": [
+    {
+      "id": "lineare-quelle",
+      "titel": "Ideale und lineare Spannungsquelle",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Eine **ideale** Spannungsquelle liefert beliebig viel Strom ohne Spannungsabfall – das gibt es nicht. Realistischer ist die **lineare Spannungsquelle**: ideale Quelle $U_q$ mit Innenwiderstand $R_i$."
+        },
+        {
+          "typ": "formel",
+          "tex": "U = U_q - I\\cdot R_i"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Leerlauf** ($R_a = \\infty$): $I = 0$, $U = U_q$",
+            "**Kurzschluss** ($R_a = 0$): $I_K = U_q / R_i$, $U = 0$",
+            "Innenwiderstand aus der Kennlinie: $R_i = -\\dfrac{\\Delta U}{\\Delta I} = \\dfrac{U_q}{I_K}$"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Achtung: Nicht jede Quelle darf kurzgeschlossen werden."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Eine Quelle mit $U_q = 100\\,\\text{V}$ und $R_i = 2\\,\\Omega$ wird kurzgeschlossen. Wie gross ist der Kurzschlussstrom?",
+          "loesung": 50,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B2-E2",
+          "loesungsweg": [
+            "$I_K = \\dfrac{U_q}{R_i} = \\dfrac{100\\,\\text{V}}{2\\,\\Omega} = 50\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "multiple_choice",
+          "frage": "Wo entsteht beim Kurzschluss dieser Quelle die Verlustleistung?",
+          "optionen": [
+            "Im Innenwiderstand der Quelle",
+            "Im Kurzschlussdraht",
+            "Nirgends, die Spannung ist ja 0 V",
+            "Im Messgerät"
+          ],
+          "richtig": 0,
+          "erklaerung": "An den Klemmen liegt 0 V, also wird die ganze Leistung im Innenwiderstand umgesetzt (B2-E2)."
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Eine Autobatterie zeigt im Leerlauf 10 V, bei 20 A Last noch 6 V. Wie gross ist der Innenwiderstand?",
+          "loesung": 0.2,
+          "einheit": "Ω",
+          "toleranz": 0.02,
+          "quelle": "B2-E9",
+          "loesungsweg": [
+            "$R_i = \\dfrac{10\\,\\text{V} - 6\\,\\text{V}}{20\\,\\text{A}} = 0.2\\,\\Omega$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Gleiche Batterie: Welche Leistung wird bei 20 A im Lastwiderstand umgesetzt?",
+          "loesung": 120,
+          "einheit": "W",
+          "toleranz": 0.02,
+          "quelle": "B2-E9",
+          "loesungsweg": [
+            "$R_L = \\dfrac{6\\,\\text{V}}{20\\,\\text{A}} = 0.3\\,\\Omega$",
+            "$P_L = U\\cdot I = 6\\,\\text{V}\\cdot20\\,\\text{A} = 120\\,\\text{W}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "superposition",
+      "titel": "Superposition (Überlagerung)",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "In einem **linearen** Netzwerk mit mehreren Quellen darf jeder Beitrag einzeln berechnet und danach addiert werden. Superposition setzt Linearität voraus – bei einer Versandgebühr oder einer quadratischen Funktion klappt es nicht."
+        },
+        {
+          "typ": "titel",
+          "text": "Vorgehen"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "1. Eine Quelle auswählen, alle anderen ausschalten",
+            "2. Alle Ströme und Spannungen dieser einen Quelle berechnen",
+            "3. Für jede weitere Quelle wiederholen",
+            "4. Beiträge **mit Vorzeichen** addieren"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Quellen ausschalten"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Spannungsquelle (0 V) → **Kurzschluss**",
+            "Stromquelle (0 A) → **Unterbruch** (Leerlauf)"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Wodurch wird eine ideale Spannungsquelle beim Ausschalten ersetzt?",
+          "optionen": [
+            "Durch einen Kurzschluss",
+            "Durch einen Unterbruch",
+            "Durch ihren Innenwiderstand mal zwei",
+            "Durch eine Stromquelle"
+          ],
+          "richtig": 0,
+          "erklaerung": "Eine Spannungsquelle mit 0 V entspricht einem Kurzschluss. Eine Stromquelle mit 0 A entspricht einem Unterbruch."
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Quelle 1: $U_{q1} = 10\\,\\text{V}$ mit $R_1 = 4\\,\\Omega$, Quelle 2: $U_{q2} = 5\\,\\text{V}$ mit $R_2 = 10\\,\\Omega$. Die Klemmen A–B sind kurzgeschlossen. Wie gross ist $I_K$?",
+          "loesung": 3,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "Block 2, S. 21–22",
+          "loesungsweg": [
+            "Nur $U_{q1}$: $I_{K1} = 10\\,\\text{V}/4\\,\\Omega = 2.5\\,\\text{A}$",
+            "Nur $U_{q2}$: $I_{K2} = 5\\,\\text{V}/10\\,\\Omega = 0.5\\,\\text{A}$",
+            "$I_K = 2.5\\,\\text{A} + 0.5\\,\\text{A} = 3\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Gleiche Schaltung, aber A–B offen. Wie gross ist $U_{AB}$?",
+          "loesung": 8.571,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "Block 2, S. 23–24",
+          "loesungsweg": [
+            "Nur $U_{q1}$: $U_{AB1} = 10\\,\\text{V}\\cdot\\dfrac{10\\,\\Omega}{14\\,\\Omega} = 7.143\\,\\text{V}$",
+            "Nur $U_{q2}$: $U_{AB2} = 5\\,\\text{V}\\cdot\\dfrac{4\\,\\Omega}{14\\,\\Omega} = 1.429\\,\\text{V}$",
+            "$U_{AB} = 8.571\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "wahr_falsch",
+          "erklaerung": "Superposition setzt Linearität voraus.",
+          "aussage": "Superposition funktioniert auch bei nichtlinearen Bauteilen, solange man sorgfältig addiert.",
+          "richtig": false
+        }
+      ]
+    },
+    {
+      "id": "leistung",
+      "titel": "Leistung, Energie und Wirkungsgrad",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Energie kann nicht erzeugt, nur umgewandelt werden. **Leistung** ist umgesetzte Energie pro Zeit:"
+        },
+        {
+          "typ": "formel",
+          "tex": "P = U\\cdot I = \\frac{U^2}{R} = I^2 R \\qquad W = P\\cdot t"
+        },
+        {
+          "typ": "text",
+          "text": "$1\\,\\text{Ws} = 1\\,\\text{J} = 1\\,\\text{Nm}$. Bei gleich gerichteten Zählpfeilen gilt: $P > 0$ → das Bauteil **nimmt** Leistung auf, $P < 0$ → es **gibt** Leistung ab."
+        },
+        {
+          "typ": "titel",
+          "text": "Wirkungsgrad und Motor"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\eta = \\frac{P_2}{P_1} \\le 1 \\qquad P_\\text{mech} = U I \\eta = M\\cdot\\omega"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Ein Gefrierschrank nimmt an 230 V eine Leistung von 115 W auf. Wie gross ist der Strom?",
+          "loesung": 0.5,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B2-E3",
+          "loesungsweg": [
+            "$I = \\dfrac{P}{U} = \\dfrac{115\\,\\text{W}}{230\\,\\text{V}} = 0.5\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Welche Leistung geht in 200 m Kupferdraht (1.5 mm², $\\rho = 0.0178$) bei 8.5 A verloren?",
+          "loesung": 171.5,
+          "einheit": "W",
+          "toleranz": 0.02,
+          "quelle": "B2-E4",
+          "loesungsweg": [
+            "$R = \\dfrac{0.0178\\cdot200}{1.5}\\,\\Omega = 2.373\\,\\Omega$",
+            "$P = I^2 R = (8.5\\,\\text{A})^2\\cdot2.373\\,\\Omega = 171.5\\,\\text{W}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Ein Motor ($\\eta = 75\\,\\%$) liefert 3.4 Nm bei 1450 min⁻¹ und hängt an 230 V. Welcher Strom fliesst?",
+          "loesung": 2.99,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B2-E5",
+          "loesungsweg": [
+            "$\\omega = 2\\pi\\cdot\\dfrac{1450}{60\\,\\text{s}} = 151.8\\,\\tfrac{\\text{rad}}{\\text{s}}$",
+            "$P_\\text{mech} = 3.4\\,\\text{Nm}\\cdot151.8\\,\\tfrac{\\text{rad}}{\\text{s}} = 516.3\\,\\text{W}$",
+            "$I = \\dfrac{P_\\text{mech}}{U\\,\\eta} = \\dfrac{516.3\\,\\text{W}}{230\\,\\text{V}\\cdot0.75} = 2.99\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "wahr_falsch",
+          "erklaerung": "Negatives Vorzeichen = Leistungsabgabe, z. B. bei einer Quelle (Vergleich Skilift / Skipiste).",
+          "aussage": "Ist das Produkt $U\\cdot I$ (gleiche Zählpfeilrichtung) negativ, gibt das Bauteil Leistung an die Schaltung ab.",
+          "richtig": true
+        }
+      ]
+    },
+    {
+      "id": "energie-kosten",
+      "titel": "Energiekosten, Ladung und Wärme",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "formel",
+          "tex": "\\text{Kosten} = W\\cdot k \\qquad (W \\text{ in kWh},\\; k \\text{ in CHF/kWh})"
+        },
+        {
+          "typ": "text",
+          "text": "Der Strompreis besteht aus Netznutzung, Energietarif, Abgaben an das Gemeinwesen und dem Netzzuschlag des Bundes. Preise vergleicht die ElCom."
+        },
+        {
+          "typ": "titel",
+          "text": "Elektrische Energie in Wärme"
+        },
+        {
+          "typ": "formel",
+          "tex": "W_\\text{el} = P_\\text{el}\\cdot t = \\frac{m\\,c\\,\\Delta\\vartheta}{\\eta}"
+        },
+        {
+          "typ": "text",
+          "text": "Spezifische Wärmekapazität von Wasser: $c = 4182\\,\\tfrac{\\text{J}}{\\text{kg K}}$."
+        },
+        {
+          "typ": "text",
+          "text": "Für Batterien gilt $W = U\\cdot Q$ – die Kapazität in Ah ist eine Ladung."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Eine Wanduhr läuft mit einer AA-Batterie (1.5 V, 2850 mAh) genau 4 Jahre. Welche Leistung braucht sie? Angabe in µW.",
+          "loesung": 121.9,
+          "einheit": "µW",
+          "toleranz": 0.02,
+          "quelle": "B2-E10",
+          "loesungsweg": [
+            "$W = U\\cdot Q = 1.5\\,\\text{V}\\cdot2.85\\,\\text{Ah} = 4.275\\,\\text{Wh}$",
+            "$t = 4\\cdot365.25\\cdot24\\,\\text{h} = 35\\,064\\,\\text{h}$",
+            "$P = \\dfrac{4.275\\,\\text{Wh}}{35\\,064\\,\\text{h}} = 121.9\\,\\mu\\text{W}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Ein Rauchmelder testet alle 5 s während 10 ms mit 1 mA, sonst fliessen 4 µA. Welche Ladung liefert die Batterie in 3 Jahren (365 d)? Angabe in C.",
+          "loesung": 566.9,
+          "einheit": "C",
+          "toleranz": 0.02,
+          "quelle": "B2-E11",
+          "loesungsweg": [
+            "$Q_\\text{Zyklus} = 1\\,\\text{mA}\\cdot10\\,\\text{ms} + 4\\,\\mu\\text{A}\\cdot4.99\\,\\text{s} = 29.96\\,\\mu\\text{As}$",
+            "$n = \\dfrac{3\\cdot365\\cdot24\\cdot3600\\,\\text{s}}{5\\,\\text{s}} = 18\\,921\\,600$",
+            "$Q = n\\cdot Q_\\text{Zyklus} = 566.9\\,\\text{C} \\approx 157.5\\,\\text{mAh}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Lüfter: liefert 5 kW bei $\\eta = 90\\,\\%$, läuft 40 % der Zeit gleichmässig über Tag und Nacht. Tarif 12 h zu 14.1 Rp./kWh, 12 h zu 9.2 Rp./kWh. Was kostet ein Jahr (8760 h)? Angabe in CHF.",
+          "loesung": 2268,
+          "einheit": "CHF",
+          "toleranz": 0.03,
+          "quelle": "B2-E6",
+          "loesungsweg": [
+            "$P_\\text{el} = \\dfrac{5\\,\\text{kW}}{0.9} = 5.556\\,\\text{kW}$",
+            "$W = 5.556\\,\\text{kW}\\cdot0.4\\cdot8760\\,\\text{h} = 19\\,467\\,\\text{kWh}$",
+            "Mittlerer Preis: $\\tfrac{14.1 + 9.2}{2} = 11.65\\,\\text{Rp./kWh}$",
+            "Kosten $= 19\\,467\\cdot0.1165\\,\\text{CHF} \\approx 2268\\,\\text{CHF}$",
+            "Hinweis: In den Folien ist zu B2-E6 kein Lösungsweg abgedruckt – dieser Weg ist hergeleitet."
+          ]
+        }
+      ]
+    }
+  ]
+}

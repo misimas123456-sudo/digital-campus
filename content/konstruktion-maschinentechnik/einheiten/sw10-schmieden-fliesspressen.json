@@ -1,0 +1,820 @@
+{
+  "id": "sw10-schmieden-fliesspressen",
+  "titel": "Schmieden und Fliesspressen",
+  "untertitel": "Kap. 4.3 – Gestalten von Schmiede- und Fliesspressteilen",
+  "beschreibung": "Freiform- und Gesenkschmieden, Gestaltungsregeln, Schmiedegüte, Stoffschwierigkeit, Feingliedrigkeit berechnen, Fliesspressen.",
+  "woche": 10,
+  "bereich": "theorie",
+  "quelle": [
+    {
+      "text": "Folien Kap_4.3_Fertigungsgerechtes_Gestalten_Massivumformung_Schmieden_V2.0_SW10.pdf",
+      "stellen": "Folien 2–21 (Vorlesung 17.11.2026, Kap. 4.3 Massivumformung)"
+    },
+    {
+      "text": "Buch «Konstruieren, Gestalten, Entwerfen», Kap. 4.3 Das Gestalten von Schmiede- und Fliesspressteilen",
+      "stellen": "Schmiedegüte, Feingliedrigkeit, Beispiel Lenkstockhebel"
+    },
+    {
+      "text": "Modulprogramm KONST_M HS26 V3.0",
+      "stellen": "SW10, 17.11.2026"
+    }
+  ],
+  "lektionen": [
+    {
+      "id": "sw10-schmieden-fliesspressen-l1",
+      "titel": "Schmieden und Freiformschmieden",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW10, Folien 2–7",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Schmieden gehört zum **Umformen**: Der Zusammenhalt des Werkstoffs bleibt **erhalten**, nur Form und Grösse ändern sich. Beim Schmieden formen **Druckschläge** das Metallwerkstück."
+        },
+        {
+          "typ": "titel",
+          "text": "Vorteile von Umformteilen"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "verlustarme Werkstoffverarbeitung",
+            "bessere Werkstoffeigenschaften: **Kaltverfestigung** beim Kaltformen, **Gefüge-Homogenisierung** beim Warmformen",
+            "Oberflächenverfestigung erhöht Dauer- und Zeitschwingfestigkeit",
+            "relativ geringe Fertigungskosten bei Grossserien (einfache Maschinen, teure aber langlebige Werkzeuge)"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Freiformschmieden"
+        },
+        {
+          "typ": "text",
+          "text": "Der Rohling liegt **ohne begrenzende Werkzeuge**. Der Werkstoff fliesst entsprechend der Führung von Werkstück und Werkzeug."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Vorgang",
+            "Wirkung",
+            "Faserverlauf"
+          ],
+          "zeilen": [
+            [
+              "Stauchen",
+              "Querschnitt wird grösser, Länge kleiner",
+              "stark gekrümmt, ungünstig; Knickgefahr des Rohlings"
+            ],
+            [
+              "Breiten",
+              "Breite wird grösser, Höhe kleiner",
+              "stark gekrümmt, ungünstig"
+            ],
+            [
+              "Strecken",
+              "Reihe von Stauchungen",
+              "parallel, günstige Eigenschaften"
+            ]
+          ]
+        },
+        {
+          "typ": "hinweis",
+          "text": "Richtwerte beim Stauchen (Folie 5): $d_1 < 1.5\\,d_0$ und $L_0 < 3.5\\,d_0$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-schmieden-fliesspressen-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Was geschieht beim Stauchen?",
+          "optionen": [
+            "Der Querschnitt wird grösser, die Länge kleiner",
+            "Der Querschnitt wird kleiner, die Länge grösser",
+            "Das Werkstück wird gebogen",
+            "Das Werkstück wird gespalten"
+          ],
+          "richtig": 0,
+          "erklaerung": "Stauchen vergrössert den Querschnitt durch Verringerung der Länge.",
+          "quelle": "Folien SW10, Folie 5"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Vorgang ergibt beim Freiformschmieden einen günstigen, parallelen Faserverlauf?",
+          "optionen": [
+            "Strecken",
+            "Stauchen",
+            "Breiten",
+            "Keiner davon"
+          ],
+          "richtig": 0,
+          "erklaerung": "Strecken ist eine Reihe von Stauchungen mit parallelem Faserverlauf. Stauchen und Breiten krümmen die Fasern stark.",
+          "quelle": "Folien SW10, Folien 5–7"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Beim Freiformschmieden begrenzt ein Gesenk den Werkstofffluss.",
+          "richtig": false,
+          "erklaerung": "Beim Freiformschmieden gibt es **keine begrenzenden Werkzeuge**. Ober- und Untergesenk gehören zum Gesenkschmieden.",
+          "quelle": "Folien SW10, Folie 5"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l1-a4",
+          "typ": "rechnung",
+          "frage": "Ein Rohling mit $d_0 = 40\\,\\text{mm}$ soll gestaucht werden. Wie lang darf er nach der Richtregel höchstens sein?",
+          "loesung": 140,
+          "toleranz": 0.01,
+          "einheit": "mm",
+          "loesungsweg": [
+            "$L_0 < 3.5 \\cdot d_0$",
+            "$3.5 \\cdot 40\\,\\text{mm} = 140\\,\\text{mm}$"
+          ],
+          "erklaerung": "Längere Rohlinge knicken beim Stauchen aus.",
+          "quelle": "Folien SW10, Folie 5"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "Welcher Vorteil gilt für Umformteile?",
+          "optionen": [
+            "Oberflächenverfestigung erhöht die Dauerfestigkeit",
+            "Es entstehen keine Werkzeugkosten",
+            "Der Faserverlauf wird immer zerschnitten",
+            "Die Werkstoffverluste sind hoch"
+          ],
+          "richtig": 0,
+          "erklaerung": "Umformteile haben verlustarme Verarbeitung und eine verfestigte Oberfläche.",
+          "quelle": "Folien SW10, Folie 4"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l1-a6",
+          "typ": "lueckentext",
+          "text": "Beim Kaltformen tritt ___ ein, beim Warmformen eine ___ des Gefüges.",
+          "antworten": [
+            [
+              "Kaltverfestigung"
+            ],
+            [
+              "Homogenisierung"
+            ]
+          ],
+          "erklaerung": "Kaltverfestigung beim Kaltformen, Gefüge-Homogenisierung beim Warmformen.",
+          "quelle": "Folien SW10, Folie 4"
+        }
+      ]
+    },
+    {
+      "id": "sw10-schmieden-fliesspressen-l2",
+      "titel": "Gesenkschmieden: Ablauf und Wirtschaftlichkeit",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Folien SW10, Folien 8–9, 17–18; Buch Kap. 4.3",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Beim **Gesenkschmieden** leiten **Obergesenk und Untergesenk** den Werkstofffluss. Überschüssiger Werkstoff fliesst als **Grat** in die **Gratrille** (Überlauf). Ist die Gravur gefüllt, ist das Werkstück fertig geformt."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Vorgang",
+            "Werkstofffluss",
+            "Eigenschaft"
+          ],
+          "zeilen": [
+            [
+              "Stauchen",
+              "in Werkzeugrichtung",
+              "kurze Wege, wenig Reibung"
+            ],
+            [
+              "Breiten",
+              "quer zum Werkzeug",
+              "lange Wege, grosse Reibung"
+            ],
+            [
+              "Steigen",
+              "entgegen der Werkzeugbewegung",
+              "letzte Umformphase"
+            ]
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Stückzahl und Schmiedeaufwand"
+        },
+        {
+          "typ": "text",
+          "text": "Steigende Stückzahl erlaubt höhere Schmiedekosten, weil die Herstellkosten sinken. Ein grösserer Schmiedeaufwand **spart mechanische Endbearbeitung**."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Stückzahl",
+            "Schmiedeaufwand"
+          ],
+          "zeilen": [
+            [
+              "< 50",
+              "gering"
+            ],
+            [
+              "ca. 500",
+              "mittel"
+            ],
+            [
+              "> 5'000",
+              "gross"
+            ]
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Einsatz"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Stückmassen meist **unter 10 kg**, über eine Tonne ist möglich",
+            "Komplexe Teile entstehen in mehreren Umformschritten",
+            "Gesenkschmieden und Giessen sind bei grossen Stückzahlen konkurrenzfähig (Maschinen-, Geräte- und Fahrzeugbau)",
+            "Beide erreichen hohe Fertigungsgenauigkeit und reduzieren die spanende Bearbeitung"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Schmiedestücke haben im Allgemeinen ein **homogeneres Gefüge**, **höhere Festigkeit** und **bessere Oberflächen** als Gussstücke."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-schmieden-fliesspressen-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "In welcher Umformphase fliesst der Werkstoff entgegen der Werkzeugbewegung?",
+          "optionen": [
+            "Steigen",
+            "Stauchen",
+            "Breiten",
+            "Strecken"
+          ],
+          "richtig": 0,
+          "erklaerung": "Steigen ist die letzte Umformphase. Der Werkstoff fliesst dabei entgegen der Werkzeugbewegung.",
+          "quelle": "Folien SW10, Folie 8"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Vorgang im Gesenk hat kurze Wege und wenig Reibung?",
+          "optionen": [
+            "Stauchen",
+            "Breiten",
+            "Steigen",
+            "Gratbildung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Stauchen fliesst der Werkstoff in Werkzeugrichtung. Breiten braucht lange Wege und hat grosse Reibung.",
+          "quelle": "Folien SW10, Folie 8"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "Wozu dient die Gratrille im Gesenk?",
+          "optionen": [
+            "Sie nimmt überschüssigen Werkstoff als Überlauf auf",
+            "Sie kühlt das Gesenk",
+            "Sie zentriert den Rohling",
+            "Sie erzeugt die Seitenschrägen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Gratrille wird mit Überlauf gefüllt. Der Grat wird danach abgetrennt.",
+          "quelle": "Folien SW10, Folie 8"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l2-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Bei Stückzahlen über 5'000 lohnt sich in der Regel ein grosser Schmiedeaufwand.",
+          "richtig": true,
+          "erklaerung": "Mit hoher Stückzahl verteilen sich die Werkzeugkosten. Der grosse Schmiedeaufwand spart Endbearbeitung.",
+          "quelle": "Folien SW10, Folie 9"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l2-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Gesenkschmiedeteile haben meist eine Stückmasse von über 100 kg.",
+          "richtig": false,
+          "erklaerung": "Die Stückmassen sind meist **kleiner als 10 kg**.",
+          "quelle": "Folien SW10, Folie 17"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l2-a6",
+          "typ": "multiple_choice",
+          "frage": "Was gilt für Schmiedestücke im Vergleich zu Gussstücken?",
+          "optionen": [
+            "Höhere Festigkeit und bessere Oberfläche",
+            "Geringere Festigkeit und rauere Oberfläche",
+            "Immer günstiger bei Einzelstücken",
+            "Grössere Lunkergefahr"
+          ],
+          "richtig": 0,
+          "erklaerung": "Schmiedestücke haben ein homogeneres Gefüge, höhere Festigkeit und bessere Oberflächen.",
+          "quelle": "Buch Kap. 4.3.2; Folien SW10, Folie 10"
+        }
+      ]
+    },
+    {
+      "id": "sw10-schmieden-fliesspressen-l3",
+      "titel": "Gesenkschmiedeteile gestalten",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Folien SW10, Folien 10–11; Buch Kap. 4.3",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Gestaltungsregeln"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Einfache und gleichmässige Formen** anstreben. Unregelmässige Gestalt, schwierige Kurven und tiefe Einformungen (dünne Rippen) erhöhen die Werkzeugkosten und behindern den Werkstofffluss.",
+            "**Grosse Feingliedrigkeit verteuert** die Herstellung: mehr Fertigungsschritte, komplexe Werkzeuge.",
+            "**Schroffe Querschnittsübergänge, scharfe Kanten und extreme Werkstoffanhäufungen** vermeiden.",
+            "**Gesenkteilung** so wählen, dass sich das Teil leicht ausheben und entgraten lässt. **Ebene Gesenkteilungen** sind kostengünstiger als gekröpfte.",
+            "**Bearbeitungszugaben** vorsehen.",
+            "Flächen in Umformrichtung brauchen **Seitenschrägen**, damit man das Teil einfach aus der Gravur nimmt."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Hohlkehlen (Richtwerte nach DIN 7523 Teil 2)"
+        },
+        {
+          "typ": "text",
+          "text": "Bei einer Hohlkehle liegt der Mittelpunkt der Rundung **ausserhalb** des Schmiedestücks."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Hohlkehle",
+            "Rundung zeigt"
+          ],
+          "zeilen": [
+            [
+              "innere Hohlkehle ($r_2$)",
+              "nach innen"
+            ],
+            [
+              "äussere Hohlkehle ($r_3$)",
+              "nach aussen"
+            ]
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Schmiedestücke haben ein sehr homogenes Gefüge. Dafür gilt: Je feingliedriger das Teil, desto teurer."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-schmieden-fliesspressen-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Warum verteuert eine grosse Feingliedrigkeit die Herstellung?",
+          "optionen": [
+            "Mehr Fertigungsschritte und komplexere Werkzeuge",
+            "Der Werkstoff ist teurer",
+            "Es braucht mehr Rohmaterial",
+            "Das Teil hat keine Seitenschrägen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Feingliedrige Teile brauchen mehrere Umformschritte und aufwendige Gesenke.",
+          "quelle": "Folien SW10, Folie 10"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l3-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Scharfe Kanten und extreme Werkstoffanhäufungen sind günstig für den Werkstofffluss.",
+          "richtig": false,
+          "erklaerung": "Sie behindern den Werkstofffluss und sind zu **vermeiden**. Gleichmässige Formen sind besser.",
+          "quelle": "Buch Kap. 4.3.2, Regel 8"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Wozu braucht man Seitenschrägen?",
+          "optionen": [
+            "Für die einfache Entnahme aus der Gravur",
+            "Zur Gewichtseinsparung",
+            "Zur Kühlung des Gesenks",
+            "Zur Kennzeichnung der Schmiedegüte"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne Neigung der Flächen in Umformrichtung bleibt das Teil in der Gravur stecken.",
+          "quelle": "Folien SW10, Folie 11"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l3-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Ebene Gesenkteilungen sind kostengünstiger als gekröpfte.",
+          "richtig": true,
+          "erklaerung": "Ebene Gesenkteilungen haben schmiedetechnische Vorzüge und sind günstiger.",
+          "quelle": "Buch Kap. 4.3.2, Regel 6"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "Wo liegt der Mittelpunkt der Rundung bei einer Hohlkehle?",
+          "optionen": [
+            "Ausserhalb des Schmiedestücks",
+            "Innerhalb des Schmiedestücks",
+            "Auf der Gesenkteilung",
+            "Im Schwerpunkt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei der Hohlkehle liegt der Rundungsmittelpunkt ausserhalb des Schmiedestücks.",
+          "quelle": "Folien SW10, Folie 11"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l3-a6",
+          "typ": "lueckentext",
+          "text": "Weil das Schmiedeteil später spanend nachbearbeitet wird, muss man ___ vorsehen.",
+          "antworten": [
+            [
+              "Bearbeitungszugaben",
+              "Bearbeitungszugabe"
+            ]
+          ],
+          "erklaerung": "Bearbeitungszugaben sichern, dass nach dem Schmieden noch genug Werkstoff zum Bearbeiten da ist.",
+          "quelle": "Folien SW10, Folie 11"
+        }
+      ]
+    },
+    {
+      "id": "sw10-schmieden-fliesspressen-l4",
+      "titel": "Schmiedegüte und Stoffschwierigkeit",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW10, Folien 12–13; Buch Kap. 4.3.5",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Toleranzen bestimmen die Fertigungskosten** auch beim Gesenkschmieden. Für Stahl gilt die Schmiedegüte nach **DIN EN 10243**."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Schmiedegüte",
+            "Bedeutung"
+          ],
+          "zeilen": [
+            [
+              "F",
+              "Genauigkeit reicht meist. Sie wird mit den üblichen Schmiedeeinrichtungen und Verfahren erreicht."
+            ],
+            [
+              "E",
+              "Hohe Toleranzen für einzelne Masse sind mit hohem Aufwand möglich."
+            ]
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Güte E nur auf **einzelne Masse** anwenden, bei denen Güte F nicht reicht. Kleinere Toleranzen bedeuten grösseren Fertigungsaufwand."
+        },
+        {
+          "typ": "titel",
+          "text": "Stoffschwierigkeit"
+        },
+        {
+          "typ": "text",
+          "text": "Sie erfasst den **grösseren Werkzeugverschleiss** und die **grösseren Massschwankungen** hochlegierter Stähle mit höherem Kohlenstoffgehalt."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Gruppe",
+            "Kohlenstoffgehalt",
+            "Summe Mn, Cr, Ni, Mo, V, W"
+          ],
+          "zeilen": [
+            [
+              "M1",
+              "≤ 0.65 Gew.-%",
+              "≤ 5 Gew.-%"
+            ],
+            [
+              "M2",
+              "> 0.65 Gew.-%",
+              "> 5 Gew.-%"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Um die Toleranzen aus der Tabelle (DIN 7526) festzulegen, braucht man **Schmiedegüte**, **Stoffschwierigkeit** und **Feingliedrigkeit** (nächste Lektion). Beispiel aus dem Buch: Ein Lenkstockhebel aus 41Cr4 mit weniger als 0.65 % Kohlenstoff gehört zur Gruppe M1."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-schmieden-fliesspressen-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Schmiedegüte genügt für die meisten Anwendungsfälle?",
+          "optionen": [
+            "F",
+            "E",
+            "M1",
+            "S2"
+          ],
+          "richtig": 0,
+          "erklaerung": "Güte F wird mit den üblichen Schmiedeeinrichtungen erreicht und reicht meist.",
+          "quelle": "Folien SW10, Folie 12"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l4-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Die Schmiedegüte E sollte auf alle Masse eines Bauteils angewendet werden.",
+          "richtig": false,
+          "erklaerung": "Güte E ist aufwendig und gilt nur für **einzelne Masse**, bei denen F nicht reicht.",
+          "quelle": "Folien SW10, Folie 12; Buch Kap. 4.3.5"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l4-a3",
+          "typ": "multiple_choice",
+          "frage": "Was erfasst die Stoffschwierigkeit?",
+          "optionen": [
+            "Werkzeugverschleiss und Massschwankungen hochlegierter Stähle",
+            "Den Werkstoffpreis pro Kilogramm",
+            "Die Stückzahl",
+            "Den Faserverlauf"
+          ],
+          "richtig": 0,
+          "erklaerung": "Hochlegierte Stähle mit mehr Kohlenstoff verschleissen die Werkzeuge stärker und schwanken stärker im Mass.",
+          "quelle": "Folien SW10, Folie 13"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l4-a4",
+          "typ": "multiple_choice",
+          "frage": "Ein Stahl hat 0.40 % Kohlenstoff und 3 % Legierungsanteile (Mn, Cr, Ni, Mo, V, W). Welche Gruppe?",
+          "optionen": [
+            "M1",
+            "M2",
+            "S1",
+            "S2"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beide Werte liegen unter den Grenzen (≤ 0.65 % C und ≤ 5 % Legierung). Das ist Gruppe M1.",
+          "quelle": "Folien SW10, Folie 13"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l4-a5",
+          "typ": "multiple_choice",
+          "frage": "Welche drei Grössen braucht man, um Toleranzen für ein Gesenkschmiedestück aus der Tabelle zu bestimmen?",
+          "optionen": [
+            "Schmiedegüte, Stoffschwierigkeit, Feingliedrigkeit",
+            "Schmiedegüte, Werkstoffpreis, Stückzahl",
+            "Stoffschwierigkeit, Gratbreite, Stückzahl",
+            "Feingliedrigkeit, Gesenkgrösse, Härte"
+          ],
+          "richtig": 0,
+          "erklaerung": "Zusätzlich zur Schmiedegüte werden Stoffschwierigkeit und Feingliedrigkeit berücksichtigt.",
+          "quelle": "Buch Kap. 4.3.5"
+        }
+      ]
+    },
+    {
+      "id": "sw10-schmieden-fliesspressen-l5",
+      "titel": "Rechnen: Feingliedrigkeit",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Folien SW10, Folien 14–16; Buch Kap. 4.3.5",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die **Feingliedrigkeit** $S$ bewertet den Schmiedeaufwand. Sie ist das Verhältnis von Schmiedestück zu **Hüllkörper**, als Masse oder als Volumen:"
+        },
+        {
+          "typ": "formel",
+          "tex": "S = \\frac{m_S}{m_H} = \\frac{V_S}{V_H}"
+        },
+        {
+          "typ": "text",
+          "text": "Hüllkörper: **quaderförmig** oder **stangenförmig**, mit $m_H = V_H \\cdot \\rho$:"
+        },
+        {
+          "typ": "formel",
+          "tex": "V_{HQ} = l \\cdot b \\cdot h \\qquad V_{HS} = \\frac{\\pi}{4} \\, d^2 \\cdot h"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Gruppe",
+            "Feingliedrigkeit S"
+          ],
+          "zeilen": [
+            [
+              "S1",
+              "> 0.62 … 1"
+            ],
+            [
+              "S2",
+              "> 0.32 … 0.62"
+            ],
+            [
+              "S3",
+              "> 0.16 … 0.32"
+            ],
+            [
+              "S4",
+              "> 0 … 0.16"
+            ]
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "**Kleines S = feingliedrig = grosser Schmiedeaufwand.** Beispiel Lenkstockhebel (Buch): $m_S = 3.8\\,\\text{kg}$, $m_H = 10\\,\\text{kg}$, also $S = 0.38$, Gruppe S2."
+        },
+        {
+          "typ": "titel",
+          "text": "Volumenformeln (Folie 16)"
+        },
+        {
+          "typ": "formel",
+          "tex": "V_{KS} = \\frac{\\pi}{12}\\, h\\,(D^2 + d^2 + D\\,d) \\qquad V_{KA} = \\pi\\, h^2 \\left(r - \\frac{h}{3}\\right) \\qquad V_Z = \\frac{\\pi}{4}\\, d^2\\, h"
+        },
+        {
+          "typ": "text",
+          "text": "Für Halbkreisringe gilt die **Guldinsche Regel** (Folie 16: «Gouldinsche Regel»): $V = \\pi\\,(2\\,r_S)\\,A_{Halbkreis}$ mit dem Schwerpunktabstand $x_S = \\frac{4}{3}\\cdot\\frac{r}{\\pi}$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-schmieden-fliesspressen-l5-a1",
+          "typ": "rechnung",
+          "frage": "Ein Schmiedestück wiegt $2.4\\,\\text{kg}$, sein Hüllkörper $8.0\\,\\text{kg}$. Wie gross ist die Feingliedrigkeit $S$?",
+          "loesung": 0.3,
+          "toleranz": 0.01,
+          "einheit": "",
+          "loesungsweg": [
+            "$S = m_S / m_H$",
+            "$S = 2.4 / 8.0 = 0.30$"
+          ],
+          "erklaerung": "S ist ein Verhältnis und hat keine Einheit.",
+          "quelle": "Folien SW10, Folie 14"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Zu welcher Gruppe gehört $S = 0.30$?",
+          "optionen": [
+            "S3",
+            "S1",
+            "S2",
+            "S4"
+          ],
+          "richtig": 0,
+          "erklaerung": "S3 gilt für $> 0.16 \\dots 0.32$.",
+          "quelle": "Buch Kap. 4.3.5"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l5-a3",
+          "typ": "rechnung",
+          "frage": "Ein Teil hat einen quaderförmigen Hüllkörper $200 \\times 60 \\times 40\\,\\text{mm}$ aus Stahl ($\\rho = 7.85\\,\\text{kg/dm}^3$). Wie schwer ist der Hüllkörper?",
+          "loesung": 3.768,
+          "toleranz": 0.01,
+          "einheit": "kg",
+          "loesungsweg": [
+            "$V_{HQ} = 200 \\cdot 60 \\cdot 40\\,\\text{mm}^3 = 480\\,000\\,\\text{mm}^3 = 0.48\\,\\text{dm}^3$",
+            "$m_H = 0.48 \\cdot 7.85 = 3.768\\,\\text{kg}$"
+          ],
+          "erklaerung": "Erst das Volumen in dm³ umrechnen, dann mit der Dichte multiplizieren.",
+          "quelle": "Folien SW10, Folie 14"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l5-a4",
+          "typ": "rechnung",
+          "frage": "Ein stangenförmiger Hüllkörper hat $d = 70\\,\\text{mm}$ und $h = 44\\,\\text{mm}$ (Masse des Spurzapfens von Folie 15), Stahl mit $\\rho = 7.85\\,\\text{kg/dm}^3$. Wie schwer ist er?",
+          "loesung": 1.329,
+          "toleranz": 0.01,
+          "einheit": "kg",
+          "loesungsweg": [
+            "$V_{HS} = \\frac{\\pi}{4}\\cdot 0.7^2 \\cdot 0.44\\,\\text{dm}^3 = 0.1693\\,\\text{dm}^3$",
+            "$m_H = 0.1693 \\cdot 7.85 = 1.329\\,\\text{kg}$"
+          ],
+          "erklaerung": "In dm rechnen: 70 mm = 0.7 dm, 44 mm = 0.44 dm.",
+          "quelle": "Folien SW10, Folien 14–15"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l5-a5",
+          "typ": "multiple_choice",
+          "frage": "Der Spurzapfen aus a4 wiege angenommen $m_S = 0.80\\,\\text{kg}$. Welche Gruppe?",
+          "optionen": [
+            "S2",
+            "S1",
+            "S3",
+            "S4"
+          ],
+          "richtig": 0,
+          "erklaerung": "$S = 0.80 / 1.329 = 0.60$, das liegt in $> 0.32 \\dots 0.62$, also S2. (Der Wert 0.80 kg ist hier nur angenommen.)",
+          "quelle": "Folien SW10, Folie 15"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l5-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Ein Schmiedestück mit $S = 0.10$ ist sehr feingliedrig und hat einen hohen Schmiedeaufwand.",
+          "richtig": true,
+          "erklaerung": "$S = 0.10$ liegt in S4 ($> 0 \\dots 0.16$): wenig Masse im Verhältnis zum Hüllkörper, also viel Aufwand.",
+          "quelle": "Buch Kap. 4.3.5"
+        }
+      ]
+    },
+    {
+      "id": "sw10-schmieden-fliesspressen-l6",
+      "titel": "Fliesspressteile gestalten",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Folien SW10, Folien 19–21; Buch Kap. 4.3",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Typische fliessgepresste Bauteile sind **Vollkörper** (mit verschiedenen Kopf- und Schaftformen) und **Hohlkörper** (mit verschiedenen Innenmantel- und Bodenteilen). Man unterscheidet Vorwärts- und Rückwärtsfliesspressen. Beim Rückwärtsfliesspressen gibt es eine **tote Zone**."
+        },
+        {
+          "typ": "titel",
+          "text": "Gestaltungsregeln"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Der **Faserverlauf** hat grossen Einfluss auf die Gestaltfestigkeit.",
+            "Werkzeuge und Rohlinge müssen **fliessgerecht** gestaltet sein.",
+            "**Sanftes Umlenken** der Fasern vermeidet erhöhte Kerbwirkung.",
+            "Den Faserverlauf bei der mechanischen Bearbeitung **möglichst nicht trennen**."
+          ]
+        },
+        {
+          "typ": "hinweis",
+          "text": "Beim **Warmfliesspressen** gelten weitgehend die Gestaltungsregeln des Gesenkschmiedens. Für das **Kaltfliesspressen** gibt es Gestaltungsbeispiele im Anhang A-50 des Buchs. Beispiele mit Faserverlauf: Getrieberadrohling, Joch eines Kardangelenks."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-schmieden-fliesspressen-l6-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche zwei Grundformen sind für Fliesspressteile typisch?",
+          "optionen": [
+            "Vollkörper und Hohlkörper",
+            "Blech- und Drahtteile",
+            "Gussteile und Sinterteile",
+            "Platten und Profile"
+          ],
+          "richtig": 0,
+          "erklaerung": "Fliessgepresst werden Vollkörper mit Kopf- und Schaftformen sowie Hohlkörper.",
+          "quelle": "Folien SW10, Folie 19"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l6-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Der Faserverlauf hat beim Fliesspressen keinen Einfluss auf die Gestaltfestigkeit.",
+          "richtig": false,
+          "erklaerung": "Der Faserverlauf hat einen **grossen** Einfluss auf die Gestaltfestigkeit.",
+          "quelle": "Folien SW10, Folie 20"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l6-a3",
+          "typ": "multiple_choice",
+          "frage": "Warum sollen die Fasern sanft umgelenkt werden?",
+          "optionen": [
+            "Das vermeidet erhöhte Kerbwirkung",
+            "Das spart Schmiermittel",
+            "Das senkt die Presstemperatur",
+            "Das verkürzt den Rohling"
+          ],
+          "richtig": 0,
+          "erklaerung": "Scharfe Faserumlenkungen wirken wie Kerben.",
+          "quelle": "Folien SW10, Folie 20"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l6-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Bei der mechanischen Bearbeitung sollte der Faserverlauf möglichst nicht getrennt werden.",
+          "richtig": true,
+          "erklaerung": "Durchtrennte Fasern schwächen das Bauteil.",
+          "quelle": "Folien SW10, Folie 20"
+        },
+        {
+          "id": "sw10-schmieden-fliesspressen-l6-a5",
+          "typ": "multiple_choice",
+          "frage": "Für welches Verfahren gelten beim Warmfliesspressen weitgehend die Gestaltungsregeln?",
+          "optionen": [
+            "Gesenkschmieden",
+            "Sintern",
+            "Sandguss",
+            "Tiefziehen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Warmfliesspressen gelten weitgehend die Regeln für das Gesenkschmieden.",
+          "quelle": "Folien SW10, Folie 21"
+        }
+      ]
+    }
+  ]
+}

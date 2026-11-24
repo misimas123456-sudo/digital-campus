@@ -1,0 +1,734 @@
+{
+  "id": "block21-differenzialgleichungen",
+  "titel": "Differenzialgleichungen und Konstruktionssatz",
+  "untertitel": "DGL lösen, Trennung der Variablen, Anfangswertprobleme, Freier Fall, Konstruktionssatz",
+  "bereich": "theorie",
+  "quelle": "Mathematik 1B, Skriptblock 21 (SkrpBlo21, Abschnitte 3.3.3 bis 3.3.4) und Übungsblock 21 (UebBlo21)",
+  "lektionen": [
+    {
+      "id": "block21-differenzialgleichungen-l1",
+      "titel": "Differenzialgleichung: Lösen durch Integrieren",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Skript Block 21, 3.3.3, Übungsblock 21, Ü 21.1",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Eine **Differenzialgleichung** (DGL) enthält die Ableitung einer gesuchten Funktion. Hängt die rechte Seite nur von der unabhängigen Variablen ab, genügt Integrieren: Aus $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=f(x)$ folgt $y=\\int f(x)\\,\\mathrm{d}x$."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=2x$ hat die **allgemeine Lösung** $y=x^2+C$. Jeder Wert von $C$ gibt eine **partikuläre Lösung**."
+        },
+        {
+          "typ": "merke",
+          "text": "Die Lösung einer DGL ist eine Funktion (keine Zahl) und enthält bei der Integration eine Konstante $C$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l1-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Die allgemeine Lösung von $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=f(x)$ ist eine Stammfunktion von $f$ samt Konstante $C$.",
+          "richtig": true,
+          "erklaerung": "Integrieren beider Seiten nach $x$ liefert $y=\\int f\\,\\mathrm{d}x+C$.",
+          "quelle": "Skript Block 21, 3.3.3"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Ü 21.1a: Welche allgemeine Lösung hat $\\frac{\\mathrm{d}r}{\\mathrm{d}p}=3\\sin(4p+1)$?",
+          "optionen": [
+            "$r=-3\\cos(4p+1)+C$",
+            "$r=-12\\cos(4p+1)+C$",
+            "$r=-\\frac34\\cos(4p+1)+C$",
+            "$r=\\frac34\\cos(4p+1)+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$w=4p+1$, $\\mathrm{d}p=\\frac14\\mathrm{d}w$, $3\\cdot\\frac14\\int\\sin w\\,\\mathrm{d}w=-\\frac34\\cos w$.",
+          "quelle": "Übungsblock 21, Ü 21.1"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l1-a3",
+          "typ": "rechnung",
+          "frage": "Ü 21.1b: $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=8x+\\frac1x$ hat die Lösung $y=a\\,x^2+\\ln|x|+C$. Bestimme $a$.",
+          "loesung": 4.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int8x\\,\\mathrm{d}x=4x^2$",
+            "$a=4$"
+          ],
+          "erklaerung": "Das Integral von $\\frac1x$ ist $\\ln|x|$.",
+          "quelle": "Übungsblock 21, Ü 21.1"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Was beschreibt $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=3$?",
+          "optionen": [
+            "Die Konstante Funktion $y=3$",
+            "Nur die Gerade $y=3x$",
+            "Alle Geraden mit Steigung $3$: $y=3x+C$",
+            "Eine Parabel"
+          ],
+          "richtig": 2,
+          "erklaerung": "Alle Lösungen unterscheiden sich um eine vertikale Verschiebung $C$.",
+          "quelle": "Skript Block 21, 3.3.3"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l1-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Eine Differenzialgleichung erster Ordnung hat genau eine Lösung.",
+          "richtig": false,
+          "erklaerung": "Sie hat eine ganze Schar von Lösungen, eine für jede Konstante $C$.",
+          "quelle": "Skript Block 21, 3.3.3"
+        }
+      ]
+    },
+    {
+      "id": "block21-differenzialgleichungen-l2",
+      "titel": "Trennung der Variablen",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 21, 3.3.15",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Hängt die rechte Seite auch von $y$ ab, trennt man die Variablen: Alles mit $y$ auf eine Seite, alles mit $x$ auf die andere, dann beide Seiten integrieren."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=y^2x$: $\\frac{\\mathrm{d}y}{y^2}=x\\,\\mathrm{d}x$, also $-\\frac1y=\\frac{x^2}2+C$, somit $y=-\\frac{1}{x^2/2+C}$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Probe: Die Lösung ableiten und in die DGL einsetzen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l2-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Bei $\\frac{\\mathrm{d}y}{\\mathrm{d}x}=y^2x$ lautet die getrennte Form $\\frac{\\mathrm{d}y}{y^2}=x\\,\\mathrm{d}x$.",
+          "richtig": true,
+          "erklaerung": "$y^2$ wird durch Division auf die $y$-Seite gebracht.",
+          "quelle": "Skript Block 21, 3.3.15"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "Wie lautet $\\int\\frac{\\mathrm{d}y}{y^2}$?",
+          "optionen": [
+            "$-\\frac1y+C$",
+            "$\\frac1y+C$",
+            "$\\ln y^2+C$",
+            "$-\\frac{1}{y^3}+C$"
+          ],
+          "richtig": 0,
+          "erklaerung": "$y^{-2}$ hat die Stammfunktion $-y^{-1}$.",
+          "quelle": "Skript Block 21, 3.3.15"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l2-a3",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=y^2x$ mit $y(0)=1$. Wie gross ist $y(1)$?",
+          "loesung": 2.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$-\\frac1y=\\frac{x^2}{2}+C$, $y(0)=1\\Rightarrow C=-1$",
+            "$y=\\frac{2}{2-x^2}$",
+            "$y(1)=2$"
+          ],
+          "erklaerung": "Mit $C=-1$ wird $y(1)=\\frac1{1-1/2}=2$.",
+          "quelle": "Skript Block 21, 3.3.15"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l2-a4",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=xy$ mit $y(0)=1$. Wie gross ist $y(2)$ (3 Nachkommastellen)?",
+          "loesung": 7.3891,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\frac{\\mathrm{d}y}{y}=x\\,\\mathrm{d}x$, $\\ln y=\\frac{x^2}2+C$",
+            "$y=e^{x^2/2}$ wegen $y(0)=1$",
+            "$y(2)=e^2\\approx7.389$"
+          ],
+          "erklaerung": "Aus $\\ln y=\\frac{x^2}{2}+C$ folgt $y=Ae^{x^2/2}$ mit $A=1$.",
+          "quelle": "Variante zu Skript Block 21, 3.3.15"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l2-a5",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\frac xy$ mit $y(0)=3$ und $y>0$. Wie gross ist $y(4)$?",
+          "loesung": 5.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\,\\mathrm{d}y=x\\,\\mathrm{d}x$, $\\frac{y^2}{2}=\\frac{x^2}{2}+C$",
+            "$y^2=x^2+9$",
+            "$y(4)=\\sqrt{25}=5$"
+          ],
+          "erklaerung": "Aus $y(0)=3$ folgt $y^2=x^2+9$.",
+          "quelle": "Variante zu Skript Block 21, 3.3.15"
+        }
+      ]
+    },
+    {
+      "id": "block21-differenzialgleichungen-l3",
+      "titel": "Allgemeine und partikuläre Lösung, Anfangswert",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 21, 3.3.16, 3.3.17, Übungsblock 21, Ü 21.2, Ü 21.3",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die **allgemeine Lösung** enthält eine Konstante $C$, die graphisch einer vertikalen Verschiebung entspricht. Eine **Anfangsbedingung** wie $y(t_0)=y_0$ legt $C$ fest und liefert die **partikuläre Lösung** (Anfangswertproblem)."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: $\\frac{\\mathrm{d}u}{\\mathrm{d}v}=2v$ hat die allgemeine Lösung $u=v^2+C$. Mit $u(1)=3$ folgt $3=1+C$, also $C=2$."
+        },
+        {
+          "typ": "merke",
+          "text": "Zuerst integrieren, dann $C$ aus der Anfangsbedingung bestimmen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche allgemeine Lösung hat $\\frac{\\mathrm{d}u}{\\mathrm{d}v}=2v$?",
+          "optionen": [
+            "$u=2v^2+C$",
+            "$u=v^2$",
+            "$u=2+C$",
+            "$u=v^2+C$"
+          ],
+          "richtig": 3,
+          "erklaerung": "$\\int2v\\,\\mathrm{d}v=v^2+C$.",
+          "quelle": "Skript Block 21, 3.3.16"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l3-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Die Graphen verschiedener partikulärer Lösungen von $\\frac{\\mathrm{d}m}{\\mathrm{d}t}=2t+1$ sind vertikal gegeneinander verschoben.",
+          "richtig": true,
+          "erklaerung": "Sie unterscheiden sich nur um die additive Konstante $C$.",
+          "quelle": "Übungsblock 21, Ü 21.3"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l3-a3",
+          "typ": "rechnung",
+          "frage": "Ü 21.3: $\\frac{\\mathrm{d}m}{\\mathrm{d}t}=2t+1$ mit $m(1)=5$. Wie gross ist $m(3)$?",
+          "loesung": 15.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$m=t^2+t+C$, $5=1+1+C\\Rightarrow C=3$",
+            "$m(3)=9+3+3=15$"
+          ],
+          "erklaerung": "Die Anfangsbedingung gilt bei $t=1$, nicht bei $t=0$.",
+          "quelle": "Übungsblock 21, Ü 21.3"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l3-a4",
+          "typ": "rechnung",
+          "frage": "Ü 21.2: $\\frac{\\mathrm{d}P}{\\mathrm{d}t}=10e^{t/5}$ mit $P(0)=25$. Wie gross ist $P(5)$ (3 Nachkommastellen)?",
+          "loesung": 110.9141,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$P=50e^{t/5}+C$, $P(0)=50+C=25\\Rightarrow C=-25$",
+            "$P(5)=50e-25\\approx110.914$"
+          ],
+          "erklaerung": "Beim Integrieren entsteht der Faktor $5$: $\\int10e^{t/5}\\mathrm{d}t=50e^{t/5}$.",
+          "quelle": "Übungsblock 21, Ü 21.2"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l3-a5",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}N}{\\mathrm{d}t}=6e^{t/3}$ mit $N(0)=10$. Wie gross ist $N(3)$?",
+          "loesung": 40.9291,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$N=18e^{t/3}+C$, $N(0)=18+C=10\\Rightarrow C=-8$",
+            "$N(3)=18e-8\\approx40.929$"
+          ],
+          "erklaerung": "Der Faktor $3$ aus $\\int e^{t/3}\\mathrm{d}t=3e^{t/3}$ wird mit $6$ multipliziert.",
+          "quelle": "Variante zu Übungsblock 21, Ü 21.2"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l3-a6",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}m}{\\mathrm{d}t}=3t^2-2$ mit $m(2)=7$. Wie gross ist $m(0)$?",
+          "loesung": 3.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$m=t^3-2t+C$, $7=8-4+C\\Rightarrow C=3$",
+            "$m(0)=3$"
+          ],
+          "erklaerung": "$C$ ist hier der Funktionswert bei $t=0$.",
+          "quelle": "Variante zu Übungsblock 21, Ü 21.3"
+        }
+      ]
+    },
+    {
+      "id": "block21-differenzialgleichungen-l4",
+      "titel": "Anwendungen: Freier Fall und Wurf",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "quelle": "Skript Block 21, 3.3.18, 3.3.19, Übungsblock 21, Ü 21.4, Ü 21.5",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Mit der Erdbeschleunigung $a=-g$ (nach oben positiv) gilt $v=v_0-gt$ und $s=s_0+v_0t-\\frac g2t^2$, jeweils durch Integrieren mit Anfangswerten $v_0$ und $s_0$."
+        },
+        {
+          "typ": "text",
+          "text": "Beispiel: Stein aus der Ruhe aus $100\\,\\mathrm{m}$: $v=-gt$, $s=100-\\frac g2t^2$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Der Skripttext nennt $g=9.81\\,\\frac{\\mathrm{m}}{\\mathrm{s}^2}$, die Lösungen im Skript rechnen mit $9.8\\,\\frac{\\mathrm{m}}{\\mathrm{s}^2}$. Hier wird $g=9.8$ verwendet."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Ein Stein wird aus der Ruhe fallengelassen. Wie lautet seine Geschwindigkeit (nach oben positiv)?",
+          "optionen": [
+            "$v=-9.8$",
+            "$v=9.8\\,t$",
+            "$v=-9.8\\,t$",
+            "$v=-4.9\\,t^2$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Integrieren von $a=-9.8$ mit $v(0)=0$.",
+          "quelle": "Skript Block 21, 3.3.18"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a2",
+          "typ": "rechnung",
+          "frage": "3.3.18: Stein aus $100\\,\\mathrm{m}$ Höhe, $s=100-4.9t^2$. Nach wie vielen Sekunden schlägt er auf?",
+          "loesung": 4.5175,
+          "einheit": "s",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$100-4.9t^2=0$",
+            "$t=\\sqrt{100/4.9}\\approx4.52\\,\\mathrm{s}$"
+          ],
+          "erklaerung": "Der Faktor $4.9=\\frac g2$, nicht $9.8$.",
+          "quelle": "Skript Block 21, 3.3.18"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a3",
+          "typ": "rechnung",
+          "frage": "Welche Geschwindigkeit hat der Stein aus 3.3.18 beim Aufprall (in $\\mathrm{m/s}$, nach oben positiv)?",
+          "loesung": -44.2719,
+          "einheit": "m/s",
+          "toleranz": 0.1,
+          "loesungsweg": [
+            "$v=-9.8\\cdot4.5175$",
+            "$v\\approx-44.3\\,\\mathrm{m/s}$"
+          ],
+          "erklaerung": "Das Vorzeichen ist negativ, weil der Stein nach unten fliegt.",
+          "quelle": "Skript Block 21, 3.3.18"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a4",
+          "typ": "rechnung",
+          "frage": "3.3.19: Wurf von $2\\,\\mathrm{m}$ Höhe mit $10\\,\\frac{\\mathrm{m}}{\\mathrm{s}}$ nach oben. Welche maximale Höhe wird erreicht (in m)?",
+          "loesung": 7.102,
+          "einheit": "m",
+          "toleranz": 0.02,
+          "loesungsweg": [
+            "$v=10-9.8t=0\\Rightarrow t=\\frac{10}{9.8}\\approx1.02$",
+            "$s=2+10t-4.9t^2\\approx7.10\\,\\mathrm{m}$"
+          ],
+          "erklaerung": "Maximum bei $v=0$, also bei $\\frac{\\mathrm{d}s}{\\mathrm{d}t}=0$.",
+          "quelle": "Skript Block 21, 3.3.19"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a5",
+          "typ": "rechnung",
+          "frage": "Wann trifft das Objekt aus 3.3.19 auf dem Boden auf?",
+          "loesung": 2.2243,
+          "einheit": "s",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$2+10t-4.9t^2=0$",
+            "$t\\approx2.22\\,\\mathrm{s}$ (die negative Lösung ist unbrauchbar)"
+          ],
+          "erklaerung": "Die positive Lösung der quadratischen Gleichung gilt.",
+          "quelle": "Skript Block 21, 3.3.19"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a6",
+          "typ": "rechnung",
+          "frage": "Ü 21.4: Eis wächst mit $\\frac{\\mathrm{d}D}{\\mathrm{d}t}=k\\sqrt t$, $D(0)=0$. Für $k=3$: Wie dick ist das Eis nach $4$ Stunden (in cm)?",
+          "loesung": 16.0,
+          "einheit": "cm",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$D=\\frac23kt^{3/2}=2t^{3/2}$",
+            "$D(4)=2\\cdot8=16\\,\\mathrm{cm}$"
+          ],
+          "erklaerung": "$C=0$, weil zu Beginn keine Eisdicke vorhanden ist.",
+          "quelle": "Übungsblock 21, Ü 21.4"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a7",
+          "typ": "rechnung",
+          "frage": "Ü 21.5b: $v=-10t+13$, $h(0)=10$. Wie gross ist die Durchschnittsgeschwindigkeit zwischen $t=1.5\\,\\mathrm{s}$ und $t=3\\,\\mathrm{s}$ (in m/s)?",
+          "loesung": -9.5,
+          "einheit": "m/s",
+          "toleranz": 0.05,
+          "loesungsweg": [
+            "$h=-5t^2+13t+10$, $h(1.5)=18.25$, $h(3)=4$",
+            "$\\frac{4-18.25}{1.5}=-9.5$"
+          ],
+          "erklaerung": "Durchschnittsgeschwindigkeit $=\\frac{\\Delta h}{\\Delta t}$.",
+          "quelle": "Übungsblock 21, Ü 21.5"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l4-a8",
+          "typ": "rechnung",
+          "frage": "Ü 21.5c: Welche Geschwindigkeit hat der Ballon, wenn er die $1.80\\,\\mathrm{m}$ grosse Person am Kopf trifft (in m/s)?",
+          "loesung": -18.2483,
+          "einheit": "m/s",
+          "toleranz": 0.05,
+          "loesungsweg": [
+            "$-5t^2+13t+10=1.8\\Rightarrow t\\approx3.125\\,\\mathrm{s}$",
+            "$v=-10\\cdot3.125+13\\approx-18.25\\,\\mathrm{m/s}$"
+          ],
+          "erklaerung": "Zuerst die Zeit aus $h=1.8$, dann $v$ berechnen.",
+          "quelle": "Übungsblock 21, Ü 21.5"
+        }
+      ]
+    },
+    {
+      "id": "block21-differenzialgleichungen-l5",
+      "titel": "Konstruktionssatz und Integralsinus",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Block 21, 3.3.4, 3.3.20 bis 3.3.22",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Nicht jede elementare Funktion hat eine elementare Stammfunktion. Der **Konstruktionssatz** (zweiter Hauptsatz) konstruiert trotzdem eine: $\\frac{\\mathrm{d}}{\\mathrm{d}b}\\int_{x=a}^{b}y\\,\\mathrm{d}x=y\\big|_{x=b}$."
+        },
+        {
+          "typ": "text",
+          "text": "Das Integral $\\int_{x=a}^{b}y\\,\\mathrm{d}x$ ist eine Stammfunktion von $y$ nach $b$ mit dem Wert $0$ bei $b=a$. Beispiel: Der **Integralsinus** $\\mathrm{Si}(x)=\\int_{t=0}^{x}\\frac{\\sin t}{t}\\,\\mathrm{d}t$ mit $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\mathrm{Si}(x)=\\frac{\\sin x}{x}$."
+        },
+        {
+          "typ": "merke",
+          "text": "Ableiten nach der oberen Grenze: einfach den Integranden an der oberen Grenze einsetzen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l5-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Jede elementare Funktion hat eine elementare Stammfunktion.",
+          "richtig": false,
+          "erklaerung": "Zum Beispiel hat $\\frac{\\sin x}{x}$ keine elementare Stammfunktion.",
+          "quelle": "Skript Block 21, 3.3.4"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\mathrm{Si}(x)$?",
+          "optionen": [
+            "$\\frac{\\cos x}{x}$",
+            "$\\frac{\\sin x}{x}$",
+            "$\\mathrm{Si}(x)\\cdot\\sin x$",
+            "$\\sin x$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Konstruktionssatz: Ableitung nach der oberen Grenze ist der Integrand dort.",
+          "quelle": "Skript Block 21, 3.3.20"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Welchen Wert hat $\\mathrm{Si}(0)$?",
+          "optionen": [
+            "nicht definiert",
+            "$\\frac\\pi2$",
+            "$0$",
+            "$1$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Obere und untere Grenze fallen zusammen, das Integral ist $0$.",
+          "quelle": "Skript Block 21, 3.3.4"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l5-a4",
+          "typ": "rechnung",
+          "frage": "3.3.21: Wie gross ist $\\mathrm{Si}(2)$ (2 Nachkommastellen)?",
+          "loesung": 1.6054,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Numerisch mit Riemann-Summen oder Software",
+            "$\\mathrm{Si}(2)\\approx1.61$"
+          ],
+          "erklaerung": "Werte: $\\mathrm{Si}(1)\\approx0.95$, $\\mathrm{Si}(2)\\approx1.61$, $\\mathrm{Si}(3)\\approx1.85$.",
+          "quelle": "Skript Block 21, 3.3.21"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l5-a5",
+          "typ": "rechnung",
+          "frage": "3.3.22: Wie gross ist $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\big(x\\,\\mathrm{Si}(x)\\big)$ an der Stelle $x=\\pi$ (3 Nachkommastellen)?",
+          "loesung": 1.8519,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Produktregel: $\\mathrm{Si}(x)+x\\cdot\\frac{\\sin x}{x}=\\mathrm{Si}(x)+\\sin x$",
+            "$\\mathrm{Si}(\\pi)+0\\approx1.852$"
+          ],
+          "erklaerung": "$\\sin\\pi=0$.",
+          "quelle": "Skript Block 21, 3.3.22"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l5-a6",
+          "typ": "wahr_falsch",
+          "aussage": "$\\mathrm{Si}(x)$ lässt sich durch keine elementare Formel ausdrücken.",
+          "richtig": true,
+          "erklaerung": "Es ist eine eigens benannte Funktion, weil sie oft gebraucht wird.",
+          "quelle": "Skript Block 21, 3.3.20"
+        }
+      ]
+    },
+    {
+      "id": "block21-differenzialgleichungen-l6",
+      "titel": "Konstruktionssatz anwenden",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Übungsblock 21, Ü 21.8, Ü 21.11, Ü 21.13",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Für eine variable **untere** Grenze dreht man die Grenzen und erhält ein Minuszeichen: $\\frac{\\mathrm{d}}{\\mathrm{d}a}\\int_{t=a}^{1}f(t)\\,\\mathrm{d}t=-f(a)$."
+        },
+        {
+          "typ": "text",
+          "text": "Mit dem Konstruktionssatz lässt sich auch eine Funktion mit $h'(x)=f(x)$ und $h(0)=h_0$ als $h(x)=h_0+\\int_{t=0}^{x}f(t)\\,\\mathrm{d}t$ schreiben."
+        },
+        {
+          "typ": "merke",
+          "text": "Obere Grenze: Integrand einsetzen. Untere Grenze: Integrand einsetzen und Vorzeichen wechseln."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l6-a1",
+          "typ": "multiple_choice",
+          "frage": "Ü 21.8a: Was ist $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_{t=1}^{x}(1+t)^{200}\\,\\mathrm{d}t$?",
+          "optionen": [
+            "$200(1+x)^{199}$",
+            "$(1+x)^{200}$",
+            "$\\frac{(1+x)^{201}}{201}$",
+            "$(1+x)^{200}-2^{200}$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Konstruktionssatz: Integrand an der oberen Grenze.",
+          "quelle": "Übungsblock 21, Ü 21.8"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l6-a2",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_{t=1}^{x}(1+t)^2\\,\\mathrm{d}t$ an der Stelle $x=2$?",
+          "loesung": 9.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Der Wert ist $(1+x)^2$",
+            "$(1+2)^2=9$"
+          ],
+          "erklaerung": "Es muss nicht integriert werden.",
+          "quelle": "Variante zu Übungsblock 21, Ü 21.8"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l6-a3",
+          "typ": "multiple_choice",
+          "frage": "Ü 21.8b: Was ist $\\frac{\\mathrm{d}}{\\mathrm{d}a}\\int_{t=a}^{1}\\ln t\\,\\mathrm{d}t$?",
+          "optionen": [
+            "$\\ln a$",
+            "$\\ln1-\\ln a$",
+            "$-\\frac1a$",
+            "$-\\ln a$"
+          ],
+          "richtig": 3,
+          "erklaerung": "Untere Grenze: $\\int_a^1=-\\int_1^a$, also Vorzeichenwechsel.",
+          "quelle": "Übungsblock 21, Ü 21.8"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l6-a4",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $\\frac{\\mathrm{d}}{\\mathrm{d}a}\\int_{t=a}^{1}\\ln t\\,\\mathrm{d}t$ an der Stelle $a=e^{-2}$?",
+          "loesung": 2.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "Der Wert ist $-\\ln a$",
+            "$-\\ln(e^{-2})=2$"
+          ],
+          "erklaerung": "$\\ln e^{-2}=-2$, mit dem Minuszeichen davor ergibt sich $+2$.",
+          "quelle": "Variante zu Übungsblock 21, Ü 21.8"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l6-a5",
+          "typ": "multiple_choice",
+          "frage": "Ü 21.11: $h'(x)=\\sin(x^2)$ und $h(0)=7$. Welcher Ausdruck für $h(x)$ stimmt?",
+          "optionen": [
+            "$h(x)=7+\\sin(x^2)$",
+            "$h(x)=\\int_{t=0}^{x}\\sin(t^2)\\,\\mathrm{d}t$",
+            "$h(x)=7\\int_{t=0}^{x}\\sin(t^2)\\,\\mathrm{d}t$",
+            "$h(x)=7+\\int_{t=0}^{x}\\sin(t^2)\\,\\mathrm{d}t$"
+          ],
+          "richtig": 3,
+          "erklaerung": "Das Integral ist eine Stammfunktion mit Wert $0$ bei $x=0$, dazu kommt der Anfangswert $7$.",
+          "quelle": "Übungsblock 21, Ü 21.11"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l6-a6",
+          "typ": "rechnung",
+          "frage": "Ü 21.13a: $G(u)=\\int_{t=2}^{u}\\frac{1}{\\ln t}\\,\\mathrm{d}t$. Wie gross ist $\\frac{\\mathrm{d}G}{\\mathrm{d}u}$ bei $u=e^2$?",
+          "loesung": 0.5,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\frac{\\mathrm{d}G}{\\mathrm{d}u}=\\frac1{\\ln u}$",
+            "$\\frac{1}{\\ln e^2}=\\frac12$"
+          ],
+          "erklaerung": "Obere Grenze: Integrand bei $u$.",
+          "quelle": "Übungsblock 21, Ü 21.13"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l6-a7",
+          "typ": "wahr_falsch",
+          "aussage": "Ü 21.13b: $G(u)=\\int_{t=2}^{u}\\frac{1}{\\ln t}\\,\\mathrm{d}t$ nimmt für $u\\ge2$ mit $u$ zu.",
+          "richtig": true,
+          "erklaerung": "$\\frac{\\mathrm{d}G}{\\mathrm{d}u}=\\frac1{\\ln u}>0$ für $u\\ge2$.",
+          "quelle": "Übungsblock 21, Ü 21.13"
+        }
+      ]
+    },
+    {
+      "id": "block21-differenzialgleichungen-l7",
+      "titel": "Repetition: Differenzialgleichungen",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "quelle": "Skript Block 21, Übungsblock 21",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Gemischte Aufgaben zu Differenzialgleichungen, Anfangswerten und Konstruktionssatz."
+        },
+        {
+          "typ": "merke",
+          "text": "DGL $\\to$ integrieren bzw. Variablen trennen, dann $C$ aus der Anfangsbedingung bestimmen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block21-differenzialgleichungen-l7-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne jeder DGL die allgemeine Lösung zu.",
+          "paare": [
+            [
+              "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=3$",
+              "$y=3x+C$"
+            ],
+            [
+              "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=2x$",
+              "$y=x^2+C$"
+            ],
+            [
+              "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=e^x$",
+              "$y=e^x+C$"
+            ],
+            [
+              "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\frac1x$",
+              "$y=\\ln|x|+C$"
+            ]
+          ],
+          "erklaerung": "Jeweils durch Ableiten der rechten Seite zu kontrollieren.",
+          "quelle": "Skript Block 21, 3.3.3"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l7-a2",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\cos x$ mit $y(0)=2$. Wie gross ist $y(\\frac\\pi2)$?",
+          "loesung": 3.0,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y=\\sin x+C$, $y(0)=C=2$",
+            "$y(\\frac\\pi2)=1+2=3$"
+          ],
+          "erklaerung": "$C=2$ aus dem Anfangswert.",
+          "quelle": "Skript Block 21, 3.3.3"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l7-a3",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=y$ mit $y(0)=5$. Wie gross ist $y(1)$ (3 Nachkommastellen)?",
+          "loesung": 13.5914,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\frac{\\mathrm{d}y}{y}=\\mathrm{d}x$, $\\ln y=x+C$, $y=5e^x$",
+            "$y(1)=5e\\approx13.591$"
+          ],
+          "erklaerung": "Trennung der Variablen mit dem Anfangswert $y(0)=5$.",
+          "quelle": "Skript Block 21, 3.3.15"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l7-a4",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_{t=0}^{x}e^{-t^2}\\,\\mathrm{d}t$ an der Stelle $x=1$ (3 Nachkommastellen)?",
+          "loesung": 0.3679,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "Konstruktionssatz: der Wert ist $e^{-x^2}$",
+            "$e^{-1}\\approx0.368$"
+          ],
+          "erklaerung": "Nicht integrieren, $e^{-t^2}$ hat keine elementare Stammfunktion.",
+          "quelle": "Skript Block 21, 3.3.4"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l7-a5",
+          "typ": "rechnung",
+          "frage": "Ein Stein fällt aus $20\\,\\mathrm{m}$ Höhe aus der Ruhe ($g=9.8$). Nach wie vielen Sekunden schlägt er auf?",
+          "loesung": 2.0203,
+          "einheit": "s",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$20-4.9t^2=0$",
+            "$t=\\sqrt{20/4.9}\\approx2.02\\,\\mathrm{s}$"
+          ],
+          "erklaerung": "Der Faktor $4.9=\\frac g2$.",
+          "quelle": "Skript Block 21, 3.3.18"
+        },
+        {
+          "id": "block21-differenzialgleichungen-l7-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Der Konstruktionssatz erlaubt es, eine Stammfunktion zu konstruieren, auch wenn es dafür keine elementare Formel gibt.",
+          "richtig": true,
+          "erklaerung": "Das Integral mit variabler oberer Grenze ist eine solche Stammfunktion.",
+          "quelle": "Skript Block 21, 3.3.4"
+        }
+      ]
+    }
+  ]
+}

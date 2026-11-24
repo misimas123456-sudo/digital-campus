@@ -1,0 +1,1211 @@
+{
+  "id": "block19-stammfunktionen",
+  "titel": "Stammfunktionen",
+  "untertitel": "Stammfunktion, +C, graphisches Aufleiten, unbestimmtes Integral, bestimmte Integrale mit dem Hauptsatz",
+  "bereich": "theorie",
+  "quelle": "Mathematik 1B, Skriptblock 19 (SkrpBlo19, Abschnitt 3.2) und Übungsblock 19 (UebBlo19)",
+  "lektionen": [
+    {
+      "id": "block19-stammfunktionen-l1",
+      "titel": "Stammfunktion und die Familie z + C",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": "Skript Block 19, 3.2.1, Beispiel 3.2.1",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Definition.** Ist $y$ die Ableitung von $z$ nach $x$, so nennen wir $z$ eine **Stammfunktion** von $y$ nach $x$ (oder: eine **Aufleitung**). $x^2$ ist eine Stammfunktion von $2x$ nach $x$, und $2\\sqrt{x}$ ist eine Stammfunktion von $\\frac1{\\sqrt x}$ nach $x$."
+        },
+        {
+          "typ": "text",
+          "text": "Aber $x^2$ ist nicht die einzige: Für jede Konstante $C$ gilt $\\frac{\\mathrm{d}}{\\mathrm{d}x}(x^2+C)=2x$. Allgemein: Ist $z$ eine Stammfunktion von $y$, dann auch $z+C$. Die Graphen unterscheiden sich nur durch eine vertikale Verschiebung um $C$."
+        },
+        {
+          "typ": "merke",
+          "text": "Zwei beliebige Stammfunktionen $z_1$, $z_2$ von $y$ unterscheiden sich nur durch eine additive Konstante: $z_1=z_2+C$. Man sagt darum «**eine** Stammfunktion», nie «die» Stammfunktion."
+        },
+        {
+          "typ": "text",
+          "text": "Der Grund: $z_1-z_2$ hat die Ableitung $y-y=0$, ist also eine Stammfunktion der Nullfunktion, und die ist konstant (horizontale Tangente überall)."
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel 3.2.1.** $v$ ist die Geschwindigkeit eines Autos (Tachometer). Die seit Anfang Januar gefahrene Distanz $s_\\text{jan}$ und die seit Anfang Februar gefahrene Distanz $s_\\text{feb}$ sind beide Stammfunktionen von $v$ nach $t$. Sie unterscheiden sich um die im Januar gefahrene Distanz $C$: $s_\\text{jan}=s_\\text{feb}+C$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Das «nach $x$» ist wichtig: $x^3$ ist eine Stammfunktion von $3x^2$ nach $x$, aber nicht nach $x^2$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche der folgenden Funktionen ist **keine** Stammfunktion von $2x$ nach $x$?",
+          "optionen": [
+            "$2x^2$",
+            "$x^2$",
+            "$x^2+1$",
+            "$x^2-0.1325$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Probe durch Ableiten: $\\frac{\\mathrm{d}}{\\mathrm{d}x}(2x^2)=4x\\ne2x$. Die anderen drei unterscheiden sich von $x^2$ nur durch eine Konstante.",
+          "quelle": "Skript Block 19, 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Eine Funktion mit Stammfunktion hat genau eine Stammfunktion.",
+          "richtig": false,
+          "erklaerung": "Sie hat unendlich viele: mit $z$ ist auch $z+C$ für jede Konstante $C$ eine Stammfunktion.",
+          "quelle": "Skript Block 19, 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Zwei Stammfunktionen derselben Funktion unterscheiden sich nur durch eine additive Konstante.",
+          "richtig": true,
+          "erklaerung": "Die Differenz hat die Ableitung $0$ und ist daher konstant.",
+          "quelle": "Skript Block 19, 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Der Graph von $z+C$ entsteht aus dem Graphen von $z$ durch vertikale Verschiebung um $C$.",
+          "richtig": true,
+          "erklaerung": "Zu jedem $x$ wird einfach $C$ addiert, die Form bleibt gleich.",
+          "quelle": "Skript Block 19, 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "Eine Funktion $z$ von $x$ erfüllt $\\frac{\\mathrm{d}z}{\\mathrm{d}x}=0$ in einem ganzen Bereich $a<x<b$. Was folgt?",
+          "optionen": [
+            "$z$ ist in diesem Bereich konstant",
+            "$z$ ist dort gleich $0$",
+            "$z$ ist dort linear steigend",
+            "Man kann nichts über $z$ sagen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Überall horizontale Tangente heisst: konstanter Wert. Nicht unbedingt null, denn jede Konstante $C$ hat die Ableitung $0$.",
+          "quelle": "Skript Block 19, 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a6",
+          "typ": "multiple_choice",
+          "frage": "$s_\\text{jan}$ und $s_\\text{feb}$ sind die seit Anfang Januar bzw. Februar gefahrenen Distanzen eines Autos. Wie hängen sie zusammen?",
+          "optionen": [
+            "$s_\\text{jan}=s_\\text{feb}\\cdot C$",
+            "$s_\\text{jan}=s_\\text{feb}+C$, wobei $C$ die im Januar gefahrene Distanz ist",
+            "$s_\\text{jan}=s_\\text{feb}$, denn beide haben dieselbe Ableitung $v$",
+            "$s_\\text{jan}=-s_\\text{feb}+C$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Beide sind Stammfunktionen von $v$ nach $t$. Sie unterscheiden sich nur um die additive Konstante.",
+          "quelle": "Skript Block 19, Beispiel 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a7",
+          "typ": "multiple_choice",
+          "frage": "$x^3$ ist eine Stammfunktion von $3x^2$. Nach welcher Variablen?",
+          "optionen": [
+            "Nach $x^2$",
+            "Nach $x^3$",
+            "Nach $x$",
+            "Nach keiner, es gibt keine Stammfunktion"
+          ],
+          "richtig": 2,
+          "erklaerung": "$\\frac{\\mathrm{d}}{\\mathrm{d}x}x^3=3x^2$. Nach $x^2$ abgeleitet käme etwas anderes heraus.",
+          "quelle": "Skript Block 19, Beispiel 3.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l1-a8",
+          "typ": "rechnung",
+          "frage": "$z=x^2+C$ ist eine Stammfunktion von $2x$. Es gilt $z\\big|_{x=3}=14$. Wie gross ist $C$?",
+          "loesung": 5,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$z\\big|_{x=3}=3^2+C=9+C=14$",
+            "$C=5$"
+          ],
+          "erklaerung": "Die Konstante $C$ wird durch einen vorgegebenen Funktionswert festgelegt.",
+          "quelle": "Skript Block 19, Beispiel 3.2.1"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l2",
+      "titel": "Graphisch aufleiten",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": "Skript Block 19, 3.2.2.1, Aufgaben 3.2.1–3.2.3; Übungsblock 19, Ü 19.1, 19.3, 19.7",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ist der Graph von $\\frac{\\mathrm{d}z}{\\mathrm{d}x}$ gegeben, kann man den Graphen einer Stammfunktion $z$ grob skizzieren:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Wo $\\frac{\\mathrm{d}z}{\\mathrm{d}x}>0$, **steigt** $z$; wo $\\frac{\\mathrm{d}z}{\\mathrm{d}x}<0$, **fällt** $z$.",
+            "Ist $\\frac{\\mathrm{d}z}{\\mathrm{d}x}$ steigend, hat $z$ eine **Linkskrümmung**; ist es fallend, eine **Rechtskrümmung**.",
+            "Wo $\\frac{\\mathrm{d}z}{\\mathrm{d}x}=0$ gilt, hat $z$ eine kritische Stelle. Wechselt das Vorzeichen von $+$ nach $-$: lokales Maximum, von $-$ nach $+$: lokales Minimum.",
+            "Hat $\\frac{\\mathrm{d}z}{\\mathrm{d}x}$ ein lokales Extremum, hat $z$ dort eine **Wendestelle**."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Der Anfangswert (z. B. $z\\big|_{x=0}=1$) legt fest, wo der Graph startet. Verschiedene Anfangswerte ergeben dieselbe Form, nur vertikal verschoben."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Es gilt $\\frac{\\mathrm{d}z}{\\mathrm{d}x}>0$ in einem Bereich. Was gilt dort für die Stammfunktion $z$?",
+          "optionen": [
+            "$z$ steigt mit $x$",
+            "$z$ fällt mit $x$",
+            "$z$ ist konstant",
+            "$z$ ist positiv"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das Vorzeichen der Ableitung sagt, ob die Stammfunktion steigt oder fällt, nicht ob sie selbst positiv ist.",
+          "quelle": "Skript Block 19, 3.2.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "$\\frac{\\mathrm{d}z}{\\mathrm{d}x}$ ist in einem Bereich steigend mit $x$. Wie ist der Graph von $z$ dort gekrümmt?",
+          "optionen": [
+            "Rechtskrümmung",
+            "Linkskrümmung",
+            "Gar nicht gekrümmt (Gerade)",
+            "Das lässt sich nicht sagen"
+          ],
+          "richtig": 1,
+          "erklaerung": "Wächst die Steigung, krümmt sich der Graph nach links (konvex).",
+          "quelle": "Skript Block 19, 3.2.2.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "$v$ wechselt bei $x=1$ von negativ zu positiv. Was hat die Stammfunktion $u$ bei $x=1$?",
+          "optionen": [
+            "Ein lokales Maximum",
+            "Eine Wendestelle",
+            "Ein lokales Minimum",
+            "Eine Nullstelle"
+          ],
+          "richtig": 2,
+          "erklaerung": "Erst fällt $u$ ($v<0$), dann steigt $u$ ($v>0$): ein Tiefpunkt.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a4",
+          "typ": "multiple_choice",
+          "frage": "$v$ wechselt bei $x=3$ von positiv zu negativ. Was hat die Stammfunktion $u$ bei $x=3$?",
+          "optionen": [
+            "Ein lokales Minimum",
+            "Eine Wendestelle",
+            "Einen Sprung",
+            "Ein lokales Maximum"
+          ],
+          "richtig": 3,
+          "erklaerung": "Erst steigt $u$, dann fällt $u$: ein Hochpunkt.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "$v$ hat bei $x=2$ sein Maximum. Was hat die Stammfunktion $u$ bei $x=2$?",
+          "optionen": [
+            "Eine Wendestelle",
+            "Ein lokales Maximum",
+            "Ein lokales Minimum",
+            "Eine senkrechte Tangente"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei $x=2$ geht $v$ vom Steigen zum Fallen über. Also wechselt $u$ von Linkskrümmung zu Rechtskrümmung.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Skizziert man zwei Stammfunktionen mit den Anfangswerten $u\\big|_{x=0}=0$ und $u\\big|_{x=0}=1$, dann sind die beiden Graphen gegeneinander vertikal verschoben.",
+          "richtig": true,
+          "erklaerung": "Die Steigung an jeder Stelle ist für alle Stammfunktionen gleich, nur die Starthöhe unterscheidet sich.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a7",
+          "typ": "wahr_falsch",
+          "aussage": "Ist $y\\ge0$ für alle $x$, dann hat jede Stammfunktion von $y$ kein lokales Maximum oder Minimum (sie ist immer wachsend).",
+          "richtig": true,
+          "erklaerung": "Wenn $y$ nie das Vorzeichen wechselt, steigt die Stammfunktion überall. Kritische Stellen sind dann weder Maximum noch Minimum (Ü 19.3 b).",
+          "quelle": "Übungsblock 19, Ü 19.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a8",
+          "typ": "multiple_choice",
+          "frage": "Die Funktion $e^{-x^2}$ ist für $x>0$ fallend und positiv. Wie verhält sich eine Stammfunktion von $e^{-x^2}$ für $x>0$?",
+          "optionen": [
+            "Sie fällt und ist linksgekrümmt",
+            "Sie steigt und ist linksgekrümmt",
+            "Sie ist konstant",
+            "Sie steigt und ist rechtsgekrümmt (sie flacht ab)"
+          ],
+          "richtig": 3,
+          "erklaerung": "$e^{-x^2}>0$, also steigt die Stammfunktion. $e^{-x^2}$ fällt für $x>0$, also ist die Stammfunktion rechtsgekrümmt.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l2-a9",
+          "typ": "multiple_choice",
+          "frage": "Es gilt $\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}>0$ in einem Bereich. Was bedeutet das?",
+          "optionen": [
+            "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ ist dort steigend und $y$ linksgekrümmt",
+            "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ ist dort fallend und $y$ rechtsgekrümmt",
+            "$y$ ist dort positiv",
+            "$y$ hat dort ein Maximum"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}$ ist die Ableitung von $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$. Ist sie positiv, steigt $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$, und der Graph von $y$ ist linksgekrümmt.",
+          "quelle": "Übungsblock 19, Ü 19.7"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l3",
+      "titel": "Werte einer Stammfunktion aus dem Integral",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 19, 3.2.2.2, Aufgaben 3.2.4, 3.2.5; Übungsblock 19, Ü 19.2, 19.4, 19.5",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die Ableitung sagt nicht nur, ob die Stammfunktion steigt oder fällt, sie erlaubt auch, die **Werte** der Stammfunktion exakt zu berechnen. Nach dem Hauptsatz gilt"
+        },
+        {
+          "typ": "formel",
+          "tex": "y\\big|_{x=b}=y\\big|_{x=a}+\\int_{x=a}^{b}\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\,\\mathrm{d}x"
+        },
+        {
+          "typ": "text",
+          "text": "Kennt man einen Ausgangswert $y\\big|_{x=a}$, kann man $y\\big|_{x=b}$ berechnen. Das Integral liest man aus **Flächen** ab (Rechtecke, Dreiecke; Flächen unter der $x$-Achse zählen negativ) oder nähert es mit **Riemann-Summen**."
+        },
+        {
+          "typ": "text",
+          "text": "Bei Tabellenwerten schätzt man die Änderung über ein Intervall oft als Mittelwert der linksseitigen und der rechtsseitigen Summe."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l3-a1",
+          "typ": "rechnung",
+          "frage": "Von $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ sind (aus Dreiecken im Graphen) die vorzeichenbehafteten Flächen bekannt: $0\\ldots10$: $+100$, $10\\ldots20$: $+100$, $20\\ldots25$: $-25$, $25\\ldots30$: $-25$. Es gilt $y\\big|_{x=0}=100$. Wie gross ist $y\\big|_{x=10}$?",
+          "loesung": 200,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\big|_{x=10}=y\\big|_{x=0}+\\int_{x=0}^{10}\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\,\\mathrm{d}x=100+100=200$"
+          ],
+          "erklaerung": "Anfangswert plus Fläche.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.4"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a2",
+          "typ": "rechnung",
+          "frage": "Von $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ sind (aus Dreiecken im Graphen) die vorzeichenbehafteten Flächen bekannt: $0\\ldots10$: $+100$, $10\\ldots20$: $+100$, $20\\ldots25$: $-25$, $25\\ldots30$: $-25$. Es gilt $y\\big|_{x=0}=100$. Wie gross ist $y\\big|_{x=20}$?",
+          "loesung": 300,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\big|_{x=20}=y\\big|_{x=10}+\\tfrac12\\cdot10\\cdot20=200+100=300$"
+          ],
+          "erklaerung": "Weiterrechnen von der letzten bekannten Stelle aus.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.4"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a3",
+          "typ": "rechnung",
+          "frage": "Von $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ sind (aus Dreiecken im Graphen) die vorzeichenbehafteten Flächen bekannt: $0\\ldots10$: $+100$, $10\\ldots20$: $+100$, $20\\ldots25$: $-25$, $25\\ldots30$: $-25$. Es gilt $y\\big|_{x=0}=100$. Wie gross ist $y\\big|_{x=30}$?",
+          "loesung": 250,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\big|_{x=25}=300-25=275$",
+            "$y\\big|_{x=30}=275-25=250$"
+          ],
+          "erklaerung": "Flächen unter der $x$-Achse werden abgezogen.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.4"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a4",
+          "typ": "multiple_choice",
+          "frage": "Bei $x=20$ wechselt $\\frac{\\mathrm{d}y}{\\mathrm{d}x}$ von positiv zu negativ (Aufgabe 3.2.4). Was hat $y$ dort, und welchen Wert?",
+          "optionen": [
+            "Ein lokales Minimum mit $y=300$",
+            "Eine Wendestelle mit $y=300$",
+            "Ein lokales Maximum mit $y=200$",
+            "Ein lokales Maximum mit $y=300$"
+          ],
+          "richtig": 3,
+          "erklaerung": "$\\frac{\\mathrm{d}y}{\\mathrm{d}x}=0$ mit Vorzeichenwechsel $+\\to-$ gibt ein Maximum. Den Wert haben wir oben als $y\\big|_{x=20}=300$ berechnet.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.4"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a5",
+          "typ": "rechnung",
+          "frage": "$G$ ist die Stammfunktion von $g$ mit $G\\big|_{t=0}=5$. Zwischen $t=0$ und $t=2$ hat $g$ eine Fläche von $+16$ unter dem Graphen, zwischen $t=2$ und $t=4$ von $-8$ und zwischen $t=4$ und $t=5$ von $+2$. Wie gross ist $G\\big|_{t=4}$?",
+          "loesung": 13,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$G\\big|_{t=2}=5+16=21$",
+            "$G\\big|_{t=4}=21-8=13$"
+          ],
+          "erklaerung": "Die kritischen Punkte $(2,21)$ und $(4,13)$ liegen dort, wo $g$ das Vorzeichen wechselt.",
+          "quelle": "Übungsblock 19, Ü 19.5"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a6",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $G\\big|_{t=5}$ (gleiche Angaben)?",
+          "loesung": 15,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$G\\big|_{t=5}=G\\big|_{t=4}+2=13+2=15$"
+          ],
+          "erklaerung": "Letzte Fläche $+2$ dazuzählen.",
+          "quelle": "Übungsblock 19, Ü 19.5"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a7",
+          "typ": "rechnung",
+          "frage": "Von $u$ gilt $u\\big|_{t=0}=50$. Die Ableitung beträgt $\\frac{\\mathrm{d}u}{\\mathrm{d}t}=17$ bei $t=0$ und $15$ bei $t=2$. Schätze $u\\big|_{t=2}$ als Mittelwert aus linker und rechter Summe ($\\Delta t=2$).",
+          "loesung": 82,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "links: $17\\cdot2=34$, rechts: $15\\cdot2=30$, Mittelwert $32$",
+            "$u\\big|_{t=2}\\approx50+32=82$"
+          ],
+          "erklaerung": "Mittelwert der beiden Schätzungen ist meist genauer als jede einzeln.",
+          "quelle": "Übungsblock 19, Ü 19.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a8",
+          "typ": "rechnung",
+          "frage": "Weiter: $\\frac{\\mathrm{d}u}{\\mathrm{d}t}=10$ bei $t=4$. Schätze $u\\big|_{t=4}$ aus $u\\big|_{t=2}\\approx82$.",
+          "loesung": 107,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "links: $15\\cdot2=30$, rechts: $10\\cdot2=20$, Mittelwert $25$",
+            "$u\\big|_{t=4}\\approx82+25=107$"
+          ],
+          "erklaerung": "Immer vom zuletzt berechneten Wert aus weiterrechnen.",
+          "quelle": "Übungsblock 19, Ü 19.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a9",
+          "typ": "rechnung",
+          "frage": "$\\frac{\\mathrm{d}y}{\\mathrm{d}r}$ ist stückweise konstant: $+1$ auf $0<r<2$, $-1$ auf $2<r<3$, $+2$ auf $3<r<4$, $-2$ auf $4<r<6$, $+1$ auf $6<r<7$. Es gilt $y\\big|_{r=3}=0$. Wie gross ist $y\\big|_{r=0}$?",
+          "loesung": -1,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\big|_{r=2}=y\\big|_{r=3}-\\int_{r=2}^{3}\\frac{\\mathrm{d}y}{\\mathrm{d}r}\\,\\mathrm{d}r=0-(-1)=1$",
+            "$y\\big|_{r=0}=y\\big|_{r=2}-\\int_{r=0}^{2}\\frac{\\mathrm{d}y}{\\mathrm{d}r}\\,\\mathrm{d}r=1-2=-1$"
+          ],
+          "erklaerung": "Rückwärts rechnen: $y\\big|_{a}=y\\big|_{b}-\\int_{a}^{b}$.",
+          "quelle": "Übungsblock 19, Ü 19.4"
+        },
+        {
+          "id": "block19-stammfunktionen-l3-a10",
+          "typ": "rechnung",
+          "frage": "Wie gross ist $y\\big|_{r=7}$ (gleiche Angaben)?",
+          "loesung": -1,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$y\\big|_{r=4}=0+2=2$",
+            "$y\\big|_{r=6}=2+(-2)\\cdot2=-2$",
+            "$y\\big|_{r=7}=-2+1=-1$"
+          ],
+          "erklaerung": "Schritt für Schritt über die Teilintervalle.",
+          "quelle": "Übungsblock 19, Ü 19.4"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l4",
+      "titel": "Potenzregel und 1/x",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 19, 3.2.3, 3.2.3.1, Aufgabe 3.2.6; Übungsblock 19, Ü 19.8, 19.9",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die allgemeine Stammfunktion $z+C$ von $y$ nach $x$ heisst **unbestimmtes Integral** von $y\\,\\mathrm{d}x$ und wird $\\int y\\,\\mathrm{d}x$ geschrieben. «Unbestimmt», weil $C$ nicht festgelegt ist. Beispiele: $\\int 2x\\,\\mathrm{d}x=x^2+C$, $\\int 0\\,\\mathrm{d}x=C$."
+        },
+        {
+          "typ": "text",
+          "text": "Stammfunktionen finden ist wie Wurzelziehen: Erkennt man eine Funktion als Ableitung wieder, ist es leicht. Für Potenzen gilt"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int x^n\\,\\mathrm{d}x=\\frac{x^{n+1}}{n+1}+C\\quad(n\\ne-1)\\qquad\\qquad \\int\\frac1x\\,\\mathrm{d}x=\\ln|x|+C"
+        },
+        {
+          "typ": "text",
+          "text": "Für $n=-1$ würde durch $0$ geteilt. Stattdessen ist $\\ln|x|$ die Stammfunktion von $\\frac1x$ (der Betrag, weil $\\frac1x$ auch für $x<0$ definiert ist). **Probe immer durch Ableiten!**"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Funktion ist die allgemeine Stammfunktion von $x^3$ nach $x$?",
+          "optionen": [
+            "$\\tfrac14x^4+C$",
+            "$3x^2+C$",
+            "$x^4+C$",
+            "$\\tfrac13x^4+C$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Exponent um 1 erhöhen und durch den neuen Exponenten teilen. $3x^2$ ist die Ableitung, nicht die Stammfunktion.",
+          "quelle": "Skript Block 19, 3.2.3.1, Aufgabe 3.2.6"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a2",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int x^{100}\\,\\mathrm{d}x$?",
+          "optionen": [
+            "$100x^{99}+C$",
+            "$\\tfrac1{101}x^{101}+C$",
+            "$\\tfrac1{100}x^{101}+C$",
+            "$x^{101}+C$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Neuer Exponent $101$, durch $101$ teilen.",
+          "quelle": "Skript Block 19, 3.2.3.1, Aufgabe 3.2.6"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a3",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int x^{-5}\\,\\mathrm{d}x$?",
+          "optionen": [
+            "$\\tfrac14x^{-4}+C$",
+            "$-5x^{-6}+C$",
+            "$-\\tfrac14x^{-4}+C$",
+            "$\\tfrac16x^{-6}+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$n=-5$: $\\frac{x^{-4}}{-4}$. Das Vorzeichen kommt vom negativen Nenner $n+1=-4$.",
+          "quelle": "Skript Block 19, 3.2.3.1, Aufgabe 3.2.6"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a4",
+          "typ": "multiple_choice",
+          "frage": "Für welchen Exponenten gilt die Potenzregel $\\int x^n\\,\\mathrm{d}x=\\frac{x^{n+1}}{n+1}+C$ nicht?",
+          "optionen": [
+            "$n=0$",
+            "$n=-2$",
+            "$n=\\tfrac12$",
+            "$n=-1$"
+          ],
+          "richtig": 3,
+          "erklaerung": "Für $n=-1$ steht im Nenner $0$. Dort braucht man $\\int\\frac1x\\,\\mathrm{d}x=\\ln|x|+C$.",
+          "quelle": "Skript Block 19, 3.2.3.1, Aufgabe 3.2.6"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a5",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int\\frac1x\\,\\mathrm{d}x$?",
+          "optionen": [
+            "$\\ln|x|+C$",
+            "$\\frac{1}{x^2}+C$",
+            "$-\\frac1{x^2}+C$",
+            "$\\tfrac12x^{-2}+C$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Potenzregel versagt bei $n=-1$. $\\ln x$ gibt es nur für $x>0$; für $x<0$ ist $\\ln(-x)$ eine Stammfunktion. Zusammengefasst: $\\ln|x|$.",
+          "quelle": "Skript Block 19, 3.2.3.1, Aufgabe 3.2.6"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a6",
+          "typ": "rechnung",
+          "frage": "Die Stammfunktion $F$ von $\\tfrac14x$ nach $x$ nimmt bei $x=1$ den Wert $-2$ an. Wie gross ist $F\\big|_{x=2}$?",
+          "loesung": -1.625,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$F=\\tfrac18x^2+C$ und $F\\big|_{x=1}=\\tfrac18+C=-2\\Rightarrow C=-\\tfrac{17}{8}$",
+            "$F\\big|_{x=2}=\\tfrac48-\\tfrac{17}8=-\\tfrac{13}{8}=-1.625$"
+          ],
+          "erklaerung": "Es gibt genau eine solche Stammfunktion: Die Bedingung legt $C$ fest.",
+          "quelle": "Übungsblock 19, Ü 19.8"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a7",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int\\sqrt z\\,\\mathrm{d}z$?",
+          "optionen": [
+            "$\\tfrac12z^{1/2}+C$",
+            "$\\tfrac32z^{3/2}+C$",
+            "$\\tfrac23z^{3/2}+C$",
+            "$2z^{-1/2}+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$\\sqrt z=z^{1/2}$, neuer Exponent $\\tfrac32$, durch $\\tfrac32$ teilen ergibt den Faktor $\\tfrac23$.",
+          "quelle": "Übungsblock 19, Ü 19.9"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a8",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int\\frac{t^2+1}{t}\\,\\mathrm{d}t$?",
+          "optionen": [
+            "$t^2+\\ln|t|+C$",
+            "$\\tfrac13t^3+\\ln|t|+C$",
+            "$\\tfrac12t^2+\\frac1t+C$",
+            "$\\tfrac12t^2+\\ln|t|+C$"
+          ],
+          "richtig": 3,
+          "erklaerung": "Erst teilen: $\\frac{t^2+1}{t}=t+\\frac1t$. Dann $\\int t\\,\\mathrm{d}t=\\tfrac12t^2$ und $\\int\\frac1t\\,\\mathrm{d}t=\\ln|t|$. Der Faktor $\\tfrac12$ wird gern vergessen.",
+          "quelle": "Übungsblock 19, Ü 19.9"
+        },
+        {
+          "id": "block19-stammfunktionen-l4-a9",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int(2I^2+3I^3+4I^4)\\,\\mathrm{d}I$?",
+          "optionen": [
+            "$\\tfrac23I^3+\\tfrac34I^4+\\tfrac45I^5+C$",
+            "$4I+9I^2+16I^3+C$",
+            "$2I^3+3I^4+4I^5+C$",
+            "$\\tfrac23I^3+\\tfrac34I^4+\\tfrac45I^5$ (ohne $+C$)"
+          ],
+          "richtig": 0,
+          "erklaerung": "Jeden Summanden einzeln aufleiten. Das $+C$ gehört zum unbestimmten Integral.",
+          "quelle": "Übungsblock 19, Ü 19.9"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l5",
+      "titel": "e^(kx), sin, cos und die Summenregel",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 19, 3.2.3.1–3.2.3.2, Aufgaben 3.2.7, 3.2.8; Übungsblock 19, Ü 19.10, 19.11",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Weitere Stammfunktionen, die man durch Rückwärts-Ableiten erkennt:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int e^{kx}\\,\\mathrm{d}x=\\frac{e^{kx}}{k}+C\\qquad\\int\\cos x\\,\\mathrm{d}x=\\sin x+C\\qquad\\int\\sin x\\,\\mathrm{d}x=-\\cos x+C"
+        },
+        {
+          "typ": "text",
+          "text": "Für Summen und konstante Vielfache gelten die gleichen Regeln wie beim Ableiten:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int(u\\pm v)\\,\\mathrm{d}x=\\int u\\,\\mathrm{d}x\\pm\\int v\\,\\mathrm{d}x\\qquad\\int c\\,u\\,\\mathrm{d}x=c\\int u\\,\\mathrm{d}x"
+        },
+        {
+          "typ": "text",
+          "text": "**Beispiel.** $\\int(3x+x^2)\\,\\mathrm{d}x=3\\cdot\\tfrac{x^2}{2}+\\tfrac{x^3}{3}+C$. Probe: $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\big(\\tfrac32x^2+\\tfrac13x^3\\big)=3x+x^2$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l5-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne jeder Funktion eine Stammfunktion nach $x$ zu.",
+          "paare": [
+            [
+              "$e^{2x}$",
+              "$\\tfrac12e^{2x}$"
+            ],
+            [
+              "$\\cos x$",
+              "$\\sin x$"
+            ],
+            [
+              "$\\sin x$",
+              "$-\\cos x$"
+            ],
+            [
+              "$\\frac1x$",
+              "$\\ln|x|$"
+            ]
+          ],
+          "erklaerung": "Alle vier lassen sich durch Ableiten der rechten Seite kontrollieren. Bei $\\sin x$ wird das Minuszeichen gern vergessen.",
+          "quelle": "Skript Block 19, 3.2.3.1"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int(3x+x^2)\\,\\mathrm{d}x$.",
+          "optionen": [
+            "$3x^2+x^3+C$",
+            "$\\tfrac32x^2+\\tfrac13x^3+C$",
+            "$\\tfrac32x^2+\\tfrac12x^3+C$",
+            "$3+2x+C$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Jeden Summanden einzeln aufleiten: $3\\cdot\\frac{x^2}{2}$ und $\\frac{x^3}{3}$. Probe durch Ableiten.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.7"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int(\\sin x+3\\cos x)\\,\\mathrm{d}x$.",
+          "optionen": [
+            "$\\cos x-3\\sin x+C$",
+            "$-\\cos x-3\\sin x+C$",
+            "$-\\cos x+3\\sin x+C$",
+            "$\\cos x+3\\sin x+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$\\int\\sin x\\,\\mathrm{d}x=-\\cos x$ und $3\\int\\cos x\\,\\mathrm{d}x=3\\sin x$.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.8"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a4",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int\\frac{5}{u^3}\\,\\mathrm{d}u$.",
+          "optionen": [
+            "$\\frac{5}{2u^2}+C$",
+            "$-\\frac{15}{u^4}+C$",
+            "$\\frac{5}{4u^4}+C$",
+            "$-\\frac{5}{2u^2}+C$"
+          ],
+          "richtig": 3,
+          "erklaerung": "$\\frac5{u^3}=5u^{-3}$, also $5\\cdot\\frac{u^{-2}}{-2}=-\\frac{5}{2u^2}$.",
+          "quelle": "Übungsblock 19, Ü 19.10"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a5",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int\\big(-4\\sin(3t)+\\tfrac12\\cos t\\big)\\,\\mathrm{d}t$.",
+          "optionen": [
+            "$\\tfrac43\\cos(3t)+\\tfrac12\\sin t+C$",
+            "$-\\tfrac43\\cos(3t)+\\tfrac12\\sin t+C$",
+            "$12\\cos(3t)+\\tfrac12\\sin t+C$",
+            "$\\tfrac43\\cos(3t)-\\tfrac12\\sin t+C$"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\int\\sin(3t)\\,\\mathrm{d}t=-\\tfrac13\\cos(3t)$, mal $-4$ ergibt $+\\tfrac43\\cos(3t)$. Der Faktor $\\tfrac13$ kommt von der inneren Funktion $3t$.",
+          "quelle": "Übungsblock 19, Ü 19.10"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a6",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int(3e^{-x}+2\\sin x)\\,\\mathrm{d}x$.",
+          "optionen": [
+            "$3e^{-x}-2\\cos x+C$",
+            "$-3e^{-x}-2\\cos x+C$",
+            "$-3e^{-x}+2\\cos x+C$",
+            "$-3e^{-x}-2\\sin x+C$"
+          ],
+          "richtig": 1,
+          "erklaerung": "$\\int e^{-x}\\,\\mathrm{d}x=\\frac{e^{-x}}{-1}=-e^{-x}$ ($k=-1$).",
+          "quelle": "Übungsblock 19, Ü 19.11"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a7",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int\\frac{y+1}{2y}\\,\\mathrm{d}y$.",
+          "optionen": [
+            "$\\tfrac12\\big(y+\\tfrac1y\\big)+C$",
+            "$\\ln|2y|+C$",
+            "$\\tfrac12\\big(y+\\ln|y|\\big)+C$",
+            "$\\tfrac12y+\\tfrac12+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Erst auseinanderziehen: $\\frac{y+1}{2y}=\\tfrac12\\big(1+\\tfrac1y\\big)$. Dann Summen- und Vielfachen-Regel.",
+          "quelle": "Übungsblock 19, Ü 19.11"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a8",
+          "typ": "multiple_choice",
+          "frage": "Berechne $\\int\\big(w+\\tfrac{8}{\\sqrt w}\\big)\\,\\mathrm{d}w$.",
+          "optionen": [
+            "$\\tfrac12w^2+8\\sqrt w+C$",
+            "$w^2+16\\sqrt w+C$",
+            "$\\tfrac12w^2+4w^{-3/2}+C$",
+            "$\\tfrac12w^2+16\\sqrt w+C$"
+          ],
+          "richtig": 3,
+          "erklaerung": "$\\tfrac8{\\sqrt w}=8w^{-1/2}$, aufgeleitet $8\\cdot\\frac{w^{1/2}}{1/2}=16\\sqrt w$.",
+          "quelle": "Übungsblock 19, Ü 19.11"
+        },
+        {
+          "id": "block19-stammfunktionen-l5-a9",
+          "typ": "rechnung",
+          "frage": "$F$ ist die Stammfunktion von $3x^2+2$ nach $x$ mit $F\\big|_{x=0}=1$. Wie gross ist $F\\big|_{x=2}$?",
+          "loesung": 13,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$F=x^3+2x+C$, aus $F\\big|_{x=0}=C=1$ folgt $F=x^3+2x+1$",
+            "$F\\big|_{x=2}=8+4+1=13$"
+          ],
+          "erklaerung": "Stammfunktion bilden, dann $C$ aus dem Anfangswert bestimmen.",
+          "quelle": "Übungsblock 19, Ü 19.11"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l6",
+      "titel": "Bestimmte Integrale mit Stammfunktion",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "Skript Block 19, 3.2.3.3, Aufgaben 3.2.9, 3.2.10; Übungsblock 19, Ü 19.12, 19.13",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Der Hauptsatz liefert eine beliebte Methode, bestimmte Integrale **exakt** auszuwerten: Ist $Y$ eine Stammfunktion von $y$ nach $x$, dann"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\int_{x=a}^{b}y\\,\\mathrm{d}x=Y\\big|_{x=b}-Y\\big|_{x=a}=Y\\Big|_{a}^{b}"
+        },
+        {
+          "typ": "text",
+          "text": "Die additive Konstante $C$ spielt keine Rolle: Sie hebt sich bei der Differenz auf. Man nimmt darum einfach $C=0$."
+        },
+        {
+          "typ": "hinweis",
+          "text": "Das klappt nur, wenn man eine elementare Stammfunktion hinschreiben kann. Nicht alle Funktionen haben eine, zum Beispiel $e^{-x^2}$ oder $\\frac{\\sin x}{x}$. Eine Stammfunktion existiert trotzdem (siehe Skript 3.3.4), nur eben ohne elementare Formel."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l6-a1",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{2}3x^2\\,\\mathrm{d}x$.",
+          "loesung": 8,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$x^3\\Big|_{0}^{2}=8-0=8$"
+          ],
+          "erklaerung": "$x^3$ ist eine Stammfunktion von $3x^2$.",
+          "quelle": "Skript Block 19, 3.2.3.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a2",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=1}^{4}\\sqrt x\\,\\mathrm{d}x$.",
+          "loesung": 4.6667,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\tfrac23x^{3/2}\\Big|_{1}^{4}=\\tfrac23\\cdot8-\\tfrac23\\cdot1=\\tfrac{14}{3}\\approx4.667$"
+          ],
+          "erklaerung": "Potenzregel mit $n=\\tfrac12$.",
+          "quelle": "Skript Block 19, 3.2.3.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a3",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{\\pi}\\sin x\\,\\mathrm{d}x$.",
+          "loesung": 2,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$-\\cos x\\Big|_{0}^{\\pi}=-\\cos\\pi-(-\\cos0)=1+1=2$"
+          ],
+          "erklaerung": "Das ist der Wert, den das Skript in Block 18 ohne Begründung verwendet hat.",
+          "quelle": "Skript Block 19, 3.2.3.3"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a4",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=-1}^{2}3e^{-5x}\\,\\mathrm{d}x$.",
+          "loesung": 89.0479,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$-\\tfrac35e^{-5x}\\Big|_{-1}^{2}=-\\tfrac35e^{-10}-\\big(-\\tfrac35e^{5}\\big)$",
+            "$\\approx89.0479$"
+          ],
+          "erklaerung": "Probe: $\\frac{\\mathrm{d}}{\\mathrm{d}x}\\big(-\\tfrac35e^{-5x}\\big)=3e^{-5x}$. Beim Einsetzen von $x=-1$ ergibt sich $e^{+5}$.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.9"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Verwendet man statt $-\\tfrac35e^{-5x}$ die Stammfunktion $-\\tfrac35e^{-5x}+20$, ändert sich der Wert des bestimmten Integrals.",
+          "richtig": false,
+          "erklaerung": "Die Konstante $+20$ hebt sich in der Differenz $Y\\big|_{b}-Y\\big|_{a}$ auf.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.9"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a6",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{\\theta=0}^{\\pi/4}\\frac{1}{(\\cos\\theta)^2}\\,\\mathrm{d}\\theta$. Hinweis: $\\tan\\theta$ ist eine Stammfunktion von $\\frac{1}{(\\cos\\theta)^2}$.",
+          "loesung": 1,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\tan\\theta\\Big|_{0}^{\\pi/4}=\\tan\\tfrac\\pi4-\\tan0=1-0=1$"
+          ],
+          "erklaerung": "Auch hier: Stammfunktion hinschreiben und die Grenzen einsetzen.",
+          "quelle": "Skript Block 19, Aufgabe 3.2.10"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a7",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{y=1}^{2}\\frac{1+y^2}{y}\\,\\mathrm{d}y$ exakt und gib das Ergebnis als Dezimalzahl an.",
+          "loesung": 2.1931,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\frac{1+y^2}{y}=\\tfrac1y+y$",
+            "$\\big(\\ln|y|+\\tfrac12y^2\\big)\\Big|_{1}^{2}=\\ln2+2-\\tfrac12=\\ln2+\\tfrac32\\approx2.193$"
+          ],
+          "erklaerung": "Erst auseinanderziehen, dann Stammfunktionen von $\\frac1y$ und $y$.",
+          "quelle": "Übungsblock 19, Ü 19.13"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a8",
+          "typ": "rechnung",
+          "frage": "Benzin fliesst mit der Rate $r=3\\,\\frac{\\text{m}^3}{\\text{min}}-0.4\\,\\frac{\\text{m}^3}{\\text{min}^2}\\,t$ in einen leeren Tank ($0\\le t\\le5\\,\\text{min}$). Wie viel Benzin ist nach $t=4\\,\\text{min}$ im Tank?",
+          "loesung": 8.8,
+          "einheit": "m³",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$V\\big|_{t=4}=\\int_{t=0}^{4}(3-0.4t)\\,\\mathrm{d}t=\\big(3t-0.2t^2\\big)\\Big|_{0}^{4}$",
+            "$=12-3.2=8.8\\ \\text{m}^3$"
+          ],
+          "erklaerung": "Tank leer bei $t=0$: der Anfangswert ist $0$, das Integral ist die ganze Füllmenge.",
+          "quelle": "Übungsblock 19, Ü 19.12"
+        },
+        {
+          "id": "block19-stammfunktionen-l6-a9",
+          "typ": "rechnung",
+          "frage": "Der Tank ist ein stehender Zylinder mit Radius $2\\,\\text{m}$. Wie hoch steht das Benzin nach $4\\,\\text{min}$ (bei $V=8.8\\,\\text{m}^3$)?",
+          "loesung": 0.7003,
+          "einheit": "m",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$V=\\pi r^2h=4\\pi\\,\\text{m}^2\\cdot h$",
+            "$h=\\frac{8.8}{4\\pi}\\,\\text{m}\\approx0.70\\,\\text{m}$"
+          ],
+          "erklaerung": "Zylindervolumen nach der Höhe auflösen.",
+          "quelle": "Übungsblock 19, Ü 19.12"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l7",
+      "titel": "Anwendungen: Flächen und Fallbewegung",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "quelle": "Übungsblock 19, Ü 19.14–19.17",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Flächen berechnest du jetzt vollständig mit dem Hauptsatz: Grenzen suchen (Nullstellen bzw. Schnittstellen), obere minus untere Kurve integrieren, Stammfunktion einsetzen."
+        },
+        {
+          "typ": "text",
+          "text": "**Fallbewegung mit Luftwiderstand.** Fällt ein Objekt aus der Ruhe, ist der Luftwiderstand anfangs ungefähr proportional zur Geschwindigkeit. Dann gilt $v=\\frac{mg}{k}\\big(1-e^{-kt/m}\\big)$. Die zurückgelegte Strecke ist eine Stammfunktion von $v$ nach $t$:"
+        },
+        {
+          "typ": "formel",
+          "tex": "s=\\int v\\,\\mathrm{d}t=\\frac{mg}{k}t+\\frac{m^2g}{k^2}e^{-kt/m}+C"
+        },
+        {
+          "typ": "text",
+          "text": "Der Anfangswert legt $C$ fest."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l7-a1",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=x^2$, der $x$-Achse und den Geraden $x=1$ und $x=4$.",
+          "loesung": 21,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=1}^{4}x^2\\,\\mathrm{d}x=\\tfrac13x^3\\Big|_{1}^{4}=\\tfrac{64-1}{3}=21$"
+          ],
+          "erklaerung": "Kurve liegt über der $x$-Achse: Fläche = Integral.",
+          "quelle": "Übungsblock 19, Ü 19.15"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a2",
+          "typ": "multiple_choice",
+          "frage": "Die Kurve $y=x^2(1-x)^2$ schneidet die $x$-Achse bei $x=0$ und $x=1$. Wie lautet das Integral für die eingeschlossene Fläche?",
+          "optionen": [
+            "$\\int_{x=-1}^{1}x^2(1-x)^2\\,\\mathrm{d}x$",
+            "$\\int_{x=0}^{1}x^2(1-x)^2\\,\\mathrm{d}x$",
+            "$\\int_{x=0}^{1}x^2(1-x)\\,\\mathrm{d}x$",
+            "$\\int_{x=0}^{2}x^2(1-x)^2\\,\\mathrm{d}x$"
+          ],
+          "richtig": 1,
+          "erklaerung": "Die Fläche liegt zwischen den beiden Nullstellen. Da $x^2(1-x)^2\\ge0$ ist, ist das Integral der Flächeninhalt.",
+          "quelle": "Übungsblock 19, Ü 19.16"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a3",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=x^2(1-x)^2$ und der $x$-Achse. Tipp: ausmultiplizieren zu $x^2-2x^3+x^4$.",
+          "loesung": 0.0333,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{1}(x^2-2x^3+x^4)\\,\\mathrm{d}x=\\big(\\tfrac13x^3-\\tfrac12x^4+\\tfrac15x^5\\big)\\Big|_{0}^{1}$",
+            "$=\\tfrac13-\\tfrac12+\\tfrac15=\\tfrac1{30}\\approx0.0333$"
+          ],
+          "erklaerung": "Auf einen gemeinsamen Nenner: $\\tfrac{10-15+6}{30}=\\tfrac1{30}$.",
+          "quelle": "Übungsblock 19, Ü 19.16"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a4",
+          "typ": "multiple_choice",
+          "frage": "Welche der Kurven $y=\\cos x$ und $y=e^{3x}$ liegt im Bereich $0\\le x\\le1$ oben?",
+          "optionen": [
+            "$y=\\cos x$",
+            "Sie wechseln sich ab",
+            "Beide gleich",
+            "$y=e^{3x}$"
+          ],
+          "richtig": 3,
+          "erklaerung": "$e^{3x}\\ge1$ für $x\\ge0$, und $\\cos x\\le1$. Also ist $e^{3x}-\\cos x\\ge0$.",
+          "quelle": "Übungsblock 19, Ü 19.17"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a5",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=e^{3x}$ und $y=\\cos x$ im Bereich $0\\le x\\le1$.",
+          "loesung": 5.5204,
+          "einheit": "",
+          "toleranz": 0.001,
+          "loesungsweg": [
+            "$\\int_{x=0}^{1}(e^{3x}-\\cos x)\\,\\mathrm{d}x=\\big(\\tfrac13e^{3x}-\\sin x\\big)\\Big|_{0}^{1}$",
+            "$=\\tfrac13e^3-\\tfrac13-\\sin1\\approx5.5204$"
+          ],
+          "erklaerung": "Beim Einsetzen von $x=0$: $\\tfrac13e^0=\\tfrac13$ und $\\sin0=0$.",
+          "quelle": "Übungsblock 19, Ü 19.17"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a6",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=x$ (oben) und $y=x^3$ (unten) im Bereich $0\\le x\\le1$.",
+          "loesung": 0.25,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\int_{x=0}^{1}(x-x^3)\\,\\mathrm{d}x=\\big(\\tfrac12x^2-\\tfrac14x^4\\big)\\Big|_{0}^{1}=\\tfrac14$"
+          ],
+          "erklaerung": "Obere minus untere Kurve.",
+          "quelle": "Übungsblock 19, Ü 19.17"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a7",
+          "typ": "multiple_choice",
+          "frage": "Bei der Fallbewegung brauchst du $\\int e^{-kt/m}\\,\\mathrm{d}t$. Was ist das?",
+          "optionen": [
+            "$e^{-kt/m}+C$",
+            "$\\frac{m}{k}e^{-kt/m}+C$",
+            "$-\\frac{m}{k}e^{-kt/m}+C$",
+            "$-\\frac{k}{m}e^{-kt/m}+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "Nach $e^{ct}\\to\\frac{e^{ct}}{c}$ mit $c=-\\frac km$: Division durch $-\\frac km$ ergibt den Faktor $-\\frac mk$.",
+          "quelle": "Übungsblock 19, Ü 19.14"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a8",
+          "typ": "rechnung",
+          "frage": "Ein Körper ($m=1\\,\\text{kg}$, $k=1\\,\\frac{\\text{kg}}{\\text{s}}$, $g=9.81\\,\\frac{\\text{m}}{\\text{s}^2}$) fällt aus der Ruhe. Wie weit ist er nach $t=2\\,\\text{s}$ gefallen? Es gilt $s=\\frac{mg}{k}t-\\frac{m^2g}{k^2}\\big(1-e^{-kt/m}\\big)$ (mit $s\\big|_{t=0}=0$).",
+          "loesung": 11.1376,
+          "einheit": "m",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$s\\big|_{t=2}=9.81\\cdot2-9.81\\cdot(1-e^{-2})$",
+            "$=19.62-9.81\\cdot0.8647\\approx11.14\\ \\text{m}$"
+          ],
+          "erklaerung": "Beachte die Konstante: $C=-\\frac{m^2g}{k^2}$ stellt sicher, dass $s\\big|_{t=0}=0$ gilt.",
+          "quelle": "Übungsblock 19, Ü 19.14"
+        },
+        {
+          "id": "block19-stammfunktionen-l7-a9",
+          "typ": "wahr_falsch",
+          "aussage": "Bei der Fallbewegung ist die zurückgelegte Strecke eine Stammfunktion der Geschwindigkeit $v$ nach $t$. Die Konstante $C$ folgt aus dem Anfangswert.",
+          "richtig": true,
+          "erklaerung": "$s=\\int v\\,\\mathrm{d}t$, und z. B. aus $s\\big|_{t=0}=0$ (bzw. $h\\big|_{t=0}=h_0$) ergibt sich $C$.",
+          "quelle": "Übungsblock 19, Ü 19.14"
+        }
+      ]
+    },
+    {
+      "id": "block19-stammfunktionen-l8",
+      "titel": "Repetition Block 19",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "quelle": "Skript Block 19, 3.2; Übungsblock 19",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Gemischte Aufgaben zu Block 19: Stammfunktionen, $+C$, graphisches Aufleiten, Stammfunktionen von Potenzen, $e^{kx}$, $\\sin$, $\\cos$ und bestimmte Integrale mit dem Hauptsatz."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "block19-stammfunktionen-l8-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage über das unbestimmte Integral $\\int y\\,\\mathrm{d}x$ stimmt?",
+          "optionen": [
+            "Es ist die allgemeine Stammfunktion $z+C$ mit beliebiger Konstante $C$",
+            "Es ist die Fläche zwischen Graph und $x$-Achse",
+            "Es ist eine Zahl",
+            "Es ist die Ableitung von $y$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das bestimmte Integral (mit Grenzen) ist eine Zahl, das unbestimmte eine Funktionenschar.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Zwei Stammfunktionen derselben Funktion können sich in mehr als einer Konstanten unterscheiden.",
+          "richtig": false,
+          "erklaerung": "Die Differenz hat die Ableitung $0$ und ist daher konstant, also genau **eine** Konstante.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a3",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int\\cos x\\,\\mathrm{d}x$?",
+          "optionen": [
+            "$-\\sin x+C$",
+            "$\\cos x+C$",
+            "$\\sin x+C$",
+            "$-\\cos x+C$"
+          ],
+          "richtig": 2,
+          "erklaerung": "$\\frac{\\mathrm{d}}{\\mathrm{d}x}\\sin x=\\cos x$. Das Minus gehört zu $\\int\\sin x\\,\\mathrm{d}x=-\\cos x$.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a4",
+          "typ": "multiple_choice",
+          "frage": "Was ist $\\int e^{-2x}\\,\\mathrm{d}x$?",
+          "optionen": [
+            "$-2e^{-2x}+C$",
+            "$e^{-2x}+C$",
+            "$\\tfrac12e^{-2x}+C$",
+            "$-\\tfrac12e^{-2x}+C$"
+          ],
+          "richtig": 3,
+          "erklaerung": "Durch $k=-2$ teilen: $\\frac{e^{-2x}}{-2}$.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a5",
+          "typ": "rechnung",
+          "frage": "$F$ ist die Stammfunktion von $2x+1$ mit $F\\big|_{x=0}=3$. Wie gross ist $F\\big|_{x=2}$?",
+          "loesung": 9,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$F=x^2+x+C$, $F\\big|_{x=0}=C=3$",
+            "$F\\big|_{x=2}=4+2+3=9$"
+          ],
+          "erklaerung": "Stammfunktion mit $+C$, dann $C$ aus dem Anfangswert.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a6",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=0}^{1}(4x^3+2)\\,\\mathrm{d}x$.",
+          "loesung": 3,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\big(x^4+2x\\big)\\Big|_{0}^{1}=1+2=3$"
+          ],
+          "erklaerung": "Summenregel: Jeden Summanden einzeln aufleiten.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a7",
+          "typ": "rechnung",
+          "frage": "Berechne $\\int_{x=1}^{e}\\frac1x\\,\\mathrm{d}x$.",
+          "loesung": 1,
+          "einheit": "",
+          "toleranz": 0.01,
+          "loesungsweg": [
+            "$\\ln|x|\\Big|_{1}^{e}=\\ln e-\\ln1=1-0=1$"
+          ],
+          "erklaerung": "$\\ln e=1$ und $\\ln1=0$.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a8",
+          "typ": "rechnung",
+          "frage": "Berechne die Fläche zwischen $y=2x$ (oben) und $y=x^2$ (unten) im Bereich $0\\le x\\le2$.",
+          "loesung": 1.3333,
+          "einheit": "",
+          "toleranz": 0.005,
+          "loesungsweg": [
+            "$\\int_{x=0}^{2}(2x-x^2)\\,\\mathrm{d}x=\\big(x^2-\\tfrac13x^3\\big)\\Big|_{0}^{2}=4-\\tfrac83=\\tfrac43\\approx1.333$"
+          ],
+          "erklaerung": "Schnittstellen $x=0$ und $x=2$, obere Kurve ist $2x$.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a9",
+          "typ": "multiple_choice",
+          "frage": "$\\frac{\\mathrm{d}z}{\\mathrm{d}x}$ ist im Bereich $1<x<3$ fallend und positiv. Wie verhält sich $z$ dort?",
+          "optionen": [
+            "$z$ steigt und ist rechtsgekrümmt",
+            "$z$ fällt und ist rechtsgekrümmt",
+            "$z$ steigt und ist linksgekrümmt",
+            "$z$ fällt und ist linksgekrümmt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Positiv heisst: $z$ steigt. Fallendes $\\frac{\\mathrm{d}z}{\\mathrm{d}x}$ heisst: Rechtskrümmung.",
+          "quelle": "Skript Block 19, 3.2"
+        },
+        {
+          "id": "block19-stammfunktionen-l8-a10",
+          "typ": "zuordnen",
+          "frage": "Ordne jedem Integral den passenden Wert zu.",
+          "paare": [
+            [
+              "$\\int_{0}^{\\pi}\\sin x\\,\\mathrm{d}x$",
+              "2"
+            ],
+            [
+              "$\\int_{-2}^{2}x^3\\,\\mathrm{d}x$",
+              "0"
+            ],
+            [
+              "$\\int_{0}^{3}x^2\\,\\mathrm{d}x$",
+              "9"
+            ],
+            [
+              "$\\int_{1}^{e}\\frac1x\\,\\mathrm{d}x$",
+              "1"
+            ]
+          ],
+          "erklaerung": "Alle vier mit dem Hauptsatz bzw. der Symmetrie: $-\\cos x$, ungerade Funktion, $\\tfrac13x^3$, $\\ln x$.",
+          "quelle": "Skript Block 19, 3.2"
+        }
+      ]
+    }
+  ]
+}

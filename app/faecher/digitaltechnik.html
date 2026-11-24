@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="digitaltechnik">
+<head>
+<script id="dc-format-v2">
+/* Digital Campus – Adapter Inhaltsformat v2 (siehe docs/inhaltsformat.md, Abschnitt «Adapter»).
+   Liest content/<fach-id>/… im Format v2 und gibt es der App im bisherigen Format weiter.
+   Lokale Kopien (app/faecher/) finden content/ automatisch über ../../content/. */
+(function () {
+  "use strict";
+  var F = window.fetch && window.fetch.bind(window);
+  if (!F) return;
+  var lektionAlt = function (l, m) {
+    l = Object.assign({}, l);
+    if (m.dauer && l.dauer_min != null) { l.dauer = l.dauer_min; delete l.dauer_min; }
+    var map = function (a) {
+      a = Object.assign({}, a);
+      if (a.typ === "wahr_falsch" && m.wf) { a.frage = a.aussage; a.antwort = a.richtig; delete a.aussage; delete a.richtig; }
+      if (a.typ === "rechnung" && m.rechnen) { a.typ = "rechnen"; if (a.loesungsweg != null) { a.rechenweg = a.loesungsweg; delete a.loesungsweg; } }
+      if (a.typ === "multiple_choice" && m.auswahl) { a.typ = "auswahl"; a.loesung = a.richtig; delete a.richtig; }
+      return a;
+    };
+    if (l.aufgaben) { var auf = l.aufgaben.map(map); delete l.aufgaben; l[m.uebungen ? "uebungen" : "aufgaben"] = auf; }
+    return l;
+  };
+  var einheitAlt = function (e, m) {
+    e = Object.assign({}, e);
+    if (m.fach) e.fach = m.fach;
+    if (m.sw && e.woche != null) { e.sw = e.woche; delete e.woche; }
+    if (m.quellen && e.quelle != null) { e.quellen = e.quelle; delete e.quelle; }
+    if (m.labor && e.labor != null) { e.labor_nr = e.labor; delete e.labor; }
+    e.lektionen = (e.lektionen || []).map(function (l) { return lektionAlt(l, m); });
+    return e;
+  };
+  var zeitMitOrt = function (t) { return [t.zeit, t.ort].filter(Boolean).join(" · "); };
+  var QUELLE = {"id":"digitaltechnik","ilias":"https://elearning.hslu.ch/ilias/goto.php/crs/7215006"};
+  if (QUELLE) document.addEventListener("DOMContentLoaded", function () {
+    var st = document.createElement("style");
+    st.textContent = ".dc-quelle{max-width:880px;margin:32px auto 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));border-top:1px solid var(--dc-line,#2e2c36);color:var(--dc-text-faint,#807f87);font:400 12px/18px var(--dc-font-campus,inherit)}.dc-quelle a{color:var(--dc-campus,#af9ee4)}.dc-quelle code{font-family:var(--dc-font-mono,monospace)}";
+    var f = document.createElement("footer"); f.className = "dc-quelle";
+    f.append("Kursmaterial: ");
+    var a = document.createElement("a"); a.href = QUELLE.ilias; a.textContent = "ILIAS-Kurs"; f.append(a);
+    f.append(" · lokal in ");
+    var c = document.createElement("code"); c.textContent = "digital-campus\\material\\" + QUELLE.id + "\\"; f.append(c);
+    f.append(" (vom ILIAS-Agent aktualisiert). Inhalte dieser App stammen nur aus diesem Material.");
+    document.head.append(st); document.body.append(f);
+  });
+  var KONV = function (p, d) {
+    if (p === "fach.json") return Object.assign({}, d, { einheiten: d.einheiten.map(function (e) { return e.id; }) });
+    if (p === "termine.json") return { stand: d.stand, quellen: Array.isArray(d.quelle) ? d.quelle.join("; ") : d.quelle,
+      termine: d.termine.map(function (t) {
+        var art = t.bewertet ? "Bewertet" : t.art === "unterricht" ? "Unterricht" : t.pflicht ? "Pflicht" : t.art === "pruefung" ? "Prüfung" : "Info";
+        return { id: t.id, fach: "Digitaltechnik", titel: t.titel, art: art, von: t.von, bis: t.bis || t.von, zeit: zeitMitOrt(t), hinweis: t.hinweis || "" };
+      }) };
+    return d;
+  };
+  window.fetch = function (input, init) {
+    var url = String(input && input.url || input);
+    return F(input, init).then(function (r) {
+      if (!r.ok && /^content\//.test(url)) return F("../../" + url, init);
+      return r;
+    }).then(function (r) {
+      var m = url.match(/content\/[a-z0-9-]+\/(.+\.json)(\?|$)/);
+      if (!r.ok || !m || !KONV) return r;
+      return r.clone().json().then(function (d) {
+        if (!d || (d.format !== 2 && !/^(einheiten|testvorbereitung)\//.test(m[1]))) return r;
+        var n = KONV(m[1], d);
+        return new Response(JSON.stringify(n), { status: 200, headers: { "Content-Type": "application/json" } });
+      }, function () { return r; });
+    });
+  };
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digitaltechnik – Digital Campus</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%231c201d%22%20stroke%3D%22%232d322d%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225.5%22%20fill%3D%22%239dc7a5%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Digital Campus Design System: Theme digitaltechnik */
+:root{
+  --dc-bg:#0d100e;
+  --dc-surface:#151815;
+  --dc-surface-raised:#1c201d;
+  --dc-line:#2d322d;
+  --dc-accent:#9dc7a5;
+  --dc-accent-hover:#b5d9bb;
+  --dc-accent-soft:#1b241d;
+  --dc-accent-line:#495e4d;
+  --dc-on-accent:#0f1610;
+  --dc-text:#ebeaef;
+  --dc-text-muted:#aaaab2;
+  --dc-text-faint:#807f87;
+  --dc-campus:#af9ee4;
+  --dc-campus-soft:#231f2f;
+  --dc-success:#8ec7a1;
+  --dc-warning:#dcc188;
+  --dc-danger:#dc8b88;
+  --dc-font-fach:"Chakra Petch", system-ui, sans-serif;
+  --dc-font-campus:"Outfit", system-ui, sans-serif;
+  --dc-font-mono:"JetBrains Mono", ui-monospace, monospace;
+}
+/* Digital Campus – Digitaltechnik
+   Inhalte kommen aus content/digitaltechnik/*.json (fach.json, themen.json, termine.json, einheiten/<id>.json).
+   Design: Digital Campus Design System, Theme digitaltechnik. */
+:root{
+  --bg:#0d100e; --panel:#151815; --panel2:#1c201d; --line:#2d322d;
+  --ink:#ebeaef; --muted:#aaaab2; --accent:#9dc7a5; --accent2:#495e4d; --accentInk:#0f1610;
+  --ok:#8ec7a1; --bad:#dc8b88; --warn:#dcc188; --info:#aaaab2;
+  --display:"Chakra Petch", system-ui, sans-serif;
+  --body:"Chakra Petch", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+body{min-height:100vh;padding-bottom:84px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:1.8rem;font-weight:800;letter-spacing:-.01em}
+h2{font-size:1.25rem;font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+p{margin:0}
+header.top{position:sticky;top:0;z-index:10;background:rgba(13,16,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.upbtn{display:inline-flex;align-items:center;gap:4px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:7px 12px 7px 8px;font-weight:600;font-size:.9rem;color:var(--ink);min-height:40px;text-decoration:none;white-space:nowrap}
+.upbtn svg{width:18px;height:18px}
+.upbtn:hover{border-color:var(--accent)}
+.upbtn[hidden]{display:none}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.05rem;white-space:nowrap;min-width:0}
+.brand .logo{width:30px;height:30px;border-radius:8px;flex:none}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:.72rem;color:var(--muted);margin-top:-2px}
+nav.tabs{display:flex;gap:4px;margin-left:auto}
+nav.tabs button{background:none;border:0;padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:6px}
+nav.tabs button[aria-current="page"]{background:var(--panel2);color:var(--ink)}
+nav.tabs svg{width:18px;height:18px}
+.sync{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.sync i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);margin-right:5px;vertical-align:1px}
+.sync.on i{background:var(--ok)}
+main{max-width:980px;margin:0 auto;padding:20px 16px;display:grid;gap:18px}
+main>*{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.spread{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;font-size:.75rem;font-weight:600;background:var(--panel2);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.pill.acc{background:rgba(157,199,165,.16);color:#b5d9bb;border-color:rgba(157,199,165,.35)}
+.pill.ok{background:rgba(142,199,161,.13);color:#8ec7a1;border-color:rgba(142,199,161,.3)}
+.pill.bad{background:rgba(220,139,136,.13);color:#dc8b88;border-color:rgba(220,139,136,.3)}
+.pill.warn{background:rgba(220,193,136,.13);color:#dcc188;border-color:rgba(220,193,136,.3)}
+.pill.info{background:rgba(170,170,178,.1);color:#ebeaef;border-color:rgba(170,170,178,.3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:10px 16px;font-weight:600;border:1px solid var(--line);background:var(--panel2);min-height:44px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
+.btn.primary:hover{background:#b5d9bb}
+.btn.ghost{background:none}
+.btn[disabled]{opacity:.45;cursor:default}
+.linkbtn{background:none;border:0;color:#b5d9bb;font-weight:600;padding:4px 0;font-size:.9rem}
+.linkbtn:hover{color:var(--ink)}
+/* Übersicht */
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+@media (max-width:720px){.hero{grid-template-columns:1fr}}
+.count{background:linear-gradient(160deg,#151815,#151815 70%);border-color:#2d322d}
+.bignum{font-family:var(--display);font-weight:800;font-size:3.2rem;line-height:1;color:#ebeaef}
+.next{border-left:3px solid var(--accent);background:var(--panel2);border-radius:12px;padding:12px 14px;margin-top:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-size:1.4rem;line-height:1.1}
+.stat span{font-size:.75rem;color:var(--muted)}
+.list{display:grid}
+.list .it{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.list .it:first-child{border-top:0}
+.date{font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:1.25}
+.date b{display:block;font-family:var(--display);font-size:1.15rem;color:var(--ink)}
+.it .t{font-weight:600}
+.it .s{font-size:.85rem;color:var(--muted)}
+.it .h{font-size:.85rem;margin-top:4px}
+.it.vorbei{opacity:.5}
+.themenkarte{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
+.tk{text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:6px;align-content:start;min-height:96px}
+.tk:hover{border-color:var(--accent)}
+.tk .kn{font-family:var(--mono);font-size:.75rem;color:var(--accent)}
+.tk .tt{font-weight:600;font-size:.9rem;line-height:1.3}
+.tk.mep{border-color:rgba(220,139,136,.4)}
+.bar{height:6px;background:var(--bg);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.fokus{display:grid;gap:10px;margin-top:12px}
+/* Themen */
+.thema{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;text-align:left;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.thema:hover{border-color:var(--accent)}
+.thema .no{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--accent);text-align:center}
+.thema .rt{text-align:right;min-width:64px}
+.stack{display:grid;gap:10px}
+ul.ziele{margin:10px 0 0;padding-left:20px;display:grid;gap:6px}
+.unterl{display:grid;gap:8px;margin-top:10px}
+.unterl div{display:grid;grid-template-columns:70px 1fr;gap:10px;font-size:.92rem}
+.unterl b{color:var(--muted);font-weight:600}
+.unterl code{font-family:var(--mono);font-size:.82rem;word-break:break-word}
+.leer{border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}
+.leer h3{color:var(--ink);margin-bottom:6px}
+.les{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;width:100%}
+.les:hover{border-color:var(--accent)}
+.dot{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;background:var(--panel);border:2px solid var(--line)}
+.dot.done{background:var(--accent);border-color:var(--accent);color:var(--accentInk)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.88rem;min-height:38px}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
+.gruppe{font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:.75rem;margin:6px 0 -4px}
+details summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+/* Lektion */
+.lektop{display:flex;align-items:center;gap:12px}
+.x{background:none;border:0;font-size:1.4rem;color:var(--muted);padding:4px 8px;min-height:44px}
+.progress{flex:1;height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .3s}
+.typ{color:var(--muted);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.q{font-size:1.15rem;font-weight:600;margin:6px 0 16px;max-width:70ch;overflow-x:auto}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);min-height:48px;overflow-x:auto}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:rgba(157,199,165,.14)}
+.opt.right{border-color:var(--ok);background:rgba(142,199,161,.12)}
+.opt.wrong{border-color:var(--bad);background:rgba(220,139,136,.12)}
+.opt.weg{visibility:hidden}
+.opt[disabled]{cursor:default}
+.tfrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tfrow .opt{text-align:center;padding:20px}
+.paar{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.eingabe{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.eingabe input,textarea.frei{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);font:500 1.05rem var(--mono);min-width:140px;flex:1}
+textarea.frei{width:100%;min-height:140px;font-family:var(--body);font-size:1rem}
+.lt{font-size:1.05rem;line-height:2.4}
+.lt input{background:var(--panel2);border:1px solid var(--line);border-bottom:2px solid var(--accent);border-radius:8px;padding:4px 8px;color:var(--ink);font:500 1rem var(--mono);width:9ch}
+input.ok{border-color:var(--ok)!important}input.falsch{border-color:var(--bad)!important}
+.zone{border:1px dashed var(--line);border-radius:14px;padding:10px;min-height:56px;display:grid;gap:8px;margin-bottom:12px}
+.karte{background:var(--panel2);border:1px solid var(--line);border-radius:16px;min-height:170px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.1rem;font-weight:600}
+.karte.hinten{border-color:var(--accent);background:rgba(157,199,165,.1)}
+.fb{margin-top:16px;border-radius:12px;padding:12px 14px;border:1px solid}
+.fb.ok{border-color:rgba(142,199,161,.4);background:rgba(142,199,161,.08)}
+.fb.bad{border-color:rgba(220,139,136,.4);background:rgba(220,139,136,.08)}
+.fb h3{margin-bottom:4px}
+.fb p{margin-top:4px}
+.quelle{font-size:.78rem;color:var(--muted);margin-top:8px}
+.aktion{margin-top:16px}
+.aktion .btn{width:100%}
+.result{text-align:center;display:grid;gap:10px;justify-items:center;padding:30px 18px}
+.result .bignum{font-size:4rem}
+.lade{min-height:50vh;display:grid;place-items:center;color:var(--muted)}
+@keyframes wackel{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.wackel{animation:wackel .25s 2}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden}
+/* Tabellen, Zustandsdiagramme, Widgets K07/K08 */
+.tabwrap{overflow-x:auto}
+.fig table,table.mini{border-collapse:collapse;margin:0 auto;font-size:.92rem}
+.fig th,.fig td,table.mini th,table.mini td{border:1px solid var(--line);padding:6px 10px;text-align:center;min-width:34px}
+.fig th,table.mini th{background:var(--panel);color:#b5d9bb;font-weight:600}
+.fig td.hv,.fig th.hv,table.mini tr.hv td{background:rgba(157,199,165,.22);color:var(--ink)}
+table.kv td{font-family:var(--mono);min-width:44px}
+.zdg .zk{fill:var(--panel);stroke:#807f87;stroke-width:2}
+.zdg .zk.an{fill:rgba(157,199,165,.35);stroke:var(--accent);stroke-width:3}
+.zdg .zkt{fill:var(--ink);font:700 13px var(--body)}
+.zdg .zka{fill:#b5d9bb;font:500 11px var(--mono)}
+.zdg .zkl{stroke:#807f87;stroke-width:1}
+.zdg .zt{font-size:11.5px;fill:#aaaab2}
+.chip.tg{font-family:var(--body)}
+.chip.tg[aria-pressed="true"]{background:var(--accent);color:var(--accentInk)}
+.lampen{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.lampe{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px 5px 10px;font-weight:600}
+.lampe b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#1c201d;color:var(--muted);font-family:var(--mono)}
+.lampe.an b{background:#dcc188;color:#0f1610;box-shadow:0 0 14px rgba(255,215,106,.7)}
+.lampe.unb b{background:rgba(220,193,136,.25);color:var(--warn)}
+.ffrow{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.tabbox{display:flex;justify-content:center}
+/* Übungen */
+.check{background:linear-gradient(160deg,#151815,#151815 70%);border-color:#2d322d}
+.aufg{display:grid;gap:10px}
+.anr{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+.atext{display:grid;gap:8px;max-width:72ch}
+.teile{display:grid;gap:6px;margin-top:2px}
+.teile div{display:grid;grid-template-columns:28px 1fr;gap:6px}
+.tipps{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.tipps summary{color:var(--ink)}
+.tipps ol{margin:10px 0;padding-left:22px;display:grid;gap:8px}
+.tipps .btn{min-height:38px;padding:6px 12px}
+.aknoepfe .btn{flex:1;min-width:150px}
+.loesung{border:1px solid rgba(142,199,161,.35);background:rgba(142,199,161,.05);border-radius:14px;padding:14px;display:grid;gap:12px}
+.bewerten{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:12px}
+.chat{border:1px solid rgba(157,199,165,.35);background:var(--panel2);border-radius:14px;padding:14px;display:grid;gap:10px}
+.msgs{display:grid;gap:8px;max-height:420px;overflow-y:auto;padding:2px}
+.msg{border-radius:12px;padding:9px 12px;max-width:88%;line-height:1.45;overflow-x:auto}
+.msg p{margin:0 0 6px}.msg p:last-child{margin:0}.msg ul{margin:4px 0;padding-left:18px}
+.msg.user{justify-self:end;background:rgba(157,199,165,.18);border:1px solid rgba(157,199,165,.35);white-space:pre-wrap}
+.msg.assistant{justify-self:start;background:var(--panel);border:1px solid var(--line)}
+.msg.leerchat{max-width:100%;color:var(--muted);font-size:.9rem;border:1px dashed var(--line)}
+.msg.laedt{color:var(--muted)}
+.vorschl .chip{font-size:.8rem;min-height:34px;padding:5px 11px}
+.chatin textarea{flex:1;min-height:48px;resize:vertical;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--ink);font:400 1rem var(--body)}
+.chatin .btn{flex:none}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:dreh 1s linear infinite;vertical-align:-2px}
+@keyframes dreh{to{transform:rotate(360deg)}}
+/* Lesemodus */
+.btn.lesen{width:100%;justify-content:flex-start;flex-wrap:wrap;text-align:left}
+.lesrow{display:flex;gap:8px;align-items:stretch}
+.lesrow .les{flex:1;min-width:0}
+.stack>*,.lesrow,.les>div{min-width:0}
+@media (max-width:720px){.lesbtn{min-width:50px;padding:6px 8px}.les{gap:10px;padding:12px}}
+.lesbtn{flex:none;flex-direction:column;gap:0;padding:6px 12px;font-size:1.05rem;min-width:64px}
+.lesbtn span{font-size:.72rem;color:var(--muted)}
+.lesekopf{position:relative}
+.lesen-lektion{display:grid;gap:14px;scroll-margin-top:80px}
+.lesen-titel{align-items:flex-end;margin-top:10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.lesekarte{display:grid;gap:4px}
+/* Reiter */
+.reiter{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:5px}
+.reiter button{flex:1;background:none;border:0;border-radius:10px;padding:10px 12px;font-weight:600;color:var(--muted);min-height:44px}
+.reiter button[aria-selected="true"]{background:var(--panel2);color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
+.reiter .anz{display:inline-block;min-width:20px;padding:0 6px;border-radius:99px;background:rgba(157,199,165,.2);color:#b5d9bb;font-size:.75rem}
+/* Theorie-Karten */
+.kt2{margin:4px 0 12px}
+.bloecke{display:grid;gap:14px}
+.bloecke p{max-width:70ch}
+.bloecke .ziele{margin:0}
+.merke{border-left:3px solid var(--accent);background:rgba(157,199,165,.1);border-radius:12px;padding:12px 14px}
+.merke b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#b5d9bb;margin-bottom:2px}
+.hinw{border:1px solid rgba(170,170,178,.3);background:rgba(170,170,178,.07);border-radius:12px;padding:10px 14px;font-size:.92rem}
+.hinw::before{content:"ℹ️ "}
+.formel{background:var(--panel2);border-radius:12px;padding:6px 12px;overflow-x:auto;text-align:center}
+.fig{margin:0;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:12px}
+.fig figcaption{font-size:.85rem;color:var(--muted);margin-bottom:6px}
+.svgbox{width:100%;overflow:hidden}
+svg.zd{display:block;max-width:100%}
+.zd .zn{fill:var(--ink);font:600 13px var(--body)}
+.zd .zl{fill:var(--muted);font:12px var(--body)}
+.zd .zw{stroke:var(--ink);stroke-width:2;fill:none;stroke-linejoin:round}
+.zd .zm{stroke:var(--warn)}
+.zd .zmk{stroke:#807f87;stroke-dasharray:4 3;stroke-width:1.2}
+.zd .zp{stroke:#b5d9bb;stroke-width:1.5}
+.zd .kb{fill:var(--panel);stroke:#2d322d;stroke-width:1.5}
+.zd .kt{fill:var(--ink);font:600 13px var(--body)}
+.zd .ks{fill:var(--muted);font:12px var(--body)}
+.zd .kp{stroke:#aaaab2;stroke-width:1.6}
+.zd .kpw{stroke:var(--bad);stroke-width:1.8}
+.zd .kwt{fill:var(--bad);font:600 12px var(--body)}
+/* Widgets */
+.wid{background:var(--panel2);border:1px solid rgba(157,199,165,.35);border-radius:14px;padding:14px;display:grid;gap:10px}
+.wkopf{font-size:.78rem;font-weight:600;letter-spacing:.03em;color:#b5d9bb}
+.sl{display:grid;gap:4px;font-size:.92rem}
+.sl>span{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sl em,.flegende em{font-style:normal}
+.sl input[type=range]{width:100%;accent-color:var(--accent);min-height:32px}
+.wstatus{border-radius:10px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);font-size:.95rem}
+.wstatus.ok{border-color:rgba(142,199,161,.4);background:rgba(142,199,161,.08)}
+.wstatus.bad{border-color:rgba(220,139,136,.4);background:rgba(220,139,136,.08)}
+svg.kugel{width:100%;max-width:420px;margin:0 auto;display:block}
+.kugel .hang{fill:#1c201d;stroke:#2d322d;stroke-width:1.5}
+.kugel .ball{fill:var(--accent);stroke:#ebeaef;stroke-width:2}
+.kugel .zn{fill:var(--ink);font:700 15px var(--mono)}
+.kugel .zl{fill:var(--muted);font:12px var(--body)}
+.fbar{display:flex;height:22px;border-radius:8px;overflow:hidden;background:var(--panel)}
+.fbar i{display:block;height:100%}
+.flegende{display:flex;flex-wrap:wrap;gap:10px}
+.flegende span{display:inline-flex;align-items:center;gap:5px}
+.flegende i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.fres{display:grid;gap:2px;font-size:.95rem}
+.fgross{font-family:var(--display);font-size:1.25rem;margin-top:4px}
+.fgross b{color:#ebeaef}
+
+@media (max-width:720px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .topin{gap:10px}
+  .brand small,.sync{display:none}
+  /* backdrop-filter würde die fixe Navigation am Kopf statt am Bildschirm ausrichten */
+  header.top{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(13,16,14,.97)}
+  nav.tabs{position:fixed;bottom:0;left:0;right:0;justify-content:space-around;background:rgba(13,16,14,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));margin:0}
+  nav.tabs button{flex:1;flex-direction:column;gap:3px;font-size:.7rem;padding:7px 2px;min-height:52px;justify-content:center}
+  nav.tabs button[aria-current="page"]{background:none;color:var(--accent)}
+  nav.tabs svg{width:22px;height:22px}
+  h1{font-size:1.5rem}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .thema{grid-template-columns:40px 1fr auto;gap:10px;padding:12px}
+  .thema .no{font-size:1.25rem}
+  .paar{gap:8px}
+  .unterl div{grid-template-columns:1fr;gap:0}
+}
+
+/* ===== Digital Campus Design: clean, dunkel, feine Akzente ===== */
+
+.count,.check{background:var(--panel)!important;border-color:var(--line)!important}
+.progress>i{background:var(--accent)!important}
+.progress{height:4px!important}
+.wk,.next,.example,.merke,.ovk{border:1px solid var(--dc-accent-line)!important}
+.cfab{background:var(--panel2)!important;border:1px solid var(--dc-accent-line)!important;color:var(--accent)!important}
+.lampe.an b{box-shadow:none!important}
+.bignum{color:var(--ink)!important}
+.brand{font-family:var(--display)}
+.brand small{font-family:var(--dc-font-campus)}
+nav.tabs button,.btn,.chip,.pill{font-family:var(--dc-font-campus)}
+code,.num,.mono{font-family:var(--mono)}
+
+
+/* Campus-Navigation: Link zum Dashboard (einheitlich in allen Fach-Artifacts) */
+.dc-home{display:inline-flex;align-items:center;gap:6px;flex:none;min-height:36px;padding:0 12px;border:1px solid var(--dc-line,#2e2c36);border-radius:999px;background:transparent;color:var(--dc-campus,#af9ee4);font:500 13px/1 var(--dc-font-campus,inherit);text-decoration:none;white-space:nowrap}
+.dc-home:hover,.dc-home:focus-visible{border-color:var(--dc-campus,#af9ee4)}
+.dc-home svg{width:16px;height:16px;flex:none}
+.dc-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+@media (max-width:520px){.dc-home{padding:0 10px}.dc-home span{display:none}}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]]},svg:{fontCache:"global"},startup:{typeset:false}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <button class="upbtn" id="upbtn" aria-label="Zurück" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span>Zurück</span></button>
+  <a class="upbtn dc-home" id="dclink" href="https://claude.ai/artifact/3nucn1BNbLGW39vSE3pUGQ" title="Zurück zum Dashboard – Digital Campus" aria-label="Zurück zum Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Dashboard</span></a>
+  <div class="brand"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" style="fill:var(--dc-surface-raised);stroke:var(--dc-line)"/><circle cx="16" cy="16" r="5.5" style="fill:var(--dc-accent)"/></svg><div>Digitaltechnik<small>Digital Campus</small></div></div>
+  <nav class="tabs" aria-label="Bereiche">
+    <button data-tab="start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Übersicht</button>
+    <button data-tab="themen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>Themen</button>
+    <button data-tab="termine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Termine</button>
+  </nav>
+  <div class="sync" id="sync"><i></i>lokal</div>
+</div></header>
+<main id="app"><div class="lade">Lade Inhalte …</div></main>
+
+<script>
+"use strict";
+/* ============================================================
+   KONFIGURATION
+   ============================================================ */
+const FACH_ID = "digitaltechnik";
+// Als Artifact liegen die Inhalte unter content/…; als lokale Kopie in app/faecher/ unter ../../content/…
+const BASIS_PFADE = ["content/" + FACH_ID + "/", "../../content/" + FACH_ID + "/"];
+const SEM_START = new Date(2026, 8, 14);   // Montag SW01 HS26
+const SEM_WOCHEN = 14;
+const DAY = 864e5;
+
+/* ============================================================
+   HILFEN
+   ============================================================ */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Text mit `code`, **fett** und LaTeX ($…$) – LaTeX setzt MathJax danach
+const md = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+const mischen = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const heute = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+const iso = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const tag = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const WT = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+const MON = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+const fmt = d => String(d.getDate()).padStart(2, "0") + "." + String(d.getMonth() + 1).padStart(2, "0") + ".";
+const tageBis = s => Math.round((tag(s) - heute()) / DAY);
+function swVon(d) { const n = Math.floor((d - SEM_START) / DAY / 7) + 1; return n; }
+function typeset(el) { if (window.MathJax && MathJax.typesetPromise) { MathJax.typesetClear && MathJax.typesetClear([el]); MathJax.typesetPromise([el]).catch(() => {}); } else setTimeout(() => typeset(el), 300); }
+const kn = n => "K" + String(n).padStart(2, "0");
+
+/* ============================================================
+   INHALTE
+   ============================================================ */
+const I = { fach: null, themen: [], termine: [], einheiten: {}, basis: null, quellen: "", stand: "" };
+async function holen(pfad) { const r = await fetch(I.basis + pfad, { cache: "no-cache" }); if (!r.ok) throw new Error(pfad + " fehlt"); return r.json(); }
+async function inhalteLaden() {
+  for (const b of BASIS_PFADE) {
+    try { const r = await fetch(b + "fach.json", { cache: "no-cache" }); if (!r.ok) continue; I.fach = await r.json(); I.basis = b; break; } catch (e) {}
+  }
+  if (!I.fach) throw new Error("fach.json nicht gefunden");
+  const [th, te] = await Promise.all([holen("themen.json").catch(() => ({ themen: [] })), holen("termine.json").catch(() => ({ termine: [] }))]);
+  I.themen = (th.themen || []).slice().sort((a, b) => a.nr - b.nr);
+  I.termine = (te.termine || []).slice().sort((a, b) => a.von.localeCompare(b.von));
+  I.quellen = te.quellen || ""; I.stand = te.stand || "";
+  const ids = I.fach.einheiten || [];
+  const geladen = await Promise.all(ids.map(id => holen("einheiten/" + id + ".json").catch(() => null)));
+  geladen.forEach(e => { if (e && e.id) I.einheiten[e.id] = e; });
+}
+// Lektionen eines Themas: aus den Einheiten, die das Thema nennt
+const lektionenVon = t => (t.einheiten || []).flatMap(id => (I.einheiten[id]?.lektionen || []).map(l => ({ ...l, einheit: id })));
+const alleLektionen = () => I.themen.flatMap(lektionenVon);
+// Eine Lektion hat entweder «schritte» (Theorie-Karten und Fragen gemischt) oder nur «aufgaben»
+const schritteVon = l => l.schritte || l.aufgaben || [];
+const fragenVon = l => schritteVon(l).filter(s => s.typ !== "theorie");
+const alleAufgaben = () => alleLektionen().flatMap(fragenVon).concat(I.themen.flatMap(t => uebungenVon(t).kurz));
+// Übungen pro Thema: kurz = Schnell-Check-Fragen, lang = Aufgaben aus dem Übungsblatt
+const uebungenVon = t => {
+  const r = { kurz: [], lang: [] };
+  (t.einheiten || []).forEach(id => { const u = I.einheiten[id]?.uebungen; if (u && !Array.isArray(u)) { r.kurz.push(...(u.kurz || [])); r.lang.push(...(u.lang || [])); } });
+  return r;
+};
+
+/* ============================================================
+   FORTSCHRITT (localStorage + Konto, wie Digital Campus Mathe)
+   ============================================================ */
+const KEY = "digital-campus-" + FACH_ID;
+let S = { v: 1, lektionen: {}, fehler: {}, xp: 0, tage: {}, streak: 0, letzterTag: null, updated: 0, aufg: {}, chats: {}, chatsGeloescht: {} };
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
+["aufg", "chats", "chatsGeloescht"].forEach(k => { if (!S[k] || typeof S[k] !== "object") S[k] = {}; });
+let dbRef = null, schreibt = false, nochmal = false, timer = null;
+function speichern() {
+  S.updated = Date.now();
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+  clearTimeout(timer); timer = setTimeout(hochladen, 1200);
+}
+async function hochladen() {
+  if (!dbRef) return; if (schreibt) { nochmal = true; return; } schreibt = true;
+  try { await dbRef.set({ state: JSON.parse(JSON.stringify(S)), updated: S.updated }); setSync(true); } catch (e) { setSync(false, "nicht gespeichert"); }
+  schreibt = false; if (nochmal) { nochmal = false; hochladen(); }
+}
+function mergen(r) {
+  if (!r) return;
+  for (const k in r.lektionen || {}) { const a = S.lektionen[k], b = r.lektionen[k]; if (!a || (b.ts || 0) > (a.ts || 0)) S.lektionen[k] = b; }
+  for (const k in r.fehler || {}) if (!(k in S.fehler)) S.fehler[k] = r.fehler[k];
+  for (const k in r.aufg || {}) { const a = S.aufg[k], b = r.aufg[k]; if (!a || (b.ts || 0) > (a.ts || 0)) S.aufg[k] = b; }
+  for (const k in r.chatsGeloescht || {}) S.chatsGeloescht[k] = Math.max(S.chatsGeloescht[k] || 0, r.chatsGeloescht[k]);
+  const zuletzt = m => (m && m.length ? m[m.length - 1].ts || 0 : 0);
+  for (const k in r.chats || {}) { const b = r.chats[k]; if (zuletzt(b) > zuletzt(S.chats[k])) S.chats[k] = b; }
+  for (const k in S.chats) if ((S.chatsGeloescht[k] || 0) >= zuletzt(S.chats[k])) delete S.chats[k];
+  for (const k in r.tage || {}) S.tage[k] = Math.max(S.tage[k] || 0, r.tage[k]);
+  S.xp = Math.max(S.xp || 0, r.xp || 0);
+  if ((r.letzterTag || "") > (S.letzterTag || "")) { S.letzterTag = r.letzterTag; S.streak = r.streak; }
+}
+function setSync(on, txt) {
+  const el = $("#sync"); el.className = "sync" + (on ? " on" : "");
+  el.innerHTML = "<i></i>" + (txt || (on ? "synchronisiert" : "lokal"));
+  el.title = on ? "Fortschritt wird in deinem Konto gespeichert (Handy & PC)" : "Fortschritt nur in diesem Browser gespeichert";
+}
+async function syncStart() {
+  if (!window.claude || !window.claude.use) { setSync(false); return; }
+  try {
+    const [user, db] = await Promise.all([claude.use("user"), claude.use("db")]);
+    if (!user || !db) { setSync(false); return; }
+    const id = await user.id(); if (!id) { setSync(false); return; }
+    dbRef = db.collection("data/users/" + id).doc(FACH_ID);
+    const snap = await Promise.race([dbRef.get(), new Promise((_, rej) => setTimeout(() => rej("timeout"), 10000))]);
+    if (snap && snap.exists) { mergen(JSON.parse(JSON.stringify(snap.data().state))); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} if (!sitzung) render(); }
+    setSync(true); hochladen();
+  } catch (e) { dbRef = null; setSync(false); }
+}
+const fertig = id => !!(S.lektionen[id] && S.lektionen[id].done);
+function themaStand(t) { const L = lektionenVon(t); return { done: L.filter(l => fertig(l.id)).length, total: L.length }; }
+function streak() {
+  const t = iso(heute()); if (S.letzterTag === t) return;
+  const g = iso(new Date(heute() - DAY));
+  S.streak = S.letzterTag === g ? (S.streak || 0) + 1 : 1; S.letzterTag = t;
+}
+
+/* ============================================================
+   NAVIGATION (#start, #themen, #termine, #k04 …)
+   ============================================================ */
+const TABS = ["start", "themen", "termine"];
+let view = { tab: "start" };
+let sitzung = null;
+function ausHash() {
+  const h = location.hash.slice(1);
+  if (TABS.includes(h)) return { tab: h };
+  const m = h.match(/^(k\d\d)(?:-(aufgaben|lesen))?$/);
+  if (m && I.themen.some(t => t.id === m[1])) return { tab: "themen", thema: m[1], reiter: m[2] || "theorie" };
+  return { tab: "start" };
+}
+function go(v) { sitzung = null; view = v; const h = v.thema ? v.thema + (v.reiter === "aufgaben" || v.reiter === "lesen" ? "-" + v.reiter : "") : v.tab; try { if (location.hash.slice(1) !== h) history.pushState(null, "", "#" + h); } catch (e) { location.hash = h; } render(); if (v.anker) { const z = document.getElementById(v.anker); if (z) { z.scrollIntoView(); return; } } window.scrollTo(0, 0); }
+window.addEventListener("popstate", () => { sitzung = null; view = ausHash(); render(); });
+window.addEventListener("hashchange", () => { const v = ausHash(); if (v.tab !== view.tab || v.thema !== view.thema || (v.reiter || "theorie") !== (view.reiter || "theorie")) { sitzung = null; view = v; render(); } });
+document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => go({ tab: b.dataset.tab })));
+$("#upbtn").addEventListener("click", () => { if (sitzung) { const t = sitzung.thema, r = sitzung.reiter; sitzung = null; go(t ? { tab: "themen", thema: t, reiter: r } : { tab: "themen" }); } else if (view.thema && view.reiter === "lesen") go({ tab: "themen", thema: view.thema, reiter: "theorie" }); else go({ tab: "themen" }); });
+
+const app = $("#app");
+function render() {
+  GRAFIKEN = [];
+  const zurueck = !!(sitzung || view.thema);
+  $("#upbtn").hidden = !zurueck;
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-current", b.dataset.tab === view.tab ? "page" : "false"));
+  if (sitzung) return aufgabeZeigen();
+  if (view.tab === "themen") view.thema ? rThema(view.thema) : rThemen();
+  else if (view.tab === "termine") rTermine();
+  else rStart();
+  typeset(app);
+}
+
+/* ============================================================
+   TERMINE
+   ============================================================ */
+const ART_PILL = { bewertet: ["bad", "Prüfung"], pflicht: ["warn", "Pflicht"], frist: ["warn", "Frist"], unterricht: ["acc", "Unterricht"], info: ["info", "Info"] };
+function pillArt(t) { const p = ART_PILL[(t.art || "").toLowerCase()] || ["", t.art || ""]; return `<span class="pill ${p[0]}">${esc(p[1])}</span>`; }
+function terminStatus(t) {
+  const a = tageBis(t.von), e = tageBis(t.bis);
+  if (e < 0) return null;
+  if (a <= 0) return t.von === t.bis ? "heute" : "läuft";
+  if (a === 1) return "morgen";
+  return "in " + a + " Tagen";
+}
+const kommend = () => I.termine.filter(t => tageBis(t.bis) >= 0);
+function terminZeile(t, mitHinweis) {
+  const d = tag(t.von), st = terminStatus(t);
+  const mehrtaegig = t.von !== t.bis;
+  return `<div class="it ${st ? "" : "vorbei"}"><div class="date"><b>${fmt(d)}</b>${WT[d.getDay()]}</div>
+    <div><div class="t">${esc(t.titel)}</div><div class="s">${mehrtaegig ? "bis " + fmt(tag(t.bis)) + (t.zeit ? " · " : "") : ""}${esc(t.zeit || "")}${st ? (t.zeit || mehrtaegig ? " · " : "") + st : ""}</div>
+    ${mitHinweis && t.hinweis ? `<div class="h">${esc(t.hinweis)}</div>` : ""}</div>${pillArt(t)}</div>`;
+}
+
+/* ============================================================
+   ÜBERSICHT
+   ============================================================ */
+function rStart() {
+  const h = heute(), sw = swVon(h);
+  const swText = sw >= 1 && sw <= SEM_WOCHEN ? "SW " + sw : sw > SEM_WOCHEN ? "Unterrichtsfrei / Prüfungsphase" : "Vor Semesterbeginn";
+  const nU = kommend().find(t => (t.art || "").toLowerCase() === "unterricht");
+  const mep = I.termine.find(t => t.id === "mep-dt");
+  const L = alleLektionen(), done = L.filter(l => fertig(l.id)).length;
+  const fehlerAnz = Object.keys(S.fehler).filter(id => alleAufgaben().some(a => a.id === id)).length;
+  const naechste = kommend().slice(0, 5);
+  const mepThemen = I.themen.filter(t => t.mep);
+  app.innerHTML = `
+  <section class="hero">
+    <div class="card">
+      <p class="muted small">${esc(swText)} · ${h.toLocaleDateString("de-CH", { weekday: "long", day: "numeric", month: "long" })}</p>
+      <h1>Digitaltechnik</h1>
+      ${nU ? `<div class="next"><div class="spread"><span class="pill acc">Nächster Unterricht</span><span class="small muted">${terminStatus(nU)}</span></div>
+        <p style="margin-top:6px;font-weight:600">${WT[tag(nU.von).getDay()]} ${fmt(tag(nU.von))} · ${esc(nU.zeit.replace(/^\w\w /, ""))}</p>
+        <p class="small muted">${esc(nU.titel)} · Haab, Jost, Thalmann</p></div>`
+        : `<div class="next"><span class="pill">Kein Unterricht mehr</span><p class="small muted" style="margin-top:6px">Die Unterrichtswochen HS26 sind vorbei.</p></div>`}
+      <div class="stats">
+        <div class="stat"><b class="num">${I.themen.length}</b><span>Themen</span></div>
+        <div class="stat"><b class="num">${done}/${L.length}</b><span>Lektionen</span></div>
+        <div class="stat"><b class="num">${S.xp || 0}</b><span>XP · 🔥 ${S.streak || 0}</span></div>
+      </div>
+    </div>
+    ${mep ? `<div class="card count">
+      <p class="muted small">Modulendprüfung</p>
+      <div class="row" style="align-items:baseline;margin-top:4px"><span class="bignum num">${Math.max(0, tageBis(mep.von))}</span><span class="muted">Tage</span></div>
+      <p style="margin-top:6px;font-weight:600">${WT[tag(mep.von).getDay()]} ${fmt(tag(mep.von))}${tag(mep.von).getFullYear()} · ${esc(mep.zeit.replace(/^\w\w /, ""))}</p>
+      <p class="small muted" style="margin-top:10px">2 h schriftlich. Erlaubt: 4 A4-Blätter Zusammenfassung (beidseitig). Kein Taschenrechner.</p>
+    </div>` : ""}
+  </section>
+  ${fehlerAnz ? `<button class="btn" id="fehler">🔁 Fehler wiederholen (${fehlerAnz})</button>` : ""}
+  <section class="grid2">
+    <div class="card">
+      <div class="spread"><h2>Nächste Termine</h2><button class="linkbtn" data-go="termine">Alle Termine →</button></div>
+      <div class="list" style="margin-top:8px">${naechste.length ? naechste.map(t => terminZeile(t, false)).join("") : '<p class="muted">Keine kommenden Termine.</p>'}</div>
+    </div>
+    <div class="card">
+      <div class="spread"><h2>Sicher an der MEP</h2><span class="pill bad">Prüfungsstoff</span></div>
+      <p class="small muted" style="margin-top:6px">Laut MEP-Infos: Entwurf von Zustandsautomaten, Zustandsdiagramme, Zustandstabellen und Karnaugh-Tabellen. Der Umfang ist aber der ganze Stoff.</p>
+      <div class="fokus">${mepThemen.map(t => { const s = themaStand(t); return `
+        <button class="les" data-thema="${t.id}"><span class="dot">${t.nr}</span><div><b>${esc(t.titel)}</b><div class="small muted">${kn(t.nr)} · ${s.total ? s.done + "/" + s.total + " Lektionen" : "Lektionen folgen"}</div></div><span class="muted">›</span></button>`; }).join("")}</div>
+    </div>
+  </section>
+  <section class="card">
+    <div class="spread"><h2>Alle Themen</h2><button class="linkbtn" data-go="themen">Als Liste →</button></div>
+    <p class="small muted" style="margin-top:4px">In der Reihenfolge der Folien, Kapitel 0 bis 15.</p>
+    <div class="themenkarte">${I.themen.map(t => { const s = themaStand(t); return `
+      <button class="tk ${t.mep ? "mep" : ""}" data-thema="${t.id}">
+        <span class="kn">${kn(t.nr)}${t.mep ? " · MEP" : ""}</span><span class="tt">${esc(t.titel)}</span>
+        ${s.total ? `<div class="bar"><i style="width:${100 * s.done / s.total}%"></i></div>` : `<span class="small muted">folgt</span>`}
+      </button>`; }).join("")}</div>
+  </section>`;
+  app.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go({ tab: b.dataset.go }));
+  app.querySelectorAll("[data-thema]").forEach(b => b.onclick = () => go({ tab: "themen", thema: b.dataset.thema }));
+  const f = $("#fehler"); if (f) f.onclick = fehlerWiederholen;
+}
+
+/* ============================================================
+   THEMEN
+   ============================================================ */
+function rThemen() {
+  const L = alleLektionen(), done = L.filter(l => fertig(l.id)).length;
+  app.innerHTML = `<div><h1>Themen</h1><p class="muted" style="margin-top:6px">Alle Kapitel der Reihe nach, wie sie in den Folien vorkommen. ${L.length ? done + " von " + L.length + " Lektionen erledigt." : "Die Lektionen kommen nach und nach dazu."}</p></div>
+  <section class="stack">${I.themen.map(t => { const s = themaStand(t); return `
+    <button class="thema" data-thema="${t.id}">
+      <div class="no">${t.nr}</div>
+      <div><div class="row" style="gap:8px"><b>${esc(t.titel)}</b>${t.mep ? '<span class="pill bad">MEP</span>' : ""}</div>
+        <div class="small muted" style="margin-top:2px">${esc((t.lernziele || []).slice(0, 2).join(" · "))}</div></div>
+      <div class="rt">${s.total ? `<div class="small"><b>${s.done}</b>/${s.total}</div><div class="bar" style="margin-top:4px"><i style="width:${100 * s.done / s.total}%"></i></div>` : '<span class="small muted">folgt</span>'}</div>
+    </button>`; }).join("")}</section>`;
+  app.querySelectorAll("[data-thema]").forEach(b => b.onclick = () => go({ tab: "themen", thema: b.dataset.thema }));
+}
+function rThema(id) {
+  const t = I.themen.find(x => x.id === id); if (!t) return rThemen();
+  const reiter = ["aufgaben", "lesen"].includes(view.reiter) ? view.reiter : "theorie";
+  const L = lektionenVon(t), U = uebungenVon(t), u = t.unterlagen || {};
+  const i = I.themen.indexOf(t), vor = I.themen[i - 1], nach = I.themen[i + 1];
+  const s = themaStand(t);
+  const theorie = `
+  <section class="card">
+    <div class="spread"><h2>Lektionen</h2>${L.length ? `<span class="small muted">${s.done}/${s.total} erledigt</span>` : ""}</div>
+    ${L.length ? `<button class="btn lesen" id="lesenAlle" style="margin-top:12px">📖 Nur Theorie lesen <span class="small muted">· alle ${L.length} Lektionen am Stück, ohne Fragen</span></button>` : ""}
+    ${L.length ? `<div class="stack" style="margin-top:12px">${L.map((l, k) => { const r = S.lektionen[l.id]; const nK = schritteVon(l).filter(x => x.typ === "theorie").length, nF = fragenVon(l).length; return `
+      <div class="lesrow"><button class="les" data-l="${k}"><span class="dot ${r && r.done ? "done" : ""}">${r && r.done ? "✓" : k + 1}</span>
+        <div><b>${esc(l.titel)}</b><div class="small muted">${l.art === "rechnen" ? "Rechnen" : "Verständnis"} · ${nK ? nK + " Theorie-Karten · " : ""}${nF} Fragen · ca. 3–5 min</div></div>
+        ${r ? `<span class="pill ${r.best >= 75 ? "ok" : r.best >= 50 ? "warn" : "bad"}">${r.best} %</span>` : '<span class="pill">neu</span>'}</button>
+        ${nK ? `<button class="btn lesbtn" data-lesen="${k}" title="Nur die Theorie dieser Lektion lesen" aria-label="Theorie von «${esc(l.titel)}» lesen">📖<span>Lesen</span></button>` : ""}</div>`; }).join("")}</div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="weiterL">${L.every(l => fertig(l.id)) ? "Nochmals von vorne" : "Nächste Lektion starten"}</button></div>`
+    : `<div class="leer" style="margin-top:12px"><h3>Lektionen folgen</h3><p>Für dieses Thema sind noch keine Lektionen erstellt.</p></div>`}
+  </section>
+  <section class="grid2">
+    <div class="card"><h2>Lernziele</h2><ul class="ziele">${(t.lernziele || []).map(z => `<li>${md(z)}</li>`).join("")}</ul>
+      <p class="quelle">Aus den Folien, Kapitel ${t.nr}</p></div>
+    <div class="card"><h2>Folien</h2><div class="unterl"><div><b>Datei</b><code>${esc(u.folien || "–")}</code></div></div>
+      <p class="quelle">Im Ordner Documents/HSLU/Digitaltechnik</p></div>
+  </section>`;
+  const aufgaben = rUebungen(t);
+  app.innerHTML = `
+  <div><div class="row"><span class="pill acc">Kapitel ${t.nr}</span>${t.mep ? '<span class="pill bad">sicher an der MEP</span>' : ""}</div>
+    <h1 style="margin-top:8px">${esc(t.titel)}</h1></div>
+  <div class="reiter" role="tablist">
+    <button role="tab" data-r="theorie" aria-selected="${reiter !== "aufgaben"}">📖 Theorie${L.length ? ` <span class="anz">${L.length}</span>` : ""}</button>
+    <button role="tab" data-r="aufgaben" aria-selected="${reiter === "aufgaben"}">✏️ Aufgaben${U.lang.length ? ` <span class="anz">${U.lang.length}</span>` : ""}</button>
+  </div>
+  ${reiter === "theorie" ? theorie : reiter === "lesen" ? lesenHTML(t, L) : aufgaben}
+  <div class="spread">${vor ? `<button class="btn ghost" data-thema="${vor.id}">← ${kn(vor.nr)} ${esc(vor.titel)}</button>` : "<span></span>"}${nach ? `<button class="btn ghost" data-thema="${nach.id}">${kn(nach.nr)} ${esc(nach.titel)} →</button>` : ""}</div>`;
+  app.querySelectorAll("[data-r]").forEach(b => b.onclick = () => go({ tab: "themen", thema: t.id, reiter: b.dataset.r }));
+  app.querySelectorAll("[data-thema]").forEach(b => b.onclick = () => go({ tab: "themen", thema: b.dataset.thema, reiter }));
+  app.querySelectorAll("[data-l]").forEach(b => b.onclick = () => lektionStarten(L[+b.dataset.l], t.id));
+  const w = $("#weiterL"); if (w) w.onclick = () => { const k = L.findIndex(l => !fertig(l.id)); lektionStarten(L[k < 0 ? 0 : k], t.id); };
+  if (reiter === "aufgaben") uebungenVerdrahten(t);
+  const la = $("#lesenAlle"); if (la) la.onclick = () => go({ tab: "themen", thema: t.id, reiter: "lesen" });
+  app.querySelectorAll("[data-lesen]").forEach(b => b.onclick = () => go({ tab: "themen", thema: t.id, reiter: "lesen", anker: "lesen-" + b.dataset.lesen }));
+  if (reiter === "lesen") lesenVerdrahten(t, L);
+}
+
+/* ---------- Lesemodus: alle Theorie-Karten am Stück, ohne Fragen ---------- */
+function lesenHTML(t, L) {
+  const mitTheorie = L.map((l, k) => ({ l, k, karten: schritteVon(l).filter(x => x.typ === "theorie") })).filter(x => x.karten.length);
+  if (!mitTheorie.length) return `<div class="leer"><h3>Noch keine Theorie</h3><p>Für dieses Thema gibt es noch keine Theorie-Karten.</p></div>`;
+  return `
+  <section class="card lesekopf">
+    <div class="spread"><div><h2>📖 Theorie lesen</h2><p class="small muted" style="margin-top:4px">Alle Erklärungen, Grafiken und interaktiven Teile, ohne Fragen. Zählt nicht als erledigte Lektion.</p></div>
+      <button class="btn ghost" id="lesenZurueck">Zu den Lektionen</button></div>
+    <div class="chips" style="margin-top:12px">${mitTheorie.map(x => `<button class="chip" data-sprung="lesen-${x.k}">${x.k + 1}. ${esc(x.l.titel)}</button>`).join("")}</div>
+  </section>
+  ${mitTheorie.map(x => `
+  <section class="lesen-lektion" id="lesen-${x.k}">
+    <div class="spread lesen-titel"><h2><span class="anr">Lektion ${x.k + 1}</span><br>${esc(x.l.titel)}</h2>
+      <button class="btn" data-fragen="${x.k}">✏️ Fragen dazu (${fragenVon(x.l).length})</button></div>
+    ${x.karten.map((c, j) => `<article class="card lesekarte"><h3 class="kt2">${md(c.titel || "")}</h3><div class="bloecke" data-karte="${x.k}-${j}"></div>${c.quelle ? `<div class="quelle">📄 ${esc(c.quelle)}</div>` : ""}</article>`).join("")}
+  </section>`).join("")}
+  <div class="row" style="justify-content:center"><button class="btn ghost" id="nachOben">↑ Nach oben</button></div>`;
+}
+function lesenVerdrahten(t, L) {
+  L.forEach((l, k) => schritteVon(l).filter(x => x.typ === "theorie").forEach((c, j) => {
+    const box = app.querySelector(`[data-karte="${k}-${j}"]`); if (!box) return;
+    (c.bloecke || []).forEach(b => { const el = document.createElement("div"); el.className = "blk"; box.appendChild(el); (BLOCK[b.typ] || BLOCK._x)(b, el); });
+  }));
+  app.querySelectorAll("[data-sprung]").forEach(b => b.onclick = () => document.getElementById(b.dataset.sprung)?.scrollIntoView({ behavior: "smooth" }));
+  app.querySelectorAll("[data-fragen]").forEach(b => b.onclick = () => lektionStarten(L[+b.dataset.fragen], t.id));
+  const z = $("#lesenZurueck"); if (z) z.onclick = () => go({ tab: "themen", thema: t.id, reiter: "theorie" });
+  const o = $("#nachOben"); if (o) o.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ============================================================
+   TERMINE-ANSICHT
+   ============================================================ */
+let terminFilter = "alle";
+try { terminFilter = localStorage.getItem(KEY + "-filter") || "alle"; } catch (e) {}
+function rTermine() {
+  const F = [["alle", "Alle"], ["bewertet", "Prüfung"], ["unterricht", "Unterricht"], ["info", "Info"]];
+  const passt = t => terminFilter === "alle" || (t.art || "").toLowerCase() === terminFilter;
+  const offen = kommend().filter(passt), vorbei = I.termine.filter(t => tageBis(t.bis) < 0 && passt(t)).reverse();
+  let gruppen = "", letzte = null;
+  offen.forEach(t => {
+    const d = tag(t.von), g = MON[d.getMonth()] + " " + d.getFullYear();
+    if (g !== letzte) { gruppen += (letzte ? "</div>" : "") + `<p class="gruppe">${g}</p><div class="list card" style="padding:4px 16px">`; letzte = g; }
+    gruppen += terminZeile(t, true);
+  });
+  if (letzte) gruppen += "</div>";
+  app.innerHTML = `<div><h1>Termine</h1><p class="muted" style="margin-top:6px">Unterricht, Prüfung und unterrichtsfreie Zeiten für Digitaltechnik.</p></div>
+    <div class="chips">${F.map(([k, n]) => `<button class="chip" data-f="${k}" aria-pressed="${terminFilter === k}">${n}</button>`).join("")}</div>
+    <section class="stack">${gruppen || '<p class="muted">Keine kommenden Termine für diesen Filter.</p>'}</section>
+    ${vorbei.length ? `<details><summary>Vorbei (${vorbei.length})</summary><div class="list card" style="padding:4px 16px;margin-top:10px">${vorbei.map(t => terminZeile(t, true)).join("")}</div></details>` : ""}
+    <p class="quelle">${esc(I.quellen)}${I.stand ? " Stand " + fmt(tag(I.stand)) + tag(I.stand).getFullYear() + "." : ""} Labortermine stehen noch nicht drin.</p>`;
+  app.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { terminFilter = b.dataset.f; try { localStorage.setItem(KEY + "-filter", terminFilter); } catch (e) {} rTermine(); });
+}
+
+/* ============================================================
+   LEKTION
+   ============================================================ */
+function lektionStarten(l, themaId, reiter) {
+  const sch = l ? schritteVon(l) : [];
+  if (!sch.length) return;
+  sitzung = { l, thema: themaId, reiter: reiter || "theorie", queue: sch.slice(), gesamt: sch.length, fragen: fragenVon(l).length, erledigt: 0, richtigErst: 0, fehlerIds: new Set(), wiederholung: false };
+  render(); window.scrollTo(0, 0);
+}
+function fehlerWiederholen() {
+  const ids = new Set(Object.keys(S.fehler));
+  const a = mischen(alleAufgaben().filter(x => ids.has(x.id))).slice(0, 10);
+  if (!a.length) return;
+  sitzung = { l: { id: null, titel: "Fehler wiederholen", aufgaben: a }, thema: null, queue: a.slice(), gesamt: a.length, fragen: a.length, erledigt: 0, richtigErst: 0, fehlerIds: new Set(), wiederholung: true };
+  render(); window.scrollTo(0, 0);
+}
+/* ============================================================
+   THEORIE-KARTEN, GRAFIKEN UND INTERAKTIVE TEILE
+   Blöcke einer Theorie-Karte: text, liste, merke, hinweis, formel,
+   zeitdiagramm, kette, interaktiv (widget + params)
+   ============================================================ */
+let GRAFIKEN = [];
+let rzTimer = null;
+window.addEventListener("resize", () => { clearTimeout(rzTimer); rzTimer = setTimeout(() => GRAFIKEN.forEach(f => { try { f(); } catch (e) {} }), 120); });
+function grafik(fn) { GRAFIKEN.push(fn); fn(); }
+
+// "t_Eingangsstufe" → t mit tiefgestelltem Index (SVG)
+// mehrere Indizes möglich, z. B. "D_1 → Q_1" oder "T_clk,min"
+const SUB_RE = /_(\{[^}]*\}|[A-Za-z0-9,.]+)/g;
+const ohneKl = x => x.replace(/^\{|\}$/g, "");
+function subText(t) { return esc(t).replace(SUB_RE, (_, x) => `<tspan baseline-shift="sub" font-size="78%">${ohneKl(x)}</tspan>`); }
+// dasselbe für HTML
+function subHTML(t) { return esc(t).replace(SUB_RE, (_, x) => `<sub>${ohneKl(x)}</sub>`); }
+const SVG_DEFS = `<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#807f87" stroke-width="2"/></pattern>
+  <marker id="pe" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="#b5d9bb"/></marker>
+  <marker id="pw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="#dc8b88"/></marker>
+  <marker id="pn" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="#aaaab2"/></marker></defs>`;
+
+/* ---------- Zeitdiagramm ----------
+   signale: [{name, wellen}] – ein Zeichen pro Zeiteinheit:
+   0 / 1 Pegel, x darf sich ändern (schraffiert), m metastabil, . wie vorher, Leerzeichen: noch nicht sichtbar
+   fenster: [{von, bis, text, art: setup|hold|warn}], marken: [{t, text}], pfeile: [{signal, von, bis, text}] */
+function zeitSVG(d, W) {
+  W = Math.max(260, Math.floor(W));
+  const sig = d.signale || [];
+  const n = Math.max(1, ...sig.map(s => s.wellen.length));
+  const LW = W < 420 ? 64 : 92, R = 12;
+  const top = (d.fenster || []).length ? 24 : 8;
+  const mitPfeil = new Set((d.pfeile || []).map(p => p.signal));
+  let y = top;
+  const rows = sig.map((s, i) => { const r = { y, h: 40 + (mitPfeil.has(i) ? 22 : 0) }; y += r.h; return r; });
+  const H = y + ((d.marken || []).length ? 24 : 6);
+  const u = (W - LW - R) / n, X = t => LW + t * u;
+  let o = `<svg class="zd" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(d.titel || "Zeitdiagramm")}">${SVG_DEFS}`;
+  const FARBE = { setup: "#aaaab2", hold: "#9dc7a5", warn: "#dc8b88" };
+  (d.fenster || []).forEach(f => {
+    const c = FARBE[f.art] || "#9dc7a5";
+    o += `<rect x="${X(f.von)}" y="${top - 4}" width="${Math.max(1, X(f.bis) - X(f.von))}" height="${y - top + 4}" fill="${c}" opacity=".17" rx="3"/>
+      <text x="${(X(f.von) + X(f.bis)) / 2}" y="${top - 9}" text-anchor="middle" class="zl" fill="${c}" style="fill:${c}">${subText(f.text)}</text>`;
+  });
+  sig.forEach((s, i) => {
+    const r = rows[i], yH = r.y + 6, yL = r.y + 30, yM = (yH + yL) / 2;
+    o += `<text x="${LW - 8}" y="${yM + 5}" text-anchor="end" class="zn">${subText(s.name)}</text>`;
+    const runs = [];
+    for (let t = 0; t < s.wellen.length; t++) {
+      let c = s.wellen[t];
+      if (c === ".") c = runs.length ? runs[runs.length - 1].c : "0";
+      if (runs.length && runs[runs.length - 1].c === c) runs[runs.length - 1].b = t + 1; else runs.push({ c, a: t, b: t + 1 });
+    }
+    let prev = null;
+    runs.forEach(rn => {
+      const x0 = X(rn.a), x1 = X(rn.b);
+      if (rn.c === "0" || rn.c === "1") {
+        const yy = rn.c === "1" ? yH : yL;
+        if (prev && (prev.c === "0" || prev.c === "1") && prev.c !== rn.c) o += `<line x1="${x0}" y1="${yH}" x2="${x0}" y2="${yL}" class="zw"/>`;
+        if (prev && prev.c === "m") o += `<line x1="${x0}" y1="${yM}" x2="${x0}" y2="${yy}" class="zw zm"/>`;
+        o += `<line x1="${x0}" y1="${yy}" x2="${x1}" y2="${yy}" class="zw"/>`;
+      } else if (rn.c === "x") {
+        o += `<rect x="${x0}" y="${yH}" width="${x1 - x0}" height="${yL - yH}" fill="url(#hatch)"/><line x1="${x0}" y1="${yH}" x2="${x1}" y2="${yH}" class="zw"/><line x1="${x0}" y1="${yL}" x2="${x1}" y2="${yL}" class="zw"/>`;
+      } else if (rn.c === "m") {
+        let p = `M${x0} ${prev && prev.c === "1" ? yH : yL}`;
+        const st = Math.max(8, Math.round((x1 - x0) / 4));
+        for (let k = 1; k <= st; k++) { const xx = x0 + (x1 - x0) * k / st; const amp = (yL - yH) / 2 * .8 * (1 - k / st * .55); p += ` L${xx.toFixed(1)} ${(yM + Math.sin(k * 1.9) * amp).toFixed(1)}`; }
+        o += `<path d="${p}" class="zw zm"/>`;
+      }
+      prev = rn;
+    });
+  });
+  (d.marken || []).forEach(m => { o += `<line x1="${X(m.t)}" y1="${top - 4}" x2="${X(m.t)}" y2="${y}" class="zmk"/><text x="${X(m.t)}" y="${y + 17}" text-anchor="middle" class="zl">${subText(m.text)}</text>`; });
+  (d.pfeile || []).forEach(p => {
+    const r = rows[p.signal]; if (!r) return;
+    const yy = r.y + 46, x0 = X(p.von), x1 = X(p.bis);
+    const lw = String(p.text).length * 6.6;
+    const rechts = x1 + 6 + lw < W;
+    o += `<line x1="${x0}" y1="${r.y + 6}" x2="${x0}" y2="${yy + 5}" class="zmk"/><line x1="${x1}" y1="${r.y + 6}" x2="${x1}" y2="${yy + 5}" class="zmk"/>
+      <line x1="${x0 + 1}" y1="${yy}" x2="${x1 - 1}" y2="${yy}" class="zp" marker-start="url(#pe)" marker-end="url(#pe)"/>
+      <text x="${rechts ? x1 + 6 : x0 - 6}" y="${yy + 4}" text-anchor="${rechts ? "start" : "end"}" class="zl">${subText(p.text)}</text>`;
+  });
+  return o + "</svg>";
+}
+
+/* ---------- Blockbild als Kette ----------
+   elemente: [{text, sub} | {stapel: [{text, sub}, …]}], pfeile: [Beschriftung zwischen i und i+1],
+   takt: "Beschriftung" (Takt an alle Blöcke ausser dem ersten), warnung: Index, warntext,
+   zeiten: [{von, bis, text}] Klammer unter Blöcken */
+function umbrechen(t, max) {
+  const w = String(t).split(/\s+/), z = []; let l = "";
+  w.forEach(x => { if ((l + " " + x).trim().length > max && l) { z.push(l); l = x; } else l = (l + " " + x).trim(); });
+  if (l) z.push(l); return z;
+}
+function boxSVG(x, y, w, h, e, warn) {
+  const max = Math.max(6, Math.floor((w - 12) / 7.2));
+  const z = umbrechen(e.text, max).map(subText), sub = e.sub ? subText(e.sub) : "";
+  const zeilen = z.length + (sub ? 1 : 0), y0 = y + h / 2 - (zeilen - 1) * 8 + 4;
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9" class="kb${warn ? " kw" : ""}"/>` +
+    z.map((t, i) => `<text x="${x + w / 2}" y="${y0 + i * 16}" text-anchor="middle" class="kt">${t}</text>`).join("") +
+    (sub ? `<text x="${x + w / 2}" y="${y0 + z.length * 16}" text-anchor="middle" class="ks">${sub}</text>` : "");
+}
+function ketteSVG(d, W) {
+  W = Math.max(260, Math.floor(W));
+  const el = d.elemente || [], n = el.length, warnI = d.warnung ?? -1;
+  if (W < 560) return ketteVertikal(d, W);
+  const G = 54, bw = (W - (n - 1) * G) / n, bh = 58, sh = 46, sg = 12;
+  const colH = el.map(e => e.stapel ? e.stapel.length * sh + (e.stapel.length - 1) * sg : bh);
+  const HC = Math.max(...colH), top = (d.pfeile || []).some(Boolean) || d.warntext ? 26 : 8;
+  const xs = el.map((_, i) => i * (bw + G));
+  let o = "", unten = top + HC;
+  // Ankerpunkte
+  const anker = el.map((e, i) => {
+    if (e.stapel) { const y0 = top + (HC - colH[i]) / 2; return e.stapel.map((_, k) => ({ y: y0 + k * (sh + sg), h: sh })); }
+    return [{ y: top + (HC - bh) / 2, h: bh }];
+  });
+  el.forEach((e, i) => {
+    const items = e.stapel || [e];
+    items.forEach((it, k) => { const a = anker[i][k]; o += boxSVG(xs[i], a.y, bw, a.h, it, false); });
+  });
+  for (let i = 0; i < n - 1; i++) {
+    const warn = i === warnI, cls = warn ? "kpw" : "kp", mk = warn ? "pw" : "pn";
+    const zielY = anker[i + 1][0].y + anker[i + 1][0].h / 2, x0 = xs[i] + bw, x1 = xs[i + 1];
+    anker[i].forEach(a => {
+      const yA = a.y + a.h / 2, xm = x0 + G / 2;
+      o += yA === zielY ? `<line x1="${x0}" y1="${yA}" x2="${x1 - 2}" y2="${zielY}" class="${cls}" marker-end="url(#${mk})"/>`
+        : `<polyline points="${x0},${yA} ${xm},${yA} ${xm},${zielY} ${x1 - 2},${zielY}" class="${cls}" fill="none" marker-end="url(#${mk})"/>`;
+    });
+    const lab = (d.pfeile || [])[i];
+    if (lab) o += `<text x="${x0 + G / 2}" y="${zielY - 8}" text-anchor="middle" class="ks">${subText(lab)}</text>`;
+    if (warn && d.warntext) o += `<text x="${x0 + G / 2}" y="${top - 10}" text-anchor="middle" class="kwt">${esc(d.warntext)}</text>`;
+  }
+  if (d.takt) {
+    const yT = unten + 26; const xa = xs[1] + bw / 2, xb = xs[n - 1] + bw / 2;
+    o += `<line x1="${xa - 30}" y1="${yT}" x2="${W - 2}" y2="${yT}" class="kp"/>`;
+    for (let i = 1; i < n; i++) { const a = anker[i][anker[i].length - 1]; o += `<line x1="${xs[i] + bw / 2}" y1="${yT}" x2="${xs[i] + bw / 2}" y2="${a.y + a.h + 2}" class="kp" marker-end="url(#pn)"/>`; }
+    o += `<text x="${W - 4}" y="${yT + 17}" text-anchor="end" class="ks">${subText(d.takt)}</text>`;
+    unten = yT + 22;
+  }
+  (d.zeiten || []).forEach(z => {
+    const yZ = unten + 24, xa = xs[z.von] + 4, xb = xs[z.bis] + bw - 4;
+    o += `<polyline points="${xa},${yZ - 6} ${xa},${yZ} ${xb},${yZ} ${xb},${yZ - 6}" class="kp" fill="none"/><text x="${(xa + xb) / 2}" y="${yZ + 16}" text-anchor="middle" class="ks">${subText(z.text)}</text>`;
+  });
+  if ((d.zeiten || []).length) unten += 44;
+  const H = unten + 10;
+  return `<svg class="zd" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Blockbild">${SVG_DEFS}${o}</svg>`;
+}
+function ketteVertikal(d, W) {
+  const el = d.elemente || [], n = el.length, warnI = d.warnung ?? -1;
+  const bw = Math.min(W - 24, 280), x = (W - bw) / 2, bh = 50, G = 40;
+  let o = "", y = 4;
+  const zeitVon = i => (d.zeiten || []).filter(z => z.von === i).map(z => z.text);
+  el.forEach((e, i) => {
+    if (e.stapel) {
+      const k = e.stapel.length, w2 = (bw - (k - 1) * 10) / k;
+      e.stapel.forEach((it, j) => { o += boxSVG(x + j * (w2 + 10), y, w2, bh + 6, it, false); });
+      y += bh + 6;
+    } else {
+      const zt = zeitVon(i);
+      o += boxSVG(x, y, bw, bh, zt.length ? { text: e.text, sub: (e.sub ? e.sub + " · " : "") + zt.join(", ") } : e, false);
+      y += bh;
+    }
+    if (i < n - 1) {
+      const warn = i === warnI;
+      o += `<line x1="${W / 2}" y1="${y + 2}" x2="${W / 2}" y2="${y + G - 4}" class="${warn ? "kpw" : "kp"}" marker-end="url(#${warn ? "pw" : "pn"})"/>`;
+      const lab = (d.pfeile || [])[i];
+      if (lab) o += `<text x="${W / 2 + 10}" y="${y + G / 2 + 4}" class="ks">${subText(lab)}</text>`;
+      if (warn && d.warntext) {
+        const z = umbrechen(d.warntext, Math.max(10, Math.floor((W / 2 - 16) / 6.6)));
+        z.forEach((t, j) => { o += `<text x="${W / 2 + 10}" y="${y + G / 2 + 4 + (j - (z.length - 1) / 2) * 14}" class="kwt">${esc(t)}</text>`; });
+      }
+      y += G;
+    }
+  });
+  if (d.takt) { o += `<text x="${W / 2}" y="${y + 20}" text-anchor="middle" class="ks">⏱ ${esc(d.takt.replace(/_/g, " "))} an allen Blöcken ausser dem ersten</text>`; y += 26; }
+  const H = y + 6;
+  return `<svg class="zd" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Blockbild">${SVG_DEFS}${o}</svg>`;
+}
+
+/* ---------- Blöcke ---------- */
+const BLOCK = {
+  text(b, el) { el.innerHTML = `<p>${md(b.text)}</p>`; },
+  liste(b, el) { el.innerHTML = `<ul class="ziele">${(b.punkte || []).map(p => `<li>${md(p)}</li>`).join("")}</ul>`; },
+  merke(b, el) { el.innerHTML = `<div class="merke"><b>Merke</b><p>${md(b.text)}</p></div>`; },
+  hinweis(b, el) { el.innerHTML = `<div class="hinw">${md(b.text)}</div>`; },
+  formel(b, el) { el.innerHTML = `<div class="formel">$$${esc(b.tex)}$$</div>`; },
+  zeitdiagramm(b, el) {
+    el.innerHTML = `<figure class="fig">${b.titel ? `<figcaption>${md(b.titel)}</figcaption>` : ""}<div class="svgbox"></div></figure>`;
+    const box = $(".svgbox", el); grafik(() => { box.innerHTML = zeitSVG(b, box.clientWidth); });
+  },
+  kette(b, el) {
+    el.innerHTML = `<figure class="fig">${b.titel ? `<figcaption>${md(b.titel)}</figcaption>` : ""}<div class="svgbox"></div></figure>`;
+    const box = $(".svgbox", el); grafik(() => { box.innerHTML = ketteSVG(b, box.clientWidth); });
+  },
+  interaktiv(b, el) { (WIDGETS[b.widget] || WIDGETS._x)(el, b.params || {}); },
+  _x(b, el) { el.innerHTML = `<p class="muted small">Block «${esc(b.typ)}» wird hier noch nicht angezeigt.</p>`; }
+};
+function theorieKarte(k, box) {
+  box.innerHTML = `<div class="typ">Theorie</div><h2 class="kt2">${md(k.titel || "")}</h2><div class="bloecke"></div>${k.quelle ? `<div class="quelle">📄 ${esc(k.quelle)}</div>` : ""}`;
+  const c = $(".bloecke", box);
+  (k.bloecke || []).forEach(b => { const el = document.createElement("div"); el.className = "blk"; c.appendChild(el); (BLOCK[b.typ] || BLOCK._x)(b, el); });
+  aktion(box, "Weiter", true, () => { sitzung.queue.shift(); sitzung.erledigt++; aufgabeZeigen(); window.scrollTo(0, 0); });
+}
+
+/* ---------- Interaktive Teile ---------- */
+const WIDGETS = {
+  /* Setup/Hold: Zeitpunkt des Datenwechsels verschieben */
+  setup_hold(el, p) {
+    const ts = p.tsetup ?? 4, th = p.thold ?? 2, B = p.bereich ?? 10, tpd = 2, R = .5;
+    const t0 = -B - 2, t1 = B + 8, n = Math.round((t1 - t0) / R), idx = t => Math.round((t - t0) / R);
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · ${subHTML("T_setup")} = ${ts} ns, ${subHTML("T_hold")} = ${th} ns</div>
+      <div class="svgbox"></div>
+      <label class="sl"><span><em>DataInput wechselt</em><b class="num" id="shW"></b></span><input type="range" min="${-B}" max="${B}" step="${R}" value="${-B + 2}" aria-label="Zeitpunkt des Datenwechsels relativ zur Flanke"></label>
+      <div class="wstatus"></div></div>`;
+    const inp = $("input", el), box = $(".svgbox", el), st = $(".wstatus", el), lab = $("#shW", el);
+    function zeichne() {
+      const t = +inp.value, e = idx(0);
+      let clk = "", d = "", q = "";
+      const fall = t < -ts ? "frueh" : t > th ? "spaet" : "verletzt";
+      const landet = (Math.round(t * 2) % 2 + 2) % 2 === 0 ? "1" : "0";
+      for (let i = 0; i < n; i++) {
+        clk += i < e ? "0" : "1";
+        d += i < idx(t) ? "0" : "1";
+        if (fall === "frueh") q += i < e + tpd / R ? "0" : "1";
+        else if (fall === "spaet") q += "0";
+        else q += i < e + tpd / R ? "0" : i < e + (tpd + 5) / R ? "m" : landet;
+      }
+      box.innerHTML = zeitSVG({
+        signale: [{ name: "Clock", wellen: clk }, { name: "DataInput", wellen: d }, { name: "Q", wellen: q }],
+        fenster: [{ von: idx(-ts), bis: e, text: "T_setup", art: "setup" }, { von: e, bis: idx(th), text: "T_hold", art: "hold" }].concat(fall === "verletzt" ? [{ von: e + tpd / R, bis: e + (tpd + 5) / R, text: "metastabil", art: "warn" }] : []),
+        marken: [{ t: e, text: "Flanke" }]
+      }, box.clientWidth);
+      lab.textContent = t === 0 ? "genau an der Flanke" : Math.abs(t).toFixed(1).replace(".0", "") + " ns " + (t < 0 ? "vor" : "nach") + " der Flanke";
+      st.className = "wstatus " + (fall === "verletzt" ? "bad" : "ok");
+      st.innerHTML = fall === "frueh" ? "✓ DataInput ist vor dem Setup-Fenster stabil. Das Flip-Flop übernimmt den neuen Wert <b>1</b> sauber."
+        : fall === "spaet" ? "✓ Der Wechsel kommt erst nach dem Hold-Fenster. Bei dieser Flanke bleibt sauber der <b>alte Wert 0</b> gespeichert, die 1 kommt erst mit der nächsten Flanke."
+        : `⚠️ Der Wechsel liegt im ${t <= 0 ? "Setup" : "Hold"}-Fenster. Das Flip-Flop kann <b>metastabil</b> werden. In diesem Beispiel landet es zufällig bei <b>${landet}</b>.`;
+    }
+    inp.oninput = zeichne; grafik(zeichne);
+  },
+
+  /* Metastabilität: Kugel auf dem Berg */
+  kugel(el) {
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · Kugel-Modell</div>
+      <svg class="kugel" viewBox="0 0 320 150" role="img" aria-label="Kugel zwischen zwei Tälern 0 und 1"><path class="hang"/><circle r="11" class="ball"/>
+        <text x="80" y="144" text-anchor="middle" class="zn">0</text><text x="240" y="144" text-anchor="middle" class="zn">1</text><text x="160" y="16" text-anchor="middle" class="zl">metastabil</text></svg>
+      <div class="chips" style="justify-content:center"><button class="chip" data-a="0">Sauber 0 speichern</button><button class="chip" data-a="1">Sauber 1 speichern</button><button class="chip" data-a="v">⚠️ Setup verletzen</button></div>
+      <div class="wstatus"></div><p class="small muted" style="text-align:center;margin-top:6px" id="kz"></p></div>`;
+    const hY = x => 120 - 85 * (.5 + .5 * Math.cos(4 * Math.PI * x));
+    let d = ""; for (let i = 0; i <= 80; i++) { const x = i / 80; d += (i ? " L" : "M") + (x * 320).toFixed(1) + " " + hY(x).toFixed(1); }
+    $(".hang", el).setAttribute("d", d + " L320 150 L0 150 Z");
+    const ball = $(".ball", el), st = $(".wstatus", el), kz = $("#kz", el);
+    let x = .25, anim = null, zaehler = { 0: 0, 1: 0 };
+    const setze = v => { x = v; ball.setAttribute("cx", (x * 320).toFixed(1)); ball.setAttribute("cy", (hY(x) - 11).toFixed(1)); };
+    const status = (txt, cls) => { st.className = "wstatus " + cls; st.innerHTML = txt; };
+    function fahre(ziel, ms, fertig) {
+      cancelAnimationFrame(anim); const a = x, t0 = performance.now();
+      const f = now => { const k = Math.min(1, (now - t0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; setze(a + (ziel - a) * e); if (k < 1) anim = requestAnimationFrame(f); else fertig && fertig(); };
+      anim = requestAnimationFrame(f);
+    }
+    function wackeln(ms, fertig) {
+      cancelAnimationFrame(anim); const t0 = performance.now();
+      const f = now => { const k = (now - t0); setze(.5 + Math.sin(k / 70) * .006); if (k < ms) anim = requestAnimationFrame(f); else fertig(); };
+      anim = requestAnimationFrame(f);
+    }
+    el.querySelectorAll("[data-a]").forEach(b => b.onclick = () => {
+      el.querySelectorAll("[data-a]").forEach(z => z.disabled = true);
+      const a = b.dataset.a;
+      if (a !== "v") { fahre(a === "0" ? .25 : .75, 500, () => { status(`✓ Stabil: Die Kugel liegt im Tal «${a}».`, "ok"); el.querySelectorAll("[data-a]").forEach(z => z.disabled = false); }); return; }
+      status("⚠️ Metastabil: Die Kugel balanciert auf der Spitze …", "bad");
+      fahre(.5, 450, () => wackeln(700 + Math.random() * 1800, () => {
+        const v = Math.random() < .5 ? 0 : 1; zaehler[v]++;
+        fahre(v ? .75 : .25, 650, () => {
+          status(`Nach einer zufälligen Zeit ist sie ins Tal «${v}» gerollt. Probier es mehrmals.`, "");
+          kz.textContent = `Bisher nach Verletzung: ${zaehler[0]}× bei 0, ${zaehler[1]}× bei 1`;
+          el.querySelectorAll("[data-a]").forEach(z => z.disabled = false);
+        });
+      }));
+    });
+    setze(.25); status("Die Kugel liegt stabil im Tal «0». Wähle, was bei der nächsten Flanke passiert.", "");
+  },
+
+  /* Synchronisation mit zwei D-FF, Schritt für Schritt */
+  synchronisierer(el) {
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · zwei Synchronisations-FF</div>
+      <div class="svgbox kettebox"></div><div class="svgbox zdbox"></div>
+      <div class="wstatus"></div>
+      <div class="row" style="justify-content:space-between;margin-top:10px"><button class="btn" id="syZ">◀</button><span class="small muted num" id="syN"></span><button class="btn primary" id="syW">Nächste Flanke ▶</button></div>
+      <button class="linkbtn" id="syR" style="margin-top:6px">↻ Nochmals mit neuem Zufall</button></div>`;
+    const kb = $(".kettebox", el), zb = $(".zdbox", el), st = $(".wstatus", el);
+    let k = 0, v = Math.random() < .5 ? 1 : 0;
+    const N = 34, SICHT = [4, 12, 20, 28, 34];
+    function wellen() {
+      let c = "", d = "", q1 = "", q2 = "";
+      for (let t = 0; t < N; t++) {
+        c += (t % 8) >= 4 ? "1" : "0";
+        d += t < 3 ? "0" : "1";
+        q1 += t < 4 ? "0" : t < 9 ? "m" : v ? "1" : t < 13 ? "0" : "1";
+        q2 += v ? (t < 13 ? "0" : "1") : (t < 21 ? "0" : "1");
+      }
+      const mask = s => s.split("").map((ch, t) => t < SICHT[k] ? ch : " ").join("");
+      return { c, d: mask(d), q1: mask(q1), q2: mask(q2) };
+    }
+    const TEXT = () => [
+      "D<sub>Asyn</sub> wechselt kurz vor der 1. Flanke, also im Setup-Fenster von FF 1.",
+      `Flanke 1: FF 1 wird <b>metastabil</b>. ${subHTML("Q_1")} hat aber fast eine ganze Periode Zeit, sich zu beruhigen. Es kippt zufällig auf <b>${v}</b>.`,
+      v ? `Flanke 2: FF 2 übernimmt das inzwischen <b>stabile</b> ${subHTML("Q_1")} = 1. ${subHTML("Q_2")} ist sauber 1.`
+        : `Flanke 2: FF 2 übernimmt das stabile ${subHTML("Q_1")} = 0. Gleichzeitig übernimmt FF 1 jetzt sauber die 1 von D<sub>Asyn</sub>.`,
+      v ? `Flanke 3: Der Automat sieht an D<sub>inSA</sub> ein sauberes, synchrones Signal, nur verzögert.`
+        : `Flanke 3: Jetzt wird auch ${subHTML("Q_2")} sauber 1, eine Periode später als im anderen Fall.`,
+      `Fazit: Der Automat bekommt nie ein metastabiles Signal. <b>Nachteil:</b> Das Eingangssignal kommt verzögert an.`
+    ][k];
+    function zeichne() {
+      kb.innerHTML = ketteSVG({ elemente: [{ text: "Data_Asynchron" }, { text: "D-FF 1", sub: "D_1 → Q_1" }, { text: "D-FF 2", sub: "D_2 → Q_2" }, { text: "Synchroner Automat", sub: "D_inSA" }], takt: "Clock", warnung: 0 }, kb.clientWidth);
+      const w = wellen();
+      const flanken = [4, 12, 20, 28].filter(t => t < SICHT[k] || t === 4).map((t, i) => ({ t, text: String(i + 1) }));
+      zb.innerHTML = zeitSVG({ signale: [{ name: "Clk", wellen: w.c }, { name: "D_Asyn", wellen: w.d }, { name: "Q_1", wellen: w.q1 }, { name: "Q_2", wellen: w.q2 }], marken: flanken }, zb.clientWidth);
+      st.className = "wstatus" + (k === 1 ? " bad" : k === 4 ? " ok" : "");
+      st.innerHTML = TEXT();
+      $("#syN", el).textContent = `Schritt ${k + 1}/5`;
+      $("#syZ", el).disabled = k === 0; $("#syW", el).disabled = k === 4;
+    }
+    $("#syW", el).onclick = () => { if (k < 4) { k++; zeichne(); } };
+    $("#syZ", el).onclick = () => { if (k > 0) { k--; zeichne(); } };
+    $("#syR", el).onclick = () => { v = Math.random() < .5 ? 1 : 0; k = 0; zeichne(); };
+    grafik(zeichne);
+  },
+
+  /* f_max-Rechner */
+  fmax(el, p) {
+    const F = [["tpdff", "T_pd,FF", 1, 20, 1, "ns", "#495e4d"], ["logik", "t_pd Logik", 0, 60, 1, "ns", "#9dc7a5"], ["leitung", "Leitung", 0, 200, 10, "cm", "#aaaab2"], ["tsetup", "T_setup", 1, 20, 1, "ns", "#dcc188"]];
+    const w = {}; F.forEach(f => w[f[0]] = p[f[0]] ?? f[2]);
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · f<sub>max</sub>-Rechner</div>
+      ${F.map(f => `<label class="sl"><span><em>${f[0] === "logik" ? "t<sub>pd</sub> der Logik" : f[0] === "leitung" ? "Leitungslänge" : subHTML(f[1])}</em><b class="num" data-v="${f[0]}"></b></span><input type="range" data-k="${f[0]}" min="${f[2]}" max="${f[3]}" step="${f[4]}" value="${w[f[0]]}"></label>`).join("")}
+      <div class="fbar"></div><div class="flegende small muted"></div>
+      <div class="fres"></div></div>`;
+    function rechne() {
+      el.querySelectorAll("[data-k]").forEach(i => w[i.dataset.k] = +i.value);
+      const lns = w.leitung / 20, pfad = w.logik + lns, tclk = w.tpdff + pfad + w.tsetup, f = 1000 / tclk;
+      const r = x => (Math.round(x * 100) / 100).toString();
+      el.querySelectorAll("[data-v]").forEach(b => { const k = b.dataset.v; b.textContent = k === "leitung" ? `${w.leitung} cm ≈ ${r(lns)} ns` : `${w[k]} ns`; });
+      const teile = [["T_pd,FF", w.tpdff, F[0][6]], ["Logik", w.logik, F[1][6]], ["Leitung", lns, F[2][6]], ["T_setup", w.tsetup, F[3][6]]];
+      $(".fbar", el).innerHTML = teile.map(t => t[1] > 0 ? `<i style="width:${100 * t[1] / tclk}%;background:${t[2]}" title="${t[0]}: ${r(t[1])} ns"></i>` : "").join("");
+      $(".flegende", el).innerHTML = teile.map(t => `<span><i style="background:${t[2]}"></i><em>${subHTML(t[0])} ${r(t[1])} ns</em></span>`).join("");
+      $(".fres", el).innerHTML = `<div>${subHTML("T_pfad")} = ${r(w.logik)} + ${r(lns)} = <b class="num">${r(pfad)} ns</b></div>
+        <div>${subHTML("T_clk,min")} = ${r(w.tpdff)} + ${r(pfad)} + ${r(w.tsetup)} = <b class="num">${r(tclk)} ns</b></div>
+        <div class="fgross">f<sub>max</sub> = 1 / ${r(tclk)} ns = <b class="num">${r(f)} MHz</b></div>`;
+    }
+    el.querySelectorAll("[data-k]").forEach(i => i.oninput = rechne); rechne();
+  },
+  _x(el, p) { el.innerHTML = `<p class="muted small">Dieser interaktive Teil wird hier noch nicht angezeigt.</p>`; }
+};
+
+/* ============================================================
+   ERWEITERUNG: Tabellen, Zustandsdiagramme und Widgets für K07/K08
+   ============================================================ */
+
+/* ---------- Bedingungen wie "S", "!S", "E&!R", "A|B", "1" ohne eval ---------- */
+function bedingung(expr, v) {
+  const t = String(expr ?? "1").replace(/\s+/g, "").match(/[A-Za-z_][A-Za-z0-9_]*|[!&|()01]/g) || ["1"];
+  let i = 0;
+  const oder = () => { let x = und(); while (t[i] === "|") { i++; const y = und(); x = x || y; } return x; };
+  const und = () => { let x = nicht(); while (t[i] === "&") { i++; const y = nicht(); x = x && y; } return x; };
+  const nicht = () => { if (t[i] === "!") { i++; return !nicht(); } return atom(); };
+  const atom = () => { const k = t[i++]; if (k === "(") { const x = oder(); i++; return x; } if (k === "1") return true; if (k === "0") return false; return !!v[k]; };
+  try { return oder(); } catch (e) { return false; }
+}
+
+/* ---------- Tabelle (auch KV-Diagramm) ----------
+   {titel, kopf:[…], zeilen:[[…]], kv:true markiert erste Spalte als Kopf, hervor:[[zeile,spalte]]} */
+BLOCK.tabelle = function (b, el) {
+  const hv = new Set((b.hervor || []).map(([r, c]) => r + ":" + c));
+  el.innerHTML = `<figure class="fig tab">${b.titel ? `<figcaption>${md(b.titel)}</figcaption>` : ""}<div class="tabwrap"><table class="${b.kv ? "kv" : ""}">
+    ${b.kopf ? `<thead><tr>${b.kopf.map(k => `<th>${md(String(k))}</th>`).join("")}</tr></thead>` : ""}
+    <tbody>${(b.zeilen || []).map((z, r) => `<tr>${z.map((c, k) => { const tag = (b.kv && k === 0) || (b.erste_kopf && k === 0) ? "th" : "td"; return `<${tag} class="${hv.has(r + ":" + k) ? "hv" : ""}">${md(String(c))}</${tag}>`; }).join("")}</tr>`).join("")}</tbody></table></div></figure>`;
+};
+
+/* ---------- Zustandsdiagramm ----------
+   knoten: [{id, label, aus, x, y}] (Rasterkoordinaten), kanten: [{von, nach, text, kurve, schleife}], start: id */
+function zdgSVG(d, W, aktiv) {
+  W = Math.max(260, Math.floor(W));
+  const K = d.knoten || [], E = d.kanten || [];
+  const maxX = Math.max(1, ...K.map(k => k.x)), maxY = Math.max(0, ...K.map(k => k.y));
+  let r = W < 480 ? 23 : 28;
+  // Rand: Platz für Schlaufen samt Beschriftung und den Start-Pfeil
+  const hat = (s, f) => E.some(e => e.von === e.nach && (e.schleife || "oben") === s && K.some(k => k.id === e.von && f(k)));
+  const gross = r * 2.6 + 22, klein = r + 30;
+  const mT = Math.max(hat("oben", k => k.y === 0) ? gross : klein, d.start ? r + 34 : 0), mB = hat("unten", k => k.y === maxY) ? gross : klein;
+  const mL = Math.max(hat("links", k => k.x === 0) ? gross + 10 : klein, d.start && K.some(k => k.id === d.start && k.x === 0) ? r + 44 : 0), mR = hat("rechts", k => k.x === maxX) ? gross + 10 : klein;
+  const dx = (W - mL - mR) / maxX, dy = d.zeilenabstand || (W < 480 ? 92 : 112);
+  r = Math.max(17, Math.min(r, dx * .4, dy * .4));  // bei engen Diagrammen kleinere Kreise
+  const P = {}; K.forEach(k => P[k.id] = { x: mL + k.x * dx, y: mT + k.y * dy });
+  const H = mT + mB + maxY * dy;
+  const halo = `paint-order="stroke" stroke="#1c201d" stroke-width="5" stroke-linejoin="round"`;
+  let o = `<svg class="zd zdg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(d.titel || "Zustandsdiagramm")}">${SVG_DEFS}`;
+  const hatRueck = (a, b) => E.some(e => e.von === b && e.nach === a);
+  E.forEach(e => {
+    const p1 = P[e.von], p2 = P[e.nach]; if (!p1 || !p2) return;
+    if (e.von === e.nach) {
+      const s = e.schleife || "oben", ang = { oben: -90, unten: 90, links: 180, rechts: 0 }[s] * Math.PI / 180;
+      const a1 = ang - .45, a2 = ang + .45, R2 = r * 2.3;
+      const sx = p1.x + r * Math.cos(a1), sy = p1.y + r * Math.sin(a1), ex = p1.x + r * Math.cos(a2), ey = p1.y + r * Math.sin(a2);
+      const c1x = p1.x + R2 * Math.cos(a1 - .35), c1y = p1.y + R2 * Math.sin(a1 - .35), c2x = p1.x + R2 * Math.cos(a2 + .35), c2y = p1.y + R2 * Math.sin(a2 + .35);
+      o += `<path d="M${sx} ${sy} C${c1x} ${c1y} ${c2x} ${c2y} ${ex} ${ey}" class="kp" fill="none" marker-end="url(#pn)"/>`;
+      const lx = p1.x + (R2 + 6) * Math.cos(ang), ly = p1.y + (R2 + 6) * Math.sin(ang) + 4;
+      o += `<text x="${lx}" y="${ly}" text-anchor="${s === "links" ? "end" : s === "rechts" ? "start" : "middle"}" class="ks zt" ${halo}>${subText(e.text ?? e.bed ?? "")}</text>`;
+      return;
+    }
+    const vx = p2.x - p1.x, vy = p2.y - p1.y, L = Math.hypot(vx, vy) || 1, nx = -vy / L, ny = vx / L;
+    const k = e.kurve ?? (hatRueck(e.von, e.nach) ? 20 : 0);
+    const cx = (p1.x + p2.x) / 2 + nx * k * 2, cy = (p1.y + p2.y) / 2 + ny * k * 2;
+    const u1 = Math.hypot(cx - p1.x, cy - p1.y) || 1, u2 = Math.hypot(cx - p2.x, cy - p2.y) || 1;
+    const sx = p1.x + (cx - p1.x) / u1 * r, sy = p1.y + (cy - p1.y) / u1 * r;
+    const ex = p2.x + (cx - p2.x) / u2 * (r + 2), ey = p2.y + (cy - p2.y) / u2 * (r + 2);
+    o += `<path d="M${sx} ${sy} Q${cx} ${cy} ${ex} ${ey}" class="kp" fill="none" marker-end="url(#pn)"/>`;
+    const mx = .25 * p1.x + .5 * cx + .25 * p2.x, my = .25 * p1.y + .5 * cy + .25 * p2.y;
+    const sgn = k === 0 ? 1 : Math.sign(k), off = 11;
+    o += `<text x="${mx + nx * off * sgn}" y="${my + ny * off * sgn + 4}" text-anchor="middle" class="ks zt" ${halo}>${subText(e.text ?? e.bed ?? "")}</text>`;
+  });
+  if (d.start && P[d.start]) { const p = P[d.start]; o += `<line x1="${p.x - r - 26}" y1="${p.y - r - 14}" x2="${p.x - r * .72}" y2="${p.y - r * .72}" class="kp" marker-end="url(#pn)"/><text x="${p.x - r - 28}" y="${p.y - r - 18}" class="ks" text-anchor="middle">Start</text>`; }
+  K.forEach(k => {
+    const p = P[k.id], an = k.id === aktiv;
+    o += `<circle cx="${p.x}" cy="${p.y}" r="${r}" class="zk${an ? " an" : ""}"/>`;
+    if (k.aus !== undefined && k.aus !== "") {
+      o += `<text x="${p.x}" y="${p.y - 4}" text-anchor="middle" class="zkt">${subText(k.label ?? k.id)}</text><line x1="${p.x - r * .7}" y1="${p.y + 2}" x2="${p.x + r * .7}" y2="${p.y + 2}" class="zkl"/><text x="${p.x}" y="${p.y + 15}" text-anchor="middle" class="zka">${subText(k.aus)}</text>`;
+    } else o += `<text x="${p.x}" y="${p.y + 5}" text-anchor="middle" class="zkt">${subText(k.label ?? k.id)}</text>`;
+  });
+  return o + "</svg>";
+}
+BLOCK.zustandsdiagramm = function (b, el) {
+  el.innerHTML = `<figure class="fig">${b.titel ? `<figcaption>${md(b.titel)}</figcaption>` : ""}<div class="svgbox"></div></figure>`;
+  const box = $(".svgbox", el); grafik(() => { box.innerHTML = zdgSVG(b, box.clientWidth); });
+};
+
+/* ---------- Hilfen für Verlaufs-Diagramme der Widgets ---------- */
+function verlauf(hist, namen, felder) {
+  // hist: [{feld: 0|1|"x"}] → je Eintrag 2 Zeiteinheiten
+  return namen.map((n, i) => ({ name: n, wellen: hist.map(h => { const v = h[felder[i]]; return (v === "x" ? "xx" : v === "m" ? "mm" : v ? "11" : "00"); }).join("") }));
+}
+const toggle = (txt, an, attr) => `<button class="chip tg" ${attr} aria-pressed="${!!an}">${txt} = <b class="num">${an ? 1 : 0}</b></button>`;
+
+Object.assign(WIDGETS, {
+  /* SR-Latch aus zwei NOR: S und R als Pegel umschalten */
+  sr_latch(el) {
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · SR-Latch (zwei NOR)</div>
+      <div class="chips" style="justify-content:center" id="srIn"></div>
+      <div class="lampen" id="srOut"></div><div class="svgbox"></div><div class="wstatus"></div>
+      <button class="linkbtn" id="srRes">↻ Zurücksetzen</button></div>`;
+    let S = 0, R = 0, Q = 0, unbestimmt = false, hist = [{ S: 0, R: 0, Q: 0, NQ: 1 }];
+    const box = $(".svgbox", el), st = $(".wstatus", el);
+    function schritt() {
+      let NQ;
+      if (S && R) { Q = 0; NQ = 0; unbestimmt = true; }
+      else if (S) { Q = 1; NQ = 0; unbestimmt = false; }
+      else if (R) { Q = 0; NQ = 1; unbestimmt = false; }
+      else NQ = unbestimmt ? "x" : 1 - Q;
+      const qv = !S && !R && unbestimmt ? "x" : Q;
+      hist.push({ S, R, Q: qv, NQ: !S && !R && unbestimmt ? "x" : NQ }); if (hist.length > 12) hist.shift();
+      zeichne();
+    }
+    function zeichne() {
+      $("#srIn", el).innerHTML = toggle("S", S, 'data-k="S"') + toggle("R", R, 'data-k="R"');
+      el.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { if (b.dataset.k === "S") S = 1 - S; else R = 1 - R; schritt(); });
+      const h = hist[hist.length - 1];
+      const lamp = (n, v) => `<span class="lampe ${v === 1 ? "an" : v === "x" ? "unb" : ""}">${subHTML(n)}<b>${v === "x" ? "?" : v}</b></span>`;
+      $("#srOut", el).innerHTML = lamp("Q", h.Q) + lamp("Q̄", h.NQ);
+      box.innerHTML = zeitSVG({ signale: verlauf(hist, ["S", "R", "Q"], ["S", "R", "Q"]) }, box.clientWidth);
+      st.className = "wstatus" + (S && R ? " bad" : "");
+      st.innerHTML = S && R ? "⚠️ <b>S = R = 1</b>: verbotener Zustand. Beide NOR-Ausgänge sind 0, Q und Q̄ sind nicht mehr invers zueinander."
+        : unbestimmt && !S && !R ? "⚠️ Nach S = R = 1 beide gleichzeitig auf 0: Welcher Wert sich einstellt, ist <b>unbestimmt</b>."
+        : S ? "<b>Setzen</b>: S = 1 macht Q = 1." : R ? "<b>Rücksetzen</b>: R = 1 macht Q = 0."
+        : `<b>Speichern</b>: S = R = 0, Q bleibt ${Q}. Die Rückkopplung «hält» den Wert.`;
+    }
+    $("#srRes", el).onclick = () => { S = 0; R = 0; Q = 0; unbestimmt = false; hist = [{ S: 0, R: 0, Q: 0, NQ: 1 }]; zeichne(); };
+    grafik(zeichne);
+  },
+
+  /* D-Latch (transparent) gegen flankengetriggertes D-FF */
+  latch_vs_ff(el) {
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · D-Latch und D-FF am gleichen Signal</div>
+      <div class="chips" style="justify-content:center" id="lfIn"></div><div class="svgbox"></div><div class="wstatus"></div>
+      <button class="linkbtn" id="lfRes">↻ Zurücksetzen</button></div>`;
+    let D = 0, C = 0, QL = 0, QF = 0, hist = [{ C: 0, D: 0, QL: 0, QF: 0 }], meldung = "Schalte D und Clk um und vergleiche die beiden Ausgänge.";
+    const box = $(".svgbox", el), st = $(".wstatus", el);
+    function zeichne() {
+      $("#lfIn", el).innerHTML = toggle("D", D, 'data-k="D"') + toggle("Clk (E)", C, 'data-k="C"');
+      el.querySelectorAll("[data-k]").forEach(b => b.onclick = () => {
+        if (b.dataset.k === "D") { D = 1 - D; if (C) { QL = D; meldung = "Clk = 1: Das <b>Latch ist transparent</b> und folgt D sofort. Das FF reagiert nicht, es wartet auf die nächste steigende Flanke."; } else meldung = "Clk = 0: Beide halten ihren Wert."; }
+        else { const alt = C; C = 1 - C; if (!alt && C) { QF = D; QL = D; meldung = `Steigende Flanke: Das <b>FF übernimmt</b> D = ${D}. Das Latch wird transparent.`; } else meldung = "Fallende Flanke: Das Latch speichert jetzt (nicht mehr transparent). Das FF reagiert nicht."; }
+        hist.push({ C, D, QL, QF }); if (hist.length > 12) hist.shift(); zeichne();
+      });
+      box.innerHTML = zeitSVG({ signale: verlauf(hist, ["Clk", "D", "Q_Latch", "Q_FF"], ["C", "D", "QL", "QF"]) }, box.clientWidth);
+      st.innerHTML = meldung;
+    }
+    $("#lfRes", el).onclick = () => { D = 0; C = 0; QL = 0; QF = 0; hist = [{ C: 0, D: 0, QL: 0, QF: 0 }]; meldung = "Schalte D und Clk um und vergleiche die beiden Ausgänge."; zeichne(); };
+    grafik(zeichne);
+  },
+
+  /* Flip-Flop-Spielplatz: D, JK, T */
+  ff_spielplatz(el, p) {
+    const TYP = {
+      D: { ein: ["D"], f: (v, q) => v.D, tab: [["0", "0"], ["1", "1"]], kopf: ["D", "Q_{n+1}"], zeile: v => v.D },
+      JK: { ein: ["J", "K"], f: (v, q) => v.J && v.K ? 1 - q : v.J ? 1 : v.K ? 0 : q, tab: [["0", "0", "Q_n (halten)"], ["0", "1", "0"], ["1", "0", "1"], ["1", "1", "!Q_n (wechseln)"]], kopf: ["J", "K", "Q_{n+1}"], zeile: v => v.J * 2 + v.K },
+      T: { ein: ["T"], f: (v, q) => v.T ? 1 - q : q, tab: [["0", "Q_n (halten)"], ["1", "!Q_n (wechseln)"]], kopf: ["T", "Q_{n+1}"], zeile: v => v.T }
+    };
+    let typ = p.typ || "JK", v = { D: 0, J: 0, K: 0, T: 0 }, Q = 0, hist = [];
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · Flip-Flop-Spielplatz</div>
+      <div class="chips" id="ffTyp" style="justify-content:center"></div>
+      <div class="ffrow"><div class="chips" id="ffIn"></div><button class="btn primary" id="ffClk">Takt ↑</button></div>
+      <div class="lampen" id="ffQ"></div><div class="tabbox"></div><div class="svgbox"></div>
+      <button class="linkbtn" id="ffRes">↻ Zurücksetzen</button></div>`;
+    const box = $(".svgbox", el);
+    function zeichne() {
+      const T = TYP[typ];
+      $("#ffTyp", el).innerHTML = Object.keys(TYP).map(k => `<button class="chip" data-t="${k}" aria-pressed="${k === typ}">${k}-FF</button>`).join("");
+      el.querySelectorAll("[data-t]").forEach(b => b.onclick = () => { typ = b.dataset.t; hist = []; zeichne(); });
+      $("#ffIn", el).innerHTML = T.ein.map(n => toggle(n, v[n], `data-k="${n}"`)).join("");
+      el.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { v[b.dataset.k] = 1 - v[b.dataset.k]; zeichne(); });
+      $("#ffQ", el).innerHTML = `<span class="lampe ${Q ? "an" : ""}">Q<b>${Q}</b></span>`;
+      const z = T.zeile(v);
+      $(".tabbox", el).innerHTML = `<table class="mini"><thead><tr>${T.kopf.map(k => `<th>${subHTML(k)}</th>`).join("")}</tr></thead><tbody>${T.tab.map((r, i) => `<tr class="${i === z ? "hv" : ""}">${r.map(c => `<td>${subHTML(c).replace("!Q", "Q̄")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+      box.innerHTML = hist.length ? zeitSVG({ signale: [{ name: "Clk", wellen: hist.map(() => "01").join("") }].concat(T.ein.map(n => ({ name: n, wellen: hist.map(h => h[n] ? "11" : "00").join("") }))).concat([{ name: "Q", wellen: hist.map(h => (h.qa ? "1" : "0") + (h.qn ? "1" : "0")).join("") }]) }, box.clientWidth)
+        : `<p class="small muted" style="text-align:center;margin:6px 0">Stelle die Eingänge ein und drücke «Takt ↑». Die markierte Zeile zeigt, was bei der Flanke passiert.</p>`;
+    }
+    $("#ffClk", el).onclick = () => { const qa = Q; Q = TYP[typ].f(v, Q) ? 1 : 0; hist.push({ ...v, qa, qn: Q }); if (hist.length > 8) hist.shift(); zeichne(); };
+    $("#ffRes", el).onclick = () => { v = { D: 0, J: 0, K: 0, T: 0 }; Q = 0; hist = []; zeichne(); };
+    grafik(zeichne);
+  },
+
+  /* Automat Schritt für Schritt: Zustandsdiagramm mit Eingängen, Takt und Ausgängen */
+  fsm_sim(el, p) {
+    const d = p.diagramm, ein = p.eingaenge || [], aus = p.ausgaenge || [];
+    let z = p.start || d.start, v = {}, log = [];
+    ein.forEach(n => v[n] = 0);
+    el.innerHTML = `<div class="wid"><div class="wkopf">🎛️ Interaktiv · ${esc(p.titel || "Automat ausprobieren")}</div>
+      <div class="svgbox"></div>
+      <div class="ffrow"><div class="chips" id="fsIn"></div><button class="btn primary" id="fsClk">Takt ↑</button></div>
+      <div class="lampen" id="fsOut"></div><div class="wstatus"></div>
+      <button class="linkbtn" id="fsRes">↻ Zurück zum Start</button></div>`;
+    const box = $(".svgbox", el), knoten = id => d.knoten.find(k => k.id === id) || {};
+    function zeichne() {
+      box.innerHTML = zdgSVG(d, box.clientWidth, z);
+      $("#fsIn", el).innerHTML = ein.map(n => toggle(n, v[n], `data-k="${n}"`)).join("") || '<span class="small muted">keine Eingänge</span>';
+      el.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { v[b.dataset.k] = 1 - v[b.dataset.k]; zeichne(); });
+      const w = knoten(z).werte || {};
+      $("#fsOut", el).innerHTML = aus.map(n => `<span class="lampe ${w[n] ? "an" : ""}">${subHTML(n)}<b>${w[n] ? 1 : 0}</b></span>`).join("");
+      $(".wstatus", el).innerHTML = `Aktueller Zustand: <b>${subHTML(knoten(z).label || z)}</b>` + (log.length ? `<div class="small muted" style="margin-top:4px">${log.slice(-4).map(subHTML).join(" · ")}</div>` : "");
+    }
+    $("#fsClk", el).onclick = () => {
+      const k = d.kanten.find(e => e.von === z && bedingung(e.bed ?? e.text, v));
+      const alt = z; if (k) z = k.nach;
+      log.push(`${knoten(alt).label || alt} → ${knoten(z).label || z} (${ein.map(n => n + "=" + v[n]).join(", ") || "Takt"})`);
+      zeichne();
+    };
+    $("#fsRes", el).onclick = () => { z = p.start || d.start; log = []; zeichne(); };
+    grafik(zeichne);
+  }
+});
+
+/* ============================================================
+   ÜBUNGEN: Schnell-Check (kurz) und Aufgaben aus den Übungsblättern (lang)
+   ============================================================ */
+const BEWERTUNG = { ja: ["ok", "✓ Konnte ich"], teils: ["warn", "~ Teilweise"], nein: ["bad", "✗ Nochmals üben"] };
+const offeneTipps = {}, offeneLoesung = {}, offenerChat = {};
+// Empfohlen: im Material als empfohlen markiert, oder zuletzt nicht gekonnt; «Konnte ich» fällt weg
+function empfohlen(a) { const b = S.aufg[a.id]?.r; if (b === "ja") return false; return !!a.empfohlen || b === "nein" || b === "teils"; }
+
+function rUebungen(t) {
+  const U = uebungenVon(t), u = t.unterlagen || {};
+  const kurz = U.kurz, lang = U.lang.slice().sort((a, b) => (empfohlen(b) ? 1 : 0) - (empfohlen(a) ? 1 : 0));
+  const sc = S.lektionen[t.id + "-check"];
+  const gekonnt = U.lang.filter(a => S.aufg[a.id]?.r === "ja").length;
+  return `
+  ${kurz.length ? `<section class="card check">
+    <div class="spread"><div><h2>⚡ Schnell-Check</h2><p class="small muted" style="margin-top:4px">${kurz.length} kurze Verständnisfragen: Multiple Choice, Lückentext, Zuordnen, Rechnen. Die Reihenfolge wird jedes Mal neu gemischt.</p></div>
+      ${sc ? `<span class="pill ${sc.best >= 75 ? "ok" : sc.best >= 50 ? "warn" : "bad"}">Bestwert ${sc.best} %</span>` : '<span class="pill">neu</span>'}</div>
+    <div class="row" style="margin-top:12px"><button class="btn primary" id="check">${sc ? "Nochmals" : "Schnell-Check starten"}</button></div>
+  </section>` : ""}
+  <section class="stack">
+    <div class="spread"><h2>Aufgaben aus dem Übungsblatt</h2>${lang.length ? `<span class="small muted">${gekonnt}/${lang.length} gekonnt</span>` : ""}</div>
+    ${lang.length ? lang.map(a => aufgabeKarte(a, t)).join("") : `<div class="leer"><h3>Übungen folgen</h3><p>Die Aufgaben aus dem Übungsblatt kommen später dazu.</p></div>`}
+  </section>
+  <section class="card"><h2>Übungsblatt</h2><div class="unterl">
+      <div><b>Übung</b><code>${esc(u.uebung || "keine im Material")}</code></div>
+      <div><b>Lösung</b><code>${esc(u.loesung || "keine im Material")}</code></div></div>
+      <p class="quelle">Im Ordner Documents/HSLU/Digitaltechnik</p></section>`;
+}
+function aufgabeKarte(a, t) {
+  const b = S.aufg[a.id], tips = a.tipps || [], nT = offeneTipps[a.id] || 0, chat = S.chats[a.id] || [];
+  return `<article class="card aufg" id="auf-${a.id}" data-a="${a.id}">
+    <div class="spread"><div class="row" style="gap:8px"><span class="anr">Aufgabe ${esc(a.nr || "")}</span>
+      ${empfohlen(a) ? `<span class="pill acc" title="${esc(a.grund || "")}">⭐ Empfohlen</span>` : ""}
+      ${b ? `<span class="pill ${BEWERTUNG[b.r][0]}">${BEWERTUNG[b.r][1]}</span>` : ""}</div>
+      ${chat.length ? `<span class="small muted">💬 ${chat.filter(m => m.r === "user").length} Fragen gestellt</span>` : ""}</div>
+    <h3 style="margin-top:8px">${md(a.titel)}</h3>
+    ${empfohlen(a) && a.grund ? `<p class="small muted" style="margin-top:2px">${md(a.grund)}</p>` : ""}
+    <div class="atext">${String(a.aufgabe || "").split(/\n\n+/).map(p => `<p>${md(p)}</p>`).join("")}
+      ${(a.teile || []).length ? `<div class="teile">${a.teile.map(x => `<div><b>${esc(x.label)}</b><span>${md(x.text)}</span></div>`).join("")}</div>` : ""}</div>
+    ${tips.length ? `<details class="tipps" ${nT ? "open" : ""}><summary>💡 Tipps <span class="small muted">(${nT}/${tips.length} offen)</span></summary>
+      <ol>${tips.slice(0, nT).map(x => `<li>${md(x)}</li>`).join("")}</ol>
+      ${nT < tips.length ? `<button class="btn ghost small" data-tipp="${a.id}">${nT ? "Nächster Tipp" : "Ersten Tipp zeigen"} (${nT + 1}/${tips.length})</button>` : `<p class="small muted">Alle Tipps offen.</p>`}
+    </details>` : ""}
+    <div class="row aknoepfe">
+      <button class="btn ${offeneLoesung[a.id] ? "" : "primary"}" data-loes="${a.id}">${offeneLoesung[a.id] ? "Lösung ausblenden" : "📝 Lösung zeigen"}</button>
+      <button class="btn" data-chat="${a.id}">🤖 Frag Claude${chat.length ? " · " + chat.filter(m => m.r === "user").length : ""}</button>
+    </div>
+    ${offeneLoesung[a.id] ? `<div class="loesung"><div class="spread"><h3>Lösung</h3>${a.ergebnis ? `<span class="pill ok">${md(a.ergebnis)}</span>` : ""}</div>
+      <div class="bloecke" data-loesbox="${a.id}"></div>
+      ${a.loesung_herkunft ? `<p class="quelle">ℹ️ ${esc(a.loesung_herkunft)}</p>` : ""}
+      <div class="bewerten"><span class="small muted">Wie lief es?</span>${Object.entries(BEWERTUNG).map(([k, v]) => `<button class="chip" data-bew="${a.id}" data-r="${k}" aria-pressed="${b?.r === k}">${v[1]}</button>`).join("")}</div>
+    </div>` : ""}
+    ${offenerChat[a.id] ? chatHTML(a) : ""}
+    ${a.quelle ? `<p class="quelle">📄 ${esc(a.quelle)}</p>` : ""}
+  </article>`;
+}
+function uebungenVerdrahten(t) {
+  const U = uebungenVon(t);
+  const c = $("#check");
+  if (c) c.onclick = () => lektionStarten({ id: t.id + "-check", titel: "Schnell-Check " + kn(t.nr), aufgaben: mischen(U.kurz) }, t.id, "aufgaben");
+  U.lang.forEach(a => aufgabeVerdrahten(a, t));
+}
+function karteNeu(a, t) {
+  const alt = $("#auf-" + CSS.escape(a.id)); if (!alt) return;
+  const neu = document.createElement("div"); neu.innerHTML = aufgabeKarte(a, t);
+  alt.replaceWith(neu.firstElementChild);
+  aufgabeVerdrahten(a, t); typeset($("#auf-" + CSS.escape(a.id)));
+}
+function aufgabeVerdrahten(a, t) {
+  const k = $("#auf-" + CSS.escape(a.id)); if (!k) return;
+  const tb = $("[data-tipp]", k); if (tb) tb.onclick = () => { offeneTipps[a.id] = (offeneTipps[a.id] || 0) + 1; karteNeu(a, t); };
+  $("[data-loes]", k).onclick = () => { offeneLoesung[a.id] = !offeneLoesung[a.id]; karteNeu(a, t); };
+  $("[data-chat]", k).onclick = () => { offenerChat[a.id] = !offenerChat[a.id]; karteNeu(a, t); if (offenerChat[a.id]) { const ta = $("textarea", $("#auf-" + CSS.escape(a.id))); ta && ta.focus(); } };
+  k.querySelectorAll("[data-bew]").forEach(b => b.onclick = () => { S.aufg[a.id] = { r: b.dataset.r, ts: Date.now() }; speichern(); karteNeu(a, t); });
+  const lb = $("[data-loesbox]", k);
+  if (lb) (a.loesung || []).forEach(bl => { const el = document.createElement("div"); el.className = "blk"; lb.appendChild(el); (BLOCK[bl.typ] || BLOCK._x)(bl, el); });
+  if (offenerChat[a.id]) chatVerdrahten(a, t, k);
+}
+
+/* ---------- Frag Claude: ein gespeicherter Chat pro Aufgabe ---------- */
+let chatLaeuft = null;
+function chatHTML(a) {
+  const ms = S.chats[a.id] || [];
+  return `<div class="chat">
+    <div class="spread"><b>🤖 Frag Claude zu Aufgabe ${esc(a.nr || "")}</b>${ms.length ? `<button class="linkbtn" data-leeren>Chat löschen</button>` : ""}</div>
+    <p class="small muted" style="margin-top:2px">Der Chat gehört nur zu dieser Aufgabe und bleibt gespeichert.</p>
+    <div class="msgs">${ms.length ? ms.map(m => `<div class="msg ${m.r}">${m.r === "assistant" ? mdChat(m.t) : esc(m.t)}</div>`).join("")
+      : `<div class="msg leerchat">Frag zum Beispiel: «Wie fange ich an?», «Ist mein Ansatz richtig?» oder «Erklär mir Tipp 2 genauer.»</div>`}</div>
+    <div class="chips vorschl">${["Gib mir einen Denkanstoss", "Prüf meinen Ansatz", "Erklär die Lösung Schritt für Schritt"].map(v => `<button class="chip" data-vs="${esc(v)}">${v}</button>`).join("")}</div>
+    <div class="eingabe chatin"><textarea rows="2" placeholder="Deine Frage oder dein Lösungsweg …" aria-label="Nachricht an Claude"></textarea><button class="btn primary" data-senden>Senden</button></div>
+    <p class="small muted chatstatus"></p>
+  </div>`;
+}
+// Absätze und einfache Listen für Antworten
+function mdChat(t) {
+  return String(t || "").split(/\n{2,}/).map(p => {
+    if (/^\s*([-*•]|\d+\.)\s/.test(p)) return "<ul>" + p.split(/\n/).map(z => `<li>${md(z.replace(/^\s*([-*•]|\d+\.)\s*/, ""))}</li>`).join("") + "</ul>";
+    return `<p>${md(p).replace(/\n/g, "<br>")}</p>`;
+  }).join("");
+}
+function chatPrompt(a, t) {
+  const loes = (a.loesung || []).map(b => b.text || b.tex || (b.punkte || []).join("; ") || "").filter(Boolean).join("\n");
+  return `Du bist Tutor im Modul «Digitaltechnik» (HSLU, 1. Semester). Thema: Kapitel ${t.nr} «${t.titel}».
+Lernziele: ${(t.lernziele || []).join("; ")}.
+
+Die lernende Person arbeitet an dieser Übungsaufgabe:
+${a.aufgabe}${(a.teile || []).map(x => `\n${x.label} ${x.text}`).join("")}
+
+Tipps, die es gibt: ${(a.tipps || []).join(" | ")}
+Musterlösung (nur für dich): ${loes}${a.ergebnis ? "\nErgebnis: " + a.ergebnis : ""}
+
+Regeln:
+- Antworte auf Deutsch in Schweizer Rechtschreibung (ss statt ß), freundlich, knapp (höchstens 8 Sätze).
+- Führe zum Ziel, statt die Lösung vorwegzunehmen. Gib die vollständige Lösung nur, wenn ausdrücklich danach gefragt wird.
+- Prüfe einen vorgeschlagenen Ansatz ehrlich und sag konkret, was stimmt und was nicht.
+- Bleib beim Stoff dieser Aufgabe und der Folien. Wenn etwas nicht aus dem Kursstoff hervorgeht, sag das.
+- Formeln in LaTeX zwischen $…$. Keine Überschriften, keine Tabellen.`;
+}
+function chatVerdrahten(a, t, k) {
+  const ta = $("textarea", k), st = $(".chatstatus", k), box = $(".msgs", k);
+  box.scrollTop = box.scrollHeight;
+  const lz = $("[data-leeren]", k);
+  if (lz) lz.onclick = () => {
+    if (lz.dataset.sicher) { delete S.chats[a.id]; S.chatsGeloescht[a.id] = Date.now(); speichern(); karteNeu(a, t); }
+    else { lz.dataset.sicher = "1"; lz.textContent = "Wirklich löschen?"; }
+  };
+  k.querySelectorAll("[data-vs]").forEach(b => b.onclick = () => { ta.value = b.dataset.vs; senden(); });
+  $("[data-senden]", k).onclick = senden;
+  ta.onkeydown = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); senden(); } };
+  async function senden() {
+    const text = ta.value.trim(); if (!text || chatLaeuft) return;
+    let sample = null;
+    try { sample = window.claude?.use ? await claude.use("sample") : null; } catch (e) {}
+    if (!sample) { st.textContent = "Claude ist hier gerade nicht verfügbar. Öffne die Seite auf claude.ai."; return; }
+    const ms = S.chats[a.id] = S.chats[a.id] || [];
+    ms.push({ r: "user", t: text, ts: Date.now() });
+    if (ms.length > 60) ms.splice(0, ms.length - 60);
+    ta.value = ""; speichern();
+    box.querySelector(".leerchat")?.remove();
+    box.insertAdjacentHTML("beforeend", `<div class="msg user">${esc(text)}</div><div class="msg assistant laedt"><span class="spin"></span> Claude denkt nach …</div>`);
+    const ziel = box.lastElementChild; box.scrollTop = box.scrollHeight;
+    chatLaeuft = a.id; k.querySelectorAll("[data-senden],[data-vs]").forEach(b => b.disabled = true);
+    const input = [{ role: "user", content: chatPrompt(a, t) }, { role: "assistant", content: "Verstanden. Ich helfe bei dieser Aufgabe." }]
+      .concat(ms.map(m => ({ role: m.r, content: m.t })));
+    try {
+      const r = await sample(input, { cache: false, onText: ({ text }) => { ziel.classList.remove("laedt"); ziel.innerHTML = mdChat(text); box.scrollTop = box.scrollHeight; } });
+      ms.push({ r: "assistant", t: r.text, ts: Date.now() }); speichern();
+      ziel.classList.remove("laedt"); ziel.innerHTML = mdChat(r.text); typeset(ziel);
+      st.textContent = "";
+    } catch (e) {
+      ziel.remove();
+      const code = e && e.code;
+      st.textContent = code === "rate_limited" ? "Gerade zu viele Anfragen. Versuch es in einem Moment nochmals." : code === "not_granted" ? "Claude-Antworten sind für diese Seite nicht freigegeben." : "Das hat nicht geklappt. Deine Frage ist gespeichert, versuch es nochmals.";
+      if (ms.length && ms[ms.length - 1].r === "user") { ta.value = ms.pop().t; speichern(); box.lastElementChild?.remove(); }
+    }
+    chatLaeuft = null; k.querySelectorAll("[data-senden],[data-vs]").forEach(b => b.disabled = false);
+    const n = ms.filter(m => m.r === "user").length; const cb = $("[data-chat]", k); if (cb) cb.textContent = "🤖 Frag Claude" + (n ? " · " + n : "");
+  }
+}
+
+const TYPNAME = { multiple_choice: "Wähle die richtige Antwort", wahr_falsch: "Wahr oder falsch?", rechnung: "Rechne", lueckentext: "Fülle die Lücken",
+  karteikarte: "Karteikarte", zuordnen: "Ordne zu", reihenfolge: "Bring in die Reihenfolge", freitext: "Antworte in eigenen Worten" };
+function aufgabeZeigen() {
+  GRAFIKEN = [];
+  if (!sitzung.queue.length) return abschluss();
+  const a = sitzung.queue[0];
+  app.innerHTML = `<div class="lektop"><button class="x" id="raus" aria-label="Lektion verlassen">✕</button><div class="progress"><i style="width:${100 * sitzung.erledigt / sitzung.gesamt}%"></i></div><span class="small muted num">${sitzung.erledigt}/${sitzung.gesamt}</span></div>
+    <section class="card" id="auf"></section>`;
+  $("#raus").onclick = () => { const t = sitzung.thema, r = sitzung.reiter; sitzung = null; go(t ? { tab: "themen", thema: t, reiter: r } : { tab: "start" }); };
+  if (a.typ === "theorie") theorieKarte(a, $("#auf"));
+  else (RENDER[a.typ] || RENDER._unbekannt)(a, $("#auf"));
+  typeset(app);
+}
+function kopf(a, frage) { return `<div class="typ">${TYPNAME[a.typ] || ""}</div><div class="q">${md(frage || "")}</div>`; }
+function aktion(box, text, an, fn) {
+  const d = document.createElement("div"); d.className = "aktion";
+  d.innerHTML = `<button class="btn primary" ${an ? "" : "disabled"}>${text}</button>`;
+  box.appendChild(d); const b = $("button", d); b.onclick = fn;
+  return { an(x = true) { b.disabled = !x; } };
+}
+function feedback(a, richtig, loesungHTML) {
+  const box = $("#auf");
+  const item = sitzung.queue.shift();
+  if (richtig) { if (!sitzung.fehlerIds.has(a.id)) { sitzung.richtigErst++; delete S.fehler[a.id]; } sitzung.erledigt++; }
+  else { sitzung.fehlerIds.add(a.id); S.fehler[a.id] = true; sitzung.queue.push(item); }
+  box.querySelectorAll("button, input, textarea").forEach(el => el.disabled = true);
+  box.querySelector(".aktion")?.remove();
+  const fb = document.createElement("div"); fb.className = "fb " + (richtig ? "ok" : "bad");
+  fb.innerHTML = `<h3>${richtig ? "✓ " + mischen(["Richtig!", "Genau!", "Stark!", "Super!"])[0] : "✗ Nicht ganz"}</h3>
+    ${!richtig && loesungHTML ? `<p><b>Richtig:</b> ${loesungHTML}</p>` : ""}
+    ${a.erklaerung ? `<p>${md(a.erklaerung)}</p>` : ""}${a.loesungsweg && richtig ? `<p>${md(a.loesungsweg)}</p>` : ""}
+    ${a.quelle ? `<div class="quelle">📄 ${esc(a.quelle)}</div>` : ""}`;
+  box.appendChild(fb);
+  aktion(box, "Weiter", true, aufgabeZeigen);
+  box.querySelector(".aktion button").focus();
+  typeset(box);
+}
+function abschluss() {
+  const l = sitzung.l, genau = Math.round(100 * sitzung.richtigErst / Math.max(1, sitzung.fragen));
+  const xp = sitzung.wiederholung ? 5 + sitzung.richtigErst : 10 + sitzung.richtigErst + (sitzung.fehlerIds.size ? 0 : 5);
+  S.xp = (S.xp || 0) + xp; const d = iso(heute()); S.tage[d] = (S.tage[d] || 0) + xp; streak();
+  if (l.id) { const alt = S.lektionen[l.id]; S.lektionen[l.id] = { done: true, best: Math.max(alt?.best || 0, genau), anzahl: (alt?.anzahl || 0) + 1, zuletzt: d, ts: Date.now() }; }
+  speichern();
+  const t = sitzung.thema, rt = sitzung.reiter;
+  app.innerHTML = `<section class="card result"><div style="font-size:3rem">${genau === 100 ? "🏆" : genau >= 70 ? "🎉" : "💪"}</div>
+    <h1>${!l.id ? "Wiederholung geschafft!" : rt === "aufgaben" ? "Schnell-Check geschafft!" : "Lektion geschafft!"}</h1><p class="muted">${esc(l.titel)}</p>
+    <div class="stats" style="width:100%;max-width:420px"><div class="stat"><b class="num">+${xp}</b><span>XP</span></div><div class="stat"><b class="num">${genau} %</b><span>auf Anhieb</span></div><div class="stat"><b class="num">${S.streak}</b><span>Tage in Folge</span></div></div>
+    <button class="btn primary" id="ok" style="min-width:200px">Weiter</button></section>`;
+  $("#ok").onclick = () => { sitzung = null; go(t ? { tab: "themen", thema: t, reiter: rt } : { tab: "start" }); };
+}
+function wackeln(el) { el.classList.remove("wackel"); void el.offsetWidth; el.classList.add("wackel"); }
+// Vergleich von Text-Antworten: ohne Leerzeichen, Gross/Klein egal, Komma = Punkt, Präfixe 0x / Suffixe b, h, d optional
+const norm = s => String(s ?? "").toLowerCase().replace(/\s+/g, "").replace(/[‘’'_-]/g, "").replace(",", ".");
+function gleich(eingabe, soll) {
+  const e = norm(eingabe), s = norm(soll);
+  if (e === s) return true;
+  // Schreibweisen wie 0x3F, 3Fh, 1010b, 1010_2 gelten als gleichwertig
+  const ohne = x => {
+    x = x.replace(/^0x/, "").replace(/_\{?\(?(2|8|10|16)\)?\}?$/, "");
+    if (/^[0-9a-f]+h$/.test(x)) x = x.slice(0, -1);
+    else if (/^[01]+b$/.test(x)) x = x.slice(0, -1);
+    else if (/^[0-9]+d$/.test(x)) x = x.slice(0, -1);
+    return x;
+  };
+  return ohne(e) !== "" && ohne(e) === ohne(s);
+}
+
+const RENDER = {
+  multiple_choice(a, box) {
+    box.innerHTML = kopf(a, a.frage) + `<div class="opts"></div>`;
+    const o = $(".opts", box); let g = null;
+    const ak = aktion(box, "Prüfen", false, () => {
+      o.querySelectorAll(".opt").forEach(b => { const i = +b.dataset.i; if (i === a.richtig) b.classList.add("right"); else if (i === g) b.classList.add("wrong"); });
+      feedback(a, g === a.richtig, md(a.optionen[a.richtig]));
+    });
+    mischen(a.optionen.map((t, i) => [t, i])).forEach(([t, i]) => {
+      const b = document.createElement("button"); b.className = "opt"; b.dataset.i = i; b.innerHTML = md(t);
+      b.onclick = () => { g = i; o.querySelectorAll(".opt").forEach(x => x.classList.toggle("sel", x === b)); ak.an(); };
+      o.appendChild(b);
+    });
+  },
+  wahr_falsch(a, box) {
+    box.innerHTML = kopf(a, a.aussage) + `<div class="tfrow"><button class="opt" data-i="1">👍 Wahr</button><button class="opt" data-i="0">👎 Falsch</button></div>`;
+    let g = null;
+    const ak = aktion(box, "Prüfen", false, () => {
+      const soll = a.richtig ? 1 : 0;
+      box.querySelectorAll(".opt").forEach(b => { const i = +b.dataset.i; if (i === soll) b.classList.add("right"); else if (i === g) b.classList.add("wrong"); });
+      feedback(a, g === soll, a.richtig ? "Wahr" : "Falsch");
+    });
+    box.querySelectorAll(".opt").forEach(b => b.onclick = () => { g = +b.dataset.i; box.querySelectorAll(".opt").forEach(x => x.classList.toggle("sel", x === b)); ak.an(); });
+  },
+  rechnung(a, box) {
+    box.innerHTML = kopf(a, a.frage) + `<div class="eingabe"><input autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Deine Antwort">${a.einheit ? `<span class="muted">${md(a.einheit)}</span>` : ""}</div>`;
+    const inp = $("input", box);
+    const pruef = () => {
+      let ok;
+      if (typeof a.loesung === "number") { const v = parseFloat(inp.value.replace(",", ".").replace(/[’']/g, "")); const tol = Math.abs(a.loesung) * (a.toleranz ?? 0.01); ok = Math.abs(v - a.loesung) <= tol; }
+      else ok = [a.loesung, ...(a.alternativen || [])].some(x => gleich(inp.value, x));
+      feedback(a, ok, `<span class="num">${md(String(a.loesung))}</span>${a.einheit ? " " + md(a.einheit) : ""}${a.loesungsweg ? " – " + md(a.loesungsweg) : ""}`);
+    };
+    const ak = aktion(box, "Prüfen", false, pruef);
+    inp.oninput = () => ak.an(!!inp.value.trim());
+    inp.onkeydown = e => { if (e.key === "Enter" && inp.value.trim()) pruef(); };
+    inp.focus();
+  },
+  lueckentext(a, box) {
+    let n = 0;
+    box.innerHTML = kopf(a, a.frage || "") + `<div class="lt">${md(a.text).split("___").reduce((acc, t, k) => k === 0 ? t : acc + `<input data-i="${n++}" autocomplete="off" spellcheck="false" autocapitalize="off">` + t, "")}</div>`;
+    const inps = [...box.querySelectorAll(".lt input")];
+    const ak = aktion(box, "Prüfen", false, () => {
+      let alle = true;
+      inps.forEach((inp, i) => { const ok = (a.antworten[i] || []).some(x => gleich(inp.value, x)); inp.classList.add(ok ? "ok" : "falsch"); if (!ok) alle = false; });
+      feedback(a, alle, a.antworten.map(x => `<code>${esc(x[0])}</code>`).join(", "));
+    });
+    inps.forEach((inp, i) => { inp.oninput = () => ak.an(inps.every(x => x.value.trim())); inp.onkeydown = e => { if (e.key === "Enter") (inps[i + 1] || inp).focus(); }; });
+    inps[0]?.focus();
+  },
+  karteikarte(a, box) {
+    box.innerHTML = `<div class="typ">Karteikarte</div><div class="q">Weisst du die Antwort?</div><div class="karte">${md(a.vorne)}</div><div class="aktion"><button class="btn primary">Umdrehen</button></div>`;
+    $(".aktion button", box).onclick = () => {
+      const k = $(".karte", box); k.classList.add("hinten"); k.innerHTML = md(a.hinten); typeset(k);
+      $(".aktion", box).innerHTML = `<div class="tfrow"><button class="btn" id="nein">Nicht gewusst</button><button class="btn primary" id="ja">Gewusst</button></div>`;
+      $("#ja").onclick = () => feedback(a, true); $("#nein").onclick = () => feedback(a, false);
+    };
+  },
+  zuordnen(a, box) {
+    box.innerHTML = kopf(a, a.frage || "Ordne zu:") + `<div class="paar"><div class="opts" id="L"></div><div class="opts" id="R"></div></div>`;
+    let links = null, fehler = 0, rest = a.paare.length;
+    const L = $("#L", box), R = $("#R", box);
+    mischen(a.paare.map((p, i) => [p[0], i])).forEach(([t, i]) => { const b = document.createElement("button"); b.className = "opt"; b.dataset.i = i; b.innerHTML = md(t); b.onclick = () => { links = i; L.querySelectorAll(".opt").forEach(x => x.classList.toggle("sel", x === b)); }; L.appendChild(b); });
+    mischen(a.paare.map((p, i) => [p[1], i])).forEach(([t, i]) => {
+      const b = document.createElement("button"); b.className = "opt"; b.dataset.i = i; b.innerHTML = md(t);
+      b.onclick = () => {
+        if (links === null) return wackeln(b);
+        const lb = L.querySelector(`.opt[data-i="${links}"]`);
+        if (links === i) { [lb, b].forEach(x => { x.classList.remove("sel"); x.classList.add("right"); setTimeout(() => x.classList.add("weg"), 350); }); links = null; if (--rest === 0) setTimeout(() => feedback(a, fehler === 0, "alle Paare richtig verbinden"), 400); }
+        else { fehler++; b.classList.add("wrong"); wackeln(b); setTimeout(() => b.classList.remove("wrong"), 500); }
+      };
+      R.appendChild(b);
+    });
+  },
+  reihenfolge(a, box) {
+    box.innerHTML = kopf(a, a.frage) + `<div class="zone" id="ziel"></div><div class="opts" id="pool"></div>`;
+    const ziel = $("#ziel", box), pool = $("#pool", box); let reihe = [];
+    let gem = mischen(a.elemente.map((_, i) => i)); if (gem.every((v, i) => v === i) && gem.length > 1) gem.reverse();
+    const ak = aktion(box, "Prüfen", false, () => feedback(a, reihe.every((x, i) => a.elemente[x] === a.elemente[i]), "<br>" + a.elemente.map((e, i) => (i + 1) + ". " + md(e)).join("<br>")));
+    const zeichne = () => {
+      ziel.innerHTML = reihe.length ? "" : '<span class="small muted">Tippe die Elemente in der richtigen Reihenfolge an.</span>'; pool.innerHTML = "";
+      reihe.forEach((x, p) => { const b = document.createElement("button"); b.className = "opt sel"; b.innerHTML = (p + 1) + ". " + md(a.elemente[x]); b.onclick = () => { reihe.splice(p, 1); zeichne(); }; ziel.appendChild(b); });
+      gem.forEach(x => { if (reihe.includes(x)) return; const b = document.createElement("button"); b.className = "opt"; b.innerHTML = md(a.elemente[x]); b.onclick = () => { reihe.push(x); zeichne(); }; pool.appendChild(b); });
+      ak.an(reihe.length === a.elemente.length); typeset(box);
+    };
+    zeichne();
+  },
+  freitext(a, box) {
+    box.innerHTML = kopf(a, a.frage) + `<textarea class="frei" aria-label="Deine Antwort"></textarea>`;
+    const ta = $("textarea", box);
+    const ak = aktion(box, "Musterantwort zeigen", false, () => {
+      box.querySelector(".aktion").remove();
+      const d = document.createElement("div"); d.className = "fb ok"; d.style.borderColor = "var(--line)"; d.style.background = "var(--panel2)";
+      d.innerHTML = `<p><b>Musterantwort:</b> ${md(a.musterantwort)}</p><div class="tfrow" style="margin-top:12px"><button class="btn" id="nein">Nicht gewusst</button><button class="btn primary" id="ja">Gewusst</button></div>`;
+      box.appendChild(d); typeset(d);
+      $("#ja").onclick = () => { d.remove(); feedback(a, true); }; $("#nein").onclick = () => { d.remove(); feedback(a, false); };
+    });
+    ta.oninput = () => ak.an(!!ta.value.trim());
+  },
+  _unbekannt(a, box) {
+    box.innerHTML = `<div class="leer">Aufgabentyp «${esc(a.typ)}» wird hier noch nicht angezeigt.</div>`;
+    aktion(box, "Überspringen", true, () => { sitzung.queue.shift(); sitzung.erledigt++; aufgabeZeigen(); });
+  }
+};
+
+/* ============================================================
+   START
+   ============================================================ */
+(async () => {
+  try {
+    await inhalteLaden();
+    view = ausHash();
+    render();
+    syncStart();
+  } catch (e) {
+    app.innerHTML = `<div class="leer"><h3>Inhalte konnten nicht geladen werden</h3><p>Die Datei <code>content/${FACH_ID}/fach.json</code> fehlt oder ist ungültig.</p><p class="quelle">${esc(e.message)}</p></div>`;
+  }
+})();
+</script>
+</body>
+</html>

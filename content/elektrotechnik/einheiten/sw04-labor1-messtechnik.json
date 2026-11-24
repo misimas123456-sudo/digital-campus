@@ -1,0 +1,309 @@
+{
+  "id": "sw04-labor1-messtechnik",
+  "bereich": "labor",
+  "woche": 4,
+  "titel": "Labor 1 · Messen mit Multimeter & Netzgerät",
+  "untertitel": "Laborregeln, Widerstands-, Spannungs- und Strommessung, Strombegrenzung, Spannungsteiler",
+  "quelle": "Präsentation ET+L Labor 1 HS26 v1 (05.10.2026); Aufgaben ETplusL Lab 1 v8.",
+  "vorbereitung": [
+    "Hausaufgaben B1-E2, B1-E9, B1-E10 und B2-E2 lösen",
+    "Im Laborskript vorlösen: 5.2.1 (S. 7), belasteter Spannungsteiler 8 (S. 14), Verlustleistung Poti 10.1 (S. 18), Verlustleistung allgemein 10.3 (S. 19)",
+    "Formelsammlung nachführen – sie ist die Werkzeugkiste für die MEP"
+  ],
+  "lektionen": [
+    {
+      "id": "regeln",
+      "titel": "Laborregeln und Semesterleistung",
+      "art": "aufgabe",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Semesterleistung"
+        },
+        {
+          "typ": "text",
+          "text": "Die Semesterleistung zählt **10 %** der Modulnote: 5 Labore à **2 %**. Verlangt ist aktive Mitarbeit während der ganzen Zeit, früher gehen ist nicht vorgesehen. Unentschuldigt fehlen gibt 0 Punkte, entschuldigte Absenzen werden aus der Wertung genommen. Bei einer Wiederholung des Moduls muss sie neu erbracht werden."
+        },
+        {
+          "typ": "titel",
+          "text": "Laborregeln (Raum C336)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Keine gefährlichen Spannungen (> 50 V) – nur auf dem vorgegebenen Steckbrett arbeiten",
+            "Notaus kennen: roter Knopf am Tisch und an der Wand",
+            "Beim Auf-, Ab- und Umbau ist die Speisung **aus**",
+            "Keine offenen Getränke am Platz (Kurzschlussgefahr)",
+            "Sinnvolle Kabelfarben: rot = Plus, schwarz = Minus/GND; defekte Teile melden",
+            "Achtung: Widerstände können heiss werden"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Arbeit in 2er-Teams. Die Assistierenden helfen, wenn eine eigene Vorleistung da ist."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Wie viel zählt ein erfolgreich absolviertes Labor an die Modulnote?",
+          "optionen": [
+            "2 %",
+            "10 %",
+            "5 %",
+            "1 %"
+          ],
+          "richtig": 0,
+          "erklaerung": "5 Labore à 2 % ergeben die Semesterleistung von 10 %."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Beim Auf-, Ab- und Umbau ist die Speisung ausgeschaltet.",
+          "aussage": "Eine Schaltung darf umgebaut werden, solange das Netzgerät auf kleiner Spannung steht.",
+          "richtig": false
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Ab welcher Spannung wird im Labor nicht gearbeitet?",
+          "optionen": [
+            "Über 50 V",
+            "Über 12 V",
+            "Über 230 V",
+            "Über 5 V"
+          ],
+          "richtig": 0,
+          "erklaerung": "Laborregel: keine gefährlichen Spannungen über 50 V."
+        }
+      ]
+    },
+    {
+      "id": "multimeter",
+      "titel": "Messen mit dem Multimeter",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Zuerst Kabel ausstecken, dann am Wahlrad die Funktion einstellen (DC oder AC beachten), dann einstecken. Schwarz ganz links an COM/GND."
+        },
+        {
+          "typ": "titel",
+          "text": "Drei Messarten"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Widerstand:** Element einseitig abkoppeln, Speisung **aus**. Das DMM schickt einen kleinen Strom und rechnet über U = R·I.",
+            "**Spannung:** immer zwischen zwei Punkten, **parallel**, Speisung ein. Ideal $R = \\infty$, real etwa 10 MΩ.",
+            "**Strom:** an einer Stelle **seriell** einfügen, Kabel umstecken («advanced»), Speisung ein. Ideal $R = 0$, real etwa 100 mΩ. **Kein Bypass!**"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Ohmmeter offen = Unterbruch (Anzeige «OL»), Spitzen zusammen = Kurzschluss (≈ 0 Ω). Messwerte sinnvoll runden: übertriebene Genauigkeit bringt nichts. «4k7» heisst 4.7 kΩ."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Wie wird ein Amperemeter in die Schaltung eingebaut?",
+          "optionen": [
+            "Seriell, die Leitung wird aufgetrennt",
+            "Parallel zum Verbraucher",
+            "Parallel zur Quelle",
+            "Ohne Speisung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Strom muss durch das Messgerät fliessen. Parallel geschaltet würde es einen Kurzschluss (Bypass) bilden."
+        },
+        {
+          "id": "q2",
+          "typ": "multiple_choice",
+          "frage": "Welchen Innenwiderstand hat ein ideales Voltmeter?",
+          "optionen": [
+            "Unendlich",
+            "0 Ω",
+            "10 Ω",
+            "Gleich wie der Messwiderstand"
+          ],
+          "richtig": 0,
+          "erklaerung": "Durch das ideale Voltmeter fliesst kein Strom. Real hat das DMM etwa 10 MΩ."
+        },
+        {
+          "id": "q3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Element einseitig abkoppeln und Speisung ausschalten – sonst misst man Unsinn oder beschädigt das Gerät.",
+          "aussage": "Für eine Widerstandsmessung bleibt das Bauteil eingebaut und die Speisung eingeschaltet.",
+          "richtig": false
+        },
+        {
+          "id": "q4",
+          "typ": "multiple_choice",
+          "frage": "Was bedeutet der Code «4k7» auf einem Widerstand?",
+          "optionen": [
+            "4.7 kΩ",
+            "47 kΩ",
+            "4.7 Ω",
+            "470 Ω"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das k ersetzt das Komma, wie bei «km»: 4k7 = 4.7 kΩ."
+        }
+      ]
+    },
+    {
+      "id": "netzgeraet",
+      "titel": "Netzgerät und Strombegrenzung",
+      "art": "aufgabe",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Das Labornetzgerät hält die eingestellte Spannung wie eine ideale Quelle – bis der eingestellte Maximalstrom erreicht ist. Dann senkt es die Spannung so weit, dass der Strom konstant beim Grenzwert bleibt. Die rote LED zeigt die Strombegrenzung an."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Normalbetrieb: Spannung einstellen, Strombegrenzung «voll offen»",
+            "Erstinbetriebnahme: Strom begrenzen, damit ein Kurzschluss die Schaltung nicht zerstört",
+            "Fester 5-V-Ausgang mit maximal 1 A"
+          ]
+        },
+        {
+          "typ": "formel",
+          "tex": "\\text{Normalfall: } I = \\frac{U}{R} \\qquad \\text{Strombegrenzung: } U = I_\\text{max}\\cdot R"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Am festen 5-V-Ausgang (max. 1 A) hängt ein Widerstand von 2.5 Ω. Welche Spannung stellt sich ein?",
+          "loesung": 2.5,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "Präsentation Labor 1, S. 20",
+          "loesungsweg": [
+            "Ohne Begrenzung wären es $5\\,\\text{V}/2.5\\,\\Omega = 2\\,\\text{A}$ → zu viel",
+            "Die Strombegrenzung hält $I = 1\\,\\text{A}$",
+            "$U = 1\\,\\text{A}\\cdot2.5\\,\\Omega = 2.5\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Gleicher Ausgang, aber mit 10 Ω. Welcher Strom fliesst?",
+          "loesung": 0.5,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "Präsentation Labor 1, S. 20",
+          "loesungsweg": [
+            "$I = 5\\,\\text{V}/10\\,\\Omega = 0.5\\,\\text{A} < 1\\,\\text{A}$ → keine Begrenzung"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Die Spannung wird so weit reduziert, bis der Stromgrenzwert eingehalten ist.",
+          "aussage": "Ist die Strombegrenzung aktiv, bestimmt der eingestellte Maximalstrom das Verhalten, nicht mehr die eingestellte Spannung.",
+          "richtig": true
+        }
+      ]
+    },
+    {
+      "id": "teiler-leistung",
+      "titel": "Spannungsteiler, Störungssuche, Verlustleistung",
+      "art": "aufgabe",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Störungssuche gegen GND"
+        },
+        {
+          "typ": "text",
+          "text": "Schwarzes Messkabel auf GND, mit Rot die Punkte abtasten. Ist der Kreis unterbrochen, gibt es nur noch **zwei** Spannungspegel: volle Spannung und 0 V. Die Unterbruchstelle wirkt wie ein sehr grosser Widerstand."
+        },
+        {
+          "typ": "titel",
+          "text": "Belasteter Spannungsteiler"
+        },
+        {
+          "typ": "text",
+          "text": "Die Mittelpunktspannung ändert sich, sobald eine Last angeschlossen wird – sie sinkt."
+        },
+        {
+          "typ": "titel",
+          "text": "Verlustleistung"
+        },
+        {
+          "typ": "formel",
+          "tex": "P_V = I^2\\cdot R"
+        },
+        {
+          "typ": "text",
+          "text": "U steigt linear mit I, P quadratisch. Darum steigt die Verlustleistung bei grossen Strömen massiv. Die Baugrösse eines Widerstands (z. B. 0.25 W oder 5 W) sagt, wie viel Wärme er abgeben kann – nicht verwechseln mit dem Widerstandswert."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Durch einen 10-Ω-Widerstand fliessen 0.5 A. Welche Verlustleistung entsteht?",
+          "loesung": 2.5,
+          "einheit": "W",
+          "toleranz": 0.02,
+          "quelle": "Lab 1, 10.3",
+          "loesungsweg": [
+            "$P_V = (0.5\\,\\text{A})^2\\cdot10\\,\\Omega = 2.5\\,\\text{W}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Der 10-Ω-Widerstand ist für 5 W ausgelegt. Ab welchem Strom ist diese Grenze erreicht?",
+          "loesung": 0.707,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "Lab 1, 10.3",
+          "loesungsweg": [
+            "$I = \\sqrt{\\dfrac{P}{R}} = \\sqrt{\\dfrac{5\\,\\text{W}}{10\\,\\Omega}} = 0.707\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Der Strom steigt um den Faktor 2.5. Um welchen Faktor steigt die Verlustleistung?",
+          "optionen": [
+            "6.25",
+            "2.5",
+            "5",
+            "1.58"
+          ],
+          "richtig": 0,
+          "erklaerung": "$P \\sim I^2$: $2.5^2 = 6.25$ – egal ob von 0.2 A auf 0.5 A oder von 2 A auf 5 A."
+        },
+        {
+          "id": "q4",
+          "typ": "multiple_choice",
+          "frage": "Ein Kabel im Serienkreis ist unterbrochen. Wie viele Spannungspegel misst man gegen GND?",
+          "optionen": [
+            "Zwei: volle Spannung und 0 V",
+            "Drei",
+            "Einen",
+            "So viele wie Widerstände"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ohne Strom fällt an den Widerständen nichts ab – die ganze Spannung liegt an der Unterbruchstelle."
+        }
+      ]
+    }
+  ],
+  "labor": 1
+}

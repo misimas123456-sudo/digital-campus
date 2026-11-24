@@ -1,0 +1,276 @@
+{
+  "id": "sw01-aufgabenstellung",
+  "titel": "Aufgabenstellung & Modulpflichten",
+  "beschreibung": "Worum es im Kontextmodul 1 geht, was wissenschaftliches Arbeiten ausmacht und welche Regeln für Abgaben gelten.",
+  "lektionen": [
+    {
+      "id": "l1-ziele",
+      "titel": "Ziele des Kontextmoduls",
+      "art": "verstaendnis",
+      "quelle": "Kap. 1.1–1.2, S. 3",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Das Kontextmodul 1 ist ein **Projektmodul mit 6 ECTS** im ersten Semester. Ein interdisziplinäres Team bearbeitet ein Semester lang ein Projektthema."
+        },
+        {
+          "typ": "text",
+          "text": "**Primärziel ist die Studierbefähigung:** Arbeitstechniken für Studium und Beruf – vor allem wissenschaftliches Vorgehen, wissenschaftliches Schreiben und Projektmanagement."
+        },
+        {
+          "typ": "liste",
+          "titel": "Weitere Ziele",
+          "punkte": [
+            "Eigenverantwortung und Teamfähigkeit fördern",
+            "Die Gruppe als Einheit trägt die Verantwortung – die Schlussbewertung gilt für alle gleich",
+            "Den gruppendynamischen Prozess bewältigen ist ebenso wichtig wie die inhaltlichen Ergebnisse"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Abschluss = wissenschaftliche Dokumentation (max. 20 Seiten) + 15-minütige Schlusspräsentation."
+        }
+      ],
+      "dauer_min": 3,
+      "aufgaben": [
+        {
+          "id": "u1",
+          "typ": "multiple_choice",
+          "frage": "Was ist laut Aufgabenstellung das Primärziel des Kontextmoduls 1?",
+          "optionen": [
+            "Ein marktreifes Produkt bauen",
+            "Die Studierbefähigung",
+            "Die Smart-up Challenge gewinnen",
+            "Programmieren lernen"
+          ],
+          "erklaerung": "Primärziel ist die Studierbefähigung: Arbeitstechniken wie wissenschaftliches Vorgehen, Schreiben und Projektmanagement.",
+          "richtig": 1
+        },
+        {
+          "id": "u2",
+          "typ": "multiple_choice",
+          "frage": "Wer trägt die Verantwortung für die Ergebnisse?",
+          "optionen": [
+            "Die Projektleitung allein",
+            "Die Ingenieursdozierenden",
+            "Die Gruppe als Einheit",
+            "Jede Person für ihren eigenen Teil"
+          ],
+          "erklaerung": "Die Gruppe als Einheit trägt die Verantwortung; die Schlussbewertung betrifft jedes Mitglied im gleichen Masse.",
+          "richtig": 2
+        }
+      ]
+    },
+    {
+      "id": "l2-wissenschaftlich",
+      "titel": "Merkmale wissenschaftlichen Arbeitens",
+      "art": "verstaendnis",
+      "quelle": "Kap. 2.1, S. 4 (nach Preisser, 1993)",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Wissenschaftliches Arbeiten ist ein **systematisches Vorgehen**, dessen Ergebnisse **objektiv nachvollziehbar** sind: Quellen werden offengelegt, Methoden und Experimente so beschrieben, dass sie reproduzierbar sind."
+        },
+        {
+          "typ": "liste",
+          "titel": "Vier Merkmale (Preisser, 1993)",
+          "punkte": [
+            "**Systematisch:** klarer Aufbau, aus dem die Abfolge der Arbeitsschritte hervorgeht",
+            "**Objektiv begründen:** keine gefühlsmässige Argumentation, Schlussfolgerungen auf nachvollziehbaren Kriterien, Quellen angeben",
+            "**Methoden:** für jeden Arbeitsschritt systematisch anwenden und dokumentieren",
+            "**Auseinandersetzung mit anderen Arbeiten:** Stand der Forschung dokumentieren, eigenständige Schlüsse ziehen"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Eigenleistung (eigene, neue Ideen) und Fremdleistung (Ergebnisse anderer) müssen klar erkennbar sein."
+        }
+      ],
+      "dauer_min": 4,
+      "aufgaben": [
+        {
+          "id": "u1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage widerspricht wissenschaftlichem Arbeiten?",
+          "optionen": [
+            "Quellen aller wesentlichen Gedanken werden angegeben",
+            "Methoden werden reproduzierbar beschrieben",
+            "Eine Variante wird gewählt, weil sie sich im Team am besten anfühlt",
+            "Der Stand der Forschung wird dokumentiert"
+          ],
+          "erklaerung": "Gefühlsmässige Argumentation ist nicht zulässig – jede Schlussfolgerung braucht nachvollziehbare Kriterien (z. B. eine Nutzwertanalyse).",
+          "richtig": 2
+        },
+        {
+          "id": "u2",
+          "typ": "multiple_choice",
+          "frage": "Wie nennt man Ergebnisse anderer, die in der eigenen Arbeit verwendet werden?",
+          "optionen": [
+            "Eigenleistung",
+            "Fremdleistung",
+            "Disposition",
+            "Aktennotiz"
+          ],
+          "erklaerung": "Fremdleistung = Ergebnisse anderer; sie muss mit Quellen belegt werden. Eigenleistung = eigene, neue Ideen.",
+          "richtig": 1
+        }
+      ]
+    },
+    {
+      "id": "l3-aufgabe",
+      "titel": "Aufgabe: ein neuartiges Produkt",
+      "art": "aufgabe",
+      "quelle": "Kap. 2.2, S. 5",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Zu entwickeln ist ein Konzept für ein **neuartiges Produkt** oder eine neuartige **Produkt-Dienstleistungskombination** zum Thema **«Leben mit begrenzten Ressourcen»** (Boden, Materialien & Rohstoffe, Wasser, Nahrung, Lebensräume, Energie, Zeit)."
+        },
+        {
+          "typ": "liste",
+          "titel": "Kategorien",
+          "punkte": [
+            "Umwelt und Natur",
+            "Sport und Freizeit",
+            "Technologie und Wissenschaft",
+            "Reisen und Abenteuer",
+            "Gesundheit und Wohlbefinden"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Zuerst zwei Produktideen mit grobem Benutzerszenario. Geprüft werden: Themenbezug, Interdisziplinarität, Neuartigkeit, angemessener Schwierigkeitsgrad. Die freigegebene Idee wird als **Mock-up** realisiert und ausgestellt."
+        },
+        {
+          "typ": "liste",
+          "titel": "Ausschlussliste (Auszug)",
+          "punkte": [
+            "Sammel-/Recyclinggeräte für Behältnisse oder Müll",
+            "Veloweiterentwicklungen",
+            "Trinkbehälter",
+            "Grillgeräte",
+            "Strom-/Wassersparsysteme für den Haushalt",
+            "Fenster und Fensterstoren",
+            "Imker-Systeme",
+            "Sonnenschirme",
+            "Automatische Giess-/Düngevorrichtungen"
+          ]
+        }
+      ],
+      "dauer_min": 4,
+      "aufgaben": [
+        {
+          "id": "u1",
+          "typ": "multiple_choice",
+          "frage": "Welche Projektidee wäre laut Ausschlussliste NICHT zulässig?",
+          "optionen": [
+            "Ein Rollator mit Bremsassistenz",
+            "Ein Solar-Licht für das Velo",
+            "Ein Sensor-Rucksack für Wanderungen",
+            "Ein Bewässerungs-Monitoring für Gemeinschaftsgärten ohne Giessautomatik"
+          ],
+          "erklaerung": "Veloweiterentwicklungen (Licht, Solar, Antrieb, Zubehör) sind ausgeschlossen.",
+          "richtig": 1
+        },
+        {
+          "id": "u2",
+          "typ": "multiple_choice",
+          "frage": "In welche Kategorie passt SafeStep (intelligenter Rollator) am ehesten?",
+          "optionen": [
+            "Reisen und Abenteuer",
+            "Gesundheit und Wohlbefinden",
+            "Umwelt und Natur",
+            "Sport und Freizeit"
+          ],
+          "erklaerung": "Ein Rollator mit Bremsassistenz unterstützt Mobilität und Sicherheit – Gesundheit und Wohlbefinden.",
+          "richtig": 1
+        }
+      ]
+    },
+    {
+      "id": "l4-pflichten",
+      "titel": "Modulpflichten & Abgaberegeln",
+      "art": "aufgabe",
+      "quelle": "Kap. 3.1 (S. 9), 4.2 (S. 12), 5 (S. 13)",
+      "inhalt": [
+        {
+          "typ": "liste",
+          "titel": "Zwischenbesprechungen",
+          "punkte": [
+            "Anwesenheit aller Gruppenmitglieder ist Pflicht",
+            "Dokumente: max. 10 Seiten, **eine PDF**, bis **Mittwoch 12.00 Uhr** vor der Besprechung auf Ilias",
+            "Moderation rotiert im Team; **keine PowerPoint-Präsentationen**",
+            "Zu jeder ZB eine **Aktennotiz** mit Ergebnissen und nächsten Schritten"
+          ]
+        },
+        {
+          "typ": "merke",
+          "text": "Dateiname: Gruppennummer_Titel_Datum_Version – z. B. T04_ZB5_Dokumentenmappe_20261118_v0.pdf. Neue Versionen indexieren, Änderungen hervorheben."
+        },
+        {
+          "typ": "liste",
+          "titel": "Weitere Modulpflichten",
+          "punkte": [
+            "Individuelle Beiträge werden in jeder Besprechung thematisiert",
+            "Dokumente müssen formal, sprachlich und fachlich stimmen",
+            "KDS: zwei Pflichtaufgaben",
+            "PJM: sechs Online-Inputs individuell und zeitgerecht studieren"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "**Bewertung:** Dokumentation und Schlusspräsentation zusammen, für das ganze Team. A–E ist genügend, F bedeutet: keine ECTS, Wiederholung im nächsten Herbstsemester."
+        }
+      ],
+      "dauer_min": 5,
+      "aufgaben": [
+        {
+          "id": "u1",
+          "typ": "multiple_choice",
+          "frage": "Die ZB 5 ist am Freitag, 20.11. Bis wann müssen die Dokumente auf Ilias sein?",
+          "optionen": [
+            "Freitag, 20.11., 08.00 Uhr",
+            "Donnerstag, 19.11., 23.59 Uhr",
+            "Mittwoch, 18.11., 12.00 Uhr",
+            "Montag, 16.11., 12.00 Uhr"
+          ],
+          "erklaerung": "Dokumente sind jeweils bis Mittwochmittag (12.00 Uhr) vor der Besprechung abzulegen.",
+          "richtig": 2
+        },
+        {
+          "id": "u2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Dateiname entspricht den formalen Anforderungen?",
+          "optionen": [
+            "ZB5 final final.pdf",
+            "T04_ZB5_Dokumentenmappe_20261118_v0.pdf",
+            "Dokumentenmappe-T04.docx",
+            "T04_ZB5.pptx"
+          ],
+          "erklaerung": "Format Gruppennummer_Titel_Datum_Version, als eine PDF-Datei.",
+          "richtig": 1
+        },
+        {
+          "id": "u3",
+          "typ": "multiple_choice",
+          "frage": "Was gilt bei der Bewertung der Modulendprüfung?",
+          "optionen": [
+            "Jede Person erhält eine eigene Note",
+            "Nur die Präsentation zählt",
+            "Bewertung gilt fürs ganze Team, A–E genügend",
+            "Bei F darf man im Frühling wiederholen"
+          ],
+          "erklaerung": "Die Bewertung gilt für das gesamte Team; F heisst Wiederholung im nächstfolgenden Herbstsemester.",
+          "richtig": 2
+        }
+      ]
+    }
+  ],
+  "woche": 1,
+  "quelle": [
+    {
+      "text": "Aufgabenstellung Projektarbeit Kontextmodul 1, Technik HS 2026",
+      "stellen": "Kap. 1.1–1.2 (S. 3), 2.1–2.2 (S. 4–5), 3.1 (S. 9), 4.1–4.2 (S. 12), 5 (S. 13)"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "id": "sw03-kondensator",
+  "bereich": "theorie",
+  "woche": 3,
+  "titel": "Block 3 · Elektrisches Feld & Kondensator",
+  "untertitel": "Coulomb, Feldstärke, Kapazität, gespeicherte Energie, RC-Ausgleichsvorgang",
+  "quelle": "ET+L – H26 – Block 3 (28.09.2026), Folien S. 13–36, Aufgaben S. 39–44; Lösungen in Block 4, S. 45–51. Buch Ose S. 110–113 und 147–163.",
+  "lektionen": [
+    {
+      "id": "feld",
+      "titel": "Das elektrische Feld",
+      "art": "verstaendnis",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ein elektrisches Feld ist ein Zustand des Raums, in dem eine Ladung eine Kraft erfährt. Die Feldlinien zeigen in die Richtung, in die eine **positive** Testladung gezogen würde: von + nach −."
+        },
+        {
+          "typ": "titel",
+          "text": "Coulombsches Gesetz"
+        },
+        {
+          "typ": "formel",
+          "tex": "F = \\frac{1}{4\\pi\\varepsilon_0}\\cdot\\frac{q_1 q_2}{r^2} \\qquad \\varepsilon_0 = 8.854\\cdot10^{-12}\\,\\tfrac{\\text{As}}{\\text{Vm}}"
+        },
+        {
+          "typ": "titel",
+          "text": "Homogenes Feld"
+        },
+        {
+          "typ": "formel",
+          "tex": "E = \\frac{U}{d}\\;\\left[\\tfrac{\\text{V}}{\\text{m}}\\right] \\qquad F = Q\\cdot E"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Wo beginnen und enden elektrische Feldlinien?",
+          "optionen": [
+            "Sie beginnen bei positiver und enden bei negativer Ladung",
+            "Sie beginnen bei negativer und enden bei positiver Ladung",
+            "Sie sind geschlossene Kreise ohne Anfang und Ende",
+            "Sie verlaufen immer parallel zum Leiter"
+          ],
+          "richtig": 0,
+          "erklaerung": "Feldlinien zeigen die Kraftrichtung auf eine positive Testladung: von + nach −. Geschlossene Kreise sind typisch fürs Magnetfeld."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "$E = U/d$: doppelter Abstand → halbe Feldstärke.",
+          "aussage": "Im homogenen Feld halbiert sich die Feldstärke, wenn man den Plattenabstand bei gleicher Spannung verdoppelt.",
+          "richtig": true
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Welche Einheit hat die elektrische Feldstärke E?",
+          "optionen": [
+            "V/m",
+            "As",
+            "V·m",
+            "N·m"
+          ],
+          "richtig": 0,
+          "erklaerung": "$E = U/d$ → Volt pro Meter."
+        }
+      ]
+    },
+    {
+      "id": "kapazitaet",
+      "titel": "Kapazität und gespeicherte Energie",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Die **Kapazität** C beschreibt, wie viel Ladung pro Spannung gespeichert wird. Einheit Farad: $1\\,\\text{F} = 1\\,\\text{As/V}$."
+        },
+        {
+          "typ": "formel",
+          "tex": "C = \\frac{Q}{U} \\qquad C = \\varepsilon_r\\varepsilon_0\\cdot\\frac{A}{d}"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "$\\varepsilon_r$: Luft 1, Papier 4…6, Glas 5…10, Bariumtitanat bis 20 000",
+            "**Parallel:** $C = C_1 + C_2 + \\dots$",
+            "**Serie:** $\\dfrac{1}{C} = \\dfrac{1}{C_1} + \\dfrac{1}{C_2} + \\dots$ (wie parallele Widerstände)"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Energie"
+        },
+        {
+          "typ": "formel",
+          "tex": "W = \\frac{1}{2}\\,C\\,U^2"
+        },
+        {
+          "typ": "text",
+          "text": "Die gespeicherte Energie ist unabhängig davon, wie der Kondensator entladen wird (Energieerhaltung)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Ein Supercap hat 3000 F bei 2.5 V. Wie viel Energie speichert er (in Ws)?",
+          "loesung": 9375,
+          "einheit": "Ws",
+          "toleranz": 0.02,
+          "quelle": "B3-E1",
+          "loesungsweg": [
+            "$W = \\tfrac{1}{2}\\cdot3000\\,\\text{F}\\cdot(2.5\\,\\text{V})^2 = 9375\\,\\text{Ws}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Der Supercap ist ein Zylinder mit 50 mm Durchmesser und 160 mm Länge. Wie viel Energie speichert er pro cm³?",
+          "loesung": 29.8,
+          "einheit": "Ws/cm³",
+          "toleranz": 0.02,
+          "quelle": "B3-E1",
+          "loesungsweg": [
+            "$V = (2.5\\,\\text{cm})^2\\pi\\cdot16\\,\\text{cm} = 314\\,\\text{cm}^3$",
+            "$\\dfrac{9375\\,\\text{Ws}}{314\\,\\text{cm}^3} = 29.8\\,\\tfrac{\\text{Ws}}{\\text{cm}^3}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Wie viele Wh enthält ein Supercap mit 3000 F bei 2.7 V?",
+          "loesung": 3.04,
+          "einheit": "Wh",
+          "toleranz": 0.02,
+          "quelle": "Block 3, S. 24–25",
+          "loesungsweg": [
+            "$W = \\tfrac{1}{2}\\cdot3000\\cdot2.7^2\\,\\text{Ws} = 10\\,935\\,\\text{Ws}$",
+            "$10\\,935\\,\\text{Ws} / 3600 = 3.04\\,\\text{Wh}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Ein 4 µF-Kondensator liegt parallel zur Serieschaltung aus 2 µF und 3 µF. Gesamtkapazität?",
+          "loesung": 5.2,
+          "einheit": "µF",
+          "toleranz": 0.02,
+          "quelle": "B3-E2",
+          "loesungsweg": [
+            "$2\\,\\mu\\text{F}$ in Serie mit $3\\,\\mu\\text{F}$: $\\dfrac{2\\cdot3}{2+3} = 1.2\\,\\mu\\text{F}$",
+            "$C = 4\\,\\mu\\text{F} + 1.2\\,\\mu\\text{F} = 5.2\\,\\mu\\text{F}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rc-ausgleich",
+      "titel": "RC-Ausgleichsvorgang",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Am Kondensator gilt $i = C\\,\\dfrac{\\Delta u}{\\Delta t}$: Die **Spannung kann nicht springen**, weil dafür Ladung verschoben werden muss. Im stationären Zustand fliesst kein Strom."
+        },
+        {
+          "typ": "titel",
+          "text": "Zeitkonstante und Verlauf"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\tau = R\\cdot C \\qquad y(t) = y(\\infty) + \\bigl[y(0^+) - y(\\infty)\\bigr]\\,e^{-t/\\tau}"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Zustandsgrösse beim C ist $u_C$: $u_C(0^+) = u_C(0^-)$",
+            "Nach $1\\tau$: 63 %, $2\\tau$: 86 %, $3\\tau$: 95 %, $5\\tau$: 99.4 % → praktisch fertig",
+            "Laden: $u_C = U\\,(1 - e^{-t/\\tau})$, $\\;i_C = \\tfrac{U}{R}\\,e^{-t/\\tau}$",
+            "Entladen: $u_C = U\\,e^{-t/\\tau}$, $\\;i_C = -\\tfrac{U}{R}\\,e^{-t/\\tau}$"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "R für die Zeitkonstante ist der Widerstand, den der Kondensator «sieht» (Quellen ausgeschaltet)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Ein Kondensator (150 µF) wird über 20 Ω an 200 V geladen. Welcher Strom fliesst im ersten Moment?",
+          "loesung": 10,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B3-E4",
+          "loesungsweg": [
+            "$u_C(0^+) = 0$, also liegt die ganze Spannung am Widerstand",
+            "$I_0 = \\dfrac{200\\,\\text{V}}{20\\,\\Omega} = 10\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Gleiche Schaltung: Welche Spannung hat der Kondensator nach 6 ms?",
+          "loesung": 173,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "B3-E4",
+          "loesungsweg": [
+            "$\\tau = 20\\,\\Omega\\cdot150\\,\\mu\\text{F} = 3\\,\\text{ms}$",
+            "$u_C = 200\\,\\text{V}\\,(1 - e^{-2}) = 173\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Ein leerer 1 mF-Kondensator wird über 1 kΩ an 5 V geladen. Nach welcher Zeit hat er genau 3 V? Angabe in ms.",
+          "loesung": 916.3,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "B3-E5",
+          "loesungsweg": [
+            "$\\tau = 1\\,\\text{k}\\Omega\\cdot1\\,\\text{mF} = 1\\,\\text{s}$",
+            "$t = -\\tau\\,\\ln\\!\\left(1 - \\tfrac{3\\,\\text{V}}{5\\,\\text{V}}\\right) = -1\\,\\text{s}\\cdot\\ln(0.4) = 916.3\\,\\text{ms}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "multiple_choice",
+          "frage": "Wie viel Prozent der Endspannung hat ein Kondensator nach $3\\tau$ erreicht?",
+          "optionen": [
+            "95 %",
+            "63 %",
+            "86 %",
+            "99.4 %"
+          ],
+          "richtig": 0,
+          "erklaerung": "$1 - e^{-3} \\approx 0.95$."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,948 @@
+{
+  "id": "sw03-schleifen",
+  "titel": "Schleifen & Bedingungen",
+  "beschreibung": "if/elif/else, Vergleichsoperatoren, and/or/not, while, break/continue, for, range, enumerate",
+  "woche": 3,
+  "lektionen": [
+    {
+      "id": "sw03-schleifen-l7",
+      "titel": "Bedingungen: if, elif, else",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW03_PB_Schleifen_FlippedClassroom, S. 5–11",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Das if-Statement"
+        },
+        {
+          "typ": "text",
+          "text": "Mit `if` prüft man eine **Bedingung**. Nur wenn sie wahr ist, wird der **eingerückte** Code-Block\n        ausgeführt. Nach der Bedingung steht ein Doppelpunkt `:`."
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Operator",
+            "Bedeutung"
+          ],
+          "zeilen": [
+            [
+              "`==`",
+              "ist gleich?"
+            ],
+            [
+              "`!=`",
+              "ist nicht gleich?"
+            ],
+            [
+              "`>` / `<`",
+              "grösser / kleiner als"
+            ],
+            [
+              "`>=` / `<=`",
+              "grösser gleich / kleiner gleich"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Das Resultat eines Vergleichs ist immer ein `bool` (`True` oder `False`)."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "x = 12\nif x < 10:\n    print(\"x ist kleiner als 10\")\nif x > 10:\n    print(\"x ist grösser als 10\")",
+          "ausfuehrbar": true,
+          "ausgabe": "x ist grösser als 10"
+        },
+        {
+          "typ": "titel",
+          "text": "elif und else"
+        },
+        {
+          "typ": "text",
+          "text": "`elif` (else if) wird nur geprüft, wenn die Bedingungen davor **falsch** waren. `else` läuft, wenn\n        alle vorherigen Bedingungen falsch sind."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "x = 10\nif x < 10:\n    print(\"x ist kleiner als 10\")\nelif x > 10:\n    print(\"x ist grösser als 10\")\nelse:\n    print(\"x ist 10\")",
+          "ausfuehrbar": true,
+          "ausgabe": "x ist 10"
+        },
+        {
+          "typ": "hinweis",
+          "text": "Zwei getrennte `if` werden **beide** geprüft. Bei `if … elif …` läuft höchstens **ein** Block."
+        },
+        {
+          "typ": "titel",
+          "text": "Bedingungen verknüpfen"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`bedingung1 and bedingung2` – beide müssen wahr sein",
+            "`bedingung1 or bedingung2` – mindestens eine muss wahr sein",
+            "`not bedingung` – kehrt den Wahrheitswert um"
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "temp = 22\nregen = False\nif temp > 20 and not regen:\n    print(\"Ab nach draussen!\")",
+          "ausfuehrbar": true,
+          "ausgabe": "Ab nach draussen!"
+        }
+      ]
+    },
+    {
+      "id": "sw03-schleifen-l8",
+      "titel": "Die while-Schleife",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW03_PB_Schleifen_FlippedClassroom, S. 13–19",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Wiederholen, bis eine Bedingung eintrifft"
+        },
+        {
+          "typ": "text",
+          "text": "Die `while`-Schleife führt einen Code-Block aus, **solange** die Bedingung wahr ist. Im Block muss sich\n        die Bedingung verändern können – sonst entsteht eine **Endlosschleife**."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "i = 0\nwhile i < 5:\n    print(i)\n    i += 1",
+          "ausfuehrbar": true,
+          "ausgabe": "0\n1\n2\n3\n4"
+        },
+        {
+          "typ": "titel",
+          "text": "Erweiterte Zuweisung"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "lang",
+            "kurz"
+          ],
+          "zeilen": [
+            [
+              "`x = x + 1`",
+              "`x += 1`"
+            ],
+            [
+              "`y = y - 1`",
+              "`y -= 1`"
+            ],
+            [
+              "`abc = abc * 3`",
+              "`abc *= 3`"
+            ],
+            [
+              "`f = f / 5`",
+              "`f /= 5`"
+            ]
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "break und continue"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`continue` überspringt den Rest des Blocks und startet den nächsten Durchlauf.",
+            "`break` beendet die Schleife sofort."
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "i = 0\nwhile True:\n    i += 1\n    if i == 4:\n        continue\n    if i > 7:\n        break\n    print(i)",
+          "ausfuehrbar": true,
+          "ausgabe": "1\n2\n3\n5\n6\n7"
+        },
+        {
+          "typ": "merke",
+          "text": "Steht `continue` **vor** dem Erhöhen des Zählers, ändert sich die Bedingung nie mehr → Endlosschleife."
+        }
+      ]
+    },
+    {
+      "id": "sw03-schleifen-l9",
+      "titel": "Die for-Schleife, range und enumerate",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW03_PB_Schleifen_FlippedClassroom, S. 20–23",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "for geht durch eine Sequenz"
+        },
+        {
+          "typ": "text",
+          "text": "In Python geht `for` mit einer Laufvariable durch **alle Elemente** einer Sequenz (Liste, String, range …).\n        Dazu dient das Schlüsselwort `in`. Der Name der Laufvariable ist frei wählbar."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "for character in \"Word\":\n    print(character)\nprint(\"danach:\", character)",
+          "ausfuehrbar": true,
+          "ausgabe": "W\no\nr\nd\ndanach: d"
+        },
+        {
+          "typ": "titel",
+          "text": "range()"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "`range(n)` → 0, 1, …, n−1 (n ist **nicht** dabei)",
+            "`range(start, stop)` → start bis stop−1",
+            "`range(start, stop, step)` → mit Schrittweite, auch rückwärts mit negativem step"
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "for elem in range(3):\n    print(elem)\nprint(list(range(2, 8, 2)))\nprint(list(range(100, 89, -1)))",
+          "ausfuehrbar": true,
+          "ausgabe": "0\n1\n2\n[2, 4, 6]\n[100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90]"
+        },
+        {
+          "typ": "titel",
+          "text": "enumerate() – Index und Element"
+        },
+        {
+          "typ": "text",
+          "text": "`enumerate` liefert bei jedem Durchlauf ein Paar aus **Index** und **Element**:"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "for i, elem in enumerate(\"word\"):\n    print(f\"{i}th letter is a {elem}\")",
+          "ausfuehrbar": true,
+          "ausgabe": "0th letter is a w\n1th letter is a o\n2th letter is a r\n3th letter is a d"
+        },
+        {
+          "typ": "merke",
+          "text": "`for` = feste Anzahl / alle Elemente, `while` = bis eine Bedingung eintrifft."
+        }
+      ]
+    },
+    {
+      "id": "sw03-schleifen-l1",
+      "titel": "Bedingungen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw03-schleifen-l1-a1",
+          "typ": "zuordnen",
+          "frage": "Ordne die Vergleichsoperatoren zu:",
+          "paare": [
+            [
+              "==",
+              "ist gleich"
+            ],
+            [
+              "!=",
+              "ist nicht gleich"
+            ],
+            [
+              ">=",
+              "grösser gleich"
+            ],
+            [
+              "<",
+              "kleiner als"
+            ]
+          ],
+          "erklaerung": "Das Resultat eines Vergleichs ist immer ein bool (True/False).",
+          "quelle": "SW03_PB_Schleifen, S. 7"
+        },
+        {
+          "id": "sw03-schleifen-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "`x = 5` prüft, ob x gleich 5 ist.",
+          "richtig": false,
+          "erklaerung": "= ist eine Zuweisung, == ist der Vergleich.",
+          "quelle": "SW03_PB_Schleifen, S. 7"
+        },
+        {
+          "id": "sw03-schleifen-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "Wann wird ein `elif`-Block ausgeführt?",
+          "optionen": [
+            "Wenn alle vorherigen Bedingungen falsch sind und seine eigene wahr ist",
+            "Immer",
+            "Wenn die if-Bedingung wahr ist",
+            "Nur ohne else"
+          ],
+          "richtig": 0,
+          "erklaerung": "elif = else if: wird nur geprüft, wenn die erste Bedingung NICHT wahr ist.",
+          "quelle": "SW03_PB_Schleifen, S. 9"
+        },
+        {
+          "id": "sw03-schleifen-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Unterschied zwischen `if c1: … elif c2: …` und `if c1: … if c2: …`?",
+          "optionen": [
+            "Bei elif wird c2 nur geprüft, wenn c1 falsch ist; zwei ifs werden beide geprüft",
+            "Es gibt keinen Unterschied",
+            "elif ist schneller, sonst gleich",
+            "Bei zwei ifs wird nur das erste ausgeführt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mit zwei separaten ifs können beide Blöcke ausgeführt werden.",
+          "quelle": "SW03_PB_Schleifen, S. 10"
+        },
+        {
+          "id": "sw03-schleifen-l1-a5",
+          "typ": "zuordnen",
+          "frage": "Ordne die logischen Verknüpfungen zu:",
+          "paare": [
+            [
+              "and",
+              "beide Bedingungen wahr"
+            ],
+            [
+              "or",
+              "mindestens eine wahr"
+            ],
+            [
+              "not",
+              "kehrt den Wahrheitswert um"
+            ]
+          ],
+          "erklaerung": "Bedingungen lassen sich mit and, or, not verknüpfen.",
+          "quelle": "SW03_PB_Schleifen, S. 11"
+        },
+        {
+          "id": "sw03-schleifen-l1-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Der Code-Block nach `if` muss eingerückt sein.",
+          "richtig": true,
+          "erklaerung": "Python erkennt Blöcke an der Einrückung (4 Leerzeichen).",
+          "quelle": "SW03_PB_Schleifen, S. 6"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw03-schleifen-l2",
+      "titel": "Schleifen",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw03-schleifen-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Schleife nimmt man, um einen Block auszuführen, bis eine Bedingung eintrifft?",
+          "optionen": [
+            "while",
+            "for",
+            "if",
+            "elif"
+          ],
+          "richtig": 0,
+          "erklaerung": "while läuft, solange die Bedingung wahr ist. for iteriert durch eine Sequenz.",
+          "quelle": "SW03_PB_Schleifen, S. 13"
+        },
+        {
+          "id": "sw03-schleifen-l2-a2",
+          "typ": "zuordnen",
+          "frage": "Was bewirkt das Keyword?",
+          "paare": [
+            [
+              "break",
+              "beendet die Schleife sofort"
+            ],
+            [
+              "continue",
+              "überspringt den Rest und startet den nächsten Durchlauf"
+            ]
+          ],
+          "erklaerung": "break bricht ab, continue springt zum nächsten Durchlauf.",
+          "quelle": "SW03_PB_Schleifen, S. 16"
+        },
+        {
+          "id": "sw03-schleifen-l2-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Wird die Bedingung im Code-Block einer while-Schleife nie verändert, entsteht eine Endlosschleife.",
+          "richtig": true,
+          "erklaerung": "Darum muss sich im Block etwas ändern, z. B. i += 1.",
+          "quelle": "SW03_PB_Schleifen, S. 15"
+        },
+        {
+          "id": "sw03-schleifen-l2-a4",
+          "typ": "multiple_choice",
+          "frage": "Welche Zahlen liefert `range(10)`?",
+          "optionen": [
+            "0 bis 9",
+            "1 bis 10",
+            "0 bis 10",
+            "1 bis 9"
+          ],
+          "richtig": 0,
+          "erklaerung": "range startet standardmässig bei 0 und endet VOR dem Stopwert.",
+          "quelle": "SW03_PB_Schleifen, S. 20"
+        },
+        {
+          "id": "sw03-schleifen-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Was ist `x += 1` ausgeschrieben?",
+          "optionen": [
+            "x = x + 1",
+            "x = 1",
+            "x == x + 1",
+            "x + 1 = x"
+          ],
+          "richtig": 0,
+          "erklaerung": "Erweiterte Zuweisung.",
+          "quelle": "SW03_PB_Schleifen, S. 17"
+        },
+        {
+          "id": "sw03-schleifen-l2-a6",
+          "typ": "multiple_choice",
+          "frage": "Was liefert `enumerate` bei jedem Durchlauf?",
+          "optionen": [
+            "Index und Element (als Tuple)",
+            "Nur den Index",
+            "Nur das Element",
+            "Die Länge"
+          ],
+          "richtig": 0,
+          "erklaerung": "for i, elem in enumerate(...) liefert Index und Element.",
+          "quelle": "SW03_PB_Schleifen, S. 23"
+        },
+        {
+          "id": "sw03-schleifen-l2-a7",
+          "typ": "karteikarte",
+          "vorne": "Schritte eines range: range(start, stop, step)?",
+          "hinten": "Von start bis stop−1 in Schritten von step. Beispiel: list(range(1, 6, 2)) → [1, 3, 5].",
+          "quelle": "Python_Test_Cheatsheet_Wochen_1-6, S. 1"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw03-schleifen-l3",
+      "titel": "Check your understanding",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw03-schleifen-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage ist richtig?",
+          "optionen": [
+            "`!=` prüft, ob zwei Werte unterschiedlich sind",
+            "`==` weist einer Variablen einen Wert zu",
+            "`=` prüft, ob zwei Werte gleich sind",
+            "`<=` bedeutet «kleiner als»"
+          ],
+          "richtig": 0,
+          "erklaerung": "= Zuweisung, == Gleichheit, <= kleiner oder gleich.",
+          "quelle": "SW03_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw03-schleifen-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "x = 12\nif x < 10:\n    print(\"x ist kleiner als 10\")\nelif x > 10:\n    print(\"x ist grösser als 10\")\nelse:\n    print(\"x ist 10\")",
+          "optionen": [
+            "x ist grösser als 10",
+            "x ist kleiner als 10",
+            "x ist 10",
+            "nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die erste Bedingung ist falsch, die zweite wahr.",
+          "quelle": "SW03_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw03-schleifen-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Gegeben `x = 10`. Welcher Ausdruck ergibt `False`?",
+          "optionen": [
+            "`not (x > 5)`",
+            "`(x > 5) and (x < 20)`",
+            "`(x < 5) or (x > 8)`",
+            "`(x == 10)`"
+          ],
+          "richtig": 0,
+          "erklaerung": "x > 5 ist True, not True ist False.",
+          "quelle": "SW03_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw03-schleifen-l3-a4",
+          "typ": "code_ausgabe",
+          "code": "for i in range(10, 4, -2):\n    print(i)",
+          "optionen": [
+            "10\n8\n6",
+            "10\n8\n6\n4",
+            "4\n6\n8",
+            "10\n9\n8\n7\n6\n5"
+          ],
+          "richtig": 0,
+          "erklaerung": "range endet VOR dem Stopwert.",
+          "quelle": "SW03_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw03-schleifen-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "Was verwendest du, wenn du beim Durchlaufen eines Strings Index UND Zeichen brauchst?",
+          "optionen": [
+            "`enumerate()`",
+            "`range()`",
+            "`continue`",
+            "`break`"
+          ],
+          "richtig": 0,
+          "erklaerung": "enumerate() liefert Index und Element.",
+          "quelle": "SW03_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw03-schleifen-l4",
+      "titel": "Code lesen: if & Schleifen",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw03-schleifen-l4-a1",
+          "typ": "code_ausgabe",
+          "code": "x = 12\nif x < 10:\n    print(\"x ist kleiner als 10\")\nif x > 10:\n    print(\"x ist grösser als 10\")",
+          "optionen": [
+            "x ist grösser als 10",
+            "x ist kleiner als 10",
+            "beides",
+            "nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "12 > 10 – nur die zweite Bedingung ist wahr.",
+          "quelle": "SW03_PB_Schleifen, S. 8"
+        },
+        {
+          "id": "sw03-schleifen-l4-a2",
+          "typ": "code_ausgabe",
+          "code": "x = 10\nif x < 10:\n    print(\"kleiner\")\nelif x > 10:\n    print(\"grösser\")\nelse:\n    print(\"x ist 10\")",
+          "optionen": [
+            "x ist 10",
+            "kleiner",
+            "grösser",
+            "nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "Keine der beiden Bedingungen stimmt → else.",
+          "quelle": "SW03_PB_Schleifen, S. 9"
+        },
+        {
+          "id": "sw03-schleifen-l4-a3",
+          "typ": "code_ausgabe",
+          "code": "summe = 0\nfor i in range(1, 4):\n    summe += i\nprint(summe)",
+          "optionen": [
+            "6",
+            "3",
+            "10",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "range(1, 4) liefert 1, 2, 3 → Summe 6.",
+          "quelle": "SW03_PB_Schleifen, S. 20"
+        },
+        {
+          "id": "sw03-schleifen-l4-a4",
+          "typ": "code_ausgabe",
+          "code": "i = 0\nwhile i < 3:\n    print(i)\n    i += 1",
+          "optionen": [
+            "0\n1\n2",
+            "1\n2\n3",
+            "0\n1\n2\n3",
+            "Endlosschleife"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei i == 3 ist die Bedingung falsch, die Schleife endet.",
+          "quelle": "SW03_PB_Schleifen, S. 15"
+        },
+        {
+          "id": "sw03-schleifen-l4-a5",
+          "typ": "code_ausgabe",
+          "code": "i = 0\nwhile True:\n    i += 1\n    if i == 2:\n        continue\n    if i > 4:\n        break\n    print(i)",
+          "optionen": [
+            "1\n3\n4",
+            "1\n2\n3\n4",
+            "1\n3\n4\n5",
+            "Endlosschleife"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei i == 2 wird print übersprungen, bei i == 5 bricht break ab.",
+          "quelle": "SW03_PB_Schleifen, S. 18"
+        },
+        {
+          "id": "sw03-schleifen-l4-a6",
+          "typ": "code_ausgabe",
+          "code": "for i, elem in enumerate(\"ab\"):\n    print(i, elem)",
+          "optionen": [
+            "0 a\n1 b",
+            "1 a\n2 b",
+            "a 0\nb 1",
+            "0\n1"
+          ],
+          "richtig": 0,
+          "erklaerung": "enumerate startet bei Index 0.",
+          "quelle": "SW03_PB_Schleifen, S. 23"
+        },
+        {
+          "id": "sw03-schleifen-l4-a7",
+          "typ": "code_fehler",
+          "frage": "In welcher Zeile entsteht das Problem (Endlosschleife)?",
+          "code": "i = 0\nwhile True:\n    if i == 4:\n        continue\n    if i > 10:\n        break\n    i += 1",
+          "fehlerzeile": 4,
+          "korrektur": "i += 1 vor das continue setzen",
+          "erklaerung": "Bei i == 4 überspringt continue das Erhöhen von i → i bleibt 4 → Endlosschleife.",
+          "quelle": "SW03_PB_Schleifen, S. 19"
+        },
+        {
+          "id": "sw03-schleifen-l4-a8",
+          "typ": "code_luecke",
+          "frage": "Ergänze, sodass die Zahlen 100 bis und mit 90 rückwärts ausgegeben werden.",
+          "code": "for zahl in range(100, ___, -1):\n    print(zahl)",
+          "antworten": [
+            [
+              "89"
+            ]
+          ],
+          "erklaerung": "stop ist exklusiv: damit 90 noch dabei ist, muss stop 89 sein.",
+          "quelle": "SW03_PB_Schleifen, S. 24",
+          "erwartete_ausgabe": "100\n99\n98\n97\n96\n95\n94\n93\n92\n91\n90"
+        }
+      ]
+    },
+    {
+      "id": "sw03-schleifen-l5",
+      "titel": "Schleifen programmieren",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw03-schleifen-l5-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Zahlen in 50er-Schritten",
+          "aufgabe": "Lies zwei ganze Zahlen `start` und `stop` (je eine Zeile) ein und gib alle Zahlen von start bis stop (exklusiv) in 50er-Schritten aus, jede auf einer eigenen Zeile.",
+          "startcode": "start = int(input())\nstop = int(input())",
+          "tests": [
+            {
+              "eingabe": "100\n300",
+              "ausgabe": "100\n150\n200\n250"
+            },
+            {
+              "eingabe": "0\n51",
+              "ausgabe": "0\n50"
+            },
+            {
+              "eingabe": "10\n10",
+              "ausgabe": ""
+            }
+          ],
+          "hinweise": [
+            "range(start, stop, step)",
+            "Wenn start == stop, gibt es keine Ausgabe."
+          ],
+          "musterloesung": "start = int(input())\nstop = int(input())\nfor zahl in range(start, stop, 50):\n    print(zahl)",
+          "kriterien": [
+            "for mit range und step",
+            "leerer Bereich ohne Ausgabe"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW03_PB_Schleifen, S. 24"
+        },
+        {
+          "id": "sw03-schleifen-l5-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Durch 3 teilen",
+          "aufgabe": "Lies eine Zahl ein. Teile sie so lange durch 3, bis das Resultat kleiner als 0.1 ist. Gib danach die Anzahl Divisionen aus.",
+          "startcode": "zahl = float(input())",
+          "tests": [
+            {
+              "eingabe": "100",
+              "ausgabe": "7"
+            },
+            {
+              "eingabe": "0.05",
+              "ausgabe": "0"
+            },
+            {
+              "eingabe": "1",
+              "ausgabe": "3"
+            }
+          ],
+          "hinweise": [
+            "while-Schleife mit Bedingung `zahl >= 0.1`",
+            "Zähler mit 0 starten und mit += 1 erhöhen."
+          ],
+          "musterloesung": "zahl = float(input())\nanzahl = 0\nwhile zahl >= 0.1:\n    zahl /= 3\n    anzahl += 1\nprint(anzahl)",
+          "kriterien": [
+            "while-Schleife",
+            "Zähler",
+            "Randfall: Zahl schon < 0.1 → 0"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW03_PB_Schleifen, S. 24"
+        },
+        {
+          "id": "sw03-schleifen-l5-a3",
+          "typ": "programmieraufgabe",
+          "titel": "Gerade oder ungerade?",
+          "aufgabe": "Lies eine ganze Zahl ein. Gib `gerade` aus, wenn sie gerade ist, sonst `ungerade`. Ist die Zahl 0, gib `null` aus.",
+          "startcode": "n = int(input())",
+          "tests": [
+            {
+              "eingabe": "4",
+              "ausgabe": "gerade"
+            },
+            {
+              "eingabe": "7",
+              "ausgabe": "ungerade"
+            },
+            {
+              "eingabe": "0",
+              "ausgabe": "null"
+            },
+            {
+              "eingabe": "-3",
+              "ausgabe": "ungerade"
+            }
+          ],
+          "hinweise": [
+            "Prüfe zuerst auf 0.",
+            "Gerade: n % 2 == 0"
+          ],
+          "musterloesung": "n = int(input())\nif n == 0:\n    print(\"null\")\nelif n % 2 == 0:\n    print(\"gerade\")\nelse:\n    print(\"ungerade\")",
+          "kriterien": [
+            "if/elif/else",
+            "Modulo",
+            "Randfall 0"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW03_PB_Schleifen, S. 9 und SW02_PB_Datentypen, S. 19"
+        }
+      ]
+    },
+    {
+      "id": "sw03-schleifen-l6",
+      "titel": "InClass-Übungen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw03-schleifen-l6-a1",
+          "typ": "programmieraufgabe",
+          "titel": "ggT mit Euklid",
+          "aufgabe": "Lies zwei positive Ganzzahlen ein und berechne den ggT mit dem euklidischen Algorithmus und einer `while`-Schleife. Ausgabe: `Der ggT ist X`.",
+          "startcode": "a = int(input())\nb = int(input())",
+          "tests": [
+            {
+              "eingabe": "8\n14",
+              "ausgabe": "Der ggT ist 2"
+            },
+            {
+              "eingabe": "12\n12",
+              "ausgabe": "Der ggT ist 12"
+            },
+            {
+              "eingabe": "17\n5",
+              "ausgabe": "Der ggT ist 1"
+            },
+            {
+              "eingabe": "100\n75",
+              "ausgabe": "Der ggT ist 25"
+            }
+          ],
+          "hinweise": [
+            "Solange a != b: die grössere Zahl um die kleinere verkleinern.",
+            "f-String: f\"Der ggT ist {ggt}\""
+          ],
+          "musterloesung": "a = int(input())\nb = int(input())\nwhile a != b:\n    if a > b:\n        a = a - b\n    else:\n        b = b - a\nggt = a\nprint(f\"Der ggT ist {ggt}\")",
+          "kriterien": [
+            "while-Schleife",
+            "gleiche Zahlen",
+            "teilerfremde Zahlen"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW03_InClass_standardized_clean.ipynb (JupyterHub), «Grössten gemeinsamen Teiler (ggT) berechnen»"
+        },
+        {
+          "id": "sw03-schleifen-l6-a2",
+          "typ": "programmieraufgabe",
+          "titel": "FizzBuzz",
+          "aufgabe": "Lies eine Zahl n ein und gib für jede Zahl von 1 bis und mit n genau eine Zeile aus: `FizzBuzz` (durch 3 und 5 teilbar), sonst `Fizz` (durch 3), sonst `Buzz` (durch 5), sonst die Zahl.",
+          "startcode": "n = int(input())",
+          "tests": [
+            {
+              "eingabe": "5",
+              "ausgabe": "1\n2\nFizz\n4\nBuzz"
+            },
+            {
+              "eingabe": "15",
+              "ausgabe": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz"
+            },
+            {
+              "eingabe": "1",
+              "ausgabe": "1"
+            }
+          ],
+          "hinweise": [
+            "Prüfe «durch 3 und 5» zuerst!",
+            "range(1, n + 1)"
+          ],
+          "musterloesung": "n = int(input())\nfor i in range(1, n + 1):\n    if i % 3 == 0 and i % 5 == 0:\n        print(\"FizzBuzz\")\n    elif i % 3 == 0:\n        print(\"Fizz\")\n    elif i % 5 == 0:\n        print(\"Buzz\")\n    else:\n        print(i)",
+          "kriterien": [
+            "Reihenfolge der Bedingungen",
+            "Modulo"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW03_InClass_standardized_clean.ipynb (JupyterHub), «FizzBuzz»"
+        },
+        {
+          "id": "sw03-schleifen-l6-a3",
+          "typ": "programmieraufgabe",
+          "titel": "Rabatt",
+          "aufgabe": "Lies einen Preis ein. Ab CHF 200 gibt es 20 % Rabatt, ab CHF 100 10 %, sonst keinen. Gib den Endpreis auf 2 Nachkommastellen aus (f-String `:.2f`).",
+          "startcode": "price = float(input())",
+          "tests": [
+            {
+              "eingabe": "250",
+              "ausgabe": "200.00"
+            },
+            {
+              "eingabe": "100",
+              "ausgabe": "90.00"
+            },
+            {
+              "eingabe": "99.5",
+              "ausgabe": "99.50"
+            },
+            {
+              "eingabe": "200",
+              "ausgabe": "160.00"
+            }
+          ],
+          "hinweise": [
+            "Grösste Grenze zuerst prüfen.",
+            "«ab» heisst >="
+          ],
+          "musterloesung": "price = float(input())\nif price >= 200:\n    final_price = price * 0.8\nelif price >= 100:\n    final_price = price * 0.9\nelse:\n    final_price = price\nprint(f\"{final_price:.2f}\")",
+          "kriterien": [
+            "if/elif/else",
+            "Grenzwerte 100 und 200"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW03_InClass_standardized_clean.ipynb (JupyterHub), «Rabatt»"
+        }
+      ]
+    },
+    {
+      "id": "sw03-schleifen-l10",
+      "titel": "Gerade oder ungerade, drinnen oder draussen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 8,
+      "schwierigkeit": 1,
+      "quelle": "SW03_Auftrag_nbg (JupyterHub), Aufgaben 1–2",
+      "aufgabe": "**Teil 1:** Definiere eine Ganzzahl `x`. Prüfe, ob `x` gerade oder ungerade ist, und speichere in `result`\nden String `\"even\"` oder `\"odd\"`. Gib `x` und `result` aus.\n\n**Teil 2:** Definiere `y`, `a` und `b`. Prüfe, ob `y` **echt zwischen** `a` und `b` liegt (ohne die Grenzen),\nund speichere das Ergebnis als Boolean in `between`. Gib `between` aus.\n\nTeste mit verschiedenen Werten – der Test probiert zusätzlich eigene Werte aus.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – even oder odd"
+        },
+        {
+          "typ": "code",
+          "inhalt": "x = 7\nresult = None\nprint(x, result)"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – between"
+        },
+        {
+          "typ": "code",
+          "inhalt": "y = 7\na = 5\nb = 10\nbetween = None\nprint(between)"
+        }
+      ],
+      "tests": "assert isinstance(x, int), \"x muss eine Ganzzahl sein.\"\nassert result in (\"even\", \"odd\"), f\"result muss 'even' oder 'odd' sein, ist aber {result!r}.\"\nassert result == (\"even\" if x % 2 == 0 else \"odd\"), f\"Für x = {x} ist result = {result!r} falsch.\"\nassert isinstance(between, bool), f\"between muss ein Boolean sein, ist aber {type(between).__name__}.\"\nassert between == (a < y < b), f\"Für y={y}, a={a}, b={b} sollte between {a < y < b} sein.\"",
+      "hinweise": [
+        "Eine Zahl ist gerade, wenn der Rest bei der Division durch 2 null ist: `x % 2 == 0`.",
+        "Ein Vergleich liefert schon ein Boolean – du brauchst dafür kein if.",
+        "Python erlaubt verkettete Vergleiche: `a < y < b`."
+      ],
+      "loesung": "x = 7\nif x % 2 == 0:\n    result = \"even\"\nelse:\n    result = \"odd\"\nprint(x, result)\n\ny = 7\na = 5\nb = 10\nbetween = a < y < b\nprint(between)"
+    },
+    {
+      "id": "sw03-schleifen-l11",
+      "titel": "Spezielle Zahlen und Fahrenheit-Tabelle",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 12,
+      "schwierigkeit": 2,
+      "quelle": "SW03_Auftrag_nbg (JupyterHub), Aufgaben 3–4",
+      "aufgabe": "**Teil 1:** Gib alle Zahlen von **1 bis und mit 30** aus, die gerade sind, kleiner als 24 **und keine\nQuadratzahl** (4, 9, 16 …) sind – eine Zahl pro Zeile.\n\n**Teil 2:** Gib eine Umrechnungstabelle von **−10 °C bis und mit +30 °C** aus, mit\n$f = c \\cdot \\frac{9}{5} + 32$, auf eine Nachkommastelle gerundet. Format genau so:\n```\n-10 °C => 14.0 °F\n-9 °C => 15.8 °F\n...\n```\nVerwende eine `for`-Schleife und die Variablen `c` und `f`.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – spezielle Zahlen"
+        },
+        {
+          "typ": "code",
+          "inhalt": "for i in range(1, 31):\n    pass  # dein Code"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – Fahrenheit-Tabelle"
+        },
+        {
+          "typ": "code",
+          "inhalt": "# for c in ...:"
+        }
+      ],
+      "tests": "zeilen = _ausgabe.strip().splitlines()\nzahlen = [int(z) for z in zeilen if z.strip().isdigit()]\nassert zahlen == [2, 6, 8, 10, 12, 14, 18, 20, 22], f\"Teil 1: erwartet 2 6 8 10 12 14 18 20 22, erhalten {zahlen}.\"\ntabelle = [z for z in zeilen if \"°F\" in z]\nerwartet = [f\"{t} °C => {round(t * 9 / 5 + 32, 1)} °F\" for t in range(-10, 31)]\nassert len(tabelle) == 41, f\"Teil 2: Die Tabelle sollte 41 Zeilen haben (−10 bis +30), hat aber {len(tabelle)}.\"\nassert tabelle[0].strip() == erwartet[0], f\"Erste Zeile sollte {erwartet[0]!r} sein, ist {tabelle[0]!r}.\"\nassert [z.strip() for z in tabelle] == erwartet, \"Teil 2: Mindestens eine Zeile der Tabelle stimmt nicht (Format oder Rundung).\"",
+      "hinweise": [
+        "Quadratzahl prüfen: Die Wurzel `i ** 0.5` hat keinen Rest, also `i ** 0.5 % 1 == 0`.",
+        "Drei Bedingungen verknüpfst du mit `and`.",
+        "`range(-10, 31)` enthält −10 bis 30.",
+        "Runden: `round(wert, 1)`; Ausgabe mit f-String."
+      ],
+      "loesung": "for i in range(1, 31):\n    if i % 2 == 0 and i < 24 and i ** 0.5 % 1 != 0:\n        print(i)\n\nfor c in range(-10, 31):\n    f = round(c * 9 / 5 + 32, 1)\n    print(f\"{c} °C => {f} °F\")"
+    },
+    {
+      "id": "sw03-schleifen-l12",
+      "titel": "Minimum, Maximum und Durchschnitt",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 12,
+      "schwierigkeit": 3,
+      "quelle": "SW03_Auftrag_nbg (JupyterHub), Aufgabe 5",
+      "aufgabe": "Lies ganze Zahlen ein, bis der Benutzer `X` oder `x` eingibt. Gib **nach jeder Zahl** aus:\n`Min: …, Max: …, Avg: …`\n\nVerwende die Variablen `min_value`, `max_value`, `total`, `count` und `avg` und aktualisiere sie nach jeder\nEingabe. Die Struktur der Abfrage ist vorgegeben.\n\nBeim Prüfen gibt `input()` der Reihe nach `10`, `4`, `20`, `-2`, `x` zurück.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "min_value = None\nmax_value = None\ntotal = 0\ncount = 0\n\nwhile True:\n    user_input = input(\"Zahl: \")\n    if user_input == \"X\" or user_input == \"x\":\n        break\n    # dein Code"
+        }
+      ],
+      "tests": "assert min_value == -2, f\"min_value sollte -2 sein, ist aber {min_value}.\"\nassert max_value == 20, f\"max_value sollte 20 sein, ist aber {max_value}.\"\nassert total == 32 and count == 4, f\"total sollte 32 und count 4 sein (ist {total} und {count}).\"\nassert abs(avg - 8.0) < 1e-9, f\"avg sollte 8.0 sein, ist aber {avg}.\"\nassert \"Min: 4, Max: 10, Avg: 7.0\" in _ausgabe, \"Nach der zweiten Zahl sollte «Min: 4, Max: 10, Avg: 7.0» ausgegeben werden.\"",
+      "hinweise": [
+        "Wandle die Eingabe zuerst mit `int(...)` um.",
+        "Beim ersten Wert ist `min_value` noch `None`: `if min_value is None or number < min_value:`.",
+        "Durchschnitt: `avg = total / count`."
+      ],
+      "loesung": "min_value = None\nmax_value = None\ntotal = 0\ncount = 0\n\nwhile True:\n    user_input = input(\"Zahl: \")\n    if user_input == \"X\" or user_input == \"x\":\n        break\n    number = int(user_input)\n    if min_value is None or number < min_value:\n        min_value = number\n    if max_value is None or number > max_value:\n        max_value = number\n    total += number\n    count += 1\n    avg = total / count\n    print(f\"Min: {min_value}, Max: {max_value}, Avg: {avg}\")",
+      "eingaben": [
+        "10",
+        "4",
+        "20",
+        "-2",
+        "x"
+      ]
+    }
+  ]
+}

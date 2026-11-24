@@ -1,0 +1,456 @@
+{
+  "id": "sw06-algorithmus-zu-code",
+  "titel": "Vom Algorithmus zum Code",
+  "beschreibung": "Rezept in 5 Schritten: Problem verstehen, Daten identifizieren, Schritte formulieren, in Code übersetzen, testen",
+  "woche": 6,
+  "lektionen": [
+    {
+      "id": "sw06-algorithmus-zu-code-l4",
+      "titel": "Das Rezept: vom Problem zum Code",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 3,
+      "quelle": "SW06_PB_Algorithmus2Code_FlippedClassroom, S. 3–4",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Probleme zerlegen"
+        },
+        {
+          "typ": "text",
+          "text": "Lernziel: Eine textuelle Aufgabe analysieren, einen einfachen Algorithmus in Worten formulieren und ihn\n        systematisch in Python umsetzen. Die Grundidee: nicht «Code schreiben», sondern **Probleme zerlegen**."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Problem verstehen**: Was ist gegeben?",
+            "**Daten identifizieren**: Was ist gesucht?",
+            "**Schritte formulieren** (Algorithmus): Welche Schritte braucht es?",
+            "**Schritte in Code übersetzen**: Schleifen, Bedingungen, Datenstrukturen?",
+            "**Testen & verbessern**: Welche Testfälle?"
+          ],
+          "titel": "Die 5 Denk-Schritte"
+        },
+        {
+          "typ": "merke",
+          "text": "Erst denken, dann tippen: Gegeben → Gesucht → Schritte → Code → Testen."
+        }
+      ]
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l5",
+      "titel": "Beispiel: gerade Zahlen zählen",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW06_PB_Algorithmus2Code_FlippedClassroom, S. 5–9",
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "**Aufgabe:** Gegeben ist eine Liste von Zahlen. Bestimme die Anzahl der geraden Zahlen in der Liste."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Gegeben: eine Liste von `int`, z. B. `[12, 88, 33, 31, 92, 91]`",
+            "Gesucht: eine ganze Zahl – die Anzahl gerader Zahlen (hier `3`)"
+          ],
+          "titel": "Schritte 1 und 2"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Setze einen Zähler auf 0.",
+            "Gehe durch alle Zahlen der Liste.",
+            "Prüfe, ob die Zahl gerade ist.",
+            "Falls ja, erhöhe den Zähler.",
+            "Gib den Zähler aus."
+          ],
+          "titel": "Schritt 3: Algorithmus in Worten"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "number_list = [12, 88, 33, 31, 92, 91]\ncount = 0\nfor n in number_list:\n    if n % 2 == 0:\n        count += 1\nprint(count)",
+          "titel": "Schritt 4: Code",
+          "ausfuehrbar": true,
+          "ausgabe": "3"
+        },
+        {
+          "typ": "text",
+          "text": "**Schritt 5 – testen und verbessern:** Mit einer Funktion (kommt in SW07) lässt sich derselbe Algorithmus\n        für beliebige Listen wiederverwenden und mit Randfällen testen (0, negative Zahlen):"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "def count_even(numbers: list) -> int:\n    count = 0\n    for n in numbers:\n        if n % 2 == 0:\n            count += 1\n    return count\n\nprint(count_even([0, -8, 33, 0, 92, 91]))",
+          "ausfuehrbar": true,
+          "ausgabe": "4"
+        },
+        {
+          "typ": "hinweis",
+          "text": "Gute Testfälle: ein normaler Fall, ein Randfall (leere Liste, 0, negative Zahlen) und ein eigener Fall."
+        }
+      ]
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l1",
+      "titel": "Das Rezept",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Die Grundidee der Lektion lautet: nicht «Code schreiben» lehren, sondern «Probleme zerlegen».",
+          "richtig": true,
+          "erklaerung": "Im Zentrum steht das Zerlegen eines Problems in Schritte.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 4"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a2",
+          "typ": "reihenfolge",
+          "frage": "Bring die 5 Denk-Schritte in die richtige Reihenfolge:",
+          "elemente": [
+            "Problem verstehen: was ist gegeben?",
+            "Daten identifizieren: was ist gesucht?",
+            "Schritte formulieren (Algorithmus)",
+            "Schritte in Code übersetzen",
+            "Testen & verbessern"
+          ],
+          "erklaerung": "Zuerst verstehen, dann Daten, dann Algorithmus, dann Code, dann testen.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 4"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "Aufgabe: «Anzahl gerader Zahlen in einer Liste». Was ist GESUCHT?",
+          "optionen": [
+            "Eine ganze Zahl (die Anzahl)",
+            "Eine Liste von int",
+            "Die geraden Zahlen selbst",
+            "Ein Dictionary"
+          ],
+          "richtig": 0,
+          "erklaerung": "Gegeben ist eine Liste von int, gesucht eine ganze Zahl.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 5"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a4",
+          "typ": "reihenfolge",
+          "frage": "Bring den Algorithmus «gerade Zahlen zählen» in Reihenfolge:",
+          "elemente": [
+            "Zähler auf 0 setzen",
+            "Durch alle Zahlen der Liste gehen",
+            "Prüfen, ob die Zahl gerade ist",
+            "Falls ja: Zähler erhöhen",
+            "Zähler ausgeben"
+          ],
+          "erklaerung": "Initialisieren, iterieren, prüfen, zählen, ausgeben.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 6"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a5",
+          "typ": "zuordnen",
+          "frage": "Welches Sprachmittel passt zum Algorithmus-Schritt?",
+          "paare": [
+            [
+              "«Gehe durch alle Zahlen»",
+              "for-Schleife"
+            ],
+            [
+              "«Prüfe, ob …»",
+              "if-Bedingung"
+            ],
+            [
+              "«zähle wie oft jedes Wort vorkommt»",
+              "Dictionary"
+            ],
+            [
+              "«Wiederhole, bis …»",
+              "while-Schleife"
+            ]
+          ],
+          "erklaerung": "In Schritt 4 übersetzt man Schritte in Schleifen, Bedingungen und Datenstrukturen.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 4"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a6",
+          "typ": "multiple_choice",
+          "frage": "Wozu dienen Testfälle wie `[0, -8, 33, 0, 92, 91]`?",
+          "optionen": [
+            "Um auch Randfälle (0, negative Zahlen) zu prüfen",
+            "Um den Code schneller zu machen",
+            "Sie sind nur Dekoration",
+            "Um Kommentare zu ersetzen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Schritt 5: Testen & verbessern – auch mit Randfällen. Erwartet wird 4 (0, -8, 0, 92).",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 9"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l1-a7",
+          "typ": "karteikarte",
+          "vorne": "Aufgabe B: Wie viele Zahlen sind grösser als der Mittelwert? Algorithmus?",
+          "hinten": "1. Summe und Anzahl bestimmen → Mittelwert. 2. Zähler = 0. 3. Durch alle Zahlen gehen. 4. Ist Zahl > Mittelwert → Zähler + 1. 5. Zähler ausgeben.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 11"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l2",
+      "titel": "Algorithmus → Code",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw06-algorithmus-zu-code-l2-a1",
+          "typ": "code_reihenfolge",
+          "frage": "Übersetze den Algorithmus «gerade Zahlen zählen» in Code.",
+          "zeilen": [
+            "number_list = [12, 88, 33, 31, 92, 91]",
+            "count = 0",
+            "for n in number_list:",
+            "    if n % 2 == 0:",
+            "        count += 1",
+            "print(count)"
+          ],
+          "erklaerung": "Zähler vor der Schleife, Prüfung in der Schleife, Ausgabe danach.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 7",
+          "erwartete_ausgabe": "3"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l2-a2",
+          "typ": "code_ausgabe",
+          "code": "number_list = [0, -8, 33, 0, 92, 91]\ncount = 0\nfor n in number_list:\n    if n % 2 == 0:\n        count += 1\nprint(count)",
+          "optionen": [
+            "4",
+            "2",
+            "3",
+            "6"
+          ],
+          "richtig": 0,
+          "erklaerung": "0, -8, 0 und 92 sind gerade → 4.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 9"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l2-a3",
+          "typ": "code_ausgabe",
+          "code": "woerter = [\"a\", \"good\", \"a\", \"is\", \"a\"]\nzaehler = {}\nfor w in woerter:\n    if w in zaehler:\n        zaehler[w] += 1\n    else:\n        zaehler[w] = 1\nprint(zaehler[\"a\"])",
+          "optionen": [
+            "3",
+            "1",
+            "5",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "'a' kommt dreimal vor.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 10"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l2-a4",
+          "typ": "code_luecke",
+          "frage": "Ergänze, sodass gezählt wird, wie viele Zahlen grösser als der Mittelwert sind.",
+          "code": "zahlen = [2, 4, 3, 5, 7, 33, 13, 0, 40]\nmittel = sum(zahlen) / ___(zahlen)\nanzahl = 0\nfor z in zahlen:\n    if z ___ mittel:\n        anzahl += 1\nprint(anzahl)",
+          "antworten": [
+            [
+              "len"
+            ],
+            [
+              ">"
+            ]
+          ],
+          "erklaerung": "Mittelwert = Summe / Anzahl; dann mit > vergleichen.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 11",
+          "erwartete_ausgabe": "3"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l2-a5",
+          "typ": "code_fehler",
+          "frage": "Welche Zeile verursacht den logischen Fehler?",
+          "code": "number_list = [12, 88, 33]\nfor n in number_list:\n    count = 0\n    if n % 2 == 0:\n        count += 1\nprint(count)",
+          "fehlerzeile": 3,
+          "korrektur": "count = 0 vor die Schleife setzen",
+          "erklaerung": "Der Zähler wird in jedem Durchlauf auf 0 zurückgesetzt – Ergebnis 0 statt 2.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 7"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l2-a6",
+          "typ": "code_ausgabe",
+          "code": "zahlen = [3, 8, 1]\ngroesste = zahlen[0]\nfor z in zahlen:\n    if z > groesste:\n        groesste = z\nprint(groesste)",
+          "optionen": [
+            "8",
+            "3",
+            "1",
+            "12"
+          ],
+          "richtig": 0,
+          "erklaerung": "Man merkt sich jeweils die bisher grösste Zahl.",
+          "quelle": "SW06_PB_Algorithmus2Code, S. 4"
+        }
+      ]
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l3",
+      "titel": "Selbst umsetzen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw06-algorithmus-zu-code-l3-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Wörter zählen (Aufgabe A)",
+          "aufgabe": "Lies eine Zeile mit Wörtern (getrennt durch Leerzeichen) ein. Erstelle ein Dictionary, das zählt, wie oft jedes Wort vorkommt, und gib es aus (Reihenfolge des ersten Auftretens).",
+          "startcode": "woerter = input().split()",
+          "tests": [
+            {
+              "eingabe": "a good decision is a good decision",
+              "ausgabe": "{'a': 2, 'good': 2, 'decision': 2, 'is': 1}"
+            },
+            {
+              "eingabe": "hallo",
+              "ausgabe": "{'hallo': 1}"
+            },
+            {
+              "eingabe": "x x x",
+              "ausgabe": "{'x': 3}"
+            }
+          ],
+          "hinweise": [
+            "Leeres Dict anlegen.",
+            "Ist das Wort schon ein Key → +1, sonst = 1."
+          ],
+          "musterloesung": "woerter = input().split()\nzaehler = {}\nfor w in woerter:\n    if w in zaehler:\n        zaehler[w] += 1\n    else:\n        zaehler[w] = 1\nprint(zaehler)",
+          "kriterien": [
+            "Dictionary als Zähler",
+            "for-Schleife",
+            "if/else"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW06_PB_Algorithmus2Code, S. 10"
+        },
+        {
+          "id": "sw06-algorithmus-zu-code-l3-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Grösser als der Durchschnitt (Aufgabe B)",
+          "aufgabe": "Lies Zahlen (durch Leerzeichen getrennt) ein. Gib aus, wie viele Zahlen grösser sind als der Mittelwert.",
+          "startcode": "zahlen = []\nfor teil in input().split():\n    zahlen.append(int(teil))",
+          "tests": [
+            {
+              "eingabe": "2 4 3 5 7 33 13 0 40",
+              "ausgabe": "3"
+            },
+            {
+              "eingabe": "5 5 5",
+              "ausgabe": "0"
+            },
+            {
+              "eingabe": "1 2",
+              "ausgabe": "1"
+            }
+          ],
+          "hinweise": [
+            "Mittelwert = sum(zahlen) / len(zahlen)",
+            "Gleich gross zählt nicht als grösser."
+          ],
+          "musterloesung": "zahlen = []\nfor teil in input().split():\n    zahlen.append(int(teil))\nmittel = sum(zahlen) / len(zahlen)\nanzahl = 0\nfor z in zahlen:\n    if z > mittel:\n        anzahl += 1\nprint(anzahl)",
+          "kriterien": [
+            "Mittelwert korrekt",
+            "strikt grösser",
+            "Randfall alle gleich → 0"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW06_PB_Algorithmus2Code, S. 11"
+        }
+      ]
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l6",
+      "titel": "Kleinstes gemeinsames Vielfaches (kgV)",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW06_Repetition_nbg (JupyterHub), Aufgabe 5",
+      "aufgabe": "Setze diesen Algorithmus für das kgV zweier positiver Ganzzahlen um:\n\n1. Merke dir die ursprünglichen Werte von `a` und `b`.\n2. Ist `a` kleiner als `b`, addiere zu `a` den **ursprünglichen** Wert von `a`.\n3. Ist `b` kleiner als `a`, addiere zu `b` den **ursprünglichen** Wert von `b`.\n4. Wiederhole, bis `a` und `b` gleich sind – das ist das kgV.\n\nLies `a` und `b` mit `input()` ein, speichere das Resultat in `lcm` und gib es aus.\nBeim Prüfen gibt `input()` die Werte `24` und `9` zurück (kgV = 72).",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "**Rezept:** Gegeben? Gesucht? Schritte? Erst dann Code."
+        },
+        {
+          "typ": "code",
+          "inhalt": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\nlcm = None\nprint(lcm)"
+        }
+      ],
+      "tests": "assert lcm == 72, f\"Das kgV von 24 und 9 ist 72, dein lcm ist {lcm}.\"\nassert \"72\" in _ausgabe, \"Das Resultat wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Speichere die Startwerte in eigenen Variablen, z. B. `a_orig = a`.",
+        "Die Schleife läuft `while a != b:`.",
+        "Für 24 und 9: b wird 18, 27, … bis beide 72 sind."
+      ],
+      "loesung": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\na_orig = a\nb_orig = b\nwhile a != b:\n    if a < b:\n        a += a_orig\n    else:\n        b += b_orig\nlcm = a\nprint(lcm)",
+      "eingaben": [
+        "24",
+        "9"
+      ]
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l7",
+      "titel": "Lokale Maxima finden",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW06_Repetition_nbg (JupyterHub), Aufgabe 23",
+      "aufgabe": "Eine Zahl ist ein **lokales Maximum**, wenn sie **grösser als ihre beiden direkten Nachbarn** ist. Das erste\nund das letzte Element haben nur einen Nachbarn und zählen nicht.\n\nBestimme alle lokalen Maxima der Liste `values` und speichere sie in `local_maxima`. Gib die Liste aus.\nFür die gegebene Liste ist das Resultat `[7, 9, 10]`.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "values = [4, 7, 5, 9, 2, 8, 8, 3, 10, 1]",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "local_maxima = []\n# dein Code\nprint(local_maxima)"
+        }
+      ],
+      "tests": "assert local_maxima == [7, 9, 10], f\"local_maxima sollte [7, 9, 10] sein, ist aber {local_maxima}. Die 8, 8 ist kein Maximum (nicht grösser als der Nachbar).\"\nassert \"[7, 9, 10]\" in _ausgabe, \"local_maxima wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Du brauchst den Index, um die Nachbarn `values[i - 1]` und `values[i + 1]` anzusehen.",
+        "Der Index läuft von 1 bis `len(values) - 2`: `range(1, len(values) - 1)`."
+      ],
+      "loesung": "values = [4, 7, 5, 9, 2, 8, 8, 3, 10, 1]\n\nlocal_maxima = []\nfor i in range(1, len(values) - 1):\n    if values[i] > values[i - 1] and values[i] > values[i + 1]:\n        local_maxima.append(values[i])\nprint(local_maxima)"
+    },
+    {
+      "id": "sw06-algorithmus-zu-code-l8",
+      "titel": "Zahlenblöcke zusammenfassen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 12,
+      "schwierigkeit": 3,
+      "quelle": "SW06_Repetition_nbg (JupyterHub), Aufgabe 24",
+      "aufgabe": "Fasse jeden **zusammenhängenden Block** gleicher Zahlen als Tuple `(Zahl, Anzahl)` zusammen und speichere\ndie Tuples in der Liste `compressed`. Gib die Liste aus.\n\nFür `[3, 3, 3, 7, 7, 2, 5, 5, 5, 5, 1]` ist das Resultat `[(3, 3), (7, 2), (2, 1), (5, 4), (1, 1)]`.\nVerwende nur Schleifen und Bedingungen.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "numbers = [3, 3, 3, 7, 7, 2, 5, 5, 5, 5, 1]",
+          "gesperrt": true
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "Algorithmus in Worten: aktuelle Zahl und Zähler merken; ändert sich die Zahl, den Block speichern."
+        },
+        {
+          "typ": "code",
+          "inhalt": "compressed = []\n# dein Code\nprint(compressed)"
+        }
+      ],
+      "tests": "erwartet = [(3, 3), (7, 2), (2, 1), (5, 4), (1, 1)]\nassert compressed == erwartet, f\"compressed sollte {erwartet} sein, ist aber {compressed}. Wird der letzte Block auch gespeichert?\"\nassert str(erwartet) in _ausgabe, \"compressed wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Starte mit `current = numbers[0]` und `count = 0`.",
+        "Ist `n` anders als `current`, speichere `(current, count)` und beginne einen neuen Block.",
+        "Nach der Schleife fehlt noch der **letzte** Block."
+      ],
+      "loesung": "numbers = [3, 3, 3, 7, 7, 2, 5, 5, 5, 5, 1]\n\ncompressed = []\ncurrent = numbers[0]\ncount = 0\nfor n in numbers:\n    if n == current:\n        count += 1\n    else:\n        compressed.append((current, count))\n        current = n\n        count = 1\ncompressed.append((current, count))\nprint(compressed)"
+    }
+  ]
+}

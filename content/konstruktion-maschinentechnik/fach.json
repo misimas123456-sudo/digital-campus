@@ -1,0 +1,194 @@
+{
+  "format": 2,
+  "id": "konstruktion-maschinentechnik",
+  "name": "Konstruktion Maschinentechnik",
+  "kurz": "KONST_M",
+  "farbe": "#9ac2d4",
+  "schrift": "Archivo",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215097",
+  "material": "material/konstruktion-maschinentechnik/",
+  "eigene_unterlagen": "Documents/HSLU/Konstruktion Maschinentechnik",
+  "arten": [
+    "verstaendnis",
+    "rechnen",
+    "aufgabe"
+  ],
+  "einheiten": [
+    {
+      "id": "sw01-methodisches-konstruieren",
+      "titel": "Methodisches Konstruieren",
+      "woche": 1,
+      "bereich": "theorie",
+      "status": "geplant",
+      "zeitraum": "SW01–03",
+      "kapitel": "Kap. 1",
+      "themen": [
+        "Entwicklung, Konstruktion, Entwerfen, Gestalten",
+        "Kostenverantwortung und Produktlebenszyklus",
+        "Lastenheft, Pflichtenheft, Anforderungsliste",
+        "Funktionsstruktur, Black Box, Apparat / Maschine / Gerät",
+        "Kreativitätsmethoden: Brainstorming, Methode 635, Synektik, Bionik",
+        "Morphologischer Kasten, Paarweiser Vergleich, Nutzwert- und Sensitivitätsanalyse",
+        "Prototyp, FMEA, Markteinführung"
+      ],
+      "quelle": "Folien Kap_1_Methodisches_Konstruieren_V1.1_SW01-03.pdf (67 Folien)"
+    },
+    {
+      "id": "sw04-werkstoffgerechtes-gestalten",
+      "titel": "Werkstoffgerechtes Gestalten",
+      "woche": 4,
+      "bereich": "theorie",
+      "status": "geplant",
+      "zeitraum": "SW04",
+      "kapitel": "Kap. 2",
+      "themen": [
+        "Kriterien und beanspruchungsgerechte Werkstoffauswahl",
+        "Kennwerte: E- und G-Modul, Rm, Re / Rp0.2, Dauerfestigkeit",
+        "Werkstoffkosten berechnen (Brutto-Volumen, k-Faktoren)",
+        "Ausnutzung des Rohmaterials (Stanzteil)",
+        "Werkstoff und Fertigungsverfahren, stückzahlabhängige Kosten",
+        "Wöhlerlinie, Verschleiss, Leichtbau"
+      ],
+      "quelle": "Folien Kap_2_Werkstoffgerechtes_Gestalten_V1.0_SW04.pdf (28 Folien)"
+    },
+    {
+      "id": "sw05-kraftgerechtes-gestalten",
+      "titel": "Kraftgerechtes Gestalten",
+      "woche": 5,
+      "bereich": "theorie",
+      "status": "geplant",
+      "zeitraum": "SW05",
+      "kapitel": "Kap. 3.1",
+      "themen": [
+        "Einflussfaktoren der Beanspruchung",
+        "Grundbeanspruchungen und Spannungen",
+        "Prinzipien des festigkeitsgerechten Gestaltens",
+        "Kraftfluss, direkte und kurze Kraftleitung",
+        "Hookesches Gesetz und E-Modul",
+        "Lastumlenkung und Beanspruchungsarten"
+      ],
+      "quelle": "Folien Kap_3_Festigkeitsgerechtes_Gestalten_V1.0_SW05.pdf (18 Folien)"
+    },
+    {
+      "id": "sw06-gestaltfestigkeit-kerbwirkung",
+      "titel": "Gestaltfestigkeit und Kerbwirkung",
+      "woche": 6,
+      "bereich": "theorie",
+      "status": "geplant",
+      "zeitraum": "SW06",
+      "kapitel": "Kap. 3.2",
+      "themen": [
+        "Prinzip der konstanten Gestaltfestigkeit",
+        "Kragträger mit konstanter Spannung",
+        "Prinzip der minimalen Kerbwirkung",
+        "Entlastungskerben, Gewinde, Querbohrungen",
+        "Druckeigenspannungen gegen Kerbwirkung"
+      ],
+      "quelle": "Folien Kap_3_Festigkeitsgerechtes_Gestalten_V1.0_SW06.pdf (18 Folien)"
+    },
+    {
+      "id": "sw08-lastenausgleich-lagerung",
+      "titel": "Lastenausgleich und statisch bestimmte Lagerung",
+      "woche": 8,
+      "bereich": "theorie",
+      "status": "geplant",
+      "zeitraum": "SW08",
+      "kapitel": "Kap. 3.4",
+      "themen": [
+        "Störkräfte und Nebenwirkungen",
+        "Lastenausgleich durch Ausgleichsmasse und Symmetrie",
+        "Freiheitsgrade, Los- und Festlager, Pendelstütze, Einspannung",
+        "Gleichgewichtsbedingungen ebener Kraftsysteme",
+        "Statisch bestimmte Lagerung (G = K + M = 3)"
+      ],
+      "quelle": "Folien Kap_3_Festigkeitsgerechtes_Gestalten_V1.0_SW08.pdf (41 Folien; ab «Entwicklung einer statisch bestimmten Lagerung» laut Folie nicht MEP-relevant)"
+    },
+    {
+      "id": "sw09-giessen-sintern",
+      "titel": "Giessen und Sintern",
+      "woche": 9,
+      "bereich": "theorie",
+      "status": "bereit",
+      "zeitraum": "SW09",
+      "kapitel": "Kap. 4.1–4.2",
+      "themen": [
+        "Hauptgruppen der Fertigungsverfahren",
+        "Giessverfahren: Form und Modell verloren oder dauerhaft",
+        "Schwindmass, Lunker, Gussfehler",
+        "Gelenkte Erstarrung, Heuverssche Kontrollkreismethode",
+        "Bearbeitungszugaben und Nachbearbeitung",
+        "Sintern: Verfahren, Nachbehandlung, Grenzen (Kap. 4.2, Fr 13.11. / Selbststudium)"
+      ],
+      "quelle": "Folien Kap_4.1_4.2_Fertigungsgerechtes_Gestalten_Giessen_Sintern_V2.0_SW09.pdf (60 Folien; Lektionen zu Folien 2–34 und 55–59; Folien 35–54 Selbststudium) + Buch Kap. 4.2"
+    },
+    {
+      "id": "sw10-schmieden-fliesspressen",
+      "titel": "Schmieden und Fliesspressen",
+      "woche": 10,
+      "bereich": "theorie",
+      "status": "bereit",
+      "zeitraum": "SW10",
+      "kapitel": "Kap. 4.3",
+      "themen": [
+        "Schmieden als Umformen, Vorteile von Umformteilen",
+        "Freiformschmieden: Stauchen, Breiten, Strecken, Faserverlauf",
+        "Gesenkschmieden: Stauchen, Breiten, Steigen, Gratrille, Kosten über die Stückzahl",
+        "Gestaltungsregeln, Seitenschrägen, Hohlkehlen",
+        "Schmiedegüte F/E und Stoffschwierigkeit M1/M2",
+        "Feingliedrigkeit berechnen (Hüllkörper, Gruppen S1–S4)",
+        "Gestalten von Fliesspressteilen, Faserverlauf"
+      ],
+      "quelle": "Folien Kap_4.3_Fertigungsgerechtes_Gestalten_Massivumformung_Schmieden_V2.0_SW10.pdf (22 Folien; Vorlesung Di 17.11.2026) + Buch Kap. 4.3"
+    },
+    {
+      "id": "serie-1-technisches-zeichnen",
+      "titel": "Technisches Zeichnen",
+      "bereich": "uebung",
+      "status": "geplant",
+      "nr": 1,
+      "themen": [
+        "1.1–1.7 Skizzierübungen: isometrische Perspektive aus gegebenen Ansichten",
+        "Alle nötigen Ansichten inklusive verdeckter Kanten erstellen"
+      ],
+      "quelle": "KONST_M_Uebungen_Ue-Serie_1_Technisches_Zeichnen_V1.0.pdf"
+    },
+    {
+      "id": "serie-2-konstruktion",
+      "titel": "Konstruktion",
+      "bereich": "uebung",
+      "status": "geplant",
+      "nr": 2,
+      "themen": [
+        "2.1 Lagersupport konstruieren (Handskizze 1:1)",
+        "2.2 Spülkopf eines Bohrgestänges",
+        "2.3 Standsupport auslegen und gestalten"
+      ],
+      "quelle": "KONST_M_Uebungen_Ue-Serie_2_Konstruktion_V1.0.pdf",
+      "abgabe_hinweis": "Im PDF steht der Abgabetermin aus dem Vorjahr. Den aktuellen Termin auf ILIAS nachschauen."
+    },
+    {
+      "id": "serie-3-waelzlagerung",
+      "titel": "Wälzlagerung",
+      "bereich": "uebung",
+      "status": "bereit",
+      "nr": 3,
+      "themen": [
+        "3.1 Wellenlagerung: Belastungen, Schwachstellen markieren, verbesserte Lösung",
+        "3.2 Zahnrad: Kräfte markieren, Lager platzieren, Spannungsarten, Kräfte berechnen",
+        "3.3 Supportlagerung: konstruktive Mängel markieren und verbessern"
+      ],
+      "quelle": "KONST_M Uebungen Ue-Serie_3 Waelzlagerung V1.2.pdf",
+      "abgabe_hinweis": "Im PDF steht der Abgabetermin aus dem Vorjahr. Den aktuellen Termin auf ILIAS nachschauen.",
+      "datei": "uebungen/serie-3-waelzlagerung.json",
+      "woche": 8,
+      "zeitraum": "ab SW08"
+    }
+  ],
+  "zusaetze": {
+    "termine": "termine.json"
+  },
+  "dozent": "Prof. Pierre Kirchhofer",
+  "buch": "Konstruieren, Gestalten, Entwerfen",
+  "semesterstart": "2026-09-14"
+}

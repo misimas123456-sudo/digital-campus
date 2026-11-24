@@ -1,0 +1,627 @@
+{
+  "id": "sw01-einfuehrung-algorithmus",
+  "titel": "Einführung & Algorithmus",
+  "beschreibung": "Was ist ein Algorithmus, Euklids ggT, Python-Interpreter, Jupyter Notebooks, Markdown, Kommentare",
+  "woche": 1,
+  "lektionen": [
+    {
+      "id": "sw01-einfuehrung-algorithmus-l5",
+      "titel": "Was ist ein Algorithmus?",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 8–16",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Algorithmus = präzises Verfahren"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Algorithmus** ist ein präzis festgelegtes Verfahren zur Lösung eines Problems.\n        Beispiele: einen Namen im Telefonbuch suchen, den grössten gemeinsamen Teiler (ggT) zweier Zahlen\n        berechnen (Euklid), prüfen ob eine Zahl eine Primzahl ist (Sieb des Eratosthenes), Zahlen sortieren\n        oder den kürzesten Weg in einem Graphen finden (Dijkstra)."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**schrittweise** – das Verfahren besteht aus einzelnen Schritten",
+            "**ausführbar** – jeder Schritt ist machbar (keine Orakel oder Wunder)",
+            "**determiniert** – der nächste Schritt ist immer eindeutig",
+            "**terminiert** – es endet nach endlich vielen Schritten"
+          ],
+          "titel": "Eigenschaften eines Algorithmus"
+        },
+        {
+          "typ": "titel",
+          "text": "Beispiel: Euklids ggT-Algorithmus (300 v. Chr.)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Sei A die grössere der beiden Zahlen A und B (sonst vertauschen).",
+            "Setze A = A − B.",
+            "Sind A und B ungleich, weiter mit Schritt 1. Sind sie gleich, ist diese Zahl der ggT."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "ggT von 14 und 8 «von Hand» ausgeführt:"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Schritt",
+            "A",
+            "B",
+            "A neu = A − B"
+          ],
+          "zeilen": [
+            [
+              "1",
+              "14",
+              "8",
+              "6"
+            ],
+            [
+              "2",
+              "8",
+              "6",
+              "2"
+            ],
+            [
+              "3",
+              "6",
+              "2",
+              "4"
+            ],
+            [
+              "4",
+              "4",
+              "2",
+              "2"
+            ],
+            [
+              "5",
+              "2",
+              "2",
+              "gleich → 2 ist der ggT"
+            ]
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Erfüllt Euklid die Eigenschaften? Ja: drei klare Schritte, alle ausführbar, es ist immer klar,\n        was zu tun ist – und eine Zahl wird immer kleiner, bis beide gleich sind. Darum terminiert er."
+        },
+        {
+          "typ": "merke",
+          "text": "Ein Algorithmus ist die **Idee**, ein Programm ist eine mögliche **Implementierung** davon."
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "natürliche Sprache",
+            "Programm (z. B. in Python)",
+            "Pseudocode",
+            "Flussdiagramm",
+            "UML"
+          ],
+          "titel": "So kann man einen Algorithmus festhalten"
+        }
+      ]
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l6",
+      "titel": "Interpreter und Jupyter Notebooks",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 18–37",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Wie Python Code ausführt"
+        },
+        {
+          "typ": "text",
+          "text": "Die **Syntax** von Python ist die Sammlung von Regeln, wie Programme geschrieben werden. Der Code wird\n        in einem Editor geschrieben (bei uns: Jupyter Notebook); die Farben im Editor helfen, die Syntax zu lesen."
+        },
+        {
+          "typ": "text",
+          "text": "Der **Python-Interpreter** übersetzt die Hochsprache in Maschinensprache – **von oben nach unten,\n        Zeile für Zeile**. Der Interpreter selbst ist in C geschrieben."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "print(\"Zeile 1\")\nprint(\"Zeile 2\")\nprint(\"Zeile 3\")",
+          "titel": "Von oben nach unten",
+          "ausfuehrbar": true,
+          "ausgabe": "Zeile 1\nZeile 2\nZeile 3"
+        },
+        {
+          "typ": "titel",
+          "text": "Zellen im Notebook"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Code-Zelle**: enthält Python-Code und wird mit **Shift+Enter** ausgeführt.",
+            "**Markdown-Zelle**: enthält formatierten Text (Titel, Listen, Bilder, Links).",
+            "Alle Code-Zellen «erinnern» sich an die Zellen, die **vorher ausgeführt** wurden – also an deren Variablen.",
+            "Die **Tab-Taste** hilft beim Schreiben (Code Completion)."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Die erste Zelle setzt `x`, die zweite (danach ausgeführt) kann `x` verwenden:"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "# Zelle 1\nx = 10\n# Zelle 2 (danach ausgeführt)\nprint(x * 2)",
+          "ausfuehrbar": true,
+          "ausgabe": "20"
+        },
+        {
+          "typ": "hinweis",
+          "text": "In der App funktioniert das gleich: Im Abschnitt **Programmieren** führst du Zellen mit Shift+Enter aus."
+        }
+      ]
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l7",
+      "titel": "Markdown und Kommentare",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 30–39",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Markdown-Text"
+        },
+        {
+          "typ": "code",
+          "sprache": "markdown",
+          "code": "# Das ist ein Titel\n## Das ist ein Untertitel\n### Das ist ein Unter-Untertitel\n\nSo schreibt man Volltext. **fett**, *kursiv*, ***beides***\n\n- Aufzählung\n- mehrere Einträge\n\n1. nummerierte Einträge\n2. einer nach dem anderen\n\nCode im Text: die Variable `x`\nLink: [Name](URL)\nBild: ![Bildtext](Link)",
+          "titel": "Markdown-Syntax"
+        },
+        {
+          "typ": "titel",
+          "text": "Kommentare im Code"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Zeilenkommentar** beginnt mit `#` und kommentiert eine einzelne Codezeile.\n        Ein **Kommentarblock** steht zwischen `\"\"\"` und `\"\"\"` und beschreibt ganze Programme oder Funktionen.\n        Kommentare werden vom Interpreter ignoriert."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "\"\"\"\nDas ist ein Kommentar-Block.\nEs hat Platz für viele Zeilen.\n\"\"\"\n# Variablen Definition\nx = 10\nprint(x)  # gibt 10 aus",
+          "ausfuehrbar": true,
+          "ausgabe": "10"
+        },
+        {
+          "typ": "merke",
+          "text": "`#` = eine Zeile kommentieren, `\"\"\" … \"\"\"` = ganzer Block (z. B. Beschreibung eines Programms)."
+        }
+      ]
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l1",
+      "titel": "Was ist ein Algorithmus?",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Definition eines Algorithmus verwenden die Folien?",
+          "optionen": [
+            "Ein präzis festgelegtes Verfahren zur Lösung eines Problems",
+            "Ein Programm, das in Python geschrieben ist",
+            "Eine mathematische Formel mit Variablen",
+            "Eine Liste von Computerbefehlen in Maschinensprache"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein Algorithmus ist ein präzis festgelegtes Verfahren zur Lösung eines Problems – unabhängig von der Programmiersprache.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 16"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Ein Algorithmus und ein Programm sind dasselbe.",
+          "richtig": false,
+          "erklaerung": "Nein: Der Algorithmus ist die Idee, das Programm ist eine mögliche Implementierung davon.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 16"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a3",
+          "typ": "zuordnen",
+          "frage": "Ordne die Eigenschaften eines Algorithmus zu:",
+          "paare": [
+            [
+              "schrittweise",
+              "Verfahren besteht aus einzelnen Schritten"
+            ],
+            [
+              "ausführbar",
+              "keine Orakel oder Wunder"
+            ],
+            [
+              "determiniert",
+              "eindeutiger nächster Schritt"
+            ],
+            [
+              "terminiert",
+              "endet nach endlich vielen Schritten"
+            ]
+          ],
+          "erklaerung": "Die vier Eigenschaften: schrittweise, ausführbar, determiniert, terminiert.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 14"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a4",
+          "typ": "multiple_choice",
+          "frage": "Welcher Algorithmus berechnet den grössten gemeinsamen Teiler zweier Zahlen?",
+          "optionen": [
+            "Euklidischer Algorithmus",
+            "Bresenham-Algorithmus",
+            "Sieb des Eratosthenes",
+            "Algorithmus von Dijkstra"
+          ],
+          "richtig": 0,
+          "erklaerung": "Euklid (ca. 300 v. Chr.) → ggT. Bresenham zeichnet Linien, Eratosthenes findet Primzahlen, Dijkstra kürzeste Wege.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 9"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a5",
+          "typ": "multiple_choice",
+          "frage": "ggT von 8 und 14 mit Euklid: Welcher Wert ergibt sich am Schluss?",
+          "optionen": [
+            "2",
+            "4",
+            "6",
+            "1"
+          ],
+          "richtig": 0,
+          "erklaerung": "14−8=6, 8−6=2, 6−2=4, 4−2=2 → A und B sind gleich (2), also ist 2 der ggT.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 13"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Der Euklidische Algorithmus terminiert immer, weil eine der Zahlen bei jedem Schritt kleiner wird.",
+          "richtig": true,
+          "erklaerung": "Genau: Eine Zahl wird immer kleiner, irgendwann sind beide gleich und der Algorithmus endet.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 14"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a7",
+          "typ": "multiple_choice",
+          "frage": "Welche Darstellung ist KEINE der genannten Möglichkeiten, einen Algorithmus festzuhalten?",
+          "optionen": [
+            "Kompilierte .exe-Datei",
+            "Pseudo-Code",
+            "Flussdiagramm",
+            "Natürlichsprachliche Beschreibung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Genannt werden: natürliche Sprache, Programm, Pseudo-Code, Flussdiagramm, UML.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 15"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l1-a8",
+          "typ": "karteikarte",
+          "vorne": "Euklids ggT-Algorithmus in 3 Schritten?",
+          "hinten": "1. A sei die grössere Zahl (sonst tauschen). 2. A = A − B. 3. Sind A und B ungleich → weiter mit 1, sonst ist die Zahl der ggT.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 11"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l2",
+      "titel": "Interpreter & Jupyter",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Was macht der Python-Interpreter?",
+          "optionen": [
+            "Er übersetzt Python Zeile für Zeile von oben nach unten in Maschinensprache",
+            "Er übersetzt das ganze Programm auf einmal in eine .exe",
+            "Er prüft nur die Rechtschreibung",
+            "Er färbt den Code im Editor ein"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Interpreter arbeitet von oben herab und übersetzt Zeile für Zeile.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 20"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Der Python-Interpreter ist selbst in C geschrieben.",
+          "richtig": true,
+          "erklaerung": "Ja, der (Standard-)Interpreter ist in einer anderen Sprache, nämlich C, geschrieben.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 20"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "Mit welcher Tastenkombination führst du eine Zelle im Jupyter Notebook aus?",
+          "optionen": [
+            "Shift + Enter",
+            "Alt + F4",
+            "Ctrl + S",
+            "Tab"
+          ],
+          "richtig": 0,
+          "erklaerung": "Shift + Enter (oder Ctrl + Enter / Play-Button) führt die Zelle aus. Tab gibt Code Completion.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 26"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Eine Code-Zelle in Jupyter kennt alle Variablen aus Zellen, die VORHER ausgeführt wurden.",
+          "richtig": true,
+          "erklaerung": "Alle Code-Zellen erinnern sich an alle vorher ausgeführten Zellen – die Ausführungsreihenfolge zählt, nicht die Position.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 35"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a5",
+          "typ": "multiple_choice",
+          "frage": "Was bewirkt die Tab-Taste beim Schreiben in einer Code-Zelle?",
+          "optionen": [
+            "Code Completion / Hilfe",
+            "Zelle ausführen",
+            "Zelle löschen",
+            "Kommentar einfügen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mit Tab bekommst du Hilfe wie Code Completion, praktisch bei Funktionen.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 37"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a6",
+          "typ": "zuordnen",
+          "frage": "Ordne die Markdown-Syntax zu:",
+          "paare": [
+            [
+              "# Titel",
+              "Überschrift"
+            ],
+            [
+              "**fett**",
+              "fetter Text"
+            ],
+            [
+              "*kursiv*",
+              "kursiver Text"
+            ],
+            [
+              "- Punkt",
+              "Aufzählung"
+            ],
+            [
+              "[Name](URL)",
+              "Link"
+            ]
+          ],
+          "erklaerung": "Markdown-Zellen formatieren Text: # Titel, **fett**, *kursiv*, - Liste, [Link](URL), ![Bild](Link).",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 30–34"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a7",
+          "typ": "multiple_choice",
+          "frage": "Wie schreibt man einen einzeiligen Kommentar in Python?",
+          "optionen": [
+            "# Kommentar",
+            "// Kommentar",
+            "<!-- Kommentar -->",
+            "-- Kommentar"
+          ],
+          "richtig": 0,
+          "erklaerung": "Einzeilige Kommentare beginnen mit #. Für Blöcke nutzt man \"\"\" ... \"\"\".",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 38"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l2-a8",
+          "typ": "karteikarte",
+          "vorne": "Wofür nimmt man # und wofür \"\"\" ... \"\"\"?",
+          "hinten": "# für einzelne Code-Zeilen, \"\"\" ... \"\"\" (Kommentar-Block) um ganze Programme oder Funktionen zu beschreiben.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 39"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l3",
+      "titel": "Erster Code: print & Kommentare",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw01-einfuehrung-algorithmus-l3-a1",
+          "typ": "code_ausgabe",
+          "code": "# Variablen Definition\nx = 10\nprint(x)",
+          "optionen": [
+            "10",
+            "x",
+            "# Variablen Definition",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Kommentare werden ignoriert, print(x) gibt den Wert von x aus.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 39"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "print(\"Hello World\")\n# print(\"Tschüss\")",
+          "optionen": [
+            "Hello World",
+            "Hello World\nTschüss",
+            "Tschüss",
+            "Nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die zweite Zeile ist auskommentiert und wird nicht ausgeführt.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 32"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l3-a3",
+          "typ": "code_ausgabe",
+          "code": "\"\"\"\nDas ist ein Kommentar - Block\nprint(\"versteckt\")\n\"\"\"\nprint(\"sichtbar\")",
+          "optionen": [
+            "sichtbar",
+            "versteckt\nsichtbar",
+            "versteckt",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Alles zwischen den drei Anführungszeichen ist ein Kommentar-Block und wird nicht ausgeführt.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 38"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l3-a4",
+          "typ": "code_fehler",
+          "code": "print(\"Hello World)",
+          "fehlerzeile": 1,
+          "korrektur": "print(\"Hello World\")",
+          "erklaerung": "Das schliessende Anführungszeichen fehlt – der String ist nicht abgeschlossen.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 32"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l3-a5",
+          "typ": "code_luecke",
+          "frage": "Ergänze, sodass «Hello World» ausgegeben wird.",
+          "code": "___(\"Hello World\")",
+          "antworten": [
+            [
+              "print"
+            ]
+          ],
+          "erklaerung": "Mit der Funktion print() gibst du etwas aus.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 32",
+          "erwartete_ausgabe": "Hello World"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l3-a6",
+          "typ": "code_reihenfolge",
+          "frage": "Bring die Zeilen so in Reihenfolge, dass zuerst «Start» und dann «Ende» ausgegeben wird.",
+          "zeilen": [
+            "# Programm-Start",
+            "print(\"Start\")",
+            "print(\"Ende\")"
+          ],
+          "erklaerung": "Der Interpreter arbeitet von oben nach unten – die Reihenfolge der Zeilen bestimmt die Ausgabe.",
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 20",
+          "erwartete_ausgabe": "Start\nEnde"
+        }
+      ]
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l4",
+      "titel": "Erstes Programm",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw01-einfuehrung-algorithmus-l4-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Hello World",
+          "aufgabe": "Schreibe ein Programm, das genau `Hello World` ausgibt.",
+          "startcode": "# dein Code",
+          "tests": [
+            {
+              "eingabe": "",
+              "ausgabe": "Hello World"
+            },
+            {
+              "eingabe": "",
+              "ausgabe": "Hello World"
+            },
+            {
+              "eingabe": "",
+              "ausgabe": "Hello World"
+            }
+          ],
+          "hinweise": [
+            "Nutze `print(...)` mit einem Text in Anführungszeichen."
+          ],
+          "musterloesung": "print(\"Hello World\")",
+          "kriterien": [
+            "Genau ein print",
+            "Text exakt: Hello World"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 32"
+        },
+        {
+          "id": "sw01-einfuehrung-algorithmus-l4-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Algorithmus als Kommentar",
+          "aufgabe": "Schreibe Euklids ggT-Algorithmus als **Kommentare** (3 Schritte) auf und gib danach mit `print` die Zeile `ggT von 8 und 14 ist 2` aus.",
+          "startcode": "# Schritt 1: ...\n# Schritt 2: ...\n# Schritt 3: ...",
+          "tests": [
+            {
+              "eingabe": "",
+              "ausgabe": "ggT von 8 und 14 ist 2"
+            },
+            {
+              "eingabe": "",
+              "ausgabe": "ggT von 8 und 14 ist 2"
+            },
+            {
+              "eingabe": "",
+              "ausgabe": "ggT von 8 und 14 ist 2"
+            }
+          ],
+          "hinweise": [
+            "Kommentare beginnen mit `#`.",
+            "Die Ausgabe muss exakt stimmen."
+          ],
+          "musterloesung": "# Schritt 1: A sei die grössere Zahl (sonst tauschen)\n# Schritt 2: A = A - B\n# Schritt 3: A != B -> weiter mit Schritt 1, sonst ist A der ggT\nprint(\"ggT von 8 und 14 ist 2\")",
+          "kriterien": [
+            "Drei Kommentarzeilen mit den Schritten",
+            "Korrekte Ausgabe"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW01_PB_Python_Einfuehrung_Algorithmus, S. 11 und 38"
+        }
+      ]
+    },
+    {
+      "id": "sw01-einfuehrung-algorithmus-l8",
+      "titel": "Namen verketten und kommentieren",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 6,
+      "schwierigkeit": 1,
+      "quelle": "SW01_Aufrag_nbg (JupyterHub), Aufgabe 3",
+      "aufgabe": "Arbeite wie im JupyterHub: jede Teilaufgabe in ihrer eigenen Zelle, ausführen mit **Shift+Enter**.\n\n1. Erstelle zwei Variablen `surname` und `name` (zwei beliebige Strings).\n2. Speichere die **Verkettung** der beiden in `full_name` und gib `full_name` aus.\n3. Schreibe vor deinen Code einen **Kommentarblock** (`\"\"\" … \"\"\"`), der beschreibt, was der Code macht,\n   und vor die Verkettung einen **Zeilenkommentar** (`#`), der erklärt, was `+` bei Strings tut.",
+      "zellen": [
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – Variablen\nLege `surname` und `name` an."
+        },
+        {
+          "typ": "code",
+          "inhalt": "# surname = ...\n# name = ..."
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – Verketten, kommentieren und ausgeben"
+        },
+        {
+          "typ": "code",
+          "inhalt": "full_name = None\nprint(full_name)"
+        }
+      ],
+      "tests": "assert \"surname\" in globals() and isinstance(surname, str), \"Die Variable surname fehlt oder ist kein String.\"\nassert \"name\" in globals() and isinstance(name, str), \"Die Variable name fehlt oder ist kein String.\"\nassert isinstance(full_name, str), \"full_name muss ein String sein.\"\nassert full_name == surname + name, f\"full_name sollte {surname + name!r} sein, ist aber {full_name!r}.\"\nassert full_name in _ausgabe, \"full_name wird nicht mit print() ausgegeben.\"",
+      "hinweise": [
+        "Strings schreibst du in Anführungszeichen: `surname = \"John\"`.",
+        "Zwei Strings verkettest du mit `+`.",
+        "Die Kommentare prüft der Test nicht – schreib sie trotzdem, das gehört zur Aufgabe."
+      ],
+      "loesung": "\"\"\"\nDieser Code speichert zwei Strings, verkettet sie und gibt das Resultat aus.\n\"\"\"\nsurname = \"John\"\nname = \"Travolta\"\n\n# Der Operator + hängt zwei Strings aneinander.\nfull_name = surname + name\nprint(full_name)"
+    }
+  ]
+}

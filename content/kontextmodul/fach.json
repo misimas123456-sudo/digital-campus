@@ -1,0 +1,72 @@
+{
+  "format": 2,
+  "id": "kontextmodul",
+  "name": "Kontextmodul",
+  "kurz": "KONTT1",
+  "farbe": "#d4adc6",
+  "schrift": "Lora",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215100",
+  "material": "material/kontextmodul/",
+  "eigene_unterlagen": "Documents/HSLU/Kontextmodul",
+  "arten": [
+    "verstaendnis",
+    "aufgabe"
+  ],
+  "einheiten": [
+    {
+      "id": "sw01-aufgabenstellung",
+      "titel": "Aufgabenstellung & Modulpflichten",
+      "woche": 1,
+      "bereich": "projekt",
+      "status": "bereit",
+      "datei": "einheiten/sw01-aufgabenstellung.json"
+    },
+    {
+      "id": "sw02-projektmanagement",
+      "titel": "V-Modell & Problemlösungszyklus",
+      "woche": 2,
+      "bereich": "projekt",
+      "status": "geplant"
+    },
+    {
+      "id": "sw03-anforderungen",
+      "titel": "Anforderungstabelle & Recherche",
+      "woche": 3,
+      "bereich": "projekt",
+      "status": "geplant"
+    },
+    {
+      "id": "sw05-kreativitaetstechniken",
+      "titel": "Morphologischer Kasten & Nutzwertanalyse",
+      "woche": 5,
+      "bereich": "projekt",
+      "status": "geplant"
+    },
+    {
+      "id": "sw07-konzeption",
+      "titel": "Konzeption & technische Spezifikation",
+      "woche": 7,
+      "bereich": "projekt",
+      "status": "geplant"
+    },
+    {
+      "id": "sw09-validierung",
+      "titel": "Validierung & Verifizierung",
+      "woche": 9,
+      "bereich": "projekt",
+      "status": "geplant"
+    },
+    {
+      "id": "sw10-wissenschaftlich-schreiben",
+      "titel": "Sprache, Stil & Aufbau der Arbeit",
+      "woche": 10,
+      "bereich": "projekt",
+      "status": "geplant"
+    }
+  ],
+  "zusaetze": {
+    "termine": "termine.json"
+  },
+  "untertitel": "Technik HS 2026 · Projektgruppe T04 · SafeStep"
+}

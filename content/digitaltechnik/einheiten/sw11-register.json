@@ -1,0 +1,1415 @@
+{
+  "id": "sw11-register",
+  "titel": "Register und Schieberegister",
+  "beschreibung": "Register mit Load und Clear, Shift-Left und Shift-Right, P-S- und S-P-Wandlung, Johnson-Zähler, Pseudo-Zufallsgenerator (MLS) und CRC",
+  "woche": 11,
+  "bereich": "theorie",
+  "kapitel": 11,
+  "quelle": [
+    {
+      "text": "K11.Register-und-Schieberegister-Complete.pdf",
+      "stellen": "Folien 2–27"
+    },
+    {
+      "text": "K11-DigitalTechnik-Aufgaben-v2.pdf",
+      "stellen": "Aufgaben 1–2"
+    },
+    {
+      "text": "Digitaltechnik-Buch",
+      "stellen": "Kapitel 11 (Ergänzung)"
+    }
+  ],
+  "lektionen": [
+    {
+      "id": "sw11-register-l1",
+      "titel": "Was ist ein Register?",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "quelle": [
+        "K11 Folie 3"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Begriff",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein **Register** ist eine Gruppe von **flankengesteuerten Flip-Flops** mit **gemeinsamem Takt** (Clock)."
+            },
+            {
+              "typ": "text",
+              "text": "Man braucht es, um eine zusammengehörende Gruppe von Bits zu speichern, zum Beispiel ein **Daten-Byte** oder ein **Control-Byte** eines Mikroprozessors."
+            },
+            {
+              "typ": "kette",
+              "titel": "4-Bit-Register: vier D-FF nebeneinander, alle am selben Clock",
+              "elemente": [
+                {
+                  "text": "FF 3",
+                  "sub": "D_3 → Q_3"
+                },
+                {
+                  "text": "FF 2",
+                  "sub": "D_2 → Q_2"
+                },
+                {
+                  "text": "FF 1",
+                  "sub": "D_1 → Q_1"
+                },
+                {
+                  "text": "FF 0",
+                  "sub": "D_0 → Q_0"
+                }
+              ],
+              "pfeile": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "quelle": "K11 Folie 3"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Steuersignale",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "punkte": [
+                "**Clock-Enable (CE)** bzw. **Load**: Nur wenn Load aktiv ist, werden die Daten an $D$ bei der Taktflanke in die FF geladen. Danach erscheinen sie an $Q$.",
+                "**Clear (CLR)** setzt alle FF auf 0, und zwar **asynchron**: zu einem beliebigen Zeitpunkt, ohne Clock.",
+                "Alle FF hängen am selben Clock, darum reagieren sie **gleichzeitig**."
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Register = mehrere FF am **gleichen Takt**. Load wirkt **mit** der Flanke (synchron), Clear wirkt **sofort** (asynchron)."
+            }
+          ],
+          "quelle": "K11 Folie 3"
+        },
+        {
+          "id": "sw11-register-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Was ist ein Register?",
+          "optionen": [
+            "Eine Gruppe flankengesteuerter FF mit gemeinsamem Takt",
+            "Ein einzelnes JK-FF",
+            "Ein Zähler mit Ripple-Takt",
+            "Ein Multiplexer mit 4 Eingängen"
+          ],
+          "richtig": 0,
+          "erklaerung": "So definiert Folie 3: mehrere flankengesteuerte FF am gleichen Clock.",
+          "quelle": "K11 Folie 3"
+        },
+        {
+          "id": "sw11-register-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Clear (CLR) setzt die FF erst bei der nächsten Taktflanke auf 0.",
+          "richtig": false,
+          "erklaerung": "Clear wirkt asynchron, also sofort und ohne Clock.",
+          "quelle": "K11 Folie 3"
+        },
+        {
+          "id": "sw11-register-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "In einem Register übernehmen alle FF ihre Daten gleichzeitig.",
+          "richtig": true,
+          "erklaerung": "Alle FF hängen am selben Clock.",
+          "quelle": "K11 Folie 3"
+        },
+        {
+          "id": "sw11-register-l1-a4",
+          "typ": "zuordnen",
+          "frage": "Ordne jedem Signal seine Wirkung zu.",
+          "paare": [
+            [
+              "Load / CE",
+              "Daten an D werden bei der Flanke übernommen"
+            ],
+            [
+              "Clear",
+              "setzt alle FF sofort auf 0"
+            ],
+            [
+              "Clock",
+              "bestimmt den Zeitpunkt der Übernahme"
+            ]
+          ],
+          "erklaerung": "Load = synchron mit der Flanke, Clear = asynchron.",
+          "quelle": "K11 Folie 3"
+        },
+        {
+          "id": "sw11-register-l1-a5",
+          "typ": "rechnung",
+          "frage": "Wie viele D-FF braucht ein Register, das ein Daten-Byte speichert?",
+          "loesung": 8,
+          "toleranz": 0,
+          "einheit": "FF",
+          "loesungsweg": "1 Byte = 8 Bit, ein FF pro Bit",
+          "erklaerung": "Jedes FF speichert genau ein Bit.",
+          "quelle": "K11 Folie 3"
+        }
+      ]
+    },
+    {
+      "id": "sw11-register-l2",
+      "titel": "Schieberegister: links und rechts schieben",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": [
+        "K11 Folien 4–7",
+        "Digitaltechnik-Buch Kap. 11"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Idee",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein **Schieberegister** ist ein Register, das die gespeicherten Bits **synchron an das Nachbar-FF** weitergeben kann: **shift-left** oder **shift-right**."
+            },
+            {
+              "typ": "text",
+              "text": "Das Buch vergleicht es mit einer **Eimerkette**: Bei jedem Takt reicht jedes FF sein Bit eine Stelle weiter."
+            },
+            {
+              "typ": "text",
+              "text": "**Shift-Left** (Folie 5): $Q_0 \\to D_1$, $Q_1 \\to D_2$, $Q_2 \\to D_3$. In $D_0$ kommt ein neues Bit von aussen (serieller Eingang)."
+            },
+            {
+              "typ": "kette",
+              "titel": "Shift-Left: Die Bits wandern zum höheren Index",
+              "elemente": [
+                {
+                  "text": "D_0",
+                  "sub": "serieller Eingang"
+                },
+                {
+                  "text": "FF 0"
+                },
+                {
+                  "text": "FF 1"
+                },
+                {
+                  "text": "FF 2"
+                },
+                {
+                  "text": "FF 3"
+                }
+              ],
+              "pfeile": [
+                "",
+                "Q_0",
+                "Q_1",
+                "Q_2"
+              ],
+              "takt": "Clock"
+            }
+          ],
+          "quelle": "K11 Folien 4–5; Buch Kap. 11"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Im Zeitdiagramm",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Bei jeder steigenden Flanke rückt alles eine Stelle weiter. Nach 4 Takten steht die ganze Folge im Register."
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "Shift-Left mit seriellem Eingang $D_0$: Bitfolge 1, 0, 1, 1 (Start 0000, Übernahme bei steigender Flanke)",
+              "einheit": "Zeit →",
+              "signale": [
+                {
+                  "name": "Clk",
+                  "wellen": "001100110011001100110011"
+                },
+                {
+                  "name": "D_0 (seriell)",
+                  "wellen": "111100001111111100000000"
+                },
+                {
+                  "name": "Q_0",
+                  "wellen": "001111000011111111000000"
+                },
+                {
+                  "name": "Q_1",
+                  "wellen": "000000111100001111111100"
+                },
+                {
+                  "name": "Q_2",
+                  "wellen": "000000000011110000111111"
+                },
+                {
+                  "name": "Q_3",
+                  "wellen": "000000000000001111000011"
+                }
+              ]
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Inhalt nach jeder Flanke",
+              "kopf": [
+                "Flanke",
+                "Bit an $D_0$",
+                "$Q_3Q_2Q_1Q_0$"
+              ],
+              "zeilen": [
+                [
+                  "Start",
+                  "–",
+                  "0000"
+                ],
+                [
+                  "1",
+                  "1",
+                  "0001"
+                ],
+                [
+                  "2",
+                  "0",
+                  "0010"
+                ],
+                [
+                  "3",
+                  "1",
+                  "0101"
+                ],
+                [
+                  "4",
+                  "1",
+                  "1011"
+                ]
+              ]
+            },
+            {
+              "typ": "text",
+              "text": "**Shift-Right** (Folie 7) ist dasselbe in die andere Richtung: $Q_3 \\to D_2$, $Q_2 \\to D_1$, $Q_1 \\to D_0$, das neue Bit kommt in $D_3$."
+            },
+            {
+              "typ": "merke",
+              "text": "Damit die Bits nicht durchrutschen, braucht es **flankengesteuerte** FF am **gemeinsamen** Takt. Jedes FF übernimmt den **alten** Wert seines Nachbarn."
+            }
+          ],
+          "quelle": "K11 Folien 5–7; Buch 11, 11.1"
+        },
+        {
+          "id": "sw11-register-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Wohin geht beim Shift-Left (Folie 5) der Ausgang $Q_1$?",
+          "optionen": [
+            "An $D_2$",
+            "An $D_0$",
+            "An $D_1$",
+            "An den Clock"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Shift-Left wandern die Bits zum höheren Index: $Q_1 \\to D_2$.",
+          "quelle": "K11 Folie 5"
+        },
+        {
+          "id": "sw11-register-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "Ein 4-Bit-Schieberegister enthält $Q_3Q_2Q_1Q_0 = 0110$. Nach einem Shift-Left kommt an $D_0$ eine 1. Was steht danach im Register?",
+          "optionen": [
+            "1101",
+            "1011",
+            "0011",
+            "0111"
+          ],
+          "richtig": 0,
+          "erklaerung": "Alles rückt eine Stelle nach links ($Q_3$ fällt heraus), rechts kommt die 1 dazu: $0110 \\to 110\\,1$.",
+          "quelle": "K11 Folie 5"
+        },
+        {
+          "id": "sw11-register-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "Gleiches Register $0110$, jetzt Shift-Right mit einer 0 an $D_3$. Ergebnis?",
+          "optionen": [
+            "0011",
+            "1100",
+            "0010",
+            "1011"
+          ],
+          "richtig": 0,
+          "erklaerung": "Alles rückt nach rechts ($Q_0$ fällt heraus), links kommt die 0: $0\\,011$.",
+          "quelle": "K11 Folie 7"
+        },
+        {
+          "id": "sw11-register-l2-a4",
+          "typ": "rechnung",
+          "frage": "Wie viele Takte braucht es, bis ein Bit vom seriellen Eingang eines 8-Bit-Schieberegisters am letzten Ausgang $Q_7$ erscheint?",
+          "loesung": 8,
+          "toleranz": 0,
+          "einheit": "Takte",
+          "loesungsweg": "Pro Takt eine Stufe weiter: $Q_0$ nach 1 Takt, $Q_7$ nach 8 Takten",
+          "erklaerung": "Jede Stufe kostet einen Takt.",
+          "quelle": "K11 Folie 5"
+        },
+        {
+          "id": "sw11-register-l2-a5",
+          "typ": "wahr_falsch",
+          "aussage": "In einem Schieberegister werden die Bits synchron verschoben.",
+          "richtig": true,
+          "erklaerung": "Alle FF am gleichen Takt schieben gleichzeitig um eine Stelle.",
+          "quelle": "K11 Folie 4"
+        },
+        {
+          "id": "sw11-register-l2-a6",
+          "typ": "multiple_choice",
+          "frage": "Was kann laut Buch passieren, wenn das zweite FF seinen Takt mit Versatz (Clock Skew) bekommt?",
+          "optionen": [
+            "Ein Bit fällt ohne Speicherung durch oder geht verloren",
+            "Das Register zählt rückwärts",
+            "Clear wirkt nicht mehr",
+            "Nichts, Schieberegister sind dagegen immun"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Taktversatz kann das Wirkintervall des zweiten FF ins Kippintervall des ersten schieben.",
+          "quelle": "Buch 11.1"
+        }
+      ]
+    },
+    {
+      "id": "sw11-register-l3",
+      "titel": "Parallel und seriell: Schieberegister als Systembaustein",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": [
+        "K11 Folien 8–17",
+        "Digitaltechnik-Buch 11.1.1"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Multiplexer vor dem D-Eingang",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Schieberegister können Daten meist **seriell oder parallel** laden und auslesen. Dafür sitzt vor jedem D-Eingang ein **Multiplexer** (Umschalter). Mit **Select** wählt man, woher $D_n$ kommt:"
+            },
+            {
+              "typ": "tabelle",
+              "kopf": [
+                "MUX-Eingang",
+                "$D_n$ kommt von",
+                "Funktion"
+              ],
+              "zeilen": [
+                [
+                  "SR",
+                  "$Q_{n+1}$ (linker Nachbar)",
+                  "Shift-Right"
+                ],
+                [
+                  "P",
+                  "parallelem Dateneingang $D_n$",
+                  "parallel laden"
+                ],
+                [
+                  "SL",
+                  "$Q_{n-1}$ (rechter Nachbar)",
+                  "Shift-Left"
+                ]
+              ]
+            },
+            {
+              "typ": "hinweis",
+              "text": "Ein Beispiel dafür ist das **74194** aus dem Buch: Mit $S_0$ und $S_1$ wählt man Parallel laden (11), Rechts schieben (01), Links schieben (10) oder Halten (00)."
+            }
+          ],
+          "quelle": "K11 Folien 8–10; Buch 11.1.1"
+        },
+        {
+          "typ": "theorie",
+          "titel": "P-S und S-P Wandlung",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Mit MUX werden Schieberegister zu **Parallel-Seriell- (P-S)** und **Seriell-Parallel-Wandlern (S-P)**. Das ist ein wichtiger Baustein bei der **Datenübertragung**."
+            },
+            {
+              "typ": "kette",
+              "titel": "Beispiel Folie 17: 4-Bit-Daten über eine Leitung",
+              "elemente": [
+                {
+                  "text": "P-S",
+                  "sub": "parallel laden 1 MHz"
+                },
+                {
+                  "text": "Leitung",
+                  "sub": "seriell 4 MHz"
+                },
+                {
+                  "text": "S-P",
+                  "sub": "schiebt mit 4 MHz"
+                },
+                {
+                  "text": "Register",
+                  "sub": "übernimmt mit 1 MHz"
+                }
+              ],
+              "pfeile": [
+                "",
+                "4 MHz",
+                "4 Bit"
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Die **Datenrate ändert sich** mit dem P-S- bzw. S-P-Verhältnis: $n$ Bit parallel mit $f$ ergeben seriell $n \\cdot f$."
+            },
+            {
+              "typ": "formel",
+              "tex": "f_{\\text{seriell}} = n \\cdot f_{\\text{parallel}} \\qquad 4 \\cdot 1\\,\\text{MHz} = 4\\,\\text{MHz}"
+            },
+            {
+              "typ": "text",
+              "text": "Ein Schieberegister ohne Parallel-Zugriff ist ein **FIFO** (first in, first out): Was zuerst hineingeschoben wird, kommt zuerst wieder heraus."
+            }
+          ],
+          "quelle": "K11 Folien 11–17; Buch Kap. 11"
+        },
+        {
+          "id": "sw11-register-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Wozu dient der Multiplexer vor dem D-Eingang?",
+          "optionen": [
+            "Er wählt, ob $D_n$ vom Nachbar-FF oder vom parallelen Eingang kommt",
+            "Er verdoppelt die Taktfrequenz",
+            "Er ersetzt den Clear-Eingang",
+            "Er invertiert die Daten"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mit Select schaltet man zwischen Shift-Right, Parallel laden und Shift-Left um.",
+          "quelle": "K11 Folie 10"
+        },
+        {
+          "id": "sw11-register-l3-a2",
+          "typ": "zuordnen",
+          "frage": "Ordne zu: Woher kommt $D_n$?",
+          "paare": [
+            [
+              "Shift-Right (SR)",
+              "$Q_{n+1}$"
+            ],
+            [
+              "Parallel laden (P)",
+              "paralleler Eingang $D_n$"
+            ],
+            [
+              "Shift-Left (SL)",
+              "$Q_{n-1}$"
+            ]
+          ],
+          "erklaerung": "Rechts schieben holt vom linken Nachbarn, links schieben vom rechten.",
+          "quelle": "K11 Folie 10"
+        },
+        {
+          "id": "sw11-register-l3-a3",
+          "typ": "rechnung",
+          "frage": "8-Bit-Wörter kommen parallel mit 2 MHz. Mit welcher Frequenz muss der P-S-Wandler seriell schieben?",
+          "loesung": 16,
+          "toleranz": 0,
+          "einheit": "MHz",
+          "loesungsweg": "$8 \\cdot 2\\,\\text{MHz} = 16\\,\\text{MHz}$",
+          "erklaerung": "Pro Wort müssen 8 Bit hinaus, bevor das nächste kommt.",
+          "quelle": "K11 Folie 17"
+        },
+        {
+          "id": "sw11-register-l3-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Bei der P-S-Wandlung bleibt die Taktfrequenz auf der Leitung gleich wie die Wortrate.",
+          "richtig": false,
+          "erklaerung": "Die Datenrate ändert sich mit dem P-S-Verhältnis (Folie 17: 1 MHz parallel, 4 MHz seriell).",
+          "quelle": "K11 Folie 17"
+        },
+        {
+          "id": "sw11-register-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "Welche Betriebsart hat das 74194 bei $S_0 = 1$, $S_1 = 1$?",
+          "optionen": [
+            "Parallel laden",
+            "Rechts schieben",
+            "Links schieben",
+            "Takt ausblenden (halten)"
+          ],
+          "richtig": 0,
+          "erklaerung": "Tabelle 11-1 im Buch: 11 = parallel laden.",
+          "quelle": "Buch Tabelle 11-1"
+        },
+        {
+          "id": "sw11-register-l3-a6",
+          "typ": "multiple_choice",
+          "frage": "Was bedeutet FIFO?",
+          "optionen": [
+            "First in, first out: Das zuerst eingeschobene Bit kommt zuerst heraus",
+            "Fast input, fast output",
+            "Das letzte Bit kommt zuerst heraus",
+            "Ein Register ohne Takt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das Schieberegister arbeitet wie eine Eimerkette.",
+          "quelle": "K11 Folie 12; Buch Kap. 11"
+        }
+      ]
+    },
+    {
+      "id": "sw11-register-l4",
+      "titel": "Rückgekoppelt: Johnson-Zähler",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": [
+        "K11 Folien 18–22",
+        "Digitaltechnik-Buch 11.2, 11.2.1"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Rückkopplung",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Führt man Ausgänge über ein Schaltnetz auf den **Eingang zurück**, entsteht ein **rückgekoppeltes Schieberegister**. Der einzige Freiheitsgrad ist die Funktion am ersten Eingang: $Q_1^+ = f(Q_1, Q_2, Q_3, \\ldots)$, alle anderen schieben nur."
+            },
+            {
+              "typ": "text",
+              "text": "Beim **Johnson-Zähler** (auch Moebius-Zähler) wird der **letzte Ausgang invertiert** in den ersten Eingang gegeben:"
+            },
+            {
+              "typ": "formel",
+              "tex": "D_1 = \\overline{Q_4}"
+            }
+          ],
+          "quelle": "K11 Folie 18; Buch 11.2, Formel 11.8"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Ablauf ab 0000",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Von links laufen zuerst Einsen hinein, dann Nullen. Mit 4 FF entstehen **8 Zustände**, also doppelt so viele wie FF."
+            },
+            {
+              "typ": "zustandsdiagramm",
+              "titel": "Johnson-Zähler mit 4 D-FF ($Q_1Q_2Q_3Q_4$), Start 0000",
+              "start": "j0",
+              "knoten": [
+                {
+                  "id": "j0",
+                  "label": "0000",
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "id": "j1",
+                  "label": "1000",
+                  "x": 1,
+                  "y": 0
+                },
+                {
+                  "id": "j2",
+                  "label": "1100",
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "id": "j3",
+                  "label": "1110",
+                  "x": 3,
+                  "y": 0
+                },
+                {
+                  "id": "j4",
+                  "label": "1111",
+                  "x": 3,
+                  "y": 1
+                },
+                {
+                  "id": "j5",
+                  "label": "0111",
+                  "x": 2,
+                  "y": 1
+                },
+                {
+                  "id": "j6",
+                  "label": "0011",
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "id": "j7",
+                  "label": "0001",
+                  "x": 0,
+                  "y": 1
+                }
+              ],
+              "kanten": [
+                {
+                  "von": "j0",
+                  "nach": "j1",
+                  "text": ""
+                },
+                {
+                  "von": "j1",
+                  "nach": "j2",
+                  "text": ""
+                },
+                {
+                  "von": "j2",
+                  "nach": "j3",
+                  "text": ""
+                },
+                {
+                  "von": "j3",
+                  "nach": "j4",
+                  "text": ""
+                },
+                {
+                  "von": "j4",
+                  "nach": "j5",
+                  "text": ""
+                },
+                {
+                  "von": "j5",
+                  "nach": "j6",
+                  "text": ""
+                },
+                {
+                  "von": "j6",
+                  "nach": "j7",
+                  "text": ""
+                },
+                {
+                  "von": "j7",
+                  "nach": "j0",
+                  "text": ""
+                }
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Johnson-Zähler: $n$ FF ergeben $2n$ Zustände. Er braucht **keine** Zählerlogik, nur einen Inverter."
+            },
+            {
+              "typ": "hinweis",
+              "text": "Laut Buch gibt es einen **zweiten Zyklus** mit ebenfalls 8 Zuständen (z. B. 0010 → 1001 → 0100 → …). Welcher läuft, hängt vom Startzustand ab. Darum gibt man den Anfangszustand vor, z. B. mit Clear auf 0000."
+            }
+          ],
+          "quelle": "K11 Folien 19–22; Buch Tabelle 11-4, Bild 11-8"
+        },
+        {
+          "id": "sw11-register-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Was wird beim Johnson-Zähler auf den ersten Eingang zurückgeführt?",
+          "optionen": [
+            "Der invertierte letzte Ausgang $\\overline{Q_4}$",
+            "Der letzte Ausgang $Q_4$ direkt",
+            "$Q_3 \\oplus Q_4$",
+            "Der Takt"
+          ],
+          "richtig": 0,
+          "erklaerung": "$D_1 = \\overline{Q_4}$ (Buch, Formel 11.8).",
+          "quelle": "Buch 11.2.1"
+        },
+        {
+          "id": "sw11-register-l4-a2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Zustand folgt beim Johnson-Zähler auf $1110$?",
+          "optionen": [
+            "1111",
+            "0111",
+            "1100",
+            "0000"
+          ],
+          "richtig": 0,
+          "erklaerung": "$\\overline{Q_4} = \\overline{0} = 1$ kommt vorne hinein: $1\\,111$.",
+          "quelle": "K11 Folie 22"
+        },
+        {
+          "id": "sw11-register-l4-a3",
+          "typ": "multiple_choice",
+          "frage": "Und welcher folgt auf $1111$?",
+          "optionen": [
+            "0111",
+            "1111",
+            "1110",
+            "0000"
+          ],
+          "richtig": 0,
+          "erklaerung": "Jetzt ist $Q_4 = 1$, also kommt eine 0 hinein: $0\\,111$.",
+          "quelle": "K11 Folie 22"
+        },
+        {
+          "id": "sw11-register-l4-a4",
+          "typ": "rechnung",
+          "frage": "Wie viele Zustände durchläuft ein Johnson-Zähler mit 5 FF?",
+          "loesung": 10,
+          "toleranz": 0,
+          "einheit": "Zustände",
+          "loesungsweg": "$2n = 2 \\cdot 5 = 10$",
+          "erklaerung": "Erst laufen 5 Einsen hinein, dann 5 Nullen.",
+          "quelle": "K11 Folie 22; Buch 11.2.1"
+        },
+        {
+          "id": "sw11-register-l4-a5",
+          "typ": "reihenfolge",
+          "frage": "Bring die Zustände ab $0000$ in die richtige Reihenfolge.",
+          "elemente": [
+            "0000",
+            "1000",
+            "1100",
+            "1110",
+            "1111",
+            "0111"
+          ],
+          "erklaerung": "Zuerst füllen Einsen das Register von links, dann Nullen.",
+          "quelle": "K11 Folie 22"
+        },
+        {
+          "id": "sw11-register-l4-a6",
+          "typ": "wahr_falsch",
+          "aussage": "Startet ein 4-Bit-Johnson-Zähler in 0010, durchläuft er die gleichen 8 Zustände wie ab 0000.",
+          "richtig": false,
+          "erklaerung": "0010 gehört zum zweiten, unabhängigen Zyklus (0010, 1001, 0100, 1010, 1101, 0110, 1011, 0101).",
+          "quelle": "Buch Tabelle 11-4"
+        }
+      ]
+    },
+    {
+      "id": "sw11-register-l5",
+      "titel": "Pseudo-Zufall (MLS) und CRC",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "quelle": [
+        "K11 Folien 23–27"
+      ],
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Pseudo-Zufallsgenerator",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Schieberegister mit geeigneten **XOR-Rückführungen** (Modulo-2-Addierer) erzeugen mit $n$ FF scheinbar zufällige Folgen der Länge $2^n - 1$. Darum heissen sie **Maximum Length Sequence (MLS)**."
+            },
+            {
+              "typ": "text",
+              "text": "Nur der Zustand **0** kommt nicht vor: Aus $000$ wird wieder $000$, weil $0 \\oplus 0 = 0$."
+            },
+            {
+              "typ": "text",
+              "text": "Den Namen **lineares Schieberegister** gibt es, weil XOR in dieser Algebra eine **lineare** Funktion ist."
+            },
+            {
+              "typ": "kette",
+              "titel": "Beispiel Folie 23: 3 D-FF, $D_1 = Q_2 \\oplus Q_3$",
+              "elemente": [
+                {
+                  "text": "XOR",
+                  "sub": "Q_2 ⊕ Q_3"
+                },
+                {
+                  "text": "FF 1"
+                },
+                {
+                  "text": "FF 2"
+                },
+                {
+                  "text": "FF 3"
+                }
+              ],
+              "pfeile": [
+                "D_1",
+                "Q_1",
+                "Q_2"
+              ],
+              "takt": "Clock"
+            },
+            {
+              "typ": "formel",
+              "tex": "2^3 - 1 = 7 \\text{ Zustände}"
+            }
+          ],
+          "quelle": "K11 Folien 23–26"
+        },
+        {
+          "typ": "theorie",
+          "titel": "CRC-Generator",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Auch **CRC-Generatoren** (Cyclic Redundancy Check) sind rückgekoppelte Schieberegister mit XOR. Die Daten werden seriell hineingelesen, am Schluss steht die **Prüfsumme** (der Rest der Division) im Register."
+            },
+            {
+              "typ": "liste",
+              "titel": "Beispiel CRC-5 (BT), Polynom $x^5 + x^4 + x^2 + 1$",
+              "punkte": [
+                "**Phase 1:** S1 geschlossen, S2 unten. Alle Daten gehen auf die Leitung und gleichzeitig ins Register. Am Schluss stehen dort die Prüf-Bits.",
+                "**Phase 2:** S1 offen, S2 oben. Der Registerinhalt wird auf die Leitung geschoben und so an die Daten angehängt."
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "MLS: $n$ FF, Länge $2^n - 1$, der Zustand 0 fehlt. CRC: Prüfsumme = Rest im Register nach dem Durchschieben der Daten."
+            }
+          ],
+          "quelle": "K11 Folie 27"
+        },
+        {
+          "id": "sw11-register-l5-a1",
+          "typ": "rechnung",
+          "frage": "Wie lang ist die MLS eines Pseudo-Zufallsgenerators mit 4 FF?",
+          "loesung": 15,
+          "toleranz": 0,
+          "einheit": "Zustände",
+          "loesungsweg": "$2^4 - 1 = 15$",
+          "erklaerung": "Alle Zustände ausser 0000.",
+          "quelle": "K11 Folie 23"
+        },
+        {
+          "id": "sw11-register-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Warum kommt der Zustand 000 in einer MLS nicht vor?",
+          "optionen": [
+            "Aus 000 würde wegen $0 \\oplus 0 = 0$ immer wieder 000",
+            "Weil das erste FF invertiert",
+            "Weil Clear ihn verbietet",
+            "Er kommt vor, aber nur einmal"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Generator bliebe in 000 hängen.",
+          "quelle": "K11 Folie 23"
+        },
+        {
+          "id": "sw11-register-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Woher kommt der Name «lineares Schieberegister»?",
+          "optionen": [
+            "XOR ist in der verwendeten Algebra eine lineare Funktion",
+            "Die FF sind in einer Linie angeordnet",
+            "Die Ausgangsspannung steigt linear",
+            "Es zählt linear 0, 1, 2, 3"
+          ],
+          "richtig": 0,
+          "erklaerung": "So steht es auf Folie 23.",
+          "quelle": "K11 Folie 23"
+        },
+        {
+          "id": "sw11-register-l5-a4",
+          "typ": "multiple_choice",
+          "frage": "Mit $D_1 = Q_2 \\oplus Q_3$: Welcher Zustand $Q_1Q_2Q_3$ folgt auf $111$?",
+          "optionen": [
+            "011",
+            "111",
+            "110",
+            "001"
+          ],
+          "richtig": 0,
+          "erklaerung": "$D_1 = 1 \\oplus 1 = 0$, die anderen schieben: $0\\,11$.",
+          "quelle": "K11 Folie 25"
+        },
+        {
+          "id": "sw11-register-l5-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Beim CRC-Generator wird in Phase 2 der Registerinhalt an die Daten angehängt.",
+          "richtig": true,
+          "erklaerung": "S1 offen, S2 oben: Die Prüf-Bits werden auf die Leitung geschoben.",
+          "quelle": "K11 Folie 27"
+        },
+        {
+          "id": "sw11-register-l5-a6",
+          "typ": "karteikarte",
+          "vorne": "MLS (Maximum Length Sequence)",
+          "hinten": "Rückgekoppeltes Schieberegister mit XOR; $n$ FF ergeben eine Folge der Länge $2^n - 1$, nur 0 fehlt.",
+          "erklaerung": "",
+          "quelle": "K11 Folie 23"
+        }
+      ]
+    },
+    {
+      "id": "sw11-register-l6",
+      "titel": "Übung: Sensordaten seriell übertragen",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "K11 Übung, Aufgabe 1",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Aufgabe",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein Sensor liefert alle $125\\,\\mu s$ ein **8-Bit-Datenwort** (0 bis 255). Die Worte sollen **seriell über eine Leitung** übertragen werden. Gesucht: Blockschema mit den Clocks."
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "Wortrate: $f_W = \\dfrac{1}{125\\,\\mu s} = 8\\,\\text{kHz}$",
+                "Bitrate: 8 Bit pro Wort, also $f_B = 8 \\cdot 8\\,\\text{kHz} = 64\\,\\text{kHz}$"
+              ]
+            },
+            {
+              "typ": "kette",
+              "titel": "Blockschema (Aufbau wie Folie 17)",
+              "elemente": [
+                {
+                  "text": "Sensor",
+                  "sub": "8 Bit"
+                },
+                {
+                  "text": "P-S",
+                  "sub": "lädt 8 kHz"
+                },
+                {
+                  "text": "Leitung",
+                  "sub": "seriell"
+                },
+                {
+                  "text": "S-P",
+                  "sub": "schiebt 64 kHz"
+                },
+                {
+                  "text": "Register",
+                  "sub": "übernimmt 8 kHz"
+                }
+              ],
+              "pfeile": [
+                "8 Bit",
+                "64 kHz",
+                "",
+                ""
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Load-Takt = Wortrate (8 kHz), Schiebetakt = Bitrate (64 kHz). Nach 8 Schiebetakten ist ein Wort komplett drüben."
+            }
+          ],
+          "quelle": "Eigene Musterlösung zu K11 Übung, Aufgabe 1 (nach Folie 17)"
+        },
+        {
+          "id": "sw11-register-l6-a1",
+          "typ": "rechnung",
+          "frage": "Mit welcher Frequenz kommen die Datenworte?",
+          "loesung": 8,
+          "toleranz": 0,
+          "einheit": "kHz",
+          "loesungsweg": "$1 / 125\\,\\mu s = 8000\\,\\text{Hz}$",
+          "erklaerung": "Frequenz = 1 / Periode.",
+          "quelle": "K11 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw11-register-l6-a2",
+          "typ": "rechnung",
+          "frage": "Mit welcher Frequenz muss die Leitung seriell takten?",
+          "loesung": 64,
+          "toleranz": 0,
+          "einheit": "kHz",
+          "loesungsweg": "$8 \\cdot 8\\,\\text{kHz} = 64\\,\\text{kHz}$",
+          "erklaerung": "In $125\\,\\mu s$ müssen 8 Bit hinaus.",
+          "quelle": "K11 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw11-register-l6-a3",
+          "typ": "rechnung",
+          "frage": "Wie lange dauert ein Bit auf der Leitung?",
+          "loesung": 15.625,
+          "toleranz": 0.01,
+          "einheit": "µs",
+          "loesungsweg": "$125\\,\\mu s / 8 = 15.625\\,\\mu s$",
+          "erklaerung": "Die Wortperiode teilt sich auf 8 Bit auf.",
+          "quelle": "K11 Übung, Aufgabe 1"
+        },
+        {
+          "id": "sw11-register-l6-a4",
+          "typ": "reihenfolge",
+          "frage": "Bring die Blöcke vom Sensor zum Empfänger in die richtige Reihenfolge.",
+          "elemente": [
+            "Sensor",
+            "P-S-Schieberegister",
+            "Leitung",
+            "S-P-Schieberegister",
+            "Register"
+          ],
+          "erklaerung": "Parallel in, seriell über die Leitung, wieder parallel und ins Register.",
+          "quelle": "K11 Folie 17"
+        },
+        {
+          "id": "sw11-register-l6-a5",
+          "typ": "multiple_choice",
+          "frage": "Welcher Takt lädt das P-S-Register parallel?",
+          "optionen": [
+            "8 kHz (Wortrate)",
+            "64 kHz (Bitrate)",
+            "125 kHz",
+            "1 MHz"
+          ],
+          "richtig": 0,
+          "erklaerung": "Pro Sensorwort wird einmal geladen.",
+          "quelle": "K11 Übung, Aufgabe 1"
+        }
+      ]
+    },
+    {
+      "id": "sw11-register-l7",
+      "titel": "Übung: MLS-Folge ab 111",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "quelle": "K11 Übung, Aufgabe 2",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Aufgabe",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "3 D-FF hintereinander ($Q_1, Q_2, Q_3$), gemeinsamer Clock. $Q_3$ und $Q_2$ gehen auf ein XOR, dessen Ausgang an $D_1$. Alle FF starten in 1. Wie sieht die Folge aus?"
+            },
+            {
+              "typ": "formel",
+              "tex": "Q_1^+ = Q_2 \\oplus Q_3 \\qquad Q_2^+ = Q_1 \\qquad Q_3^+ = Q_2"
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Folge $Q_1Q_2Q_3$",
+              "kopf": [
+                "Takt",
+                "$Q_1Q_2Q_3$",
+                "$Q_2 \\oplus Q_3$"
+              ],
+              "zeilen": [
+                [
+                  "0",
+                  "111",
+                  "0"
+                ],
+                [
+                  "1",
+                  "011",
+                  "0"
+                ],
+                [
+                  "2",
+                  "001",
+                  "1"
+                ],
+                [
+                  "3",
+                  "100",
+                  "0"
+                ],
+                [
+                  "4",
+                  "010",
+                  "1"
+                ],
+                [
+                  "5",
+                  "101",
+                  "1"
+                ],
+                [
+                  "6",
+                  "110",
+                  "1"
+                ],
+                [
+                  "7",
+                  "111",
+                  "…"
+                ]
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Nach $7 = 2^3 - 1$ Takten ist der Startzustand wieder da. Alle Zustände ausser 000 kommen genau einmal vor: Das ist eine MLS."
+            }
+          ],
+          "quelle": "K11 Übung, Aufgabe 2; K11 Folie 26 (gleiche Folge)"
+        },
+        {
+          "id": "sw11-register-l7-a1",
+          "typ": "multiple_choice",
+          "frage": "Welcher Zustand $Q_1Q_2Q_3$ folgt auf $001$?",
+          "optionen": [
+            "100",
+            "000",
+            "010",
+            "101"
+          ],
+          "richtig": 0,
+          "erklaerung": "$D_1 = Q_2 \\oplus Q_3 = 0 \\oplus 1 = 1$, dann $1\\,00$.",
+          "quelle": "K11 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw11-register-l7-a2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Zustand folgt auf $010$?",
+          "optionen": [
+            "101",
+            "001",
+            "011",
+            "100"
+          ],
+          "richtig": 0,
+          "erklaerung": "$D_1 = 1 \\oplus 0 = 1$, dann $1\\,01$.",
+          "quelle": "K11 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw11-register-l7-a3",
+          "typ": "rechnung",
+          "frage": "Nach wie vielen Takten ist wieder $111$ erreicht?",
+          "loesung": 7,
+          "toleranz": 0,
+          "einheit": "Takte",
+          "loesungsweg": "$2^3 - 1 = 7$",
+          "erklaerung": "Die Folge ist eine MLS mit 3 FF.",
+          "quelle": "K11 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw11-register-l7-a4",
+          "typ": "reihenfolge",
+          "frage": "Ordne die Zustände ab $111$.",
+          "elemente": [
+            "111",
+            "011",
+            "001",
+            "100",
+            "010",
+            "101",
+            "110"
+          ],
+          "erklaerung": "Jeweils $Q_2 \\oplus Q_3$ vorne hinein, der Rest schiebt.",
+          "quelle": "K11 Übung, Aufgabe 2"
+        },
+        {
+          "id": "sw11-register-l7-a5",
+          "typ": "multiple_choice",
+          "frage": "Was passiert, wenn alle FF in 0 starten?",
+          "optionen": [
+            "Der Generator bleibt in 000",
+            "Er läuft dieselbe Folge",
+            "Er läuft eine Folge der Länge 8",
+            "Er springt nach 111"
+          ],
+          "richtig": 0,
+          "erklaerung": "$0 \\oplus 0 = 0$, darum fehlt 000 in der MLS.",
+          "quelle": "K11 Folie 23"
+        }
+      ]
+    }
+  ],
+  "uebungen": {
+    "kurz": [
+      {
+        "id": "sw11-register-k1",
+        "typ": "multiple_choice",
+        "frage": "Was haben alle FF eines Registers gemeinsam?",
+        "optionen": [
+          "Den Takt",
+          "Die Dateneingänge",
+          "Den Ausgang",
+          "Nichts"
+        ],
+        "richtig": 0,
+        "erklaerung": "Ein Register = flankengesteuerte FF mit gemeinsamem Clock.",
+        "quelle": "K11 Folie 3"
+      },
+      {
+        "id": "sw11-register-k2",
+        "typ": "multiple_choice",
+        "frage": "$Q_3Q_2Q_1Q_0 = 1001$, Shift-Left, an $D_0$ liegt 0. Ergebnis?",
+        "optionen": [
+          "0010",
+          "1100",
+          "0100",
+          "0011"
+        ],
+        "richtig": 0,
+        "erklaerung": "$1001 \\to 001\\,0$.",
+        "quelle": "K11 Folie 5"
+      },
+      {
+        "id": "sw11-register-k3",
+        "typ": "rechnung",
+        "frage": "16-Bit-Wörter mit 500 kHz sollen seriell übertragen werden. Bitrate in MHz?",
+        "loesung": 8,
+        "toleranz": 0,
+        "einheit": "MHz",
+        "loesungsweg": "$16 \\cdot 0.5\\,\\text{MHz} = 8\\,\\text{MHz}$",
+        "erklaerung": "Die Datenrate ändert sich mit dem P-S-Verhältnis.",
+        "quelle": "K11 Folie 17"
+      },
+      {
+        "id": "sw11-register-k4",
+        "typ": "rechnung",
+        "frage": "Wie viele Zustände hat ein Johnson-Zähler mit 3 FF?",
+        "loesung": 6,
+        "toleranz": 0,
+        "einheit": "Zustände",
+        "loesungsweg": "$2n = 6$",
+        "erklaerung": "Johnson: $2n$ Zustände.",
+        "quelle": "K11 Folie 22"
+      },
+      {
+        "id": "sw11-register-k5",
+        "typ": "rechnung",
+        "frage": "Wie lang ist die MLS mit 5 FF?",
+        "loesung": 31,
+        "toleranz": 0,
+        "einheit": "Zustände",
+        "loesungsweg": "$2^5 - 1 = 31$",
+        "erklaerung": "Nur der Zustand 0 fehlt.",
+        "quelle": "K11 Folie 23"
+      },
+      {
+        "id": "sw11-register-k6",
+        "typ": "wahr_falsch",
+        "aussage": "Clear in einem Register wirkt asynchron.",
+        "richtig": true,
+        "erklaerung": "Clear setzt sofort auf 0, ohne Clock.",
+        "quelle": "K11 Folie 3"
+      }
+    ],
+    "lang": [
+      {
+        "id": "sw11-register-u1",
+        "nr": "1",
+        "titel": "Sensordaten seriell übertragen",
+        "empfohlen": true,
+        "grund": "P-S/S-P mit Clocks, typischer Systemaufbau",
+        "aufgabe": "Ein Sensor generiert 8 Bit breite Datenworte (Messwerte von 0 bis 255) alle 125 µs. Die Datenworte sollen seriell über eine Leitung übertragen werden. Zeichnen Sie das Blockschema mit den entsprechenden Clocks.",
+        "tipps": [
+          "Wie oft kommt ein Wort? Rechne die Frequenz aus der Periode.",
+          "Wie viele Bit müssen pro Wort über die Leitung?",
+          "Schau dir Folie 17 an: P-S, Leitung, S-P, Register.",
+          "Welcher Block braucht den langsamen, welcher den schnellen Takt?"
+        ],
+        "loesung": [
+          {
+            "typ": "formel",
+            "tex": "f_W = \\frac{1}{125\\,\\mu s} = 8\\,\\text{kHz} \\qquad f_B = 8 \\cdot 8\\,\\text{kHz} = 64\\,\\text{kHz}"
+          },
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "Block",
+              "Funktion",
+              "Takt"
+            ],
+            "zeilen": [
+              [
+                "Sensor",
+                "liefert 8 Bit parallel",
+                "8 kHz"
+              ],
+              [
+                "P-S-Schieberegister (8 Bit)",
+                "parallel laden, seriell hinausschieben",
+                "Load 8 kHz, Shift 64 kHz"
+              ],
+              [
+                "Leitung",
+                "1 Bit pro Schiebetakt",
+                "64 kHz"
+              ],
+              [
+                "S-P-Schieberegister (8 Bit)",
+                "seriell hineinschieben",
+                "Shift 64 kHz"
+              ],
+              [
+                "Register (8 Bit)",
+                "übernimmt das fertige Wort",
+                "Load 8 kHz"
+              ]
+            ]
+          },
+          {
+            "typ": "merke",
+            "text": "Load-Takt = Wortrate, Schiebetakt = Bitrate = 8 × Wortrate. Die 8-kHz-Takte entstehen z. B. durch Teilen des 64-kHz-Takts durch 8."
+          }
+        ],
+        "ergebnis": "Wortrate 8 kHz, Bitrate 64 kHz",
+        "loesung_herkunft": "Eigene Musterlösung nach dem Aufbau auf Folie 17, im Material gibt es keine Lösung zu K11.",
+        "quelle": "K11-DigitalTechnik-Aufgaben-v2, Aufgabe 1"
+      },
+      {
+        "id": "sw11-register-u2",
+        "nr": "2",
+        "titel": "Pseudo-Zufallsgenerator (MLS)",
+        "empfohlen": true,
+        "grund": "Rückgekoppeltes Schieberegister Schritt für Schritt durchspielen",
+        "aufgabe": "Ein Pseudo-Zufallsgenerator erzeugt eine MLS (Maximum Length Sequence). Er besteht aus 3 hintereinander geschalteten D-FF (Ausgänge Q1, Q2, Q3) mit gemeinsamem Clock. Die Ausgänge Q3 und Q2 werden zu einem XOR-Gatter geleitet und der Ausgang des XOR ist mit dem Eingang D1 des ersten FF verbunden. Wie sieht die Sequenz aus, wenn alle FF im Zustand 1 starten?",
+        "tipps": [
+          "Schreibe die Gleichungen auf: $Q_1^+ = ?$, $Q_2^+ = ?$, $Q_3^+ = ?$",
+          "$Q_2$ und $Q_3$ schieben einfach weiter.",
+          "Rechne Zeile für Zeile, bis 111 wieder auftaucht.",
+          "Wie lang muss eine MLS mit 3 FF sein?"
+        ],
+        "loesung": [
+          {
+            "typ": "formel",
+            "tex": "Q_1^+ = Q_2 \\oplus Q_3 \\qquad Q_2^+ = Q_1 \\qquad Q_3^+ = Q_2"
+          },
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "Takt",
+              "$Q_1Q_2Q_3$"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "111"
+              ],
+              [
+                "1",
+                "011"
+              ],
+              [
+                "2",
+                "001"
+              ],
+              [
+                "3",
+                "100"
+              ],
+              [
+                "4",
+                "010"
+              ],
+              [
+                "5",
+                "101"
+              ],
+              [
+                "6",
+                "110"
+              ],
+              [
+                "7",
+                "111 (wieder Start)"
+              ]
+            ]
+          },
+          {
+            "typ": "merke",
+            "text": "Periode $7 = 2^3 - 1$, alle Zustände ausser 000 kommen vor."
+          }
+        ],
+        "ergebnis": "111 → 011 → 001 → 100 → 010 → 101 → 110 → 111",
+        "loesung_herkunft": "Folge stimmt mit Folie 26 überein und ist per Simulation geprüft. Im Material gibt es keine Lösung zu K11.",
+        "quelle": "K11-DigitalTechnik-Aufgaben-v2, Aufgabe 2"
+      }
+    ]
+  }
+}

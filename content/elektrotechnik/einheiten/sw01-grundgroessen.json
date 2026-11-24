@@ -1,0 +1,411 @@
+{
+  "id": "sw01-grundgroessen",
+  "bereich": "theorie",
+  "woche": 1,
+  "titel": "Block 1 · Grundgrössen & Gleichstromkreis",
+  "untertitel": "Ladung, Spannung, Strom, Widerstand, Kirchhoff, Serie/Parallel, Teiler",
+  "quelle": "ET+L – H26 – Block 1 (11.09.2026), Folien S. 19–59, Aufgaben S. 67–84; Lösungen in Block 2, S. 55–73. Buch Ose, Kap. 1, S. 12–20.",
+  "lektionen": [
+    {
+      "id": "ladung-spannung-strom",
+      "titel": "Ladung, Spannung und Strom",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ein **Stromkreis** braucht eine Quelle, eine geschlossene Verbindung über Leiter und einen Verbraucher. Wird er irgendwo unterbrochen, fliesst nichts mehr."
+        },
+        {
+          "typ": "titel",
+          "text": "Ladung Q"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Einheit Coulomb: $1\\,\\text{C} = 1\\,\\text{As}$",
+            "Kleinste Ladung ist die Elementarladung $e_0 = 1.602\\cdot10^{-19}\\,\\text{C}$ (Elektron $-e_0$, Proton $+e_0$)",
+            "Gleichnamige Ladungen stossen sich ab, ungleichnamige ziehen sich an"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Spannung U"
+        },
+        {
+          "typ": "text",
+          "text": "Arbeit pro Ladung beim Verschieben zwischen zwei Punkten A und B, gemessen in Volt. Die Richtung bestimmt das Vorzeichen, wie bei einer Höhendifferenz (Horw → Pilatus)."
+        },
+        {
+          "typ": "formel",
+          "tex": "U_{AB} = \\frac{W_{AB}}{Q}"
+        },
+        {
+          "typ": "titel",
+          "text": "Strom I und Stromdichte J"
+        },
+        {
+          "typ": "formel",
+          "tex": "I = \\frac{Q}{t} \\qquad J = \\frac{I}{A}\\;\\left[\\tfrac{\\text{A}}{\\text{mm}^2}\\right]"
+        },
+        {
+          "typ": "text",
+          "text": "Typische Stromdichte in der Hausinstallation: $2\\ldots10\\,\\text{A/mm}^2$. Die **technische Stromrichtung** zeigt die Bewegung positiver Ladung, die Elektronen fliessen umgekehrt."
+        },
+        {
+          "typ": "text",
+          "text": "Merksatz aus der Lösung B1-L1: **Strom** = Ladung pro Zeit durch eine Fläche, **Spannung** = Energie pro Ladung."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Was beschreibt die elektrische Spannung $U_{AB}$?",
+          "optionen": [
+            "Die Arbeit pro Ladung beim Verschieben von A nach B",
+            "Die Ladung, die pro Sekunde durch einen Querschnitt fliesst",
+            "Den Strom pro Querschnittsfläche",
+            "Das Verhältnis von Strom zu Spannung"
+          ],
+          "richtig": 0,
+          "erklaerung": "$U_{AB} = W_{AB}/Q$ – Energie pro Ladung. Ladung pro Zeit wäre der Strom."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Die technische Stromrichtung gibt die Richtung **positiver** Ladungen an. Elektronen fliessen entgegengesetzt.",
+          "aussage": "Die technische Stromrichtung entspricht der Flussrichtung der Elektronen.",
+          "richtig": false
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Ein leerer Akku wird 3 h mit 1 A und danach 4 h mit 0.5 A geladen. Nach 6 h Entladung hat er noch 2 Ah. Mit welchem konstanten Strom wurde entladen?",
+          "loesung": 0.5,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B1-L2",
+          "loesungsweg": [
+            "$Q_\\text{Laden} = 1\\,\\text{A}\\cdot3\\,\\text{h} + 0.5\\,\\text{A}\\cdot4\\,\\text{h} = 5\\,\\text{Ah}$",
+            "$Q_\\text{Entladen} = 5\\,\\text{Ah} - 2\\,\\text{Ah} = 3\\,\\text{Ah}$",
+            "$I = \\dfrac{3\\,\\text{Ah}}{6\\,\\text{h}} = 0.5\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Welcher Strom darf höchstens durch einen runden Draht mit 2 mm Durchmesser fliessen, damit die Stromdichte 5 A/mm² nicht überschreitet?",
+          "loesung": 15.7,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B1-L3",
+          "loesungsweg": [
+            "$A = \\left(\\tfrac{d}{2}\\right)^2\\pi = (1\\,\\text{mm})^2\\pi = 3.14\\,\\text{mm}^2$",
+            "$I = J\\cdot A = 5\\,\\tfrac{\\text{A}}{\\text{mm}^2}\\cdot3.14\\,\\text{mm}^2 = 15.7\\,\\text{A}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "widerstand",
+      "titel": "Widerstand, Leitwert und Temperatur",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Der **ohmsche Widerstand** ist das Verhältnis von Spannung zu Strom (Zählpfeile gleich gerichtet). Der Kehrwert ist der **Leitwert** G in Siemens."
+        },
+        {
+          "typ": "formel",
+          "tex": "R = \\frac{U}{I}\\;[\\Omega] \\qquad G = \\frac{1}{R}\\;[\\text{S}]"
+        },
+        {
+          "typ": "titel",
+          "text": "Spezifischer Widerstand"
+        },
+        {
+          "typ": "text",
+          "text": "R ist eine Bauteileigenschaft, $\\rho$ eine Materialeigenschaft (homogener Leiter, Gleichstrom):"
+        },
+        {
+          "typ": "formel",
+          "tex": "R = \\rho\\cdot\\frac{l}{A} \\qquad \\rho = \\frac{1}{\\gamma}"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Kupfer bei 20 °C: $\\rho = 0.01786\\,\\tfrac{\\Omega\\,\\text{mm}^2}{\\text{m}}$, $\\gamma = 56\\,\\tfrac{\\text{S}\\,\\text{m}}{\\text{mm}^2}$",
+            "Umrechnung: $1\\,\\tfrac{\\Omega\\,\\text{mm}^2}{\\text{m}} = 10^{-6}\\,\\Omega\\text{m}$"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Temperaturabhängigkeit (linearer Ansatz)"
+        },
+        {
+          "typ": "formel",
+          "tex": "R(\\vartheta) = R_{20}\\,\\bigl(1 + \\alpha\\,(\\vartheta - 20\\,°\\text{C})\\bigr)"
+        },
+        {
+          "typ": "text",
+          "text": "Kupfer: $\\alpha_{20} = 0.0039\\,\\tfrac{1}{\\text{K}}$. Metalle haben typisch $\\alpha > 0$, Konstantan $\\alpha \\approx 0$."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Durch 10 m Kupferdraht fliessen 10 A. Wie gross muss der Querschnitt mindestens sein, damit höchstens 0.1 V abfallen? ($\\rho = 0.01786\\,\\Omega\\text{mm}^2/\\text{m}$)",
+          "loesung": 17.9,
+          "einheit": "mm²",
+          "toleranz": 0.02,
+          "quelle": "B1-L4",
+          "loesungsweg": [
+            "$R = \\dfrac{U}{I} = \\dfrac{0.1\\,\\text{V}}{10\\,\\text{A}} = 0.01\\,\\Omega$",
+            "$A = \\dfrac{\\rho\\, l}{R} = \\dfrac{0.01786\\cdot10\\,\\text{m}}{0.01\\,\\Omega} = 17.9\\,\\text{mm}^2$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Welche Spannung liegt an einer 75 cm langen Quecksilbersäule mit 2 mm² Querschnitt, wenn 1.8 A fliessen? ($\\rho = 0.96\\,\\Omega\\text{mm}^2/\\text{m}$)",
+          "loesung": 0.648,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "B1-E3",
+          "loesungsweg": [
+            "$R = \\dfrac{0.96\\cdot0.75\\,\\text{m}}{2\\,\\text{mm}^2} = 0.36\\,\\Omega$",
+            "$U = R\\cdot I = 0.36\\,\\Omega\\cdot1.8\\,\\text{A} = 0.648\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Eine Kupferspule ($\\alpha_{20} = 0.0039\\,/\\text{K}$) hat bei 23 °C 2500 Ω und liegt an 24 V. Welcher Strom fliesst bei 100 °C (ohne Eigenerwärmung)? Angabe in mA.",
+          "loesung": 7.4,
+          "einheit": "mA",
+          "toleranz": 0.03,
+          "quelle": "B1-E6",
+          "loesungsweg": [
+            "$R_{20} = \\dfrac{2500\\,\\Omega}{1 + 0.0039\\cdot3} = 2471\\,\\Omega$",
+            "$R_{100} = 2471\\,\\Omega\\cdot(1 + 0.0039\\cdot80) = 3242\\,\\Omega$",
+            "$I = \\dfrac{24\\,\\text{V}}{3242\\,\\Omega} = 7.40\\,\\text{mA}$ (Folie: 7.39 mA, Rundung)"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Bei 10 V fliessen durch eine Spule 60 mA. Der Kupferdraht hat 0.1 mm Durchmesser ($\\rho = 0.0178\\,\\Omega\\text{mm}^2/\\text{m}$). Wie lang ist der Draht?",
+          "loesung": 73.5,
+          "einheit": "m",
+          "toleranz": 0.02,
+          "quelle": "B1-E5",
+          "loesungsweg": [
+            "$R = \\dfrac{10\\,\\text{V}}{60\\,\\text{mA}} = 166.7\\,\\Omega$",
+            "$A = (0.05\\,\\text{mm})^2\\pi = 7.85\\cdot10^{-3}\\,\\text{mm}^2$",
+            "$l = \\dfrac{R\\,A}{\\rho} = \\dfrac{166.7\\cdot7.85\\cdot10^{-3}}{0.0178}\\,\\text{m} = 73.5\\,\\text{m}$"
+          ]
+        },
+        {
+          "id": "q5",
+          "typ": "multiple_choice",
+          "frage": "Ein Voltmeter soll bei 500 V Vollausschlag 1 mA aufnehmen. Welchen Innenwiderstand braucht es?",
+          "optionen": [
+            "500 kΩ",
+            "500 Ω",
+            "2 MΩ",
+            "50 kΩ"
+          ],
+          "richtig": 0,
+          "erklaerung": "$R = U/I = 500\\,\\text{V} / 1\\,\\text{mA} = 500\\,\\text{k}\\Omega$ (B1-E4)."
+        }
+      ]
+    },
+    {
+      "id": "kirchhoff",
+      "titel": "Knoten- und Maschenregel",
+      "art": "rechnen",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "1. Kirchhoff: Knotenregel"
+        },
+        {
+          "typ": "text",
+          "text": "In jedem Knoten ist die Summe aller Ströme null. Ströme, deren Pfeil **zum Knoten** zeigt, werden addiert, die anderen subtrahiert."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\sum_{k=1}^{n} I_k = 0"
+        },
+        {
+          "typ": "titel",
+          "text": "2. Kirchhoff: Maschenregel"
+        },
+        {
+          "typ": "text",
+          "text": "Auf einem geschlossenen Umlauf ist die Summe aller Spannungen null. Spannungen mit Pfeil in Umlaufrichtung addieren, sonst subtrahieren. Der Umlaufsinn ist frei wählbar."
+        },
+        {
+          "typ": "formel",
+          "tex": "\\sum_{k=1}^{n} U_k = 0"
+        },
+        {
+          "typ": "text",
+          "text": "Bild aus der Vorlesung: Wer von Horw auf den Pilatus und wieder zurück läuft, hat in der Summe null Höhenmeter."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "Im Knoten A treffen 5 Leitungen zusammen: $I_1 = 300\\,\\text{A}$, $I_2 = -420\\,\\text{A}$, $I_3 = 60\\,\\text{A}$, $I_4 = 80\\,\\text{A}$. Laut Lösung gilt $I_1 - I_2 + I_3 + I_4 - I_5 = 0$. Wie gross ist $I_5$?",
+          "loesung": 860,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "Block 1, S. 48–49",
+          "loesungsweg": [
+            "$I_5 = I_1 - I_2 + I_3 + I_4$",
+            "$I_5 = 300\\,\\text{A} - (-420\\,\\text{A}) + 60\\,\\text{A} + 80\\,\\text{A} = 860\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Masche mit $U_1 = 100\\,\\text{V}$, $U_2 = -40\\,\\text{V}$, $U_3 = 30\\,\\text{V}$, $U_4 = 30\\,\\text{V}$. Der Umlauf ergibt $-U_1 + U_4 + U_2 + U_5 + U_3 = 0$. Wie gross ist $U_5$?",
+          "loesung": 80,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "Block 1, S. 51–52",
+          "loesungsweg": [
+            "$U_5 = U_1 - U_2 - U_3 - U_4$",
+            "$U_5 = 100\\,\\text{V} - (-40\\,\\text{V}) - 30\\,\\text{V} - 30\\,\\text{V} = 80\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Der Umlaufsinn kann beliebig gewählt werden – er muss nur konsequent beibehalten werden.",
+          "aussage": "Bei der Maschenregel muss der Umlaufsinn immer im Uhrzeigersinn gewählt werden.",
+          "richtig": false
+        },
+        {
+          "id": "q4",
+          "typ": "multiple_choice",
+          "frage": "Wann wird ein Strom in der Knotengleichung **addiert**?",
+          "optionen": [
+            "Wenn sein Zählpfeil zum Knoten zeigt",
+            "Wenn sein Wert positiv ist",
+            "Wenn er durch einen Widerstand fliesst",
+            "Immer – die Vorzeichen ergeben sich von selbst"
+          ],
+          "richtig": 0,
+          "erklaerung": "Massgebend ist die Pfeilrichtung: zum Knoten hin addieren, vom Knoten weg subtrahieren."
+        }
+      ]
+    },
+    {
+      "id": "serie-parallel-teiler",
+      "titel": "Serie, Parallel, Spannungs- und Stromteiler",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Serieschaltung"
+        },
+        {
+          "typ": "text",
+          "text": "Gleicher Strom durch alle Widerstände, die Spannungen addieren sich:"
+        },
+        {
+          "typ": "formel",
+          "tex": "R_\\text{ers} = R_1 + R_2 + \\dots + R_n"
+        },
+        {
+          "typ": "titel",
+          "text": "Parallelschaltung"
+        },
+        {
+          "typ": "text",
+          "text": "Gleiche Spannung an allen Widerständen, die Ströme (bzw. Leitwerte) addieren sich:"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\frac{1}{R_\\text{ers}} = \\frac{1}{R_1} + \\dots + \\frac{1}{R_n} \\qquad R_1\\parallel R_2 = \\frac{R_1 R_2}{R_1 + R_2}"
+        },
+        {
+          "typ": "titel",
+          "text": "Teilerregeln"
+        },
+        {
+          "typ": "formel",
+          "tex": "U_2 = U_q\\cdot\\frac{R_2}{R_1 + R_2} \\qquad I_2 = I\\cdot\\frac{R_1}{R_1 + R_2}"
+        },
+        {
+          "typ": "text",
+          "text": "Tipps aus Block 2: $R = 0\\,\\Omega$ ist ein Draht, $R = \\infty$ keine Verbindung, und n gleiche Widerstände parallel ergeben $R/n$. Schaltung schrittweise vereinfachen, notfalls umzeichnen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Welcher Wert lässt sich mit 1, 2 oder 3 Widerständen zu je 1 kΩ **nicht** bilden?",
+          "optionen": [
+            "750 Ω",
+            "666 Ω",
+            "1.5 kΩ",
+            "333 Ω"
+          ],
+          "richtig": 0,
+          "erklaerung": "Möglich sind 1 kΩ, 2 kΩ, 3 kΩ, 500 Ω, 333 Ω, 1.5 kΩ und 666 Ω (B1-L7). 750 Ω gehört nicht dazu."
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Netzwerk B1-L8: 20 Ω in Serie zu $400\\,\\Omega \\parallel \\bigl(25\\,\\Omega + (300\\,\\Omega\\parallel100\\,\\Omega)\\bigr)$, angeschlossen an 10 V. Wie gross ist der Gesamtstrom in mA?",
+          "loesung": 100,
+          "einheit": "mA",
+          "toleranz": 0.02,
+          "quelle": "B1-L8",
+          "loesungsweg": [
+            "$300\\parallel100 = 75\\,\\Omega$, $\\;25 + 75 = 100\\,\\Omega$",
+            "$400\\parallel100 = 80\\,\\Omega$, $\\;R_\\text{ers} = 20 + 80 = 100\\,\\Omega$",
+            "$I_1 = \\dfrac{10\\,\\text{V}}{100\\,\\Omega} = 100\\,\\text{mA}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Im gleichen Netzwerk: Welche Spannung $U_4$ liegt an der Parallelschaltung $300\\,\\Omega\\parallel100\\,\\Omega$?",
+          "loesung": 6,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "B1-L8",
+          "loesungsweg": [
+            "$U_1 = 100\\,\\text{mA}\\cdot20\\,\\Omega = 2\\,\\text{V}$, also $U_2 = 8\\,\\text{V}$",
+            "$I_2 = 8\\,\\text{V}/400\\,\\Omega = 20\\,\\text{mA}$, $\\;I_3 = 80\\,\\text{mA}$",
+            "$U_3 = 80\\,\\text{mA}\\cdot25\\,\\Omega = 2\\,\\text{V}$, $\\;U_4 = 8\\,\\text{V} - 2\\,\\text{V} = 6\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "multiple_choice",
+          "frage": "Welche Formel beschreibt den Stromteiler für $I_2$ (Strom durch $R_2$)?",
+          "optionen": [
+            "$I_2 = I\\cdot\\dfrac{R_1}{R_1 + R_2}$",
+            "$I_2 = I\\cdot\\dfrac{R_2}{R_1 + R_2}$",
+            "$I_2 = I\\cdot\\dfrac{R_1 R_2}{R_1 + R_2}$",
+            "$I_2 = I\\cdot\\dfrac{R_1 + R_2}{R_2}$"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Stromteiler steht der **andere** Widerstand im Zähler: durch den kleineren Widerstand fliesst mehr Strom."
+        }
+      ]
+    }
+  ]
+}

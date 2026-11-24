@@ -1,0 +1,291 @@
+{
+  "id": "sw05-spule-magnetfeld",
+  "bereich": "theorie",
+  "woche": 5,
+  "titel": "Block 4 · Magnetfeld & Spule",
+  "untertitel": "Magnetfeld, Fluss, Induktion, Induktivität, RL-Ausgleichsvorgang",
+  "quelle": "ET+L – H26 – Block 4 (05.10.2026), Folien S. 4–37, Aufgaben S. 40–43; Lösungen in Block 5, S. 54–65, Merke-Folie Block 5, S. 6–9. Buch Ose S. 175–203.",
+  "lektionen": [
+    {
+      "id": "magnetfeld",
+      "titel": "Magnetfeld und Durchflutung",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "liste",
+          "punkte": [
+            "Magnete haben immer Nord- und Südpol – es gibt **keine Monopole**",
+            "Magnetfeldlinien sind geschlossen: ein **Wirbelfeld** (das elektrische Feld ist ein Quellenfeld)",
+            "Je dichter die Feldlinien, desto stärker das Feld; am stärksten an den Polen"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Feld um einen stromdurchflossenen Leiter (Ørsted)"
+        },
+        {
+          "typ": "text",
+          "text": "Die Feldlinien sind Kreise um den Leiter. **Rechte-Hand-Regel:** Daumen in Stromrichtung, die Finger zeigen die Feldrichtung. Die Feldstärke ist proportional zum Strom und umgekehrt proportional zum Abstand."
+        },
+        {
+          "typ": "titel",
+          "text": "Durchflutung und Spule mit Eisenkern"
+        },
+        {
+          "typ": "formel",
+          "tex": "\\Theta = N\\cdot I \\qquad H = \\frac{N\\cdot I}{l_m}\\;\\left[\\tfrac{\\text{A}}{\\text{m}}\\right]"
+        },
+        {
+          "typ": "text",
+          "text": "$l_m$ ist die mittlere Feldlinienlänge im Eisen. Eisen leitet das Feld viel besser als Luft, darum konzentriert es sich fast ganz im Kern."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "wahr_falsch",
+          "erklaerung": "Es gibt keine magnetischen Monopole, nur Dipole.",
+          "aussage": "Wie bei elektrischen Ladungen gibt es auch einzelne magnetische Nord- oder Südpole.",
+          "richtig": false
+        },
+        {
+          "id": "q2",
+          "typ": "multiple_choice",
+          "frage": "Wie bestimmt man die Richtung des Magnetfelds um einen Leiter?",
+          "optionen": [
+            "Rechte Hand: Daumen in Stromrichtung, Finger zeigen die Feldrichtung",
+            "Linke Hand: Daumen in Feldrichtung, Finger zeigen den Strom",
+            "Das Feld zeigt immer vom Leiter weg",
+            "Das Feld verläuft parallel zum Leiter"
+          ],
+          "richtig": 0,
+          "erklaerung": "Rechte-Daumen-Regel aus Block 4."
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "Welche Art Feld ist das Magnetfeld?",
+          "optionen": [
+            "Ein Wirbelfeld mit geschlossenen Feldlinien",
+            "Ein Quellenfeld mit Anfang und Ende",
+            "Ein Skalarfeld",
+            "Ein homogenes Feld ohne Richtung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Magnetfeldlinien bilden geschlossene Kreise."
+        }
+      ]
+    },
+    {
+      "id": "fluss",
+      "titel": "Fluss, Flussdichte und Permeabilität",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "formel",
+          "tex": "\\Phi = B\\cdot A\\;[\\text{Wb} = \\text{Vs}] \\qquad B = \\mu_0\\mu_r H\\;\\left[\\text{T} = \\tfrac{\\text{Vs}}{\\text{m}^2}\\right]"
+        },
+        {
+          "typ": "text",
+          "text": "$\\mu_0 = 1.257\\cdot10^{-6}\\,\\tfrac{\\text{Vs}}{\\text{Am}}$. Die relative Permeabilität $\\mu_r$ sagt, wie gut ein Material Feldlinien leitet:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Luft 1, Wasser 0.99991",
+            "Stahl 40 … 7000, Elektrostahl 500 … 7000",
+            "Reines Eisen bis 250 000"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Magnetisierungskurve"
+        },
+        {
+          "typ": "text",
+          "text": "Mit Eisenkern steigt B zuerst stark, dann flacht die Kurve ab (Sättigung) und steigt nur noch mit $\\mu_0$. **Dauermagnete** zeigen Hysterese: Bei $H = 0$ bleibt die Remanenz $B_R$, um sie zu entfernen braucht es die Koerzitivfeldstärke $H_c$. Eine Spule ohne Kern ist linear, erzeugt aber viel weniger B."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "multiple_choice",
+          "frage": "Was bleibt bei einem Dauermagneten übrig, wenn H auf null geht?",
+          "optionen": [
+            "Die Remanenz $B_R$",
+            "Die Koerzitivfeldstärke $H_c$",
+            "Die Permeabilität $\\mu_0$",
+            "Nichts"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Restmagnetisierung heisst Remanenz $B_R$. $H_c$ braucht es, um sie zu entfernen."
+        },
+        {
+          "id": "q2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Ohne Kern ist B proportional zu H – aber deutlich kleiner als mit Eisen.",
+          "aussage": "Eine Spule ohne Eisenkern hat eine lineare Magnetisierungskurve.",
+          "richtig": true
+        },
+        {
+          "id": "q3",
+          "typ": "multiple_choice",
+          "frage": "In welcher Einheit wird die magnetische Flussdichte B angegeben?",
+          "optionen": [
+            "Tesla (Vs/m²)",
+            "Weber (Vs)",
+            "Henry (Vs/A)",
+            "A/m"
+          ],
+          "richtig": 0,
+          "erklaerung": "B in Tesla, Φ in Weber, L in Henry, H in A/m."
+        }
+      ]
+    },
+    {
+      "id": "induktivitaet",
+      "titel": "Induktion und Induktivität",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Ändert sich der Fluss in einer Leiterschleife, wird eine Spannung induziert:"
+        },
+        {
+          "typ": "formel",
+          "tex": "U = -N\\cdot\\frac{\\Delta\\Phi}{\\Delta t}"
+        },
+        {
+          "typ": "text",
+          "text": "Die **Induktivität** L (Henry, $1\\,\\text{H} = 1\\,\\text{Vs/A}$) sagt, wie viel Fluss pro Strom entsteht. An der idealen Spule gilt:"
+        },
+        {
+          "typ": "formel",
+          "tex": "u = L\\cdot\\frac{\\Delta i}{\\Delta t} \\qquad W = \\frac{1}{2}\\,L\\,I^2"
+        },
+        {
+          "typ": "text",
+          "text": "Der **Strom in einer Spule kann nicht springen**, weil Energie auf- oder abgebaut werden muss. Bei konstantem Strom ist $u = 0$. Analogie: ein Schaufelrad mit Trägheit."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "In einer realen Spule (100 mH) sollen 1 Ws gespeichert werden. Sie hängt an 10 V. Wie gross darf der Drahtwiderstand höchstens sein?",
+          "loesung": 2.24,
+          "einheit": "Ω",
+          "toleranz": 0.02,
+          "quelle": "B4-E4",
+          "loesungsweg": [
+            "$I = \\sqrt{\\dfrac{2W}{L}} = \\sqrt{\\dfrac{2\\cdot1\\,\\text{Ws}}{0.1\\,\\text{H}}} = 4.47\\,\\text{A}$",
+            "Stationär begrenzt nur R den Strom: $R = \\dfrac{10\\,\\text{V}}{4.47\\,\\text{A}} = 2.24\\,\\Omega$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "An einer leeren Spule mit L = 1 H liegen während 0.1 s konstant 3 V. Wie gross ist danach der Strom?",
+          "loesung": 0.3,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B4-E3",
+          "loesungsweg": [
+            "$\\Delta i = \\dfrac{u\\,\\Delta t}{L} = \\dfrac{3\\,\\text{V}\\cdot0.1\\,\\text{s}}{1\\,\\text{H}} = 0.3\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "wahr_falsch",
+          "erklaerung": "$\\Delta i/\\Delta t = 0$ → $u = 0$. Stationär wirkt die Spule wie ein Kurzschluss.",
+          "aussage": "Fliesst ein konstanter Gleichstrom durch eine ideale Spule, fällt an ihr keine Spannung ab.",
+          "richtig": true
+        }
+      ]
+    },
+    {
+      "id": "rl-ausgleich",
+      "titel": "RL-Ausgleichsvorgang",
+      "art": "rechnen",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "formel",
+          "tex": "\\tau = \\frac{L}{R} \\qquad i_L(t) = i_L(\\infty) + \\bigl[i_L(0^+) - i_L(\\infty)\\bigr]\\,e^{-t/\\tau}"
+        },
+        {
+          "typ": "text",
+          "text": "Zustandsgrösse ist der Spulenstrom: $i_L(0^+) = i_L(0^-)$."
+        },
+        {
+          "typ": "titel",
+          "text": "Merke: C und L im Vergleich"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Kondensator** – am Anfang wie ein Kurzschluss (Spannung springt nicht), stationär wie ein **Unterbruch**",
+            "**Spule** – am Anfang wie ein Unterbruch (Strom springt nicht), stationär wie ein **Kurzschluss**",
+            "Für τ zählt der Widerstand, den das Bauteil sieht – je nach Schalterstellung ein anderer"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "q1",
+          "typ": "rechnung",
+          "frage": "$U_q = 12\\,\\text{V}$, $R_1 = 10\\,\\Omega$, Spule 2.4 H, $R_2 = 20\\,\\Omega$ (vorher durch den Schalter überbrückt). Wie gross ist der Strom kurz vor dem Öffnen ($t < 0$)?",
+          "loesung": 1.2,
+          "einheit": "A",
+          "toleranz": 0.02,
+          "quelle": "B4-E2",
+          "loesungsweg": [
+            "Stationär ist die Spule ein Kurzschluss, $R_2$ ist überbrückt",
+            "$i = \\dfrac{12\\,\\text{V}}{10\\,\\Omega} = 1.2\\,\\text{A}$"
+          ]
+        },
+        {
+          "id": "q2",
+          "typ": "rechnung",
+          "frage": "Gleiche Schaltung nach dem Öffnen: Wie gross ist die Zeitkonstante in ms?",
+          "loesung": 80,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "B4-E2",
+          "loesungsweg": [
+            "$\\tau = \\dfrac{L}{R_1 + R_2} = \\dfrac{2.4\\,\\text{H}}{30\\,\\Omega} = 80\\,\\text{ms}$"
+          ]
+        },
+        {
+          "id": "q3",
+          "typ": "rechnung",
+          "frage": "Gleiche Schaltung: Welche Spannung liegt im Moment $t = 0^+$ am Schalter ($u_S = U_q - i\\,(R_1 + R_2)$)?",
+          "loesung": -24,
+          "einheit": "V",
+          "toleranz": 0.02,
+          "quelle": "B4-E2",
+          "loesungsweg": [
+            "$i(0^+) = i(0^-) = 1.2\\,\\text{A}$",
+            "$u_S = 12\\,\\text{V} - 1.2\\,\\text{A}\\cdot30\\,\\Omega = -24\\,\\text{V}$"
+          ]
+        },
+        {
+          "id": "q4",
+          "typ": "rechnung",
+          "frage": "Schütz: $U_q = 24\\,\\text{V}$, Spule 0.5 H mit $R_L = 50\\,\\Omega$, parallel $R = 1\\,\\text{k}\\Omega$. Nach dem Ausschalten entlädt sich die Spule über $R_L + R$. Zeitkonstante in ms?",
+          "loesung": 0.476,
+          "einheit": "ms",
+          "toleranz": 0.02,
+          "quelle": "B4-E1",
+          "loesungsweg": [
+            "$\\tau = \\dfrac{L}{R_L + R} = \\dfrac{0.5\\,\\text{H}}{1050\\,\\Omega} = 0.476\\,\\text{ms}$",
+            "Beim Einschalten zählt nur $R_L$: $\\tau = 0.5/50 = 10\\,\\text{ms}$"
+          ]
+        }
+      ]
+    }
+  ]
+}

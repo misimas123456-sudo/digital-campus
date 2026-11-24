@@ -1,0 +1,899 @@
+{
+  "id": "tv-ar-vr",
+  "titel": "AR & VR",
+  "untertitel": "Vorbereitung auf den Test vom 12.11. – Folien «Virtual Reality HS26» und «Augmented Reality HS26»",
+  "lektionen": [
+    {
+      "id": "kontinuum",
+      "titel": "Reality-Virtuality-Kontinuum",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Milgram & Kishino (1994) ordnen Umgebungen auf einer Achse an:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Real Environment** → **Augmented Reality** → **Augmented Virtuality** → **Virtual Environment**",
+            "**Mixed Reality** = alles zwischen ganz real und ganz virtuell",
+            "**XR** = Überbegriff über das ganze Kontinuum"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Virtual Reality"
+        },
+        {
+          "typ": "text",
+          "text": "VR heisst: **Echtes durch Digitales ersetzen.**"
+        },
+        {
+          "typ": "titel",
+          "text": "Augmented Reality (Azuma, 1997)"
+        },
+        {
+          "typ": "text",
+          "text": "Virtueller Inhalt wird in die echte Welt eingefügt, und zwar:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**real & virtuell** kombiniert",
+            "**in Echtzeit**",
+            "**in 3D verankert**"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Darum ist nicht alles AR: Bei CGI im Film fehlt die Echtzeit, ein HUD ist nicht in 3D verankert. Eine **Smartglass** (z. B. Google Glass) blendet nur Infos ein und ist deshalb keine AR im engeren Sinn."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "k1",
+          "typ": "multiple_choice",
+          "frage": "Welche Reihenfolge entspricht dem Reality-Virtuality-Kontinuum?",
+          "optionen": [
+            "Real → Augmented Reality → Augmented Virtuality → Virtual",
+            "Real → Augmented Virtuality → Augmented Reality → Virtual",
+            "Real → Mixed Reality → XR → Virtual",
+            "Augmented Reality → Real → Virtual → Augmented Virtuality"
+          ],
+          "richtig": 0,
+          "erklaerung": "Nach Milgram & Kishino: Real Environment, Augmented Reality, Augmented Virtuality, Virtual Environment."
+        },
+        {
+          "id": "k2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Mixed Reality spannt sich von AR bis Augmented Virtuality, XR ist der Überbegriff.",
+          "aussage": "Mixed Reality umfasst den Bereich zwischen ganz realer und ganz virtueller Umgebung.",
+          "richtig": true
+        },
+        {
+          "id": "k3",
+          "typ": "multiple_choice",
+          "frage": "Welche drei Merkmale hat AR nach Azuma (1997)?",
+          "optionen": [
+            "Real & virtuell kombiniert, in Echtzeit, in 3D verankert",
+            "Kopfgetragen, kabellos, mit Controller",
+            "Vollständig virtuell, in Echtzeit, mit Präsenz",
+            "Mit Marker, mit GPS, mit Kamera"
+          ],
+          "richtig": 0,
+          "erklaerung": "Azuma: Kombination von real und virtuell, interaktiv in Echtzeit, registriert (verankert) in 3D."
+        },
+        {
+          "id": "k4",
+          "typ": "wahr_falsch",
+          "erklaerung": "Einem HUD fehlt die Verankerung in 3D, es blendet Infos nur ins Sichtfeld ein.",
+          "aussage": "Ein klassisches Head-up-Display (HUD) erfüllt alle Kriterien von AR nach Azuma.",
+          "richtig": false
+        },
+        {
+          "id": "k5",
+          "typ": "multiple_choice",
+          "frage": "Was beschreibt Virtual Reality laut Folien am kürzesten?",
+          "optionen": [
+            "Echtes durch Digitales ersetzen",
+            "Digitales in die echte Welt einfügen",
+            "Echtes aus dem Bild entfernen",
+            "Informationen ins Sichtfeld einblenden"
+          ],
+          "richtig": 0,
+          "erklaerung": "VR ersetzt die echte Umgebung. Digitales einfügen ist AR, Echtes entfernen ist Diminished Reality."
+        }
+      ]
+    },
+    {
+      "id": "geschichte",
+      "titel": "Geschichte von VR und AR",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "VR"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**19. Jh.:** Stereobilder – Holmes Stereoscope (ab ca. 1861), «Kaiserpanorama» (um 1880)",
+            "**1929:** Link Trainer (Flugsimulator)",
+            "**1960/1962:** Telesphere-Mask, Sensorama (Morton Heilig)",
+            "**1965:** Ivan Sutherland, «The Ultimate Display» – ein Raum, in dem der Computer die Existenz von Materie kontrolliert",
+            "**80er:** Jaron Lanier (1984), NASA VIEW",
+            "**90er:** CAVE; erste Konsumentengeräte, z. B. Nintendo Virtual Boy (1995)",
+            "**10er:** Oculus Rift DK1 (2013)"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Die Oculus-Story"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "2012: Kickstarter mit Ziel $250'000 – nach 4 Stunden erreicht, total $2.4 Mio.",
+            "2013: DK1 wird ausgeliefert",
+            "2014: Facebook kauft Oculus für $2.4 Mrd.",
+            "2016: Oculus CV1"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "AR"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**1958:** Head-up-Display",
+            "**90er:** Sport-Visualisierung; der Begriff AR entsteht (Tom Caudell, Boeing, 1990), erste Anwendungen in der Luftfahrtfertigung",
+            "**2016:** Pokémon Go",
+            "**2017:** ARKit / ARCore"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "g1",
+          "typ": "multiple_choice",
+          "frage": "Wer schrieb 1965 «The Ultimate Display»?",
+          "optionen": [
+            "Ivan Sutherland",
+            "Morton Heilig",
+            "Jaron Lanier",
+            "Palmer Luckey"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ivan Sutherland, 1965. Heilig steht für das Sensorama, Lanier für die 80er, Luckey für Oculus."
+        },
+        {
+          "id": "g2",
+          "typ": "multiple_choice",
+          "frage": "Wofür kaufte Facebook Oculus im Jahr 2014?",
+          "optionen": [
+            "$2.4 Milliarden",
+            "$2.4 Millionen",
+            "$250'000",
+            "$75 Millionen"
+          ],
+          "richtig": 0,
+          "erklaerung": "$2.4 Mrd. in Cash und Aktien. $2.4 Mio. war der Kickstarter-Erlös, $75 Mio. das Venture Funding 2013."
+        },
+        {
+          "id": "g3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Caudell prägte den Begriff um 1990 bei Boeing in der Flugzeugfertigung.",
+          "aussage": "Der Begriff «Augmented Reality» stammt aus den 90er-Jahren (Tom Caudell, Boeing).",
+          "richtig": true
+        },
+        {
+          "id": "g4",
+          "typ": "multiple_choice",
+          "frage": "Was gab es zeitlich zuerst?",
+          "optionen": [
+            "Link Trainer",
+            "Sensorama",
+            "Nintendo Virtual Boy",
+            "Oculus Rift DK1"
+          ],
+          "richtig": 0,
+          "erklaerung": "Link Trainer 1929, Sensorama 1962, Virtual Boy 1995, Rift DK1 2013."
+        },
+        {
+          "id": "g5",
+          "typ": "multiple_choice",
+          "frage": "In welchem Jahr kamen ARKit und ARCore?",
+          "optionen": [
+            "2017",
+            "2013",
+            "2016",
+            "2021"
+          ],
+          "richtig": 0,
+          "erklaerung": "2017. 2016 war Pokémon Go."
+        }
+      ]
+    },
+    {
+      "id": "nutzen",
+      "titel": "Die 3 Nutzen von VR",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "VR ist nicht «nur ein neuer Displaytyp». Die Folien nennen drei Nutzen:"
+        },
+        {
+          "typ": "titel",
+          "text": "1. Räumlicher Eindruck"
+        },
+        {
+          "typ": "text",
+          "text": "Der Benutzer ist **in** der virtuellen Welt, statt sie nur zu betrachten:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Objekte sind «wie in echt»",
+            "besser verständlich für Nicht-Experten",
+            "intuitive Navigation",
+            "Verständnis von Raum, Grösse und Layout (Beispiel: Ikea)"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "2. Interaktion"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Interaktion wie am Bildschirm ist nicht möglich (oder sinnvoll)",
+            "Interaktion kann/sollte der Realität nachempfunden sein (Beispiele: Volkswagen, Flaim Systems)",
+            "AI/LLM-Agenten als Interface: Gesprächstraining, Moderator, Interaktion mit dem System"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "3. Präsenz"
+        },
+        {
+          "typ": "text",
+          "text": "Das Gefühl, wirklich in der virtuellen Umgebung zu sein – mehr dazu in der nächsten Lektion."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "n1",
+          "typ": "multiple_choice",
+          "frage": "Welches sind die 3 Nutzen von VR laut Folien?",
+          "optionen": [
+            "Räumlicher Eindruck, Interaktion, Präsenz",
+            "Immersion, Präsenz, Tracking",
+            "Grafik, Audio, Haptik",
+            "Training, Kollaboration, Design"
+          ],
+          "richtig": 0,
+          "erklaerung": "Räumlicher Eindruck, Interaktion und Präsenz."
+        },
+        {
+          "id": "n2",
+          "typ": "wahr_falsch",
+          "erklaerung": "Bildschirm-Interaktion ist in VR nicht möglich oder nicht sinnvoll. Sie sollte der Realität nachempfunden sein.",
+          "aussage": "In VR sollte man die Interaktion möglichst genau wie am Bildschirm (Maus, Menüs) gestalten.",
+          "richtig": false
+        },
+        {
+          "id": "n3",
+          "typ": "multiple_choice",
+          "frage": "Welcher Punkt gehört zum Nutzen «räumlicher Eindruck»?",
+          "optionen": [
+            "Verständnis von Raum, Grösse und Layout",
+            "Rubber Hand Illusion",
+            "Pixelstreaming",
+            "Marker mit gutem Kontrast"
+          ],
+          "richtig": 0,
+          "erklaerung": "Räumlicher Eindruck: Objekte wie in echt, verständlich für Nicht-Experten, intuitive Navigation, Raum/Grösse/Layout."
+        },
+        {
+          "id": "n4",
+          "typ": "multiple_choice",
+          "frage": "Wofür können AI/LLM-Agenten in VR als Interface dienen?",
+          "optionen": [
+            "Gesprächstraining, Moderator, Interaktion mit dem System",
+            "Tracking der Controller",
+            "Berechnung des Tiefenbilds",
+            "Ersatz für das Headset"
+          ],
+          "richtig": 0,
+          "erklaerung": "Laut Folie: Gesprächstraining, Moderator und Interaktion mit dem System."
+        }
+      ]
+    },
+    {
+      "id": "immersion-praesenz",
+      "titel": "Immersion & Präsenz",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Immersion = technische Qualität des VR-Systems"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Extensiveness:** Zahl der angesprochenen Sinne",
+            "**Surroundness:** wie gut der Nutzer umschlossen ist",
+            "**Inclusiveness:** wie gut die echte Welt abgeblockt wird",
+            "**Matching:** wie gut die angesprochenen Sinne übereinstimmen",
+            "**Vividness:** Qualität der Simulation"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Präsenz = Gefühl, in der virtuellen Umgebung präsent zu sein"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "subjektiv",
+            "Nutzer vergisst die echte Welt und die benutzte Technologie",
+            "Nutzer akzeptiert die virtuelle Umgebung als echt"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Beispiele aus dem Unterricht: **The Plank** (Brett über dem Abgrund) und die **Rubber Hand Illusion**."
+        },
+        {
+          "typ": "titel",
+          "text": "Sinne (Extensiveness)"
+        },
+        {
+          "typ": "text",
+          "text": "Visuell, Audio, vestibulär (Gleichgewicht), Gewicht, Haptik, Temperatur, Geruch, Geschmack – für jeden gibt es Forschungs- oder Produktbeispiele (z. B. Ultraleap, Tegway ThermoReal, Galvanic Vestibular Stimulation)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "i1",
+          "typ": "wahr_falsch",
+          "erklaerung": "Umgekehrt: Immersion = technische Qualität, Präsenz = subjektives Gefühl.",
+          "aussage": "Immersion ist subjektiv, Präsenz ist die technische Qualität des Systems.",
+          "richtig": false
+        },
+        {
+          "id": "i2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Immersions-Faktor beschreibt, wie gut die echte Welt abgeblockt wird?",
+          "optionen": [
+            "Inclusiveness",
+            "Surroundness",
+            "Extensiveness",
+            "Vividness"
+          ],
+          "richtig": 0,
+          "erklaerung": "Inclusiveness. Surroundness = Umschliessen, Extensiveness = Zahl der Sinne, Vividness = Qualität."
+        },
+        {
+          "id": "i3",
+          "typ": "multiple_choice",
+          "frage": "Welcher Faktor beschreibt die Zahl der angesprochenen Sinne?",
+          "optionen": [
+            "Extensiveness",
+            "Matching",
+            "Inclusiveness",
+            "Surroundness"
+          ],
+          "richtig": 0,
+          "erklaerung": "Extensiveness."
+        },
+        {
+          "id": "i4",
+          "typ": "multiple_choice",
+          "frage": "«Matching» bedeutet …",
+          "optionen": [
+            "wie gut die angesprochenen Sinne übereinstimmen",
+            "wie gut der Nutzer umschlossen ist",
+            "wie hoch die Auflösung ist",
+            "wie gut der Marker erkannt wird"
+          ],
+          "richtig": 0,
+          "erklaerung": "Matching: Übereinstimmung der Sinne, z. B. Bild und Gleichgewicht passen zusammen."
+        },
+        {
+          "id": "i5",
+          "typ": "wahr_falsch",
+          "erklaerung": "Genau das beschreibt Präsenz laut Folie.",
+          "aussage": "Bei hoher Präsenz vergisst der Nutzer die echte Welt und die benutzte Technologie.",
+          "richtig": true
+        }
+      ]
+    },
+    {
+      "id": "vr-hardware",
+      "titel": "VR-Hardware",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Smartphone Viewers"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "z. B. Google Cardboard, Gear VR, Daydream",
+            "oft als günstiges Giveaway an Events",
+            "für ernsthafte Anwendungen ungeeignet"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "PC VR"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "bessere Performance als Smartphone",
+            "braucht einen (guten) PC oder Laptop, teurere Geräte",
+            "spezialisierte Geräte: hohe Auflösung, grosses Sichtfeld, Eye- und Handtracking (z. B. Varjo XR-4, Pimax)"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "All-in-one Displays"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "integriertes Gerät mit Snapdragon XR1/XR2 (z. B. Quest 3, Pico 4, Vive Focus 3)",
+            "üblich: Android-basiert, kamerabasiertes 6DoF-Tracking, zwei Controller, Handtracking",
+            "optional: Eye- und Facetracking"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "CAVE (Cave Automatic Virtual Environment)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "3–6-seitiges Display (Projektor oder Bildschirm)",
+            "eine oder mehrere Personen mit 3D",
+            "Interaktion mit einem «Wand»-Gerät",
+            "nicht mobil und teuer; neuere Varianten mit LED-Wänden"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "h1",
+          "typ": "multiple_choice",
+          "frage": "Welche Geräteklasse ist laut Folien für ernsthafte Anwendungen ungeeignet?",
+          "optionen": [
+            "Smartphone Viewers (z. B. Cardboard)",
+            "PC VR",
+            "All-in-one Displays",
+            "CAVE"
+          ],
+          "richtig": 0,
+          "erklaerung": "Smartphone Viewers sind günstige Giveaways, aber für ernsthafte Anwendungen ungeeignet."
+        },
+        {
+          "id": "h2",
+          "typ": "multiple_choice",
+          "frage": "Was ist typisch für ein All-in-one Display wie die Quest 3?",
+          "optionen": [
+            "Android-basiert mit kamerabasiertem 6DoF-Tracking",
+            "Braucht zwingend einen Gaming-PC",
+            "3–6-seitige Projektion",
+            "Nur 3DoF mit Smartphone"
+          ],
+          "richtig": 0,
+          "erklaerung": "All-in-one: Snapdragon XR-Chip, Android, Kamera-6DoF-Tracking, zwei Controller, Handtracking."
+        },
+        {
+          "id": "h3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Eine oder mehrere Personen mit 3D. Nachteil: nicht mobil und teuer.",
+          "aussage": "Eine CAVE kann von mehreren Personen gleichzeitig genutzt werden.",
+          "richtig": true
+        },
+        {
+          "id": "h4",
+          "typ": "multiple_choice",
+          "frage": "Welcher Vorteil gehört zu PC VR?",
+          "optionen": [
+            "Bessere Performance als Smartphone",
+            "Kein Rechner nötig",
+            "Am günstigsten",
+            "Am mobilsten"
+          ],
+          "richtig": 0,
+          "erklaerung": "PC VR hat mehr Leistung, braucht aber einen guten PC und ist teurer."
+        }
+      ]
+    },
+    {
+      "id": "ar-bauformen",
+      "titel": "AR-Bauformen",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Magic Lens"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Hintergrund als Videobild, AR-Objekte als Überlagerung",
+            "jedes Smartphone oder Tablet",
+            "Gerät muss gehalten werden, dafür überall verfügbar"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Magic Lens+"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Tiefenbild als Ausgangsbasis",
+            "AR-Objekte werden in die Umgebung eingebettet → **Verdeckungen sind möglich**",
+            "moderne Smartphones, Tablets und HMDs"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Head-Mounted Display (HMD)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Hände sind frei",
+            "für langen Gebrauch oft schwer, nicht weit verbreitet",
+            "soziale Faktoren: Headsets mit Kameras sind im öffentlichen Raum umstritten"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "See-through (transparent)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Bild auf semi-transparentem Display",
+            "Bild muss heller als der Hintergrund sein, **Schwarz kann nicht dargestellt werden**",
+            "Produktion technisch anspruchsvoll; besser für Langzeitgebrauch"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Video-see-through"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "echte Umgebung als Videobild, digitale Inhalte überlagert (z. B. Varjo XR-3, Apple Vision Pro)",
+            "Verzögerung im Videobild kann **Cybersickness** auslösen",
+            "echte Welt ist verdeckt → Sicherheitsprobleme in Bau/Industrie"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Head-Mounted Tablet"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "undurchsichtiges Display vor einem Auge, **keine Mixed-Reality-Fähigkeit**",
+            "hands-free, Sprachsteuerung, IP66, helmkompatibel"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "b1",
+          "typ": "multiple_choice",
+          "frage": "Bei welcher Bauform kann Schwarz nicht dargestellt werden?",
+          "optionen": [
+            "See-through (transparentes Display)",
+            "Video-see-through",
+            "Magic Lens",
+            "Head-Mounted Tablet"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim transparenten Display muss das Bild heller als der Hintergrund sein, Schwarz wäre einfach durchsichtig."
+        },
+        {
+          "id": "b2",
+          "typ": "multiple_choice",
+          "frage": "Was unterscheidet Magic Lens+ von Magic Lens?",
+          "optionen": [
+            "Tiefenbild, dadurch sind Verdeckungen möglich",
+            "Es braucht kein Videobild",
+            "Es ist ein transparentes Display",
+            "Es funktioniert nur mit Markern"
+          ],
+          "richtig": 0,
+          "erklaerung": "Magic Lens+ nutzt ein Tiefenbild und kann AR-Objekte hinter echte Gegenstände setzen."
+        },
+        {
+          "id": "b3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Ja, und weil die echte Welt verdeckt ist, gibt es Sicherheitsprobleme im Bau/Industrieumfeld.",
+          "aussage": "Bei Video-see-through kann die Verzögerung im Videobild zu Cybersickness führen.",
+          "richtig": true
+        },
+        {
+          "id": "b4",
+          "typ": "multiple_choice",
+          "frage": "Welche Bauform hat keine Mixed-Reality-Fähigkeit?",
+          "optionen": [
+            "Head-Mounted Tablet",
+            "Magic Lens+",
+            "Video-see-through",
+            "See-through"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das Head-Mounted Tablet hat ein undurchsichtiges Display vor einem Auge."
+        },
+        {
+          "id": "b5",
+          "typ": "wahr_falsch",
+          "erklaerung": "Smartphone/Tablet muss gehalten werden. Hände frei hat man beim HMD.",
+          "aussage": "Beim Magic Lens hat man die Hände frei.",
+          "richtig": false
+        }
+      ]
+    },
+    {
+      "id": "inhalte-platzieren",
+      "titel": "AR-Inhalte platzieren (Tracking)",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "GPS und Orientierungssensoren"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Position über GPS, Orientierung über IMU (z. B. Pokémon Go)",
+            "nicht sehr genau, aber weltweit im Freien verfügbar"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Marker Based Tracking"
+        },
+        {
+          "typ": "text",
+          "text": "Fast alles kann ein Marker sein, wenn er:"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "nicht rotationssymmetrisch ist",
+            "guten Kontrast hat (schwarz-weiss)",
+            "gross genug ist",
+            "einzigartig ist"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "3D Targets / Model Targets"
+        },
+        {
+          "typ": "text",
+          "text": "Statt an einem Bild wird der AR-Inhalt an einem 3D-Gegenstand befestigt – aus Scan, CAD, Mesh-Modell usw. (z. B. Vuforia Model Targets)."
+        },
+        {
+          "typ": "titel",
+          "text": "AR ohne Marker"
+        },
+        {
+          "typ": "text",
+          "text": "**SLAM – Simultaneous Localization And Mapping:** Das Gerät erstellt eine Karte der Umgebung und bestimmt gleichzeitig seine eigene Position darin (z. B. ARCore, Project Tango)."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "p1",
+          "typ": "multiple_choice",
+          "frage": "Wofür steht SLAM?",
+          "optionen": [
+            "Simultaneous Localization And Mapping",
+            "Spatial Layer Augmented Mapping",
+            "Sensor Location And Measurement",
+            "Stereo Lens Augmented Model"
+          ],
+          "richtig": 0,
+          "erklaerung": "Simultaneous Localization And Mapping – Grundlage für AR ohne Marker."
+        },
+        {
+          "id": "p2",
+          "typ": "multiple_choice",
+          "frage": "Welche Eigenschaft sollte ein guter Marker NICHT haben?",
+          "optionen": [
+            "Rotationssymmetrie",
+            "Guter Kontrast",
+            "Ausreichende Grösse",
+            "Einzigartigkeit"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein Marker darf nicht rotationssymmetrisch sein, sonst ist die Ausrichtung nicht eindeutig."
+        },
+        {
+          "id": "p3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Umgekehrt: nicht sehr genau, dafür weltweit im Freien verfügbar.",
+          "aussage": "GPS + IMU ist sehr genau, funktioniert aber nur in Innenräumen.",
+          "richtig": false
+        },
+        {
+          "id": "p4",
+          "typ": "multiple_choice",
+          "frage": "Woraus kann ein 3D/Model Target erstellt werden?",
+          "optionen": [
+            "Scan, CAD oder Mesh-Modell",
+            "Nur aus einem QR-Code",
+            "Nur aus GPS-Daten",
+            "Aus einem Tiefenbild des Nutzers"
+          ],
+          "richtig": 0,
+          "erklaerung": "Laut Folie: aus Scan, CAD, Mesh-Modell usw."
+        }
+      ]
+    },
+    {
+      "id": "anwendungen",
+      "titel": "Anwendungen von XR",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Rollen einer XR-App"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Tool**, mit dem andere Produkte erstellt werden",
+            "**Produkt**, das verkauft wird",
+            "**Ort**, an dem etwas stattfindet"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Markt: ca. **70 % Enterprise**, 30 % Consumer; Umsatz 2024 ca. **$25 Mrd.**"
+        },
+        {
+          "typ": "titel",
+          "text": "Training von Abläufen"
+        },
+        {
+          "typ": "text",
+          "text": "Abläufe und Handgriffe «wie in echt» üben (Montage, Einsatzkräfte, Bedienung, Chirurgie, Flug):"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "sicher, repetierbar, dokumentierbar",
+            "Erstellung von (zufälligen) Varianten",
+            "skalierbar für mehrere Benutzer, nicht eingeschränkt durch Zugang"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Kollaboration"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "mehrere verteilte Nutzer, über Mediengrenzen hinweg",
+            "mehr non-verbale Kommunikation als bei Video, aber höhere technische Hürden",
+            "Projektmeetings, Produktbesprechungen, Designreviews (z. B. BMW, Ford, Volvo)"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Cloud XR («Pixelstreaming»)"
+        },
+        {
+          "typ": "text",
+          "text": "Trackingdaten gehen in die Cloud, das Bild kommt zurück. Vorteile: höchste Leistung auch für All-in-One-Displays, keine sensitiven Daten auf dem Gerät, gute Skalierbarkeit."
+        },
+        {
+          "typ": "titel",
+          "text": "AR-Beispiele"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Google Translate, Schulung, Engineering (Boeing), Holzbau, Logistik",
+            "**Diminished Reality:** echte Dinge aus dem Bild entfernen",
+            "persönliche XR-Workspaces (Apple Vision Pro, Samsung Galaxy XR) mit Video-see-through",
+            "AR-Brillen im Brillendesign: Akkulaufzeit und Blickfeld sind limitiert"
+          ]
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "a1",
+          "typ": "multiple_choice",
+          "frage": "Welche drei Rollen kann eine XR-App laut Folien einnehmen?",
+          "optionen": [
+            "Tool, Produkt, Ort",
+            "Spiel, Film, Werbung",
+            "Hardware, Software, Service",
+            "Training, Marketing, Kunst"
+          ],
+          "richtig": 0,
+          "erklaerung": "Tool, mit dem andere Produkte erstellt werden; Produkt, das verkauft wird; Ort, an dem etwas stattfindet."
+        },
+        {
+          "id": "a2",
+          "typ": "multiple_choice",
+          "frage": "Wie gross ist ungefähr der Enterprise-Anteil am XR-Umsatz?",
+          "optionen": [
+            "ca. 70 %",
+            "ca. 30 %",
+            "ca. 50 %",
+            "ca. 90 %"
+          ],
+          "richtig": 0,
+          "erklaerung": "~70 % Enterprise, 30 % Consumer."
+        },
+        {
+          "id": "a3",
+          "typ": "wahr_falsch",
+          "erklaerung": "Dazu kommen höchste Leistung für All-in-One-Displays und gute Skalierbarkeit.",
+          "aussage": "Ein Vorteil von Cloud XR ist, dass keine sensitiven Daten auf dem Gerät liegen.",
+          "richtig": true
+        },
+        {
+          "id": "a4",
+          "typ": "multiple_choice",
+          "frage": "Was ist KEIN genannter Vorteil von VR-Training?",
+          "optionen": [
+            "Braucht keine Hardware",
+            "Sicher",
+            "Repetierbar",
+            "Dokumentierbar"
+          ],
+          "richtig": 0,
+          "erklaerung": "Genannt: sicher, repetierbar, dokumentierbar, Varianten, skalierbar, nicht eingeschränkt durch Zugang."
+        },
+        {
+          "id": "a5",
+          "typ": "multiple_choice",
+          "frage": "Was ist Diminished Reality?",
+          "optionen": [
+            "Echte Dinge werden aus dem Bild entfernt",
+            "AR mit geringer Auflösung",
+            "VR ohne Controller",
+            "AR nur mit GPS"
+          ],
+          "richtig": 0,
+          "erklaerung": "Diminished Reality entfernt reale Objekte aus der Wahrnehmung."
+        },
+        {
+          "id": "a6",
+          "typ": "wahr_falsch",
+          "erklaerung": "So steht es auf der Kollaborations-Folie.",
+          "aussage": "Kollaboration in VR ermöglicht mehr non-verbale Kommunikation als ein Videocall, hat aber höhere technische Hürden.",
+          "richtig": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "format": 2,
+  "id": "mathematik",
+  "name": "Mathematik",
+  "kurz": "MATH1B",
+  "farbe": "#a4bbe5",
+  "schrift": "Fraunces",
+  "status": "in-arbeit",
+  "ilias": "https://elearning.hslu.ch/ilias/goto.php/crs/7215120",
+  "material": "material/mathematik/",
+  "eigene_unterlagen": "Documents/HSLU/Mathematik",
+  "arten": [
+    "verstaendnis",
+    "rechnen",
+    "aufgabe"
+  ],
+  "einheiten": [
+    {
+      "id": "block18-hauptsatz",
+      "titel": "Hauptsatz und Eigenschaften des bestimmten Integrals",
+      "bereich": "theorie",
+      "block": 18,
+      "status": "bereit"
+    },
+    {
+      "id": "block19-stammfunktionen",
+      "titel": "Stammfunktionen",
+      "bereich": "theorie",
+      "block": 19,
+      "status": "bereit"
+    },
+    {
+      "id": "block20-integrationsregeln",
+      "titel": "Integrationsregeln: Substitution und partielle Integration",
+      "bereich": "theorie",
+      "block": 20,
+      "status": "bereit"
+    },
+    {
+      "id": "block21-differenzialgleichungen",
+      "titel": "Differenzialgleichungen und Konstruktionssatz",
+      "bereich": "theorie",
+      "block": 21,
+      "status": "bereit"
+    }
+  ],
+  "zusaetze": {
+    "quellen": "quellen/index.json",
+    "termine": "termine.json",
+    "formeln": "formeln.json"
+  },
+  "hinweis": "Block 18 bis 21 liegen als Einheiten vor (einheiten/). Die übrigen Blöcke liegen noch als Skript-/Übungsblöcke in quellen/ und direkt in der App. formeln.json enthält die neuen Formeln pro Semesterwoche (Reiter «Formeln»)."
+}

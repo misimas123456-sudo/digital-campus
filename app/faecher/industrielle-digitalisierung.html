@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="industrielle-digitalisierung">
+<head>
+<script id="dc-format-v2">
+/* Digital Campus – Adapter Inhaltsformat v2 (siehe docs/inhaltsformat.md, Abschnitt «Adapter»).
+   Liest content/<fach-id>/… im Format v2 und gibt es der App im bisherigen Format weiter.
+   Lokale Kopien (app/faecher/) finden content/ automatisch über ../../content/. */
+(function () {
+  "use strict";
+  var F = window.fetch && window.fetch.bind(window);
+  if (!F) return;
+  var lektionAlt = function (l, m) {
+    l = Object.assign({}, l);
+    if (m.dauer && l.dauer_min != null) { l.dauer = l.dauer_min; delete l.dauer_min; }
+    var map = function (a) {
+      a = Object.assign({}, a);
+      if (a.typ === "wahr_falsch" && m.wf) { a.frage = a.aussage; a.antwort = a.richtig; delete a.aussage; delete a.richtig; }
+      if (a.typ === "rechnung" && m.rechnen) { a.typ = "rechnen"; if (a.loesungsweg != null) { a.rechenweg = a.loesungsweg; delete a.loesungsweg; } }
+      if (a.typ === "multiple_choice" && m.auswahl) { a.typ = "auswahl"; a.loesung = a.richtig; delete a.richtig; }
+      return a;
+    };
+    if (l.aufgaben) { var auf = l.aufgaben.map(map); delete l.aufgaben; l[m.uebungen ? "uebungen" : "aufgaben"] = auf; }
+    return l;
+  };
+  var einheitAlt = function (e, m) {
+    e = Object.assign({}, e);
+    if (m.fach) e.fach = m.fach;
+    if (m.sw && e.woche != null) { e.sw = e.woche; delete e.woche; }
+    if (m.quellen && e.quelle != null) { e.quellen = e.quelle; delete e.quelle; }
+    if (m.labor && e.labor != null) { e.labor_nr = e.labor; delete e.labor; }
+    e.lektionen = (e.lektionen || []).map(function (l) { return lektionAlt(l, m); });
+    return e;
+  };
+  var zeitMitOrt = function (t) { return [t.zeit, t.ort].filter(Boolean).join(" · "); };
+  var QUELLE = {"id":"industrielle-digitalisierung","ilias":"https://elearning.hslu.ch/ilias/goto.php/crs/7215066"};
+  if (QUELLE) document.addEventListener("DOMContentLoaded", function () {
+    var st = document.createElement("style");
+    st.textContent = ".dc-quelle{max-width:880px;margin:32px auto 0;padding:16px 16px calc(24px + env(safe-area-inset-bottom));border-top:1px solid var(--dc-line,#2e2c36);color:var(--dc-text-faint,#807f87);font:400 12px/18px var(--dc-font-campus,inherit)}.dc-quelle a{color:var(--dc-campus,#af9ee4)}.dc-quelle code{font-family:var(--dc-font-mono,monospace)}";
+    var f = document.createElement("footer"); f.className = "dc-quelle";
+    f.append("Kursmaterial: ");
+    var a = document.createElement("a"); a.href = QUELLE.ilias; a.textContent = "ILIAS-Kurs"; f.append(a);
+    f.append(" · lokal in ");
+    var c = document.createElement("code"); c.textContent = "digital-campus\\material\\" + QUELLE.id + "\\"; f.append(c);
+    f.append(" (vom ILIAS-Agent aktualisiert). Inhalte dieser App stammen nur aus diesem Material.");
+    document.head.append(st); document.body.append(f);
+  });
+  var KONV = function (p, d) {
+    if (p === "fach.json") return Object.assign({}, d, {
+      titel: d.name,
+      einheiten: d.einheiten.filter(function (e) { return e.bereich !== "testvorbereitung"; }),
+      testvorbereitung: d.einheiten.filter(function (e) { return e.bereich === "testvorbereitung"; }).map(function (e) { return { id: e.id, titel: e.titel, status: e.status }; }) });
+    if (/^(einheiten|testvorbereitung)\//.test(p)) return einheitAlt(d, { fach: "industrielle-digitalisierung", uebungen: true, wf: true, rechnen: true });
+    return d;
+  };
+  window.fetch = function (input, init) {
+    var url = String(input && input.url || input);
+    return F(input, init).then(function (r) {
+      if (!r.ok && /^content\//.test(url)) return F("../../" + url, init);
+      return r;
+    }).then(function (r) {
+      var m = url.match(/content\/[a-z0-9-]+\/(.+\.json)(\?|$)/);
+      if (!r.ok || !m || !KONV) return r;
+      return r.clone().json().then(function (d) {
+        if (!d || (d.format !== 2 && !/^(einheiten|testvorbereitung)\//.test(m[1]))) return r;
+        var n = KONV(m[1], d);
+        return new Response(JSON.stringify(n), { status: 200, headers: { "Content-Type": "application/json" } });
+      }, function () { return r; });
+    });
+  };
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Industrielle Digitalisierung – Digital Campus</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%228%22%20fill%3D%22%231b2120%22%20stroke%3D%22%232a3231%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225.5%22%20fill%3D%22%2392c6c2%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Outfit:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Digital Campus Design System: Theme industrielle-digitalisierung */
+:root{
+  --dc-bg:#0c1010;
+  --dc-surface:#131818;
+  --dc-surface-raised:#1b2120;
+  --dc-line:#2a3231;
+  --dc-accent:#92c6c2;
+  --dc-accent-hover:#acd8d4;
+  --dc-accent-soft:#182423;
+  --dc-accent-line:#435e5c;
+  --dc-on-accent:#0c1615;
+  --dc-text:#ebeaef;
+  --dc-text-muted:#aaaab2;
+  --dc-text-faint:#807f87;
+  --dc-campus:#af9ee4;
+  --dc-campus-soft:#231f2f;
+  --dc-success:#8ec7a1;
+  --dc-warning:#dcc188;
+  --dc-danger:#dc8b88;
+  --dc-font-fach:"Sora", system-ui, sans-serif;
+  --dc-font-campus:"Outfit", system-ui, sans-serif;
+  --dc-bg-rgb:12,16,16;
+  --dc-font-mono:"JetBrains Mono", ui-monospace, monospace;
+}
+:root{
+  --bg:#0c1010; --surface:#131818; --surface-2:#1b2120; --line:#2a3231;
+  --fg:#ebeaef; --muted:#aaaab2;
+  --accent:#92c6c2; --accent-strong:#acd8d4; --accent-soft:#182423; --on-accent:#0c1615;
+  --ok:#8ec7a1; --ok-soft:rgba(142,199,161,.10); --bad:#dc8b88; --bad-soft:rgba(220,139,136,.10);
+  --r:14px;
+  --f-head:"Sora", system-ui, sans-serif;
+  --f-body:"Sora", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body)}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{font-family:var(--f-head);line-height:1.2;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 64px}
+
+/* Kopf + Reiter */
+header{position:sticky;top:0;z-index:5;background:rgba(15,13,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{max-width:860px;margin:0 auto;padding:14px 16px 0}
+.fach{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.top h1{font-size:20px;margin-top:2px}
+.tabs{display:flex;gap:4px;margin-top:12px;overflow-x:auto}
+.tab{background:none;border:0;padding:10px 14px;border-bottom:3px solid transparent;color:var(--muted);font-weight:600;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+
+/* Karten */
+.section-title{margin:28px 0 12px;font-size:14px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.grid{display:grid;gap:12px}
+.unit{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.unit:hover:not([disabled]){border-color:var(--accent)}
+.unit[disabled]{opacity:.55;cursor:default}
+.unit .badge{flex:none;width:52px;height:52px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--f-head);font-weight:700}
+.unit .body{flex:1;min-width:0}
+.unit .name{font-weight:600}
+.unit .meta{font-size:13px;color:var(--muted)}
+.bar{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent-strong),var(--accent));width:0;transition:width .3s}
+.chev{color:var(--muted);font-size:20px}
+
+.hero{background:linear-gradient(135deg,#2a1d47,#1a1622 70%);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-top:20px}
+.hero h2{font-size:24px}
+.hero p{margin:6px 0 0;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);margin-bottom:8px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:10px 16px;font-weight:600}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:disabled{opacity:.4;cursor:default}
+
+/* Lektion */
+.back{background:none;border:0;color:var(--accent);padding:16px 0 4px;font-weight:600}
+.lesson-head h2{font-size:22px;margin-top:4px}
+.lesson-head .meta{color:var(--muted);font-size:14px}
+.theory{margin-top:16px}
+.theory p{margin:0 0 12px}
+.theory ul{margin:0 0 14px;padding-left:20px}
+.theory li{margin:4px 0}
+.theory h3{font-size:16px;margin:18px 0 8px;color:var(--accent)}
+.theory .src{font-size:13px;color:var(--muted)}
+.steps{display:flex;gap:6px;margin:20px 0 12px}
+.steps i{flex:1;height:5px;border-radius:99px;background:var(--surface-2)}
+.steps i.ok{background:var(--ok)}.steps i.bad{background:var(--bad)}.steps i.cur{background:var(--accent)}
+.q{font-weight:600;font-size:17px;margin-bottom:14px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad)}
+.opt[disabled]{cursor:default}
+.tf{grid-template-columns:1fr 1fr}
+.feedback{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:15px}
+.feedback.ok{background:var(--ok-soft)}.feedback.bad{background:var(--bad-soft)}
+.feedback b{display:block;margin-bottom:2px}
+.done{text-align:center;padding:28px 16px}
+.done .big{font-family:var(--f-head);font-size:44px;color:var(--accent)}
+.note{font-size:13px;color:var(--muted);margin-top:24px}
+.lesson-list .unit .badge{width:40px;height:40px;font-size:14px}
+.check{color:var(--ok);font-weight:700}
+@media (max-width:520px){.tf{grid-template-columns:1fr}.hero h2{font-size:21px}}
+
+/* ===== Digital Campus Design: clean, dunkel, feine Akzente ===== */
+
+.bar>i{background:var(--accent)!important}
+.bar{height:4px!important}
+.hero{background:var(--surface)!important}
+header{background:rgba(var(--dc-bg-rgb),.94)!important}
+.fach{font-family:var(--dc-font-campus);color:var(--muted)!important;display:flex;align-items:center;gap:8px}
+.fach svg{width:22px;height:22px}
+.tag-kurz{font-family:var(--dc-font-mono);font-size:11px;letter-spacing:.04em;color:var(--accent);border:1px solid var(--dc-accent-line);border-radius:6px;padding:1px 6px;margin-left:8px;vertical-align:3px}
+.tab,.btn,.pill{font-family:var(--dc-font-campus)}
+
+
+/* Campus-Navigation: Link zum Dashboard (einheitlich in allen Fach-Artifacts) */
+.dc-home{display:inline-flex;align-items:center;gap:6px;flex:none;min-height:36px;padding:0 12px;border:1px solid var(--dc-line,#2e2c36);border-radius:999px;background:transparent;color:var(--dc-campus,#af9ee4);font:500 13px/1 var(--dc-font-campus,inherit);text-decoration:none;white-space:nowrap}
+.dc-home:hover,.dc-home:focus-visible{border-color:var(--dc-campus,#af9ee4)}
+.dc-home svg{width:16px;height:16px;flex:none}
+.dc-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+@media (max-width:520px){.dc-home{padding:0 10px}.dc-home span{display:none}}
+</style>
+<!-- ===== Lektions-Position – Digital Campus (Modul v1, siehe docs/lektions-position.md) ===== -->
+<style id="dc-position-css">
+.dc-pos-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;align-items:center;gap:12px;max-width:calc(100% - 32px);padding:10px 12px 10px 16px;border-radius:12px;border:1px solid var(--dc-accent-line,#4c4c55);background:var(--dc-surface-raised,var(--dc-surface-2,#1c1c21));color:var(--dc-text,#ebeaef);font:500 .92rem var(--dc-font-campus,system-ui,sans-serif);box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.dc-pos-toast b{color:var(--dc-accent,#af9ee4);font-weight:600}
+.dc-pos-toast button{flex:none;min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);font:600 .85rem inherit;cursor:pointer}
+.dc-pos-toast button:hover{border-color:var(--dc-accent,#af9ee4)}
+.dc-pos-toast button:focus-visible{outline:2px solid var(--dc-accent,#af9ee4);outline-offset:2px}
+.dc-pos-toast .x{border:0;padding:6px 8px;color:var(--dc-text-muted,#9a99a3)}
+
+/* v2.3: Grafiken, Bilder, Hinweise, Unter-Reiter, Checkliste */
+.theory figure{margin:16px 0 18px;padding:14px;background:var(--dc-bg);border:1px solid var(--dc-line);border-radius:12px}
+.theory figure{overflow-x:auto}
+.theory figure svg{display:block;width:100%;min-width:540px;height:auto;font-family:var(--dc-font-fach)}
+.theory figure img{display:block;width:100%;height:auto;border-radius:8px;background:#fff}
+.theory figcaption{margin-top:10px;font-size:13px;color:var(--dc-text-muted)}
+.g-box{fill:var(--dc-surface-raised);stroke:var(--dc-line);stroke-width:1}
+.g-box.g-accb{stroke:var(--dc-accent)}
+.g-box.g-dim{fill:var(--dc-surface)}
+.g-t{fill:var(--dc-text)}.g-m{fill:var(--dc-text-muted)}.g-acct{fill:var(--dc-accent)}
+.g-l{stroke:var(--dc-text-faint);stroke-width:1.5;fill:none}
+.g-acc{stroke:var(--dc-accent);stroke-width:1.5;fill:none}
+.g-pf{fill:var(--dc-text-faint)}
+.g-dot{fill:var(--dc-accent)}
+.g-ring{fill:var(--dc-surface-raised);stroke:var(--dc-accent);stroke-width:1.5}
+.g-ring2{fill:var(--dc-bg);stroke:var(--dc-accent);stroke-width:1}
+.g-lane{stroke:var(--dc-line);stroke-width:2}.g-lane.g-lane-a{stroke:var(--dc-accent-line)}
+.hinweis{margin:16px 0;padding:12px 14px;border:1px solid var(--dc-line);border-left:2px solid var(--dc-campus);border-radius:10px;background:var(--dc-surface)}
+.hinweis b.ht{display:block;font-size:13px;color:var(--dc-campus);margin-bottom:4px;font-family:var(--dc-font-campus)}
+.hinweis p{margin:0!important}
+.hinweis .hq{margin-top:6px;font-size:12px;color:var(--dc-text-faint)}
+.subtabs{display:flex;gap:4px;margin-top:18px;border-bottom:1px solid var(--dc-line)}
+.subtab{background:none;border:0;padding:10px 12px;border-bottom:2px solid transparent;color:var(--dc-text-muted);font-weight:600;margin-bottom:-1px}
+.subtab[aria-selected="true"]{color:var(--dc-text);border-color:var(--dc-accent)}
+.vb-termin{margin:14px 0 4px;color:var(--dc-text-muted);font-size:14px}
+.todo{list-style:none;padding:0!important;margin:0 0 14px}
+.todo li{margin:0 0 8px!important}
+.todo label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--dc-line);border-radius:10px;cursor:pointer;background:var(--dc-surface)}
+.todo input{margin-top:4px;accent-color:var(--dc-accent);width:18px;height:18px;flex:none}
+.todo input:checked + span{color:var(--dc-text-faint);text-decoration:line-through}
+</style>
+<script id="dc-position">
+/* Merkt sich pro Lektion, bei welcher Übung man war, und setzt dort wieder ein.
+   Speicher: localStorage "dc-position-<fach-id>" = { "<lektions-schlüssel>": { …, zeit } }.
+   Unabhängig vom Fortschritts-Speicher des Fachs; wird beim Abschluss der Lektion gelöscht. */
+window.dcPos = (function () {
+  var mem = {};
+  var K = function (f) { return "dc-position-" + f; };
+  function alle(f) { try { var v = localStorage.getItem(K(f)); return v ? JSON.parse(v) || {} : {}; } catch (e) { return mem[f] || {}; } }
+  function schreib(f, d) { mem[f] = d; try { localStorage.setItem(K(f), JSON.stringify(d)); } catch (e) {} }
+  var toastEl = null, toastTimer = null;
+  var api = {
+    /* beliebigen Stand merken (Warteschlangen-Abläufe) */
+    merken: function (f, key, p) { var d = alle(f); d[key] = Object.assign({}, p, { zeit: Date.now() }); schreib(f, d); },
+    roh: function (f, key) { return alle(f)[key] || null; },
+    loeschen: function (f, key) { var d = alle(f); if (key in d) { delete d[key]; schreib(f, d); } },
+    /* einfache Abläufe: results[i] = true/false pro beantworteter Übung.
+       Gibt { qi, results, … } für die nächste offene Übung zurück, oder null. */
+    holen: function (f, key, n) {
+      var p = alle(f)[key];
+      if (!p || !Array.isArray(p.results) || !n) return null;
+      var results = p.results.slice(0, n), qi = results.length;
+      if (qi >= n) { qi = n - 1; results = results.slice(0, n - 1); }
+      if (qi <= 0) return null;
+      return Object.assign({}, p, { qi: qi, results: results });
+    },
+    /* kurzer Hinweis unten: «Weiter bei Übung 4 von 8 · Von vorne» */
+    /* gespeicherte Reihenfolge der MC-Optionen noch passend zum Inhalt? */
+    ordnungOk: function (order, uebungen) {
+      return Array.isArray(order) && order.length === uebungen.length && order.every(function (o, i) {
+        var q = uebungen[i]; return o == null ? q.typ !== "multiple_choice" : Array.isArray(o) && Array.isArray(q.optionen) && o.length === q.optionen.length;
+      });
+    },
+    hinweis: function (nr, n, vonVorne, wort) {
+      api.weg();
+      var el = document.createElement("div");
+      el.className = "dc-pos-toast"; el.setAttribute("role", "status");
+      el.innerHTML = '<span>Weiter bei <b>' + (wort || "Übung") + ' ' + nr + (n ? " von " + n : "") + '</b></span><button type="button" data-a="neu">Von vorne</button><button type="button" class="x" data-a="x" aria-label="Hinweis schliessen">✕</button>';
+      el.querySelector("[data-a=neu]").onclick = function () { api.weg(); vonVorne(); };
+      el.querySelector("[data-a=x]").onclick = api.weg;
+      document.body.appendChild(el); toastEl = el;
+      toastTimer = setTimeout(api.weg, 7000);
+    },
+    weg: function () { clearTimeout(toastTimer); if (toastEl) { toastEl.remove(); toastEl = null; } }
+  };
+  return api;
+})();
+</script>
+<!-- ===== /Lektions-Position ===== -->
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="dc-row"><div class="fach"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" style="fill:var(--dc-surface-raised);stroke:var(--dc-line)"/><circle cx="16" cy="16" r="5.5" style="fill:var(--dc-accent)"/></svg>Digital Campus</div><a class="dc-home" href="https://claude.ai/artifact/3nucn1BNbLGW39vSE3pUGQ" title="Zurück zum Dashboard – Digital Campus" aria-label="Zurück zum Dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Dashboard</span></a></div>
+    <h1>Industrielle Digitalisierung<span class="tag-kurz">GRUNDING</span></h1>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="einheiten">Einheiten</button>
+      <button class="tab" role="tab" data-tab="testvorbereitung">Testvorbereitung</button>
+    </nav>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+
+
+
+<script>
+(async function(){
+  const FACH_ID = "industrielle-digitalisierung";
+  // Als Artifact liegen die Inhalte unter content/…; als lokale Kopie in app/faecher/ unter ../../content/…
+  const BASIS_PFADE = ["content/" + FACH_ID + "/", "../../content/" + FACH_ID + "/"];
+  let basis = null, fach = null;
+  for (const b of BASIS_PFADE) {
+    try { const r = await fetch(b + "fach.json", { cache: "no-cache" }); if (r.ok) { fach = await r.json(); basis = b; break; } } catch (e) {}
+  }
+  if (!fach) { document.getElementById('app').innerHTML = '<p class="note">Inhalte konnten nicht geladen werden: content/' + FACH_ID + '/fach.json fehlt.</p>'; return; }
+  const holen = async (p) => { try { const r = await fetch(basis + p, { cache: "no-cache" }); return r.ok ? await r.json() : null; } catch (e) { return null; } };
+  const bloecke = {};
+  for (const b of (fach.testvorbereitung || [])) { const d = await holen("testvorbereitung/" + b.id + ".json"); if (d) bloecke[b.id] = d; }
+  const vorbereitung = {};
+  const vbOrdner = fach.zusaetze && fach.zusaetze.vorbereitung;
+  if (typeof vbOrdner === 'string') for (const e of (fach.einheiten || [])) { if (e.status !== 'bereit' && e.status !== 'entwurf') continue; const d = await holen(vbOrdner.replace(/\/?$/, '/') + e.id + '.json'); if (d) vorbereitung[e.id] = d; }
+  const einheiten = {};
+  for (const e of (fach.einheiten || [])) { if (e.status === "geplant") continue; const d = await holen("einheiten/" + e.id + ".json"); if (d) einheiten[e.id] = d; }
+
+  // ---- Fortschritt (lokal) ----
+  const KEY = 'digital-campus-'+fach.id;
+  try{ if(!localStorage.getItem(KEY)){ for(const alt of ['dc-fortschritt-grundlagen-digital-engineering']){ const v=localStorage.getItem(alt); if(v){ localStorage.setItem(KEY,v); const t=localStorage.getItem(alt+'-tab'); if(t) localStorage.setItem(KEY+'-tab',t); break; } } } }catch(e){}
+  let prog = {};
+  try{ prog = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ prog = {}; }
+  const save = ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(prog)); }catch(e){} };
+  const lessonKey = (blockId, lId)=> blockId+'/'+lId;
+  const lessonDone = (b,l)=> !!(prog[lessonKey(b,l)] && prog[lessonKey(b,l)].fertig);
+  const blockPct = (block)=>{
+    const n = block.lektionen.length; if(!n) return 0;
+    return Math.round(100*block.lektionen.filter(l=>lessonDone(block.id,l.id)).length/n);
+  };
+
+  // ---- Hilfen ----
+  const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const md = s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  const shuffle = a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const app = document.getElementById('app');
+  const inhaltHtml = (liste)=>{ let h=''; (liste||[]).forEach(c=>{
+    if(c.typ==='text') h += `<p>${md(c.text)}</p>`;
+    else if(c.typ==='titel') h += `<h3>${md(c.text)}</h3>`;
+    else if(c.typ==='liste') h += '<ul>'+c.punkte.map(p=>`<li>${md(p)}</li>`).join('')+'</ul>';
+    else if(c.typ==='code') h += `<pre><code>${esc(c.code)}</code></pre>`;
+    else if(c.typ==='grafik') h += `<figure>${c.svg}${c.beschriftung?`<figcaption>${md(c.beschriftung)}</figcaption>`:''}</figure>`;
+    else if(c.typ==='bild') h += `<figure><img src="${esc(basis+(c.src||c.bild))}" alt="${esc(c.alt||c.beschriftung||'')}" loading="lazy">${c.beschriftung?`<figcaption>${md(c.beschriftung)}</figcaption>`:''}</figure>`;
+    else if(c.typ==='hinweis') h += `<div class="hinweis"><b class="ht">${esc(c.titel||'Ergänzung')}</b><p>${md(c.text)}</p>${c.quelle?`<div class="hq">Quelle: ${esc(c.quelle)}</div>`:''}</div>`;
+  }); return h; };
+
+  // ---- Zustand ----
+  let state = {tab:'testvorbereitung', view:'list'};
+  try{ const t = localStorage.getItem(KEY+'-tab'); if(t) state.tab = t; }catch(e){}
+  if(location.hash==='#einheiten'||location.hash==='#testvorbereitung') state.tab = location.hash.slice(1);
+
+  document.querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      state = {tab:btn.dataset.tab, view:'list'};
+      try{ localStorage.setItem(KEY+'-tab', state.tab); }catch(e){}
+      try{ history.replaceState(null,'','#'+state.tab); }catch(e){}
+      render();
+    });
+  });
+
+  function render(){
+    document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected', b.dataset.tab===state.tab));
+    if(state.view==='block') return renderBlock();
+    if(state.view==='lesson') return renderLesson();
+    if(state.tab==='einheiten') return renderEinheiten();
+    return renderTestvorbereitung();
+  }
+
+  function renderEinheiten(){
+    let h = '<div class="section-title">Semesterwochen</div><div class="grid">';
+    fach.einheiten.forEach(e=>{
+      const data = einheiten[e.id];
+      const n = data ? data.lektionen.length : 0;
+      const pct = data ? blockPct(data) : 0;
+      h += `<button class="unit" ${data?'':'disabled'} data-einheit="${e.id}">
+        <span class="badge">SW${String(e.woche).padStart(2,'0')}</span>
+        <span class="body"><span class="name">${esc(e.titel)}</span>
+        <span class="meta">${data? n+' Lektionen · '+pct+' %' : 'Lektionen folgen'}</span>
+        ${data?`<span class="bar"><i style="width:${pct}%"></i></span>`:''}</span>
+        ${data?'<span class="chev">›</span>':''}</button>`;
+    });
+    h += '</div><p class="note">Die Lektionen pro Semesterwoche werden nach und nach ergänzt.</p>';
+    app.innerHTML = h;
+    app.querySelectorAll('[data-einheit]:not([disabled])').forEach(b=>b.onclick=()=>{
+      state = {tab:'einheiten', view:'block', blockId:b.dataset.einheit, src:'einheit'}; render(); scrollTo(0,0);
+    });
+  }
+
+  function renderTestvorbereitung(){
+    let h = '<div class="section-title">Vorbereitungsblöcke</div><div class="grid">';
+    fach.testvorbereitung.forEach(t=>{
+      const b = bloecke[t.id]; if(!b) return;
+      const pct = blockPct(b);
+      h += `<button class="unit" data-block="${t.id}">
+        <span class="badge">${esc(t.titel.split(' ')[0])}</span>
+        <span class="body"><span class="name">${esc(b.titel)}</span>
+        <span class="meta">${b.lektionen.length} Lektionen · ${pct} %</span>
+        <span class="bar"><i style="width:${pct}%"></i></span></span>
+        <span class="chev">›</span></button>`;
+    });
+    h += '</div>';
+    app.innerHTML = h;
+    app.querySelectorAll('[data-block]').forEach(b=>b.onclick=()=>{
+      state = {tab:'testvorbereitung', view:'block', blockId:b.dataset.block, src:'tv'}; render(); scrollTo(0,0);
+    });
+  }
+
+  function currentBlock(){ return state.src==='einheit' ? einheiten[state.blockId] : bloecke[state.blockId]; }
+
+  function renderBlock(){
+    const b = currentBlock();
+    const pct = blockPct(b);
+    const total = b.lektionen.reduce((s,l)=>s+l.uebungen.length,0);
+    let h = `<button class="back" id="back">‹ Zurück</button>
+      <div class="hero"><span class="pill">${state.src==='tv'?'Testvorbereitung':'Einheit'}</span>
+      <h2>${esc(b.titel)}</h2><p>${esc(b.untertitel||'')}</p>
+      <div class="bar" style="margin-top:14px"><i style="width:${pct}%"></i></div>
+      <div class="row"><button class="btn primary" id="mix">Gemischter Test (${total} Fragen)</button>
+      <button class="btn" id="reset">Fortschritt zurücksetzen</button></div></div>
+`;
+    const vb = state.src==='einheit' ? vorbereitung[b.id] : null;
+    if(vb){
+      h += `<div class="subtabs" role="tablist"><button class="subtab" role="tab" data-sub="lektionen" aria-selected="${state.sub!=='vorb'}">Lektionen</button><button class="subtab" role="tab" data-sub="vorb" aria-selected="${state.sub==='vorb'}">${esc(vb.titel.split(' – ')[0])}</button></div>`;
+      if(state.sub==='vorb'){
+        const k = id=>'vorb/'+(vb.einheit||vb.id)+'/'+id;
+        h += `<h2 style="margin-top:18px">${esc(vb.titel)}</h2><p class="vb-termin">${esc(vb.termin||'')}</p><div class="card theory"><h3>To-do bis zur nächsten Lektion</h3><ul class="todo">`+
+          (vb.aufgaben||[]).map(a=>`<li><label><input type="checkbox" data-todo="${esc(a.id)}" ${prog[k(a.id)]?'checked':''}><span>${md(a.text)}</span></label></li>`).join('')+
+          `</ul>${inhaltHtml(vb.inhalt)}${vb.quelle?`<p class="src">Quelle: ${esc(vb.quelle)}</p>`:''}</div>`;
+        app.innerHTML = h;
+        app.querySelectorAll('[data-todo]').forEach(cb=>cb.onchange=()=>{ if(cb.checked) prog[k(cb.dataset.todo)]=true; else delete prog[k(cb.dataset.todo)]; save(); });
+        bindBlock(b); return;
+      }
+    }
+    h += `<div class="section-title">Lektionen</div><div class="grid lesson-list">`;
+    b.lektionen.forEach((l,i)=>{
+      const p = prog[lessonKey(b.id,l.id)];
+      const done = p && p.fertig;
+      h += `<button class="unit" data-lesson="${i}">
+        <span class="badge">${done?'<span class="check">✓</span>':i+1}</span>
+        <span class="body"><span class="name">${esc(l.titel)}</span>
+        <span class="meta">${l.dauer_min} Min · ${l.uebungen.length} Übungen${p&&p.best!=null?' · Bestwert '+p.best+'/'+l.uebungen.length:''}</span></span>
+        <span class="chev">›</span></button>`;
+    });
+    h += '</div>';
+    if(b.quelle) h += `<p class="note">Quelle: ${esc(b.quelle)}</p>`;
+    app.innerHTML = h;
+    bindBlock(b);
+  }
+  function bindBlock(b){
+    app.querySelectorAll('[data-sub]').forEach(t=>t.onclick=()=>{ state.sub=t.dataset.sub; render(); });
+    document.getElementById('back').onclick=()=>{ state={tab:state.tab,view:'list'}; render(); };
+    app.querySelectorAll('[data-lesson]').forEach(btn=>btn.onclick=()=>{
+      openLesson(b, +btn.dataset.lesson);
+    });
+    document.getElementById('mix').onclick=()=>{
+      const qs = shuffle(b.lektionen.flatMap(l=>l.uebungen));
+      state = Object.assign({}, state, {view:'lesson', mix:true, lesson:{titel:'Gemischter Test', uebungen:qs, inhalt:[]}, phase:'quiz', qi:0, results:[], order:prepare(qs)});
+      render(); scrollTo(0,0);
+    };
+    let armed=false;
+    document.getElementById('reset').onclick=(ev)=>{
+      if(!armed){ armed=true; ev.target.textContent='Wirklich zurücksetzen?'; return; }
+      b.lektionen.forEach(l=>delete prog[lessonKey(b.id,l.id)]); save(); render();
+    };
+  }
+
+  function prepare(qs){
+    // Optionen pro MC-Frage mischen, Index merken
+    return qs.map(q=> q.typ==='multiple_choice' ? shuffle(q.optionen.map((t,i)=>i)) : null);
+  }
+
+  function openLesson(b, idx, frisch){
+    const l = b.lektionen[idx];
+    state = Object.assign({}, state, {view:'lesson', mix:false, lessonIdx:idx, lesson:l, phase:'theorie', qi:0, results:[], order:prepare(l.uebungen)});
+    const pk = lessonKey(b.id, l.id), n = l.uebungen.length;
+    if(frisch) dcPos.loeschen(FACH_ID, pk);
+    const pos = frisch ? null : dcPos.holen(FACH_ID, pk, n);
+    if(pos){ state.phase='quiz'; state.qi=pos.qi; state.results=pos.results; if(dcPos.ordnungOk(pos.order, l.uebungen)) state.order=pos.order; }
+    render(); scrollTo(0,0);
+    if(pos) dcPos.hinweis(pos.qi+1, n, ()=>openLesson(b, idx, true));
+  }
+
+  function renderLesson(){
+    const b = currentBlock();
+    const l = state.lesson;
+    let h = `<button class="back" id="back">‹ ${esc(b.titel)}</button>
+      <div class="lesson-head"><div class="meta">${state.mix?'Alle Lektionen gemischt':'Lektion '+(state.lessonIdx+1)+' von '+b.lektionen.length+' · '+l.dauer_min+' Min'}</div>
+      <h2>${esc(l.titel)}</h2></div>`;
+    if(state.phase==='theorie'){
+      h += '<div class="card theory">';
+      h += inhaltHtml(l.inhalt);
+      h += `</div><div class="row"><button class="btn primary" id="go">Zu den Übungen (${l.uebungen.length})</button></div>`;
+      app.innerHTML = h;
+      document.getElementById('go').onclick=()=>{ state.phase='quiz'; render(); scrollTo(0,0); };
+    } else if(state.phase==='quiz'){
+      const q = l.uebungen[state.qi];
+      h += '<div class="steps">'+l.uebungen.map((_,i)=>{
+        const r = state.results[i];
+        return `<i class="${r===true?'ok':r===false?'bad':i===state.qi?'cur':''}"></i>`;
+      }).join('')+'</div>';
+      h += `<div class="card"><div class="q">${md(q.frage)}</div>`;
+      if(q.typ==='wahr_falsch'){
+        h += `<div class="opts tf"><button class="opt" data-v="1">Wahr</button><button class="opt" data-v="0">Falsch</button></div>`;
+      } else {
+        h += '<div class="opts">'+state.order[state.qi].map(i=>`<button class="opt" data-v="${i}">${md(q.optionen[i])}</button>`).join('')+'</div>';
+      }
+      h += '<div id="fb"></div></div>';
+      app.innerHTML = h;
+      app.querySelectorAll('.opt').forEach(o=>o.onclick=()=>answer(q,o));
+    } else {
+      const ok = state.results.filter(Boolean).length, n = l.uebungen.length;
+      h += `<div class="card done"><div class="big">${ok}/${n}</div>
+        <p>${ok===n?'Alles richtig!':ok>=n*0.7?'Gut gemacht – die Fehler nochmals anschauen.':'Lies die Theorie nochmals und versuch es erneut.'}</p>
+        <div class="row" style="justify-content:center">
+        <button class="btn" id="again">Nochmals</button>
+        ${!state.mix && state.lessonIdx < b.lektionen.length-1 ? '<button class="btn primary" id="next">Nächste Lektion</button>' : '<button class="btn primary" id="overview">Zur Übersicht</button>'}
+        </div></div>`;
+      app.innerHTML = h;
+      document.getElementById('again').onclick=()=>{
+        if(state.mix){ const qs=shuffle(l.uebungen); state.lesson={...l,uebungen:qs}; state.order=prepare(qs); }
+        else state.order=prepare(l.uebungen);
+        state.phase='quiz'; state.qi=0; state.results=[]; render();
+      };
+      const nx = document.getElementById('next'); if(nx) nx.onclick=()=>openLesson(b, state.lessonIdx+1);
+      const ov = document.getElementById('overview'); if(ov) ov.onclick=()=>{ state.view='block'; render(); };
+    }
+    document.getElementById('back').onclick=()=>{ state.view='block'; render(); scrollTo(0,0); };
+  }
+
+  function answer(q, btn){
+    const v = +btn.dataset.v;
+    const correct = q.typ==='wahr_falsch' ? (v===1)===q.antwort : v===q.richtig;
+    state.results[state.qi] = correct;
+    if(!state.mix) dcPos.merken(FACH_ID, lessonKey(currentBlock().id, state.lesson.id), {results:state.results, order:state.order});
+    app.querySelectorAll('.opt').forEach(o=>{
+      o.disabled = true;
+      const ov = +o.dataset.v;
+      const isRight = q.typ==='wahr_falsch' ? (ov===1)===q.antwort : ov===q.richtig;
+      if(isRight) o.classList.add('ok'); else if(o===btn) o.classList.add('bad');
+    });
+    const last = state.qi === state.lesson.uebungen.length-1;
+    document.getElementById('fb').innerHTML = `<div class="feedback ${correct?'ok':'bad'}"><b>${correct?'Richtig.':'Nicht ganz.'}</b>${md(q.erklaerung||'')}</div>
+      <div class="row"><button class="btn primary" id="nq">${last?'Auswertung':'Weiter'}</button>${window.dcClaude?dcClaude.knopf(dcClaude.frageText(q.frage,"Meine Antwort war " + (correct ? "richtig." : "falsch."))):""}</div>`;
+    document.getElementById('nq').onclick=()=>{
+      if(last){
+        if(!state.mix){
+          const b = currentBlock(); const k = lessonKey(b.id, state.lesson.id);
+          const ok = state.results.filter(Boolean).length;
+          const p = prog[k] || {};
+          p.fertig = true; p.best = Math.max(p.best||0, ok); p.zuletzt = new Date().toISOString().slice(0,10);
+          prog[k] = p; save(); dcPos.loeschen(FACH_ID, k);
+        }
+        state.phase='fertig';
+      } else state.qi++;
+      render();
+    };
+  }
+
+  render();
+})();
+</script>
+<!-- ===== Frag Claude – Digital Campus (Modul v1, siehe docs/frag-claude.md) ===== -->
+<style id="dc-claude-css">
+.dc-cfab{position:fixed;right:18px;bottom:calc(var(--dc-fab-bottom,20px) + env(safe-area-inset-bottom,0px));z-index:45;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--dc-accent-line,#4c4c55);background:var(--dc-surface-raised,var(--dc-surface-2,#1c1c21));color:var(--dc-accent,#af9ee4);font:600 .95rem var(--dc-font-campus,system-ui,sans-serif);cursor:pointer}
+.dc-cfab svg{width:19px;height:19px;flex:none}
+.dc-cfab:hover{border-color:var(--dc-accent,#af9ee4)}
+.dc-cfab:focus-visible,.dc-cpanel button:focus-visible,.dc-cpanel textarea:focus-visible{outline:2px solid var(--dc-accent,#af9ee4);outline-offset:2px}
+.dc-cfab[hidden],body.dc-chat-offen .dc-cfab,html:not(.dc-claude-ok) .dc-cfab{display:none}
+html:not(.dc-claude-ok) .dc-ask{display:none!important}
+.dc-ask{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid var(--dc-accent-line,#4c4c55);background:transparent;color:var(--dc-accent,#af9ee4);font:600 .9rem var(--dc-font-campus,system-ui,sans-serif);cursor:pointer;min-height:40px}
+.dc-ask:hover{border-color:var(--dc-accent,#af9ee4)}
+.dc-ask svg{width:16px;height:16px}
+.dc-cpanel{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);z-index:60;background:var(--dc-surface,#151518);border-left:1px solid var(--dc-line,#2a2a30);display:flex;flex-direction:column;color:var(--dc-text,#ebeaef);font-family:var(--dc-font-campus,system-ui,sans-serif)}
+.dc-cpanel[hidden]{display:none}
+.dc-chead{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--dc-line,#2a2a30)}
+.dc-chead .dc-ctit{flex:1;min-width:0}
+.dc-chead .dc-ctit b{display:block;font-size:1rem}
+.dc-cctx{font-size:.8rem;color:var(--dc-text-muted,var(--dc-muted,#aaaab2));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-cbtn{display:inline-flex;align-items:center;gap:4px;min-height:38px;padding:6px 11px;border-radius:999px;border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);font:inherit;font-size:.85rem;cursor:pointer}
+.dc-cbtn:hover{border-color:var(--dc-accent-line,#4c4c55)}
+.dc-cbtn svg{width:16px;height:16px}
+.dc-cbtn.prim{background:var(--dc-accent,#af9ee4);border-color:var(--dc-accent,#af9ee4);color:var(--dc-on-accent,#141317);font-weight:700;padding:8px 16px}
+.dc-cbody{flex:1;min-height:0;display:flex;position:relative}
+.dc-cmsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.dc-cmsg{max-width:92%;padding:10px 13px;border-radius:14px;line-height:1.55;overflow-wrap:anywhere;font-size:.95rem}
+.dc-cmsg p{margin:0 0 8px}.dc-cmsg p:last-child{margin:0}
+.dc-cmsg ul,.dc-cmsg ol{margin:4px 0 8px;padding-left:1.3em}
+.dc-cmsg pre{white-space:pre-wrap;background:var(--dc-bg,#0e0e10);padding:8px;border-radius:8px;font:.85rem var(--dc-font-mono,var(--dc-mono,monospace));margin:6px 0}
+.dc-cmsg code{font-family:var(--dc-font-mono,var(--dc-mono,monospace));font-size:.9em}
+.dc-cmsg.me{align-self:flex-end;background:var(--dc-surface-raised,var(--dc-surface-2,#1f1f25));border:1px solid var(--dc-accent-line,#4c4c55);border-bottom-right-radius:4px;white-space:pre-wrap}
+.dc-cmsg.ai{align-self:flex-start;border:1px solid var(--dc-line,#2a2a30);border-bottom-left-radius:4px}
+.dc-cmsg.warte{color:var(--dc-text-muted,var(--dc-muted,#aaaab2));font-style:italic}
+.dc-cleer{color:var(--dc-text-muted,var(--dc-muted,#aaaab2));font-size:.92rem}
+.dc-cchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.dc-cchips button{border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);border-radius:999px;padding:8px 12px;font:inherit;font-size:.85rem;text-align:left;cursor:pointer;min-height:38px}
+.dc-cchips button:hover{border-color:var(--dc-accent-line,#4c4c55)}
+.dc-cside{position:absolute;inset:0;background:var(--dc-surface,#151518);overflow-y:auto;padding:12px;z-index:2}
+.dc-cside[hidden]{display:none}
+.dc-citem{display:flex;gap:6px;align-items:stretch;margin-bottom:6px}
+.dc-citem .dc-copen{flex:1;text-align:left;border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text,#ebeaef);border-radius:10px;padding:8px 10px;font:inherit;cursor:pointer;min-width:0}
+.dc-citem.cur .dc-copen{border-color:var(--dc-accent-line,#4c4c55)}
+.dc-citem .dc-copen b{display:block;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-citem .dc-copen span{font-size:.78rem;color:var(--dc-text-faint,#807f87)}
+.dc-citem .dc-cdel{border:1px solid var(--dc-line,#2a2a30);background:transparent;color:var(--dc-text-muted,#aaaab2);border-radius:10px;padding:0 10px;cursor:pointer;font:inherit;font-size:.8rem}
+.dc-citem .dc-cdel.scharf{color:var(--dc-danger,#dc8b88);border-color:var(--dc-danger,#dc8b88)}
+.dc-cstatus{min-height:1.2em;padding:0 14px;font-size:.8rem;color:var(--dc-text-muted,var(--dc-muted,#aaaab2))}
+.dc-cform{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--dc-line,#2a2a30);align-items:flex-end}
+.dc-cform textarea{flex:1;resize:none;min-height:42px;max-height:140px;padding:10px 12px;border-radius:12px;border:1px solid var(--dc-line,#2a2a30);background:var(--dc-bg,#0e0e10);color:var(--dc-text,#ebeaef);font:inherit;font-size:16px;line-height:1.4}
+@media (max-width:720px){.dc-cfab{right:12px;padding:12px}.dc-cfab span{display:none}.dc-cpanel{width:100%;border-left:0}}
+</style>
+<script id="dc-claude">
+/* Frag Claude – Digital Campus, Modul v1. Beschreibung: docs/frag-claude.md
+   Öffentlich: dcClaude.oeffnen(text?), dcClaude.knopf(text, label?), dcClaude.kontext = () => ({stufe, text}) (optional, von der Seite gesetzt). */
+(function(){
+"use strict";
+const H=document.documentElement;
+const FACH=H.dataset.theme||"campus";
+const NAME=(document.title||"Digital Campus").replace(/\s*[–-]\s*Digital Campus\s*$/,"");
+const BASEN=["content/"+FACH+"/","../../content/"+FACH+"/"];
+const LKEY="dc-claude-"+FACH+"-v1",MAX_CHATS=20,MAX_BYTES=150000;
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 10h6M9 14h4"/></svg>';
+
+/* ---------- Fach-Inhalte (nur lesen) ---------- */
+let FACHJSON=null;const DATEIEN={};
+async function hole(p){for(const b of BASEN){try{const r=await fetch(b+p,{cache:"no-cache"});if(r.ok)return await r.json();}catch(e){}}throw new Error(p+" nicht gefunden");}
+async function fach(){if(!FACHJSON){try{FACHJSON=await hole("fach.json");}catch(e){FACHJSON={einheiten:[]};}}return FACHJSON;}
+function dateiVon(e){return e.datei||("einheiten/"+e.id+".json");}
+async function einheit(id){const f=await fach();const e=(f.einheiten||[]).find(x=>x.id===id)||{id};const p=dateiVon(e);if(!DATEIEN[p])DATEIEN[p]=await hole(p);return DATEIEN[p];}
+function textAus(o,out){if(o==null)return out;if(typeof o==="string"){out.push(o);return out;}if(Array.isArray(o)){o.forEach(x=>textAus(x,out));return out;}
+  if(typeof o==="object")for(const k in o){if(["id","farbe","schrift","typ","status","sprache"].includes(k))continue;textAus(o[k],out);}return out;}
+const TOOLS=[
+ {name:"inhaltsverzeichnis",description:"Listet alle Einheiten dieses Fachs (ID, Titel, Woche, Bereich). Nutze das zuerst, wenn du nicht weisst, wo etwas steht.",
+  async execute(){status("Schaue ins Inhaltsverzeichnis …");const f=await fach();const l=(f.einheiten||[]).map(e=>`${e.id} · ${e.titel||""}${e.woche?" · SW"+e.woche:""}${e.bereich?" · "+e.bereich:""}${e.status&&e.status!=="bereit"?" · "+e.status:""}`);
+   return l.length?l.join("\n"):"Für dieses Fach sind noch keine Einheiten erfasst.";}},
+ {name:"lies_einheit",description:"Liest den Inhalt einer Einheit (Lektionen, Theorie, Aufgaben mit Lösungen und Erklärungen, Quellenangaben) als JSON-Text, gekürzt auf 30000 Zeichen.",
+  inputSchema:{type:"object",properties:{id:{type:"string",description:"Einheiten-ID, z. B. sw03-schleifen"}},required:["id"]},
+  async execute(inp){status("Lese "+inp.id+" …");const d=await einheit(String(inp.id||""));return JSON.stringify(d).slice(0,30000);}},
+ {name:"suche",description:"Volltextsuche in allen Einheiten dieses Fachs. Liefert bis zu 8 Treffer mit Einheit und kurzem Auszug. Suche mit einzelnen Fachbegriffen.",
+  inputSchema:{type:"object",properties:{begriff:{type:"string",description:"Suchbegriff"}},required:["begriff"]},
+  async execute(inp){const q=norm(inp.begriff||"").trim();if(!q)throw new Error("Leerer Suchbegriff");status("Suche „"+inp.begriff+"“ …");
+   const f=await fach();const hits=[];
+   for(const e of f.einheiten||[]){let d;try{d=await einheit(e.id);}catch(x){continue;}
+     for(const t of textAus(d,[])){const p=norm(t).indexOf(q);if(p>=0){hits.push({einheit:e.id,auszug:t.slice(Math.max(0,p-150),p+250)});if(hits.length>=8)return hits;}}}
+   return hits.length?hits:"Keine Treffer für „"+inp.begriff+"“.";}}
+];
+
+/* ---------- Kontext der aktuellen Ansicht ---------- */
+function wurzel(){return document.getElementById("app")||document.querySelector("main")||document.body;}
+function kontext(){
+  let k=null;try{if(typeof api.kontext==="function")k=api.kontext();}catch(e){}
+  const w=wurzel();
+  if(!k||!k.stufe){const sicht=x=>x&&x.offsetParent!==null&&x.textContent.trim();const t=s=>s.textContent.trim().replace(/\s+/g," ").slice(0,60);
+    const tab=[...document.querySelectorAll('[aria-selected="true"],[aria-current="page"],[aria-current="true"],nav .active,nav .aktiv,nav .on,.tabs .active,.tabs .aktiv,.tabs .on')].find(x=>sicht(x)&&!x.closest(".dc-cpanel"));
+    const h=[...w.querySelectorAll("h1,h2,h3")].find(sicht);const teile=[tab&&t(tab),h&&t(h)].filter(Boolean).filter((x,i,a)=>a.indexOf(x)===i);
+    k=Object.assign({stufe:teile.join(" · ")||"Übersicht"},k||{});}
+  if(!k.text){const c=w.cloneNode(true);c.querySelectorAll("script,style,svg,.dc-cpanel,.dc-cfab,button,nav").forEach(x=>x.remove());k.text=(c.innerText||c.textContent||"").replace(/\n{3,}/g,"\n\n").trim().slice(0,6000);}
+  k.schluessel=k.schluessel||norm(k.stufe).replace(/[^a-z0-9]+/g,"-").slice(0,60)||"start";
+  return k;}
+function regeln(k,mitTools){const d=new Date();
+  return `Du bist der Lern-Tutor in der Lern-App «Digital Campus» von Alain (HSLU, Bachelor Digital Engineer) im Fach «${NAME}». Heute ist ${d.toLocaleDateString("de-CH",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}.
+${mitTools?"Über Werkzeuge kannst du die Inhalte dieses Fachs nachschlagen (inhaltsverzeichnis, lies_einheit, suche). Schlage nach, bevor du zu Stoff, Aufgaben oder Lösungen antwortest, und halte dich an Begriffe und Notation des Kursmaterials.":"Werkzeuge sind hier nicht verfügbar; stütze dich auf den Bildschirminhalt unten."}
+Antwortstil: Deutsch in Schweizer Rechtschreibung (ss statt ß), kurz und direkt, Erklärungen in kleinen Schritten. Formeln in LaTeX mit $…$ bzw. $$…$$, Code in \`\`\`-Blöcken. Nenne die Quelle knapp, wenn sie im Material steht. Bei Übungsaufgaben zuerst einen Hinweis oder den nächsten Schritt geben, die ganze Lösung nur auf ausdrücklichen Wunsch. Wenn etwas nicht aus dem Kursstoff hervorgeht, sag das.
+
+Aktuelle Stufe in der App: ${k.stufe}.
+Bildschirminhalt dieser Ansicht (gekürzt):
+"""
+${k.text}
+"""`;}
+
+/* ---------- Verlauf: pro Stufe, lokal im Browser ---------- */
+let STORE={};try{STORE=JSON.parse(localStorage.getItem(LKEY)||"{}");}catch(e){STORE={};}
+function speichernLokal(){try{localStorage.setItem(LKEY,JSON.stringify(STORE));}catch(e){}}
+const chatsVon=k=>(STORE[k]&&STORE[k].chats)||[];
+function kuerzen(l){l.sort((a,b)=>b.upd-a.upd);while(l.length>MAX_CHATS)l.pop();while(l.length>1&&JSON.stringify(STORE).length>MAX_BYTES)l.pop();return l;}
+let SC=null,chatId=null,turns=[],busy=false,ctl=null,sample=null;const aktivPro={};
+function sichern(){if(!SC||!turns.length)return;const k=SC.schluessel;STORE[k]=STORE[k]||{label:SC.stufe,chats:[]};const l=STORE[k].chats;
+  let ch=l.find(x=>x.id===chatId);if(!ch){chatId="c"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);ch={id:chatId};l.push(ch);}
+  const f=turns.find(t=>t.role==="user");ch.titel=(f?f.content:"Chat").replace(/\s+/g," ").slice(0,70);ch.turns=turns.slice(-30);ch.upd=Date.now();aktivPro[k]=chatId;kuerzen(l);speichernLokal();}
+function wann(t){const d=new Date(t);return d.toDateString()===new Date().toDateString()?"heute "+d.toLocaleTimeString("de-CH",{hour:"2-digit",minute:"2-digit"}):d.toLocaleDateString("de-CH",{day:"2-digit",month:"2-digit",year:"2-digit"});}
+
+/* ---------- Darstellung ---------- */
+function mathe(el){try{if(typeof api.mathe==="function"){api.mathe(el);return;}
+  if(window.renderMathInElement){renderMathInElement(el,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});return;}
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([el]).catch(()=>{});}catch(e){}}
+function tex(s,disp){if(window.katex&&!window.renderMathInElement){try{return katex.renderToString(s,{displayMode:disp,throwOnError:false,output:"mathml"});}catch(e){}}return esc(disp?"$$"+s+"$$":"$"+s+"$");}
+function md(s){const blocks=[];let h=String(s||"").replace(/```[a-z]*\n?([\s\S]*?)```/g,(m,c)=>{blocks.push("<pre>"+esc(c.replace(/\n$/,""))+"</pre>");return "\u0000"+(blocks.length-1)+"\u0000";});
+  const math=[];h=h.replace(/\$\$([\s\S]+?)\$\$/g,(m,c)=>{math.push(tex(c,true));return "\u0001"+(math.length-1)+"\u0001";}).replace(/\$([^\$\n]+?)\$/g,(m,c)=>{math.push(tex(c,false));return "\u0001"+(math.length-1)+"\u0001";});
+  h=esc(h).replace(/`([^`\n]+)`/g,"<code>$1</code>").replace(/\*\*([^*\n]+)\*\*/g,"<b>$1</b>");
+  let out="",list=null;for(const l of h.split("\n")){const ul=/^\s*[-•*]\s+(.*)/.exec(l),ol=/^\s*\d+[.)]\s+(.*)/.exec(l),hd=/^#{1,4}\s+(.*)/.exec(l);
+    if(ul||ol){const t=ul?"ul":"ol";if(list!==t){if(list)out+="</"+list+">";out+="<"+t+">";list=t;}out+="<li>"+(ul||ol)[1]+"</li>";continue;}
+    if(list){out+="</"+list+">";list=null;}if(hd)out+="<p><b>"+hd[1]+"</b></p>";else if(l.trim())out+=/^\u0000\d+\u0000$/.test(l.trim())?l:"<p>"+l+"</p>";}
+  if(list)out+="</"+list+">";
+  return out.replace(/\u0000(\d+)\u0000/g,(m,i)=>blocks[i]).replace(/\u0001(\d+)\u0001/g,(m,i)=>math[i]);}
+let statusEl=null;function status(t){if(statusEl)statusEl.textContent=t||"";}
+
+function ui(){if(document.getElementById("dc-cfab"))return;
+  const fab=document.createElement("button");fab.id="dc-cfab";fab.className="dc-cfab";fab.type="button";fab.setAttribute("aria-label","Frag Claude");fab.innerHTML=ICON+"<span>Frag Claude</span>";document.body.appendChild(fab);
+  const p=document.createElement("section");p.id="dc-cpanel";p.className="dc-cpanel";p.hidden=true;p.setAttribute("role","dialog");p.setAttribute("aria-label","Frag Claude");
+  p.innerHTML=`<div class="dc-chead"><button class="dc-cbtn" type="button" id="dc-czu" aria-label="Chat schliessen">‹ Zurück</button><div class="dc-ctit"><b>Frag Claude</b><div class="dc-cctx" id="dc-cctx"></div></div><button class="dc-cbtn" type="button" id="dc-chist" aria-expanded="false">Verlauf</button><button class="dc-cbtn" type="button" id="dc-cneu">Neu</button></div>
+  <div class="dc-cbody"><div class="dc-cside" id="dc-cside" hidden></div><div class="dc-cmsgs" id="dc-cmsgs" aria-live="polite"></div></div>
+  <div class="dc-cstatus" id="dc-cstatus"></div>
+  <form class="dc-cform" id="dc-cform"><textarea id="dc-cin" rows="1" placeholder="Deine Frage …" aria-label="Deine Frage"></textarea><button class="dc-cbtn prim" id="dc-csend" type="submit">Senden</button></form>`;
+  document.body.appendChild(p);statusEl=p.querySelector("#dc-cstatus");
+  fab.onclick=()=>oeffnen();p.querySelector("#dc-czu").onclick=()=>schliessen();
+  p.querySelector("#dc-cneu").onclick=neu;p.querySelector("#dc-chist").onclick=()=>seite();
+  const ta=p.querySelector("#dc-cin");ta.addEventListener("input",()=>{ta.style.height="auto";ta.style.height=Math.min(140,ta.scrollHeight)+"px";});
+  ta.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!matchMedia("(max-width:720px)").matches){e.preventDefault();p.querySelector("#dc-cform").requestSubmit();}});
+  p.querySelector("#dc-cform").onsubmit=e=>{e.preventDefault();if(busy){if(ctl)ctl.abort();return;}const v=ta.value.trim();if(!v)return;ta.value="";ta.style.height="auto";senden(v);};
+  p.addEventListener("keydown",e=>{if(e.key==="Escape")schliessen();});
+  document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-dc-ask]");if(b){e.preventDefault();oeffnen(b.getAttribute("data-dc-ask"));}});}
+function seite(on){const s=document.getElementById("dc-cside");on=on===undefined?s.hidden:on;s.hidden=!on;document.getElementById("dc-chist").setAttribute("aria-expanded",on);if(!on)return;
+  const l=chatsVon(SC.schluessel);
+  s.innerHTML=`<p class="dc-cleer" style="margin:0 0 10px"><b>Vergangene Chats</b> · ${esc(SC.stufe)}</p>`+(l.length?l.map(c=>`<div class="dc-citem ${c.id===chatId?"cur":""}"><button class="dc-copen" type="button" data-id="${c.id}"><b>${esc(c.titel)}</b><span>${wann(c.upd)} · ${c.turns.length} Nachrichten</span></button><button class="dc-cdel" type="button" data-del="${c.id}" aria-label="Chat löschen">✕</button></div>`).join(""):'<p class="dc-cleer">Noch keine Chats auf dieser Stufe.</p>')+'<p class="dc-cleer" style="font-size:.78rem">Nur auf diesem Gerät gespeichert, höchstens 20 Chats pro Stufe.</p>';
+  s.querySelectorAll(".dc-copen").forEach(b=>b.onclick=()=>{const c=chatsVon(SC.schluessel).find(x=>x.id===b.dataset.id);if(!c)return;if(ctl)ctl.abort();chatId=c.id;aktivPro[SC.schluessel]=c.id;turns=c.turns.slice();seite(false);zeigen();});
+  s.querySelectorAll(".dc-cdel").forEach(b=>b.onclick=()=>{if(!b.dataset.scharf){b.dataset.scharf=1;b.textContent="Löschen?";b.classList.add("scharf");setTimeout(()=>{if(b.isConnected){delete b.dataset.scharf;b.textContent="✕";b.classList.remove("scharf");}},3000);return;}
+    const k=SC.schluessel;STORE[k].chats=chatsVon(k).filter(x=>x.id!==b.dataset.del);speichernLokal();if(chatId===b.dataset.del){chatId=null;turns=[];zeigen();}seite(true);});}
+function neu(){if(ctl)ctl.abort();chatId=null;turns=[];if(SC)aktivPro[SC.schluessel]=null;seite(false);zeigen();document.getElementById("dc-cin").focus();}
+function zeigen(){const box=document.getElementById("dc-cmsgs");
+  if(!turns.length){const v=(api.vorschlaege&&api.vorschlaege(SC))||["Erklär mir das hier nochmals einfacher","Gib mir eine Übungsfrage zu diesem Thema","Was muss ich dazu für den Test können?"];
+    box.innerHTML=`<div class="dc-cleer"><p style="margin:0">Ich sehe, was gerade auf dem Bildschirm ist, und kann in den Inhalten von «${esc(NAME)}» nachschlagen. Frag zum Beispiel:</p><div class="dc-cchips">${v.map(s=>`<button type="button">${esc(s)}</button>`).join("")}</div></div>`;
+    box.querySelectorAll(".dc-cchips button").forEach(b=>b.onclick=()=>senden(b.textContent));return;}
+  box.innerHTML=turns.map(t=>`<div class="dc-cmsg ${t.role==="user"?"me":"ai"}">${t.role==="user"?esc(t.content):md(t.content)}</div>`).join("");mathe(box);box.scrollTop=box.scrollHeight;}
+function fehlerText(c){return({rate_limited:"Gerade zu viele Anfragen oder dein Nutzungslimit ist erreicht. Versuch es später nochmals.",not_granted:"Du hast der App den Zugriff auf Claude nicht erlaubt.",sampling_disabled:"Claude ist für dieses Konto hier nicht verfügbar.",session_expired:"Bitte melde dich neu an.",prompt_too_large:"Der Verlauf ist zu lang. Starte mit «Neu» einen neuen Chat.",refused:"Diese Frage kann ich so nicht beantworten. Formuliere sie anders."})[c]||"Die Verbindung zu Claude ist abgebrochen. Versuch es nochmals.";}
+async function senden(text){if(busy||!sample)return;busy=true;const btn=document.getElementById("dc-csend");btn.textContent="Stopp";seite(false);
+  turns.push({role:"user",content:text});zeigen();
+  const box=document.getElementById("dc-cmsgs");const b=document.createElement("div");b.className="dc-cmsg ai warte";b.textContent="Denke nach …";box.appendChild(b);box.scrollTop=box.scrollHeight;
+  ctl=new AbortController();let tools=false;try{const lim=await sample.limits();tools=!!(lim&&lim.tools);}catch(e){}
+  const k=kontext();const hist=turns.slice(-12);
+  const input=[{role:"user",content:regeln(k,tools)},{role:"assistant",content:"Verstanden."},...(hist[0]&&hist[0].role==="assistant"?hist.slice(1):hist)];
+  const opts={signal:ctl.signal,cache:false,onText:({text})=>{b.classList.remove("warte");b.textContent=text;box.scrollTop=box.scrollHeight;}};if(tools)opts.tools=TOOLS;
+  try{const r=await sample(input,opts);turns.push({role:"assistant",content:r.text+(r.truncated?"\n\n*(Antwort gekürzt – frag nach dem Rest.)*":"")});}
+  catch(e){const c=e&&e.code;if(e&&e.text)turns.push({role:"assistant",content:e.text+(c==="cancelled"?"\n\n*(abgebrochen)*":"")});
+    if(c!=="cancelled")turns.push({role:"assistant",content:"⚠ "+fehlerText(c)});
+    if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(c))H.classList.remove("dc-claude-ok");}
+  busy=false;btn.textContent="Senden";status("");sichern();zeigen();}
+let zurueckSperre=false;
+function oeffnen(vorgabe){if(!sample)return;ui();const p=document.getElementById("dc-cpanel");const k=kontext();
+  if(!SC||SC.schluessel!==k.schluessel){if(ctl)ctl.abort();SC=k;const a=aktivPro[k.schluessel];const c=a&&chatsVon(k.schluessel).find(x=>x.id===a);chatId=c?c.id:null;turns=c?c.turns.slice():[];}
+  document.getElementById("dc-cctx").textContent="Stufe: "+SC.stufe;seite(false);zeigen();
+  if(p.hidden){p.hidden=false;document.body.classList.add("dc-chat-offen");try{history.pushState(Object.assign({},history.state,{dcChat:1}),"");}catch(e){}}
+  const ta=document.getElementById("dc-cin");if(vorgabe){ta.value=vorgabe;ta.dispatchEvent(new Event("input"));}setTimeout(()=>{ta.focus();if(vorgabe)ta.setSelectionRange(ta.value.length,ta.value.length);},50);}
+function schliessen(vonPop){const p=document.getElementById("dc-cpanel");if(!p||p.hidden)return;p.hidden=true;document.body.classList.remove("dc-chat-offen");
+  const f=document.getElementById("dc-cfab");if(f)f.focus({preventScroll:true});if(vonPop!==true){zurueckSperre=true;try{history.back();}catch(e){zurueckSperre=false;}}}
+window.addEventListener("popstate",e=>{if(zurueckSperre){zurueckSperre=false;e.stopImmediatePropagation();return;}
+  const p=document.getElementById("dc-cpanel");if(p&&!p.hidden){schliessen(true);e.stopImmediatePropagation();}},true);
+
+/* ---------- öffentliche Schnittstelle ---------- */
+const api=window.dcClaude=Object.assign(window.dcClaude||{},{
+  version:1,
+  oeffnen,
+  knopf(text,label){return `<button type="button" class="dc-ask" data-dc-ask="${esc(text)}">${ICON}<span>${esc(label||"Claude fragen")}</span></button>`;},
+  frageText(frage,extra){return "Ich verstehe diese Frage bzw. die Lösung noch nicht ganz. Kannst du es mir Schritt für Schritt erklären?\n\nFrage: "+String(frage||"").replace(/\s+/g," ").trim()+(extra?"\n"+extra:"");}
+});
+async function start(){ui();if(!window.claude||!window.claude.use)return;
+  try{sample=await claude.use("sample");}catch(e){sample=null;}
+  if(sample){H.classList.add("dc-claude-ok");window.__sampleOK=true;}}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+})();
+</script>
+<!-- ===== Ende Frag Claude ===== -->
+
+</body>
+</html>

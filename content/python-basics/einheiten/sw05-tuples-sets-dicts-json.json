@@ -1,0 +1,889 @@
+{
+  "id": "sw05-tuples-sets-dicts-json",
+  "titel": "Tuples, Sets, Dicts & JSON",
+  "beschreibung": "Tuples und Unpacking, Sets und Mengenoperationen, Dictionaries (auch nested), JSON speichern und laden",
+  "woche": 5,
+  "lektionen": [
+    {
+      "id": "sw05-tuples-sets-dicts-json-l7",
+      "titel": "Tuples",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 3,
+      "quelle": "SW05_PB_TuplesSetDictJSON_FlippedClassroom, S. 3–4",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Unveränderbare Sequenz"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Tuple** ist eine geordnete Sequenz und wird mit runden Klammern `( )` definiert. Es kann Elemente\n        verschiedener Datentypen enthalten und unterstützt alle Sequenz-Funktionen (Index, `for`, `in`, `len`).\n        Aber: Tuples sind **nicht veränderbar** – `my_tuple[1] = 4` gibt einen `TypeError`."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_tuple = (1, 2, 4, \"word\")\nprint(my_tuple[0], len(my_tuple))\nprint(1 in my_tuple, \"word\" in my_tuple)\nprint(\"ord\" in my_tuple, (1, 2) in my_tuple)",
+          "ausfuehrbar": true,
+          "ausgabe": "1 4\nTrue True\nFalse False"
+        },
+        {
+          "typ": "hinweis",
+          "text": "`in` prüft bei einem Tuple ganze **Elemente**: `\"ord\"` ist kein Element, auch wenn es in `\"word\"` vorkommt."
+        },
+        {
+          "typ": "titel",
+          "text": "Tuple entpacken"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_tup = (1, 2)\nx, y = my_tup\nprint(x, y)\nmy_tup = 1, 2, 3      # Klammern sind optional\na, b, c = my_tup\nprint(a, b, c)",
+          "ausfuehrbar": true,
+          "ausgabe": "1 2\n1 2 3"
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l8",
+      "titel": "Sets (Mengen)",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW05_PB_TuplesSetDictJSON_FlippedClassroom, S. 5–8",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Jedes Element nur einmal"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Set** ist eine **ungeordnete** Sammlung, die jedes Element nur einmal enthält – wie eine Menge in\n        der Mathematik. Es wird mit `{ }` definiert. Elemente kann man hinzufügen (`add`) und entfernen (`remove`)."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_set = {\"apple\", \"banana\", \"pear\"}\nmy_set.add(\"pineapple\")\nmy_set.add(\"pineapple\")     # doppelt → passiert nichts\nprint(len(my_set))\nmy_set.remove(\"apple\")\nprint(\"pear\" in my_set, \"apple\" in my_set)",
+          "ausfuehrbar": true,
+          "ausgabe": "4\nTrue False"
+        },
+        {
+          "typ": "hinweis",
+          "text": "`remove()` eines Elements, das nicht im Set ist, gibt einen `KeyError`. Die Reihenfolge beim Ausgeben eines Sets ist nicht festgelegt."
+        },
+        {
+          "typ": "titel",
+          "text": "Mengenoperationen"
+        },
+        {
+          "typ": "tabelle",
+          "kopf": [
+            "Operator",
+            "Bedeutung"
+          ],
+          "zeilen": [
+            [
+              "`a & b`",
+              "Schnittmenge"
+            ],
+            [
+              "`a | b`",
+              "Vereinigung"
+            ],
+            [
+              "`a - b`",
+              "Differenz (in a, nicht in b)"
+            ],
+            [
+              "`a ^ b`",
+              "symmetrische Differenz (in genau einem)"
+            ]
+          ]
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "a = {1, 2, 3, 4}\nb = {3, 4, 5}\nprint(sorted(a & b))\nprint(sorted(a | b))\nprint(sorted(a - b))\nprint(sorted(a ^ b))\nprint({3, 4}.issubset(a), a.issuperset({1, 2}))",
+          "ausfuehrbar": true,
+          "ausgabe": "[3, 4]\n[1, 2, 3, 4, 5]\n[1, 2]\n[1, 2, 5]\nTrue True"
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l9",
+      "titel": "Dictionaries",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW05_PB_TuplesSetDictJSON_FlippedClassroom, S. 9–16",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Key-Value-Paare"
+        },
+        {
+          "typ": "text",
+          "text": "Ein **Dictionary** (`dict`) speichert **Key-Value-Paare**. Werte werden nicht über einen Index, sondern\n        über ihren **Key** angesprochen. Keys sind eindeutig, Values dürfen sich wiederholen. Definiert wird es mit\n        `{key: value, …}`."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_dict = {\"b\": \"beauty\", \"j\": \"joy\"}\nprint(my_dict[\"b\"])\nmy_dict[\"c\"] = \"computing\"    # neuer Key\nmy_dict[\"b\"] = \"boy\"          # bestehender Key → überschreiben\nprint(my_dict)\nprint(len(my_dict))",
+          "ausfuehrbar": true,
+          "ausgabe": "beauty\n{'b': 'boy', 'j': 'joy', 'c': 'computing'}\n3"
+        },
+        {
+          "typ": "titel",
+          "text": "Verschachtelte Dicts"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "my_family = {\"John\": {\"Age\": 48, \"Gender\": \"m\", \"Profession\": \"Carpenter\"}}\nmy_family[\"Peter\"] = {\"Age\": 35, \"Gender\": \"m\", \"Profession\": \"Electrician\"}\nprint(my_family[\"John\"][\"Age\"])\nprint(len(my_family), len(my_family[\"John\"]))",
+          "ausfuehrbar": true,
+          "ausgabe": "48\n2 3"
+        },
+        {
+          "typ": "titel",
+          "text": "Durch ein Dict iterieren"
+        },
+        {
+          "typ": "text",
+          "text": "Eine `for`-Schleife geht standardmässig durch die **Keys**. Mit `.items()` erhält man Key und Value zusammen:"
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "ages = {\"John\": 48, \"Peter\": 35}\nfor key in ages:\n    print(key)\nfor key, value in ages.items():\n    print(f\"{key}: {value}\")",
+          "ausfuehrbar": true,
+          "ausgabe": "John\nPeter\nJohn: 48\nPeter: 35"
+        },
+        {
+          "typ": "merke",
+          "text": "Dicts eignen sich, um Informationen logisch strukturiert zu speichern und schnell über den Key abzurufen."
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l10",
+      "titel": "JSON und pprint",
+      "art": "verstaendnis",
+      "abschnitt": "theorie",
+      "dauer_min": 4,
+      "quelle": "SW05_PB_TuplesSetDictJSON_FlippedClassroom, S. 17–21",
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Dicts schön ausgeben"
+        },
+        {
+          "typ": "text",
+          "text": "Das Modul `pprint` (Pretty Print) gibt Dictionaries übersichtlich aus. Mit `depth` legt man fest, wie viele\n        Ebenen gezeigt werden, mit `indent` den Einzug."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import pprint\nmy_dict = {\"John\": {\"Age\": 48}, \"Peter\": {\"Age\": 35}}\npp = pprint.PrettyPrinter(depth=1, indent=3)\npp.pprint(my_dict)",
+          "ausfuehrbar": true,
+          "ausgabe": "{'John': {...}, 'Peter': {...}}"
+        },
+        {
+          "typ": "titel",
+          "text": "Dicts in einer Datei speichern"
+        },
+        {
+          "typ": "text",
+          "text": "**JSON** (JavaScript Object Notation) ist ein standardisiertes Dateiformat, um u. a. Dictionaries zu\n        speichern. Das Modul `json` schreibt mit `json.dump()` und liest mit `json.load()`."
+        },
+        {
+          "typ": "code",
+          "sprache": "python",
+          "code": "import json\nmy_dict = {\"John\": {\"Age\": 48, \"Gender\": \"m\"}}\nwith open(file=\"dict.json\", mode=\"w+\") as fp:\n    json.dump(obj=my_dict, fp=fp, indent=4)\n\nwith open(file=\"dict.json\", mode=\"r+\") as fp:\n    my_read_dict = json.load(fp=fp)\nprint(my_read_dict)",
+          "ausfuehrbar": true,
+          "ausgabe": "{'John': {'Age': 48, 'Gender': 'm'}}"
+        },
+        {
+          "typ": "hinweis",
+          "text": "JSON ist auch das übliche Format, mit dem **APIs** (Software-Schnittstellen) Daten zwischen Server und Client austauschen."
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l1",
+      "titel": "Tuples & Sets",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a1",
+          "typ": "zuordnen",
+          "frage": "Welche Klammern definieren was?",
+          "paare": [
+            [
+              "( )",
+              "Tuple"
+            ],
+            [
+              "[ ]",
+              "Liste"
+            ],
+            [
+              "{ }",
+              "Set"
+            ],
+            [
+              "{ key: value }",
+              "Dictionary"
+            ]
+          ],
+          "erklaerung": "Tuple (), Liste [], Set {}, Dict {k: v}.",
+          "quelle": "Python_Test_Cheatsheet_Wochen_1-6, S. 2"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Tuples sind veränderbar (mutable).",
+          "richtig": false,
+          "erklaerung": "Tuples sind non-mutable: my_tuple[1] = 4 gibt einen Fehler.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 4"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "`my_tup = (1, 2)` – was macht `x, y = my_tup`?",
+          "optionen": [
+            "x = 1 und y = 2 (Unpacking)",
+            "x = (1, 2), y = None",
+            "Fehler",
+            "x = 2 und y = 1"
+          ],
+          "richtig": 0,
+          "erklaerung": "Tuples können direkt in Variablen ausgelesen werden.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 4"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Ein Set enthält jedes Element nur einmal.",
+          "richtig": true,
+          "erklaerung": "Wird ein Item mehrfach hinzugefügt, passiert nichts.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 5"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Sets sind geordnet und können mit [0] indexiert werden.",
+          "richtig": false,
+          "erklaerung": "Sets sind ungeordnet, also nicht indexierbar.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 5"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a6",
+          "typ": "zuordnen",
+          "frage": "Ordne die Mengenoperatoren zu:",
+          "paare": [
+            [
+              "&",
+              "Schnittmenge"
+            ],
+            [
+              "|",
+              "Vereinigung"
+            ],
+            [
+              "-",
+              "Differenz"
+            ],
+            [
+              "^",
+              "symmetrische Differenz"
+            ]
+          ],
+          "erklaerung": "Mengenoperationen auf Sets.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 8"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l1-a7",
+          "typ": "multiple_choice",
+          "frage": "Was passiert bei `my_set.remove(\"x\")`, wenn \"x\" nicht im Set ist?",
+          "optionen": [
+            "KeyError",
+            "Nichts",
+            "Das Set wird geleert",
+            "ValueError"
+          ],
+          "richtig": 0,
+          "erklaerung": "remove auf ein nicht vorhandenes Element gibt bei Sets einen KeyError.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 6"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l2",
+      "titel": "Dictionaries & JSON",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Womit werden Werte in einem Dictionary angewählt?",
+          "optionen": [
+            "Mit Keys",
+            "Mit Indices 0, 1, 2 …",
+            "Mit Slicing",
+            "Gar nicht"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein Dict speichert Key-Value-Paare; Werte werden über Keys angewählt.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 9"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a2",
+          "typ": "wahr_falsch",
+          "aussage": "In einem Dictionary müssen die Values eindeutig sein.",
+          "richtig": false,
+          "erklaerung": "Nur die Keys sind unique. Ein doppelter Key überschreibt den alten Wert.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 11"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a3",
+          "typ": "multiple_choice",
+          "frage": "Was liefert `len()` bei einem Dictionary?",
+          "optionen": [
+            "Anzahl Keys",
+            "Anzahl Zeichen",
+            "Summe der Values",
+            "Tiefe des Dicts"
+          ],
+          "richtig": 0,
+          "erklaerung": "len(dict) = Anzahl Keys.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 16"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a4",
+          "typ": "multiple_choice",
+          "frage": "Worüber iteriert `for x in my_dict:`?",
+          "optionen": [
+            "Über die Keys",
+            "Über die Values",
+            "Über Key-Value-Tuples",
+            "Über Indices"
+          ],
+          "richtig": 0,
+          "erklaerung": "Standardmässig über die Keys. Für beides: .items().",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 16"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a5",
+          "typ": "zuordnen",
+          "frage": "Ordne die json-Funktionen zu:",
+          "paare": [
+            [
+              "json.dump(obj, fp)",
+              "Dict in Datei speichern"
+            ],
+            [
+              "json.load(fp)",
+              "Dict aus Datei lesen"
+            ]
+          ],
+          "erklaerung": "JSON = JavaScript Object Notation, ein Standardformat für z. B. Dicts.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 18–20"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a6",
+          "typ": "karteikarte",
+          "vorne": "Wofür steht JSON und wozu braucht man es?",
+          "hinten": "JavaScript Object Notation – Dateiformat zum Speichern von Dicts und Datenformat für den Austausch über APIs.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 18 und 21"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l2-a7",
+          "typ": "multiple_choice",
+          "frage": "Wie greift man auf das Alter von John zu? `my_family = {\"John\": {\"Age\": 48}}`",
+          "optionen": [
+            "my_family[\"John\"][\"Age\"]",
+            "my_family[\"Age\"]",
+            "my_family[0][0]",
+            "my_family.John.Age"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei nested Dicts mehrere Klammern: zuerst äusserer Key, dann innerer.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 13"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l3",
+      "titel": "Check your understanding",
+      "art": "verstaendnis",
+      "aufgaben": [
+        {
+          "id": "sw05-tuples-sets-dicts-json-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage zu Tuples, Sets und Dicts ist richtig?",
+          "optionen": [
+            "Dictionaries speichern Werte über Schlüssel (keys)",
+            "Tuples können mit append() erweitert werden",
+            "Sets speichern Elemente so oft, wie sie hinzugefügt wurden",
+            "Dicts können nur Zahlen als Schlüssel verwenden"
+          ],
+          "richtig": 0,
+          "erklaerung": "Tuples sind immutable, Sets speichern jedes Element einmal, Keys können z. B. Strings oder Zahlen sein.",
+          "quelle": "SW05_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l3-a2",
+          "typ": "code_ausgabe",
+          "code": "data = (\"red\", \"green\", \"blue\")\na, b, c = data\nprint(b)\nprint(data[0])",
+          "optionen": [
+            "green\nred",
+            "red\ngreen",
+            "blue\nred",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Unpacking: a='red', b='green', c='blue'.",
+          "quelle": "SW05_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "`numbers = {1, 2, 2, 3, 3, 3}` und danach `numbers.add(4)` – was stimmt?",
+          "optionen": [
+            "Das Set enthält vier unterschiedliche Elemente",
+            "Das Set enthält sechs Elemente",
+            "Die 2 kommt zweimal vor",
+            "add() funktioniert nur bei Listen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein Set speichert jedes Element nur einmal → {1, 2, 3, 4}.",
+          "quelle": "SW05_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l3-a4",
+          "typ": "code_ausgabe",
+          "code": "grades = {\"Anna\": 5.5, \"Ben\": 4.0, \"Clara\": 6.0}\nfor name, grade in grades.items():\n    if grade >= 5:\n        print(name)",
+          "optionen": [
+            "Anna\nClara",
+            "Ben",
+            "Anna\nBen\nClara",
+            "5.5\n6.0"
+          ],
+          "richtig": 0,
+          "erklaerung": ".items() liefert Key und Value; nur Noten ≥ 5.",
+          "quelle": "SW05_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l3-a5",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage zu JSON ist richtig?",
+          "optionen": [
+            "JSON-Daten werden in Python häufig als Dictionaries und Listen dargestellt",
+            "JSON funktioniert nur mit ganzen Zahlen",
+            "JSON ist dasselbe wie ein Tuple",
+            "JSON-Dateien können nie eingelesen werden"
+          ],
+          "richtig": 0,
+          "erklaerung": "JSON-Objekte → Dicts, JSON-Listen → Listen.",
+          "quelle": "SW05_Vorbereitung_standardized.ipynb (JupyterHub), Check your understanding"
+        }
+      ],
+      "abschnitt": "schnellfragen"
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l4",
+      "titel": "Code lesen: Tuples, Sets, Dicts",
+      "art": "code",
+      "aufgaben": [
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a1",
+          "typ": "code_ausgabe",
+          "code": "my_tup = 1, 2, 3\nx, y, z = my_tup\nprint(x, y, z)",
+          "optionen": [
+            "1 2 3",
+            "(1, 2, 3)",
+            "Fehler",
+            "3 2 1"
+          ],
+          "richtig": 0,
+          "erklaerung": "Klammern sind optional, Unpacking verteilt die Werte.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 4"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a2",
+          "typ": "code_ausgabe",
+          "code": "my_tuple = (1, 2, \"word\")\nprint(\"ord\" in my_tuple)",
+          "optionen": [
+            "False",
+            "True",
+            "Fehler",
+            "ord"
+          ],
+          "richtig": 0,
+          "erklaerung": "in prüft ganze Elemente – 'ord' ist kein Element, nur Teil von 'word'.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 3"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a3",
+          "typ": "code_ausgabe",
+          "code": "s = {\"apple\", \"pear\"}\ns.add(\"pear\")\ns.add(\"kiwi\")\nprint(len(s))",
+          "optionen": [
+            "3",
+            "4",
+            "2",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "pear ist schon drin, nur kiwi kommt dazu.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 5"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a4",
+          "typ": "code_ausgabe",
+          "code": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(a & b)",
+          "optionen": [
+            "{2, 3}",
+            "{1, 2, 3, 4}",
+            "{1, 4}",
+            "{1}"
+          ],
+          "richtig": 0,
+          "erklaerung": "& ist die Schnittmenge.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 8"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a5",
+          "typ": "code_ausgabe",
+          "code": "my_dict = {\"b\": \"beauty\", \"j\": \"joy\"}\nmy_dict[\"b\"] = \"boy\"\nprint(my_dict[\"b\"])",
+          "optionen": [
+            "boy",
+            "beauty",
+            "['beauty', 'boy']",
+            "Fehler"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ein bestehender Key wird überschrieben.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 11"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a6",
+          "typ": "code_ausgabe",
+          "code": "punkte = {\"Anna\": 5, \"Ben\": 3}\nfor name, p in punkte.items():\n    print(f\"{name}: {p}\")",
+          "optionen": [
+            "Anna: 5\nBen: 3",
+            "Anna\nBen",
+            "5\n3",
+            "('Anna', 5)\n('Ben', 3)"
+          ],
+          "richtig": 0,
+          "erklaerung": ".items() liefert Key und Value.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 16"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a7",
+          "typ": "code_fehler",
+          "code": "my_tuple = (1, 2, 4)\nmy_tuple[1] = 3\nprint(my_tuple)",
+          "fehlerzeile": 2,
+          "korrektur": "my_tuple = (1, 3, 4)",
+          "erklaerung": "Tuples sind non-mutable – Zuweisung an ein Element gibt TypeError.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 4"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l4-a8",
+          "typ": "code_luecke",
+          "frage": "Ergänze, sodass das Dict als JSON in die Datei geschrieben wird.",
+          "code": "import json\nmy_dict = {\"a\": 1}\nwith open(\"dict.json\", \"w\") as fp:\n    json.___(my_dict, fp, indent=4)",
+          "antworten": [
+            [
+              "dump"
+            ]
+          ],
+          "erklaerung": "json.dump schreibt, json.load liest.",
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 18"
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l5",
+      "titel": "Dicts programmieren",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw05-tuples-sets-dicts-json-l5-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Freunde-Dictionary",
+          "aufgabe": "Lies zwei Zeilen ein: einen Namen und ein Alter. Erstelle ein Dictionary `my_friends`, das den Namen auf ein inneres Dict `{\"age\": <int>}` abbildet, und gib `my_friends` aus.",
+          "startcode": "name = input()\nalter = int(input())",
+          "tests": [
+            {
+              "eingabe": "Lea\n21",
+              "ausgabe": "{'Lea': {'age': 21}}"
+            },
+            {
+              "eingabe": "Tim\n0",
+              "ausgabe": "{'Tim': {'age': 0}}"
+            },
+            {
+              "eingabe": "Max\n99",
+              "ausgabe": "{'Max': {'age': 99}}"
+            }
+          ],
+          "hinweise": [
+            "Nested Dict: {name: {\"age\": alter}}",
+            "print(dict) gibt einfache Anführungszeichen aus."
+          ],
+          "musterloesung": "name = input()\nalter = int(input())\nmy_friends = {}\nmy_friends[name] = {\"age\": alter}\nprint(my_friends)",
+          "kriterien": [
+            "Nested Dict",
+            "age als int"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 15"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l5-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Gemeinsame Buchstaben",
+          "aufgabe": "Lies zwei Wörter ein (je eine Zeile). Gib die gemeinsamen Buchstaben alphabetisch sortiert als Liste aus.",
+          "startcode": "w1 = input()\nw2 = input()",
+          "tests": [
+            {
+              "eingabe": "hallo\nwelt",
+              "ausgabe": "['l']"
+            },
+            {
+              "eingabe": "abc\ndef",
+              "ausgabe": "[]"
+            },
+            {
+              "eingabe": "python\nnothing",
+              "ausgabe": "['h', 'n', 'o', 't']"
+            }
+          ],
+          "hinweise": [
+            "set(w1) & set(w2) ergibt die Schnittmenge.",
+            "list(...) und .sort() für die Ausgabe."
+          ],
+          "musterloesung": "w1 = input()\nw2 = input()\ngemeinsam = list(set(w1) & set(w2))\ngemeinsam.sort()\nprint(gemeinsam)",
+          "kriterien": [
+            "Sets und Schnittmenge",
+            "sortierte Ausgabe",
+            "leere Schnittmenge → []"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW05_PB_TuplesSetDictJSON, S. 8"
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l6",
+      "titel": "InClass-Übungen",
+      "art": "programmieren",
+      "aufgaben": [
+        {
+          "id": "sw05-tuples-sets-dicts-json-l6-a1",
+          "typ": "programmieraufgabe",
+          "titel": "Englisch → Spanisch",
+          "aufgabe": "Übersetze den eingelesenen Satz Wort für Wort mit `lookup_table`. Wörter werden klein nachgeschlagen; fehlt ein Wort, wird es in GROSSBUCHSTABEN übernommen. Gib `sp_text` aus.",
+          "startcode": "lookup_table = {\"hello\": \"hola\", \"world\": \"mundo\", \"this\": \"esto\", \"is\": \"es\", \"a\": \"un\", \"test\": \"prueba\"}\ntext = input()",
+          "tests": [
+            {
+              "eingabe": "Hello world this is a test Yes",
+              "ausgabe": "hola mundo esto es un prueba YES"
+            },
+            {
+              "eingabe": "hello",
+              "ausgabe": "hola"
+            },
+            {
+              "eingabe": "Python is cool",
+              "ausgabe": "PYTHON es COOL"
+            }
+          ],
+          "hinweise": [
+            "text.split() und word.lower()",
+            "Mit `in` prüfen, ob der Key existiert.",
+            "\" \".join(liste) verbindet Wörter."
+          ],
+          "musterloesung": "lookup_table = {\"hello\": \"hola\", \"world\": \"mundo\", \"this\": \"esto\", \"is\": \"es\", \"a\": \"un\", \"test\": \"prueba\"}\ntext = input()\ntranslated = []\nfor word in text.split():\n    w = word.lower()\n    if w in lookup_table:\n        translated.append(lookup_table[w])\n    else:\n        translated.append(word.upper())\nsp_text = \" \".join(translated)\nprint(sp_text)",
+          "kriterien": [
+            "Dict-Lookup",
+            "Fallback in Grossbuchstaben"
+          ],
+          "schwierigkeit": 2,
+          "quelle": "SW05_InClass_standardized_clean.ipynb (JupyterHub), «Dictionary-Lookup – Englisch nach Spanisch»"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l6-a2",
+          "typ": "programmieraufgabe",
+          "titel": "Lagerbestand prüfen",
+          "aufgabe": "Lies Zeilen im Format `produkt anzahl` ein (zuerst eine Zeile mit der Anzahl Produkte). Gib die Liste `low_stock` mit allen Produkten aus, deren Bestand kleiner als 5 ist.",
+          "startcode": "n = int(input())\ninventory = {}\nfor i in range(n):\n    name, menge = input().split()\n    inventory[name] = int(menge)",
+          "tests": [
+            {
+              "eingabe": "5\ncables 12\nsensors 3\nboards 8\nbatteries 2\ncases 15",
+              "ausgabe": "['sensors', 'batteries']"
+            },
+            {
+              "eingabe": "1\nleds 10",
+              "ausgabe": "[]"
+            },
+            {
+              "eingabe": "2\na 4\nb 5",
+              "ausgabe": "['a']"
+            }
+          ],
+          "hinweise": [
+            "for name, menge in inventory.items():",
+            "kleiner als 5 heisst < 5"
+          ],
+          "musterloesung": "n = int(input())\ninventory = {}\nfor i in range(n):\n    name, menge = input().split()\n    inventory[name] = int(menge)\nlow_stock = []\nfor name, menge in inventory.items():\n    if menge < 5:\n        low_stock.append(name)\nprint(low_stock)",
+          "kriterien": [
+            ".items()",
+            "Grenzwert 5"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW05_InClass_standardized_clean.ipynb (JupyterHub), «Lagerbestand prüfen – low_stock»"
+        },
+        {
+          "id": "sw05-tuples-sets-dicts-json-l6-a3",
+          "typ": "programmieraufgabe",
+          "titel": "Initialen sammeln",
+          "aufgabe": "Lies Namen (durch Leerzeichen getrennt) ein. Sammle alle unterschiedlichen Anfangsbuchstaben in einem Set `initials_set` und gib sie sortiert als Liste aus.",
+          "startcode": "names = input().split()",
+          "tests": [
+            {
+              "eingabe": "Ada Alan Grace Guido Barbara Bjarne",
+              "ausgabe": "['A', 'B', 'G']"
+            },
+            {
+              "eingabe": "Tim",
+              "ausgabe": "['T']"
+            },
+            {
+              "eingabe": "Zoe Yan Zara",
+              "ausgabe": "['Y', 'Z']"
+            }
+          ],
+          "hinweise": [
+            "initials_set.add(name[0])",
+            "sorted(...) oder list() + sort()"
+          ],
+          "musterloesung": "names = input().split()\ninitials_set = set()\nfor name in names:\n    initials_set.add(name[0])\nergebnis = list(initials_set)\nergebnis.sort()\nprint(ergebnis)",
+          "kriterien": [
+            "Set ohne Duplikate",
+            "sortierte Ausgabe"
+          ],
+          "schwierigkeit": 1,
+          "quelle": "SW05_InClass_standardized_clean.ipynb (JupyterHub), «Initialen sammeln – initials_set»"
+        }
+      ]
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l11",
+      "titel": "Noten umrechnen",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW05_Aufrag_nbg (JupyterHub), Aufgabe 1",
+      "aufgabe": "Die Noten von sechs Studierenden sind im Dictionary `students` gespeichert (nur ganze und halbe Noten).\nLege den Notenschlüssel als Dictionary `grades` an:\n\n`4.0 → E`, `4.5 → D`, `5.0 → C`, `5.5 → B`, `6.0 → A` – Noten **unter 4** ergeben `F`.\n\nErstelle das Dictionary `letter_grades` (Name → Buchstabe) und gib für jede Person `Name Buchstabe` aus,\nz. B. `Max E`.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "students = {\"Max\": 4, \"Anna\": 5, \"Luis\": 5.5, \"Sophie\": 5, \"Tom\": 6, \"Bob\": 3.5}",
+          "gesperrt": true
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Notenschlüssel und Umrechnung"
+        },
+        {
+          "typ": "code",
+          "inhalt": "grades = {}\nletter_grades = {}\n# for name, grade in students.items():"
+        }
+      ],
+      "tests": "assert grades.get(4) == \"E\" and grades.get(6) == \"A\" and grades.get(5.5) == \"B\", \"Der Notenschlüssel grades ist unvollständig oder falsch.\"\nerwartet = {\"Max\": \"E\", \"Anna\": \"C\", \"Luis\": \"B\", \"Sophie\": \"C\", \"Tom\": \"A\", \"Bob\": \"F\"}\nassert letter_grades == erwartet, f\"letter_grades sollte {erwartet} sein, ist aber {letter_grades}.\"\nfor name, note in erwartet.items():\n    assert f\"{name} {note}\" in _ausgabe, f\"Die Zeile «{name} {note}» fehlt in der Ausgabe.\"",
+      "hinweise": [
+        "Mit `.items()` bekommst du Name und Note zusammen.",
+        "Prüfe mit `in`, ob die Note ein Key in `grades` ist – sonst `F`.",
+        "In Python ist `4 == 4.0`, darum findet `grades[4]` auch die Note 4.0."
+      ],
+      "loesung": "students = {\"Max\": 4, \"Anna\": 5, \"Luis\": 5.5, \"Sophie\": 5, \"Tom\": 6, \"Bob\": 3.5}\n\ngrades = {4: \"E\", 4.5: \"D\", 5: \"C\", 5.5: \"B\", 6: \"A\"}\nletter_grades = {}\nfor name, grade in students.items():\n    if grade in grades:\n        letter_grades[name] = grades[grade]\n    else:\n        letter_grades[name] = \"F\"\n    print(name, letter_grades[name])"
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l12",
+      "titel": "Sensorwerte umrechnen und als JSON speichern",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 14,
+      "schwierigkeit": 3,
+      "quelle": "SW05_Aufrag_nbg (JupyterHub), Aufgabe 2",
+      "aufgabe": "Fünf Sensoren haben Temperatur (°F) und Luftfeuchtigkeit (%) gemessen. Rechne alle Temperaturen in °C um,\n\n$$T_{°C} = \\frac{T_{°F} - 32}{1.8}$$\n\nauf **drei Nachkommastellen** gerundet, und speichere sie mit der unveränderten Luftfeuchtigkeit im neuen\nDictionary `sensor_val_celsius` (gleiche Struktur). Speichere es in der Datei `sensor_cels.json`, lies die\nDatei wieder in `my_read_dict` ein und gib sie mit `pprint` aus.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "import json\nimport pprint\n\nsensor_values = {\n    \"Sensor1\": {\"temp\": 77.0, \"hum\": 40},\n    \"Sensor2\": {\"temp\": 86.9, \"hum\": 50},\n    \"Sensor3\": {\"temp\": 82.04, \"hum\": 45},\n    \"Sensor4\": {\"temp\": 71.78, \"hum\": 55},\n    \"Sensor5\": {\"temp\": 96.08, \"hum\": 60}\n}",
+          "gesperrt": true
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 1 – umrechnen"
+        },
+        {
+          "typ": "code",
+          "inhalt": "sensor_val_celsius = {}"
+        },
+        {
+          "typ": "markdown",
+          "inhalt": "### Teil 2 – speichern, wieder einlesen, ausgeben"
+        },
+        {
+          "typ": "code",
+          "inhalt": "my_read_dict = None"
+        }
+      ],
+      "tests": "erwartet = {k: {\"temp\": round((v[\"temp\"] - 32) / 1.8, 3), \"hum\": v[\"hum\"]} for k, v in sensor_values.items()}\nassert sensor_val_celsius == erwartet, f\"sensor_val_celsius stimmt nicht. Sensor1 sollte {erwartet['Sensor1']} sein.\"\nimport os\nassert os.path.exists(\"sensor_cels.json\"), \"Die Datei sensor_cels.json wurde nicht geschrieben.\"\nwith open(\"sensor_cels.json\") as fp:\n    assert json.load(fp) == erwartet, \"In sensor_cels.json steht nicht das umgerechnete Dictionary.\"\nassert my_read_dict == erwartet, \"my_read_dict enthält nicht die eingelesenen Daten.\"\nassert \"Sensor5\" in _ausgabe and \"35.6\" in _ausgabe, \"Das eingelesene Dictionary wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Gehe mit `.items()` durch `sensor_values`; `value[\"temp\"]` ist die Temperatur.",
+        "Für jeden Sensor ein neues inneres Dict: `{\"temp\": celsius, \"hum\": value[\"hum\"]}`.",
+        "Schreiben: `with open(\"sensor_cels.json\", \"w\") as fp: json.dump(..., fp, indent=4)`.",
+        "Lesen: `with open(..., \"r\") as fp: my_read_dict = json.load(fp)`."
+      ],
+      "loesung": "import json\nimport pprint\n\nsensor_values = {\n    \"Sensor1\": {\"temp\": 77.0, \"hum\": 40},\n    \"Sensor2\": {\"temp\": 86.9, \"hum\": 50},\n    \"Sensor3\": {\"temp\": 82.04, \"hum\": 45},\n    \"Sensor4\": {\"temp\": 71.78, \"hum\": 55},\n    \"Sensor5\": {\"temp\": 96.08, \"hum\": 60}\n}\n\nsensor_val_celsius = {}\nfor key, value in sensor_values.items():\n    celsius = round((value[\"temp\"] - 32) / 1.8, 3)\n    sensor_val_celsius[key] = {\"temp\": celsius, \"hum\": value[\"hum\"]}\n\nwith open(\"sensor_cels.json\", \"w\") as fp:\n    json.dump(sensor_val_celsius, fp, indent=4)\n\nwith open(\"sensor_cels.json\", \"r\") as fp:\n    my_read_dict = json.load(fp)\n\npprint.pprint(my_read_dict)"
+    },
+    {
+      "id": "sw05-tuples-sets-dicts-json-l13",
+      "titel": "Morsecode",
+      "art": "programmieren",
+      "abschnitt": "programmieren",
+      "dauer_min": 10,
+      "schwierigkeit": 2,
+      "quelle": "SW05_Aufrag_nbg (JupyterHub), Aufgabe 3",
+      "aufgabe": "Wandle einen eingelesenen Text in Morsecode um. Die Wörter sind durch Leerzeichen getrennt, ohne Satzzeichen.\n\n- Nach jedem Morsezeichen eines Buchstabens folgen **zwei Leerzeichen**.\n- Nach jedem Wort folgt `| ` (Strich und ein Leerzeichen).\n\nSpeichere das Resultat in `morse_output` und gib es aus. Beispiel für `hello World`:\n```\n....  .  .-..  .-..  ---  | .--  ---  .-.  .-..  -..  |\n```\nBeim Prüfen gibt `input()` den Wert `hello World` zurück.",
+      "zellen": [
+        {
+          "typ": "code",
+          "inhalt": "morsecode = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',\n             'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',\n             'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',\n             'Y': '-.--', 'Z': '--..'}",
+          "gesperrt": true
+        },
+        {
+          "typ": "code",
+          "inhalt": "text = input(\"Satz: \")\nmorse_output = \"\"\n# dein Code\nprint(morse_output)"
+        }
+      ],
+      "tests": "erwartet = \"....  .  .-..  .-..  ---  | .--  ---  .-.  .-..  -..  | \"\nassert isinstance(morse_output, str) and morse_output, \"morse_output ist leer.\"\nassert morse_output.rstrip() == erwartet.rstrip(), f\"Für «hello World» sollte morse_output {erwartet!r} sein, ist aber {morse_output!r}.\"\nassert erwartet.rstrip() in _ausgabe, \"Der Morsecode wird nicht ausgegeben.\"",
+      "hinweise": [
+        "Zuerst mit `.split()` in Wörter zerlegen, dann jedes Wort Buchstabe für Buchstabe.",
+        "Die Keys sind Grossbuchstaben: `word.upper()`.",
+        "Das braucht eine Schleife in einer Schleife."
+      ],
+      "loesung": "morsecode = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',\n             'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',\n             'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',\n             'Y': '-.--', 'Z': '--..'}\n\ntext = input(\"Satz: \")\nmorse_output = \"\"\nfor word in text.split():\n    for letter in word.upper():\n        morse_output += morsecode[letter] + \"  \"\n    morse_output += \"| \"\nprint(morse_output)",
+      "eingaben": [
+        "hello World"
+      ]
+    }
+  ]
+}

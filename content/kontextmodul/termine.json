@@ -1,0 +1,259 @@
+{
+  "format": 2,
+  "fach": "kontextmodul",
+  "stand": "2026-11-09",
+  "quelle": [
+    "Aufgabenstellung Kontext 1 HS2026.pdf, Kap. 3 (S. 9–11) und Anhang 7.2/7.3 (S. 16–19)",
+    "Einladung ZB4 T04.pdf",
+    "Google Kalender: «Kontextmodul-T 1»"
+  ],
+  "termine": [
+    {
+      "id": "pjm1",
+      "titel": "Input KDS 1 & Ideenfindung",
+      "art": "input",
+      "von": "2026-09-18T12:30:00+02:00",
+      "bis": "2026-09-18T16:00:00+02:00",
+      "ort": "HSLU Horw, E201",
+      "hinweis": "Teambildung, moderierte Ideenfindung, Sitzungsleitung, Aktennotiz."
+    },
+    {
+      "id": "ideen",
+      "titel": "Zwei Projektideen einreichen",
+      "art": "abgabe",
+      "von": "2026-09-23T12:00:00+02:00",
+      "hinweis": "Zwei Projektideen nach Priorität.",
+      "pflicht": true
+    },
+    {
+      "id": "zb1",
+      "titel": "Zwischenbesprechung 1 – Projektfreigabe",
+      "art": "termin",
+      "von": "2026-09-25T12:30:00+02:00",
+      "ort": "HSLU Horw, E201",
+      "zeit_offen": true,
+      "checkliste": [
+        "Organigramm und Rollenverteilung",
+        "Projektplan"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "kds23",
+      "titel": "Input KDS 2 & 3",
+      "art": "input",
+      "von": "2026-10-02T12:30:00+02:00",
+      "bis": "2026-10-02T16:00:00+02:00",
+      "ort": "HSLU Horw, E201",
+      "hinweis": "Recherche, Zitieren/Bibliographieren/Plagiate, Eigen- und Fremdleistung."
+    },
+    {
+      "id": "zb2",
+      "titel": "Zwischenbesprechung 2",
+      "art": "termin",
+      "von": "2026-10-09T12:30:00+02:00",
+      "ort": "HSLU Horw, E201",
+      "zeit_offen": true,
+      "checkliste": [
+        "Benutzerszenario",
+        "Rückmeldung von potenziellen Kunden",
+        "Anforderungstabelle",
+        "Dokumentierte Recherche",
+        "Aktennotiz ZB1"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "kds45",
+      "titel": "Input KDS 4 & 5",
+      "art": "input",
+      "von": "2026-10-16T12:30:00+02:00",
+      "bis": "2026-10-16T16:00:00+02:00",
+      "ort": "HSLU Horw, E201",
+      "hinweis": "Sprache und Stil wiss. Arbeit Teil I, Aufbau der Arbeit / Disposition."
+    },
+    {
+      "id": "zb3",
+      "titel": "Zwischenbesprechung 3",
+      "art": "termin",
+      "von": "2026-10-23T13:30:00+02:00",
+      "bis": "2026-10-23T14:30:00+02:00",
+      "ort": "HSLU Horw",
+      "checkliste": [
+        "Morphologischer Kasten",
+        "Nutzwertanalyse",
+        "Entscheid",
+        "Grobbeschreibung Mock-up inkl. HxBxL (max. 80 × 60 cm)",
+        "Aktennotiz ZB2"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "zb4",
+      "titel": "Zwischenbesprechung 4",
+      "art": "termin",
+      "von": "2026-11-06T12:30:00+01:00",
+      "bis": "2026-11-06T13:30:00+01:00",
+      "ort": "HSLU Horw",
+      "hinweis": "Sitzungsleitung Noel, Protokoll Pascall.",
+      "checkliste": [
+        "Konzeption",
+        "Technische Spezifikationen",
+        "Konstruktionspläne",
+        "Konzeption Mock-up",
+        "Disposition",
+        "Aktennotiz ZB3"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "pjm6",
+      "titel": "PJM Input 6 (online, individuell)",
+      "art": "input",
+      "von": "2026-11-09T08:00:00+01:00",
+      "bis": "2026-11-12T23:59:00+01:00",
+      "hinweis": "Testpläne Validierung & Verifizierung, Beispiel Testing auf der Anforderungstabelle. Individuell und zeitgerecht studieren (Modulpflicht 5)."
+    },
+    {
+      "id": "kds67",
+      "titel": "Input KDS 6 & 7",
+      "art": "input",
+      "von": "2026-11-13T12:30:00+01:00",
+      "bis": "2026-11-13T16:00:00+01:00",
+      "ort": "HSLU Horw, E201",
+      "hinweis": "Sprache und Stil Teil II, Einführung Val/Ver, Mock-up Beschrieb, Abstract, Einleitung und Schluss."
+    },
+    {
+      "id": "abgabe-zb5",
+      "titel": "Dokumente für ZB 5 auf Ilias",
+      "art": "abgabe",
+      "von": "2026-11-18T12:00:00+01:00",
+      "ort": "Ilias · Gruppenordner – Übung – Zwischenbesprechungen",
+      "hinweis": "Eine PDF, max. 10 Seiten, mit Titel, Gruppennummer, Datum und Version. Beispiel: T04_ZB5_Dokumentenmappe_20261118_v0.pdf",
+      "checkliste": [
+        "Einladung zur ZB 5",
+        "Mock-up Beschrieb",
+        "Testpläne für Validierung & Verifizierung",
+        "Aktennotiz ZB4"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "zb5",
+      "titel": "Zwischenbesprechung 5",
+      "art": "termin",
+      "von": "2026-11-20T12:30:00+01:00",
+      "ort": "HSLU Horw",
+      "hinweis": "Uhrzeit gemäss eurer Einladung (Slots 12.30–16.45). Mock-up mitbringen.",
+      "zeit_offen": true,
+      "checkliste": [
+        "Mock-up",
+        "Mock-up Beschrieb",
+        "Testpläne Validierung & Verifizierung",
+        "Aktennotiz ZB4"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "video",
+      "titel": "Video & Mock-up-Beschreibung hochladen",
+      "art": "abgabe",
+      "von": "2026-11-25T12:00:00+01:00",
+      "ort": "Ilias",
+      "hinweis": "Video 1 bis max. 2 Minuten, mp4: Aussehen und Funktion des Mock-ups, Bedarf/Problem, Lösung und Nutzen, Verkaufserfolg und Wettbewerb. Dazu Beschreibung Mock-up (1 A4-Seite).",
+      "checkliste": [
+        "Video (mp4, 1–2 min)",
+        "Beschreibung Mock-up (1 A4-Seite)"
+      ],
+      "pflicht": true
+    },
+    {
+      "id": "kds89",
+      "titel": "Input KDS 8 & 9 · Aufstellung Mock-up",
+      "art": "input",
+      "von": "2026-11-27T12:30:00+01:00",
+      "bis": "2026-11-27T16:00:00+01:00",
+      "ort": "HSLU Horw, E201",
+      "hinweis": "Visualisierung, Layout, Data Commentary, Präsentationstechnik. Mock-up aufstellen (max. 80 × 60 cm)."
+    },
+    {
+      "id": "ausstellung",
+      "titel": "Ausstellung Mock-ups",
+      "art": "termin",
+      "von": "2026-11-30T08:00:00+01:00",
+      "bis": "2026-12-11T18:00:00+01:00",
+      "ort": "Campus Horw",
+      "hinweis": "30.11.: Auswahl für Smart-up durch Dozierende. 02.12.: Top 6 Smart-up Challenge.",
+      "pflicht": true
+    },
+    {
+      "id": "coaching",
+      "titel": "Individuelles Textcoaching (KDS 10)",
+      "art": "termin",
+      "von": "2026-12-01T08:00:00+01:00",
+      "bis": "2026-12-10T18:00:00+01:00",
+      "hinweis": "Termin pro Team mit den Kommunikationsdozierenden; Verifizierung & Validierung besprechen.",
+      "pflicht": true
+    },
+    {
+      "id": "voting",
+      "titel": "Online-Voting Smart-up",
+      "art": "termin",
+      "von": "2026-12-04T08:00:00+01:00",
+      "bis": "2026-12-09T12:00:00+01:00",
+      "hinweis": "Voting schliesst Mittwoch, 09.12., 12.00 Uhr.",
+      "pflicht": true
+    },
+    {
+      "id": "abschluss",
+      "titel": "Abschlussbesprechung",
+      "art": "termin",
+      "von": "2026-12-11T12:30:00+01:00",
+      "ort": "HSLU Horw",
+      "hinweis": "Probepräsentation und Reflexion vor Ing.- und KDS-Dozierenden. Pflicht für alle Gruppenmitglieder.",
+      "zeit_offen": true,
+      "pflicht": true
+    },
+    {
+      "id": "vernissage",
+      "titel": "Vernissage & Preisverleihung",
+      "art": "termin",
+      "von": "2026-12-11T17:00:00+01:00",
+      "bis": "2026-12-11T18:30:00+01:00",
+      "ort": "Campus Horw",
+      "hinweis": "Pflichtveranstaltung. Resultate Online-Voting, Rangierung Smart-up, Apéro.",
+      "pflicht": true
+    },
+    {
+      "id": "doku",
+      "titel": "Abgabe wissenschaftliche Dokumentation",
+      "art": "abgabe",
+      "von": "2026-12-16T12:00:00+01:00",
+      "ort": "Ilias · TA.BA_KONTT1.H26 / Abgabe Abschlussdokumentation – final report",
+      "hinweis": "PDF, max. 20 Seiten inkl. Grafiken (ohne Vor-/Nachspann und Anhang). Dateiname: T04_Titel_Datum_Version, z. B. T04_SafeStep_20261216_v1.pdf",
+      "checkliste": [
+        "Abschlussdokumentation (PDF)"
+      ],
+      "bewertet": true,
+      "pflicht": true
+    },
+    {
+      "id": "mep",
+      "titel": "Modulendprüfung – Schlusspräsentation",
+      "art": "pruefung",
+      "von": "2027-01-22T08:30:00+01:00",
+      "bis": "2027-01-22T16:00:00+01:00",
+      "ort": "E201 u. a.",
+      "hinweis": "15-minütige Schlusspräsentation; alle Gruppenmitglieder präsentieren einen Teil. Bewertung zusammen mit der Dokumentation (A–E genügend, F ungenügend). Genaue Zeit des Teams beachten.",
+      "bewertet": true
+    }
+  ],
+  "hinweis": "Abgaben auf Ilias immer als eine PDF, Dateiname Gruppennummer_Titel_Datum_Version.",
+  "ohne_datum": [
+    {
+      "id": "kds-pflicht",
+      "titel": "KDS: zwei Pflichtaufgaben",
+      "hinweis": "Abgabetermine teilen die KDS-Dozierenden mit (Modulpflicht 4)."
+    }
+  ]
+}

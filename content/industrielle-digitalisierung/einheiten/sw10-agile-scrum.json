@@ -1,0 +1,996 @@
+{
+  "id": "sw10-agile-scrum",
+  "titel": "Agile & Scrum",
+  "untertitel": "SW10 · 19.11.2026 · Sawsan Studer – Agiles Mindset, Agiles Manifest und das Scrum-Framework",
+  "woche": 10,
+  "quelle": "GRUNDING_HS2026_SW10.pdf (Sawsan Studer): Softwareization F. 5–13 · Adaptability/Viability F. 15–18 · Agiles Manifest F. 19–22 · Agile vs. Scrum/Kanban F. 23–25 · Scrum-Rollen F. 27 · Events F. 28 · Artefakte/Nutzen F. 29–30 · Agile ausserhalb Software F. 31–33",
+  "lektionen": [
+    {
+      "id": "sw10-agile-scrum-l1",
+      "titel": "Softwareization – warum Software für Ingenieure zählt",
+      "art": "verstaendnis",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "In SW10–SW12 geht es darum, wie **industrielle, professionelle Softwareentwicklung** funktioniert – tiefer und praxisnäher als die bisherigen Git-Lektionen."
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 345\" role=\"img\" aria-label=\"Softwareization: Zeitstrahl Software im Auto und Produktentwicklung\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"pf\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0 0L10 5L0 10z\" class=\"g-pf\"/></marker></defs><line x1=\"40\" y1=\"70\" x2=\"600\" y2=\"70\" class=\"g-acc\" marker-end=\"url(#pf)\"/><circle cx=\"60\" cy=\"70\" r=\"7\" class=\"g-dot\"/><text x=\"60\" y=\"45\" class=\"g-acct\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">vor 1968</text><text x=\"60\" y=\"100\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">keine Software</text><text x=\"60\" y=\"120\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\"></text><circle cx=\"250\" cy=\"70\" r=\"7\" class=\"g-dot\"/><text x=\"250\" y=\"45\" class=\"g-acct\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">1968</text><text x=\"250\" y=\"100\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">VW Typ 3 1600E</text><text x=\"250\" y=\"120\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\">Bosch D-Jetronic</text><circle cx=\"520\" cy=\"70\" r=\"7\" class=\"g-dot\"/><text x=\"520\" y=\"45\" class=\"g-acct\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">heute</text><text x=\"520\" y=\"100\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">150–200 Mio. LOC</text><text x=\"520\" y=\"120\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\">≈ 25 GB Daten / h</text><rect x=\"110\" y=\"150\" width=\"420\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"176\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Produktentwicklung</text><line x1=\"320\" y1=\"190\" x2=\"170\" y2=\"222\" class=\"g-l\"/><rect x=\"110\" y=\"222\" width=\"120\" height=\"36\" rx=\"10\" class=\"g-box\"/><text x=\"170\" y=\"245\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">Software</text><line x1=\"170\" y1=\"258\" x2=\"320\" y2=\"290\" class=\"g-l\"/><line x1=\"320\" y1=\"190\" x2=\"320\" y2=\"222\" class=\"g-l\"/><rect x=\"260\" y=\"222\" width=\"120\" height=\"36\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"245\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">Hardware</text><line x1=\"320\" y1=\"258\" x2=\"320\" y2=\"290\" class=\"g-l\"/><line x1=\"320\" y1=\"190\" x2=\"470\" y2=\"222\" class=\"g-l\"/><rect x=\"410\" y=\"222\" width=\"120\" height=\"36\" rx=\"10\" class=\"g-box\"/><text x=\"470\" y=\"245\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">Services</text><line x1=\"470\" y1=\"258\" x2=\"320\" y2=\"290\" class=\"g-l\"/><rect x=\"110\" y=\"290\" width=\"420\" height=\"38\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"320\" y=\"315\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\">Kombinationen aus SW / HW / Services</text></svg>",
+          "beschriftung": "Softwareization: von der ersten Auto-Software 1968 bis heute (nach F. 7, 10)"
+        },
+        {
+          "typ": "titel",
+          "text": "Immer mehr Software in Produkten"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Flugzeuge:** Die Anzahl Codezeilen wächst über die Zeit stark (McKinsey).",
+            "**Autos vor 1968:** keine Software.",
+            "**1968:** VW Typ 3 1600E gilt als erstes Auto mit einfacher Software – dank der elektronischen Einspritzung **Bosch D-Jetronic**.",
+            "**Heute:** ein neues Auto hat rund **150–200 Mio. Codezeilen** und erzeugt etwa **25 GB Daten pro Stunde**."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Diesen wachsenden Softwareanteil in Industrieprodukten nennt man **Softwareization** – auch Industrie 4.0 gehört dazu."
+        },
+        {
+          "typ": "titel",
+          "text": "Produktentwicklung = SW + HW + Services"
+        },
+        {
+          "typ": "text",
+          "text": "Produkte bestehen aus **Software, Hardware und Services** – und meist aus **Kombinationen** davon. Deshalb müssen auch Ingenieure verstehen, wie Software entwickelt wird."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l1-a1",
+          "typ": "multiple_choice",
+          "frage": "Wie viele Codezeilen hat ein typisches neues Auto laut Folien?",
+          "optionen": [
+            "150–200 Millionen",
+            "1,5–2 Millionen",
+            "15–20 Millionen",
+            "1–2 Milliarden"
+          ],
+          "richtig": 0,
+          "erklaerung": "Folie 10: über 150 bis 200 Millionen Lines of Code, rund 25 GB Daten pro Stunde."
+        },
+        {
+          "id": "sw10-agile-scrum-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "Welches Auto gilt als erstes mit einer einfachen Form von Software?",
+          "optionen": [
+            "VW Typ 3 1600E (1968)",
+            "Ford Model T (1908)",
+            "Mercedes S-Klasse (1979)",
+            "Tesla Roadster (2008)"
+          ],
+          "richtig": 0,
+          "erklaerung": "Dank der Bosch D-Jetronic, einer elektronischen Benzineinspritzung."
+        },
+        {
+          "id": "sw10-agile-scrum-l1-a3",
+          "typ": "wahr_falsch",
+          "aussage": "«Softwareization» beschreibt den wachsenden Softwareanteil in Industrieprodukten.",
+          "richtig": true,
+          "erklaerung": "Genau – darum ist Softwareentwicklung auch für Ingenieure relevant."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l2",
+      "titel": "Darwin: Adaptability vs. Viability",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Darwin: Es überlebt nicht die stärkste oder intelligenteste Art, sondern die, die sich **am besten an Veränderungen anpasst**."
+        },
+        {
+          "typ": "text",
+          "text": "Organisationen und Produktentwicklung stehen heute vor einer Welt, die **komplex, dynamisch, riskant und unsicher** ist. Daraus entsteht Agile: Teams und Prozesse sollen auf Veränderungen reagieren und dabei **lebensfähig** bleiben."
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 245\" role=\"img\" aria-label=\"Adaptability vs Viability\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"20\" y=\"10\" width=\"290\" height=\"190\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"165\" y=\"44\" class=\"g-acct\" font-size=\"18\" text-anchor=\"middle\" font-weight=\"600\">Adaptability</text><text x=\"165\" y=\"66\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\">Anpassungsfähigkeit</text><text x=\"44\" y=\"104\" class=\"g-t\" font-size=\"14\" text-anchor=\"start\">• reaktiv, kurzfristig</text><text x=\"44\" y=\"134\" class=\"g-t\" font-size=\"14\" text-anchor=\"start\">• Segel nachstellen</text><text x=\"44\" y=\"164\" class=\"g-t\" font-size=\"14\" text-anchor=\"start\">• Richtung ändern</text><rect x=\"330\" y=\"10\" width=\"290\" height=\"190\" rx=\"10\" class=\"g-box\"/><text x=\"475\" y=\"44\" class=\"g-t\" font-size=\"18\" text-anchor=\"middle\" font-weight=\"600\">Viability</text><text x=\"475\" y=\"66\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\">Lebensfähigkeit</text><text x=\"354\" y=\"104\" class=\"g-t\" font-size=\"14\" text-anchor=\"start\">• langfristig, vorausschauend</text><text x=\"354\" y=\"134\" class=\"g-t\" font-size=\"14\" text-anchor=\"start\">• stabiles Schiff</text><text x=\"354\" y=\"164\" class=\"g-t\" font-size=\"14\" text-anchor=\"start\">• richtige Crew &amp; Ressourcen</text><text x=\"320\" y=\"230\" class=\"g-m\" font-size=\"14\" text-anchor=\"middle\">Agile will beides: Kurs anpassen UND langfristig stark bleiben</text></svg>",
+          "beschriftung": "Die Schiff-Analogie (F. 18)"
+        },
+        {
+          "typ": "titel",
+          "text": "Adaptability (Anpassungsfähigkeit)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Fähigkeit, sich an **neue Umstände anzupassen** (z. B. Produkt an neue Kundenanforderungen).",
+            "Eher **reaktiv**: Wie verändert sich ein System, wenn sich aussen etwas ändert?"
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Viability (Lebens-/Überlebensfähigkeit)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Langfristig** überleben und gedeihen.",
+            "System behält seine wesentlichen Funktionen und Stabilität trotz Komplexität.",
+            "Kann Herausforderungen auch **vorwegnehmen** und strategisch reagieren."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Analogie: Schiff im Sturm"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Adaptability** = Segel schnell anpassen, Richtung ändern, wenn eine Welle kommt.",
+            "**Viability** = das Schiff ist gut gebaut, hat die richtige Crew, Ressourcen und Abläufe, um sicher anzukommen."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Agile Praktiken zielen auf **beides**: Kurs anpassen **und** Team/Prozesse langfristig stark halten. Methoden wie Scrum oder Kanban entstanden, weil klassisches Projektmanagement mit Komplexität und Unsicherheit Mühe hatte."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Wer hat laut Darwin die beste Überlebenschance?",
+          "optionen": [
+            "Wer sich am besten an Veränderungen anpasst",
+            "Die stärkste Art",
+            "Die intelligenteste Art",
+            "Die grösste Population"
+          ],
+          "richtig": 0,
+          "erklaerung": "Anpassungsfähigkeit ist der Kern – darauf baut Agile auf."
+        },
+        {
+          "id": "sw10-agile-scrum-l2-a2",
+          "typ": "multiple_choice",
+          "frage": "Beim Schiff im Sturm: Was entspricht der **Viability**?",
+          "optionen": [
+            "Gut gebautes Schiff mit richtiger Crew und Ressourcen",
+            "Segel schnell nachstellen",
+            "Richtung bei einer Welle ändern",
+            "Den Sturm meiden"
+          ],
+          "richtig": 0,
+          "erklaerung": "Segel/Richtung anpassen ist Adaptability; ein robustes Schiff mit Crew und Prozessen ist Viability."
+        },
+        {
+          "id": "sw10-agile-scrum-l2-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Adaptability ist eher reaktiv, Viability dagegen langfristig und kann Herausforderungen vorwegnehmen.",
+          "richtig": true,
+          "erklaerung": "So grenzen die Folien die beiden Begriffe ab."
+        },
+        {
+          "id": "sw10-agile-scrum-l2-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Agile konzentriert sich nur auf Adaptability.",
+          "richtig": false,
+          "erklaerung": "Agile Praktiken zielen auf Adaptability **und** Viability."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l3",
+      "titel": "Das Agile Manifest",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Entstanden im **Februar 2001**: **17 Softwareentwickler** trafen sich in einem Skiresort in **Utah**. Sie waren frustriert über starre, ineffiziente klassische Projektmethoden (lange Zyklen, verpasste Termine, Produkte an Kundenbedürfnissen vorbei)."
+        },
+        {
+          "typ": "text",
+          "text": "Ergebnis: **4 Werte** und **12 Prinzipien**."
+        },
+        {
+          "typ": "titel",
+          "text": "Die 4 Werte – «A über B»"
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 265\" role=\"img\" aria-label=\"Die 4 Werte des Agilen Manifests\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"160\" y=\"22\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"600\">wichtiger</text><text x=\"480\" y=\"22\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\">auch wichtig, aber weniger</text><rect x=\"10\" y=\"36\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"160\" y=\"63\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Individuen &amp; Interaktionen</text><text x=\"320\" y=\"63\" class=\"g-acct\" font-size=\"12\" text-anchor=\"middle\">über</text><rect x=\"330\" y=\"36\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"480\" y=\"63\" class=\"g-m\" font-size=\"14\" text-anchor=\"middle\">Prozesse &amp; Werkzeuge</text><rect x=\"10\" y=\"92\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"160\" y=\"119\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Funktionierende Software</text><text x=\"320\" y=\"119\" class=\"g-acct\" font-size=\"12\" text-anchor=\"middle\">über</text><rect x=\"330\" y=\"92\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"480\" y=\"119\" class=\"g-m\" font-size=\"14\" text-anchor=\"middle\">umfassende Dokumentation</text><rect x=\"10\" y=\"148\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"160\" y=\"175\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Zusammenarbeit mit Kunden</text><text x=\"320\" y=\"175\" class=\"g-acct\" font-size=\"12\" text-anchor=\"middle\">über</text><rect x=\"330\" y=\"148\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"480\" y=\"175\" class=\"g-m\" font-size=\"14\" text-anchor=\"middle\">Vertragsverhandlung</text><rect x=\"10\" y=\"204\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"160\" y=\"231\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Reagieren auf Veränderung</text><text x=\"320\" y=\"231\" class=\"g-acct\" font-size=\"12\" text-anchor=\"middle\">über</text><rect x=\"330\" y=\"204\" width=\"300\" height=\"44\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"480\" y=\"231\" class=\"g-m\" font-size=\"14\" text-anchor=\"middle\">Befolgen eines Plans</text></svg>",
+          "beschriftung": "Die 4 Werte – links wird höher gewichtet (F. 21)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Individuen und Interaktionen** über Prozesse und Werkzeuge",
+            "**Funktionierende Software** über umfassende Dokumentation",
+            "**Zusammenarbeit mit dem Kunden** über Vertragsverhandlung",
+            "**Reagieren auf Veränderung** über das Befolgen eines Plans"
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Wichtig: Die rechte Seite ist nicht wertlos (z. B. Dokumentation ist wichtig) – die linke Seite wird aber **höher gewichtet**."
+        },
+        {
+          "typ": "titel",
+          "text": "Prinzipien (Auswahl aus den 12)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Funktionierende Software **häufig** liefern, kürzere Zeitabstände bevorzugt.",
+            "Änderungen der Anforderungen **auch spät** willkommen heissen.",
+            "Projekte um **motivierte Individuen** bauen und ihnen Umfeld und Unterstützung geben.",
+            "**Face-to-Face-Kommunikation** ist am effizientesten.",
+            "Fortschritt wird primär an **funktionierender Software** gemessen."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Agile steht damit für **kurze, iterative Zyklen**, ständiges **Kundenfeedback** und die Fähigkeit, den Kurs zu ändern."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Wann und von wem wurde das Agile Manifest verfasst?",
+          "optionen": [
+            "2001, von 17 Softwareentwicklern in Utah",
+            "1995, von Ken Schwaber allein",
+            "2010, von der HSLU",
+            "1968, von Bosch"
+          ],
+          "richtig": 0,
+          "erklaerung": "Februar 2001, Skiresort in Utah, 17 Entwickler."
+        },
+        {
+          "id": "sw10-agile-scrum-l3-a2",
+          "typ": "multiple_choice",
+          "frage": "Welcher Wert gehört zum Agilen Manifest?",
+          "optionen": [
+            "Funktionierende Software über umfassende Dokumentation",
+            "Prozesse und Werkzeuge über Individuen",
+            "Vertragsverhandlung über Kundenzusammenarbeit",
+            "Einem Plan folgen über Reagieren auf Veränderung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Bei den anderen Optionen ist die Gewichtung genau umgekehrt."
+        },
+        {
+          "id": "sw10-agile-scrum-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Woran wird Fortschritt laut agilen Prinzipien primär gemessen?",
+          "optionen": [
+            "An funktionierender Software",
+            "An geschriebenen Seiten Dokumentation",
+            "Am Einhalten des Projektplans",
+            "An der Anzahl Meetings"
+          ],
+          "richtig": 0,
+          "erklaerung": "«Working software is the primary measure of progress.»"
+        },
+        {
+          "id": "sw10-agile-scrum-l3-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Das Manifest besteht aus 4 Werten und 12 Prinzipien.",
+          "richtig": true,
+          "erklaerung": "4 Core Values + 12 Guiding Principles."
+        },
+        {
+          "id": "sw10-agile-scrum-l3-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Laut Manifest ist Dokumentation unwichtig.",
+          "richtig": false,
+          "erklaerung": "Dokumentation ist wichtig – funktionierende Software wird aber höher gewichtet."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l4",
+      "titel": "Agile vs. Scrum vs. Kanban",
+      "art": "verstaendnis",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "titel",
+          "text": "Agile = Philosophie / Mindset"
+        },
+        {
+          "typ": "text",
+          "text": "Übergeordnete **Werte und Prinzipien**: Anpassungsfähigkeit, Zusammenarbeit, iterativer Fortschritt, Kundenfokus. Agile schreibt **nicht vor, wie** man das konkret umsetzt."
+        },
+        {
+          "typ": "titel",
+          "text": "Scrum = Framework"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Arbeit in kurzen, **zeitlich begrenzten Iterationen (Sprints)**, meist **2–4 Wochen**.",
+            "Feste Rollen: **Product Owner, Scrum Master, Development Team**.",
+            "Ereignisse: Daily Stand-up, Sprint Planning, Sprint Review, Retrospektive.",
+            "Gut geeignet, wenn Anforderungen **unsicher** sind und sich ändern."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Kanban = Methode"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Arbeitsfluss **visualisieren** auf einem Kanban-Board (z. B. To Do · In Progress · Done).",
+            "**Work in Progress begrenzen**, um Engpässe zu vermeiden.",
+            "Für einen **kontinuierlichen, flexiblen Fluss** statt fester Zeitboxen."
+          ]
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 230\" role=\"img\" aria-label=\"Beispiel Kanban-Board mit WIP-Limit\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"10\" y=\"10\" width=\"200\" height=\"210\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"110\" y=\"36\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">To Do</text><rect x=\"24\" y=\"52\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"110\" y=\"77\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Feature C</text><rect x=\"24\" y=\"104\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"110\" y=\"129\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Bugfix D</text><rect x=\"24\" y=\"156\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"110\" y=\"181\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Doku E</text><rect x=\"220\" y=\"10\" width=\"200\" height=\"210\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"320\" y=\"36\" class=\"g-acct\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">In Progress  (WIP ≤ 2)</text><rect x=\"234\" y=\"52\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"77\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Feature A</text><rect x=\"234\" y=\"104\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"129\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Test B</text><rect x=\"430\" y=\"10\" width=\"200\" height=\"210\" rx=\"10\" class=\"g-box g-dim\"/><text x=\"530\" y=\"36\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Done</text><rect x=\"444\" y=\"52\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"530\" y=\"77\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Setup</text><rect x=\"444\" y=\"104\" width=\"172\" height=\"40\" rx=\"10\" class=\"g-box\"/><text x=\"530\" y=\"129\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Login</text></svg>",
+          "beschriftung": "Beispiel eines Kanban-Boards mit WIP-Limit (eigene Darstellung zu F. 23)"
+        },
+        {
+          "typ": "titel",
+          "text": "Schichtenmodell (Neumann 2024)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Unten: **Agiles Manifest** mit Core Values → darauf **Agile Principles**",
+            "Darüber: **Agile Practices** (Daily Meetings, Planning, Retrospective …) und **Rollen** (Scrum Master, Product Owner …)",
+            "Oben: **Agile Methods** (Scrum, XP, …)"
+          ]
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 265\" role=\"img\" aria-label=\"Schichten: vom Agilen Manifest zu den Methoden\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"pf\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0 0L10 5L0 10z\" class=\"g-pf\"/></marker></defs><rect x=\"140.0\" y=\"10\" width=\"360\" height=\"48\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"320\" y=\"32\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Agile Methods</text><text x=\"320\" y=\"50\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Scrum, XP, Kanban …</text><rect x=\"110.0\" y=\"72\" width=\"420\" height=\"48\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"94\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Agile Practices  ·  Roles</text><text x=\"320\" y=\"112\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Daily, Planning, Retro  ·  SM, PO</text><rect x=\"80.0\" y=\"134\" width=\"480\" height=\"48\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"156\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Agile Principles</text><text x=\"320\" y=\"174\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">12 Prinzipien</text><rect x=\"50.0\" y=\"196\" width=\"540\" height=\"48\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"218\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Core Values</text><text x=\"320\" y=\"236\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">4 Werte – Agiles Manifest</text></svg>",
+          "beschriftung": "Vom Mindset zur Methode (nach Neumann 2024, F. 25)"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l4-a1",
+          "typ": "multiple_choice",
+          "frage": "Was ist Agile im Unterschied zu Scrum?",
+          "optionen": [
+            "Eine Philosophie mit Werten und Prinzipien",
+            "Ein Framework mit festen Rollen",
+            "Ein Kanban-Board",
+            "Ein Git-Workflow"
+          ],
+          "richtig": 0,
+          "erklaerung": "Agile ist das Mindset; Scrum und Kanban setzen es konkret um."
+        },
+        {
+          "id": "sw10-agile-scrum-l4-a2",
+          "typ": "multiple_choice",
+          "frage": "Wofür steht ein Kanban-Board typischerweise?",
+          "optionen": [
+            "Arbeitsfluss visualisieren, Spalten wie To Do / In Progress / Done",
+            "Sprints von 2–4 Wochen planen",
+            "Den Product Owner wählen",
+            "Testfälle automatisieren"
+          ],
+          "richtig": 0,
+          "erklaerung": "Kanban visualisiert den Fluss und begrenzt Work in Progress."
+        },
+        {
+          "id": "sw10-agile-scrum-l4-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Kanban arbeitet mit fixen Sprints von 2–4 Wochen.",
+          "richtig": false,
+          "erklaerung": "Das ist Scrum. Kanban setzt auf einen kontinuierlichen Fluss."
+        },
+        {
+          "id": "sw10-agile-scrum-l4-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Scrum eignet sich besonders, wenn Anforderungen unsicher sind und sich ändern.",
+          "richtig": true,
+          "erklaerung": "Kurze Sprints erlauben häufiges Neubewerten und Anpassen."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l5",
+      "titel": "Scrum: die drei Rollen",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 300\" role=\"img\" aria-label=\"Die drei Scrum-Rollen\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"170\" y=\"8\" width=\"300\" height=\"250\" rx=\"16\" class=\"g-box g-dim\"/><text x=\"320\" y=\"32\" class=\"g-m\" font-size=\"13\" text-anchor=\"middle\">Scrum Team (≤ 10 Personen)</text><rect x=\"200\" y=\"60\" width=\"240\" height=\"76\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"320\" y=\"86\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Product Owner</text><text x=\"320\" y=\"107\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\">Was &amp; warum?</text><text x=\"320\" y=\"126\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Vision · Product Backlog</text><rect x=\"50\" y=\"165\" width=\"240\" height=\"76\" rx=\"10\" class=\"g-box\"/><text x=\"170\" y=\"191\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Scrum Master</text><text x=\"170\" y=\"212\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\">Sorgt, dass es läuft</text><text x=\"170\" y=\"231\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Coach · Impediments</text><rect x=\"350\" y=\"165\" width=\"240\" height=\"76\" rx=\"10\" class=\"g-box\"/><text x=\"470\" y=\"191\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Developers</text><text x=\"470\" y=\"212\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\">Wie?</text><text x=\"470\" y=\"231\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">selbstorg. · cross-funktional</text><text x=\"90\" y=\"290\" class=\"g-m\" font-size=\"13\" text-anchor=\"start\">Kunde / Stakeholder → Wünsche gehen an den PO</text></svg>",
+          "beschriftung": "Die drei Rollen im Scrum Team"
+        },
+        {
+          "typ": "titel",
+          "text": "Product Owner (PO)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Definiert die **Produktvision**.",
+            "Verwaltet und **priorisiert das Product Backlog**.",
+            "Vertritt die **Stimme des Kunden** – das Team soll immer am wertvollsten Feature arbeiten."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Scrum Master (SM)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Moderator und Coach** des Scrum-Teams.",
+            "Sorgt dafür, dass Scrum-Praktiken eingehalten werden.",
+            "**Beseitigt Hindernisse (Impediments)** und schützt das Team vor Ablenkungen.",
+            "Fördert Zusammenarbeit und kontinuierliche Verbesserung."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Development Team"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Liefert am Ende jedes Sprints ein **potenziell auslieferbares Inkrement**.",
+            "**Selbstorganisiert**: entscheidet selbst, wie es arbeitet.",
+            "**Cross-funktional**: hat alle Fähigkeiten, um ohne externe Hilfe fertig zu werden."
+          ]
+        },
+        {
+          "typ": "text",
+          "text": "Merksatz: **PO = Was und warum**, **Team = Wie**, **SM = sorgt dafür, dass es läuft**."
+        },
+        {
+          "typ": "hinweis",
+          "titel": "Ergänzung aus dem Scrum Guide 2020",
+          "text": "Seit 2020 heisst es nicht mehr «Development Team», sondern **Developers**. PO, SM und Developers bilden **ein** Scrum Team mit typischerweise **10 oder weniger** Personen. Für die PSM-I-Prüfung zählen die Begriffe aus dem Scrum Guide.",
+          "quelle": "Scrum Guide 2020 – scrumguides.org"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l5-a1",
+          "typ": "multiple_choice",
+          "frage": "Wer priorisiert das Product Backlog?",
+          "optionen": [
+            "Product Owner",
+            "Scrum Master",
+            "Development Team",
+            "Stakeholder"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der PO verwaltet und priorisiert das Product Backlog."
+        },
+        {
+          "id": "sw10-agile-scrum-l5-a2",
+          "typ": "multiple_choice",
+          "frage": "Ein Teammitglied wartet seit Tagen auf eine Freigabe einer anderen Abteilung. Wer kümmert sich um dieses Hindernis?",
+          "optionen": [
+            "Scrum Master",
+            "Product Owner",
+            "Der Kunde",
+            "Niemand – das Team wartet"
+          ],
+          "richtig": 0,
+          "erklaerung": "Hindernisse beseitigen ist eine Kernaufgabe des Scrum Masters."
+        },
+        {
+          "id": "sw10-agile-scrum-l5-a3",
+          "typ": "multiple_choice",
+          "frage": "Was heisst «cross-funktional» beim Development Team?",
+          "optionen": [
+            "Es hat alle nötigen Fähigkeiten, um ohne externe Hilfe zu liefern",
+            "Alle können jede Rolle übernehmen",
+            "Es arbeitet für mehrere Produkte gleichzeitig",
+            "Es hat keinen Scrum Master"
+          ],
+          "richtig": 0,
+          "erklaerung": "Cross-funktional = alle Skills im Team vorhanden."
+        },
+        {
+          "id": "sw10-agile-scrum-l5-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Der Scrum Master vertritt die Stimme des Kunden.",
+          "richtig": false,
+          "erklaerung": "Das ist der Product Owner. Der SM ist Coach/Moderator."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l6",
+      "titel": "Scrum: die Events",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Scrum gibt dem Team mit regelmässigen Events einen **Rhythmus**."
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 300\" role=\"img\" aria-label=\"Der Scrum-Zyklus\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"pf\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0 0L10 5L0 10z\" class=\"g-pf\"/></marker></defs><rect x=\"10\" y=\"90\" width=\"130\" height=\"60\" rx=\"10\" class=\"g-box\"/><text x=\"75\" y=\"116\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Product</text><text x=\"75\" y=\"134\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Backlog</text><line x1=\"140\" y1=\"120\" x2=\"180\" y2=\"120\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"180\" y=\"96\" width=\"110\" height=\"48\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"235\" y=\"117\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Sprint</text><text x=\"235\" y=\"134\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Planning</text><line x1=\"290\" y1=\"120\" x2=\"320\" y2=\"120\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"320\" y=\"90\" width=\"100\" height=\"60\" rx=\"10\" class=\"g-box\"/><text x=\"370\" y=\"116\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Sprint</text><text x=\"370\" y=\"134\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Backlog</text><circle cx=\"510\" cy=\"120\" r=\"62\" class=\"g-ring\"/><circle cx=\"510\" cy=\"58\" r=\"20\" class=\"g-ring2\"/><text x=\"510\" y=\"63\" class=\"g-acct\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"600\">24 h</text><text x=\"510\" y=\"114\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Sprint</text><text x=\"510\" y=\"134\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">1–4 Wochen</text><text x=\"560\" y=\"40\" class=\"g-acct\" font-size=\"12\" text-anchor=\"start\">Daily Scrum</text><line x1=\"420\" y1=\"120\" x2=\"446\" y2=\"120\" class=\"g-l\" marker-end=\"url(#pf)\"/><line x1=\"510\" y1=\"182\" x2=\"510\" y2=\"212\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"445\" y=\"212\" width=\"130\" height=\"46\" rx=\"10\" class=\"g-box\"/><text x=\"510\" y=\"240\" class=\"g-t\" font-size=\"14\" text-anchor=\"middle\" font-weight=\"600\">Increment</text><line x1=\"445\" y1=\"235\" x2=\"385\" y2=\"235\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"265\" y=\"212\" width=\"120\" height=\"46\" rx=\"10\" class=\"g-box\"/><text x=\"325\" y=\"233\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Sprint</text><text x=\"325\" y=\"250\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Review</text><line x1=\"265\" y1=\"235\" x2=\"205\" y2=\"235\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"75\" y=\"212\" width=\"130\" height=\"46\" rx=\"10\" class=\"g-box\"/><text x=\"140\" y=\"233\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Sprint</text><text x=\"140\" y=\"250\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Retrospective</text><path d=\"M75 235 H40 V160\" class=\"g-l\" fill=\"none\" marker-end=\"url(#pf)\"/><text x=\"325\" y=\"285\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Produkt anschauen</text><text x=\"140\" y=\"285\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Arbeitsweise verbessern</text><text x=\"40\" y=\"80\" class=\"g-m\" font-size=\"12\" text-anchor=\"start\">nächster Sprint</text></svg>",
+          "beschriftung": "Ein Sprint im Überblick"
+        },
+        {
+          "typ": "titel",
+          "text": "1. Sprint"
+        },
+        {
+          "typ": "text",
+          "text": "**Zeitbox** von typischerweise **2–4 Wochen**. Ziel: ein **potenziell auslieferbares Inkrement**."
+        },
+        {
+          "typ": "titel",
+          "text": "2. Sprint Planning"
+        },
+        {
+          "typ": "text",
+          "text": "Zu **Beginn** des Sprints. Der PO stellt die **wichtigsten Einträge** aus dem Product Backlog vor, das Team entscheidet gemeinsam, was es sich **für den Sprint vornimmt**."
+        },
+        {
+          "typ": "titel",
+          "text": "3. Daily Scrum (Stand-up)"
+        },
+        {
+          "typ": "text",
+          "text": "**Täglich, ca. 15 Minuten.** Was habe ich seit gestern geschafft? Was mache ich als Nächstes? Welche **Hindernisse** gibt es? Der SM erkennt so Impediments."
+        },
+        {
+          "typ": "titel",
+          "text": "4. Sprint Review"
+        },
+        {
+          "typ": "text",
+          "text": "Am **Ende** des Sprints: Das Team **zeigt die fertige Arbeit** dem PO und den Stakeholdern. Feedback → PO passt das Product Backlog an."
+        },
+        {
+          "typ": "titel",
+          "text": "5. Sprint Retrospective"
+        },
+        {
+          "typ": "text",
+          "text": "**Nach** dem Review: Das Team reflektiert den Sprint und sucht Verbesserungen – am **Prozess** und an der **Zusammenarbeit**."
+        },
+        {
+          "typ": "titel",
+          "text": "Reihenfolge merken"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Planning → Sprint mit Dailies → Review → Retrospective → nächstes Planning",
+            "**Review = Produkt** anschauen · **Retro = Arbeitsweise** verbessern"
+          ]
+        },
+        {
+          "typ": "hinweis",
+          "titel": "Ergänzung aus dem Scrum Guide 2020",
+          "text": "**Timeboxes** (für einen 1-Monats-Sprint): Sprint ≤ 1 Monat · Sprint Planning ≤ 8 h · Daily Scrum 15 min · Sprint Review ≤ 4 h · Retrospective ≤ 3 h. Kürzere Sprints = kürzere Events. Die Folien nennen «2–4 Wochen» als typischen Wert, der Guide setzt nur die Obergrenze von einem Monat. Die drei Daily-Fragen sind seit 2020 **nicht mehr vorgeschrieben** – die Developers wählen die Struktur selbst, Fokus ist das Sprint Goal. Nur der **PO** kann einen Sprint abbrechen.",
+          "quelle": "Scrum Guide 2020 – scrumguides.org"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l6-a1",
+          "typ": "multiple_choice",
+          "frage": "Wie lange dauert ein Daily Scrum üblicherweise?",
+          "optionen": [
+            "ca. 15 Minuten",
+            "ca. 1 Stunde",
+            "einen halben Tag",
+            "so lange wie nötig"
+          ],
+          "richtig": 0,
+          "erklaerung": "Kurzes Stand-up, meist 15 Minuten."
+        },
+        {
+          "id": "sw10-agile-scrum-l6-a2",
+          "typ": "multiple_choice",
+          "frage": "In welchem Event zeigt das Team die erledigte Arbeit den Stakeholdern?",
+          "optionen": [
+            "Sprint Review",
+            "Sprint Retrospective",
+            "Sprint Planning",
+            "Daily Scrum"
+          ],
+          "richtig": 0,
+          "erklaerung": "Im Review wird das Inkrement gezeigt und Feedback eingeholt."
+        },
+        {
+          "id": "sw10-agile-scrum-l6-a3",
+          "typ": "multiple_choice",
+          "frage": "Was ist die richtige Reihenfolge am Sprintende?",
+          "optionen": [
+            "Erst Review, dann Retrospective",
+            "Erst Retrospective, dann Review",
+            "Beide gleichzeitig",
+            "Retrospective nur jeden dritten Sprint"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Retro findet nach dem Review statt."
+        },
+        {
+          "id": "sw10-agile-scrum-l6-a4",
+          "typ": "multiple_choice",
+          "frage": "Worum geht es in der Retrospective?",
+          "optionen": [
+            "Prozess und Zusammenarbeit verbessern",
+            "Neue Features priorisieren",
+            "Das Inkrement dem Kunden zeigen",
+            "Aufgaben für den nächsten Tag verteilen"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ziel: kontinuierliche Verbesserung der Arbeitsweise."
+        },
+        {
+          "id": "sw10-agile-scrum-l6-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Ein Sprint dauert typischerweise 2–4 Wochen.",
+          "richtig": true,
+          "erklaerung": "Kurze, zeitlich begrenzte Iteration."
+        },
+        {
+          "id": "sw10-agile-scrum-l6-a6",
+          "typ": "multiple_choice",
+          "frage": "Was ist laut Scrum Guide 2020 die maximale Länge eines Sprints?",
+          "optionen": [
+            "1 Monat",
+            "2 Wochen",
+            "6 Wochen",
+            "3 Monate"
+          ],
+          "richtig": 0,
+          "erklaerung": "Sprints sind fixe Events von einem Monat oder weniger."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l7",
+      "titel": "Scrum: Artefakte und Nutzen",
+      "art": "verstaendnis",
+      "dauer_min": 4,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Artefakte schaffen **Transparenz** und ein gemeinsames Verständnis der Arbeit."
+        },
+        {
+          "typ": "titel",
+          "text": "Product Backlog"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Geordnete Liste** von allem, was das Produkt brauchen könnte.",
+            "**Dynamisch und lebendig**, verwaltet vom **PO**.",
+            "Enthält User Stories, Features, Fixes und weitere Aufgaben."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Sprint Backlog"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Aufgaben, die sich das Team **für den Sprint vornimmt**.",
+            "Entsteht im **Sprint Planning** und entwickelt sich während des Sprints weiter."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Increment"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Summe aller im Sprint **fertiggestellten** Backlog-Einträge **plus** der Wert früherer Sprints.",
+            "Muss die **Definition of Done (DoD)** erfüllen – das gemeinsame Verständnis, wann etwas wirklich fertig und lieferbar ist."
+          ]
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 195\" role=\"img\" aria-label=\"Scrum-Artefakte und ihre Commitments\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"10\" y=\"10\" width=\"200\" height=\"80\" rx=\"10\" class=\"g-box\"/><text x=\"110\" y=\"40\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Product Backlog</text><text x=\"110\" y=\"64\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">gehört dem PO</text><line x1=\"110\" y1=\"90\" x2=\"110\" y2=\"114\" class=\"g-acc\"/><rect x=\"30\" y=\"114\" width=\"160\" height=\"40\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"110\" y=\"139\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"600\">Product Goal</text><rect x=\"220\" y=\"10\" width=\"200\" height=\"80\" rx=\"10\" class=\"g-box\"/><text x=\"320\" y=\"40\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Sprint Backlog</text><text x=\"320\" y=\"64\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">von den Developers</text><line x1=\"320\" y1=\"90\" x2=\"320\" y2=\"114\" class=\"g-acc\"/><rect x=\"240\" y=\"114\" width=\"160\" height=\"40\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"320\" y=\"139\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"600\">Sprint Goal</text><rect x=\"430\" y=\"10\" width=\"200\" height=\"80\" rx=\"10\" class=\"g-box\"/><text x=\"530\" y=\"40\" class=\"g-t\" font-size=\"15\" text-anchor=\"middle\" font-weight=\"600\">Increment</text><text x=\"530\" y=\"64\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">muss «done» sein</text><line x1=\"530\" y1=\"90\" x2=\"530\" y2=\"114\" class=\"g-acc\"/><rect x=\"450\" y=\"114\" width=\"160\" height=\"40\" rx=\"10\" class=\"g-box g-accb\"/><text x=\"530\" y=\"139\" class=\"g-acct\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"600\">Definition of Done</text><text x=\"320\" y=\"180\" class=\"g-m\" font-size=\"12\" text-anchor=\"middle\">Commitment pro Artefakt (Scrum Guide 2020)</text></svg>",
+          "beschriftung": "Artefakte und ihre Commitments"
+        },
+        {
+          "typ": "titel",
+          "text": "Nutzen von Scrum"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "**Adaptability:** kurze Sprints = häufige Kurskorrekturen.",
+            "**Focus on Value:** PO priorisiert nach Kundennutzen.",
+            "**Transparenz & Kommunikation:** klare Rollen und regelmässige Events.",
+            "**Continuous Improvement:** durch die Retrospective.",
+            "**Kundenfeedback:** durch das Sprint Review."
+          ]
+        },
+        {
+          "typ": "hinweis",
+          "titel": "Ergänzung aus dem Scrum Guide 2020",
+          "text": "Jedes Artefakt hat ein **Commitment**: Product Backlog → **Product Goal**, Sprint Backlog → **Sprint Goal**, Increment → **Definition of Done**. Scrum beruht auf drei Säulen – **Transparenz, Überprüfung, Anpassung** – und fünf Werten: **Commitment, Fokus, Offenheit, Respekt, Mut**.",
+          "quelle": "Scrum Guide 2020 – scrumguides.org"
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l7-a1",
+          "typ": "multiple_choice",
+          "frage": "Wer verwaltet das Product Backlog?",
+          "optionen": [
+            "Product Owner",
+            "Scrum Master",
+            "Development Team",
+            "Kunde"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das Product Backlog gehört dem PO."
+        },
+        {
+          "id": "sw10-agile-scrum-l7-a2",
+          "typ": "multiple_choice",
+          "frage": "Wann entsteht das Sprint Backlog?",
+          "optionen": [
+            "Im Sprint Planning",
+            "Im Sprint Review",
+            "In der Retrospective",
+            "Vor Projektbeginn, einmalig"
+          ],
+          "richtig": 0,
+          "erklaerung": "Es wird im Planning erstellt und entwickelt sich im Sprint weiter."
+        },
+        {
+          "id": "sw10-agile-scrum-l7-a3",
+          "typ": "multiple_choice",
+          "frage": "Was muss ein Increment erfüllen?",
+          "optionen": [
+            "Die Definition of Done",
+            "Den Projektplan",
+            "Die Kostenschätzung",
+            "Die Retrospective"
+          ],
+          "richtig": 0,
+          "erklaerung": "DoD = gemeinsames Verständnis von «fertig und lieferbar»."
+        },
+        {
+          "id": "sw10-agile-scrum-l7-a4",
+          "typ": "wahr_falsch",
+          "aussage": "Das Increment umfasst nur die Arbeit des aktuellen Sprints.",
+          "richtig": false,
+          "erklaerung": "Es ist die Summe des aktuellen Sprints plus der Wert früherer Sprints."
+        },
+        {
+          "id": "sw10-agile-scrum-l7-a5",
+          "typ": "wahr_falsch",
+          "aussage": "Kontinuierliche Verbesserung wird in Scrum vor allem durch die Retrospective gefördert.",
+          "richtig": true,
+          "erklaerung": "Die Retro ist dafür reserviert."
+        },
+        {
+          "id": "sw10-agile-scrum-l7-a6",
+          "typ": "multiple_choice",
+          "frage": "Welches Commitment gehört zum Sprint Backlog?",
+          "optionen": [
+            "Sprint Goal",
+            "Product Goal",
+            "Definition of Done",
+            "Product Vision"
+          ],
+          "richtig": 0,
+          "erklaerung": "Product Backlog → Product Goal, Sprint Backlog → Sprint Goal, Increment → DoD."
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l8",
+      "titel": "Agile über Software hinaus",
+      "art": "verstaendnis",
+      "dauer_min": 3,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Agile entstand in der Softwareentwicklung, wird heute aber auch in **Hardwareentwicklung, Marketing und Bildung** eingesetzt – überall, wo Anforderungen sich schnell ändern und **lineare, sequenzielle Planung** an ihre Grenzen kommt."
+        },
+        {
+          "typ": "titel",
+          "text": "Hardwareentwicklung"
+        },
+        {
+          "typ": "grafik",
+          "svg": "<svg viewBox=\"0 0 640 250\" role=\"img\" aria-label=\"Wasserfall vs iterative Entwicklung\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"pf\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0 0L10 5L0 10z\" class=\"g-pf\"/></marker></defs><text x=\"10\" y=\"22\" class=\"g-t\" font-size=\"15\" text-anchor=\"start\" font-weight=\"600\">Wasserfall</text><rect x=\"10\" y=\"34\" width=\"120\" height=\"34\" rx=\"10\" class=\"g-box\"/><text x=\"70\" y=\"56\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Design</text><line x1=\"130\" y1=\"51\" x2=\"160\" y2=\"67\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"160\" y=\"50\" width=\"120\" height=\"34\" rx=\"10\" class=\"g-box\"/><text x=\"220\" y=\"72\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Prototyp</text><line x1=\"280\" y1=\"67\" x2=\"310\" y2=\"83\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"310\" y=\"66\" width=\"120\" height=\"34\" rx=\"10\" class=\"g-box\"/><text x=\"370\" y=\"88\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Test</text><line x1=\"430\" y1=\"83\" x2=\"460\" y2=\"99\" class=\"g-l\" marker-end=\"url(#pf)\"/><rect x=\"460\" y=\"82\" width=\"120\" height=\"34\" rx=\"10\" class=\"g-box\"/><text x=\"520\" y=\"104\" class=\"g-t\" font-size=\"13\" text-anchor=\"middle\">Produktion</text><text x=\"10\" y=\"150\" class=\"g-acct\" font-size=\"15\" text-anchor=\"start\" font-weight=\"600\">Agil / iterativ</text><circle cx=\"80\" cy=\"200\" r=\"34\" class=\"g-ring\"/><text x=\"80\" y=\"197\" class=\"g-t\" font-size=\"12\" text-anchor=\"middle\">Iteration 1</text><text x=\"80\" y=\"213\" class=\"g-m\" font-size=\"10\" text-anchor=\"middle\">Proto · Test · FB</text><line x1=\"114\" y1=\"200\" x2=\"206\" y2=\"200\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"240\" cy=\"200\" r=\"34\" class=\"g-ring\"/><text x=\"240\" y=\"197\" class=\"g-t\" font-size=\"12\" text-anchor=\"middle\">Iteration 2</text><text x=\"240\" y=\"213\" class=\"g-m\" font-size=\"10\" text-anchor=\"middle\">Proto · Test · FB</text><line x1=\"274\" y1=\"200\" x2=\"366\" y2=\"200\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"400\" cy=\"200\" r=\"34\" class=\"g-ring\"/><text x=\"400\" y=\"197\" class=\"g-t\" font-size=\"12\" text-anchor=\"middle\">Iteration 3</text><text x=\"400\" y=\"213\" class=\"g-m\" font-size=\"10\" text-anchor=\"middle\">Proto · Test · FB</text><line x1=\"434\" y1=\"200\" x2=\"526\" y2=\"200\" class=\"g-l\" marker-end=\"url(#pf)\"/><circle cx=\"560\" cy=\"200\" r=\"34\" class=\"g-ring\"/><text x=\"560\" y=\"197\" class=\"g-t\" font-size=\"12\" text-anchor=\"middle\">Iteration 4</text><text x=\"560\" y=\"213\" class=\"g-m\" font-size=\"10\" text-anchor=\"middle\">Proto · Test · FB</text></svg>",
+          "beschriftung": "Sequenziell vs. iterativ in der Hardwareentwicklung (F. 32)"
+        },
+        {
+          "typ": "liste",
+          "punkte": [
+            "Früher **Wasserfall**: Design → Prototyp → Test → Produktion, nacheinander.",
+            "Agil: **iterative Zyklen**, **Rapid Prototyping**, kontinuierliches Testen und Feedback-Schleifen.",
+            "Ergebnis: weniger Risiko, Produkt passt besser zu Kundenerwartungen."
+          ]
+        },
+        {
+          "typ": "titel",
+          "text": "Marketing"
+        },
+        {
+          "typ": "text",
+          "text": "Statt grosser, langer Kampagnen: **kurze Sprints**, Inhalte iterativ entwickeln, Kampagnen testen und anhand von Feedback anpassen."
+        },
+        {
+          "typ": "titel",
+          "text": "Fazit der Vorlesung"
+        },
+        {
+          "typ": "text",
+          "text": "Agile verbindet **Darwins Anpassungsfähigkeit** mit dem kybernetischen Konzept der **Viability**. Es ist nicht nur eine Methode, sondern ein **Mindset**: Flexibilität, Zusammenarbeit, ständige Verbesserung."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l8-a1",
+          "typ": "multiple_choice",
+          "frage": "Welches Vorgehen wurde in der Hardwareentwicklung traditionell genutzt?",
+          "optionen": [
+            "Wasserfall – Phasen nacheinander",
+            "Scrum mit 2-Wochen-Sprints",
+            "Kanban",
+            "DevOps"
+          ],
+          "richtig": 0,
+          "erklaerung": "Design, Prototyp, Test und Produktion liefen sequenziell."
+        },
+        {
+          "id": "sw10-agile-scrum-l8-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Agile wird heute auch in Marketing und Bildung eingesetzt.",
+          "richtig": true,
+          "erklaerung": "Die Folien nennen Hardware, Marketing und Education."
+        },
+        {
+          "id": "sw10-agile-scrum-l8-a3",
+          "typ": "wahr_falsch",
+          "aussage": "Laut Folien ist Agile nur eine Methode und kein Mindset.",
+          "richtig": false,
+          "erklaerung": "«Agile is not just a methodology; it's a mindset.»"
+        }
+      ]
+    },
+    {
+      "id": "sw10-agile-scrum-l9",
+      "titel": "Abschlussquiz SW10",
+      "art": "verstaendnis",
+      "dauer_min": 5,
+      "inhalt": [
+        {
+          "typ": "text",
+          "text": "Zehn gemischte Fragen über die ganze Woche: Softwareization, Agiles Manifest, Scrum-Rollen, -Events und -Artefakte."
+        },
+        {
+          "typ": "text",
+          "text": "Ziel: mindestens **8/10**. Wenn nicht, die betroffene Lektion nochmals anschauen."
+        }
+      ],
+      "aufgaben": [
+        {
+          "id": "sw10-agile-scrum-l9-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Aussage passt zum Agilen Manifest?",
+          "optionen": [
+            "Reagieren auf Veränderung über das Befolgen eines Plans",
+            "Umfassende Dokumentation über funktionierende Software",
+            "Prozesse über Individuen",
+            "Verträge über Kundenzusammenarbeit"
+          ],
+          "richtig": 0,
+          "erklaerung": "Einer der 4 Werte."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a2",
+          "typ": "multiple_choice",
+          "frage": "Eine Stakeholderin will mitten im Sprint ein neues Feature. Wohin gehört der Wunsch zuerst?",
+          "optionen": [
+            "Ins Product Backlog, das der PO priorisiert",
+            "Direkt ins laufende Sprint Backlog",
+            "In die Retrospective",
+            "An den Scrum Master zur Umsetzung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Neue Anforderungen landen im Product Backlog; der PO priorisiert."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a3",
+          "typ": "multiple_choice",
+          "frage": "Welches Event dient der Verbesserung der Zusammenarbeit im Team?",
+          "optionen": [
+            "Sprint Retrospective",
+            "Sprint Review",
+            "Sprint Planning",
+            "Daily Scrum"
+          ],
+          "richtig": 0,
+          "erklaerung": "Review = Produkt, Retro = Arbeitsweise."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a4",
+          "typ": "multiple_choice",
+          "frage": "Was beschreibt «Viability»?",
+          "optionen": [
+            "Langfristige Fähigkeit eines Systems, zu überleben und stabil zu bleiben",
+            "Kurzfristiges Reagieren auf eine Änderung",
+            "Die Länge eines Sprints",
+            "Ein Kanban-Prinzip"
+          ],
+          "richtig": 0,
+          "erklaerung": "Viability geht über reine Anpassung hinaus."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a5",
+          "typ": "multiple_choice",
+          "frage": "Welche drei Fragen nennen die Folien fürs Daily Scrum?",
+          "optionen": [
+            "Was erledigt? Was als Nächstes? Welche Hindernisse?",
+            "Was kostet es? Wer zahlt? Bis wann?",
+            "Welche Rolle? Welcher Sprint? Welches Tool?",
+            "Was testen? Was deployen? Was überwachen?"
+          ],
+          "richtig": 0,
+          "erklaerung": "So steht es auf F. 28. Der Scrum Guide 2020 schreibt diese Fragen allerdings nicht mehr vor."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a6",
+          "typ": "multiple_choice",
+          "frage": "Was ist Scrum?",
+          "optionen": [
+            "Ein Framework, das agile Prinzipien umsetzt",
+            "Das Agile Manifest",
+            "Eine Programmiersprache",
+            "Ein Testverfahren"
+          ],
+          "richtig": 0,
+          "erklaerung": "Agile = Philosophie; Scrum = konkretes Framework."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a7",
+          "typ": "wahr_falsch",
+          "aussage": "Das Development Team in Scrum ist selbstorganisiert und cross-funktional.",
+          "richtig": true,
+          "erklaerung": "Genau so beschreiben es die Folien."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a8",
+          "typ": "wahr_falsch",
+          "aussage": "Der Product Owner beseitigt Hindernisse des Teams.",
+          "richtig": false,
+          "erklaerung": "Das macht der Scrum Master."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a9",
+          "typ": "wahr_falsch",
+          "aussage": "Das Agile Manifest entstand 2001 in Utah.",
+          "richtig": true,
+          "erklaerung": "17 Entwickler in einem Skiresort."
+        },
+        {
+          "id": "sw10-agile-scrum-l9-a10",
+          "typ": "wahr_falsch",
+          "aussage": "Ein Increment ist nur «fertig», wenn es die Definition of Done erfüllt.",
+          "richtig": true,
+          "erklaerung": "Die DoD definiert «fertig und lieferbar»."
+        }
+      ]
+    }
+  ]
+}

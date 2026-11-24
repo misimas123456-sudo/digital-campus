@@ -1,0 +1,924 @@
+{
+  "id": "sw09-timing",
+  "titel": "Timing in sequentiellen Schaltungen",
+  "beschreibung": "Verzögerungen, Setup- und Hold-Zeit, Metastabilität, Synchronisation asynchroner Eingänge und maximale Taktfrequenz",
+  "kapitel": 9,
+  "lektionen": [
+    {
+      "id": "sw09-timing-l1",
+      "titel": "Bauteile sind nicht unendlich schnell",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Verzögerungen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Reale Komponenten reagieren nicht sofort, sondern mit **Verzögerung**. Bei kombinatorischen Komponenten (Gattern) liegt diese Verzögerung im **Nanosekunden-Bereich**."
+            },
+            {
+              "typ": "text",
+              "text": "Speicherbausteine sind selbst aus Gattern aufgebaut. Darum haben auch sie Verzögerungen, und zwar an zwei Stellen:"
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "in der **Eingangsstufe**: die Durchlaufzeit $t_{pd}$ durch die Gatter",
+                "beim **Durchschalten der Ausgangsstufe**: bis die Rückführung vom Ausgang effektiv «einschnappt»"
+              ]
+            }
+          ],
+          "quelle": "K09 Folie 3"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Beispiel Latch",
+          "bloecke": [
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "text": "D, E"
+                },
+                {
+                  "text": "Eingangsstufe",
+                  "sub": "UND-Gatter"
+                },
+                {
+                  "text": "Latch",
+                  "sub": "Rückkopplung (NOR)"
+                },
+                {
+                  "text": "Q"
+                }
+              ],
+              "pfeile": [
+                "",
+                "S, R",
+                ""
+              ],
+              "zeiten": [
+                {
+                  "von": 1,
+                  "bis": 1,
+                  "text": "t_Eingangsstufe"
+                },
+                {
+                  "von": 2,
+                  "bis": 2,
+                  "text": "t_Latch"
+                }
+              ]
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "D wechselt auf 1, bei E = 1",
+              "einheit": "Zeit →",
+              "signale": [
+                {
+                  "name": "E",
+                  "wellen": "111111111111"
+                },
+                {
+                  "name": "D",
+                  "wellen": "000111111111"
+                },
+                {
+                  "name": "S",
+                  "wellen": "000011111111"
+                },
+                {
+                  "name": "Q",
+                  "wellen": "000000111111"
+                }
+              ],
+              "pfeile": [
+                {
+                  "signal": 2,
+                  "von": 3,
+                  "bis": 4,
+                  "text": "t_Eingangsstufe"
+                },
+                {
+                  "signal": 3,
+                  "von": 4,
+                  "bis": 6,
+                  "text": "t_Latch"
+                }
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Die Verzögerung eines Speicherbausteins setzt sich aus der Zeit durch die Eingangsstufe und der Zeit bis zum Einschnappen der Rückkopplung zusammen."
+            }
+          ],
+          "quelle": "K09 Folie 3"
+        },
+        {
+          "id": "sw09-timing-l1-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Ein Flip-Flop übernimmt einen neuen Wert ohne jede Verzögerung, weil es ein digitales Bauteil ist.",
+          "richtig": false,
+          "erklaerung": "Speicherbausteine bestehen aus Gattern und haben darum Verzögerungen in der Eingangsstufe und beim Einschnappen der Rückkopplung.",
+          "quelle": "K09 Folie 3"
+        },
+        {
+          "id": "sw09-timing-l1-a2",
+          "typ": "multiple_choice",
+          "frage": "In welchem Bereich liegen die Verzögerungen von Gattern?",
+          "optionen": [
+            "Nanosekunden (ns)",
+            "Millisekunden (ms)",
+            "Sekunden (s)",
+            "Es gibt keine Verzögerung"
+          ],
+          "richtig": 0,
+          "erklaerung": "Kombinatorische Komponenten haben Verzögerungen im ns-Bereich.",
+          "quelle": "K09 Folie 3"
+        },
+        {
+          "id": "sw09-timing-l1-a3",
+          "typ": "multiple_choice",
+          "frage": "Woraus setzt sich die Verzögerung eines Latch zusammen?",
+          "optionen": [
+            "Aus der Durchlaufzeit der Eingangsstufe und der Zeit, bis die Rückführung einschnappt",
+            "Nur aus der Länge der Leitungen",
+            "Nur aus der Taktfrequenz",
+            "Aus der Setup-Zeit des nächsten Flip-Flops"
+          ],
+          "richtig": 0,
+          "erklaerung": "$t_{\\text{Eingangsstufe}}$ (Gatter) plus $t_{\\text{Latch}}$ (Durchschalten bis zum Einschnappen).",
+          "quelle": "K09 Folie 3"
+        }
+      ]
+    },
+    {
+      "id": "sw09-timing-l2",
+      "titel": "Setup- und Hold-Zeit",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Zwei Zeitfenster rund um die Flanke",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Unmittelbar **vor** der aktiven Clockflanke liegt der Zeitbereich $T_{\\text{setup}}$, unmittelbar **nach** der Flanke der Zeitbereich $T_{\\text{hold}}$."
+            },
+            {
+              "typ": "text",
+              "text": "Über beide Zeitbereiche müssen die Eingänge des Flip-Flops (D, T, J, K, S, R …) **stabil** sein. Sie dürfen sich dort nicht ändern."
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "Schraffiert: hier darf sich DataInput ändern",
+              "signale": [
+                {
+                  "name": "Clock",
+                  "wellen": "000000111111"
+                },
+                {
+                  "name": "DataInput",
+                  "wellen": "xxxx111xxxxx"
+                }
+              ],
+              "fenster": [
+                {
+                  "von": 4,
+                  "bis": 6,
+                  "text": "T_setup",
+                  "art": "setup"
+                },
+                {
+                  "von": 6,
+                  "bis": 7,
+                  "text": "T_hold",
+                  "art": "hold"
+                }
+              ],
+              "marken": [
+                {
+                  "t": 6,
+                  "text": "aktive Flanke"
+                }
+              ]
+            },
+            {
+              "typ": "hinweis",
+              "text": "Im Digitaltechnik-Buch heisst der Bereich aus Setup- und Hold-Zeit zusammen **Wirkintervall** $t_W$: In dieser Zeit fällt die Entscheidung, welcher Wert gespeichert wird."
+            }
+          ],
+          "quelle": "K09 Folien 4–5, Buch Kap. 7 (Bild 7-14)"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Probier es aus",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Verschiebe den Zeitpunkt, an dem DataInput von 0 auf 1 wechselt. Beobachte, wann das Flip-Flop den Wert sauber übernimmt."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "setup_hold",
+              "params": {
+                "tsetup": 4,
+                "thold": 2,
+                "bereich": 10
+              }
+            }
+          ],
+          "quelle": "K09 Folien 4–6"
+        },
+        {
+          "id": "sw09-timing-l2-a1",
+          "typ": "multiple_choice",
+          "frage": "Welche Signale müssen während $T_{\\text{setup}}$ und $T_{\\text{hold}}$ stabil sein?",
+          "optionen": [
+            "Die Eingänge des Flip-Flops (D, T, J, K, S, R …)",
+            "Nur der Ausgang Q",
+            "Nur das Clock-Signal",
+            "Keine, das Flip-Flop speichert ja"
+          ],
+          "richtig": 0,
+          "erklaerung": "Über beide Zeitbereiche dürfen sich die Eingänge des Flip-Flops nicht ändern.",
+          "quelle": "K09 Folie 4"
+        },
+        {
+          "id": "sw09-timing-l2-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Die Hold-Zeit liegt vor der aktiven Clockflanke.",
+          "richtig": false,
+          "erklaerung": "Vor der Flanke liegt $T_{\\text{setup}}$, nach der Flanke $T_{\\text{hold}}$.",
+          "quelle": "K09 Folie 4"
+        },
+        {
+          "id": "sw09-timing-l2-a3",
+          "typ": "lueckentext",
+          "text": "Der Bereich vor der aktiven Flanke heisst ___-Zeit, der Bereich danach heisst ___-Zeit.",
+          "antworten": [
+            [
+              "Setup",
+              "Tsetup"
+            ],
+            [
+              "Hold",
+              "Thold"
+            ]
+          ],
+          "erklaerung": "Setup vor der Flanke, Hold nach der Flanke.",
+          "quelle": "K09 Folie 4"
+        },
+        {
+          "id": "sw09-timing-l2-a4",
+          "typ": "rechnung",
+          "frage": "Ein D-FF hat $T_{\\text{setup}} = 4\\,\\text{ns}$ und $T_{\\text{hold}} = 2\\,\\text{ns}$. Wie lange muss D rund um die Flanke mindestens ohne Unterbruch stabil sein?",
+          "loesung": 6,
+          "einheit": "ns",
+          "loesungsweg": "$T_{\\text{setup}} + T_{\\text{hold}} = 4\\,\\text{ns} + 2\\,\\text{ns} = 6\\,\\text{ns}$",
+          "erklaerung": "Die beiden Fenster liegen direkt vor und direkt nach der Flanke, also zusammen ein Stück.",
+          "quelle": "K09 Folie 5"
+        }
+      ]
+    },
+    {
+      "id": "sw09-timing-l3",
+      "titel": "Metastabilität",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Wenn das Timing verletzt wird",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ist der Eingang während der Setup- oder Hold-Zeit **nicht stabil**, kann das Flip-Flop vorübergehend in einen **metastabilen Zustand** geraten."
+            },
+            {
+              "typ": "zeitdiagramm",
+              "titel": "DataIn wechselt genau an der Flanke",
+              "signale": [
+                {
+                  "name": "Clock",
+                  "wellen": "000001111111"
+                },
+                {
+                  "name": "DataIn",
+                  "wellen": "000001111111"
+                },
+                {
+                  "name": "QOut",
+                  "wellen": "000000mmm111"
+                }
+              ],
+              "fenster": [
+                {
+                  "von": 6,
+                  "bis": 9,
+                  "text": "metastabil",
+                  "art": "warn"
+                }
+              ],
+              "marken": [
+                {
+                  "t": 5,
+                  "text": "Flanke"
+                }
+              ]
+            },
+            {
+              "typ": "text",
+              "text": "Der Ausgang ist dann eine Zeit lang weder sauber 0 noch sauber 1. Auf dem Oszilloskopbild der Folien sieht man viele überlagerte Verläufe: Wie lange der Zustand dauert und wo der Ausgang am Schluss landet, ist jedes Mal anders."
+            }
+          ],
+          "quelle": "K09 Folien 6–7"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Die Kugel auf dem Berg",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Die Folien vergleichen das mit einer Kugel: In den Tälern «0» und «1» liegt sie **stabil**. Auf der Bergspitze ist sie **metastabil**. Sie bleibt eine unbestimmte Zeit oben und rollt dann auf eine Seite."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "kugel"
+            },
+            {
+              "typ": "merke",
+              "text": "Welchen Wert das Flip-Flop nach einer Verletzung von Setup oder Hold speichert, ist vom Zufall abhängig und darum undefiniert."
+            }
+          ],
+          "quelle": "K09 Folie 8, Buch Kap. 7"
+        },
+        {
+          "id": "sw09-timing-l3-a1",
+          "typ": "multiple_choice",
+          "frage": "Wodurch kann ein Flip-Flop metastabil werden?",
+          "optionen": [
+            "Der Eingang ändert sich während der Setup- oder Hold-Zeit",
+            "Der Eingang bleibt lange konstant",
+            "Die Taktfrequenz ist zu tief",
+            "Der Ausgang wird nicht verwendet"
+          ],
+          "richtig": 0,
+          "erklaerung": "Ist der Eingang während $T_{\\text{setup}}$ oder $T_{\\text{hold}}$ nicht stabil, kann das FF metastabil werden.",
+          "quelle": "K09 Folie 6"
+        },
+        {
+          "id": "sw09-timing-l3-a2",
+          "typ": "wahr_falsch",
+          "aussage": "Nach einem metastabilen Zustand ist im Voraus klar, ob das Flip-Flop bei 0 oder bei 1 landet.",
+          "richtig": false,
+          "erklaerung": "Der gespeicherte Wert ist vom Zufall abhängig, wie die Kugel, die von der Bergspitze auf irgendeine Seite rollt.",
+          "quelle": "K09 Folie 8, Buch Kap. 7"
+        },
+        {
+          "id": "sw09-timing-l3-a3",
+          "typ": "multiple_choice",
+          "frage": "Im Kugel-Bild der Folien: Was entspricht dem metastabilen Zustand?",
+          "optionen": [
+            "Die Kugel auf der Bergspitze",
+            "Die Kugel im Tal «0»",
+            "Die Kugel im Tal «1»",
+            "Keine Kugel"
+          ],
+          "richtig": 0,
+          "erklaerung": "In den Tälern ist der Zustand stabil, auf der Spitze metastabil.",
+          "quelle": "K09 Folie 8"
+        }
+      ]
+    },
+    {
+      "id": "sw09-timing-l4",
+      "titel": "Asynchrone Eingänge synchronisieren",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Asynchrone Eingänge",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Asynchrone Eingänge ändern sich zu einem **beliebigen Zeitpunkt**. Beispiele sind Signale von Tasten oder von anderen Teilsystemen mit eigenem Clock."
+            },
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "stapel": [
+                    {
+                      "text": "Entprellte Taste"
+                    },
+                    {
+                      "text": "Externes Modul 1",
+                      "sub": "z. B. BT"
+                    }
+                  ]
+                },
+                {
+                  "text": "Synchroner Automat 1"
+                },
+                {
+                  "text": "Synchroner Automat 2"
+                }
+              ],
+              "takt": "System-Clock",
+              "warnung": 0,
+              "warntext": "nicht synchron zum System-Clock"
+            },
+            {
+              "typ": "text",
+              "text": "Solche Signale halten gelegentlich $T_{\\text{setup}}$ und/oder $T_{\\text{hold}}$ der Flip-Flops im synchronen Automaten nicht ein. Die FF werden metastabil, das Timing des ganzen Automaten ist verletzt, und es kann zu **falschen Zustandsänderungen** kommen."
+            }
+          ],
+          "quelle": "K09 Folien 9–10"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Lösung: Synchronisations-Flip-Flops",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "punkte": [
+                "Das asynchrone Signal auf **ein D-FF** geben, noch besser auf **zwei hintereinander geschaltete D-FF**, die mit dem **Systemtakt** laufen.",
+                "Am besten sehr gut geeignete FF mit sehr kurzer metastabiler Periode verwenden.",
+                "Selbst wenn das erste FF metastabil wird, hat sein Ausgang $Q_1$ fast eine Clock-Periode Zeit, sich zu stabilisieren."
+              ]
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "synchronisierer"
+            },
+            {
+              "typ": "merke",
+              "text": "Nachteil: Die Eingangssignale werden verzögert."
+            }
+          ],
+          "quelle": "K09 Folien 11–13"
+        },
+        {
+          "id": "sw09-timing-l4-a1",
+          "typ": "wahr_falsch",
+          "aussage": "Eine entprellte Taste ist synchron zum System-Clock, weil sie nicht mehr prellt.",
+          "richtig": false,
+          "erklaerung": "Auch entprellt kann die Taste zu einem beliebigen Zeitpunkt wechseln. Sie ist nicht synchron zum System-Clock.",
+          "quelle": "K09 Folie 10"
+        },
+        {
+          "id": "sw09-timing-l4-a2",
+          "typ": "multiple_choice",
+          "frage": "Mit welchem Takt laufen die Synchronisations-Flip-Flops?",
+          "optionen": [
+            "Mit dem Systemtakt des Automaten",
+            "Mit dem Takt des externen Moduls",
+            "Ohne Takt",
+            "Mit dem halben Systemtakt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die D-FF werden mit dem Systemtakt betrieben, damit danach alles synchron zum Automaten ist.",
+          "quelle": "K09 Folie 11"
+        },
+        {
+          "id": "sw09-timing-l4-a3",
+          "typ": "multiple_choice",
+          "frage": "Wie viel Zeit hat $Q_1$ des ersten Flip-Flops, um sich nach einem metastabilen Zustand zu stabilisieren?",
+          "optionen": [
+            "Fast eine Clock-Periode",
+            "Nur die Hold-Zeit",
+            "Gar keine Zeit",
+            "Beliebig lange"
+          ],
+          "richtig": 0,
+          "erklaerung": "Erst bei der nächsten Flanke übernimmt das zweite FF den Wert von $Q_1$.",
+          "quelle": "K09 Folie 11"
+        },
+        {
+          "id": "sw09-timing-l4-a4",
+          "typ": "multiple_choice",
+          "frage": "Was ist der Nachteil der Synchronisation mit Flip-Flops?",
+          "optionen": [
+            "Die Eingangssignale werden verzögert",
+            "Der Automat wird asynchron",
+            "Die Flip-Flops werden immer metastabil",
+            "Der Systemtakt muss erhöht werden"
+          ],
+          "richtig": 0,
+          "erklaerung": "Das Signal muss zuerst durch die Synchronisations-FF, bevor es beim Automaten ankommt.",
+          "quelle": "K09 Folie 12"
+        }
+      ]
+    },
+    {
+      "id": "sw09-timing-l5",
+      "titel": "Maximale Taktfrequenz",
+      "art": "rechnen",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Die Timing-Bedingung",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Alle Eingänge eines synchronen Automaten müssen zum System-Clock synchronisiert werden. Für **alle FF-Eingänge** muss gelten:"
+            },
+            {
+              "typ": "formel",
+              "tex": "T_{\\text{pfad}} < T_{\\text{clk}} - T_{\\text{setup}} - T_{\\text{pd,FF}}"
+            },
+            {
+              "typ": "text",
+              "text": "$T_{\\text{pfad}}$ umfasst neben dem $t_{pd}$ der kombinatorischen Logik **alle weiteren Verzögerungen** auf der Strecke. Schon eine Leitung von 20 cm bewirkt rund **1 ns** Verzögerung."
+            },
+            {
+              "typ": "text",
+              "text": "Umgestellt nach der Taktperiode ergibt sich die kleinste mögliche Periode und damit die grösste Taktfrequenz:"
+            },
+            {
+              "typ": "formel",
+              "tex": "T_{\\text{clk}} > T_{\\text{pd,FF}} + T_{\\text{pfad}} + T_{\\text{setup}} \\qquad f_{\\max} = \\frac{1}{T_{\\text{clk,min}}}"
+            }
+          ],
+          "quelle": "K09 Folie 14"
+        },
+        {
+          "typ": "theorie",
+          "titel": "f_max-Rechner",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Verändere die Verzögerungen und sieh, wie sich die minimale Taktperiode zusammensetzt."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "fmax",
+              "params": {
+                "tpdff": 5,
+                "logik": 10,
+                "leitung": 20,
+                "tsetup": 5
+              }
+            },
+            {
+              "typ": "merke",
+              "text": "Zeitlich zusammengehörende Signale, z. B. die Leitungen einer 8-Bit-Zahl, nicht einzeln synchronisieren, sondern über ein gemeinsames, koordinierendes Signal mit Zeitreserven."
+            }
+          ],
+          "quelle": "K09 Folie 14"
+        },
+        {
+          "id": "sw09-timing-l5-a1",
+          "typ": "rechnung",
+          "frage": "Gegeben: $T_{\\text{pfad}} = 12\\,\\text{ns}$, $T_{\\text{setup}} = 3\\,\\text{ns}$, $T_{\\text{pd,FF}} = 5\\,\\text{ns}$. Wie gross muss die Taktperiode $T_{\\text{clk}}$ mindestens sein?",
+          "loesung": 20,
+          "einheit": "ns",
+          "loesungsweg": "$T_{\\text{clk}} > 12 + 3 + 5 = 20\\,\\text{ns}$",
+          "erklaerung": "Aus $T_{\\text{pfad}} < T_{\\text{clk}} - T_{\\text{setup}} - T_{\\text{pd,FF}}$ folgt $T_{\\text{clk}} > T_{\\text{pfad}} + T_{\\text{setup}} + T_{\\text{pd,FF}}$.",
+          "quelle": "K09 Folie 14"
+        },
+        {
+          "id": "sw09-timing-l5-a2",
+          "typ": "rechnung",
+          "frage": "Welche maximale Taktfrequenz ergibt sich bei einer minimalen Taktperiode von $20\\,\\text{ns}$?",
+          "loesung": 50,
+          "einheit": "MHz",
+          "loesungsweg": "$f_{\\max} = \\frac{1}{20\\,\\text{ns}} = 50\\,\\text{MHz}$",
+          "erklaerung": "$1/\\text{ns} = 1\\,\\text{GHz}$, also $1/20\\,\\text{GHz} = 50\\,\\text{MHz}$.",
+          "quelle": "K09 Folie 14"
+        },
+        {
+          "id": "sw09-timing-l5-a3",
+          "typ": "rechnung",
+          "frage": "Eine Leitung von 20 cm verzögert um rund 1 ns. Mit welcher Verzögerung musst du bei 60 cm Leitung rechnen?",
+          "loesung": 3,
+          "einheit": "ns",
+          "loesungsweg": "$60\\,\\text{cm} / 20\\,\\text{cm} \\cdot 1\\,\\text{ns} = 3\\,\\text{ns}$",
+          "erklaerung": "Diese Zeit gehört zu $T_{\\text{pfad}}$.",
+          "quelle": "K09 Folie 14"
+        },
+        {
+          "id": "sw09-timing-l5-a4",
+          "typ": "wahr_falsch",
+          "aussage": "In $T_{\\text{pfad}}$ zählt nur die Verzögerung der Gatter.",
+          "richtig": false,
+          "erklaerung": "$T_{\\text{pfad}}$ umfasst alle Verzögerungen auf der Strecke, z. B. auch Leitungslängen.",
+          "quelle": "K09 Folie 14"
+        },
+        {
+          "id": "sw09-timing-l5-a5",
+          "typ": "multiple_choice",
+          "frage": "Wie sollen die 8 Leitungen einer 8-Bit-Zahl synchronisiert werden?",
+          "optionen": [
+            "Über ein gemeinsames, koordinierendes Signal mit Zeitreserven",
+            "Jede Leitung einzeln mit eigenem Synchronisations-FF",
+            "Gar nicht, 8 Bit sind immer synchron",
+            "Mit einem schnelleren Takt"
+          ],
+          "richtig": 0,
+          "erklaerung": "Zeitlich zusammengehörende Signale werden gemeinsam über ein koordinierendes Signal synchronisiert, nicht jede Leitung für sich.",
+          "quelle": "K09 Folie 14"
+        }
+      ]
+    }
+  ],
+  "uebungen": {
+    "kurz": [
+      {
+        "id": "sw09-timing-k1",
+        "typ": "zuordnen",
+        "frage": "Ordne jedem Begriff die passende Beschreibung zu.",
+        "paare": [
+          [
+            "$T_{\\text{setup}}$",
+            "Zeit vor der aktiven Flanke, in der der Eingang stabil sein muss"
+          ],
+          [
+            "$T_{\\text{hold}}$",
+            "Zeit nach der aktiven Flanke, in der der Eingang stabil sein muss"
+          ],
+          [
+            "metastabil",
+            "Ausgang ist vorübergehend weder sauber 0 noch 1"
+          ],
+          [
+            "Synchronisation",
+            "Asynchrones Signal über D-FF am Systemtakt führen"
+          ]
+        ],
+        "erklaerung": "Setup vor, Hold nach der Flanke. Wird eines verletzt, kann das FF metastabil werden; dagegen hilft Synchronisation.",
+        "quelle": "K09 Folien 4–11"
+      },
+      {
+        "id": "sw09-timing-k2",
+        "typ": "lueckentext",
+        "frage": "Ergänze die Timing-Bedingung aus Folie 14.",
+        "text": "Für alle FF-Eingänge muss gelten: $T_{\\text{pfad}} < T_{\\text{clk}}$ − ___ − ___",
+        "antworten": [
+          [
+            "Tsetup",
+            "T_setup",
+            "Setup"
+          ],
+          [
+            "TpdFF",
+            "Tpd,FF",
+            "T_pd,FF",
+            "Tpd"
+          ]
+        ],
+        "erklaerung": "$T_{\\text{pfad}} < T_{\\text{clk}} - T_{\\text{setup}} - T_{\\text{pd,FF}}$ (zuerst Setup, dann pd,FF).",
+        "quelle": "K09 Folie 14"
+      },
+      {
+        "id": "sw09-timing-k3",
+        "typ": "multiple_choice",
+        "frage": "Welches dieser Signale ist **asynchron** zum System-Clock eines synchronen Automaten?",
+        "optionen": [
+          "Das Signal einer entprellten Taste",
+          "Der Ausgang eines D-FF, das mit dem System-Clock läuft",
+          "Der Zustand des Automaten selbst",
+          "Ein Signal, das schon über zwei Synchronisations-FF lief"
+        ],
+        "richtig": 0,
+        "erklaerung": "Tasten und Module mit eigenem Clock können sich zu einem beliebigen Zeitpunkt ändern.",
+        "quelle": "K09 Folien 9–10"
+      },
+      {
+        "id": "sw09-timing-k4",
+        "typ": "wahr_falsch",
+        "aussage": "Zur Synchronisation sind zwei hintereinander geschaltete D-FF besser als eines.",
+        "richtig": true,
+        "erklaerung": "Wird das erste FF metastabil, hat $Q_1$ fast eine Periode Zeit, sich zu stabilisieren, bevor das zweite FF übernimmt.",
+        "quelle": "K09 Folie 11"
+      },
+      {
+        "id": "sw09-timing-k5",
+        "typ": "rechnung",
+        "frage": "Ein Automat soll mit $100\\,\\text{MHz}$ laufen. $T_{\\text{setup}} = 2\\,\\text{ns}$, $T_{\\text{pd,FF}} = 3\\,\\text{ns}$. Wie gross darf $T_{\\text{pfad}}$ höchstens sein?",
+        "loesung": 5,
+        "einheit": "ns",
+        "loesungsweg": "$T_{\\text{clk}} = 1/100\\,\\text{MHz} = 10\\,\\text{ns}$, also $T_{\\text{pfad}} < 10 - 2 - 3 = 5\\,\\text{ns}$",
+        "erklaerung": "Zuerst die Periode aus der Frequenz, dann die Timing-Bedingung einsetzen.",
+        "quelle": "K09 Folie 14"
+      },
+      {
+        "id": "sw09-timing-k6",
+        "typ": "reihenfolge",
+        "frage": "Bring die Zeitanteile einer Taktperiode in die Reihenfolge, wie sie ab einer Clockflanke ablaufen.",
+        "elemente": [
+          "Aktive Clockflanke am Flip-Flop",
+          "$T_{\\text{pd,FF}}$: bis der FF-Ausgang gültig ist",
+          "$T_{\\text{pfad}}$: durch Logik und Leitungen",
+          "$T_{\\text{setup}}$: Eingang stabil vor der nächsten Flanke",
+          "Nächste aktive Clockflanke"
+        ],
+        "erklaerung": "Darum muss $T_{\\text{clk}}$ grösser sein als $T_{\\text{pd,FF}} + T_{\\text{pfad}} + T_{\\text{setup}}$.",
+        "quelle": "K09 Folie 14"
+      },
+      {
+        "id": "sw09-timing-k7",
+        "typ": "multiple_choice",
+        "frage": "Warum verwendet man zur Synchronisation am besten FF mit sehr kurzer metastabiler Periode?",
+        "optionen": [
+          "Damit sich $Q_1$ sicher vor der nächsten Flanke stabilisiert",
+          "Damit der Automat schneller zählt",
+          "Damit keine Setup-Zeit nötig ist",
+          "Damit das Signal weniger verzögert wird als ohne FF"
+        ],
+        "richtig": 0,
+        "erklaerung": "$Q_1$ hat nur knapp eine Clock-Periode Zeit; je kürzer die metastabile Phase, desto sicherer.",
+        "quelle": "K09 Folie 11"
+      },
+      {
+        "id": "sw09-timing-k8",
+        "typ": "lueckentext",
+        "frage": "Faustregel aus Folie 14:",
+        "text": "Eine Leitung von 20 cm bewirkt bereits eine Verzögerung von etwa ___ ns.",
+        "antworten": [
+          [
+            "1"
+          ]
+        ],
+        "erklaerung": "Auch Leitungen gehören zu $T_{\\text{pfad}}$.",
+        "quelle": "K09 Folie 14"
+      }
+    ],
+    "lang": [
+      {
+        "id": "sw09-timing-u1",
+        "nr": "1",
+        "titel": "Maximale Clockfrequenz eines Moore-Automaten",
+        "empfohlen": true,
+        "grund": "Typische Rechenaufgabe zur Timing-Bedingung",
+        "aufgabe": "Ein Moore-Automat ist in einem Chip in einer Technologie aufgebaut, welche 5 ns für Buffern/Invertieren und je 5 ns für die AND- und die OR-Stufen benötigt. Die geclockten D-FF haben $5\\,\\text{ns}$ $T_{\\text{setup}}$, $0\\,\\text{ns}$ $T_{\\text{hold}}$ und $5\\,\\text{ns}$ $T_{\\text{pd,FF}}$.\n\nWie gross ist die (theoretische) maximale Clockfrequenz des Automaten, wenn keine weiteren Verzögerungen (z. B. durch Leitungslängen) dazukommen?",
+        "tipps": [
+          "Welcher Weg bestimmt die Taktperiode? Vom Ausgang eines Zustands-FF durch die Logik bis zum Eingang des nächsten FF.",
+          "Die Logik vor den FF ist zweistufig aufgebaut: zuerst Buffern/Invertieren, dann die AND-Stufe, dann die OR-Stufe. Addiere die drei Zeiten zu $T_{\\text{pfad}}$.",
+          "Stelle $T_{\\text{pfad}} < T_{\\text{clk}} - T_{\\text{setup}} - T_{\\text{pd,FF}}$ nach $T_{\\text{clk}}$ um. $T_{\\text{hold}} = 0$ spielt hier keine Rolle.",
+          "Zum Schluss $f_{\\max} = 1/T_{\\text{clk,min}}$."
+        ],
+        "loesung": [
+          {
+            "typ": "text",
+            "text": "**Pfad durch die Logik:** Buffern/Invertieren + AND-Stufe + OR-Stufe"
+          },
+          {
+            "typ": "formel",
+            "tex": "T_{\\text{pfad}} = 5 + 5 + 5 = 15\\,\\text{ns}"
+          },
+          {
+            "typ": "text",
+            "text": "**Minimale Taktperiode** aus der Timing-Bedingung:"
+          },
+          {
+            "typ": "formel",
+            "tex": "T_{\\text{clk,min}} = T_{\\text{pd,FF}} + T_{\\text{pfad}} + T_{\\text{setup}} = 5 + 15 + 5 = 25\\,\\text{ns}"
+          },
+          {
+            "typ": "formel",
+            "tex": "f_{\\max} = \\frac{1}{25\\,\\text{ns}} = 40\\,\\text{MHz}"
+          },
+          {
+            "typ": "merke",
+            "text": "Die Ausgangslogik des Moore-Automaten führt nicht zurück auf die FF und begrenzt den Takt darum nicht."
+          }
+        ],
+        "ergebnis": "$f_{\\max} = 40\\,\\text{MHz}$",
+        "loesung_herkunft": "Eigene Musterlösung, im Material gibt es keine Lösung zu K09.",
+        "quelle": "K09-DigitalTechnik-Aufgaben-v3, Aufgabe 1"
+      },
+      {
+        "id": "sw09-timing-u2",
+        "nr": "2",
+        "titel": "Asynchrones Signal richtig synchronisieren",
+        "empfohlen": true,
+        "grund": "Zeigt den typischen Fehler bei asynchronen Eingängen",
+        "aufgabe": "Ein Entwickler entwirft folgende digitale Schaltung: Eine FSM läuft mit einem System-Clock S. Ein zu S asynchrones Signal A wird zum einen mit einem zu S synchronen Signal D durch ein AND-Gatter verknüpft (Resultat: AD), zum andern wird das Signal A mit einem zu S synchronen Signal G durch ein OR verknüpft (Resultat: A+G). Die beiden resultierenden Signale (AD und A+G) werden je mit einem D-FF synchronisiert und dann den Eingängen der FSM zugeführt.",
+        "teile": [
+          {
+            "label": "a)",
+            "text": "Skizzieren Sie die beschriebene Schaltung."
+          },
+          {
+            "label": "b)",
+            "text": "Entwerfen Sie eine verbesserte Schaltung mit derselben Funktion. Was wurde verbessert?"
+          }
+        ],
+        "tipps": [
+          "Zeichne zuerst die beiden Pfade getrennt: A und D → AND → D-FF → FSM, sowie A und G → OR → D-FF → FSM. Alle FF laufen mit S.",
+          "Welches Signal ist asynchron, und an wie vielen Stellen wird es verwendet?",
+          "Was passiert, wenn A genau an einer Flanke von S wechselt? Können die beiden D-FF dann unterschiedlich entscheiden oder metastabil werden?",
+          "Folie 14: Zeitlich zusammengehörende Signale nicht einzeln synchronisieren. Und Folie 11: besser zwei D-FF hintereinander.",
+          "Idee für b): Synchronisiere zuerst nur A, und verknüpfe erst danach mit D und G."
+        ],
+        "loesung": [
+          {
+            "typ": "text",
+            "text": "**a) Schaltung des Entwicklers**"
+          },
+          {
+            "typ": "kette",
+            "elemente": [
+              {
+                "text": "A (asynchron), D"
+              },
+              {
+                "text": "AND"
+              },
+              {
+                "text": "D-FF"
+              },
+              {
+                "text": "FSM"
+              }
+            ],
+            "pfeile": [
+              "",
+              "AD",
+              ""
+            ],
+            "takt": "System-Clock S",
+            "warnung": 0
+          },
+          {
+            "typ": "kette",
+            "elemente": [
+              {
+                "text": "A (asynchron), G"
+              },
+              {
+                "text": "OR"
+              },
+              {
+                "text": "D-FF"
+              },
+              {
+                "text": "FSM"
+              }
+            ],
+            "pfeile": [
+              "",
+              "A+G",
+              ""
+            ],
+            "takt": "System-Clock S",
+            "warnung": 0
+          },
+          {
+            "typ": "text",
+            "text": "**Problem:** Das asynchrone A wird über zwei getrennte FF synchronisiert. Wechselt A nahe an einer Flanke von S, können die beiden FF verschieden entscheiden (eines sieht schon den neuen, das andere noch den alten Wert von A) oder metastabil werden. Die FSM bekommt dann zwei Eingänge, die nicht zum gleichen Wert von A passen."
+          },
+          {
+            "typ": "text",
+            "text": "**b) Verbesserte Schaltung**"
+          },
+          {
+            "typ": "kette",
+            "elemente": [
+              {
+                "text": "A (asynchron)"
+              },
+              {
+                "text": "D-FF 1"
+              },
+              {
+                "text": "D-FF 2"
+              },
+              {
+                "text": "AND mit D / OR mit G"
+              },
+              {
+                "text": "FSM"
+              }
+            ],
+            "pfeile": [
+              "",
+              "",
+              "A_sync",
+              "AD, A+G"
+            ],
+            "takt": "System-Clock S",
+            "warnung": 0
+          },
+          {
+            "typ": "liste",
+            "punkte": [
+              "A wird **nur einmal** synchronisiert. Beide FSM-Eingänge beruhen auf demselben Wert $A_{\\text{sync}}$ und sind damit immer zueinander passend.",
+              "Synchronisiert wird mit **zwei D-FF hintereinander**: Wird das erste metastabil, hat es fast eine Periode Zeit sich zu stabilisieren.",
+              "Danach sind A, D und G alle synchron zu S. AND und OR sind normale kombinatorische Logik, die die Timing-Bedingung $T_{\\text{pfad}} < T_{\\text{clk}} - T_{\\text{setup}} - T_{\\text{pd,FF}}$ einhalten muss."
+            ]
+          },
+          {
+            "typ": "merke",
+            "text": "Nachteil wie immer bei Synchronisation: A kommt verzögert bei der FSM an."
+          }
+        ],
+        "ergebnis": "A zuerst einmal mit zwei D-FF synchronisieren, dann AND/OR",
+        "loesung_herkunft": "Eigene Musterlösung nach den Folien 11 und 14, im Material gibt es keine Lösung zu K09.",
+        "quelle": "K09-DigitalTechnik-Aufgaben-v3, Aufgabe 2"
+      }
+    ]
+  }
+}

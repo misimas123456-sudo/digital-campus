@@ -1,0 +1,3055 @@
+{
+  "id": "sw08-automaten",
+  "titel": "Endliche Automaten",
+  "kapitel": 8,
+  "beschreibung": "Sequentielle Schaltungen, Moore, Medwedew, Mealy, Zustandsdiagramm, Zustandsfolgetabelle und Entwurf am Beispiel Lauflicht",
+  "lektionen": [
+    {
+      "id": "sw08-automaten-l1",
+      "titel": "Sequentielle Schaltungen und Automaten",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Was ist sequentiell?",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Bei **sequentiellen Schaltungen** hängen die Ausgänge nicht nur von den gegenwärtigen Eingangswerten ab, sondern auch von der **Vergangenheit** der Eingangssignale."
+            },
+            {
+              "typ": "text",
+              "text": "Sie bestehen aus **Speicherbausteinen** (meist Flip-Flops) und **kombinatorischer Logik**, die die Eingänge auswertet, die FF ansteuert und die Ausgänge zusammensetzt."
+            },
+            {
+              "typ": "kette",
+              "titel": "Prinzip-Blockschaltbild",
+              "elemente": [
+                {
+                  "text": "Eingänge E"
+                },
+                {
+                  "text": "f_U",
+                  "sub": "komb. Logik"
+                },
+                {
+                  "text": "Zustands-Speicher",
+                  "sub": "FF"
+                },
+                {
+                  "text": "f_A",
+                  "sub": "komb. Logik"
+                },
+                {
+                  "text": "Ausgänge A"
+                }
+              ],
+              "pfeile": [
+                "",
+                "Z_{k+1}",
+                "Z_k",
+                ""
+              ],
+              "takt": "Clk"
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "**Asynchrone** sequentielle Schaltungen speichern und reagieren unmittelbar beim Auftreten der Signale.",
+                "**Synchrone** sequentielle Schaltungen reagieren synchron zum Taktsignal. Sie lassen sich einfacher und damit zuverlässiger entwerfen."
+              ]
+            }
+          ],
+          "quelle": "K08 Folie 3"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Der endliche Automat (FSM)",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein **endlicher Automat** (Finite State Machine, FSM) ist eine Blackbox mit:"
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "einer endlichen Anzahl innerer **Zustände Z**",
+                "einem **Eingangsalphabet E** (Eingangskombinationen)",
+                "einem **Ausgangsalphabet A** (Ausgangskombinationen)",
+                "der kombinatorischen **Übergangsfunktion** $f_U$ von $Z_k$ zum Folgezustand $Z_{k+1}$",
+                "der kombinatorischen **Ausgangsfunktion** $f_A$, die A bestimmt"
+              ]
+            },
+            {
+              "typ": "merke",
+              "text": "Ein Automat ist immer in genau einem Zustand. Ein Übergang erfolgt nur, wenn seine Bedingung erfüllt ist; auf nicht vorgesehene Ereignisse reagiert er nicht. Der Startzustand sollte definiert sein."
+            }
+          ],
+          "quelle": "K08 Folie 4"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "Bei einer sequentiellen Schaltung hängen die Ausgänge nur von den aktuellen Eingängen ab.",
+          "richtig": false,
+          "erklaerung": "Zusätzlich zählt die Vergangenheit der Eingänge, gespeichert im Zustand.",
+          "quelle": "K08 Folie 3",
+          "id": "sw08-automaten-l1-a1"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Warum entwirft man meist synchrone statt asynchrone sequentielle Schaltungen?",
+          "optionen": [
+            "Sie lassen sich einfacher und zuverlässiger entwerfen",
+            "Sie brauchen keine Flip-Flops",
+            "Sie reagieren schneller auf jedes Signal",
+            "Sie haben keine Zustände"
+          ],
+          "richtig": 0,
+          "erklaerung": "Synchron = alles reagiert auf den Takt. Das macht den Entwurf einfacher und zuverlässiger.",
+          "quelle": "K08 Folie 3",
+          "id": "sw08-automaten-l1-a2"
+        },
+        {
+          "typ": "zuordnen",
+          "frage": "Ordne die Bestandteile einer FSM zu.",
+          "paare": [
+            [
+              "$f_U$",
+              "Übergangsfunktion zum Folgezustand"
+            ],
+            [
+              "$f_A$",
+              "Ausgangsfunktion"
+            ],
+            [
+              "Z",
+              "Menge der inneren Zustände"
+            ],
+            [
+              "E",
+              "Eingangsalphabet"
+            ]
+          ],
+          "erklaerung": "Beide Funktionen sind kombinatorische Logik, der Zustand liegt in den FF.",
+          "quelle": "K08 Folie 4",
+          "id": "sw08-automaten-l1-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Ein Automat ist im Zustand $Z_2$. Es tritt ein Ereignis auf, für das von $Z_2$ aus kein Übergang vorgesehen ist. Was passiert?",
+          "optionen": [
+            "Nichts, der Automat bleibt in $Z_2$",
+            "Er springt in den Startzustand",
+            "Er ist danach in zwei Zuständen",
+            "Er wird metastabil"
+          ],
+          "richtig": 0,
+          "erklaerung": "Der Automat reagiert nicht auf Ereignisse, die für den jeweiligen Zustand nicht vorgesehen sind.",
+          "quelle": "K08 Folie 4",
+          "id": "sw08-automaten-l1-a4"
+        }
+      ]
+    },
+    {
+      "id": "sw08-automaten-l2",
+      "titel": "Moore, Medwedew und Mealy",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Moore- und Medwedew-Automat",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Beim **Moore-Automaten** hängen die Ausgänge **nur vom aktuellen Zustand** ab. Alle Ausgangssignale sind damit synchron zum Clock."
+            },
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "text": "E"
+                },
+                {
+                  "text": "f_U"
+                },
+                {
+                  "text": "Zustands-Speicher (FF)"
+                },
+                {
+                  "text": "f_A"
+                },
+                {
+                  "text": "A"
+                }
+              ],
+              "pfeile": [
+                "",
+                "Z_{k+1}",
+                "Z_k",
+                ""
+              ],
+              "takt": "Clk"
+            },
+            {
+              "typ": "text",
+              "text": "Hat ein Moore-Automat **keine Ausgangslogik** $f_A$, heisst er **Medwedew-Automat**: Die Zustandssignale sind direkt die Ausgangssignale."
+            },
+            {
+              "typ": "kette",
+              "elemente": [
+                {
+                  "text": "E"
+                },
+                {
+                  "text": "f_U"
+                },
+                {
+                  "text": "Zustands-Speicher (FF)"
+                },
+                {
+                  "text": "A = Z_k"
+                }
+              ],
+              "pfeile": [
+                "",
+                "Z_{k+1}",
+                ""
+              ],
+              "takt": "Clk"
+            }
+          ],
+          "quelle": "K08 Folie 5"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Mealy-Automat",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Beim **Mealy-Automaten** hängen die Ausgänge vom aktuellen Zustand **und von den gerade anliegenden Eingängen** ab. Die Eingänge E gehen also auch direkt in $f_A$."
+            },
+            {
+              "typ": "liste",
+              "punkte": [
+                "Asynchrone Eingänge können damit auch **asynchrone Ausgangssignale** erzeugen.",
+                "Er kommt oft mit **weniger Zuständen** aus als ein Moore-Automat, z. B. wenn die Übergänge aus einem Zustand je nach Eingang verschiedene Ausgaben erzeugen sollen."
+              ]
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Vergleich",
+              "kopf": [
+                "",
+                "Ausgänge hängen ab von",
+                "Ausgänge synchron?"
+              ],
+              "zeilen": [
+                [
+                  "Moore",
+                  "nur Zustand",
+                  "ja"
+                ],
+                [
+                  "Medwedew",
+                  "Zustand = Ausgang (kein $f_A$)",
+                  "ja"
+                ],
+                [
+                  "Mealy",
+                  "Zustand **und** Eingänge",
+                  "nicht unbedingt"
+                ]
+              ]
+            }
+          ],
+          "quelle": "K08 Folie 6"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Wovon hängen die Ausgänge eines Moore-Automaten ab?",
+          "optionen": [
+            "Nur vom aktuellen Zustand",
+            "Vom Zustand und den Eingängen",
+            "Nur von den Eingängen",
+            "Vom Takt allein"
+          ],
+          "richtig": 0,
+          "erklaerung": "Darum sind alle Ausgänge eines Moore-Automaten synchron zum Clock.",
+          "quelle": "K08 Folie 5",
+          "id": "sw08-automaten-l2-a1"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "Ein Medwedew-Automat ist ein Moore-Automat ohne Ausgangslogik $f_A$.",
+          "richtig": true,
+          "erklaerung": "Die Zustandssignale sind direkt die Ausgänge.",
+          "quelle": "K08 Folie 5",
+          "id": "sw08-automaten-l2-a2"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Welcher Automat kann bei asynchronen Eingängen asynchrone Ausgangssignale erzeugen?",
+          "optionen": [
+            "Mealy",
+            "Moore",
+            "Medwedew",
+            "Keiner"
+          ],
+          "richtig": 0,
+          "erklaerung": "Beim Mealy-Automaten gehen die Eingänge direkt in die Ausgangslogik.",
+          "quelle": "K08 Folie 6",
+          "id": "sw08-automaten-l2-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Welcher Automat kommt oft mit weniger Zuständen aus?",
+          "optionen": [
+            "Mealy",
+            "Moore",
+            "Medwedew",
+            "Alle gleich viele"
+          ],
+          "richtig": 0,
+          "erklaerung": "Die Ausgabe kann am Übergang hängen statt an einem eigenen Zustand.",
+          "quelle": "K08 Folie 6",
+          "id": "sw08-automaten-l2-a4"
+        }
+      ]
+    },
+    {
+      "id": "sw08-automaten-l3",
+      "titel": "Zustandsdiagramm und Tabellen",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Regeln für das Zustandsdiagramm",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Im **Zustandsdiagramm** (Zustandsgraph) sind die Zustände **Knoten**, die Übergänge **Pfeile**. Es gibt keine parallelen Pfeile."
+            },
+            {
+              "typ": "tabelle",
+              "kopf": [
+                "",
+                "Moore",
+                "Mealy"
+              ],
+              "zeilen": [
+                [
+                  "Pfeil-Beschriftung",
+                  "Eingangssignale",
+                  "Eingangssignale / Ausgangssignale"
+                ],
+                [
+                  "Ausgänge stehen …",
+                  "im Knoten",
+                  "am Pfeil; sie gehören zum Zustand, wo der Pfeil **startet**"
+                ],
+                [
+                  "bleibende Zustände",
+                  "Schlaufe mit Bedingung",
+                  "Schlaufe **mit Ausgangswerten** angeben"
+                ]
+              ]
+            },
+            {
+              "typ": "zustandsdiagramm",
+              "titel": "Lauflicht als Moore-Automat (Ausgänge L1 L2 L3)",
+              "start": "Z1",
+              "knoten": [
+                {
+                  "id": "Z1",
+                  "label": "Z_1",
+                  "aus": "100",
+                  "x": 0,
+                  "y": 0,
+                  "werte": {
+                    "L1": 1
+                  }
+                },
+                {
+                  "id": "Z2",
+                  "label": "Z_2",
+                  "aus": "010",
+                  "x": 2,
+                  "y": 0,
+                  "werte": {
+                    "L2": 1
+                  }
+                },
+                {
+                  "id": "Z3",
+                  "label": "Z_3",
+                  "aus": "001",
+                  "x": 1,
+                  "y": 1,
+                  "werte": {
+                    "L3": 1
+                  }
+                }
+              ],
+              "kanten": [
+                {
+                  "von": "Z1",
+                  "nach": "Z2",
+                  "bed": "S",
+                  "text": "S"
+                },
+                {
+                  "von": "Z2",
+                  "nach": "Z3",
+                  "bed": "S",
+                  "text": "S"
+                },
+                {
+                  "von": "Z3",
+                  "nach": "Z1",
+                  "bed": "S",
+                  "text": "S"
+                },
+                {
+                  "von": "Z1",
+                  "nach": "Z1",
+                  "bed": "!S",
+                  "text": "!S",
+                  "schleife": "oben"
+                },
+                {
+                  "von": "Z2",
+                  "nach": "Z2",
+                  "bed": "!S",
+                  "text": "!S",
+                  "schleife": "oben"
+                },
+                {
+                  "von": "Z3",
+                  "nach": "Z3",
+                  "bed": "!S",
+                  "text": "!S",
+                  "schleife": "unten"
+                }
+              ]
+            },
+            {
+              "typ": "hinweis",
+              "text": "Beispiel Lauflicht (Moore): Im Knoten steht oben der Zustand, unten die Ausgänge $L_1L_2L_3$. Bei S = 1 geht es weiter, bei S = 0 bleibt der Zustand."
+            }
+          ],
+          "quelle": "K08 Folien 7, 14"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Zustand-Ereignis-Tabelle",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "In der **Zustand-Ereignis-Tabelle** (State-Event Table) stehen die Zustände als Zeilen und die Ereignisse als Spalten. In jedem Feld stehen Folgezustand und Reaktion."
+            },
+            {
+              "typ": "text",
+              "text": "**Vorteil:** Es werden **alle möglichen Kombinationen** von Zuständen und Ereignissen aufgelistet. So sieht man sofort, ob ein Fall vergessen ging."
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Lauflicht als Zustand-Ereignis-Tabelle",
+              "kopf": [
+                "Zustand \\ Ereignis",
+                "S = 0",
+                "S = 1"
+              ],
+              "erste_kopf": true,
+              "zeilen": [
+                [
+                  "$Z_1$ (L1)",
+                  "$Z_1$",
+                  "$Z_2$"
+                ],
+                [
+                  "$Z_2$ (L2)",
+                  "$Z_2$",
+                  "$Z_3$"
+                ],
+                [
+                  "$Z_3$ (L3)",
+                  "$Z_3$",
+                  "$Z_1$"
+                ]
+              ]
+            }
+          ],
+          "quelle": "K08 Folie 10"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Wo stehen beim **Moore**-Zustandsdiagramm die Ausgangssignale?",
+          "optionen": [
+            "In den Knoten",
+            "An den Pfeilen",
+            "Nur in der Legende",
+            "Gar nicht"
+          ],
+          "richtig": 0,
+          "erklaerung": "Moore: Ausgänge gehören zum Zustand, also in den Knoten.",
+          "quelle": "K08 Folie 7",
+          "id": "sw08-automaten-l3-a1"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Ein Mealy-Pfeil ist mit «E/1» beschriftet. Was bedeutet das?",
+          "optionen": [
+            "Bei E = 1 wird dieser Übergang genommen, der Ausgang ist dabei 1",
+            "Der Zielzustand hat den Ausgang E",
+            "E wird auf 1 gesetzt",
+            "Der Übergang dauert eine Periode"
+          ],
+          "richtig": 0,
+          "erklaerung": "Mealy: Eingang / Ausgang. Der Ausgang gehört zum Zustand, wo der Pfeil startet.",
+          "quelle": "K08 Folie 7",
+          "id": "sw08-automaten-l3-a2"
+        },
+        {
+          "typ": "wahr_falsch",
+          "aussage": "Beim Mealy-Diagramm darf man die Schlaufen bei bleibenden Zuständen weglassen.",
+          "richtig": false,
+          "erklaerung": "Sie müssen mit den Ausgangswerten angegeben werden.",
+          "quelle": "K08 Folie 7",
+          "id": "sw08-automaten-l3-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Was ist der Vorteil der Zustand-Ereignis-Tabelle?",
+          "optionen": [
+            "Alle Kombinationen von Zustand und Ereignis sind aufgelistet",
+            "Sie braucht weniger Platz als ein Diagramm",
+            "Sie zeigt das Timing",
+            "Sie ersetzt die Flip-Flops"
+          ],
+          "richtig": 0,
+          "erklaerung": "Man sieht sofort, wenn ein Fall fehlt.",
+          "quelle": "K08 Folie 10",
+          "id": "sw08-automaten-l3-a4"
+        }
+      ]
+    },
+    {
+      "id": "sw08-automaten-l4",
+      "titel": "Vorgehen beim Entwurf",
+      "art": "verstaendnis",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Schritt für Schritt",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "punkte": [
+                "System verstehen und abgrenzen, Schnittstellen sowie Ein- und Ausgänge definieren",
+                "Automatentyp festlegen: Moore, Mealy oder Medwedew",
+                "Funktion modellieren: nötige innere Zustände, Übergangsbedingungen und Ausgangswerte",
+                "Startzustand festlegen",
+                "Prüfen, ob sich Zustände minimieren lassen (und das tun, falls es von Vorteil ist)",
+                "Zustände codieren",
+                "Flip-Flop-Typ festlegen (und damit die Anregungstabelle)",
+                "Logik zur Ansteuerung der FF mit der **Zustandsfolgetabelle** entwerfen",
+                "Auf **parasitäre Loops** prüfen: ungenutzte FF-Kombinationen müssen in einen definierten Zustand führen (z. B. Power-Up Reset)",
+                "Ausgangslogik entwerfen (falls nicht nach Variante d codiert)"
+              ]
+            }
+          ],
+          "quelle": "K08 Folie 11"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Zustände codieren und FF ansteuern",
+          "bloecke": [
+            {
+              "typ": "tabelle",
+              "titel": "Varianten der Zustandscodierung",
+              "kopf": [
+                "Variante",
+                "Idee"
+              ],
+              "zeilen": [
+                [
+                  "a) Binärcode",
+                  "braucht wenige FF"
+                ],
+                [
+                  "b) Gray-Code",
+                  "bei benachbarten Zuständen wechselt nur ein Bit"
+                ],
+                [
+                  "c) One-Hot",
+                  "pro Zustand ist genau ein FF aktiv (1)"
+                ],
+                [
+                  "d) nach Ausgängen",
+                  "Ausgangslogik entfällt (Medwedew)"
+                ]
+              ]
+            },
+            {
+              "typ": "tabelle",
+              "titel": "Anregungstabelle (Excitation Table): was braucht das FF für den Übergang Q → Q⁺?",
+              "kopf": [
+                "Q → Q⁺",
+                "D",
+                "J",
+                "K",
+                "T"
+              ],
+              "zeilen": [
+                [
+                  "0 → 0",
+                  "0",
+                  "0",
+                  "X",
+                  "0"
+                ],
+                [
+                  "0 → 1",
+                  "1",
+                  "1",
+                  "X",
+                  "1"
+                ],
+                [
+                  "1 → 0",
+                  "0",
+                  "X",
+                  "1",
+                  "1"
+                ],
+                [
+                  "1 → 1",
+                  "1",
+                  "X",
+                  "0",
+                  "0"
+                ]
+              ]
+            },
+            {
+              "typ": "hinweis",
+              "text": "Die Folie lässt die Anregungstabelle leer zum Ausfüllen. Die Werte hier folgen direkt aus den Funktionstabellen von K07 (X = egal)."
+            }
+          ],
+          "quelle": "K08 Folien 11–12, K07 Folien 9–11"
+        },
+        {
+          "typ": "reihenfolge",
+          "frage": "Bring die ersten Entwurfsschritte in die Reihenfolge der Folien.",
+          "elemente": [
+            "System verstehen, Ein- und Ausgänge definieren",
+            "Automatentyp festlegen",
+            "Zustände, Übergänge und Ausgänge modellieren",
+            "Startzustand festlegen",
+            "Zustände minimieren",
+            "Zustände codieren"
+          ],
+          "erklaerung": "Erst danach kommen FF-Typ, Zustandsfolgetabelle, parasitäre Loops und Ausgangslogik.",
+          "quelle": "K08 Folie 11",
+          "id": "sw08-automaten-l4-a1"
+        },
+        {
+          "typ": "zuordnen",
+          "frage": "Ordne die Zustandscodierung ihrer Eigenschaft zu.",
+          "paare": [
+            [
+              "Binärcode",
+              "wenige FF"
+            ],
+            [
+              "Gray-Code",
+              "nur ein Bit wechselt bei Nachbarzuständen"
+            ],
+            [
+              "One-Hot",
+              "ein aktives FF pro Zustand"
+            ],
+            [
+              "nach Ausgängen",
+              "keine Ausgangslogik nötig"
+            ]
+          ],
+          "erklaerung": "Varianten a) bis d) von Folie 11.",
+          "quelle": "K08 Folie 11",
+          "id": "sw08-automaten-l4-a2"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Ein JK-FF soll von Q = 0 nach Q⁺ = 1. Was braucht es?",
+          "optionen": [
+            "J = 1, K = X",
+            "J = 0, K = X",
+            "J = X, K = 1",
+            "J = X, K = 0"
+          ],
+          "richtig": 0,
+          "erklaerung": "Setzen (J = 1, K = 0) oder Wechseln (J = 1, K = 1) führen beide zu 1, also ist K egal.",
+          "quelle": "K08 Folie 12",
+          "id": "sw08-automaten-l4-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Was sind «parasitäre Loops»?",
+          "optionen": [
+            "Ungenutzte FF-Kombinationen, aus denen der Automat nicht in einen definierten Zustand findet",
+            "Schlaufen im Zustandsdiagramm",
+            "Zu lange Leitungen",
+            "Doppelte Übergänge"
+          ],
+          "richtig": 0,
+          "erklaerung": "Sie können z. B. beim Einschalten zufällig auftreten. Abhilfe: Übergänge in den Startzustand oder ein Power-Up Reset.",
+          "quelle": "K08 Folie 11",
+          "id": "sw08-automaten-l4-a4"
+        }
+      ]
+    },
+    {
+      "id": "sw08-automaten-l5",
+      "titel": "Beispiel Lauflicht",
+      "art": "rechnen",
+      "schritte": [
+        {
+          "typ": "theorie",
+          "titel": "Aufgabe und Zustandsdiagramm",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Ein Lauflicht soll nacheinander die Lampen $L_1$, $L_2$, $L_3$ einschalten, wenn der Schalter **S = 1** ist. Bei **S = 0** soll es stoppen (Zustand bleibt). Realisierung als **Moore-Automat mit JK-Flip-Flops**."
+            },
+            {
+              "typ": "interaktiv",
+              "widget": "fsm_sim",
+              "params": {
+                "titel": "Lauflicht ausprobieren",
+                "diagramm": {
+                  "titel": "Lauflicht als Moore-Automat (Ausgänge L1 L2 L3)",
+                  "start": "Z1",
+                  "knoten": [
+                    {
+                      "id": "Z1",
+                      "label": "Z_1",
+                      "aus": "100",
+                      "x": 0,
+                      "y": 0,
+                      "werte": {
+                        "L1": 1
+                      }
+                    },
+                    {
+                      "id": "Z2",
+                      "label": "Z_2",
+                      "aus": "010",
+                      "x": 2,
+                      "y": 0,
+                      "werte": {
+                        "L2": 1
+                      }
+                    },
+                    {
+                      "id": "Z3",
+                      "label": "Z_3",
+                      "aus": "001",
+                      "x": 1,
+                      "y": 1,
+                      "werte": {
+                        "L3": 1
+                      }
+                    }
+                  ],
+                  "kanten": [
+                    {
+                      "von": "Z1",
+                      "nach": "Z2",
+                      "bed": "S",
+                      "text": "S"
+                    },
+                    {
+                      "von": "Z2",
+                      "nach": "Z3",
+                      "bed": "S",
+                      "text": "S"
+                    },
+                    {
+                      "von": "Z3",
+                      "nach": "Z1",
+                      "bed": "S",
+                      "text": "S"
+                    },
+                    {
+                      "von": "Z1",
+                      "nach": "Z1",
+                      "bed": "!S",
+                      "text": "!S",
+                      "schleife": "oben"
+                    },
+                    {
+                      "von": "Z2",
+                      "nach": "Z2",
+                      "bed": "!S",
+                      "text": "!S",
+                      "schleife": "oben"
+                    },
+                    {
+                      "von": "Z3",
+                      "nach": "Z3",
+                      "bed": "!S",
+                      "text": "!S",
+                      "schleife": "unten"
+                    }
+                  ]
+                },
+                "eingaenge": [
+                  "S"
+                ],
+                "ausgaenge": [
+                  "L1",
+                  "L2",
+                  "L3"
+                ]
+              }
+            },
+            {
+              "typ": "hinweis",
+              "text": "Gewählte Codierung (Binärcode): $Z_1 = 00$, $Z_2 = 01$, $Z_3 = 10$ als $Q_1Q_0$. Der Code 11 ($Z_4$) wird nicht gebraucht. Im Unterricht kann die Codierung anders gewählt worden sein."
+            }
+          ],
+          "quelle": "K08 Folien 13–14"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Zustandsfolgetabelle mit JK-Anregung",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Für jede Kombination aus Eingang S und Zustand $Q_1Q_0$ steht der Folgezustand. Aus der Anregungstabelle folgen J und K. Der unbenutzte Code 11 führt zurück nach $Z_1$ (keine parasitäre Schleife)."
+            },
+            {
+              "typ": "tabelle",
+              "kopf": [
+                "S",
+                "$Q_1$",
+                "$Q_0$",
+                "Z",
+                "Z⁺",
+                "$Q_1^+Q_0^+$",
+                "$J_1$",
+                "$K_1$",
+                "$J_0$",
+                "$K_0$"
+              ],
+              "zeilen": [
+                [
+                  "0",
+                  "0",
+                  "0",
+                  "$Z_1$",
+                  "$Z_1$",
+                  "00",
+                  "0",
+                  "X",
+                  "0",
+                  "X"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1",
+                  "$Z_2$",
+                  "$Z_2$",
+                  "01",
+                  "0",
+                  "X",
+                  "X",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1",
+                  "0",
+                  "$Z_3$",
+                  "$Z_3$",
+                  "10",
+                  "X",
+                  "0",
+                  "0",
+                  "X"
+                ],
+                [
+                  "0",
+                  "1",
+                  "1",
+                  "$Z_4$ (unbenutzt)",
+                  "$Z_1$",
+                  "00",
+                  "X",
+                  "1",
+                  "X",
+                  "1"
+                ],
+                [
+                  "1",
+                  "0",
+                  "0",
+                  "$Z_1$",
+                  "$Z_2$",
+                  "01",
+                  "0",
+                  "X",
+                  "1",
+                  "X"
+                ],
+                [
+                  "1",
+                  "0",
+                  "1",
+                  "$Z_2$",
+                  "$Z_3$",
+                  "10",
+                  "1",
+                  "X",
+                  "X",
+                  "1"
+                ],
+                [
+                  "1",
+                  "1",
+                  "0",
+                  "$Z_3$",
+                  "$Z_1$",
+                  "00",
+                  "X",
+                  "1",
+                  "0",
+                  "X"
+                ],
+                [
+                  "1",
+                  "1",
+                  "1",
+                  "$Z_4$ (unbenutzt)",
+                  "$Z_1$",
+                  "00",
+                  "X",
+                  "1",
+                  "X",
+                  "1"
+                ]
+              ]
+            }
+          ],
+          "quelle": "K08 Folien 15–16"
+        },
+        {
+          "typ": "theorie",
+          "titel": "Logik vereinfachen",
+          "bloecke": [
+            {
+              "typ": "text",
+              "text": "Mit KV-Diagrammen (X als Don't-Care nutzen) ergibt sich die Ansteuerlogik $f_U$:"
+            },
+            {
+              "typ": "formel",
+              "tex": "J_1 = S\\,Q_0 \\qquad K_1 = S + Q_0 \\qquad J_0 = S\\,\\overline{Q_1} \\qquad K_0 = S + Q_1"
+            },
+            {
+              "typ": "text",
+              "text": "Und die Ausgangslogik $f_A$:"
+            },
+            {
+              "typ": "formel",
+              "tex": "L_1 = \\overline{Q_1}\\,\\overline{Q_0} \\qquad L_2 = \\overline{Q_1}\\,Q_0 \\qquad L_3 = Q_1\\,\\overline{Q_0}"
+            },
+            {
+              "typ": "merke",
+              "text": "Mit einer Codierung nach den Ausgängen (Variante d, z. B. One-Hot mit drei FF) würde die Ausgangslogik ganz entfallen, dafür bräuchte es ein FF mehr."
+            }
+          ],
+          "quelle": "K08 Folien 17–19"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Wie viele Flip-Flops braucht das Lauflicht mit Binärcodierung mindestens?",
+          "optionen": [
+            "2",
+            "3",
+            "1",
+            "4"
+          ],
+          "richtig": 0,
+          "erklaerung": "3 Zustände brauchen $\\lceil \\log_2 3 \\rceil = 2$ Bit.",
+          "quelle": "K08 Folie 19",
+          "id": "sw08-automaten-l5-a1"
+        },
+        {
+          "typ": "rechnung",
+          "frage": "Ein Automat hat 6 Zustände und wird binär codiert. Wie viele FF braucht es mindestens?",
+          "loesung": 3,
+          "einheit": "FF",
+          "loesungsweg": "$2^2 = 4 < 6 \\le 8 = 2^3$, also 3 FF",
+          "erklaerung": "Mit n FF lassen sich $2^n$ Zustände codieren.",
+          "quelle": "K08 Folie 11",
+          "id": "sw08-automaten-l5-a2"
+        },
+        {
+          "typ": "rechnung",
+          "frage": "Wie viele FF braucht derselbe Automat mit 6 Zuständen bei **One-Hot**-Codierung?",
+          "loesung": 6,
+          "einheit": "FF",
+          "loesungsweg": "Ein FF pro Zustand",
+          "erklaerung": "Bei One-Hot ist pro Zustand genau ein FF aktiv.",
+          "quelle": "K08 Folie 11",
+          "id": "sw08-automaten-l5-a3"
+        },
+        {
+          "typ": "multiple_choice",
+          "frage": "Lauflicht im Zustand $Z_3$ ($Q_1Q_0 = 10$) mit S = 1. Was müssen $J_1$ und $K_1$ sein?",
+          "optionen": [
+            "$J_1 = X$, $K_1 = 1$",
+            "$J_1 = 1$, $K_1 = X$",
+            "$J_1 = X$, $K_1 = 0$",
+            "$J_1 = 0$, $K_1 = X$"
+          ],
+          "richtig": 0,
+          "erklaerung": "$Z_3 \\to Z_1$: $Q_1$ geht von 1 auf 0, also K = 1 und J egal.",
+          "quelle": "K08 Folie 16",
+          "id": "sw08-automaten-l5-a4"
+        }
+      ]
+    }
+  ],
+  "uebungen": {
+    "kurz": [
+      {
+        "typ": "zuordnen",
+        "frage": "Ordne jedem Automatentyp die passende Beschreibung zu.",
+        "paare": [
+          [
+            "Moore",
+            "Ausgänge hängen nur vom Zustand ab"
+          ],
+          [
+            "Mealy",
+            "Ausgänge hängen von Zustand und Eingängen ab"
+          ],
+          [
+            "Medwedew",
+            "Zustand ist direkt der Ausgang"
+          ]
+        ],
+        "erklaerung": "Folien 5 und 6.",
+        "quelle": "K08 Folien 5–6",
+        "id": "sw08-automaten-k1"
+      },
+      {
+        "typ": "lueckentext",
+        "frage": "Anregungstabelle D-FF:",
+        "text": "Für den Übergang 1 → 0 braucht das D-FF D = ___, für 0 → 1 braucht es D = ___.",
+        "antworten": [
+          [
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "erklaerung": "Beim D-FF ist D einfach der gewünschte Folgewert.",
+        "quelle": "K08 Folie 12",
+        "id": "sw08-automaten-k2"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "T-FF: Was muss T für den Übergang 1 → 1 sein?",
+        "optionen": [
+          "0",
+          "1",
+          "X",
+          "egal, aber nicht X"
+        ],
+        "richtig": 0,
+        "erklaerung": "T = 0 hält den Wert, T = 1 würde wechseln.",
+        "quelle": "K08 Folie 12",
+        "id": "sw08-automaten-k3"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "JK-FF: Was braucht es für den Übergang 1 → 1?",
+        "optionen": [
+          "J = X, K = 0",
+          "J = 1, K = X",
+          "J = X, K = 1",
+          "J = 0, K = 0"
+        ],
+        "richtig": 0,
+        "erklaerung": "Halten (J = K = 0) oder Setzen (J = 1, K = 0) führen beide zu 1. Also J egal, K = 0.",
+        "quelle": "K08 Folie 12",
+        "id": "sw08-automaten-k4"
+      },
+      {
+        "typ": "rechnung",
+        "frage": "Ein Automat hat 9 Zustände. Wie viele FF braucht es bei Binärcodierung mindestens?",
+        "loesung": 4,
+        "einheit": "FF",
+        "loesungsweg": "$2^3 = 8 < 9 \\le 16 = 2^4$",
+        "erklaerung": "n FF reichen für $2^n$ Zustände.",
+        "quelle": "K08 Folie 11",
+        "id": "sw08-automaten-k5"
+      },
+      {
+        "typ": "wahr_falsch",
+        "aussage": "Beim Mealy-Diagramm gehört der Ausgangswert an einem Pfeil zum Zustand, wo der Pfeil endet.",
+        "richtig": false,
+        "erklaerung": "Er gehört zum Zustand, wo der Pfeil **startet**.",
+        "quelle": "K08 Folie 7",
+        "id": "sw08-automaten-k6"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "Wozu dient ein Power-Up Reset?",
+        "optionen": [
+          "Damit der Automat nach dem Einschalten sicher im Startzustand ist",
+          "Damit der Automat schneller läuft",
+          "Um die Ausgänge zu invertieren",
+          "Um Flip-Flops zu sparen"
+        ],
+        "richtig": 0,
+        "erklaerung": "So können ungenutzte FF-Kombinationen beim Einschalten keinen parasitären Loop auslösen.",
+        "quelle": "K08 Folie 11",
+        "id": "sw08-automaten-k7"
+      },
+      {
+        "typ": "multiple_choice",
+        "frage": "Was steht in einer Zeile der Zustandsfolgetabelle?",
+        "optionen": [
+          "Eingänge und aktueller Zustand, dazu Folgezustand, FF-Anregung und Ausgänge",
+          "Nur die Ausgänge",
+          "Nur das Timing",
+          "Die Leitungslängen"
+        ],
+        "richtig": 0,
+        "erklaerung": "Aus ihr liest man die Vorgaben für die Logik $f_U$ (und meist auch $f_A$) ab.",
+        "quelle": "K08 Folie 15",
+        "id": "sw08-automaten-k8"
+      }
+    ],
+    "lang": [
+      {
+        "id": "sw08-automaten-u1",
+        "nr": "1",
+        "titel": "Bitmuster 011 erkennen (Moore)",
+        "empfohlen": true,
+        "grund": "Klassische Zustandsdiagramm-Aufgabe, an der MEP sicher dabei",
+        "aufgabe": "Mit einer IR-Fernsteuerung wird ein Bitmuster übertragen, welches das Einschalten einer Beleuchtungssteuerung aktiviert und bei erneutem Übertragen wieder deaktiviert.\n\nDie Aufgabe soll mit einer **Moore-FSM** mit dem Eingang A und dem Ausgang Y gelöst werden. Sie soll ein sequentielles Bitmuster **(011)** am Eingang A erkennen. Kommt die Sequenz 011 an A vor, soll Y = 1 werden und so bleiben, bis wieder eine Sequenz 011 vorkommt und Y wieder 0 wird, usw. Zu Beginn sei Y = 0.\n\nZeichne den Zustandsgraphen der Moore-FSM. Bezeichne die Zustände mit $Z_X$ und gib unterhalb der Zustandsbezeichnung den Wert von Y an.",
+        "tipps": [
+          "Überlege dir zuerst, welche Teile des Musters du dir merken musst: noch nichts, «0», «01».",
+          "Das brauchst du einmal für Y = 0 und einmal für Y = 1, weil Y bis zum nächsten Muster gehalten wird.",
+          "Was passiert nach «01», wenn eine 0 kommt? Diese 0 kann schon der Anfang eines neuen Musters sein.",
+          "Was passiert nach «0», wenn wieder eine 0 kommt? Und im Zustand «noch nichts» bei einer 1?",
+          "Du kommst mit 6 Zuständen aus."
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "titel": "Bedeutung der Zustände",
+            "kopf": [
+              "Zustand",
+              "gemerkt",
+              "Y"
+            ],
+            "zeilen": [
+              [
+                "$Z_0$",
+                "noch nichts (Start)",
+                "0"
+              ],
+              [
+                "$Z_1$",
+                "«0»",
+                "0"
+              ],
+              [
+                "$Z_2$",
+                "«01»",
+                "0"
+              ],
+              [
+                "$Z_3$",
+                "Muster erkannt, noch nichts",
+                "1"
+              ],
+              [
+                "$Z_4$",
+                "«0»",
+                "1"
+              ],
+              [
+                "$Z_5$",
+                "«01»",
+                "1"
+              ]
+            ]
+          },
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Moore-FSM: Zustand und darunter Y",
+            "start": "Z0",
+            "knoten": [
+              {
+                "id": "Z0",
+                "label": "Z_0",
+                "aus": "0",
+                "x": 0,
+                "y": 0,
+                "werte": {
+                  "Y": 0
+                }
+              },
+              {
+                "id": "Z1",
+                "label": "Z_1",
+                "aus": "0",
+                "x": 1,
+                "y": 0,
+                "werte": {
+                  "Y": 0
+                }
+              },
+              {
+                "id": "Z2",
+                "label": "Z_2",
+                "aus": "0",
+                "x": 2,
+                "y": 0,
+                "werte": {
+                  "Y": 0
+                }
+              },
+              {
+                "id": "Z3",
+                "label": "Z_3",
+                "aus": "1",
+                "x": 2,
+                "y": 1,
+                "werte": {
+                  "Y": 1
+                }
+              },
+              {
+                "id": "Z4",
+                "label": "Z_4",
+                "aus": "1",
+                "x": 1,
+                "y": 1,
+                "werte": {
+                  "Y": 1
+                }
+              },
+              {
+                "id": "Z5",
+                "label": "Z_5",
+                "aus": "1",
+                "x": 0,
+                "y": 1,
+                "werte": {
+                  "Y": 1
+                }
+              }
+            ],
+            "kanten": [
+              {
+                "von": "Z0",
+                "nach": "Z0",
+                "bed": "A",
+                "text": "A",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z0",
+                "nach": "Z1",
+                "bed": "!A",
+                "text": "!A"
+              },
+              {
+                "von": "Z1",
+                "nach": "Z1",
+                "bed": "!A",
+                "text": "!A",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z1",
+                "nach": "Z2",
+                "bed": "A",
+                "text": "A"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z1",
+                "bed": "!A",
+                "text": "!A"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z3",
+                "bed": "A",
+                "text": "A"
+              },
+              {
+                "von": "Z3",
+                "nach": "Z3",
+                "bed": "A",
+                "text": "A",
+                "schleife": "unten"
+              },
+              {
+                "von": "Z3",
+                "nach": "Z4",
+                "bed": "!A",
+                "text": "!A"
+              },
+              {
+                "von": "Z4",
+                "nach": "Z4",
+                "bed": "!A",
+                "text": "!A",
+                "schleife": "unten"
+              },
+              {
+                "von": "Z4",
+                "nach": "Z5",
+                "bed": "A",
+                "text": "A"
+              },
+              {
+                "von": "Z5",
+                "nach": "Z4",
+                "bed": "!A",
+                "text": "!A"
+              },
+              {
+                "von": "Z5",
+                "nach": "Z0",
+                "bed": "A",
+                "text": "A"
+              }
+            ]
+          },
+          {
+            "typ": "interaktiv",
+            "widget": "fsm_sim",
+            "params": {
+              "titel": "Lösung ausprobieren: gib 0, 1, 1 ein",
+              "diagramm": {
+                "titel": "Moore-FSM: Zustand und darunter Y",
+                "start": "Z0",
+                "knoten": [
+                  {
+                    "id": "Z0",
+                    "label": "Z_0",
+                    "aus": "0",
+                    "x": 0,
+                    "y": 0,
+                    "werte": {
+                      "Y": 0
+                    }
+                  },
+                  {
+                    "id": "Z1",
+                    "label": "Z_1",
+                    "aus": "0",
+                    "x": 1,
+                    "y": 0,
+                    "werte": {
+                      "Y": 0
+                    }
+                  },
+                  {
+                    "id": "Z2",
+                    "label": "Z_2",
+                    "aus": "0",
+                    "x": 2,
+                    "y": 0,
+                    "werte": {
+                      "Y": 0
+                    }
+                  },
+                  {
+                    "id": "Z3",
+                    "label": "Z_3",
+                    "aus": "1",
+                    "x": 2,
+                    "y": 1,
+                    "werte": {
+                      "Y": 1
+                    }
+                  },
+                  {
+                    "id": "Z4",
+                    "label": "Z_4",
+                    "aus": "1",
+                    "x": 1,
+                    "y": 1,
+                    "werte": {
+                      "Y": 1
+                    }
+                  },
+                  {
+                    "id": "Z5",
+                    "label": "Z_5",
+                    "aus": "1",
+                    "x": 0,
+                    "y": 1,
+                    "werte": {
+                      "Y": 1
+                    }
+                  }
+                ],
+                "kanten": [
+                  {
+                    "von": "Z0",
+                    "nach": "Z0",
+                    "bed": "A",
+                    "text": "A",
+                    "schleife": "oben"
+                  },
+                  {
+                    "von": "Z0",
+                    "nach": "Z1",
+                    "bed": "!A",
+                    "text": "!A"
+                  },
+                  {
+                    "von": "Z1",
+                    "nach": "Z1",
+                    "bed": "!A",
+                    "text": "!A",
+                    "schleife": "oben"
+                  },
+                  {
+                    "von": "Z1",
+                    "nach": "Z2",
+                    "bed": "A",
+                    "text": "A"
+                  },
+                  {
+                    "von": "Z2",
+                    "nach": "Z1",
+                    "bed": "!A",
+                    "text": "!A"
+                  },
+                  {
+                    "von": "Z2",
+                    "nach": "Z3",
+                    "bed": "A",
+                    "text": "A"
+                  },
+                  {
+                    "von": "Z3",
+                    "nach": "Z3",
+                    "bed": "A",
+                    "text": "A",
+                    "schleife": "unten"
+                  },
+                  {
+                    "von": "Z3",
+                    "nach": "Z4",
+                    "bed": "!A",
+                    "text": "!A"
+                  },
+                  {
+                    "von": "Z4",
+                    "nach": "Z4",
+                    "bed": "!A",
+                    "text": "!A",
+                    "schleife": "unten"
+                  },
+                  {
+                    "von": "Z4",
+                    "nach": "Z5",
+                    "bed": "A",
+                    "text": "A"
+                  },
+                  {
+                    "von": "Z5",
+                    "nach": "Z4",
+                    "bed": "!A",
+                    "text": "!A"
+                  },
+                  {
+                    "von": "Z5",
+                    "nach": "Z0",
+                    "bed": "A",
+                    "text": "A"
+                  }
+                ]
+              },
+              "eingaenge": [
+                "A"
+              ],
+              "ausgaenge": [
+                "Y"
+              ]
+            }
+          },
+          {
+            "typ": "merke",
+            "text": "Nach «01» und einer 0 geht es zurück nach «0», nicht an den Start: Diese 0 ist schon der Anfang eines neuen Musters."
+          }
+        ],
+        "ergebnis": "6 Zustände",
+        "loesung_herkunft": "Eigene Musterlösung, im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 1"
+      },
+      {
+        "id": "sw08-automaten-u2",
+        "nr": "2",
+        "titel": "Tennis-Game-Zähler (Moore)",
+        "empfohlen": true,
+        "grund": "Übt das Minimieren von Zuständen",
+        "aufgabe": "Es ist die Logik für einen Game-Zähler für das Tennis-Spiel zu modellieren. Der Spieler mit Aufschlag heisst Server (S), der andere Return (R).\n\nZähllogik: Die Zählfolge für einen Spieler ist 0-15-30-40-Game. 40-40 gibt es nicht, das heisst **Deuce**. Macht nach Deuce S den Punkt, ist **AdvS**, sonst **AdvR**. Macht ein Spieler mit Advantage einen Punkt, ist Game für ihn. Macht sein Gegner den Punkt, ist wieder Deuce.\n\nErstellen Sie den Graphen eines **Moore-Automaten** mit den Eingängen S und R. Die Eingänge kommen von zwei entprellten Tasten des Schiedsrichters und sind bei Betätigung für genau eine Clockperiode 1. Gestartet wird mit asynchronem Reset in 0-0, Zurücksetzen muss nicht modelliert werden, und es wird nie mehr als eine Taste gleichzeitig gedrückt.\n\nZeichnen Sie den **kleinstmöglichen** Zustandsgraphen: oben links 0-0, nach rechts die Zustände nach einem Punkt von S, nach unten nach einem Punkt von R. Zuerst steht die Zahl von S (z. B. 15-0).",
+        "tipps": [
+          "Zeichne zuerst das ganze Raster 0, 15, 30, 40 für S (nach rechts) und R (nach unten).",
+          "Suche Zustände, die sich gleich verhalten: Was passiert von 30-30 aus, und was von Deuce aus?",
+          "Vergleiche auch 40-30 mit AdvS und 30-40 mit AdvR.",
+          "Brauchst du Schlaufen? S und R sind nur eine Periode lang 1; ohne Taste bleibt der Zustand einfach.",
+          "Mit Game-S und Game-R zusammen kommst du auf 17 Zustände."
+        ],
+        "loesung": [
+          {
+            "typ": "text",
+            "text": "**Gleichwertige Zustände zusammenfassen:** 30-30 verhält sich wie Deuce, 40-30 wie AdvS und 30-40 wie AdvR (jeweils gleiche Folgezustände bei S und R). Damit gibt es 15 Spielstände plus GameS und GameR, also **17 Zustände**."
+          },
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Kleinster Moore-Graph (S → nach rechts, R → nach unten, ohne Schlaufen bei S = R = 0)",
+            "start": "0-0",
+            "knoten": [
+              {
+                "id": "0-0",
+                "label": "0-0",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "15-0",
+                "label": "15-0",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "30-0",
+                "label": "30-0",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "40-0",
+                "label": "40-0",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "0-15",
+                "label": "0-15",
+                "x": 0,
+                "y": 1
+              },
+              {
+                "id": "15-15",
+                "label": "15-15",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "30-15",
+                "label": "30-15",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "40-15",
+                "label": "40-15",
+                "x": 3,
+                "y": 1
+              },
+              {
+                "id": "0-30",
+                "label": "0-30",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "15-30",
+                "label": "15-30",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "Deuce",
+                "label": "Deuce",
+                "x": 2,
+                "y": 2
+              },
+              {
+                "id": "AdvS",
+                "label": "AdvS",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "0-40",
+                "label": "0-40",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "15-40",
+                "label": "15-40",
+                "x": 1,
+                "y": 3
+              },
+              {
+                "id": "AdvR",
+                "label": "AdvR",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "GameS",
+                "label": "GameS",
+                "x": 4,
+                "y": 1.5
+              },
+              {
+                "id": "GameR",
+                "label": "GameR",
+                "x": 1.5,
+                "y": 4
+              }
+            ],
+            "kanten": [
+              {
+                "von": "0-0",
+                "nach": "15-0",
+                "text": "S"
+              },
+              {
+                "von": "0-0",
+                "nach": "0-15",
+                "text": "R"
+              },
+              {
+                "von": "15-0",
+                "nach": "30-0",
+                "text": "S"
+              },
+              {
+                "von": "15-0",
+                "nach": "15-15",
+                "text": "R"
+              },
+              {
+                "von": "30-0",
+                "nach": "40-0",
+                "text": "S"
+              },
+              {
+                "von": "30-0",
+                "nach": "30-15",
+                "text": "R"
+              },
+              {
+                "von": "40-0",
+                "nach": "GameS",
+                "text": "S"
+              },
+              {
+                "von": "40-0",
+                "nach": "40-15",
+                "text": "R"
+              },
+              {
+                "von": "0-15",
+                "nach": "15-15",
+                "text": "S"
+              },
+              {
+                "von": "0-15",
+                "nach": "0-30",
+                "text": "R"
+              },
+              {
+                "von": "15-15",
+                "nach": "30-15",
+                "text": "S"
+              },
+              {
+                "von": "15-15",
+                "nach": "15-30",
+                "text": "R"
+              },
+              {
+                "von": "30-15",
+                "nach": "40-15",
+                "text": "S"
+              },
+              {
+                "von": "30-15",
+                "nach": "Deuce",
+                "text": "R"
+              },
+              {
+                "von": "40-15",
+                "nach": "GameS",
+                "text": "S"
+              },
+              {
+                "von": "40-15",
+                "nach": "AdvS",
+                "text": "R"
+              },
+              {
+                "von": "0-30",
+                "nach": "15-30",
+                "text": "S"
+              },
+              {
+                "von": "0-30",
+                "nach": "0-40",
+                "text": "R"
+              },
+              {
+                "von": "15-30",
+                "nach": "Deuce",
+                "text": "S"
+              },
+              {
+                "von": "15-30",
+                "nach": "15-40",
+                "text": "R"
+              },
+              {
+                "von": "Deuce",
+                "nach": "AdvS",
+                "text": "S"
+              },
+              {
+                "von": "Deuce",
+                "nach": "AdvR",
+                "text": "R"
+              },
+              {
+                "von": "AdvS",
+                "nach": "GameS",
+                "text": "S"
+              },
+              {
+                "von": "AdvS",
+                "nach": "Deuce",
+                "text": "R"
+              },
+              {
+                "von": "0-40",
+                "nach": "15-40",
+                "text": "S"
+              },
+              {
+                "von": "0-40",
+                "nach": "GameR",
+                "text": "R"
+              },
+              {
+                "von": "15-40",
+                "nach": "AdvR",
+                "text": "S"
+              },
+              {
+                "von": "15-40",
+                "nach": "GameR",
+                "text": "R"
+              },
+              {
+                "von": "AdvR",
+                "nach": "Deuce",
+                "text": "S"
+              },
+              {
+                "von": "AdvR",
+                "nach": "GameR",
+                "text": "R"
+              }
+            ],
+            "zeilenabstand": 84
+          },
+          {
+            "typ": "tabelle",
+            "titel": "Zustand-Ereignis-Tabelle",
+            "kopf": [
+              "Zustand",
+              "S",
+              "R",
+              "keine Taste"
+            ],
+            "erste_kopf": true,
+            "zeilen": [
+              [
+                "0-0",
+                "15-0",
+                "0-15",
+                "0-0"
+              ],
+              [
+                "15-0",
+                "30-0",
+                "15-15",
+                "15-0"
+              ],
+              [
+                "30-0",
+                "40-0",
+                "30-15",
+                "30-0"
+              ],
+              [
+                "40-0",
+                "GameS",
+                "40-15",
+                "40-0"
+              ],
+              [
+                "0-15",
+                "15-15",
+                "0-30",
+                "0-15"
+              ],
+              [
+                "15-15",
+                "30-15",
+                "15-30",
+                "15-15"
+              ],
+              [
+                "30-15",
+                "40-15",
+                "Deuce",
+                "30-15"
+              ],
+              [
+                "40-15",
+                "GameS",
+                "AdvS",
+                "40-15"
+              ],
+              [
+                "0-30",
+                "15-30",
+                "0-40",
+                "0-30"
+              ],
+              [
+                "15-30",
+                "Deuce",
+                "15-40",
+                "15-30"
+              ],
+              [
+                "Deuce",
+                "AdvS",
+                "AdvR",
+                "Deuce"
+              ],
+              [
+                "AdvS",
+                "GameS",
+                "Deuce",
+                "AdvS"
+              ],
+              [
+                "0-40",
+                "15-40",
+                "GameR",
+                "0-40"
+              ],
+              [
+                "15-40",
+                "AdvR",
+                "GameR",
+                "15-40"
+              ],
+              [
+                "AdvR",
+                "Deuce",
+                "GameR",
+                "AdvR"
+              ],
+              [
+                "GameS",
+                "GameS",
+                "GameS",
+                "GameS"
+              ],
+              [
+                "GameR",
+                "GameR",
+                "GameR",
+                "GameR"
+              ]
+            ]
+          }
+        ],
+        "ergebnis": "17 Zustände",
+        "loesung_herkunft": "Eigene Musterlösung, im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 2"
+      },
+      {
+        "id": "sw08-automaten-u3",
+        "nr": "3",
+        "titel": "Ein Puls pro Tastendruck (bis zur Schaltung)",
+        "empfohlen": true,
+        "grund": "Ganzer Entwurf vom Graphen bis zur Logik, wie an der MEP",
+        "aufgabe": "Eine Tennis-Anzeige braucht das Signal S, um Spielpunkte zu zählen. Wenn der Schiedsrichter die Taste T drückt, soll S für **genau eine Clockperiode** auf 1 gehen und dann wieder 0 werden, egal wie lange die Taste gedrückt bleibt.\n\nEntwerfen Sie eine Schaltung mit einer entprellten Taste T, Synchronisation (Ausgangssignal E) und der nötigen **Moore-FSM** (Clock, Eingang E, Ausgang S). Der Clock ist sehr viel schneller (z. B. 1 MHz) als die Taste betätigt werden kann.\n\nZeichnen Sie den kleinstmöglichen Graphen, die NextStateTable mit **D-FF** und alle nötigen Schritte bis zur Schaltung.",
+        "tipps": [
+          "Synchronisation wie in K09: die entprellte Taste über (zwei) D-FF am Systemclock führen. Das Ergebnis ist E.",
+          "Welche Situationen muss der Automat unterscheiden? Warten auf den Druck, der eine Puls, und warten bis losgelassen.",
+          "Moore: Der Puls braucht einen eigenen Zustand mit S = 1. Insgesamt reichen 3 Zustände.",
+          "Codiere z. B. $Z_0 = 00$, $Z_1 = 01$, $Z_2 = 10$ und überlege, wohin der unbenutzte Code 11 führen soll.",
+          "Beim D-FF gilt $D = Q^+$. Lies $D_1$ und $D_0$ direkt aus der Tabelle ab und vereinfache."
+        ],
+        "loesung": [
+          {
+            "typ": "kette",
+            "elemente": [
+              {
+                "text": "Entprellte Taste T"
+              },
+              {
+                "text": "2 D-FF",
+                "sub": "Synchronisation"
+              },
+              {
+                "text": "Moore-FSM"
+              },
+              {
+                "text": "S"
+              }
+            ],
+            "pfeile": [
+              "",
+              "E",
+              ""
+            ],
+            "takt": "Clock"
+          },
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Moore-FSM: Zustand und darunter S",
+            "start": "Z0",
+            "knoten": [
+              {
+                "id": "Z0",
+                "label": "Z_0 (00)",
+                "aus": "0",
+                "x": 0,
+                "y": 0,
+                "werte": {
+                  "S": 0
+                }
+              },
+              {
+                "id": "Z1",
+                "label": "Z_1 (01)",
+                "aus": "1",
+                "x": 1,
+                "y": 0,
+                "werte": {
+                  "S": 1
+                }
+              },
+              {
+                "id": "Z2",
+                "label": "Z_2 (10)",
+                "aus": "0",
+                "x": 2,
+                "y": 0,
+                "werte": {
+                  "S": 0
+                }
+              }
+            ],
+            "kanten": [
+              {
+                "von": "Z0",
+                "nach": "Z0",
+                "bed": "!E",
+                "text": "!E",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z0",
+                "nach": "Z1",
+                "bed": "E",
+                "text": "E"
+              },
+              {
+                "von": "Z1",
+                "nach": "Z2",
+                "bed": "E",
+                "text": "E"
+              },
+              {
+                "von": "Z1",
+                "nach": "Z0",
+                "bed": "!E",
+                "text": "!E"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z2",
+                "bed": "E",
+                "text": "E",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z0",
+                "bed": "!E",
+                "text": "!E",
+                "kurve": -34
+              }
+            ]
+          },
+          {
+            "typ": "tabelle",
+            "titel": "NextStateTable mit D-FF (11 unbenutzt, führt zurück)",
+            "kopf": [
+              "$Q_1$",
+              "$Q_0$",
+              "E",
+              "$Q_1^+ = D_1$",
+              "$Q_0^+ = D_0$",
+              "S"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "0",
+                "1",
+                "1",
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "1",
+                "0",
+                "1",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1",
+                "1",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "1",
+                "1",
+                "1",
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "typ": "formel",
+            "tex": "D_1 = E\\,(Q_1 + Q_0) \\qquad D_0 = \\overline{Q_1}\\,\\overline{Q_0}\\,E \\qquad S = \\overline{Q_1}\\,Q_0"
+          },
+          {
+            "typ": "interaktiv",
+            "widget": "fsm_sim",
+            "params": {
+              "titel": "Lösung ausprobieren: E lange auf 1 lassen",
+              "diagramm": {
+                "titel": "Moore-FSM: Zustand und darunter S",
+                "start": "Z0",
+                "knoten": [
+                  {
+                    "id": "Z0",
+                    "label": "Z_0 (00)",
+                    "aus": "0",
+                    "x": 0,
+                    "y": 0,
+                    "werte": {
+                      "S": 0
+                    }
+                  },
+                  {
+                    "id": "Z1",
+                    "label": "Z_1 (01)",
+                    "aus": "1",
+                    "x": 1,
+                    "y": 0,
+                    "werte": {
+                      "S": 1
+                    }
+                  },
+                  {
+                    "id": "Z2",
+                    "label": "Z_2 (10)",
+                    "aus": "0",
+                    "x": 2,
+                    "y": 0,
+                    "werte": {
+                      "S": 0
+                    }
+                  }
+                ],
+                "kanten": [
+                  {
+                    "von": "Z0",
+                    "nach": "Z0",
+                    "bed": "!E",
+                    "text": "!E",
+                    "schleife": "oben"
+                  },
+                  {
+                    "von": "Z0",
+                    "nach": "Z1",
+                    "bed": "E",
+                    "text": "E"
+                  },
+                  {
+                    "von": "Z1",
+                    "nach": "Z2",
+                    "bed": "E",
+                    "text": "E"
+                  },
+                  {
+                    "von": "Z1",
+                    "nach": "Z0",
+                    "bed": "!E",
+                    "text": "!E"
+                  },
+                  {
+                    "von": "Z2",
+                    "nach": "Z2",
+                    "bed": "E",
+                    "text": "E",
+                    "schleife": "oben"
+                  },
+                  {
+                    "von": "Z2",
+                    "nach": "Z0",
+                    "bed": "!E",
+                    "text": "!E",
+                    "kurve": -34
+                  }
+                ]
+              },
+              "eingaenge": [
+                "E"
+              ],
+              "ausgaenge": [
+                "S"
+              ]
+            }
+          },
+          {
+            "typ": "merke",
+            "text": "Der unbenutzte Code 11 geht bei E = 0 nach $Z_0$ und bei E = 1 nach $Z_2$. Beides sind definierte Zustände, also kein parasitärer Loop."
+          }
+        ],
+        "ergebnis": "3 Zustände, $D_1 = E(Q_1+Q_0)$, $D_0 = \\overline{Q_1}\\,\\overline{Q_0}E$",
+        "loesung_herkunft": "Eigene Musterlösung (per Simulation geprüft), im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 3"
+      },
+      {
+        "id": "sw08-automaten-u4",
+        "nr": "4",
+        "titel": "Glue-Logic für einen optischen Sensor",
+        "empfohlen": false,
+        "aufgabe": "Die Daten eines optischen Sensors sollen von einem Master-Rechner ausgelesen werden. Entwerfen Sie die Glue-Logic als **Moore-FSM** mit den Eingängen En, Rdy und den Ausgängen Clr, MSR, ADC.\n\nDer Master startet eine Messung, indem er En auf 1 setzt, und lässt En auf 1, bis er die Daten übernommen hat. Laut Zeitdiagramm im Übungsblatt muss die FSM danach (gezählt in Clockperioden): **Clr für 1 Periode**, dann 1 Periode nichts, dann **MSR für 2 Perioden**, dann 1 Periode nichts, dann **ADC** setzen. Der Sensor meldet nach unbestimmter Zeit mit Rdy = 1, dass die Daten gültig sind; der Master liest sie und setzt En wieder auf 0. Dann setzt die FSM ADC auf 0.",
+        "tipps": [
+          "Moore: Jede Periode mit anderen Ausgangswerten braucht einen eigenen Zustand, auch die Pausen.",
+          "Zähle die Perioden im Zeitdiagramm: Clr 1, Pause 1, MSR 2, Pause 1, dann ADC.",
+          "Die festen Abläufe gehen bei jedem Takt weiter, unabhängig von den Eingängen (Bedingung «1»).",
+          "Wann verlässt die FSM den ADC-Zustand? Wer reagiert eigentlich auf Rdy?"
+        ],
+        "loesung": [
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Moore-FSM: Ausgänge Clr MSR ADC",
+            "start": "Z0",
+            "knoten": [
+              {
+                "id": "Z0",
+                "label": "Z_0",
+                "aus": "000",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "Z1",
+                "label": "Z_1",
+                "aus": "100",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "Z2",
+                "label": "Z_2",
+                "aus": "000",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "Z3",
+                "label": "Z_3",
+                "aus": "010",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "Z4",
+                "label": "Z_4",
+                "aus": "010",
+                "x": 3,
+                "y": 1
+              },
+              {
+                "id": "Z5",
+                "label": "Z_5",
+                "aus": "000",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "Z6",
+                "label": "Z_6",
+                "aus": "001",
+                "x": 1,
+                "y": 1
+              }
+            ],
+            "kanten": [
+              {
+                "von": "Z0",
+                "nach": "Z0",
+                "text": "!En",
+                "schleife": "oben"
+              },
+              {
+                "von": "Z0",
+                "nach": "Z1",
+                "text": "En"
+              },
+              {
+                "von": "Z1",
+                "nach": "Z2",
+                "text": "1"
+              },
+              {
+                "von": "Z2",
+                "nach": "Z3",
+                "text": "1"
+              },
+              {
+                "von": "Z3",
+                "nach": "Z4",
+                "text": "1"
+              },
+              {
+                "von": "Z4",
+                "nach": "Z5",
+                "text": "1"
+              },
+              {
+                "von": "Z5",
+                "nach": "Z6",
+                "text": "1"
+              },
+              {
+                "von": "Z6",
+                "nach": "Z6",
+                "text": "En",
+                "schleife": "unten"
+              },
+              {
+                "von": "Z6",
+                "nach": "Z0",
+                "text": "!En"
+              }
+            ]
+          },
+          {
+            "typ": "tabelle",
+            "kopf": [
+              "Zustand",
+              "Clr",
+              "MSR",
+              "ADC",
+              "weiter bei"
+            ],
+            "zeilen": [
+              [
+                "$Z_0$ (warten)",
+                "0",
+                "0",
+                "0",
+                "En"
+              ],
+              [
+                "$Z_1$",
+                "1",
+                "0",
+                "0",
+                "jedem Takt"
+              ],
+              [
+                "$Z_2$",
+                "0",
+                "0",
+                "0",
+                "jedem Takt"
+              ],
+              [
+                "$Z_3$",
+                "0",
+                "1",
+                "0",
+                "jedem Takt"
+              ],
+              [
+                "$Z_4$",
+                "0",
+                "1",
+                "0",
+                "jedem Takt"
+              ],
+              [
+                "$Z_5$",
+                "0",
+                "0",
+                "0",
+                "jedem Takt"
+              ],
+              [
+                "$Z_6$",
+                "0",
+                "0",
+                "1",
+                "!En → $Z_0$"
+              ]
+            ]
+          },
+          {
+            "typ": "merke",
+            "text": "Rdy wird für die Übergänge nicht gebraucht: Darauf reagiert der Master. Die FSM wartet in $Z_6$, bis der Master En wieder auf 0 setzt. Wer möchte, kann in $Z_6$ zusätzlich auf Rdy warten; das ändert am Ablauf nichts."
+          }
+        ],
+        "ergebnis": "7 Zustände",
+        "loesung_herkunft": "Eigene Musterlösung nach dem Zeitdiagramm im Übungsblatt, im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 4 (Zeitdiagramm im Übungsblatt)"
+      },
+      {
+        "id": "sw08-automaten-u5",
+        "nr": "5",
+        "titel": "KV-Diagramme aus einer Next-State-Tabelle",
+        "empfohlen": true,
+        "grund": "KV-Diagramme sind an der MEP sicher dabei",
+        "aufgabe": "Bilden Sie die Karnaugh-Diagramme zur Ansteuerung der **D-FF** aus folgender Next-State-Tabelle ($Z = Q_2Q_1Q_0$):\n\n000 → 001 (A = 0), 001 → 010 (A = 0), 010 → 011 (A = 0), 011 → 100 (A = 1), 100 → 101 (A = 1), 101 → 000 (A = 1), 110 → 000 (A = 0), 111 → 000 (A = 0).",
+        "tipps": [
+          "Beim D-FF gilt einfach $D_i = Q_i^+$. Schreib für jedes Bit des Folgezustands eine eigene Spalte.",
+          "Zeichne drei KV-Diagramme mit Zeilen $Q_2$ und Spalten $Q_1Q_0$ in Gray-Reihenfolge 00, 01, 11, 10.",
+          "110 und 111 sind hier keine Don't-Cares: Sie führen definiert nach 000.",
+          "Bei $D_0$ findest du zwei Zweierblöcke, die sich überlappen."
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "kv": true,
+            "titel": "$D_2$",
+            "kopf": [
+              "$Q_2 \\backslash Q_1Q_0$",
+              "00",
+              "01",
+              "11",
+              "10"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1",
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "typ": "tabelle",
+            "kv": true,
+            "titel": "$D_1$",
+            "kopf": [
+              "$Q_2 \\backslash Q_1Q_0$",
+              "00",
+              "01",
+              "11",
+              "10"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "0",
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "typ": "tabelle",
+            "kv": true,
+            "titel": "$D_0$",
+            "kopf": [
+              "$Q_2 \\backslash Q_1Q_0$",
+              "00",
+              "01",
+              "11",
+              "10"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "1",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "typ": "tabelle",
+            "kv": true,
+            "titel": "Ausgang A",
+            "kopf": [
+              "$Q_2 \\backslash Q_1Q_0$",
+              "00",
+              "01",
+              "11",
+              "10"
+            ],
+            "zeilen": [
+              [
+                "0",
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1",
+                "1",
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "typ": "formel",
+            "tex": "D_2 = \\overline{Q_2}Q_1Q_0 + Q_2\\overline{Q_1}\\,\\overline{Q_0} \\qquad D_1 = \\overline{Q_2}\\,(Q_1 \\oplus Q_0)"
+          },
+          {
+            "typ": "formel",
+            "tex": "D_0 = \\overline{Q_2}\\,\\overline{Q_0} + \\overline{Q_1}\\,\\overline{Q_0} \\qquad A = \\overline{Q_2}Q_1Q_0 + Q_2\\overline{Q_1}"
+          }
+        ],
+        "ergebnis": "Zähler 0 → 5, A = 1 bei 3, 4, 5",
+        "loesung_herkunft": "Eigene Musterlösung (alle 8 Zeilen nachgerechnet), im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 5"
+      },
+      {
+        "id": "sw08-automaten-u6",
+        "nr": "6",
+        "titel": "Mealy-Diagramm in eine NextStateTable übersetzen",
+        "empfohlen": false,
+        "aufgabe": "Übersetzen Sie folgendes Zustandsdiagramm (Mealy, Eingang E, Ausgang nach dem Schrägstrich) in eine NextStateTable für D-FF. Was fehlt?\n\nÜbergänge laut Übungsblatt: 1 → 2 bei !E/0, 2 → 1 bei E/0, 1 → 3 bei E/1, 3 → 1 bei !E/0.",
+        "tipps": [
+          "Wähle eine Codierung, z. B. die Zustandsnummer binär: 1 = 01, 2 = 10, 3 = 11.",
+          "Mach für jeden Zustand je eine Zeile für E = 0 und E = 1.",
+          "Wo findest du keinen Pfeil im Diagramm? Denk an die Regel für Mealy-Schlaufen (Folie 7).",
+          "Was ist mit dem Code 00 und mit dem Startzustand?"
+        ],
+        "loesung": [
+          {
+            "typ": "tabelle",
+            "titel": "NextStateTable (Codierung 1 = 01, 2 = 10, 3 = 11)",
+            "kopf": [
+              "Zustand",
+              "$Q_1Q_0$",
+              "E",
+              "$Q_1^+Q_0^+ = D_1D_0$",
+              "Ausgang"
+            ],
+            "zeilen": [
+              [
+                "1",
+                "01",
+                "0",
+                "10 (→ 2)",
+                "0"
+              ],
+              [
+                "1",
+                "01",
+                "1",
+                "11 (→ 3)",
+                "1"
+              ],
+              [
+                "2",
+                "10",
+                "0",
+                "**?**",
+                "**?**"
+              ],
+              [
+                "2",
+                "10",
+                "1",
+                "01 (→ 1)",
+                "0"
+              ],
+              [
+                "3",
+                "11",
+                "0",
+                "01 (→ 1)",
+                "0"
+              ],
+              [
+                "3",
+                "11",
+                "1",
+                "**?**",
+                "**?**"
+              ],
+              [
+                "–",
+                "00",
+                "0/1",
+                "**?** (unbenutzt)",
+                "**?**"
+              ]
+            ],
+            "hervor": [
+              [
+                2,
+                3
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                6,
+                3
+              ]
+            ]
+          },
+          {
+            "typ": "liste",
+            "punkte": [
+              "Zustand 2 bei **!E** und Zustand 3 bei **E**: Diese Übergänge fehlen. Vermutlich bleibt der Automat dort; dann braucht es nach Folie 7 Schlaufen **mit Ausgangswerten**.",
+              "Der **Startzustand** ist nicht angegeben.",
+              "Die **Zustandscodierung** ist nicht festgelegt, und was mit dem unbenutzten Code 00 passiert (parasitärer Loop, Power-Up Reset)."
+            ]
+          }
+        ],
+        "ergebnis": "Es fehlen Schlaufen bei 2 (!E) und 3 (E), Start und Codierung",
+        "loesung_herkunft": "Eigene Musterlösung, im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 6 (Diagramm im Übungsblatt)"
+      },
+      {
+        "id": "sw08-automaten-u7",
+        "nr": "7",
+        "titel": "Winkelkodierer mit Gray-Code (Moore und Mealy)",
+        "empfohlen": false,
+        "aufgabe": "Ein Winkelkodierer (z. B. Lautstärkeknopf) liefert einen 2-Bit-Gray-Code an den Anschlüssen A und B.\n\nRandbedingungen: Der Systemclock ist sehr viel schneller als die Code-Veränderung, Fehler und Störungen sind nicht zu berücksichtigen, nach dem Einschalten sind FF und Gray-Code im Zustand 00.",
+        "teile": [
+          {
+            "label": "a)",
+            "text": "Entwerfen Sie das Zustandsdiagramm eines **Moore**-Automaten mit den Eingängen A, B und den Ausgängen U (up) und D (down). Bei jedem Übergang zum nächsten Gray-Code-Wert soll während genau einer Clockperiode U bzw. D gleich 1 sein, sonst sind beide 0."
+          },
+          {
+            "label": "b)",
+            "text": "Entwerfen Sie das Zustandsdiagramm eines **Mealy**-Automaten mit derselben Funktionsweise."
+          }
+        ],
+        "tipps": [
+          "Gray-Folge mit 2 Bit: 00 → 01 → 11 → 10 → 00. Lege fest, welche Richtung «up» ist.",
+          "Moore: Der Automat muss sich die letzte Stellung merken, und ob er gerade einen U- oder D-Puls ausgibt. Wie viele Zustände pro Stellung sind das?",
+          "Moore: Nach dem Puls-Zustand geht es beim nächsten Takt in den Ruhe-Zustand derselben Stellung, weil AB dann noch gleich ist.",
+          "Mealy: Die Ausgabe hängt am Übergang. Ein Zustand pro Stellung reicht."
+        ],
+        "loesung": [
+          {
+            "typ": "hinweis",
+            "text": "Annahme: Die Gray-Folge 00 → 01 → 11 → 10 → 00 zählt als **up**, die Gegenrichtung als **down**. Ein Sprung um zwei Stellungen (z. B. 00 → 11) wird nicht betrachtet (–)."
+          },
+          {
+            "typ": "text",
+            "text": "**a) Moore:** Pro Stellung drei Zustände: Ruhe (UD = 00), gerade hinauf (↑, UD = 10) und gerade hinunter (↓, UD = 01). Das ergibt **12 Zustände**."
+          },
+          {
+            "typ": "tabelle",
+            "titel": "Moore-Automat: Folgezustand je nach Eingang AB",
+            "kopf": [
+              "Zustand",
+              "UD",
+              "AB = 00",
+              "AB = 01",
+              "AB = 11",
+              "AB = 10"
+            ],
+            "erste_kopf": true,
+            "zeilen": [
+              [
+                "00",
+                "00",
+                "00",
+                "01↑",
+                "–",
+                "10↓"
+              ],
+              [
+                "00↑",
+                "10",
+                "00",
+                "01↑",
+                "–",
+                "10↓"
+              ],
+              [
+                "00↓",
+                "01",
+                "00",
+                "01↑",
+                "–",
+                "10↓"
+              ],
+              [
+                "01",
+                "00",
+                "00↓",
+                "01",
+                "11↑",
+                "–"
+              ],
+              [
+                "01↑",
+                "10",
+                "00↓",
+                "01",
+                "11↑",
+                "–"
+              ],
+              [
+                "01↓",
+                "01",
+                "00↓",
+                "01",
+                "11↑",
+                "–"
+              ],
+              [
+                "11",
+                "00",
+                "–",
+                "01↓",
+                "11",
+                "10↑"
+              ],
+              [
+                "11↑",
+                "10",
+                "–",
+                "01↓",
+                "11",
+                "10↑"
+              ],
+              [
+                "11↓",
+                "01",
+                "–",
+                "01↓",
+                "11",
+                "10↑"
+              ],
+              [
+                "10",
+                "00",
+                "00↑",
+                "–",
+                "11↓",
+                "10"
+              ],
+              [
+                "10↑",
+                "10",
+                "00↑",
+                "–",
+                "11↓",
+                "10"
+              ],
+              [
+                "10↓",
+                "01",
+                "00↑",
+                "–",
+                "11↓",
+                "10"
+              ]
+            ]
+          },
+          {
+            "typ": "text",
+            "text": "**b) Mealy:** Ein Zustand pro Stellung reicht, also **4 Zustände**. Die Ausgabe U bzw. D erscheint am Übergang. Nach dem Takt ist der Automat in der neuen Stellung, AB passt wieder zum Zustand und die Ausgabe ist 00: Der Puls dauert so genau eine Periode."
+          },
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Mealy-Automat: Beschriftung AB / UD",
+            "start": "00",
+            "knoten": [
+              {
+                "id": "00",
+                "label": "00",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "01",
+                "label": "01",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "11",
+                "label": "11",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "10",
+                "label": "10",
+                "x": 0,
+                "y": 1
+              }
+            ],
+            "kanten": [
+              {
+                "von": "00",
+                "nach": "01",
+                "text": "01/10"
+              },
+              {
+                "von": "01",
+                "nach": "11",
+                "text": "11/10"
+              },
+              {
+                "von": "11",
+                "nach": "10",
+                "text": "10/10"
+              },
+              {
+                "von": "10",
+                "nach": "00",
+                "text": "00/10"
+              },
+              {
+                "von": "00",
+                "nach": "10",
+                "text": "10/01"
+              },
+              {
+                "von": "01",
+                "nach": "00",
+                "text": "00/01"
+              },
+              {
+                "von": "11",
+                "nach": "01",
+                "text": "01/01"
+              },
+              {
+                "von": "10",
+                "nach": "11",
+                "text": "11/01"
+              },
+              {
+                "von": "00",
+                "nach": "00",
+                "text": "00/00",
+                "schleife": "oben"
+              },
+              {
+                "von": "01",
+                "nach": "01",
+                "text": "01/00",
+                "schleife": "oben"
+              },
+              {
+                "von": "11",
+                "nach": "11",
+                "text": "11/00",
+                "schleife": "unten"
+              },
+              {
+                "von": "10",
+                "nach": "10",
+                "text": "10/00",
+                "schleife": "unten"
+              }
+            ]
+          }
+        ],
+        "ergebnis": "Moore 12 Zustände, Mealy 4 Zustände",
+        "loesung_herkunft": "Eigene Musterlösung mit der oben genannten Annahme zur Drehrichtung, im Material gibt es keine Lösung zu K08.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 7"
+      },
+      {
+        "id": "sw08-automaten-u8",
+        "nr": "8",
+        "titel": "Werkstücke nach Länge sortieren",
+        "empfohlen": false,
+        "aufgabe": "Werkstücke in drei Längen: **L** (≥ 12 cm), **K** (< 10 cm) und **M** (K < M < L) werden mit 20 cm Abstand auf einem Förderband transportiert. Sie passieren die Lichtschranken A, B (10 cm nach A) und C (2 cm nach B). Alle Signale sind aktiv 1, z. B. A = 1, solange ein Werkstück die Lichtschranke A unterbricht.\n\nModellieren Sie einen Automaten als Graphen, der die Signale L, M und K erzeugt, solange C aktiv ist:",
+        "teile": [
+          {
+            "label": "a)",
+            "text": "als Moore-Automat"
+          },
+          {
+            "label": "b)",
+            "text": "als Mealy-Automat"
+          }
+        ],
+        "tipps": [
+          "Wo ist das Werkstück, wenn seine Vorderkante B erreicht? Und wenn sie C erreicht?",
+          "Vorderkante bei B (10 cm nach A): A ist noch belegt genau dann, wenn das Stück mindestens 10 cm lang ist, also M oder L.",
+          "Vorderkante bei C (12 cm nach A): A ist noch belegt genau dann, wenn das Stück mindestens 12 cm lang ist, also L.",
+          "Merke dir also beim Erreichen von B «lang» oder «kurz» und entscheide beim Erreichen von C zwischen L und M.",
+          "Achtung: Während C aktiv ist, kann A wieder frei werden. Die Entscheidung muss darum in einem Zustand gespeichert sein."
+        ],
+        "loesung": [
+          {
+            "typ": "text",
+            "text": "**Idee:** Wenn die Vorderkante B erreicht (B wird 1), ist A noch belegt genau bei Länge ≥ 10 cm (M oder L). Wenn die Vorderkante C erreicht (C wird 1), ist A noch belegt genau bei Länge ≥ 12 cm (L)."
+          },
+          {
+            "typ": "zustandsdiagramm",
+            "titel": "Moore-FSM: Ausgänge L M K",
+            "start": "Idle",
+            "knoten": [
+              {
+                "id": "Idle",
+                "label": "Idle",
+                "aus": "000",
+                "x": 0,
+                "y": 1
+              },
+              {
+                "id": "Lang",
+                "label": "Lang",
+                "aus": "000",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "Kurz",
+                "label": "Kurz",
+                "aus": "000",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "AusL",
+                "label": "AusL",
+                "aus": "100",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "AusM",
+                "label": "AusM",
+                "aus": "010",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "AusK",
+                "label": "AusK",
+                "aus": "001",
+                "x": 2,
+                "y": 2
+              }
+            ],
+            "kanten": [
+              {
+                "von": "Idle",
+                "nach": "Idle",
+                "text": "!B",
+                "schleife": "links"
+              },
+              {
+                "von": "Idle",
+                "nach": "Lang",
+                "text": "B·A"
+              },
+              {
+                "von": "Idle",
+                "nach": "Kurz",
+                "text": "B·!A"
+              },
+              {
+                "von": "Lang",
+                "nach": "Lang",
+                "text": "!C",
+                "schleife": "oben"
+              },
+              {
+                "von": "Lang",
+                "nach": "AusL",
+                "text": "C·A"
+              },
+              {
+                "von": "Lang",
+                "nach": "AusM",
+                "text": "C·!A"
+              },
+              {
+                "von": "Kurz",
+                "nach": "Kurz",
+                "text": "!C",
+                "schleife": "unten"
+              },
+              {
+                "von": "Kurz",
+                "nach": "AusK",
+                "text": "C"
+              },
+              {
+                "von": "AusL",
+                "nach": "AusL",
+                "text": "C",
+                "schleife": "rechts"
+              },
+              {
+                "von": "AusM",
+                "nach": "AusM",
+                "text": "C",
+                "schleife": "rechts"
+              },
+              {
+                "von": "AusK",
+                "nach": "AusK",
+                "text": "C",
+                "schleife": "rechts"
+              },
+              {
+                "von": "AusL",
+                "nach": "Idle",
+                "text": "!C",
+                "kurve": -30
+              },
+              {
+                "von": "AusM",
+                "nach": "Idle",
+                "text": "!C"
+              },
+              {
+                "von": "AusK",
+                "nach": "Idle",
+                "text": "!C",
+                "kurve": 30
+              }
+            ]
+          },
+          {
+            "typ": "liste",
+            "punkte": [
+              "**a) Moore (6 Zustände):** Ausgänge LMK stehen in den Knoten. Sie erscheinen eine Taktperiode nach dem Aktivwerden von C und enden eine Periode nach C = 0. Bei schnellem Takt spielt das keine Rolle.",
+              "**b) Mealy:** gleiche Zustände, die Ausgänge stehen aber an den Pfeilen: z. B. Lang → AusL mit «C·A / 100», die Schlaufe in AusL mit «C / 100» und der Rückweg mit «!C / 000». So ist L **sofort** aktiv, wenn C aktiv wird.",
+              "Weniger Zustände bringt Mealy hier nicht: Die Entscheidung L, M oder K muss gespeichert bleiben, solange C aktiv ist, weil A in dieser Zeit wieder frei werden kann."
+            ]
+          }
+        ],
+        "ergebnis": "Moore 6 Zustände",
+        "loesung_herkunft": "Eigene Musterlösung, im Material gibt es keine Lösung zu K08. Bitte besonders kritisch prüfen.",
+        "quelle": "K08-DigitalTechnik-Aufgaben-v10, Aufgabe 8"
+      }
+    ]
+  }
+}
